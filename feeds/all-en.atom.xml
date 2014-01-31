@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all-en.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-01-30T00:00:00+00:00</updated><entry><title>Unreasonable Effectiveness of Metadata</title><link href="http://bugra.github.io/work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/" rel="alternate"></link><updated>2014-01-30T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-01-30:work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/</id><summary type="html">&lt;h2&gt;Metadata&lt;/h2&gt;
+&lt;p&gt;Metadata could be translated as data about data if we want to translate
+'mot à mot'. Generally, it defines what the data is about 
+and gives some descriptive information around that. Still quite 
+abstract huh? If the content of email is data, then sender,
+receiver, date and time could be considered as metadata. 
+Metadata could be quite important when data is not available or
+unobservable due to various reasons. &lt;br /&gt;
+One of the reasons why they could be collected quite freely and 
+and abundant is because apparently it does not have to go through 
+the same &lt;a href="http://www.slate.com/articles/news_and_politics/war_stories/2014/01/obama_s_nsa_reforms_the_president_s_proposals_for_metadata_and_the_fisa.html"&gt;privacy concerns&lt;/a&gt; unlike data goes.
+Moreover, it is likely that its digital footprint is much smaller than
+data and this leads to efficient storage, computation, analysis and
+inference.
+As its name suggests, it is an &lt;strong&gt;abstraction&lt;/strong&gt; of the data it sits on
+top of the data; it does not necessarily tell the story, but that does not mean 
+it does not reveal anything about data itself. Contrarily, it may expose a lot of 
+interesting patterns and even not just about data.&lt;/p&gt;
+&lt;h2&gt;Gmail Outage&lt;/h2&gt;
+&lt;p&gt;Last week Gmail had an &lt;a href="http://googleblog.blogspot.in/2014/01/todays-outage-for-several-google.html"&gt;outage&lt;/a&gt; and users could not use their Gmail
+accounts for almost one hour. &lt;br /&gt;
+Consider this scenario, we cannot observe the outage of Gmail(after all 
+it just prompts an error, temporary error 502), but we have all of the 
+metadata of users who use Gmail. It would be quite easy to infer that
+there is something wrong with Gmail infrastructure and this could be 
+done pretty quickly and efficiently assuming we have all of the 
+statistics and email metada information of users. Looking at the data of
+the users has another important advantage; you actually do not care if
+the infrastructure works but if &lt;strong&gt;your users&lt;/strong&gt; could actually use your
+service. But is there a pattern to begin with? &lt;/p&gt;
+&lt;h2&gt;Gmail Usage Analysis&lt;/h2&gt;
+&lt;p&gt;So, I used my work gmail account that I used from beginning of June 2013
+up to January 2014. I looked at received email and sent email times. The
+results was quite interesting. Although there are a lot of third party
+applications which shows some usage statistics, I found none of them
+secure and reliable. So, I pulled the data from Gmail using standard
+library &lt;a href="https://nest.com/"&gt;imaplib&lt;/a&gt;. Apart from easiness, you could have control of all
+of the folders in your email for arbitrary time intervals whereas third 
+party applications generally either gives predefined(inbox, sent) or put restrictions in the time interval. Python has a batteries-included 
+approach which works quite convenient at the times  when you want 
+to do implement something that is already implemented in the standard
+library. &lt;/p&gt;
+&lt;h2&gt;Received Emails&lt;/h2&gt;
+&lt;h3&gt;Emails Per Day&lt;/h3&gt;
+&lt;p&gt;For daily counts of emails, Monday and Thursday has two days less than
+other days this is due to the federal holidays.
+But I must say most of the received emails are from project management
+web app that we were using. When I looked at my received emails, I see
+mostly notifications rather than "emails". 
+&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_day_bar_plot.png" title="Received Email By Day" /&gt;&lt;/p&gt;
+&lt;p&gt;What do we infer from the above graph? For some reason, we have less
+number of emails in Wednesday. Could it be we were working less in
+Wednesday? Actually, yes. We used to have company meetings in Wednesday.
+This may not change a lot for one person, but if you consider all of the
+people in the company spent their times on the meeting, then total time
+spent becomes 'meeting-hour * number-of-people' which apparently has an
+effect on the total number of emails.  &lt;/p&gt;
+&lt;h4&gt;What!, you were receiving emails on Sunday?&lt;/h4&gt;
+&lt;p&gt;So, we were a distributed team and Israeli team took vacations
+on Friday and worked on Sunday. Those emails are mostly due to the
+activities and emails from Israeli team. This would also lead to high
+number of sent emails on Monday as you will see later. What I found
+interesting is that, more or less most of the days have same number of
+emails. Even though it &lt;strong&gt;feels&lt;/strong&gt; like beginning of the weeks are
+stressful and hectic, apparently if we sum the number of emails per day,
+we get similar number of emails for each day.&lt;/p&gt;
+&lt;h3&gt;Emails Per Hour&lt;/h3&gt;
+&lt;p&gt;The following graph actually explains what type of email activity shows
+a distributed and a team which has quite different timezones(USA,
+Europe, Israel). 
+&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_hour_histogram.png" title="Received Email By Hour" /&gt;&lt;/p&gt;
+&lt;h3&gt;Emails Per Hour Over Time&lt;/h3&gt;
+&lt;p&gt;There is a "inactive" time zone which corresponds to between 3 am and 6 am EST.
+However, as different people have are in different time zones, generally
+the inbox email flow seems to be continuous except inactive time zone. 
+&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_hour_month_scatter_plot.png" title="Received Email By Hour Scatter Plot" /&gt;&lt;/p&gt;
+&lt;p&gt;As I have mentioned, the emails are mostly project updates,
+notifications and lastly and in a small percentage emails. What is more
+interesting is actually &lt;strong&gt;sent&lt;/strong&gt; folder as it will reveal my email and 
+for some extent working behaviour. &lt;/p&gt;
+&lt;h2&gt;Sent Emails&lt;/h2&gt;
+&lt;h3&gt;Emails Per Day&lt;/h3&gt;
+&lt;p&gt;Remember, when I said the beginnings of the week was stressful and
+hectic, it actually was. Generally, every week either task that I
+was assigned in the previous week was completed or it the
+method/algorithm/approach was not working, then we switch to other
+approaches. Therefore, first two days of the week are mostly spent of 
+trying to understand the task and try to figure out what is actually 
+needed. This process brings a lot of questions and leads to high number 
+of emails and communication. And, yes I was answering emails on Sunday 
+time to time. 
+&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_day_bar_plot.png" title="Sent Email By Day" /&gt;&lt;/p&gt;
+&lt;h3&gt;Emails Per Hour&lt;/h3&gt;
+&lt;p&gt;The following graph actually explains a lot of my daily activity. Can
+you see when I have lunch? Or when I commute to work or when I leave
+from the work? Such daily behavior probably also affects my reactions and
+responses to advertisements that I see on web. My probability of
+responding to a restaurant or a meal ad around noon peaks whereas after
+1 hour, I would lose all of my interest to food. Similarly, Uber ads
+around 9 am and 6 pm would may mean a lot to me whereas I am quite
+unlikely to respond to the ads at other times. &lt;/p&gt;
+&lt;p&gt;I also have two other accounts of in gmail which I use for my personal 
+needs. With combination of those data, more or less my daily activity 
+are actually could be inferred quite accurately from my gmail usage. And,
+do not forget we did not yet go through my emails but only metada, 
+timestamps of emails. Yet, even this much of data reveals a lot of my 
+daily activity.
+&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_hour_histogram.png" title="Sent Email By Hour" /&gt;&lt;/p&gt;
+&lt;h3&gt;Emails Per Hour Over Time&lt;/h3&gt;
+&lt;p&gt;From the following graph, could you see when I took vacation or switched to
+another job so that my daily activity becomes almost zero? Could you
+also see the activity in my transition and how it gets moved to
+non-working hours (mostly).&lt;br /&gt;
+&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_hour_month_scatter_plot.png" title="Sent Email By Hour Scatter Plot" /&gt;&lt;/p&gt;
+&lt;p&gt;What is more is of course whom I contacted, what tasks or projects that
+I worked, what type of emails I received and sent. However, even without context,
+even without using &lt;em&gt;actual&lt;/em&gt; data, I could go this far. With recent acquisition of 
+&lt;a href="https://nest.com/"&gt;Nest&lt;/a&gt;, Google not only has our online activity(search, email) but 
+also physical activities which it is fundamental to complete 
+&lt;strong&gt;the cycle&lt;/strong&gt;.  &lt;/p&gt;
+&lt;h4&gt;What is next?&lt;/h4&gt;
+&lt;p&gt;What is next is to infer the activities from data and predict 
+what we will do next. In order to do that, Google needs abundant data
+which it already has and machine learning algorithms that are effective
+for unlabeled and large amounts of data, which it acqui-hires top-notch
+researchers &lt;a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton"&gt;Geoffrey Hinton&lt;/a&gt;, &lt;a href="http://www.technologyreview.com/news/524026/is-google-cornering-the-market-on-deep-learning/"&gt;DeepMind&lt;/a&gt; in order to enable just that.&lt;/p&gt;</summary></entry><entry><title>PCA, EigenFace and All That</title><link href="http://bugra.github.io/work/notes/2013-07-27/PCA-EigenFace-And-All-That/" rel="alternate"></link><updated>2013-07-27T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2013-07-27:work/notes/2013-07-27/PCA-EigenFace-And-All-That/</id><summary type="html">&lt;p&gt;PCA(Principal Component Analysis) is one of the most commonly used unsupervised learning algorithm to compress, extract features for data and even for dimensionality reduction purposes. It has quite a lof of applications as follows: &lt;/p&gt;
+&lt;h3&gt;Applications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Useful for compression and classfication of data.&lt;/li&gt;
+&lt;li&gt;Aim is to reduce the number of variables, but at the same time, preserve most of information (variation), which may not necessarily hold true in general.&lt;/li&gt;
+&lt;li&gt;New variables called principal components(PC) are uncorrelated, are ordered by fraction of total information each retains.&lt;/li&gt;
+&lt;li&gt;PC's are a series of linear least squares fits to a sample, each orthogonal to all previous.&lt;/li&gt;
+&lt;li&gt;Identify how different variables work together to create the dynamics of the system.&lt;/li&gt;
+&lt;li&gt;Reduce the dimensionality of the data.&lt;/li&gt;
+&lt;li&gt;Decrease the redundancy of the data.&lt;/li&gt;
+&lt;li&gt;Filter some of the noise in the data.&lt;/li&gt;
+&lt;li&gt;Compress the data.&lt;/li&gt;
+&lt;li&gt;Prepare the data for further analysis using other techniques.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What does it do in the first place?&lt;/p&gt;
+&lt;h3&gt;Functions of PCA&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Is to reduce dimensionality by extracting the smallest number components that account for most of the variation in the original data. By doing so, we'd get get rid of the redundancy and preserve the variance in a smaller number of coefficients.&lt;/li&gt;
+&lt;li&gt;PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares(&lt;code&gt;$l_2$&lt;/code&gt; norm).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Why do we choose PCA over other transformations which turn the original variables into a representation which depend on orthogonal bases, say Fourier Transform?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, &lt;code&gt;$l_2$&lt;/code&gt; norm). However, Fourier transform does not guarantee such a premise.&lt;/li&gt;
+&lt;li&gt;If the data has a lot of correlation among its variables(redundancy), then PCA could exploit this redundancy by uncorrelating the variables whereas Fourier transform cannot exploit this redundancy(at least explicitly).&lt;/li&gt;
+&lt;li&gt;When PCA is used for dimensionality reduction, it is quite good at preserving the distance between the observations in the projection space.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;What about the disadvantages?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The components are not independent but uncorrelated. It would be even better if we have a representation which are independent to each other. It is called unsurprisingly &lt;em&gt;Independent Component Analysis&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;PCA seeks for linear combinations of the original variables. The nonlinear combination may even yield better representation. PCA has an extension for doing this type of analysis, &lt;em&gt;Nonlinear PCA&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Instead of &lt;code&gt;$l_2$&lt;/code&gt; norm, it may be advantageous to use &lt;code&gt;$l_1$&lt;/code&gt; norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called &lt;em&gt;Sparse PCA&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Assumptions that PCA does:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Assumption 1: In general, high correlation between variables could be a sign of high redundancy.&lt;/li&gt;
+&lt;li&gt;Assumption 2: The most important dynamics are the ones with the largest variance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Eigenvalues and Eigenvectors&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Eigenvalues measure the amount of variation(information) explaiend by each principal components and will be largest for the first PC and smaller for the subsequent PCs.&lt;/li&gt;
+&lt;li&gt;An eigenvalue greater than 1 indicates that principal component accounts for more variance than accounted by one of the original variables in standardized data. This could be used to threshold to determine the number of eigenvectors.&lt;/li&gt;
+&lt;li&gt;Eigenvectors provide the weights to compute the uncorrelated principal components, which are the linear combination of the original variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What does PCA do (in a nutshell)?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;PCA transforms the observations into uncorrelated components, which are nothing but linear combination of observations. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Caveats&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;PCA is sensitive to scaling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By modifying the variance of the variables(scaling), it is possible to attribute different importance to them. By doing so, the prior information or the belief on the importance of the attributes can be preserved even in the PCA stage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Definition of Principal Components&lt;/h2&gt;
+&lt;p&gt;Given a sample &lt;code&gt;$n$&lt;/code&gt; observations on a vector &lt;code&gt;$p$&lt;/code&gt; variables:&lt;br /&gt;
+&lt;code&gt;$$x = (x_1, x_2, \ldots, x_p)$$&lt;/code&gt;
+define the principal component of the sample by a linear transformation which is given as following:&lt;br /&gt;
+&lt;code&gt;$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$&lt;/code&gt;
+where &lt;code&gt;$a$&lt;/code&gt; is
+&lt;code&gt;$$ a = (a_1, a_2, \ldots, a_p) $$&lt;/code&gt;
+which is chosen to maximize the variance of &lt;code&gt;$z$&lt;/code&gt; and subject to 
+&lt;code&gt;$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$&lt;/code&gt;
+and to 
+&lt;code&gt;$$ a^T a = 1 $$&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;How to derive the coefficients &lt;code&gt;$a$&lt;/code&gt; ?&lt;/h3&gt;
+&lt;p&gt;The variance is:&lt;br /&gt;
+&lt;code&gt;$$ 
+\begin{eqnarray*}
+var[z] &amp;amp;=&amp;amp; &amp;lt;z^2&amp;gt; - &amp;lt;z&amp;gt;^2
+\\ &amp;amp;=&amp;amp; \displaystyle \sum_{i,j = 1}^p a_i a_j &amp;lt;x_i x_j&amp;gt; - \displaystyle \sum_{i,j=1}^p a_i a_j &amp;lt;x_i&amp;gt; &amp;lt;x_j&amp;gt;
+\\ &amp;amp;=&amp;amp; \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij} 
+\end{eqnarray*} $$&lt;/code&gt;
+where &lt;code&gt;$S_{ij} = &amp;lt;x_i x_j&amp;gt; - &amp;lt;x_i&amp;gt;&amp;lt;x_j&amp;gt;$&lt;/code&gt; is the covariance matrix for &lt;code&gt;$x$&lt;/code&gt;.&lt;br /&gt;
+To find &lt;code&gt;$a$&lt;/code&gt; which maximizes &lt;code&gt;$var[z]$&lt;/code&gt; subject to &lt;code&gt;$a^T a = 1$&lt;/code&gt;, let us introduce a lagrange multiplier &lt;code&gt;$\lambda$&lt;/code&gt;. Then, the maximization equation becomes
+&lt;code&gt;$$ a^T S a - \lambda (a^T a - 1) $$&lt;/code&gt;
+If we take the derivative with respect to &lt;code&gt;$a$&lt;/code&gt;, then the equation becomes
+&lt;code&gt;$$ S a - \lambda a = 0 $$&lt;/code&gt;
+&lt;code&gt;$$ (S - \lambda I) a = 0 $$&lt;/code&gt;
+Therefore, &lt;code&gt;$a$&lt;/code&gt; is an eigenvector of &lt;code&gt;$S$&lt;/code&gt; which has the corresponding value of &lt;code&gt;$\lambda$&lt;/code&gt;.  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In short, we are interested in representing the most of the variation in the data by transforming the original variables into principal components. These components are orthogonal and ordered by magnitude so that the first few of them could explain most of the variation in the original observation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;EigenFace&lt;/h2&gt;
+&lt;p&gt;PCA has a very good application which is in the computer vision domain, called &lt;a href="http://www.cs.ucsb.edu/~mturk/Papers/jcn.pdf"&gt;EigenFace&lt;/a&gt;, &lt;a href="http://www.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf"&gt;short version&lt;/a&gt;. Eigenface is a name for eigenvectors which are the components of the face itself. It has been used for face recognition where the most variations considered as important. It was quite successful as well for some 20 years ago although it was replaced then by other methods. In this implementation, I used a particular subset of &lt;a href="http://cvc.yale.edu/projects/yalefaces/yalefaces.html"&gt;Yale Face Database&lt;/a&gt;.&lt;br /&gt;
+The images that I used are given below:
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/images.png" title="Images" /&gt;&lt;/p&gt;
+&lt;p&gt;If we average the face used for PCA, we get the following face:
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/average_face.png" title="Average Face" /&gt; &lt;/p&gt;
+&lt;p&gt;The eigenfaces that we generated out of 11 faces are given below.
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/eigen_faces.png" title="EigenFaces" /&gt;  &lt;/p&gt;
+&lt;p&gt;The eigenface which has the most variation(almost half of it) is given below(note the illumination variation)
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/first_eigen_face.png" title="First EigenFace" /&gt; &lt;/p&gt;
+&lt;p&gt;Cumulative sum of first 10 eigenvalues is given below.
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/eigen_values.png" title="Cumulative Sum of Eigenvalues" /&gt;&lt;/p&gt;
+&lt;p&gt;As it could be seen from &lt;a href="http://nbviewer.ipython.org/6099547"&gt;here&lt;/a&gt;(the last line), the top 4 eigenfaces can explain 95% variance of the faces.&lt;/p&gt;
+&lt;p&gt;The program that I used to generate the images in &lt;a href="https://github.com/bugra/EigenFace"&gt;here&lt;/a&gt; and see the &lt;a href="http://nbviewer.ipython.org/6099547"&gt;Notebook&lt;/a&gt; for the flow of overall program.&lt;/p&gt;</summary></entry><entry><title>Spectral Leakage</title><link href="http://bugra.github.io/work/notes/2012-09-15/Spectral-Leakage/" rel="alternate"></link><updated>2012-09-15T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-09-15:work/notes/2012-09-15/Spectral-Leakage/</id><summary type="html">&lt;p&gt;Have you ever analyzed(take FFT) a signal which has one or two main frequency components and found out that there are many more components than you expect even if there is no noise in the signal?  One of the reasons why it has more frequency components is spectral leakage, which is mainly due to windowing.&lt;br /&gt;
+Say, we have a discrete signal of $x[n]$,&lt;br /&gt;
+FFT of a sequence $x[n]$&lt;/p&gt;
+&lt;p&gt;$$X[k] = \sum_{n=0}^{N-1} x[n] e^{\frac{-j 2 \pi n k}{N}}$$&lt;br /&gt;
+where $w$ is sampled by $\frac{2\pi k}{N}$ for $k = 0,1, ..., N-1$.&lt;br /&gt;
+FFT assumes the signal is periodic with period N and infinite duration. As the observation time of the signal is limited for a finite interval, infinite duration assumption cannot be satisfied. However, if the observation time is an integer multiple of the period of the signal, it would not cause a problem. This is because periodic signal and repeated signal results in the same signal.&lt;br /&gt;
+On the other hand, if the observation time is not an integer multiple of the period, then frequency components of the signal change. There would be either discontinuties or overlaps in the signal when it is repeated over the observation time.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/snapshot_twosignals.png" title="Discontinuity Signal" /&gt; 
+The figure above shows the discontinuity in time domain and this results in spectral leakage in the frequency domain.&lt;br /&gt;
+The problem is actually in this case and in general is "windowing". FFT assumes the signal is periodic and infinite, but when we observe and actually get the signal, we get its some part in a window.  This is called  non-coherent sampling, and shown below also.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/spectral_leakage1.png" title="Non-coherent Sampling" /&gt;
+That is the observed signal is actually convolution of "ideal"(infinite, periodic) signal with a windowing function. We also know that window results in $sinc$ function in the frequency domain and it has side lobes other than its main lobe. Those side lobes are not desired and they represent spectral leakage in frequency domain.&lt;br /&gt;
+This results in unwanted frequency bins next to the main bin in the Fourier domain as shown below. It may be easy to remember this &lt;em&gt;phenomena&lt;/em&gt; if you think a "leakage" from the main bin to the other bins.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/spectral_leakage2.png" title="Spectral Leakage in Frequency Bins" /&gt;
+If the sampling rate is the multiple integer of the period of the input signal, this sampling is called &lt;strong&gt;coherent sampling&lt;/strong&gt;. However, it is not very common to know the input signal's frequency exactly. Therefore, we need windows in order to analyze signals.  Coherent sampling is shown in successive frames.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/coherent_sampling1.png" title="Coherent Sampling in Time Domain" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/coherent_sampling2.png" title="Coherent Sampling in Frequency Domain" /&gt;
+Instead of rectangular signals, we may want to choose non-rectangular windows in order to decrease the spectral leakage. I do not want to go into detail, but in terms of choosing non-rectangular windows, there is also a trade-off. It is between frequency resolution and spectral leakage. If you want more frequency resolution in the signal, you need to sacrifice in the spectral leakage or vice versa.&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;p&gt;All of the code and images used in this note is available in the &lt;a href="https://github.com/bugra/Spectral-Leakage" title="Spectral Leakage"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary></entry><entry><title>Phase Detection in Digital Signals</title><link href="http://bugra.github.io/work/notes/2012-09-01/Phase-Detection/" rel="alternate"></link><updated>2012-09-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-09-01:work/notes/2012-09-01/Phase-Detection/</id><summary type="html">&lt;p&gt;Phase Detection is an important concept in radar signals. It could be used to determine the time delay between radar signals and this time delay could be used to infer the distance of the object from the radar, which is the main aim of the radar. Even if it is assumed that transmitted signal and received signal should be same, there occurs to be noise.
+I was assigned to implement phase detection for FPGA's for my internship in Summer 2010 as they are used for radar signal processing. They can do complex and real-time processing, are cheaper than computers, portable, low power consumers.
+However, I did not go into implementation directly. I need a simulation which would yield promising results. Then, I could implement in VHDL. I chose Matlab and implemented three different methods. (This would decrease to two in VHDL).
+I will compare these methods as well, but it cannot be deduced that some method &lt;em&gt;always&lt;/em&gt; or even usually perform better than some other method based on the results provided. There are a numerous reasons, but I will just mention few of them. Firstly, this is just a &lt;strong&gt;simulation&lt;/strong&gt; after all. Secondly, the simulation takes into consideration only one of the signal is noisy(received), which may not hold true in general. Moreover, there are constant parameters which may favor some method over other ones.
+Before giving details of the methods, I am urged to mention an important concept that two methods use, Schmitt Trigger.&lt;/p&gt;
+&lt;h3&gt;Schmitt Trigger&lt;/h3&gt;
+&lt;p&gt;Schmitt Trigger is a comparator with two different threshold values. When the signal goes over &lt;strong&gt;High Threshold&lt;/strong&gt;, it yields 1(HIGH). It remains 1 until signal goes below &lt;strong&gt;Low Threshold&lt;/strong&gt;, it yields 0. It remains 0, until signal goes over ...  as it could be seen the figure below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger" /&gt;&lt;/p&gt;
+&lt;p&gt;In analog implementation of Schmitt Trigger, there is a feedback mechanism which uses hysteresis to adjust its threshold values. In this implementation, they are constant. Schmitt Trigger is used to prevent noise when analogous signal is transformed into a digital(binary) one. It prevents oscillation in the binary signal which is convenient and makes the binary signal robust to noise. Consider the figure below, A is a basic comparator. B is a Schmitt Trigger. Any fluctuation in the border of A resultss in oscillation in the digital signal. This is the general case for noisy signals. However, fluctuations in border B does not change digital signal since digital signal needs to wait for &lt;em&gt;high threshold&lt;/em&gt; value or &lt;em&gt;low threshold&lt;/em&gt; value to change.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger" /&gt;&lt;/p&gt;
+&lt;p&gt;It is important to note that if noise level is higher than the difference of two thresholds, schmitt trigger does not provide robustness to noise. It is still better than a basic comparator, though. Therefore, noise level should be taken into consideration when setting up the threshold values.&lt;/p&gt;
+&lt;h2&gt;PulseLag Method&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals" /&gt;&lt;/p&gt;
+&lt;p&gt;In this method, we multiply both signals $ f_c $ with another sinusoid, but a lower frequency $ f_{down} $  Then, low-pass filter this signal in order to get low frequency part.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals" /&gt;&lt;/p&gt;
+&lt;p&gt;After filtering the signal, we put it into Schmitt Trigger. Then, we get their difference which also gives time delay.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals" /&gt;&lt;/p&gt;
+&lt;p&gt;We need the ratio of the (number of times first signal is 1 and second signal is 0) over the total time. Then, we need to divide this ratio to $ f_c $ to find time delay.
+I apply 0.5 nanosecond delay in the signal and it will be constant for the other methods as well, for noiseless case method measures  4.5714e-10. For noise coefficient = 0.1, method measures  5.1429e-10. For noise coefficient = 0.2, method measures  8.0000e-10, which is not even close.
+Even if noiseless and when noise is small, this method performs well, for noisy cases, it is not robust to noise.&lt;/p&gt;
+&lt;h2&gt;Multiplication Method&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals" /&gt;
+If we multiply two signals with each other, we have a high pass term and a phase term if they have both the same frequency.(noiseless case)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal" /&gt;
+If we get inverse sin or cosine of the multiplied signal&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png" title=" Inverse of Filtered Multiplied Signal" /&gt;
+and take mean of the signal(after some heuristics), divide by $2 * \pi * f_c$, then we get a time delay.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal" /&gt;&lt;/p&gt;
+&lt;p&gt;For noiseless case method measures 4.9639e-10 which is quite close. For noise coefficient = 0.1, method measures  4.6909e-10. For noise coefficient = 0.2, method measures 5.8330e-10, which is quite close for such a high noise.&lt;/p&gt;
+&lt;h2&gt;FFT-Based Method&lt;/h2&gt;
+&lt;p&gt;FFT can be written in a Discrete Fourier Transform:
+$$ X[k] = \sum_{n=0}^{N-1} x[n] e^{\frac{-j 2 \pi n k}{N}} = A_k e^{j \phi_k} $$
+and
+$$ x[n] \leftrightarrow X[k]  $$
+$$ x[n-D] \leftrightarrow e^{\frac{-j2 \pi k D}{N}}X[k] $$
+It is important to note, in the magnitude response, the phase $e^{\frac{-j2 \pi k D}{N}}$ will be one. Therefore, it will not affect the magnitude response.
+Since we send periodic signals, the maximum of frequency response will occur at the dominant frequency which is the period of the signal. As the magnitude response will be same, we could just take the phase response of the same index in FFT to find the phase information between the signals.
+Original and delayed signal(0.5e-9) signals are given below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal" /&gt;&lt;/p&gt;
+&lt;p&gt;Magnitude response of the signals are given below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals" /&gt;&lt;/p&gt;
+&lt;p&gt;Phase response of the signals:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT" /&gt;&lt;/p&gt;
+&lt;p&gt;When we take the phases of the both signals and subtract, we get the phase difference. Time delay is only the ratio of phase difference over $ 2 * pi * fc $.
+For noiseless case method measures 4.9656e-10 which is quite close. For noise coefficient = 0.1, method measures  5.1161e-10. For noise coefficient = 0.2, method measures 3.9221e-10, which is not very close.&lt;/p&gt;
+&lt;h3&gt;Result&lt;/h3&gt;
+&lt;p&gt;For noiseless case, all of the methods perform quite well. For medium noise(n = 0.1), FFT-Based and PulseLag method; for high noise, Multiplication method performs better.&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;p&gt;All of the code and images used in this note is available in the &lt;a href="https://github.com/bugra/Phase-Detection" title="Phase-Detection-Matlab"&gt;here&lt;/a&gt;.
+Moreover, implementation of Multiplication and FFT-Based method in VHDL is also available in &lt;a href="https://github.com/bugra/Phase-Detection-VHDL" title="Phase-Detection-VHDL"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>MongoDB Notes</title><link href="http://bugra.github.io/work/notes/2012-06-16/MongoDB-Notes/" rel="alternate"></link><updated>2012-06-16T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-06-16:work/notes/2012-06-16/MongoDB-Notes/</id><summary type="html">&lt;p&gt;Some Properties:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MongoDB instances act as high-level container.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Collection&lt;/em&gt; is a synonym of table in sql.&lt;/li&gt;
+&lt;li&gt;Collections are made by &lt;em&gt;documents&lt;/em&gt;. (document =&amp;gt; row)&lt;/li&gt;
+&lt;li&gt;Document is made by &lt;em&gt;fields&lt;/em&gt;. (field =&amp;gt; column)&lt;/li&gt;
+&lt;li&gt;Indices are similar to sql databases.&lt;/li&gt;
+&lt;li&gt;Cursor can count or skip ahead without actually pulling down data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A collection does not have a schema to follow. Therefore, fields are tracked with each individual document.&lt;/p&gt;
+&lt;p&gt;_id field is automatically generated by MongoDB, and every document must have a unique _id field.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Adding queries&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Agent Smith&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;gender&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and &lt;code&gt;db.matrix.findOne()&lt;/code&gt; results in;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8b5321f61bf6f63ddd78&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Agent Smith&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we add another person:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Neo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;gender&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and call  &lt;code&gt;db.matrix.find()&lt;/code&gt; then we get;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8b5321f61bf6f63ddd78&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Agent Smith&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8ce921f61bf6f63ddd79&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Neo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Similarly add two more people:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Trinity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;gender&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;f&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;35&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Morpheus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;gender&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And we have total of four people in the database and we could print by using &lt;code&gt;find()&lt;/code&gt; method as  &lt;code&gt;db.matrix.find()&lt;/code&gt;  and return the list of &lt;em&gt;documents&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8b5321f61bf6f63ddd78&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Agent Smith&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8ce921f61bf6f63ddd79&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Neo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8df921f61bf6f63ddd7a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Trinity&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;35&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8e0821f61bf6f63ddd7b&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Morpheus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Architecture seems to be male, but he is considered to be ageless. Therefore, when we insert the document in database, we &lt;em&gt;can&lt;/em&gt; simply ignore his age information as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Architecture&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;gender&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and when we return documents, mongo would not cause any problem at all.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8b5321f61bf6f63ddd78&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Agent Smith&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8ce921f61bf6f63ddd79&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Neo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8df921f61bf6f63ddd7a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Trinity&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;35&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcf8e0821f61bf6f63ddd7b&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Morpheus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfa18821f61bf6f63ddd7c&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Architecture&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;After creating the database, we need to be able to select some queries based on their fields. In order to do it, we need to use &lt;em&gt;selectors&lt;/em&gt; which are very similart to &lt;strong&gt;where&lt;/strong&gt; clause of Sql statement.
+simplest one is &lt;code&gt;{}&lt;/code&gt; which returns all documents in the collection. &lt;code&gt;null&lt;/code&gt; also does the same  thing as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({})&lt;/span&gt;
+&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;returns all the documents in the collection.
+&lt;code&gt;and&lt;/code&gt; statement is accomplished in the form of:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;field1&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;value1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;field2&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;value2&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;which is very intuitive. In this example, if we want to return males whose ages are more or equal to 44, then we need to write a selector as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;gender&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;$gte&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some of common operations are:
+&lt;code&gt;\(lt&lt;/code&gt; =&amp;gt; less than
+&lt;code&gt;\(lte&lt;/code&gt;=&amp;gt; less or equal
+&lt;code&gt;\(gt&lt;/code&gt;=&amp;gt; greater than
+&lt;code&gt;\(gte&lt;/code&gt;=&amp;gt; greater or equal
+&lt;code&gt;\(ne&lt;/code&gt; =&amp;gt; not equal&lt;/p&gt;
+&lt;p&gt;If we take harder example like a field defines an array, in a particular example, let it be sports which students like, create the database as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfce79fd6230c28d817740&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;john&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;basketball&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;football&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;baseball&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;swimming&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfcf02fd6230c28d817742&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;mike&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;basketball&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;football&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rugby&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfcf08fd6230c28d817743&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;cassandra&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;golf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;table-tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tennis&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfcf11fd6230c28d817744&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;paul&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;golf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;table-tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rugby&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we would like to retrieve students who likes golf or tennis:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;students&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;$or&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="nx"&gt;likes&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;tennis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},{&lt;/span&gt;&lt;span class="nx"&gt;likes&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;golf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}]})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we get queries;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfcf02fd6230c28d817742&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;mike&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;basketball&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;football&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rugby&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfcf08fd6230c28d817743&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;cassandra&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;golf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;table-tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tennis&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fcfcf11fd6230c28d817744&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;paul&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;likes&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;golf&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;table-tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tennis&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rugby&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;as expected.
+In these array fields, it is very easy to combine some of the fields let alone one of the field query returning. It becomes extremely useful as time goes by.
+One operation is &lt;code&gt;\(in&lt;/code&gt; which tries to determine whether the values are in the array.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scores&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$in&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]}})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Another similar and useful operation is &lt;code&gt;exists&lt;/code&gt; operation which checks whether the value matches to any value in the database checking every field in the collection.
+Id's of documents can also be selected using &lt;code&gt;_id&lt;/code&gt; field in the collection as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;_id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd0685b4e0fa619963db3b3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and it results in the respective document:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd0685b4e0fa619963db3b3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Morpheus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gender&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;m&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we have document which have common fields and want to count them, we could do so by using &lt;code&gt;count&lt;/code&gt; operation.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;count&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Morpheus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and it returns 2.(I added the same item twice). If it does not find it, it returns 0 as expected.&lt;/p&gt;
+&lt;h2&gt;Removing Queries&lt;/h2&gt;
+&lt;p&gt;We could also erase the documents based on their properties as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Morpheus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we want to remove all the entries, we could simply do not give any field information or put &lt;code&gt;null&lt;/code&gt; in &lt;code&gt;remove&lt;/code&gt; operation:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For updates, let's first create a database in a different syntax:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;save&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;John&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;languages&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ruby&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;java&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;javascript&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]});&lt;/span&gt;
+&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;save&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Sue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;languages&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;haskell&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;lisp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;lush&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In order to update, we need to first select the document based on its one of the field, in this example it would be the names of people and using &lt;code&gt;update()&lt;/code&gt; operation, we could update as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;John&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Johnny&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;languages&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;scala&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;java&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;python&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Instead of updating the entire document, we could update only the fields:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$set&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And when we try to print out the collection:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd7d5aba46929bd0bbd56f7&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Johnny&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;languages&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;scala&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;java&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;python&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd7d5ada46929bd0bbd56f8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;age&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;languages&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;scala&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;lisp&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Sue&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In order to update array elements, we could use &lt;code&gt;\(pull&lt;/code&gt; and &lt;code&gt;\(push&lt;/code&gt; operations. For example, if we want to remove &lt;em&gt;haskell&lt;/em&gt; language from Sue's languages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Sue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$pull&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;languages&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;haskell&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and if we want to add a language say java:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;users&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Sue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;$push&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;languages&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;java&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Upsert(Update + Insert)&lt;/h3&gt;
+&lt;p&gt;Mongo supports so called &lt;em&gt;upserts&lt;/em&gt; which is nothing more than a fancy combination of update and insert. That is, if item that we want to update is not in the collection, it automatically creates it. If it does exist in the collection, it updates by default. However, in order to enable this feature of Mongo, we need to enable the third parameter of &lt;code&gt;update&lt;/code&gt; operation as &lt;code&gt;true&lt;/code&gt;. Say, we need to create a website hit counter, and in order to do so we increment the number of hits every time the name of website is updated. If we do not have the website name in the collection, we do not have to create it beforehand. We could just use upsert as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;yahoo&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},{&lt;/span&gt;&lt;span class="nx"&gt;$inc&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}},&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we do not have the third parameter or set to &lt;code&gt;false&lt;/code&gt;, above statement does not change anything in the collection.&lt;/p&gt;
+&lt;h4&gt;Multiple Updates&lt;/h4&gt;
+&lt;p&gt;If we want to multiple updates in the collection, we need to enable the fourt parameter in the &lt;code&gt;update&lt;/code&gt; operation. For example, we want to reset the counter of websites as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({},{&lt;/span&gt;&lt;span class="nx"&gt;$set&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;}},&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By doing so, we update all the documents in the collection. However, if we do not enable the fourt parameter as &lt;code&gt;true&lt;/code&gt;, then &lt;em&gt;only the first element of the collection will be updated&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;Deeper in &lt;code&gt;find()&lt;/code&gt; operation&lt;/h3&gt;
+&lt;p&gt;If we want to retrieve specific fields of the documents we could use a second parameter in &lt;code&gt;find()&lt;/code&gt;,e.g. only the names of the webpages as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,{&lt;/span&gt;&lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;then, it results in only page fields of  documents, namely &lt;em&gt;google&lt;/em&gt; and &lt;em&gt;yahoo&lt;/em&gt;.&lt;/p&gt;
+&lt;h4&gt;Ordering&lt;/h4&gt;
+&lt;p&gt;Say, we have a database as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd8cf5bbd6be5d371385b9a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hits&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;page&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;yahoo&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd8d0fabd6be5d371385b9b&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hits&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;page&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;google&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd91925da57fdfbb68d7848&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;page&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;microsoft&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hits&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd91930da57fdfbb68d7849&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;page&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;facebook&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hits&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4fd91938da57fdfbb68d784a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;page&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;apple&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hits&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and we want to order this collection by the number of hits in a descending order. We could do this by using &lt;code&gt;sort()&lt;/code&gt; operation as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we want to also return some specific ranks in the sort, we could use &lt;code&gt;limit()&lt;/code&gt; and &lt;code&gt;skip()&lt;/code&gt; operations. For example, we want to return second and third queries only.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;}).&lt;/span&gt;&lt;span class="nx"&gt;limit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;skip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Counting &lt;code&gt;count()&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;count()&lt;/code&gt; can be used itself as an independent operation similar to &lt;code&gt;update&lt;/code&gt; and &lt;code&gt;insert&lt;/code&gt;. However, its origin is to follow &lt;code&gt;find().count()&lt;/code&gt;. Therefore, &lt;code&gt;count()&lt;/code&gt; operation can be considered as a syntactic sugar for &lt;code&gt;find&lt;/code&gt; and &lt;code&gt;count&lt;/code&gt;. If we want to count the webpages which have higher than 9 hits;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;hits&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;$gt&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;}}).&lt;/span&gt;&lt;span class="nx"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;MongoDB Difference and Similarities to RDBMS&lt;/h3&gt;
+&lt;p&gt;There is no &lt;code&gt;join&lt;/code&gt; opearation in Mongo contrary to RDBMS,but we could connect by using a foreign key in the documents of collections. In order to show the embedded and relational part of database, we start with employees example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Paul&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d731&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Duncan&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;manager&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d732&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Moneo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;manager&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We set Paul as a manager of Duncan and Moneo's. In the collection, in order to find the manager, we could do as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;employees&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we have two managers in the company, then we could add two managers as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;employees&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;_id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d733&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Siona&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d732&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We could again return the manager using above operation.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;employees&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we want to embed more documents into the collection like a nested document, we could do so as such:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;employees&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="nx"&gt;_id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d734&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Ghanima&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="nx"&gt;family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;mother&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Chani&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;father&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Paul&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;brother&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;4d85c7039ab0fd70a117d730&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)}})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We could return the respective field of the nested document by using &lt;em&gt;dot&lt;/em&gt; notation.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;db&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;employees&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;family.mother&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Chani&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;MongoDB Repair in Ubuntu&lt;/h3&gt;
+&lt;p&gt;First, try to repair.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mongod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chown&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;mongodb&lt;/span&gt; &lt;span class="n"&gt;mongod&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;repair&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;mongodb&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, restart the database.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;mongod&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt;
+&lt;span class="n"&gt;mongo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>

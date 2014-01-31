@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/27.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2013-07-27T00:00:00+00:00</updated><entry><title>PCA, EigenFace and All That</title><link href="http://bugra.github.io/work/notes/2013-07-27/PCA-EigenFace-And-All-That/" rel="alternate"></link><updated>2013-07-27T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2013-07-27:work/notes/2013-07-27/PCA-EigenFace-And-All-That/</id><summary type="html">&lt;p&gt;PCA(Principal Component Analysis) is one of the most commonly used unsupervised learning algorithm to compress, extract features for data and even for dimensionality reduction purposes. It has quite a lof of applications as follows: &lt;/p&gt;
+&lt;h3&gt;Applications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Useful for compression and classfication of data.&lt;/li&gt;
+&lt;li&gt;Aim is to reduce the number of variables, but at the same time, preserve most of information (variation), which may not necessarily hold true in general.&lt;/li&gt;
+&lt;li&gt;New variables called principal components(PC) are uncorrelated, are ordered by fraction of total information each retains.&lt;/li&gt;
+&lt;li&gt;PC's are a series of linear least squares fits to a sample, each orthogonal to all previous.&lt;/li&gt;
+&lt;li&gt;Identify how different variables work together to create the dynamics of the system.&lt;/li&gt;
+&lt;li&gt;Reduce the dimensionality of the data.&lt;/li&gt;
+&lt;li&gt;Decrease the redundancy of the data.&lt;/li&gt;
+&lt;li&gt;Filter some of the noise in the data.&lt;/li&gt;
+&lt;li&gt;Compress the data.&lt;/li&gt;
+&lt;li&gt;Prepare the data for further analysis using other techniques.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What does it do in the first place?&lt;/p&gt;
+&lt;h3&gt;Functions of PCA&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Is to reduce dimensionality by extracting the smallest number components that account for most of the variation in the original data. By doing so, we'd get get rid of the redundancy and preserve the variance in a smaller number of coefficients.&lt;/li&gt;
+&lt;li&gt;PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares(&lt;code&gt;$l_2$&lt;/code&gt; norm).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Why do we choose PCA over other transformations which turn the original variables into a representation which depend on orthogonal bases, say Fourier Transform?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, &lt;code&gt;$l_2$&lt;/code&gt; norm). However, Fourier transform does not guarantee such a premise.&lt;/li&gt;
+&lt;li&gt;If the data has a lot of correlation among its variables(redundancy), then PCA could exploit this redundancy by uncorrelating the variables whereas Fourier transform cannot exploit this redundancy(at least explicitly).&lt;/li&gt;
+&lt;li&gt;When PCA is used for dimensionality reduction, it is quite good at preserving the distance between the observations in the projection space.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;What about the disadvantages?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The components are not independent but uncorrelated. It would be even better if we have a representation which are independent to each other. It is called unsurprisingly &lt;em&gt;Independent Component Analysis&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;PCA seeks for linear combinations of the original variables. The nonlinear combination may even yield better representation. PCA has an extension for doing this type of analysis, &lt;em&gt;Nonlinear PCA&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Instead of &lt;code&gt;$l_2$&lt;/code&gt; norm, it may be advantageous to use &lt;code&gt;$l_1$&lt;/code&gt; norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called &lt;em&gt;Sparse PCA&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Assumptions that PCA does:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Assumption 1: In general, high correlation between variables could be a sign of high redundancy.&lt;/li&gt;
+&lt;li&gt;Assumption 2: The most important dynamics are the ones with the largest variance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Eigenvalues and Eigenvectors&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Eigenvalues measure the amount of variation(information) explaiend by each principal components and will be largest for the first PC and smaller for the subsequent PCs.&lt;/li&gt;
+&lt;li&gt;An eigenvalue greater than 1 indicates that principal component accounts for more variance than accounted by one of the original variables in standardized data. This could be used to threshold to determine the number of eigenvectors.&lt;/li&gt;
+&lt;li&gt;Eigenvectors provide the weights to compute the uncorrelated principal components, which are the linear combination of the original variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What does PCA do (in a nutshell)?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;PCA transforms the observations into uncorrelated components, which are nothing but linear combination of observations. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Caveats&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;PCA is sensitive to scaling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By modifying the variance of the variables(scaling), it is possible to attribute different importance to them. By doing so, the prior information or the belief on the importance of the attributes can be preserved even in the PCA stage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Definition of Principal Components&lt;/h2&gt;
+&lt;p&gt;Given a sample &lt;code&gt;$n$&lt;/code&gt; observations on a vector &lt;code&gt;$p$&lt;/code&gt; variables:&lt;br /&gt;
+&lt;code&gt;$$x = (x_1, x_2, \ldots, x_p)$$&lt;/code&gt;
+define the principal component of the sample by a linear transformation which is given as following:&lt;br /&gt;
+&lt;code&gt;$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$&lt;/code&gt;
+where &lt;code&gt;$a$&lt;/code&gt; is
+&lt;code&gt;$$ a = (a_1, a_2, \ldots, a_p) $$&lt;/code&gt;
+which is chosen to maximize the variance of &lt;code&gt;$z$&lt;/code&gt; and subject to 
+&lt;code&gt;$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$&lt;/code&gt;
+and to 
+&lt;code&gt;$$ a^T a = 1 $$&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;How to derive the coefficients &lt;code&gt;$a$&lt;/code&gt; ?&lt;/h3&gt;
+&lt;p&gt;The variance is:&lt;br /&gt;
+&lt;code&gt;$$ 
+\begin{eqnarray*}
+var[z] &amp;amp;=&amp;amp; &amp;lt;z^2&amp;gt; - &amp;lt;z&amp;gt;^2
+\\ &amp;amp;=&amp;amp; \displaystyle \sum_{i,j = 1}^p a_i a_j &amp;lt;x_i x_j&amp;gt; - \displaystyle \sum_{i,j=1}^p a_i a_j &amp;lt;x_i&amp;gt; &amp;lt;x_j&amp;gt;
+\\ &amp;amp;=&amp;amp; \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij} 
+\end{eqnarray*} $$&lt;/code&gt;
+where &lt;code&gt;$S_{ij} = &amp;lt;x_i x_j&amp;gt; - &amp;lt;x_i&amp;gt;&amp;lt;x_j&amp;gt;$&lt;/code&gt; is the covariance matrix for &lt;code&gt;$x$&lt;/code&gt;.&lt;br /&gt;
+To find &lt;code&gt;$a$&lt;/code&gt; which maximizes &lt;code&gt;$var[z]$&lt;/code&gt; subject to &lt;code&gt;$a^T a = 1$&lt;/code&gt;, let us introduce a lagrange multiplier &lt;code&gt;$\lambda$&lt;/code&gt;. Then, the maximization equation becomes
+&lt;code&gt;$$ a^T S a - \lambda (a^T a - 1) $$&lt;/code&gt;
+If we take the derivative with respect to &lt;code&gt;$a$&lt;/code&gt;, then the equation becomes
+&lt;code&gt;$$ S a - \lambda a = 0 $$&lt;/code&gt;
+&lt;code&gt;$$ (S - \lambda I) a = 0 $$&lt;/code&gt;
+Therefore, &lt;code&gt;$a$&lt;/code&gt; is an eigenvector of &lt;code&gt;$S$&lt;/code&gt; which has the corresponding value of &lt;code&gt;$\lambda$&lt;/code&gt;.  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In short, we are interested in representing the most of the variation in the data by transforming the original variables into principal components. These components are orthogonal and ordered by magnitude so that the first few of them could explain most of the variation in the original observation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;EigenFace&lt;/h2&gt;
+&lt;p&gt;PCA has a very good application which is in the computer vision domain, called &lt;a href="http://www.cs.ucsb.edu/~mturk/Papers/jcn.pdf"&gt;EigenFace&lt;/a&gt;, &lt;a href="http://www.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf"&gt;short version&lt;/a&gt;. Eigenface is a name for eigenvectors which are the components of the face itself. It has been used for face recognition where the most variations considered as important. It was quite successful as well for some 20 years ago although it was replaced then by other methods. In this implementation, I used a particular subset of &lt;a href="http://cvc.yale.edu/projects/yalefaces/yalefaces.html"&gt;Yale Face Database&lt;/a&gt;.&lt;br /&gt;
+The images that I used are given below:
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/images.png" title="Images" /&gt;&lt;/p&gt;
+&lt;p&gt;If we average the face used for PCA, we get the following face:
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/average_face.png" title="Average Face" /&gt; &lt;/p&gt;
+&lt;p&gt;The eigenfaces that we generated out of 11 faces are given below.
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/eigen_faces.png" title="EigenFaces" /&gt;  &lt;/p&gt;
+&lt;p&gt;The eigenface which has the most variation(almost half of it) is given below(note the illumination variation)
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/first_eigen_face.png" title="First EigenFace" /&gt; &lt;/p&gt;
+&lt;p&gt;Cumulative sum of first 10 eigenvalues is given below.
+&lt;img alt="Alt text" src="https://raw.github.com/bugra/EigenFace/master/img/eigen_values.png" title="Cumulative Sum of Eigenvalues" /&gt;&lt;/p&gt;
+&lt;p&gt;As it could be seen from &lt;a href="http://nbviewer.ipython.org/6099547"&gt;here&lt;/a&gt;(the last line), the top 4 eigenfaces can explain 95% variance of the faces.&lt;/p&gt;
+&lt;p&gt;The program that I used to generate the images in &lt;a href="https://github.com/bugra/EigenFace"&gt;here&lt;/a&gt; and see the &lt;a href="http://nbviewer.ipython.org/6099547"&gt;Notebook&lt;/a&gt; for the flow of overall program.&lt;/p&gt;</summary></entry></feed>
