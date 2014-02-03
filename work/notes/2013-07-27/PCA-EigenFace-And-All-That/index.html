@@ -67,11 +67,11 @@
 <h3>Functions of PCA</h3>
 <ul>
 <li>Is to reduce dimensionality by extracting the smallest number components that account for most of the variation in the original data. By doing so, we'd get get rid of the redundancy and preserve the variance in a smaller number of coefficients.</li>
-<li>PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares(<code>$l_2$</code> norm).</li>
+<li>PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares($l_2$ norm).</li>
 </ul>
 <p><strong>Why do we choose PCA over other transformations which turn the original variables into a representation which depend on orthogonal bases, say Fourier Transform?</strong></p>
 <ul>
-<li>Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, <code>$l_2$</code> norm). However, Fourier transform does not guarantee such a premise.</li>
+<li>Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, $l_2$ norm). However, Fourier transform does not guarantee such a premise.</li>
 <li>If the data has a lot of correlation among its variables(redundancy), then PCA could exploit this redundancy by uncorrelating the variables whereas Fourier transform cannot exploit this redundancy(at least explicitly).</li>
 <li>When PCA is used for dimensionality reduction, it is quite good at preserving the distance between the observations in the projection space.</li>
 </ul>
@@ -79,7 +79,7 @@
 <ul>
 <li>The components are not independent but uncorrelated. It would be even better if we have a representation which are independent to each other. It is called unsurprisingly <em>Independent Component Analysis</em>.</li>
 <li>PCA seeks for linear combinations of the original variables. The nonlinear combination may even yield better representation. PCA has an extension for doing this type of analysis, <em>Nonlinear PCA</em>.</li>
-<li>Instead of <code>$l_2$</code> norm, it may be advantageous to use <code>$l_1$</code> norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called <em>Sparse PCA</em>.</li>
+<li>Instead of $l_2$ norm, it may be advantageous to use $l_1$ norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called <em>Sparse PCA</em>.</li>
 </ul>
 <h4>Assumptions that PCA does:</h4>
 <ul>
@@ -104,31 +104,28 @@
 <p>By modifying the variance of the variables(scaling), it is possible to attribute different importance to them. By doing so, the prior information or the belief on the importance of the attributes can be preserved even in the PCA stage.</p>
 </blockquote>
 <h2>Definition of Principal Components</h2>
-<p>Given a sample <code>$n$</code> observations on a vector <code>$p$</code> variables:<br />
-<code>$$x = (x_1, x_2, \ldots, x_p)$$</code>
+<p>Given a sample $n$ observations on a vector $p$ variables:<br />
+$$x = (x_1, x_2, \ldots, x_p)$$
 define the principal component of the sample by a linear transformation which is given as following:<br />
-<code>$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$</code>
-where <code>$a$</code> is
-<code>$$ a = (a_1, a_2, \ldots, a_p) $$</code>
-which is chosen to maximize the variance of <code>$z$</code> and subject to 
-<code>$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$</code>
+$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$
+where $a$ is
+$$ a = (a_1, a_2, \ldots, a_p) $$
+which is chosen to maximize the variance of $z$ and subject to 
+$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$
 and to 
-<code>$$ a^T a = 1 $$</code></p>
-<h3>How to derive the coefficients <code>$a$</code> ?</h3>
+$$ a^T a = 1 $$</p>
+<h3>How to derive the coefficients $a$ ?</h3>
 <p>The variance is:<br />
-<code>$$ 
-\begin{eqnarray*}
-var[z] &amp;=&amp; &lt;z^2&gt; - &lt;z&gt;^2
-\\ &amp;=&amp; \displaystyle \sum_{i,j = 1}^p a_i a_j &lt;x_i x_j&gt; - \displaystyle \sum_{i,j=1}^p a_i a_j &lt;x_i&gt; &lt;x_j&gt;
-\\ &amp;=&amp; \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij} 
-\end{eqnarray*} $$</code>
-where <code>$S_{ij} = &lt;x_i x_j&gt; - &lt;x_i&gt;&lt;x_j&gt;$</code> is the covariance matrix for <code>$x$</code>.<br />
-To find <code>$a$</code> which maximizes <code>$var[z]$</code> subject to <code>$a^T a = 1$</code>, let us introduce a lagrange multiplier <code>$\lambda$</code>. Then, the maximization equation becomes
-<code>$$ a^T S a - \lambda (a^T a - 1) $$</code>
-If we take the derivative with respect to <code>$a$</code>, then the equation becomes
-<code>$$ S a - \lambda a = 0 $$</code>
-<code>$$ (S - \lambda I) a = 0 $$</code>
-Therefore, <code>$a$</code> is an eigenvector of <code>$S$</code> which has the corresponding value of <code>$\lambda$</code>.  </p>
+$$ var[z] = \lt z^2\gt - \lt z \gt^2$$
+$$ = \displaystyle \sum_{i,j = 1}^p a_i a_j \lt x_i x_j \gt - \displaystyle \sum_{i,j=1}^p a_i a_j \lt x_i \gt \lt x_j \gt $$
+$$ = \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij}  $$
+where $S_{ij} = \lt x_i x_j \gt - \lt x_i \gt \lt x_j \gt$ is the covariance matrix for $x$.<br />
+To find $a$ which maximizes $var[z]$ subject to $a^T a = 1$, let us introduce a lagrange multiplier $\lambda$. Then, the maximization equation becomes
+$$ a^T S a - \lambda (a^T a - 1) $$
+If we take the derivative with respect to $a$, then the equation becomes
+$$ S a - \lambda a = 0 $$
+$$ (S - \lambda I) a = 0 $$
+Therefore, $a$ is an eigenvector of $S$ which has the corresponding value of $\lambda$.  </p>
 <blockquote>
 <p>In short, we are interested in representing the most of the variation in the data by transforming the original variables into principal components. These components are orthogonal and ordered by magnitude so that the first few of them could explain most of the variation in the original observation.</p>
 </blockquote>

@@ -17,11 +17,11 @@
 &lt;h3&gt;Functions of PCA&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Is to reduce dimensionality by extracting the smallest number components that account for most of the variation in the original data. By doing so, we'd get get rid of the redundancy and preserve the variance in a smaller number of coefficients.&lt;/li&gt;
-&lt;li&gt;PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares(&lt;code&gt;$l_2$&lt;/code&gt; norm).&lt;/li&gt;
+&lt;li&gt;PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares($l_2$ norm).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Why do we choose PCA over other transformations which turn the original variables into a representation which depend on orthogonal bases, say Fourier Transform?&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, &lt;code&gt;$l_2$&lt;/code&gt; norm). However, Fourier transform does not guarantee such a premise.&lt;/li&gt;
+&lt;li&gt;Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, $l_2$ norm). However, Fourier transform does not guarantee such a premise.&lt;/li&gt;
 &lt;li&gt;If the data has a lot of correlation among its variables(redundancy), then PCA could exploit this redundancy by uncorrelating the variables whereas Fourier transform cannot exploit this redundancy(at least explicitly).&lt;/li&gt;
 &lt;li&gt;When PCA is used for dimensionality reduction, it is quite good at preserving the distance between the observations in the projection space.&lt;/li&gt;
 &lt;/ul&gt;
@@ -29,7 +29,7 @@
 &lt;ul&gt;
 &lt;li&gt;The components are not independent but uncorrelated. It would be even better if we have a representation which are independent to each other. It is called unsurprisingly &lt;em&gt;Independent Component Analysis&lt;/em&gt;.&lt;/li&gt;
 &lt;li&gt;PCA seeks for linear combinations of the original variables. The nonlinear combination may even yield better representation. PCA has an extension for doing this type of analysis, &lt;em&gt;Nonlinear PCA&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Instead of &lt;code&gt;$l_2$&lt;/code&gt; norm, it may be advantageous to use &lt;code&gt;$l_1$&lt;/code&gt; norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called &lt;em&gt;Sparse PCA&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Instead of $l_2$ norm, it may be advantageous to use $l_1$ norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called &lt;em&gt;Sparse PCA&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;Assumptions that PCA does:&lt;/h4&gt;
 &lt;ul&gt;
@@ -54,31 +54,28 @@
 &lt;p&gt;By modifying the variance of the variables(scaling), it is possible to attribute different importance to them. By doing so, the prior information or the belief on the importance of the attributes can be preserved even in the PCA stage.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Definition of Principal Components&lt;/h2&gt;
-&lt;p&gt;Given a sample &lt;code&gt;$n$&lt;/code&gt; observations on a vector &lt;code&gt;$p$&lt;/code&gt; variables:&lt;br /&gt;
-&lt;code&gt;$$x = (x_1, x_2, \ldots, x_p)$$&lt;/code&gt;
+&lt;p&gt;Given a sample $n$ observations on a vector $p$ variables:&lt;br /&gt;
+$$x = (x_1, x_2, \ldots, x_p)$$
 define the principal component of the sample by a linear transformation which is given as following:&lt;br /&gt;
-&lt;code&gt;$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$&lt;/code&gt;
-where &lt;code&gt;$a$&lt;/code&gt; is
-&lt;code&gt;$$ a = (a_1, a_2, \ldots, a_p) $$&lt;/code&gt;
-which is chosen to maximize the variance of &lt;code&gt;$z$&lt;/code&gt; and subject to 
-&lt;code&gt;$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$&lt;/code&gt;
+$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$
+where $a$ is
+$$ a = (a_1, a_2, \ldots, a_p) $$
+which is chosen to maximize the variance of $z$ and subject to 
+$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$
 and to 
-&lt;code&gt;$$ a^T a = 1 $$&lt;/code&gt;&lt;/p&gt;
-&lt;h3&gt;How to derive the coefficients &lt;code&gt;$a$&lt;/code&gt; ?&lt;/h3&gt;
+$$ a^T a = 1 $$&lt;/p&gt;
+&lt;h3&gt;How to derive the coefficients $a$ ?&lt;/h3&gt;
 &lt;p&gt;The variance is:&lt;br /&gt;
-&lt;code&gt;$$ 
-\begin{eqnarray*}
-var[z] &amp;amp;=&amp;amp; &amp;lt;z^2&amp;gt; - &amp;lt;z&amp;gt;^2
-\\ &amp;amp;=&amp;amp; \displaystyle \sum_{i,j = 1}^p a_i a_j &amp;lt;x_i x_j&amp;gt; - \displaystyle \sum_{i,j=1}^p a_i a_j &amp;lt;x_i&amp;gt; &amp;lt;x_j&amp;gt;
-\\ &amp;amp;=&amp;amp; \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij} 
-\end{eqnarray*} $$&lt;/code&gt;
-where &lt;code&gt;$S_{ij} = &amp;lt;x_i x_j&amp;gt; - &amp;lt;x_i&amp;gt;&amp;lt;x_j&amp;gt;$&lt;/code&gt; is the covariance matrix for &lt;code&gt;$x$&lt;/code&gt;.&lt;br /&gt;
-To find &lt;code&gt;$a$&lt;/code&gt; which maximizes &lt;code&gt;$var[z]$&lt;/code&gt; subject to &lt;code&gt;$a^T a = 1$&lt;/code&gt;, let us introduce a lagrange multiplier &lt;code&gt;$\lambda$&lt;/code&gt;. Then, the maximization equation becomes
-&lt;code&gt;$$ a^T S a - \lambda (a^T a - 1) $$&lt;/code&gt;
-If we take the derivative with respect to &lt;code&gt;$a$&lt;/code&gt;, then the equation becomes
-&lt;code&gt;$$ S a - \lambda a = 0 $$&lt;/code&gt;
-&lt;code&gt;$$ (S - \lambda I) a = 0 $$&lt;/code&gt;
-Therefore, &lt;code&gt;$a$&lt;/code&gt; is an eigenvector of &lt;code&gt;$S$&lt;/code&gt; which has the corresponding value of &lt;code&gt;$\lambda$&lt;/code&gt;.  &lt;/p&gt;
+$$ var[z] = \lt z^2\gt - \lt z \gt^2$$
+$$ = \displaystyle \sum_{i,j = 1}^p a_i a_j \lt x_i x_j \gt - \displaystyle \sum_{i,j=1}^p a_i a_j \lt x_i \gt \lt x_j \gt $$
+$$ = \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij}  $$
+where $S_{ij} = \lt x_i x_j \gt - \lt x_i \gt \lt x_j \gt$ is the covariance matrix for $x$.&lt;br /&gt;
+To find $a$ which maximizes $var[z]$ subject to $a^T a = 1$, let us introduce a lagrange multiplier $\lambda$. Then, the maximization equation becomes
+$$ a^T S a - \lambda (a^T a - 1) $$
+If we take the derivative with respect to $a$, then the equation becomes
+$$ S a - \lambda a = 0 $$
+$$ (S - \lambda I) a = 0 $$
+Therefore, $a$ is an eigenvector of $S$ which has the corresponding value of $\lambda$.  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In short, we are interested in representing the most of the variation in the data by transforming the original variables into principal components. These components are orthogonal and ordered by magnitude so that the first few of them could explain most of the variation in the original observation.&lt;/p&gt;
 &lt;/blockquote&gt;

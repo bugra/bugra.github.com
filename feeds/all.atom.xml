@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-01-30T00:00:00+00:00</updated><entry><title>Unreasonable Effectiveness of Metadata</title><link href="http://bugra.github.io/work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/" rel="alternate"></link><updated>2014-01-30T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-01-30:work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/</id><summary type="html">&lt;h2&gt;Metadata&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-02-01T00:00:00+00:00</updated><entry><title>Cultural Data Project Part 1</title><link href="http://bugra.github.io/work/notes/2014-02-01/cultural-data-project-part-1/" rel="alternate"></link><updated>2014-02-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-01:work/notes/2014-02-01/cultural-data-project-part-1/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Data is from &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better
+understanding, I seggregated the data by organization type. There are
+total 48 different organization types. Data follows &lt;a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf"&gt;data profile&lt;/a&gt; structure
+and I grouped organizations into 6 different subsections;
+employment statistics, their activities, pricing, website activity,
+attendance and finally number of contributors. Before looking at the
+distribution of the above metrics, let's look at when organizations are
+founded. The first cultural organization dates go back to 1636 according
+to data and youngest one seems to be 2012.
+&lt;img alt="Foundation Year of Organizations" src="/images/work/notes/2014/2/1/year_founded.png" title="Foundation Year" /&gt;
+Mean year is approximately 1975 and median year is 1984. The width of
+the plot shows the number of organizations that are founded in a year
+shown in the y axis. Most of the organizations are founded between 1950
+and 2000 where around 2000, it reaches its peak. This could also be
+observed from the difference in median and mean year.  &lt;/p&gt;
+&lt;p&gt;Unless, it is stated otherwise, every subsection will give the mean,
+median and sum statistics of the variables. The reason why three graphs
+are provided is because some of the organizations are quite large in
+terms of revenue, human resources and other metrics. As you will see
+later, these companies' metrics dominate other companies; sum and mean
+of those sections mostly reflect their statistics ignoring other
+organizations. Median provides a nice solution for this type of
+statistics as it is a metric which is quite robust to &lt;strong&gt;outliers&lt;/strong&gt;. Mean
+and sum statistics are provided as they are also very useful to
+summarize the data when there are not outliers or small number of
+outliers.&lt;/p&gt;
+&lt;p&gt;Organization types are sorted by alphabetical order so the &lt;em&gt;None of the
+Above&lt;/em&gt; should change &lt;em&gt;None of anything else&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Employment&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Employment Mean grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_mean.png" title="Employment Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Employment Median grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_median.png" title="Employment Median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Employment Sum grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_sum.png" title="Employment Sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h2&gt;Activity&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Activity Types Mean grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_mean.png" title="Activity Types Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Activity Types Median grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_median.png" title="Activity Types Median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Activity Types Sum grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Activity Types Sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h2&gt;Pricing&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Pricing Mean grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_mean.png" title="Pricing Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Pricing Median grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_median.png" title="Pricing Median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Pricing Sum grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_sum.png" title="Pricing sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h2&gt;Web Activity&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Website Activity Mean grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_mean.png" title="Web Activity Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Website Activity Median grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_median.png" title="Web Activity sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Website Activity Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_sum.png" title="Web Activity sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h2&gt;Web Income&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Website Income mean grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_mean.png" title="Web Income mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Website Income Median grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_median.png" title="Web Income median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Website Income Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_sum.png" title="Web Income sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h2&gt;Attendance&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Attendance Mean grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_mean.png" title="Attendance mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Attendance Median grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_median.png" title="Attendance median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Attendance Sum grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_sum.png" title="Attendance sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h2&gt;Number of Contributors&lt;/h2&gt;
+&lt;h3&gt;Mean&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Contributor Mean grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_mean.png" title="Contributor mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Median&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Contributor Median grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_median.png" title="Contributor median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;h3&gt;Sum&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Contributor Sum grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_sum.png" title="Contributor sum grouped by Institution" /&gt;&lt;/p&gt;</summary></entry><entry><title>Unreasonable Effectiveness of Metadata</title><link href="http://bugra.github.io/work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/" rel="alternate"></link><updated>2014-01-30T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-01-30:work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/</id><summary type="html">&lt;h2&gt;Metadata&lt;/h2&gt;
 &lt;p&gt;Metadata could be translated as data about data if we want to translate
 'mot à mot'. Generally, it defines what the data is about 
 and gives some descriptive information around that. Still quite 
@@ -142,11 +219,11 @@ researchers &lt;a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton
 &lt;h3&gt;Functions of PCA&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Is to reduce dimensionality by extracting the smallest number components that account for most of the variation in the original data. By doing so, we'd get get rid of the redundancy and preserve the variance in a smaller number of coefficients.&lt;/li&gt;
-&lt;li&gt;PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares(&lt;code&gt;$l_2$&lt;/code&gt; norm).&lt;/li&gt;
+&lt;li&gt;PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares($l_2$ norm).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Why do we choose PCA over other transformations which turn the original variables into a representation which depend on orthogonal bases, say Fourier Transform?&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, &lt;code&gt;$l_2$&lt;/code&gt; norm). However, Fourier transform does not guarantee such a premise.&lt;/li&gt;
+&lt;li&gt;Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, $l_2$ norm). However, Fourier transform does not guarantee such a premise.&lt;/li&gt;
 &lt;li&gt;If the data has a lot of correlation among its variables(redundancy), then PCA could exploit this redundancy by uncorrelating the variables whereas Fourier transform cannot exploit this redundancy(at least explicitly).&lt;/li&gt;
 &lt;li&gt;When PCA is used for dimensionality reduction, it is quite good at preserving the distance between the observations in the projection space.&lt;/li&gt;
 &lt;/ul&gt;
@@ -154,7 +231,7 @@ researchers &lt;a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton
 &lt;ul&gt;
 &lt;li&gt;The components are not independent but uncorrelated. It would be even better if we have a representation which are independent to each other. It is called unsurprisingly &lt;em&gt;Independent Component Analysis&lt;/em&gt;.&lt;/li&gt;
 &lt;li&gt;PCA seeks for linear combinations of the original variables. The nonlinear combination may even yield better representation. PCA has an extension for doing this type of analysis, &lt;em&gt;Nonlinear PCA&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Instead of &lt;code&gt;$l_2$&lt;/code&gt; norm, it may be advantageous to use &lt;code&gt;$l_1$&lt;/code&gt; norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called &lt;em&gt;Sparse PCA&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Instead of $l_2$ norm, it may be advantageous to use $l_1$ norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called &lt;em&gt;Sparse PCA&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;Assumptions that PCA does:&lt;/h4&gt;
 &lt;ul&gt;
@@ -179,31 +256,28 @@ researchers &lt;a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton
 &lt;p&gt;By modifying the variance of the variables(scaling), it is possible to attribute different importance to them. By doing so, the prior information or the belief on the importance of the attributes can be preserved even in the PCA stage.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Definition of Principal Components&lt;/h2&gt;
-&lt;p&gt;Given a sample &lt;code&gt;$n$&lt;/code&gt; observations on a vector &lt;code&gt;$p$&lt;/code&gt; variables:&lt;br /&gt;
-&lt;code&gt;$$x = (x_1, x_2, \ldots, x_p)$$&lt;/code&gt;
+&lt;p&gt;Given a sample $n$ observations on a vector $p$ variables:&lt;br /&gt;
+$$x = (x_1, x_2, \ldots, x_p)$$
 define the principal component of the sample by a linear transformation which is given as following:&lt;br /&gt;
-&lt;code&gt;$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$&lt;/code&gt;
-where &lt;code&gt;$a$&lt;/code&gt; is
-&lt;code&gt;$$ a = (a_1, a_2, \ldots, a_p) $$&lt;/code&gt;
-which is chosen to maximize the variance of &lt;code&gt;$z$&lt;/code&gt; and subject to 
-&lt;code&gt;$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$&lt;/code&gt;
+$$ z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i $$
+where $a$ is
+$$ a = (a_1, a_2, \ldots, a_p) $$
+which is chosen to maximize the variance of $z$ and subject to 
+$$ cov[z_k, z_l] = 0, k \gt l \geq 1 $$
 and to 
-&lt;code&gt;$$ a^T a = 1 $$&lt;/code&gt;&lt;/p&gt;
-&lt;h3&gt;How to derive the coefficients &lt;code&gt;$a$&lt;/code&gt; ?&lt;/h3&gt;
+$$ a^T a = 1 $$&lt;/p&gt;
+&lt;h3&gt;How to derive the coefficients $a$ ?&lt;/h3&gt;
 &lt;p&gt;The variance is:&lt;br /&gt;
-&lt;code&gt;$$ 
-\begin{eqnarray*}
-var[z] &amp;amp;=&amp;amp; &amp;lt;z^2&amp;gt; - &amp;lt;z&amp;gt;^2
-\\ &amp;amp;=&amp;amp; \displaystyle \sum_{i,j = 1}^p a_i a_j &amp;lt;x_i x_j&amp;gt; - \displaystyle \sum_{i,j=1}^p a_i a_j &amp;lt;x_i&amp;gt; &amp;lt;x_j&amp;gt;
-\\ &amp;amp;=&amp;amp; \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij} 
-\end{eqnarray*} $$&lt;/code&gt;
-where &lt;code&gt;$S_{ij} = &amp;lt;x_i x_j&amp;gt; - &amp;lt;x_i&amp;gt;&amp;lt;x_j&amp;gt;$&lt;/code&gt; is the covariance matrix for &lt;code&gt;$x$&lt;/code&gt;.&lt;br /&gt;
-To find &lt;code&gt;$a$&lt;/code&gt; which maximizes &lt;code&gt;$var[z]$&lt;/code&gt; subject to &lt;code&gt;$a^T a = 1$&lt;/code&gt;, let us introduce a lagrange multiplier &lt;code&gt;$\lambda$&lt;/code&gt;. Then, the maximization equation becomes
-&lt;code&gt;$$ a^T S a - \lambda (a^T a - 1) $$&lt;/code&gt;
-If we take the derivative with respect to &lt;code&gt;$a$&lt;/code&gt;, then the equation becomes
-&lt;code&gt;$$ S a - \lambda a = 0 $$&lt;/code&gt;
-&lt;code&gt;$$ (S - \lambda I) a = 0 $$&lt;/code&gt;
-Therefore, &lt;code&gt;$a$&lt;/code&gt; is an eigenvector of &lt;code&gt;$S$&lt;/code&gt; which has the corresponding value of &lt;code&gt;$\lambda$&lt;/code&gt;.  &lt;/p&gt;
+$$ var[z] = \lt z^2\gt - \lt z \gt^2$$
+$$ = \displaystyle \sum_{i,j = 1}^p a_i a_j \lt x_i x_j \gt - \displaystyle \sum_{i,j=1}^p a_i a_j \lt x_i \gt \lt x_j \gt $$
+$$ = \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij}  $$
+where $S_{ij} = \lt x_i x_j \gt - \lt x_i \gt \lt x_j \gt$ is the covariance matrix for $x$.&lt;br /&gt;
+To find $a$ which maximizes $var[z]$ subject to $a^T a = 1$, let us introduce a lagrange multiplier $\lambda$. Then, the maximization equation becomes
+$$ a^T S a - \lambda (a^T a - 1) $$
+If we take the derivative with respect to $a$, then the equation becomes
+$$ S a - \lambda a = 0 $$
+$$ (S - \lambda I) a = 0 $$
+Therefore, $a$ is an eigenvector of $S$ which has the corresponding value of $\lambda$.  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;In short, we are interested in representing the most of the variation in the data by transforming the original variables into principal components. These components are orthogonal and ordered by magnitude so that the first few of them could explain most of the variation in the original observation.&lt;/p&gt;
 &lt;/blockquote&gt;

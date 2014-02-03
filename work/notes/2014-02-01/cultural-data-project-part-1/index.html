@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>Cultural Data Project Part 1 | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+  <div id="logo"><a href="/" class="at"></a></div>
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>Cultural Data Project Part 1</h1>
+        </header>
+        <div class='post-content'>
+            <h2>Introduction</h2>
+<p>Data is from <a href="http://www.culturaldata.org/">Cultural Data Project</a>. In order to get a better
+understanding, I seggregated the data by organization type. There are
+total 48 different organization types. Data follows <a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf">data profile</a> structure
+and I grouped organizations into 6 different subsections;
+employment statistics, their activities, pricing, website activity,
+attendance and finally number of contributors. Before looking at the
+distribution of the above metrics, let's look at when organizations are
+founded. The first cultural organization dates go back to 1636 according
+to data and youngest one seems to be 2012.
+<img alt="Foundation Year of Organizations" src="/images/work/notes/2014/2/1/year_founded.png" title="Foundation Year" />
+Mean year is approximately 1975 and median year is 1984. The width of
+the plot shows the number of organizations that are founded in a year
+shown in the y axis. Most of the organizations are founded between 1950
+and 2000 where around 2000, it reaches its peak. This could also be
+observed from the difference in median and mean year.  </p>
+<p>Unless, it is stated otherwise, every subsection will give the mean,
+median and sum statistics of the variables. The reason why three graphs
+are provided is because some of the organizations are quite large in
+terms of revenue, human resources and other metrics. As you will see
+later, these companies' metrics dominate other companies; sum and mean
+of those sections mostly reflect their statistics ignoring other
+organizations. Median provides a nice solution for this type of
+statistics as it is a metric which is quite robust to <strong>outliers</strong>. Mean
+and sum statistics are provided as they are also very useful to
+summarize the data when there are not outliers or small number of
+outliers.</p>
+<p>Organization types are sorted by alphabetical order so the <em>None of the
+Above</em> should change <em>None of anything else</em>.</p>
+<h2>Employment</h2>
+<h3>Mean</h3>
+<p><img alt="Employment Mean grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_mean.png" title="Employment Mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Employment Median grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_median.png" title="Employment Median grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Employment Sum grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_sum.png" title="Employment Sum grouped by Institution" /></p>
+<h2>Activity</h2>
+<h3>Mean</h3>
+<p><img alt="Activity Types Mean grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_mean.png" title="Activity Types Mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Activity Types Median grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_median.png" title="Activity Types Median grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Activity Types Sum grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Activity Types Sum grouped by Institution" /></p>
+<h2>Pricing</h2>
+<h3>Mean</h3>
+<p><img alt="Pricing Mean grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_mean.png" title="Pricing Mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Pricing Median grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_median.png" title="Pricing Median grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Pricing Sum grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_sum.png" title="Pricing sum grouped by Institution" /></p>
+<h2>Web Activity</h2>
+<h3>Mean</h3>
+<p><img alt="Website Activity Mean grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_mean.png" title="Web Activity Mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Website Activity Median grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_median.png" title="Web Activity sum grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Website Activity Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_sum.png" title="Web Activity sum grouped by Institution" /></p>
+<h2>Web Income</h2>
+<h3>Mean</h3>
+<p><img alt="Website Income mean grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_mean.png" title="Web Income mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Website Income Median grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_median.png" title="Web Income median grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Website Income Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_sum.png" title="Web Income sum grouped by Institution" /></p>
+<h2>Attendance</h2>
+<h3>Mean</h3>
+<p><img alt="Attendance Mean grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_mean.png" title="Attendance mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Attendance Median grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_median.png" title="Attendance median grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Attendance Sum grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_sum.png" title="Attendance sum grouped by Institution" /></p>
+<h2>Number of Contributors</h2>
+<h3>Mean</h3>
+<p><img alt="Contributor Mean grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_mean.png" title="Contributor mean grouped by Institution" /></p>
+<h3>Median</h3>
+<p><img alt="Contributor Median grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_median.png" title="Contributor median grouped by Institution" /></p>
+<h3>Sum</h3>
+<p><img alt="Contributor Sum grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_sum.png" title="Contributor sum grouped by Institution" /></p>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" i
+              class="twitter-share-button"
+              data-url=work/notes/2014-02-01/cultural-data-project-part-1/
+              data-via="bugraa">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button_count"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2014-02-01T00:00:00">
+                            February 01, 2014
+                        </time>
+                    </i>
+                </li>
+                <li>
+                    <a id="comments-button" href="#disqus_thread">Show/read comments</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+(function () {
+
+    'use strict';
+
+    // Global object
+    var App = {};
+
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+
+        // Append container to body
+        document.body.appendChild( App.disqusContainer );
+
+        // Your Disqus shortname
+        App.disqus_shortname = 'bugra';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+
+})();
+</script>
+
+      </div>
+    </div>
+  </div>
+      <script src="/theme/js/logo.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'ua.eb0@du3n8y', [13,2,10,11,1,5,6,12,9,4,7,3,8]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>
