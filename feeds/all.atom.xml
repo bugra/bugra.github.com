@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-02-01T00:00:00+00:00</updated><entry><title>Cultural Data Project Part 1</title><link href="http://bugra.github.io/work/notes/2014-02-01/cultural-data-project-part-1/" rel="alternate"></link><updated>2014-02-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-01:work/notes/2014-02-01/cultural-data-project-part-1/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-02-04T00:00:00+00:00</updated><entry><title>Cultural Data Project Part 2</title><link href="http://bugra.github.io/work/notes/2014-02-04/cultural-data-project-part-2/" rel="alternate"></link><updated>2014-02-04T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-04:work/notes/2014-02-04/cultural-data-project-part-2/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;a href="/work/notes/2014-02-01/cultural-data-project-part-1/"&gt;First Part&lt;/a&gt; shows some basic statistics on &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better insight how do these companies make their money and different ways to monetize their services, I looked at the correlation of their revenue with other metrics. This could be quite important if the companies knew which type of marketing channels matter more for generating revenue, they could both allocate their efforts and also spendings more efficiently to increase their revenue and hopefully their profits.&lt;/p&gt;
+&lt;h3&gt;Advertising vs. Revenue&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Advertisin Revenue Scatter Plot" src="/images/work/notes/2014/2/4/total_advertising_total_revenue_correlation.png" title="Advertising vs. Revenue" /&gt;
+As you could see from the above graph, there is a correlation between
+advertising and revenue. However, there are a lot of data points that
+have zero for advertising. This could be due to
+organizations do not spend &lt;strong&gt;any&lt;/strong&gt; money for advertisement or incomple
+data. The latter seems more reasonable especially when we consider the values close
+to zero are not present in the dataset. This shows a strong correlation if we
+exclude the incomple data points. Let's look at the correlation more
+closely, like doing a linear regression.&lt;/p&gt;
+&lt;h3&gt;Linear Regression on Advertising vs. Revenue&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Linear Regression for Advertising and Total Revenue" src="/images/work/notes/2014/2/1/total_advertising_total_revenue_correlation.png" title="Linear Regression for Advertising and Total Revenue" /&gt;
+Now, that is much better. We could see the correlation much better now
+where the correlation coefficient is Pearson correlation coefficient.
+But data have more than total revenue; earned revenue and contributed
+revenue. Earned revenue suggests an income of selling good and services
+of the organization where the contributed revenue is how much an
+organization collects money from contributors. Let's see first earned
+revenue:&lt;/p&gt;
+&lt;h3&gt;Linear Regression on Advertising vs. Earned Revenue&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Linear Regression on advertising and earned revenue" src="/images/work/notes/2014/2/4/total_advertising_total_earned_revenue_correlation.png" title="Linear Regression on advertising and earned revenue" /&gt;&lt;/p&gt;
+&lt;h3&gt;Linear Regression on Advertising vs. Contributed Revenue&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Linear Regression on advertising and contributed revenue" src="/images/work/notes/2014/2/4/total_advertising_total_contributed_revenue_correlation.png" title="Web Income mean grouped by Institution" /&gt;
+To my surprise, the correlation between advertising and contributed
+revenue is actually higher than earned revenue. Does this imply
+advertising attracts more contributor? Maybe, but not necessarily. This
+is most probably due to most of the organizations are highly dependent
+on the contributions as their earned revenues are quite modest which
+could be seen from the graphs above. &lt;/p&gt;</summary></entry><entry><title>Cultural Data Project Part 1</title><link href="http://bugra.github.io/work/notes/2014-02-01/cultural-data-project-part-1/" rel="alternate"></link><updated>2014-02-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-01:work/notes/2014-02-01/cultural-data-project-part-1/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Data is from &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better
 understanding, I seggregated the data by organization type. There are
 total 48 different organization types. Data follows &lt;a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf"&gt;data profile&lt;/a&gt; structure
