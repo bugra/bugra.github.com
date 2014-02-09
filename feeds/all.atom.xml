@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-02-04T00:00:00+00:00</updated><entry><title>Cultural Data Project Part 2</title><link href="http://bugra.github.io/work/notes/2014-02-04/cultural-data-project-part-2/" rel="alternate"></link><updated>2014-02-04T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-04:work/notes/2014-02-04/cultural-data-project-part-2/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/all.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-02-08T00:00:00+00:00</updated><entry><title>Pig Advantages and Disadvantages</title><link href="http://bugra.github.io/work/notes/2014-02-08/pig-advantages-and-disadvantages/" rel="alternate"></link><updated>2014-02-08T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-08:work/notes/2014-02-08/pig-advantages-and-disadvantages/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Apache Pig is a dataflow language that is built on top of Hadoop to make
+it easier to process, clean and analyze "big data" without having to write
+vanilla map-reduce jobs in Hadoop.&lt;br /&gt;
+It has also a lot of relational database features. Good old &lt;code&gt;join&lt;/code&gt;s, &lt;code&gt;distinct&lt;/code&gt;, &lt;code&gt;union&lt;/code&gt; and many more commands are already in the language. So what exactly Pig solves different than relational database is its applicability to "big data" where it can crunch large files with ease and it does not need a structured data. 
+Contrarily, Pig could be used for ETL(Extraction Transformation Load)
+tasks naturally as it can handle unstructured data. It is one of the
+reasons why it exists to tell the truth. &lt;br /&gt;
+But let's ask the fundamental question: &lt;strong&gt;Why does data analysis matter&lt;/strong&gt; ?&lt;/p&gt;
+&lt;h3&gt;Data Analysis Matters&lt;/h3&gt;
+&lt;p&gt;Data analysis matters because as &lt;a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf"&gt;original paper&lt;/a&gt; very good puts it:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Data analysis is "inner loop" of product innovation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Companies which have data and "big data" want to automate some of their
+processes, they want to make better products for their users, want to
+create new products and platforms. If you do not happen to be Steve Jobs 
+or someone who has natural insights of what users and consumers want
+from the product or see new features, then you are dependent on data.
+Feedback of users, their usage, log files of the website and metrics are
+all things that make you run faster. They are not what you run with(it
+is the product itself) but how you run faster. (So much for the analogy)   &lt;/p&gt;
+&lt;p&gt;Pig paper also introduces the basic motivation for Pig why it is useful
+and how does it fit into the analytics and data processing in Hadoop.
+Moreover, as you read the paper you realize that the processing pipeline 
+is actually Directed Acyclic Graph and paper goes a little more in depth
+in theoretical aspects of Pig(the programming language).&lt;/p&gt;
+&lt;p&gt;So, what does Pig bring to the table and what it is missing?  &lt;/p&gt;
+&lt;h2&gt;Advantages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Decrease in development time. This is the biggest advantage especially
+  considering vanilla map-reduce jobs' complexity, time-spent and
+maintenance of the programs. &lt;/li&gt;
+&lt;li&gt;Learning curve is not steep, anyone who does not know how to write
+  vanilla map-reduce or SQL for that matter could pick up and can write
+  map-reduce jobs; not easy to master, though.&lt;/li&gt;
+&lt;li&gt;Procedural, not declarative unlike SQL, so easier to follow the
+  commands and provides better expressiveness in the transformation of
+  data every step. Comparing to vanilla map-reduce, it is much more like
+  an english language. It is concise and unlike Java but more like
+  Python. &lt;/li&gt;
+&lt;li&gt;I really liked the idea of dataflow where everything is about data
+  even though we sacrifice control structures like for loop or if
+  structures. This enforces the developer to think about the data but
+  nothing else. In Python or Java, you create the control structures(for
+  loop and ifs) and get the data transformation as a side effect. In here,
+  data and because of data, data transformation is a first class citizen. Without data, you cannot create for loops, you need to always transform and manipulate data. But if you are not transforming data, what are you doing in the very first place?&lt;/li&gt;
+&lt;li&gt;Since it is procedural, you could control of the execution of every
+  step. If you want to write your own UDF(User Defined Function) and
+  inject in one specific part in the pipeline, it is straightforward.&lt;/li&gt;
+&lt;li&gt;Speaking of UDFs, you could write your UDFs in Python thanks to
+  Jython. How awesome is that!&lt;/li&gt;
+&lt;li&gt;Lazy evaluation: unless you do not produce an output file or does not
+  output any message, it does not get evaluated. This has an advantage in the logical plan, it could optimize the program beginning to end and optimizer could produce an efficient plan to execute.&lt;/li&gt;
+&lt;li&gt;Enjoys everything that Hadoop offers, parallelization,
+  fault-tolerancy with many relational database features.&lt;/li&gt;
+&lt;li&gt;It is quite effective for unstructured and messy large datasets.
+  Actually, Pig is one of the best tool to make the large unstructured
+data to structured.&lt;/li&gt;
+&lt;li&gt;You have UDFs which you want to parallellize and utilize for large
+  amounts of data, then you are in luck. Use Pig as a base pipeline
+where it does the hard work and you just apply your UDF in the step that
+you want. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Doge Pig" src="http://cdn.memegenerator.net/instances/500x/45784485.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;Disadvantages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Especially the errors that Pig produces due to UDFS(Python) are not helpful at
+  all. When something goes wrong, it just gives exec error in udf even
+  if problem is related to syntax or type error, let alone a logical one.
+  This is a big one. At least, as a user, I should get different error
+messages when I have a syntax error, type error or a runtime error.&lt;/li&gt;
+&lt;li&gt;Not mature. Even if it has been around for quite some time, it is
+  still in the development.  (only recently they introduced a native datetime
+  structure which is quite fundamental for a language like Pig especially      considering how an important component of datetime for time-series data.&lt;/li&gt;
+&lt;li&gt;Support: Stackoverflow and Google generally does not lead good
+  solutions for the problems. &lt;/li&gt;
+&lt;li&gt;Data Schema is not enforced explicitly but implicitly. I think this is
+  big one, too. The debugging of pig scripts in my experience is %90 of
+time schema and since it does not enforce an explicit schema, sometimes
+one data structure goes bytearray, which is a “raw” data type and unless
+you coerce the fields even the strings, they turn bytearray without
+notice. This may propagate for other steps of the data processing. &lt;/li&gt;
+&lt;li&gt;Minor one: There is not a good ide or plugin for Vim  which provides more functionality than syntax completion to write the pig scripts. &lt;/li&gt;
+&lt;li&gt;The commands are not executed unless either you dump or store an
+  intermediate or final result. This increases the iteration between
+debug and resolving the issue. &lt;/li&gt;
+&lt;li&gt;Hive and Pig are not the same thing and the things that Pig does quite
+  well Hive may not and vice versa. However, someone who knows SQL could
+write Hive queries(most of SQL queries do already work in Hive) where she 
+cannot do that in Pig. She needs to learn Pig syntax.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Some Pointers&lt;/h3&gt;
+&lt;p&gt;If you want to do apply some statistics to your dataset(who does not
+nowadays in order to get good analytics), then you should check out
+&lt;a href="http://datafu.incubator.apache.org/"&gt;DataFu&lt;/a&gt;. Originally DataFu began in Linkedin but now it is incubator
+Apache project, has a lot of good tools for statistics and utility UDFs
+in general. Last month, Netflix released an interesting project named
+&lt;a href="http://techblog.netflix.com/2014/01/introducing-pigpen-map-reduce-for.html"&gt;PigPen&lt;/a&gt; which aims to bring Clojure awesomeness to write Pig jobs.
+It is an open source project, do not forget to check out the
+&lt;a href="https://github.com/Netflix/PigPen"&gt;source code&lt;/a&gt;. I have not had chance to use it but functional
+programming paradigm fits quite naturally to &lt;strong&gt;pipeline&lt;/strong&gt; processes, so
+I expect it to be quite successful.(apart from Clojure's own
+awesomeness)&lt;/p&gt;</summary></entry><entry><title>Cultural Data Project Part 2</title><link href="http://bugra.github.io/work/notes/2014-02-04/cultural-data-project-part-2/" rel="alternate"></link><updated>2014-02-04T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-04:work/notes/2014-02-04/cultural-data-project-part-2/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a href="/work/notes/2014-02-01/cultural-data-project-part-1/"&gt;First Part&lt;/a&gt; shows some basic statistics on &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better insight how do these companies make their money and different ways to monetize their services, I looked at the correlation of their revenue with other metrics. This could be quite important if the companies knew which type of marketing channels matter more for generating revenue, they could both allocate their efforts and also spendings more efficiently to increase their revenue and hopefully their profits.&lt;/p&gt;
 &lt;h3&gt;Advertising vs. Revenue&lt;/h3&gt;
 &lt;p&gt;&lt;img alt="Advertisin Revenue Scatter Plot" src="/images/work/notes/2014/2/4/total_advertising_total_revenue_correlation.png" title="Advertising vs. Revenue" /&gt;
