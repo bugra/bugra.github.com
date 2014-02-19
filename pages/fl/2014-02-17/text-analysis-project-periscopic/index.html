@@ -74,21 +74,43 @@
                                   'industry', 'made in the USA'],
                    'Peace': ['peace', 'religion', 'Iraq', 'inner', 'Afghanistan', 'North Korea', 
                              'international relations', 'war', 'terrorism', 'Iran'],
-                }
+        }
+    function intersect(a, b) {
+        var t;
+        if (b.length > a.length) t = b, b = a, a = t; 
+        return a
+              .filter(function (e) {
+             if (b.indexOf(e) !== -1) return true;
+             })
+             .filter(function (e, i, c) { 
+               return c.indexOf(e) === i;
+             });
+   }
 
     function TextController($scope){
       $scope.classify = function() {
         //$scope.category = bayes.classify($scope.textToBeClassified);
+        var input = $scope.textToBeClassified || "";
+        var lowerCaseInputArray = input.split(" ")
+                                        .map(function(value) {
+                                          return value.toLowerCase();})
+                                        .sort();
+        var found = false;
         for (var key in clusters) {
           if (clusters.hasOwnProperty(key)) {
             var lowerCaseArray = clusters[key].map(function(value) {
-                  return value.toLowerCase();
-                }).sort();
-            if (lowerCaseArray.indexOf($scope.textToBeClassified.toLowerCase()) >= 0){
+                                              return value.toLowerCase();})
+                                            .sort();
+            if (intersect(lowerCaseArray, lowerCaseInputArray).length > 0){
               $scope.category = key;
+              found = true;
             }
           }
-       }
+        }
+        // When the category is not found, erase the category.
+        if (!found){
+          $scope.category = "";
+        }
      };
    };
       app.controller('TextController', TextController);
