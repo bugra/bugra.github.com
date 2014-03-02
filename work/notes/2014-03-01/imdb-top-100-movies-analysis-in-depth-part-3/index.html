@@ -1,5 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/1.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-03-01T00:00:00+00:00</updated><entry><title>IMDB Top 100K Movies Analysis in Depth Part 3</title><link href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/" rel="alternate"></link><updated>2014-03-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-01:work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/</id><summary type="html">&lt;style type="text/css"&gt;.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>IMDB Top 100K Movies Analysis in Depth Part 3 | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+  <div id="logo"><a href="/" class="at"></a></div>
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>IMDB Top 100K Movies Analysis in Depth Part 3</h1>
+        </header>
+        <div class='post-content'>
+            <style type="text/css">.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
@@ -211,7 +261,7 @@ ul,ol{padding:0;margin:0 0 10px 25px;}
 ul ul,ul ol,ol ol,ol ul{margin-bottom:0;}
 li{line-height:20px;}
 ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
-ul.inline,ol.inline{margin-left:0;list-style:none;}ul.inline&gt;li,ol.inline&gt;li{display:inline-block;*display:inline;*zoom:1;padding-left:5px;padding-right:5px;}
+ul.inline,ol.inline{margin-left:0;list-style:none;}ul.inline>li,ol.inline>li{display:inline-block;*display:inline;*zoom:1;padding-left:5px;padding-right:5px;}
 dl{margin-bottom:20px;}
 dt,dd{line-height:20px;}
 dt{font-weight:bold;}
@@ -261,7 +311,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder{color:#999999;}
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#999999;}
 .radio,.checkbox{min-height:20px;padding-left:20px;}
 .radio input[type="radio"],.checkbox input[type="checkbox"]{float:left;margin-left:-20px;}
-.controls&gt;.radio:first-child,.controls&gt;.checkbox:first-child{padding-top:5px;}
+.controls>.radio:first-child,.controls>.checkbox:first-child{padding-top:5px;}
 .radio.inline,.checkbox.inline{display:inline-block;padding-top:5px;margin-bottom:0;vertical-align:middle;}
 .radio.inline+.radio.inline,.checkbox.inline+.checkbox.inline{margin-left:10px;}
 .input-mini{width:60px;}
@@ -351,13 +401,13 @@ input:focus:invalid,textarea:focus:invalid,select:focus:invalid{color:#b94a48;bo
 .input-append,.input-prepend{display:inline-block;margin-bottom:10px;vertical-align:middle;font-size:0;white-space:nowrap;}.input-append input,.input-prepend input,.input-append select,.input-prepend select,.input-append .uneditable-input,.input-prepend .uneditable-input,.input-append .dropdown-menu,.input-prepend .dropdown-menu,.input-append .popover,.input-prepend .popover{font-size:13px;}
 .input-append input,.input-prepend input,.input-append select,.input-prepend select,.input-append .uneditable-input,.input-prepend .uneditable-input{position:relative;margin-bottom:0;*margin-left:0;vertical-align:top;-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}.input-append input:focus,.input-prepend input:focus,.input-append select:focus,.input-prepend select:focus,.input-append .uneditable-input:focus,.input-prepend .uneditable-input:focus{z-index:2;}
 .input-append .add-on,.input-prepend .add-on{display:inline-block;width:auto;height:20px;min-width:16px;padding:4px 5px;font-size:13px;font-weight:normal;line-height:20px;text-align:center;text-shadow:0 1px 0 #ffffff;background-color:#eeeeee;border:1px solid #ccc;}
-.input-append .add-on,.input-prepend .add-on,.input-append .btn,.input-prepend .btn,.input-append .btn-group&gt;.dropdown-toggle,.input-prepend .btn-group&gt;.dropdown-toggle{vertical-align:top;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.input-append .add-on,.input-prepend .add-on,.input-append .btn,.input-prepend .btn,.input-append .btn-group>.dropdown-toggle,.input-prepend .btn-group>.dropdown-toggle{vertical-align:top;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
 .input-append .active,.input-prepend .active{background-color:#a9dba9;border-color:#46a546;}
 .input-prepend .add-on,.input-prepend .btn{margin-right:-1px;}
 .input-prepend .add-on:first-child,.input-prepend .btn:first-child{-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;}
 .input-append input,.input-append select,.input-append .uneditable-input{-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;}.input-append input+.btn-group .btn:last-child,.input-append select+.btn-group .btn:last-child,.input-append .uneditable-input+.btn-group .btn:last-child{-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
 .input-append .add-on,.input-append .btn,.input-append .btn-group{margin-left:-1px;}
-.input-append .add-on:last-child,.input-append .btn:last-child,.input-append .btn-group:last-child&gt;.dropdown-toggle{-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
+.input-append .add-on:last-child,.input-append .btn:last-child,.input-append .btn-group:last-child>.dropdown-toggle{-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
 .input-prepend.input-append input,.input-prepend.input-append select,.input-prepend.input-append .uneditable-input{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}.input-prepend.input-append input+.btn-group .btn,.input-prepend.input-append select+.btn-group .btn,.input-prepend.input-append .uneditable-input+.btn-group .btn{-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
 .input-prepend.input-append .add-on:first-child,.input-prepend.input-append .btn:first-child{margin-right:-1px;-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;}
 .input-prepend.input-append .add-on:last-child,.input-prepend.input-append .btn:last-child{margin-left:-1px;-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
@@ -395,16 +445,16 @@ table{max-width:100%;background-color:transparent;border-collapse:collapse;borde
 .table-condensed th,.table-condensed td{padding:4px 5px;}
 .table-bordered{border:1px solid #dddddd;border-collapse:separate;*border-collapse:collapse;border-left:0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}.table-bordered th,.table-bordered td{border-left:1px solid #dddddd;}
 .table-bordered caption+thead tr:first-child th,.table-bordered caption+tbody tr:first-child th,.table-bordered caption+tbody tr:first-child td,.table-bordered colgroup+thead tr:first-child th,.table-bordered colgroup+tbody tr:first-child th,.table-bordered colgroup+tbody tr:first-child td,.table-bordered thead:first-child tr:first-child th,.table-bordered tbody:first-child tr:first-child th,.table-bordered tbody:first-child tr:first-child td{border-top:0;}
-.table-bordered thead:first-child tr:first-child&gt;th:first-child,.table-bordered tbody:first-child tr:first-child&gt;td:first-child,.table-bordered tbody:first-child tr:first-child&gt;th:first-child{-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}
-.table-bordered thead:first-child tr:first-child&gt;th:last-child,.table-bordered tbody:first-child tr:first-child&gt;td:last-child,.table-bordered tbody:first-child tr:first-child&gt;th:last-child{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;}
-.table-bordered thead:last-child tr:last-child&gt;th:first-child,.table-bordered tbody:last-child tr:last-child&gt;td:first-child,.table-bordered tbody:last-child tr:last-child&gt;th:first-child,.table-bordered tfoot:last-child tr:last-child&gt;td:first-child,.table-bordered tfoot:last-child tr:last-child&gt;th:first-child{-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
-.table-bordered thead:last-child tr:last-child&gt;th:last-child,.table-bordered tbody:last-child tr:last-child&gt;td:last-child,.table-bordered tbody:last-child tr:last-child&gt;th:last-child,.table-bordered tfoot:last-child tr:last-child&gt;td:last-child,.table-bordered tfoot:last-child tr:last-child&gt;th:last-child{-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;}
+.table-bordered thead:first-child tr:first-child>th:first-child,.table-bordered tbody:first-child tr:first-child>td:first-child,.table-bordered tbody:first-child tr:first-child>th:first-child{-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}
+.table-bordered thead:first-child tr:first-child>th:last-child,.table-bordered tbody:first-child tr:first-child>td:last-child,.table-bordered tbody:first-child tr:first-child>th:last-child{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;}
+.table-bordered thead:last-child tr:last-child>th:first-child,.table-bordered tbody:last-child tr:last-child>td:first-child,.table-bordered tbody:last-child tr:last-child>th:first-child,.table-bordered tfoot:last-child tr:last-child>td:first-child,.table-bordered tfoot:last-child tr:last-child>th:first-child{-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
+.table-bordered thead:last-child tr:last-child>th:last-child,.table-bordered tbody:last-child tr:last-child>td:last-child,.table-bordered tbody:last-child tr:last-child>th:last-child,.table-bordered tfoot:last-child tr:last-child>td:last-child,.table-bordered tfoot:last-child tr:last-child>th:last-child{-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;}
 .table-bordered tfoot+tbody:last-child tr:last-child td:first-child{-webkit-border-bottom-left-radius:0;-moz-border-radius-bottomleft:0;border-bottom-left-radius:0;}
 .table-bordered tfoot+tbody:last-child tr:last-child td:last-child{-webkit-border-bottom-right-radius:0;-moz-border-radius-bottomright:0;border-bottom-right-radius:0;}
 .table-bordered caption+thead tr:first-child th:first-child,.table-bordered caption+tbody tr:first-child td:first-child,.table-bordered colgroup+thead tr:first-child th:first-child,.table-bordered colgroup+tbody tr:first-child td:first-child{-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}
 .table-bordered caption+thead tr:first-child th:last-child,.table-bordered caption+tbody tr:first-child td:last-child,.table-bordered colgroup+thead tr:first-child th:last-child,.table-bordered colgroup+tbody tr:first-child td:last-child{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;}
-.table-striped tbody&gt;tr:nth-child(odd)&gt;td,.table-striped tbody&gt;tr:nth-child(odd)&gt;th{background-color:#f9f9f9;}
-.table-hover tbody tr:hover&gt;td,.table-hover tbody tr:hover&gt;th{background-color:#f5f5f5;}
+.table-striped tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th{background-color:#f9f9f9;}
+.table-hover tbody tr:hover>td,.table-hover tbody tr:hover>th{background-color:#f5f5f5;}
 table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span"],.row-fluid table th[class*="span"]{display:table-cell;float:none;margin-left:0;}
 .table td.span1,.table th.span1{float:none;width:44px;margin-left:0;}
 .table td.span2,.table th.span2{float:none;width:124px;margin-left:0;}
@@ -418,16 +468,16 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 .table td.span10,.table th.span10{float:none;width:764px;margin-left:0;}
 .table td.span11,.table th.span11{float:none;width:844px;margin-left:0;}
 .table td.span12,.table th.span12{float:none;width:924px;margin-left:0;}
-.table tbody tr.success&gt;td{background-color:#dff0d8;}
-.table tbody tr.error&gt;td{background-color:#f2dede;}
-.table tbody tr.warning&gt;td{background-color:#fcf8e3;}
-.table tbody tr.info&gt;td{background-color:#d9edf7;}
-.table-hover tbody tr.success:hover&gt;td{background-color:#d0e9c6;}
-.table-hover tbody tr.error:hover&gt;td{background-color:#ebcccc;}
-.table-hover tbody tr.warning:hover&gt;td{background-color:#faf2cc;}
-.table-hover tbody tr.info:hover&gt;td{background-color:#c4e3f3;}
+.table tbody tr.success>td{background-color:#dff0d8;}
+.table tbody tr.error>td{background-color:#f2dede;}
+.table tbody tr.warning>td{background-color:#fcf8e3;}
+.table tbody tr.info>td{background-color:#d9edf7;}
+.table-hover tbody tr.success:hover>td{background-color:#d0e9c6;}
+.table-hover tbody tr.error:hover>td{background-color:#ebcccc;}
+.table-hover tbody tr.warning:hover>td{background-color:#faf2cc;}
+.table-hover tbody tr.info:hover>td{background-color:#c4e3f3;}
 [class^="icon-"],[class*=" icon-"]{display:inline-block;width:14px;height:14px;*margin-right:.3em;line-height:14px;vertical-align:text-top;background-image:url("../img/glyphicons-halflings.png");background-position:14px 14px;background-repeat:no-repeat;margin-top:1px;}
-.icon-white,.nav-pills&gt;.active&gt;a&gt;[class^="icon-"],.nav-pills&gt;.active&gt;a&gt;[class*=" icon-"],.nav-list&gt;.active&gt;a&gt;[class^="icon-"],.nav-list&gt;.active&gt;a&gt;[class*=" icon-"],.navbar-inverse .nav&gt;.active&gt;a&gt;[class^="icon-"],.navbar-inverse .nav&gt;.active&gt;a&gt;[class*=" icon-"],.dropdown-menu&gt;li&gt;a:hover&gt;[class^="icon-"],.dropdown-menu&gt;li&gt;a:focus&gt;[class^="icon-"],.dropdown-menu&gt;li&gt;a:hover&gt;[class*=" icon-"],.dropdown-menu&gt;li&gt;a:focus&gt;[class*=" icon-"],.dropdown-menu&gt;.active&gt;a&gt;[class^="icon-"],.dropdown-menu&gt;.active&gt;a&gt;[class*=" icon-"],.dropdown-submenu:hover&gt;a&gt;[class^="icon-"],.dropdown-submenu:focus&gt;a&gt;[class^="icon-"],.dropdown-submenu:hover&gt;a&gt;[class*=" icon-"],.dropdown-submenu:focus&gt;a&gt;[class*=" icon-"]{background-image:url("../img/glyphicons-halflings-white.png");}
+.icon-white,.nav-pills>.active>a>[class^="icon-"],.nav-pills>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^="icon-"],.nav-list>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^="icon-"],.navbar-inverse .nav>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^="icon-"],.dropdown-menu>li>a:focus>[class^="icon-"],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>li>a:focus>[class*=" icon-"],.dropdown-menu>.active>a>[class^="icon-"],.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^="icon-"],.dropdown-submenu:focus>a>[class^="icon-"],.dropdown-submenu:hover>a>[class*=" icon-"],.dropdown-submenu:focus>a>[class*=" icon-"]{background-image:url("../img/glyphicons-halflings-white.png");}
 .icon-glass{background-position:0 0;}
 .icon-music{background-position:-24px 0;}
 .icon-search{background-position:-48px 0;}
@@ -575,23 +625,23 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 .dropdown .caret{margin-top:8px;margin-left:2px;}
 .dropdown-menu{position:absolute;top:100%;left:0;z-index:1000;display:none;float:left;min-width:160px;padding:5px 0;margin:2px 0 0;list-style:none;background-color:#ffffff;border:1px solid #ccc;border:1px solid rgba(0, 0, 0, 0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 5px 10px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 5px 10px rgba(0, 0, 0, 0.2);box-shadow:0 5px 10px rgba(0, 0, 0, 0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;}.dropdown-menu.pull-right{right:0;left:auto;}
 .dropdown-menu .divider{*width:100%;height:1px;margin:9px 1px;*margin:-5px 0 5px;overflow:hidden;background-color:#e5e5e5;border-bottom:1px solid #ffffff;}
-.dropdown-menu&gt;li&gt;a{display:block;padding:3px 20px;clear:both;font-weight:normal;line-height:20px;color:#333333;white-space:nowrap;}
-.dropdown-menu&gt;li&gt;a:hover,.dropdown-menu&gt;li&gt;a:focus,.dropdown-submenu:hover&gt;a,.dropdown-submenu:focus&gt;a{text-decoration:none;color:#ffffff;background-color:#0081c2;background-image:-moz-linear-gradient(top, #0088cc, #0077b3);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));background-image:-webkit-linear-gradient(top, #0088cc, #0077b3);background-image:-o-linear-gradient(top, #0088cc, #0077b3);background-image:linear-gradient(to bottom, #0088cc, #0077b3);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);}
-.dropdown-menu&gt;.active&gt;a,.dropdown-menu&gt;.active&gt;a:hover,.dropdown-menu&gt;.active&gt;a:focus{color:#ffffff;text-decoration:none;outline:0;background-color:#0081c2;background-image:-moz-linear-gradient(top, #0088cc, #0077b3);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));background-image:-webkit-linear-gradient(top, #0088cc, #0077b3);background-image:-o-linear-gradient(top, #0088cc, #0077b3);background-image:linear-gradient(to bottom, #0088cc, #0077b3);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);}
-.dropdown-menu&gt;.disabled&gt;a,.dropdown-menu&gt;.disabled&gt;a:hover,.dropdown-menu&gt;.disabled&gt;a:focus{color:#999999;}
-.dropdown-menu&gt;.disabled&gt;a:hover,.dropdown-menu&gt;.disabled&gt;a:focus{text-decoration:none;background-color:transparent;background-image:none;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);cursor:default;}
-.open{*z-index:1000;}.open&gt;.dropdown-menu{display:block;}
+.dropdown-menu>li>a{display:block;padding:3px 20px;clear:both;font-weight:normal;line-height:20px;color:#333333;white-space:nowrap;}
+.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-submenu:hover>a,.dropdown-submenu:focus>a{text-decoration:none;color:#ffffff;background-color:#0081c2;background-image:-moz-linear-gradient(top, #0088cc, #0077b3);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));background-image:-webkit-linear-gradient(top, #0088cc, #0077b3);background-image:-o-linear-gradient(top, #0088cc, #0077b3);background-image:linear-gradient(to bottom, #0088cc, #0077b3);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);}
+.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus{color:#ffffff;text-decoration:none;outline:0;background-color:#0081c2;background-image:-moz-linear-gradient(top, #0088cc, #0077b3);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));background-image:-webkit-linear-gradient(top, #0088cc, #0077b3);background-image:-o-linear-gradient(top, #0088cc, #0077b3);background-image:linear-gradient(to bottom, #0088cc, #0077b3);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);}
+.dropdown-menu>.disabled>a,.dropdown-menu>.disabled>a:hover,.dropdown-menu>.disabled>a:focus{color:#999999;}
+.dropdown-menu>.disabled>a:hover,.dropdown-menu>.disabled>a:focus{text-decoration:none;background-color:transparent;background-image:none;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);cursor:default;}
+.open{*z-index:1000;}.open>.dropdown-menu{display:block;}
 .dropdown-backdrop{position:fixed;left:0;right:0;bottom:0;top:0;z-index:990;}
-.pull-right&gt;.dropdown-menu{right:0;left:auto;}
+.pull-right>.dropdown-menu{right:0;left:auto;}
 .dropup .caret,.navbar-fixed-bottom .dropdown .caret{border-top:0;border-bottom:4px solid #000000;content:"";}
 .dropup .dropdown-menu,.navbar-fixed-bottom .dropdown .dropdown-menu{top:auto;bottom:100%;margin-bottom:1px;}
 .dropdown-submenu{position:relative;}
-.dropdown-submenu&gt;.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
-.dropdown-submenu:hover&gt;.dropdown-menu{display:block;}
-.dropup .dropdown-submenu&gt;.dropdown-menu{top:auto;bottom:0;margin-top:0;margin-bottom:-2px;-webkit-border-radius:5px 5px 5px 0;-moz-border-radius:5px 5px 5px 0;border-radius:5px 5px 5px 0;}
-.dropdown-submenu&gt;a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
-.dropdown-submenu:hover&gt;a:after{border-left-color:#ffffff;}
-.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left&gt;.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropup .dropdown-submenu>.dropdown-menu{top:auto;bottom:0;margin-top:0;margin-bottom:-2px;-webkit-border-radius:5px 5px 5px 0;-moz-border-radius:5px 5px 5px 0;border-radius:5px 5px 5px 0;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 .dropdown .dropdown-menu .nav-header{padding-left:20px;padding-right:20px;}
 .typeahead{z-index:1051;margin-top:2px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
 .well{min-height:20px;padding:19px;margin-bottom:20px;background-color:#f5f5f5;border:1px solid #e3e3e3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);}.well blockquote{border-color:#ddd;border-color:rgba(0, 0, 0, 0.15);}
@@ -656,23 +706,23 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .btn-group{position:relative;display:inline-block;*display:inline;*zoom:1;font-size:0;vertical-align:middle;white-space:nowrap;*margin-left:.3em;}.btn-group:first-child{*margin-left:0;}
 .btn-group:first-child{*margin-left:0;}
 .btn-group+.btn-group{margin-left:5px;}
-.btn-toolbar{font-size:0;margin-top:10px;margin-bottom:10px;}.btn-toolbar&gt;.btn+.btn,.btn-toolbar&gt;.btn-group+.btn,.btn-toolbar&gt;.btn+.btn-group{margin-left:5px;}
-.btn-group&gt;.btn{position:relative;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
-.btn-group&gt;.btn+.btn{margin-left:-1px;}
-.btn-group&gt;.btn,.btn-group&gt;.dropdown-menu,.btn-group&gt;.popover{font-size:13px;}
-.btn-group&gt;.btn-mini{font-size:9.75px;}
-.btn-group&gt;.btn-small{font-size:11.049999999999999px;}
-.btn-group&gt;.btn-large{font-size:16.25px;}
-.btn-group&gt;.btn:first-child{margin-left:0;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
-.btn-group&gt;.btn:last-child,.btn-group&gt;.dropdown-toggle{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;}
-.btn-group&gt;.btn.large:first-child{margin-left:0;-webkit-border-top-left-radius:6px;-moz-border-radius-topleft:6px;border-top-left-radius:6px;-webkit-border-bottom-left-radius:6px;-moz-border-radius-bottomleft:6px;border-bottom-left-radius:6px;}
-.btn-group&gt;.btn.large:last-child,.btn-group&gt;.large.dropdown-toggle{-webkit-border-top-right-radius:6px;-moz-border-radius-topright:6px;border-top-right-radius:6px;-webkit-border-bottom-right-radius:6px;-moz-border-radius-bottomright:6px;border-bottom-right-radius:6px;}
-.btn-group&gt;.btn:hover,.btn-group&gt;.btn:focus,.btn-group&gt;.btn:active,.btn-group&gt;.btn.active{z-index:2;}
+.btn-toolbar{font-size:0;margin-top:10px;margin-bottom:10px;}.btn-toolbar>.btn+.btn,.btn-toolbar>.btn-group+.btn,.btn-toolbar>.btn+.btn-group{margin-left:5px;}
+.btn-group>.btn{position:relative;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.btn-group>.btn+.btn{margin-left:-1px;}
+.btn-group>.btn,.btn-group>.dropdown-menu,.btn-group>.popover{font-size:13px;}
+.btn-group>.btn-mini{font-size:9.75px;}
+.btn-group>.btn-small{font-size:11.049999999999999px;}
+.btn-group>.btn-large{font-size:16.25px;}
+.btn-group>.btn:first-child{margin-left:0;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
+.btn-group>.btn:last-child,.btn-group>.dropdown-toggle{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;}
+.btn-group>.btn.large:first-child{margin-left:0;-webkit-border-top-left-radius:6px;-moz-border-radius-topleft:6px;border-top-left-radius:6px;-webkit-border-bottom-left-radius:6px;-moz-border-radius-bottomleft:6px;border-bottom-left-radius:6px;}
+.btn-group>.btn.large:last-child,.btn-group>.large.dropdown-toggle{-webkit-border-top-right-radius:6px;-moz-border-radius-topright:6px;border-top-right-radius:6px;-webkit-border-bottom-right-radius:6px;-moz-border-radius-bottomright:6px;border-bottom-right-radius:6px;}
+.btn-group>.btn:hover,.btn-group>.btn:focus,.btn-group>.btn:active,.btn-group>.btn.active{z-index:2;}
 .btn-group .dropdown-toggle:active,.btn-group.open .dropdown-toggle{outline:0;}
-.btn-group&gt;.btn+.dropdown-toggle{padding-left:8px;padding-right:8px;-webkit-box-shadow:inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);*padding-top:5px;*padding-bottom:5px;}
-.btn-group&gt;.btn-mini+.dropdown-toggle{padding-left:5px;padding-right:5px;*padding-top:2px;*padding-bottom:2px;}
-.btn-group&gt;.btn-small+.dropdown-toggle{*padding-top:5px;*padding-bottom:4px;}
-.btn-group&gt;.btn-large+.dropdown-toggle{padding-left:12px;padding-right:12px;*padding-top:7px;*padding-bottom:7px;}
+.btn-group>.btn+.dropdown-toggle{padding-left:8px;padding-right:8px;-webkit-box-shadow:inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);*padding-top:5px;*padding-bottom:5px;}
+.btn-group>.btn-mini+.dropdown-toggle{padding-left:5px;padding-right:5px;*padding-top:2px;*padding-bottom:2px;}
+.btn-group>.btn-small+.dropdown-toggle{*padding-top:5px;*padding-bottom:4px;}
+.btn-group>.btn-large+.dropdown-toggle{padding-left:12px;padding-right:12px;*padding-top:7px;*padding-bottom:7px;}
 .btn-group.open .dropdown-toggle{background-image:none;-webkit-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);}
 .btn-group.open .btn.dropdown-toggle{background-color:#e6e6e6;}
 .btn-group.open .btn-primary.dropdown-toggle{background-color:#0044cc;}
@@ -688,12 +738,12 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .dropup .btn-large .caret{border-bottom-width:5px;}
 .btn-primary .caret,.btn-warning .caret,.btn-danger .caret,.btn-info .caret,.btn-success .caret,.btn-inverse .caret{border-top-color:#ffffff;border-bottom-color:#ffffff;}
 .btn-group-vertical{display:inline-block;*display:inline;*zoom:1;}
-.btn-group-vertical&gt;.btn{display:block;float:none;max-width:100%;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
-.btn-group-vertical&gt;.btn+.btn{margin-left:0;margin-top:-1px;}
-.btn-group-vertical&gt;.btn:first-child{-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;}
-.btn-group-vertical&gt;.btn:last-child{-webkit-border-radius:0 0 4px 4px;-moz-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px;}
-.btn-group-vertical&gt;.btn-large:first-child{-webkit-border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;border-radius:6px 6px 0 0;}
-.btn-group-vertical&gt;.btn-large:last-child{-webkit-border-radius:0 0 6px 6px;-moz-border-radius:0 0 6px 6px;border-radius:0 0 6px 6px;}
+.btn-group-vertical>.btn{display:block;float:none;max-width:100%;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.btn-group-vertical>.btn+.btn{margin-left:0;margin-top:-1px;}
+.btn-group-vertical>.btn:first-child{-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;}
+.btn-group-vertical>.btn:last-child{-webkit-border-radius:0 0 4px 4px;-moz-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px;}
+.btn-group-vertical>.btn-large:first-child{-webkit-border-radius:6px 6px 0 0;-moz-border-radius:6px 6px 0 0;border-radius:6px 6px 0 0;}
+.btn-group-vertical>.btn-large:last-child{-webkit-border-radius:0 0 6px 6px;-moz-border-radius:0 0 6px 6px;border-radius:0 0 6px 6px;}
 .alert{padding:8px 35px 8px 14px;margin-bottom:20px;text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);background-color:#fcf8e3;border:1px solid #fbeed5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
 .alert,.alert h4{color:#c09853;}
 .alert h4{margin:0;}
@@ -705,42 +755,42 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .alert-info{background-color:#d9edf7;border-color:#bce8f1;color:#3a87ad;}
 .alert-info h4{color:#3a87ad;}
 .alert-block{padding-top:14px;padding-bottom:14px;}
-.alert-block&gt;p,.alert-block&gt;ul{margin-bottom:0;}
+.alert-block>p,.alert-block>ul{margin-bottom:0;}
 .alert-block p+p{margin-top:5px;}
 .nav{margin-left:0;margin-bottom:20px;list-style:none;}
-.nav&gt;li&gt;a{display:block;}
-.nav&gt;li&gt;a:hover,.nav&gt;li&gt;a:focus{text-decoration:none;background-color:#eeeeee;}
-.nav&gt;li&gt;a&gt;img{max-width:none;}
-.nav&gt;.pull-right{float:right;}
+.nav>li>a{display:block;}
+.nav>li>a:hover,.nav>li>a:focus{text-decoration:none;background-color:#eeeeee;}
+.nav>li>a>img{max-width:none;}
+.nav>.pull-right{float:right;}
 .nav-header{display:block;padding:3px 15px;font-size:11px;font-weight:bold;line-height:20px;color:#999999;text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);text-transform:uppercase;}
 .nav li+.nav-header{margin-top:9px;}
 .nav-list{padding-left:15px;padding-right:15px;margin-bottom:0;}
-.nav-list&gt;li&gt;a,.nav-list .nav-header{margin-left:-15px;margin-right:-15px;text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);}
-.nav-list&gt;li&gt;a{padding:3px 15px;}
-.nav-list&gt;.active&gt;a,.nav-list&gt;.active&gt;a:hover,.nav-list&gt;.active&gt;a:focus{color:#ffffff;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.2);background-color:#0088cc;}
+.nav-list>li>a,.nav-list .nav-header{margin-left:-15px;margin-right:-15px;text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);}
+.nav-list>li>a{padding:3px 15px;}
+.nav-list>.active>a,.nav-list>.active>a:hover,.nav-list>.active>a:focus{color:#ffffff;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.2);background-color:#0088cc;}
 .nav-list [class^="icon-"],.nav-list [class*=" icon-"]{margin-right:2px;}
 .nav-list .divider{*width:100%;height:1px;margin:9px 1px;*margin:-5px 0 5px;overflow:hidden;background-color:#e5e5e5;border-bottom:1px solid #ffffff;}
 .nav-tabs,.nav-pills{*zoom:1;}.nav-tabs:before,.nav-pills:before,.nav-tabs:after,.nav-pills:after{display:table;content:"";line-height:0;}
 .nav-tabs:after,.nav-pills:after{clear:both;}
 .nav-tabs:before,.nav-pills:before,.nav-tabs:after,.nav-pills:after{display:table;content:"";line-height:0;}
 .nav-tabs:after,.nav-pills:after{clear:both;}
-.nav-tabs&gt;li,.nav-pills&gt;li{float:left;}
-.nav-tabs&gt;li&gt;a,.nav-pills&gt;li&gt;a{padding-right:12px;padding-left:12px;margin-right:2px;line-height:14px;}
+.nav-tabs>li,.nav-pills>li{float:left;}
+.nav-tabs>li>a,.nav-pills>li>a{padding-right:12px;padding-left:12px;margin-right:2px;line-height:14px;}
 .nav-tabs{border-bottom:1px solid #ddd;}
-.nav-tabs&gt;li{margin-bottom:-1px;}
-.nav-tabs&gt;li&gt;a{padding-top:8px;padding-bottom:8px;line-height:20px;border:1px solid transparent;-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;}.nav-tabs&gt;li&gt;a:hover,.nav-tabs&gt;li&gt;a:focus{border-color:#eeeeee #eeeeee #dddddd;}
-.nav-tabs&gt;.active&gt;a,.nav-tabs&gt;.active&gt;a:hover,.nav-tabs&gt;.active&gt;a:focus{color:#555555;background-color:#ffffff;border:1px solid #ddd;border-bottom-color:transparent;cursor:default;}
-.nav-pills&gt;li&gt;a{padding-top:8px;padding-bottom:8px;margin-top:2px;margin-bottom:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
-.nav-pills&gt;.active&gt;a,.nav-pills&gt;.active&gt;a:hover,.nav-pills&gt;.active&gt;a:focus{color:#ffffff;background-color:#0088cc;}
-.nav-stacked&gt;li{float:none;}
-.nav-stacked&gt;li&gt;a{margin-right:0;}
+.nav-tabs>li{margin-bottom:-1px;}
+.nav-tabs>li>a{padding-top:8px;padding-bottom:8px;line-height:20px;border:1px solid transparent;-webkit-border-radius:4px 4px 0 0;-moz-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;}.nav-tabs>li>a:hover,.nav-tabs>li>a:focus{border-color:#eeeeee #eeeeee #dddddd;}
+.nav-tabs>.active>a,.nav-tabs>.active>a:hover,.nav-tabs>.active>a:focus{color:#555555;background-color:#ffffff;border:1px solid #ddd;border-bottom-color:transparent;cursor:default;}
+.nav-pills>li>a{padding-top:8px;padding-bottom:8px;margin-top:2px;margin-bottom:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
+.nav-pills>.active>a,.nav-pills>.active>a:hover,.nav-pills>.active>a:focus{color:#ffffff;background-color:#0088cc;}
+.nav-stacked>li{float:none;}
+.nav-stacked>li>a{margin-right:0;}
 .nav-tabs.nav-stacked{border-bottom:0;}
-.nav-tabs.nav-stacked&gt;li&gt;a{border:1px solid #ddd;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
-.nav-tabs.nav-stacked&gt;li:first-child&gt;a{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}
-.nav-tabs.nav-stacked&gt;li:last-child&gt;a{-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
-.nav-tabs.nav-stacked&gt;li&gt;a:hover,.nav-tabs.nav-stacked&gt;li&gt;a:focus{border-color:#ddd;z-index:2;}
-.nav-pills.nav-stacked&gt;li&gt;a{margin-bottom:3px;}
-.nav-pills.nav-stacked&gt;li:last-child&gt;a{margin-bottom:1px;}
+.nav-tabs.nav-stacked>li>a{border:1px solid #ddd;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.nav-tabs.nav-stacked>li:first-child>a{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}
+.nav-tabs.nav-stacked>li:last-child>a{-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
+.nav-tabs.nav-stacked>li>a:hover,.nav-tabs.nav-stacked>li>a:focus{border-color:#ddd;z-index:2;}
+.nav-pills.nav-stacked>li>a{margin-bottom:3px;}
+.nav-pills.nav-stacked>li:last-child>a{margin-bottom:1px;}
 .nav-tabs .dropdown-menu{-webkit-border-radius:0 0 6px 6px;-moz-border-radius:0 0 6px 6px;border-radius:0 0 6px 6px;}
 .nav-pills .dropdown-menu{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;}
 .nav .dropdown-toggle .caret{border-top-color:#0088cc;border-bottom-color:#0088cc;margin-top:6px;}
@@ -748,34 +798,34 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .nav-tabs .dropdown-toggle .caret{margin-top:8px;}
 .nav .active .dropdown-toggle .caret{border-top-color:#fff;border-bottom-color:#fff;}
 .nav-tabs .active .dropdown-toggle .caret{border-top-color:#555555;border-bottom-color:#555555;}
-.nav&gt;.dropdown.active&gt;a:hover,.nav&gt;.dropdown.active&gt;a:focus{cursor:pointer;}
-.nav-tabs .open .dropdown-toggle,.nav-pills .open .dropdown-toggle,.nav&gt;li.dropdown.open.active&gt;a:hover,.nav&gt;li.dropdown.open.active&gt;a:focus{color:#ffffff;background-color:#999999;border-color:#999999;}
+.nav>.dropdown.active>a:hover,.nav>.dropdown.active>a:focus{cursor:pointer;}
+.nav-tabs .open .dropdown-toggle,.nav-pills .open .dropdown-toggle,.nav>li.dropdown.open.active>a:hover,.nav>li.dropdown.open.active>a:focus{color:#ffffff;background-color:#999999;border-color:#999999;}
 .nav li.dropdown.open .caret,.nav li.dropdown.open.active .caret,.nav li.dropdown.open a:hover .caret,.nav li.dropdown.open a:focus .caret{border-top-color:#ffffff;border-bottom-color:#ffffff;opacity:1;filter:alpha(opacity=100);}
-.tabs-stacked .open&gt;a:hover,.tabs-stacked .open&gt;a:focus{border-color:#999999;}
+.tabs-stacked .open>a:hover,.tabs-stacked .open>a:focus{border-color:#999999;}
 .tabbable{*zoom:1;}.tabbable:before,.tabbable:after{display:table;content:"";line-height:0;}
 .tabbable:after{clear:both;}
 .tabbable:before,.tabbable:after{display:table;content:"";line-height:0;}
 .tabbable:after{clear:both;}
 .tab-content{overflow:auto;}
-.tabs-below&gt;.nav-tabs,.tabs-right&gt;.nav-tabs,.tabs-left&gt;.nav-tabs{border-bottom:0;}
-.tab-content&gt;.tab-pane,.pill-content&gt;.pill-pane{display:none;}
-.tab-content&gt;.active,.pill-content&gt;.active{display:block;}
-.tabs-below&gt;.nav-tabs{border-top:1px solid #ddd;}
-.tabs-below&gt;.nav-tabs&gt;li{margin-top:-1px;margin-bottom:0;}
-.tabs-below&gt;.nav-tabs&gt;li&gt;a{-webkit-border-radius:0 0 4px 4px;-moz-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px;}.tabs-below&gt;.nav-tabs&gt;li&gt;a:hover,.tabs-below&gt;.nav-tabs&gt;li&gt;a:focus{border-bottom-color:transparent;border-top-color:#ddd;}
-.tabs-below&gt;.nav-tabs&gt;.active&gt;a,.tabs-below&gt;.nav-tabs&gt;.active&gt;a:hover,.tabs-below&gt;.nav-tabs&gt;.active&gt;a:focus{border-color:transparent #ddd #ddd #ddd;}
-.tabs-left&gt;.nav-tabs&gt;li,.tabs-right&gt;.nav-tabs&gt;li{float:none;}
-.tabs-left&gt;.nav-tabs&gt;li&gt;a,.tabs-right&gt;.nav-tabs&gt;li&gt;a{min-width:74px;margin-right:0;margin-bottom:3px;}
-.tabs-left&gt;.nav-tabs{float:left;margin-right:19px;border-right:1px solid #ddd;}
-.tabs-left&gt;.nav-tabs&gt;li&gt;a{margin-right:-1px;-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;}
-.tabs-left&gt;.nav-tabs&gt;li&gt;a:hover,.tabs-left&gt;.nav-tabs&gt;li&gt;a:focus{border-color:#eeeeee #dddddd #eeeeee #eeeeee;}
-.tabs-left&gt;.nav-tabs .active&gt;a,.tabs-left&gt;.nav-tabs .active&gt;a:hover,.tabs-left&gt;.nav-tabs .active&gt;a:focus{border-color:#ddd transparent #ddd #ddd;*border-right-color:#ffffff;}
-.tabs-right&gt;.nav-tabs{float:right;margin-left:19px;border-left:1px solid #ddd;}
-.tabs-right&gt;.nav-tabs&gt;li&gt;a{margin-left:-1px;-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
-.tabs-right&gt;.nav-tabs&gt;li&gt;a:hover,.tabs-right&gt;.nav-tabs&gt;li&gt;a:focus{border-color:#eeeeee #eeeeee #eeeeee #dddddd;}
-.tabs-right&gt;.nav-tabs .active&gt;a,.tabs-right&gt;.nav-tabs .active&gt;a:hover,.tabs-right&gt;.nav-tabs .active&gt;a:focus{border-color:#ddd #ddd #ddd transparent;*border-left-color:#ffffff;}
-.nav&gt;.disabled&gt;a{color:#999999;}
-.nav&gt;.disabled&gt;a:hover,.nav&gt;.disabled&gt;a:focus{text-decoration:none;background-color:transparent;cursor:default;}
+.tabs-below>.nav-tabs,.tabs-right>.nav-tabs,.tabs-left>.nav-tabs{border-bottom:0;}
+.tab-content>.tab-pane,.pill-content>.pill-pane{display:none;}
+.tab-content>.active,.pill-content>.active{display:block;}
+.tabs-below>.nav-tabs{border-top:1px solid #ddd;}
+.tabs-below>.nav-tabs>li{margin-top:-1px;margin-bottom:0;}
+.tabs-below>.nav-tabs>li>a{-webkit-border-radius:0 0 4px 4px;-moz-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px;}.tabs-below>.nav-tabs>li>a:hover,.tabs-below>.nav-tabs>li>a:focus{border-bottom-color:transparent;border-top-color:#ddd;}
+.tabs-below>.nav-tabs>.active>a,.tabs-below>.nav-tabs>.active>a:hover,.tabs-below>.nav-tabs>.active>a:focus{border-color:transparent #ddd #ddd #ddd;}
+.tabs-left>.nav-tabs>li,.tabs-right>.nav-tabs>li{float:none;}
+.tabs-left>.nav-tabs>li>a,.tabs-right>.nav-tabs>li>a{min-width:74px;margin-right:0;margin-bottom:3px;}
+.tabs-left>.nav-tabs{float:left;margin-right:19px;border-right:1px solid #ddd;}
+.tabs-left>.nav-tabs>li>a{margin-right:-1px;-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;}
+.tabs-left>.nav-tabs>li>a:hover,.tabs-left>.nav-tabs>li>a:focus{border-color:#eeeeee #dddddd #eeeeee #eeeeee;}
+.tabs-left>.nav-tabs .active>a,.tabs-left>.nav-tabs .active>a:hover,.tabs-left>.nav-tabs .active>a:focus{border-color:#ddd transparent #ddd #ddd;*border-right-color:#ffffff;}
+.tabs-right>.nav-tabs{float:right;margin-left:19px;border-left:1px solid #ddd;}
+.tabs-right>.nav-tabs>li>a{margin-left:-1px;-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
+.tabs-right>.nav-tabs>li>a:hover,.tabs-right>.nav-tabs>li>a:focus{border-color:#eeeeee #eeeeee #eeeeee #dddddd;}
+.tabs-right>.nav-tabs .active>a,.tabs-right>.nav-tabs .active>a:hover,.tabs-right>.nav-tabs .active>a:focus{border-color:#ddd #ddd #ddd transparent;*border-left-color:#ffffff;}
+.nav>.disabled>a{color:#999999;}
+.nav>.disabled>a:hover,.nav>.disabled>a:focus{text-decoration:none;background-color:transparent;cursor:default;}
 .navbar{overflow:visible;margin-bottom:20px;*position:relative;*z-index:2;}
 .navbar-inner{min-height:36px;padding-left:20px;padding-right:20px;background-color:#fafafa;background-image:-moz-linear-gradient(top, #ffffff, #f2f2f2);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));background-image:-webkit-linear-gradient(top, #ffffff, #f2f2f2);background-image:-o-linear-gradient(top, #ffffff, #f2f2f2);background-image:linear-gradient(to bottom, #ffffff, #f2f2f2);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);border:1px solid #d4d4d4;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.065);-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.065);box-shadow:0 1px 4px rgba(0, 0, 0, 0.065);*zoom:1;}.navbar-inner:before,.navbar-inner:after{display:table;content:"";line-height:0;}
 .navbar-inner:after{clear:both;}
@@ -809,40 +859,40 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .navbar-fixed-bottom{bottom:0;}.navbar-fixed-bottom .navbar-inner{-webkit-box-shadow:0 -1px 10px rgba(0,0,0,.1);-moz-box-shadow:0 -1px 10px rgba(0,0,0,.1);box-shadow:0 -1px 10px rgba(0,0,0,.1);}
 .navbar .nav{position:relative;left:0;display:block;float:left;margin:0 10px 0 0;}
 .navbar .nav.pull-right{float:right;margin-right:0;}
-.navbar .nav&gt;li{float:left;}
-.navbar .nav&gt;li&gt;a{float:none;padding:8px 15px 8px;color:#777777;text-decoration:none;text-shadow:0 1px 0 #ffffff;}
+.navbar .nav>li{float:left;}
+.navbar .nav>li>a{float:none;padding:8px 15px 8px;color:#777777;text-decoration:none;text-shadow:0 1px 0 #ffffff;}
 .navbar .nav .dropdown-toggle .caret{margin-top:8px;}
-.navbar .nav&gt;li&gt;a:focus,.navbar .nav&gt;li&gt;a:hover{background-color:transparent;color:#333333;text-decoration:none;}
-.navbar .nav&gt;.active&gt;a,.navbar .nav&gt;.active&gt;a:hover,.navbar .nav&gt;.active&gt;a:focus{color:#555555;text-decoration:none;background-color:#e5e5e5;-webkit-box-shadow:inset 0 3px 8px rgba(0, 0, 0, 0.125);-moz-box-shadow:inset 0 3px 8px rgba(0, 0, 0, 0.125);box-shadow:inset 0 3px 8px rgba(0, 0, 0, 0.125);}
+.navbar .nav>li>a:focus,.navbar .nav>li>a:hover{background-color:transparent;color:#333333;text-decoration:none;}
+.navbar .nav>.active>a,.navbar .nav>.active>a:hover,.navbar .nav>.active>a:focus{color:#555555;text-decoration:none;background-color:#e5e5e5;-webkit-box-shadow:inset 0 3px 8px rgba(0, 0, 0, 0.125);-moz-box-shadow:inset 0 3px 8px rgba(0, 0, 0, 0.125);box-shadow:inset 0 3px 8px rgba(0, 0, 0, 0.125);}
 .navbar .btn-navbar{display:none;float:right;padding:7px 10px;margin-left:5px;margin-right:5px;color:#ffffff;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);background-color:#ededed;background-image:-moz-linear-gradient(top, #f2f2f2, #e5e5e5);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#e5e5e5));background-image:-webkit-linear-gradient(top, #f2f2f2, #e5e5e5);background-image:-o-linear-gradient(top, #f2f2f2, #e5e5e5);background-image:linear-gradient(to bottom, #f2f2f2, #e5e5e5);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffe5e5e5', GradientType=0);border-color:#e5e5e5 #e5e5e5 #bfbfbf;border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*background-color:#e5e5e5;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);box-shadow:inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);}.navbar .btn-navbar:hover,.navbar .btn-navbar:focus,.navbar .btn-navbar:active,.navbar .btn-navbar.active,.navbar .btn-navbar.disabled,.navbar .btn-navbar[disabled]{color:#ffffff;background-color:#e5e5e5;*background-color:#d9d9d9;}
 .navbar .btn-navbar:active,.navbar .btn-navbar.active{background-color:#cccccc \9;}
 .navbar .btn-navbar:hover,.navbar .btn-navbar:focus,.navbar .btn-navbar:active,.navbar .btn-navbar.active,.navbar .btn-navbar.disabled,.navbar .btn-navbar[disabled]{color:#ffffff;background-color:#e5e5e5;*background-color:#d9d9d9;}
 .navbar .btn-navbar:active,.navbar .btn-navbar.active{background-color:#cccccc \9;}
 .navbar .btn-navbar .icon-bar{display:block;width:18px;height:2px;background-color:#f5f5f5;-webkit-border-radius:1px;-moz-border-radius:1px;border-radius:1px;-webkit-box-shadow:0 1px 0 rgba(0, 0, 0, 0.25);-moz-box-shadow:0 1px 0 rgba(0, 0, 0, 0.25);box-shadow:0 1px 0 rgba(0, 0, 0, 0.25);}
 .btn-navbar .icon-bar+.icon-bar{margin-top:3px;}
-.navbar .nav&gt;li&gt;.dropdown-menu:before{content:'';display:inline-block;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #ccc;border-bottom-color:rgba(0, 0, 0, 0.2);position:absolute;top:-7px;left:9px;}
-.navbar .nav&gt;li&gt;.dropdown-menu:after{content:'';display:inline-block;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #ffffff;position:absolute;top:-6px;left:10px;}
-.navbar-fixed-bottom .nav&gt;li&gt;.dropdown-menu:before{border-top:7px solid #ccc;border-top-color:rgba(0, 0, 0, 0.2);border-bottom:0;bottom:-7px;top:auto;}
-.navbar-fixed-bottom .nav&gt;li&gt;.dropdown-menu:after{border-top:6px solid #ffffff;border-bottom:0;bottom:-6px;top:auto;}
-.navbar .nav li.dropdown&gt;a:hover .caret,.navbar .nav li.dropdown&gt;a:focus .caret{border-top-color:#333333;border-bottom-color:#333333;}
-.navbar .nav li.dropdown.open&gt;.dropdown-toggle,.navbar .nav li.dropdown.active&gt;.dropdown-toggle,.navbar .nav li.dropdown.open.active&gt;.dropdown-toggle{background-color:#e5e5e5;color:#555555;}
-.navbar .nav li.dropdown&gt;.dropdown-toggle .caret{border-top-color:#777777;border-bottom-color:#777777;}
-.navbar .nav li.dropdown.open&gt;.dropdown-toggle .caret,.navbar .nav li.dropdown.active&gt;.dropdown-toggle .caret,.navbar .nav li.dropdown.open.active&gt;.dropdown-toggle .caret{border-top-color:#555555;border-bottom-color:#555555;}
-.navbar .pull-right&gt;li&gt;.dropdown-menu,.navbar .nav&gt;li&gt;.dropdown-menu.pull-right{left:auto;right:0;}.navbar .pull-right&gt;li&gt;.dropdown-menu:before,.navbar .nav&gt;li&gt;.dropdown-menu.pull-right:before{left:auto;right:12px;}
-.navbar .pull-right&gt;li&gt;.dropdown-menu:after,.navbar .nav&gt;li&gt;.dropdown-menu.pull-right:after{left:auto;right:13px;}
-.navbar .pull-right&gt;li&gt;.dropdown-menu .dropdown-menu,.navbar .nav&gt;li&gt;.dropdown-menu.pull-right .dropdown-menu{left:auto;right:100%;margin-left:0;margin-right:-1px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+.navbar .nav>li>.dropdown-menu:before{content:'';display:inline-block;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #ccc;border-bottom-color:rgba(0, 0, 0, 0.2);position:absolute;top:-7px;left:9px;}
+.navbar .nav>li>.dropdown-menu:after{content:'';display:inline-block;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #ffffff;position:absolute;top:-6px;left:10px;}
+.navbar-fixed-bottom .nav>li>.dropdown-menu:before{border-top:7px solid #ccc;border-top-color:rgba(0, 0, 0, 0.2);border-bottom:0;bottom:-7px;top:auto;}
+.navbar-fixed-bottom .nav>li>.dropdown-menu:after{border-top:6px solid #ffffff;border-bottom:0;bottom:-6px;top:auto;}
+.navbar .nav li.dropdown>a:hover .caret,.navbar .nav li.dropdown>a:focus .caret{border-top-color:#333333;border-bottom-color:#333333;}
+.navbar .nav li.dropdown.open>.dropdown-toggle,.navbar .nav li.dropdown.active>.dropdown-toggle,.navbar .nav li.dropdown.open.active>.dropdown-toggle{background-color:#e5e5e5;color:#555555;}
+.navbar .nav li.dropdown>.dropdown-toggle .caret{border-top-color:#777777;border-bottom-color:#777777;}
+.navbar .nav li.dropdown.open>.dropdown-toggle .caret,.navbar .nav li.dropdown.active>.dropdown-toggle .caret,.navbar .nav li.dropdown.open.active>.dropdown-toggle .caret{border-top-color:#555555;border-bottom-color:#555555;}
+.navbar .pull-right>li>.dropdown-menu,.navbar .nav>li>.dropdown-menu.pull-right{left:auto;right:0;}.navbar .pull-right>li>.dropdown-menu:before,.navbar .nav>li>.dropdown-menu.pull-right:before{left:auto;right:12px;}
+.navbar .pull-right>li>.dropdown-menu:after,.navbar .nav>li>.dropdown-menu.pull-right:after{left:auto;right:13px;}
+.navbar .pull-right>li>.dropdown-menu .dropdown-menu,.navbar .nav>li>.dropdown-menu.pull-right .dropdown-menu{left:auto;right:100%;margin-left:0;margin-right:-1px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 .navbar-inverse .navbar-inner{background-color:#1b1b1b;background-image:-moz-linear-gradient(top, #222222, #111111);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));background-image:-webkit-linear-gradient(top, #222222, #111111);background-image:-o-linear-gradient(top, #222222, #111111);background-image:linear-gradient(to bottom, #222222, #111111);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);border-color:#252525;}
-.navbar-inverse .brand,.navbar-inverse .nav&gt;li&gt;a{color:#999999;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);}.navbar-inverse .brand:hover,.navbar-inverse .nav&gt;li&gt;a:hover,.navbar-inverse .brand:focus,.navbar-inverse .nav&gt;li&gt;a:focus{color:#ffffff;}
+.navbar-inverse .brand,.navbar-inverse .nav>li>a{color:#999999;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);}.navbar-inverse .brand:hover,.navbar-inverse .nav>li>a:hover,.navbar-inverse .brand:focus,.navbar-inverse .nav>li>a:focus{color:#ffffff;}
 .navbar-inverse .brand{color:#999999;}
 .navbar-inverse .navbar-text{color:#999999;}
-.navbar-inverse .nav&gt;li&gt;a:focus,.navbar-inverse .nav&gt;li&gt;a:hover{background-color:transparent;color:#ffffff;}
-.navbar-inverse .nav .active&gt;a,.navbar-inverse .nav .active&gt;a:hover,.navbar-inverse .nav .active&gt;a:focus{color:#ffffff;background-color:#111111;}
+.navbar-inverse .nav>li>a:focus,.navbar-inverse .nav>li>a:hover{background-color:transparent;color:#ffffff;}
+.navbar-inverse .nav .active>a,.navbar-inverse .nav .active>a:hover,.navbar-inverse .nav .active>a:focus{color:#ffffff;background-color:#111111;}
 .navbar-inverse .navbar-link{color:#999999;}.navbar-inverse .navbar-link:hover,.navbar-inverse .navbar-link:focus{color:#ffffff;}
 .navbar-inverse .divider-vertical{border-left-color:#111111;border-right-color:#222222;}
-.navbar-inverse .nav li.dropdown.open&gt;.dropdown-toggle,.navbar-inverse .nav li.dropdown.active&gt;.dropdown-toggle,.navbar-inverse .nav li.dropdown.open.active&gt;.dropdown-toggle{background-color:#111111;color:#ffffff;}
-.navbar-inverse .nav li.dropdown&gt;a:hover .caret,.navbar-inverse .nav li.dropdown&gt;a:focus .caret{border-top-color:#ffffff;border-bottom-color:#ffffff;}
-.navbar-inverse .nav li.dropdown&gt;.dropdown-toggle .caret{border-top-color:#999999;border-bottom-color:#999999;}
-.navbar-inverse .nav li.dropdown.open&gt;.dropdown-toggle .caret,.navbar-inverse .nav li.dropdown.active&gt;.dropdown-toggle .caret,.navbar-inverse .nav li.dropdown.open.active&gt;.dropdown-toggle .caret{border-top-color:#ffffff;border-bottom-color:#ffffff;}
+.navbar-inverse .nav li.dropdown.open>.dropdown-toggle,.navbar-inverse .nav li.dropdown.active>.dropdown-toggle,.navbar-inverse .nav li.dropdown.open.active>.dropdown-toggle{background-color:#111111;color:#ffffff;}
+.navbar-inverse .nav li.dropdown>a:hover .caret,.navbar-inverse .nav li.dropdown>a:focus .caret{border-top-color:#ffffff;border-bottom-color:#ffffff;}
+.navbar-inverse .nav li.dropdown>.dropdown-toggle .caret{border-top-color:#999999;border-bottom-color:#999999;}
+.navbar-inverse .nav li.dropdown.open>.dropdown-toggle .caret,.navbar-inverse .nav li.dropdown.active>.dropdown-toggle .caret,.navbar-inverse .nav li.dropdown.open.active>.dropdown-toggle .caret{border-top-color:#ffffff;border-bottom-color:#ffffff;}
 .navbar-inverse .navbar-search .search-query{color:#ffffff;background-color:#515151;border-color:#111111;-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);box-shadow:inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);-webkit-transition:none;-moz-transition:none;-o-transition:none;transition:none;}.navbar-inverse .navbar-search .search-query:-moz-placeholder{color:#cccccc;}
 .navbar-inverse .navbar-search .search-query:-ms-input-placeholder{color:#cccccc;}
 .navbar-inverse .navbar-search .search-query::-webkit-input-placeholder{color:#cccccc;}
@@ -854,36 +904,36 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .navbar-inverse .btn-navbar:active,.navbar-inverse .btn-navbar.active{background-color:#000000 \9;}
 .navbar-inverse .btn-navbar:hover,.navbar-inverse .btn-navbar:focus,.navbar-inverse .btn-navbar:active,.navbar-inverse .btn-navbar.active,.navbar-inverse .btn-navbar.disabled,.navbar-inverse .btn-navbar[disabled]{color:#ffffff;background-color:#040404;*background-color:#000000;}
 .navbar-inverse .btn-navbar:active,.navbar-inverse .btn-navbar.active{background-color:#000000 \9;}
-.breadcrumb{padding:8px 15px;margin:0 0 20px;list-style:none;background-color:#f5f5f5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}.breadcrumb&gt;li{display:inline-block;*display:inline;*zoom:1;text-shadow:0 1px 0 #ffffff;}.breadcrumb&gt;li&gt;.divider{padding:0 5px;color:#ccc;}
-.breadcrumb&gt;.active{color:#999999;}
+.breadcrumb{padding:8px 15px;margin:0 0 20px;list-style:none;background-color:#f5f5f5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}.breadcrumb>li{display:inline-block;*display:inline;*zoom:1;text-shadow:0 1px 0 #ffffff;}.breadcrumb>li>.divider{padding:0 5px;color:#ccc;}
+.breadcrumb>.active{color:#999999;}
 .pagination{margin:20px 0;}
 .pagination ul{display:inline-block;*display:inline;*zoom:1;margin-left:0;margin-bottom:0;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);box-shadow:0 1px 2px rgba(0, 0, 0, 0.05);}
-.pagination ul&gt;li{display:inline;}
-.pagination ul&gt;li&gt;a,.pagination ul&gt;li&gt;span{float:left;padding:4px 12px;line-height:20px;text-decoration:none;background-color:#ffffff;border:1px solid #dddddd;border-left-width:0;}
-.pagination ul&gt;li&gt;a:hover,.pagination ul&gt;li&gt;a:focus,.pagination ul&gt;.active&gt;a,.pagination ul&gt;.active&gt;span{background-color:#f5f5f5;}
-.pagination ul&gt;.active&gt;a,.pagination ul&gt;.active&gt;span{color:#999999;cursor:default;}
-.pagination ul&gt;.disabled&gt;span,.pagination ul&gt;.disabled&gt;a,.pagination ul&gt;.disabled&gt;a:hover,.pagination ul&gt;.disabled&gt;a:focus{color:#999999;background-color:transparent;cursor:default;}
-.pagination ul&gt;li:first-child&gt;a,.pagination ul&gt;li:first-child&gt;span{border-left-width:1px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
-.pagination ul&gt;li:last-child&gt;a,.pagination ul&gt;li:last-child&gt;span{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;}
+.pagination ul>li{display:inline;}
+.pagination ul>li>a,.pagination ul>li>span{float:left;padding:4px 12px;line-height:20px;text-decoration:none;background-color:#ffffff;border:1px solid #dddddd;border-left-width:0;}
+.pagination ul>li>a:hover,.pagination ul>li>a:focus,.pagination ul>.active>a,.pagination ul>.active>span{background-color:#f5f5f5;}
+.pagination ul>.active>a,.pagination ul>.active>span{color:#999999;cursor:default;}
+.pagination ul>.disabled>span,.pagination ul>.disabled>a,.pagination ul>.disabled>a:hover,.pagination ul>.disabled>a:focus{color:#999999;background-color:transparent;cursor:default;}
+.pagination ul>li:first-child>a,.pagination ul>li:first-child>span{border-left-width:1px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;border-bottom-left-radius:4px;}
+.pagination ul>li:last-child>a,.pagination ul>li:last-child>span{-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;border-bottom-right-radius:4px;}
 .pagination-centered{text-align:center;}
 .pagination-right{text-align:right;}
-.pagination-large ul&gt;li&gt;a,.pagination-large ul&gt;li&gt;span{padding:11px 19px;font-size:16.25px;}
-.pagination-large ul&gt;li:first-child&gt;a,.pagination-large ul&gt;li:first-child&gt;span{-webkit-border-top-left-radius:6px;-moz-border-radius-topleft:6px;border-top-left-radius:6px;-webkit-border-bottom-left-radius:6px;-moz-border-radius-bottomleft:6px;border-bottom-left-radius:6px;}
-.pagination-large ul&gt;li:last-child&gt;a,.pagination-large ul&gt;li:last-child&gt;span{-webkit-border-top-right-radius:6px;-moz-border-radius-topright:6px;border-top-right-radius:6px;-webkit-border-bottom-right-radius:6px;-moz-border-radius-bottomright:6px;border-bottom-right-radius:6px;}
-.pagination-mini ul&gt;li:first-child&gt;a,.pagination-small ul&gt;li:first-child&gt;a,.pagination-mini ul&gt;li:first-child&gt;span,.pagination-small ul&gt;li:first-child&gt;span{-webkit-border-top-left-radius:3px;-moz-border-radius-topleft:3px;border-top-left-radius:3px;-webkit-border-bottom-left-radius:3px;-moz-border-radius-bottomleft:3px;border-bottom-left-radius:3px;}
-.pagination-mini ul&gt;li:last-child&gt;a,.pagination-small ul&gt;li:last-child&gt;a,.pagination-mini ul&gt;li:last-child&gt;span,.pagination-small ul&gt;li:last-child&gt;span{-webkit-border-top-right-radius:3px;-moz-border-radius-topright:3px;border-top-right-radius:3px;-webkit-border-bottom-right-radius:3px;-moz-border-radius-bottomright:3px;border-bottom-right-radius:3px;}
-.pagination-small ul&gt;li&gt;a,.pagination-small ul&gt;li&gt;span{padding:2px 10px;font-size:11.049999999999999px;}
-.pagination-mini ul&gt;li&gt;a,.pagination-mini ul&gt;li&gt;span{padding:0 6px;font-size:9.75px;}
+.pagination-large ul>li>a,.pagination-large ul>li>span{padding:11px 19px;font-size:16.25px;}
+.pagination-large ul>li:first-child>a,.pagination-large ul>li:first-child>span{-webkit-border-top-left-radius:6px;-moz-border-radius-topleft:6px;border-top-left-radius:6px;-webkit-border-bottom-left-radius:6px;-moz-border-radius-bottomleft:6px;border-bottom-left-radius:6px;}
+.pagination-large ul>li:last-child>a,.pagination-large ul>li:last-child>span{-webkit-border-top-right-radius:6px;-moz-border-radius-topright:6px;border-top-right-radius:6px;-webkit-border-bottom-right-radius:6px;-moz-border-radius-bottomright:6px;border-bottom-right-radius:6px;}
+.pagination-mini ul>li:first-child>a,.pagination-small ul>li:first-child>a,.pagination-mini ul>li:first-child>span,.pagination-small ul>li:first-child>span{-webkit-border-top-left-radius:3px;-moz-border-radius-topleft:3px;border-top-left-radius:3px;-webkit-border-bottom-left-radius:3px;-moz-border-radius-bottomleft:3px;border-bottom-left-radius:3px;}
+.pagination-mini ul>li:last-child>a,.pagination-small ul>li:last-child>a,.pagination-mini ul>li:last-child>span,.pagination-small ul>li:last-child>span{-webkit-border-top-right-radius:3px;-moz-border-radius-topright:3px;border-top-right-radius:3px;-webkit-border-bottom-right-radius:3px;-moz-border-radius-bottomright:3px;border-bottom-right-radius:3px;}
+.pagination-small ul>li>a,.pagination-small ul>li>span{padding:2px 10px;font-size:11.049999999999999px;}
+.pagination-mini ul>li>a,.pagination-mini ul>li>span{padding:0 6px;font-size:9.75px;}
 .pager{margin:20px 0;list-style:none;text-align:center;*zoom:1;}.pager:before,.pager:after{display:table;content:"";line-height:0;}
 .pager:after{clear:both;}
 .pager:before,.pager:after{display:table;content:"";line-height:0;}
 .pager:after{clear:both;}
 .pager li{display:inline;}
-.pager li&gt;a,.pager li&gt;span{display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;}
-.pager li&gt;a:hover,.pager li&gt;a:focus{text-decoration:none;background-color:#f5f5f5;}
-.pager .next&gt;a,.pager .next&gt;span{float:right;}
-.pager .previous&gt;a,.pager .previous&gt;span{float:left;}
-.pager .disabled&gt;a,.pager .disabled&gt;a:hover,.pager .disabled&gt;a:focus,.pager .disabled&gt;span{color:#999999;background-color:#fff;cursor:default;}
+.pager li>a,.pager li>span{display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px;}
+.pager li>a:hover,.pager li>a:focus{text-decoration:none;background-color:#f5f5f5;}
+.pager .next>a,.pager .next>span{float:right;}
+.pager .previous>a,.pager .previous>span{float:left;}
+.pager .disabled>a,.pager .disabled>a:hover,.pager .disabled>a:focus,.pager .disabled>span{color:#999999;background-color:#fff;cursor:default;}
 .modal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1040;background-color:#000000;}.modal-backdrop.fade{opacity:0;}
 .modal-backdrop,.modal-backdrop.fade.in{opacity:0.8;filter:alpha(opacity=80);}
 .modal{position:fixed;top:10%;left:50%;z-index:1050;width:560px;margin-left:-280px;background-color:#ffffff;border:1px solid #999;border:1px solid rgba(0, 0, 0, 0.3);*border:1px solid #999;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);-webkit-background-clip:padding-box;-moz-background-clip:padding-box;background-clip:padding-box;outline:none;}.modal.fade{-webkit-transition:opacity .3s linear, top .3s ease-out;-moz-transition:opacity .3s linear, top .3s ease-out;-o-transition:opacity .3s linear, top .3s ease-out;transition:opacity .3s linear, top .3s ease-out;top:-25%;}
@@ -928,17 +978,17 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .thumbnails:before,.thumbnails:after{display:table;content:"";line-height:0;}
 .thumbnails:after{clear:both;}
 .row-fluid .thumbnails{margin-left:0;}
-.thumbnails&gt;li{float:left;margin-bottom:20px;margin-left:20px;}
+.thumbnails>li{float:left;margin-bottom:20px;margin-left:20px;}
 .thumbnail{display:block;padding:4px;line-height:20px;border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 3px rgba(0, 0, 0, 0.055);-moz-box-shadow:0 1px 3px rgba(0, 0, 0, 0.055);box-shadow:0 1px 3px rgba(0, 0, 0, 0.055);-webkit-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
-.thumbnail&gt;img{display:block;max-width:100%;margin-left:auto;margin-right:auto;}
+.thumbnail>img{display:block;max-width:100%;margin-left:auto;margin-right:auto;}
 .thumbnail .caption{padding:9px;color:#555555;}
 .media,.media-body{overflow:hidden;*overflow:visible;zoom:1;}
 .media,.media .media{margin-top:15px;}
 .media:first-child{margin-top:0;}
 .media-object{display:block;}
 .media-heading{margin:0 0 5px;}
-.media&gt;.pull-left{margin-right:10px;}
-.media&gt;.pull-right{margin-left:10px;}
+.media>.pull-left{margin-right:10px;}
+.media>.pull-right{margin-left:10px;}
 .media-list{margin-left:0;list-style:none;}
 .label,.badge{display:inline-block;padding:2px 4px;font-size:10.998px;font-weight:bold;line-height:14px;color:#ffffff;vertical-align:baseline;white-space:nowrap;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);background-color:#999999;}
 .label{-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
@@ -977,15 +1027,15 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .accordion-inner{padding:9px 15px;border-top:1px solid #e5e5e5;}
 .carousel{position:relative;margin-bottom:20px;line-height:1;}
 .carousel-inner{overflow:hidden;width:100%;position:relative;}
-.carousel-inner&gt;.item{display:none;position:relative;-webkit-transition:0.6s ease-in-out left;-moz-transition:0.6s ease-in-out left;-o-transition:0.6s ease-in-out left;transition:0.6s ease-in-out left;}.carousel-inner&gt;.item&gt;img,.carousel-inner&gt;.item&gt;a&gt;img{display:block;line-height:1;}
-.carousel-inner&gt;.active,.carousel-inner&gt;.next,.carousel-inner&gt;.prev{display:block;}
-.carousel-inner&gt;.active{left:0;}
-.carousel-inner&gt;.next,.carousel-inner&gt;.prev{position:absolute;top:0;width:100%;}
-.carousel-inner&gt;.next{left:100%;}
-.carousel-inner&gt;.prev{left:-100%;}
-.carousel-inner&gt;.next.left,.carousel-inner&gt;.prev.right{left:0;}
-.carousel-inner&gt;.active.left{left:-100%;}
-.carousel-inner&gt;.active.right{left:100%;}
+.carousel-inner>.item{display:none;position:relative;-webkit-transition:0.6s ease-in-out left;-moz-transition:0.6s ease-in-out left;-o-transition:0.6s ease-in-out left;transition:0.6s ease-in-out left;}.carousel-inner>.item>img,.carousel-inner>.item>a>img{display:block;line-height:1;}
+.carousel-inner>.active,.carousel-inner>.next,.carousel-inner>.prev{display:block;}
+.carousel-inner>.active{left:0;}
+.carousel-inner>.next,.carousel-inner>.prev{position:absolute;top:0;width:100%;}
+.carousel-inner>.next{left:100%;}
+.carousel-inner>.prev{left:-100%;}
+.carousel-inner>.next.left,.carousel-inner>.prev.right{left:0;}
+.carousel-inner>.active.left{left:-100%;}
+.carousel-inner>.active.right{left:100%;}
 .carousel-control{position:absolute;top:40%;left:15px;width:40px;height:40px;margin-top:-20px;font-size:60px;font-weight:100;line-height:30px;color:#ffffff;text-align:center;background:#222222;border:3px solid #ffffff;-webkit-border-radius:23px;-moz-border-radius:23px;border-radius:23px;opacity:0.5;filter:alpha(opacity=50);}.carousel-control.right{left:auto;right:15px;}
 .carousel-control:hover,.carousel-control:focus{color:#ffffff;text-decoration:none;opacity:0.9;filter:alpha(opacity=90);}
 .carousel-indicators{position:absolute;top:15px;right:15px;z-index:5;margin:0;list-style:none;}.carousel-indicators li{display:block;float:left;width:10px;height:10px;margin-left:5px;text-indent:-999px;background-color:#ccc;background-color:rgba(255, 255, 255, 0.25);border-radius:5px;}
@@ -1014,7 +1064,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 [class^="icon-"]:before,[class*=" icon-"]:before{text-decoration:inherit;display:inline-block;speak:none;}
 .icon-large:before{vertical-align:-10%;font-size:1.3333333333333333em;}
 [class^="icon-"].icon-fixed-width,[class*=" icon-"].icon-fixed-width{display:inline-block;width:1.2857142857142858em;text-align:center;}[class^="icon-"].icon-fixed-width.icon-large,[class*=" icon-"].icon-fixed-width.icon-large{width:1.5714285714285714em;}
-ul.icons-ul{list-style-type:none;text-indent:-0.7142857142857143em;margin-left:2.142857142857143em;}ul.icons-ul&gt;li .icon-li{width:0.7142857142857143em;display:inline-block;text-align:center;}
+ul.icons-ul{list-style-type:none;text-indent:-0.7142857142857143em;margin-left:2.142857142857143em;}ul.icons-ul>li .icon-li{width:0.7142857142857143em;display:inline-block;text-align:center;}
 [class^="icon-"].hide,[class*=" icon-"].hide{display:none;}
 .icon-muted{color:#eeeeee;}
 .icon-light{color:#ffffff;}
@@ -1029,7 +1079,7 @@ ul.icons-ul{list-style-type:none;text-indent:-0.7142857142857143em;margin-left:2
 [class^="icon-"].pull-left,[class*=" icon-"].pull-left{margin-right:.3em;}
 [class^="icon-"].pull-right,[class*=" icon-"].pull-right{margin-left:.3em;}
 [class^="icon-"],[class*=" icon-"]{display:inline;width:auto;height:auto;line-height:normal;vertical-align:baseline;background-image:none;background-position:0% 0%;background-repeat:repeat;margin-top:0;}
-.icon-white,.nav-pills&gt;.active&gt;a&gt;[class^="icon-"],.nav-pills&gt;.active&gt;a&gt;[class*=" icon-"],.nav-list&gt;.active&gt;a&gt;[class^="icon-"],.nav-list&gt;.active&gt;a&gt;[class*=" icon-"],.navbar-inverse .nav&gt;.active&gt;a&gt;[class^="icon-"],.navbar-inverse .nav&gt;.active&gt;a&gt;[class*=" icon-"],.dropdown-menu&gt;li&gt;a:hover&gt;[class^="icon-"],.dropdown-menu&gt;li&gt;a:hover&gt;[class*=" icon-"],.dropdown-menu&gt;.active&gt;a&gt;[class^="icon-"],.dropdown-menu&gt;.active&gt;a&gt;[class*=" icon-"],.dropdown-submenu:hover&gt;a&gt;[class^="icon-"],.dropdown-submenu:hover&gt;a&gt;[class*=" icon-"]{background-image:none;}
+.icon-white,.nav-pills>.active>a>[class^="icon-"],.nav-pills>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^="icon-"],.nav-list>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^="icon-"],.navbar-inverse .nav>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^="icon-"],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>.active>a>[class^="icon-"],.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^="icon-"],.dropdown-submenu:hover>a>[class*=" icon-"]{background-image:none;}
 .btn [class^="icon-"].icon-large,.nav [class^="icon-"].icon-large,.btn [class*=" icon-"].icon-large,.nav [class*=" icon-"].icon-large{line-height:.9em;}
 .btn [class^="icon-"].icon-spin,.nav [class^="icon-"].icon-spin,.btn [class*=" icon-"].icon-spin,.nav [class*=" icon-"].icon-spin{display:inline-block;}
 .nav-tabs [class^="icon-"],.nav-pills [class^="icon-"],.nav-tabs [class*=" icon-"],.nav-pills [class*=" icon-"],.nav-tabs [class^="icon-"].icon-large,.nav-pills [class^="icon-"].icon-large,.nav-tabs [class*=" icon-"].icon-large,.nav-pills [class*=" icon-"].icon-large{line-height:.9em;}
@@ -1352,9 +1402,9 @@ ul.icons-ul{list-style-type:none;text-indent:-0.7142857142857143em;margin-left:2
 .border-box-sizing{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
 .corner-all{border-radius:4px;}
 .hbox{display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
-.hbox&gt;*{-webkit-box-flex:0;-moz-box-flex:0;box-flex:0;}
+.hbox>*{-webkit-box-flex:0;-moz-box-flex:0;box-flex:0;}
 .vbox{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
-.vbox&gt;*{-webkit-box-flex:0;-moz-box-flex:0;box-flex:0;}
+.vbox>*{-webkit-box-flex:0;-moz-box-flex:0;box-flex:0;}
 .reverse{-webkit-box-direction:reverse;-moz-box-direction:reverse;box-direction:reverse;}
 .box-flex0{-webkit-box-flex:0;-moz-box-flex:0;box-flex:0;}
 .box-flex1{-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;}
@@ -1377,7 +1427,7 @@ input.ui-button{padding:0.3em 0.9em;}
 span#login_widget{float:right;}
 .nav-header{text-transform:none;}
 .navbar-nobg{background-color:transparent;background-image:none;}
-#header&gt;span{margin-top:10px;}
+#header>span{margin-top:10px;}
 .modal-body{max-height:500px;}
 .center-nav{display:inline-block;margin-bottom:-4px;}
 .alternate_upload{background-color:none;display:inline;}
@@ -1388,14 +1438,14 @@ span#login_widget{float:right;}
 .toolbar_buttons{float:right;}
 .list_header{font-weight:bold;}
 .list_container{margin-top:16px;margin-bottom:16px;border:1px solid #ababab;border-radius:4px;}
-.list_container&gt;div{border-bottom:1px solid #ababab;}.list_container&gt;div:hover .list-item{background-color:red;}
-.list_container&gt;div:last-child{border:none;}
+.list_container>div{border-bottom:1px solid #ababab;}.list_container>div:hover .list-item{background-color:red;}
+.list_container>div:last-child{border:none;}
 .list_item:hover .list_item{background-color:#ddd;}
-.list_container&gt;div&gt;span,.list_container&gt;div&gt;div{padding:8px;}
+.list_container>div>span,.list_container>div>div{padding:8px;}
 .list_item a{text-decoration:none;}
 input.nbname_input{height:15px;}
 .highlight_text{color:blue;}
-#project_name&gt;.breadcrumb{padding:0px;margin-bottom:0px;background-color:transparent;font-weight:bold;}
+#project_name>.breadcrumb{padding:0px;margin-bottom:0px;background-color:transparent;font-weight:bold;}
 input.engine_num_input{height:20px;margin-bottom:2px;padding-top:0;padding-bottom:0;width:60px;}
 .ansibold{font-weight:bold;}
 .ansiblack{color:black;}
@@ -1422,11 +1472,11 @@ div.prompt{width:11ex;padding:0.4em;margin:0px;font-family:monospace;text-align:
 .text_cell .ctb_prompt{display:none;}
 .code_cell .ctb_prompt{display:block;}
 .ctb_hideshow{display:none;vertical-align:bottom;padding-right:2px;}
-.celltoolbar&gt;div{padding-top:0px;}
+.celltoolbar>div{padding-top:0px;}
 .ctb_area{margin:0;padding:0;width:100%;}
 .ctb_show.ctb_hideshow,.ctb_show .ctb_hideshow{display:block;}
 .ctb_show .input_area,.ctb_show .ctb_hideshow+div.text_cell_input{border-top-right-radius:0px;border-top-left-radius:0px;}
-.ctb_show&gt;.celltoolbar{border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
+.ctb_show>.celltoolbar{border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
 .button_container{margin-top:0;margin-bottom:0;}
 .ui-button{min-width:30px;}
 .celltoolbar .button_container select{margin:10px;margin-top:1px;margin-bottom:0px;padding:0;font-size:87%;width:auto;display:inline-block;height:18px;line-height:18px;vertical-align:top;}
@@ -1526,8 +1576,8 @@ h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anch
 .ipython_tooltip .tooltiptext pre{border:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;font-size:100%;background-color:#f7f7f7;}
 .pretooltiparrow{left:0px;margin:0px;top:-16px;width:40px;height:16px;overflow:hidden;position:absolute;}
 .pretooltiparrow:before{background-color:#f7f7f7;border:1px #ababab solid;z-index:11;content:"";position:absolute;left:15px;top:10px;width:25px;height:25px;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);}
-&lt;/style&gt;
-&lt;style type="text/css"&gt;.highlight-ipynb .hll { background-color: #ffffcc }
+</style>
+<style type="text/css">.highlight-ipynb .hll { background-color: #ffffcc }
 .highlight-ipynb  { background: #f8f8f8; }
 .highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
 .highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
@@ -1588,8 +1638,8 @@ h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anch
 .highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
 .highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
 .highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
-&lt;style type="text/css"&gt;
+.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
 div.input_area {
     border: none;
     background: none;
@@ -1630,38 +1680,38 @@ table.dataframe th, td {
     display: blockquote;
 }
 
-&lt;/style&gt;
+</style>
 
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This post is third in the series. See the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first&lt;/a&gt; and &lt;a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;second&lt;/a&gt; one.&lt;/p&gt;
-&lt;h2 id="data"&gt;Data&lt;/h2&gt;
-&lt;p&gt;IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.&lt;/p&gt;
-&lt;p&gt;Freebase provides actors' and actresses' age and height information when the movie is released. The total character number is 450669 but the characters that have complete information is only 45264. That being said, the ratio gets higher when we look at the height and age. I took this information and looked at the age, height distribution of the actresses and actors as well as the number of movies whose main characters is actresses and actors across the years.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="gender-distribution-for-movies"&gt;Gender Distribution for Movies&lt;/h3&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[89]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This post is third in the series. See the <a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/">first</a> and <a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/">second</a> one.</p>
+<h2 id="data">Data</h2>
+<p>IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.</p>
+<p>Freebase provides actors' and actresses' age and height information when the movie is released. The total character number is 450669 but the characters that have complete information is only 45264. That being said, the ratio gets higher when we look at the height and age. I took this information and looked at the age, height distribution of the actresses and actors as well as the number of movies whose main characters is actresses and actors across the years.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="gender-distribution-for-movies">Gender Distribution for Movies</h3>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[89]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl0VEXexvGnmxBkMYgLyigmIMoiCSTsYIBgCDCMigyy
 yIGACuICiDOOouOLOiqKo0edAYzLAXEBZwbiObIJaoKAoBiCiAdBJQgOKCCQBBzW/r1/xLTZCVBJ
 d9Lfzz/k3u6+XbdC+umqW7fKY2YmAADghDfQBQAAoDohWAEAcIhgBQDAIYIVAACHCFYAABwiWAEA
@@ -1809,39 +1859,39 @@ VfPmzXXw4EEtWrRIW7Zs0bhx47R//37VqlVLM2fOVLt27QJ4FgAKoisYCKCNGzcW29ewYUPl5ubq
 gQce0KpsqstoAAAAZ0lEQVRVq1SnTh0999xz2r17tySpefPmSktLq+yiAignghUIQh6PR+eff746
 dOig8PBwNWnSRK+99lqgiwWgHOgKBgDAIQYvAQDgEMEKAIBDBCsAAA4RrAAAOESwAgDgEMEKAIBD
 /w8acbWvaJlGfwAAAABJRU5ErkJggg==
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Apparently, there are a lot of actresses or actors that have age of 25 and 50! As one can imagine, the age distribution looks like quite like a Gaussian distribution. Let's fit a Gaussian Kernel to smooth the distribution in order to remove the outliers(25 and 50).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[90]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Apparently, there are a lot of actresses or actors that have age of 25 and 50! As one can imagine, the age distribution looks like quite like a Gaussian distribution. Let's fit a Gaussian Kernel to smooth the distribution in order to remove the outliers(25 and 50).</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[90]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlcVOXiBvDnzDDs+w4ugIAsAoq74r6XueZW3UptcSm1
 unm7bddum7+82bWs1DZt75ZmmVtquWVKiguIiqigCAjIMgzrbO/vD2DSNHMZOLM838/HihmceeZA
 88w55z3vKwkhBIiIiMgsFHIHICIisiUsViIiIjNisRIREZkRi5WIiMiMWKxERERmxGIlIiIyIxar
@@ -2136,39 +2186,39 @@ GO3atcOPP/6IOXPmQKFQICYmBhUVFdiwYQOysrIwc+ZMlJWVwcnJCcuWLUOXLl1kfBVEdCkeCiaS
 UXp6+hW3BQYGQqPR4J///Cd++eUXuLq64o033kBhYSEAICYmBtu3b2/pqER0nVisRBZIkiT4+vqi
 W7ducHR0REREBD788EO5YxHRdeChYCIiIjPi4CUiIiIzYrESERGZEYuViIjIjFisREREZsRiJSIi
 MiMWKxERkRn9P0a6Suy1psfBAAAAAElFTkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This is much better, we do not have outliers, kernel looks quite smooth and its peak is around 30 and the biggest jump occurs at the age of 17 to 18. But let's look at the gender specific distribution to see who are these outliers.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[91]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is much better, we do not have outliers, kernel looks quite smooth and its peak is around 30 and the biggest jump occurs at the age of 17 to 18. But let's look at the gender specific distribution to see who are these outliers.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[91]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfMAAAFtCAYAAAATY4N4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfMAAAFtCAYAAAATY4N4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X18VNWdP/DPfZgJSWAGtIipWBUDBgrBABJNAukoQlhR
 iUKhdRUqBBEUNBRba90WddGVwlK2yEPZhda2sW6RsBG1DfyASAJIQnwojeW52mpBJc4kEjIz95zf
 H5PczEySyeR5Jvm8X6+QOXPuvbn3hMz3nnPPgyKllCAiIqKopXb3CRAREVH7MJgTERFFOQZzIiKi
@@ -2514,39 +2564,39 @@ e3s7lixZgrt372L//v2Qy+UICgpCV1cXKioq0NLSgszMTHz+/BlTpkzBuXPnEBYW5sS9ICJ7vMxO
 5GGeP3/+y8/mz58Ps9mMI0eO4P79+5g2bRrOnDmDtrY2AEBQUBDq6ur+6qkS0SixmBMRAEAmk2H2
 7NkIDw+HSqXC4sWLceHCBWdPi4hGgZfZiYiI3BxvgCMiInJzLOZERERujsWciIjIzbGYExERuTkW
 cyIiIjfHYk5EROTm/g+YrVclyFk1SAAAAABJRU5ErkJggg==
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;25 should be a magic number, both actresses and actors have peaked at 25, there is something wrong about the peaks in actors, though. If you remove those outliers, both of these distribution two different Gaussian distribution and as we did before, we could fit a Gaussian kernel to smooth the distributions a little bit.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[92]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>25 should be a magic number, both actresses and actors have peaked at 25, there is something wrong about the peaks in actors, though. If you remove those outliers, both of these distribution two different Gaussian distribution and as we did before, we could fit a Gaussian kernel to smooth the distributions a little bit.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[92]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGXax/HvOVPSgRAgoUNCCyUQmnRFRJCigCIgCvbG
 Kmtd9V3FXevq6tpdLCt2saEUKSIgShcQKaEECKETQgipk5k5z/vHJANIKIGZOTPJ/bmu93olJue5
 E/bKz6ec+9GUUgohhBBC+IRudgFCCCFEZSLBKoQQQviQBKsQQgjhQxKsQgghhA9JsAohhBA+JMEq
@@ -2991,39 +3041,39 @@ SkpYvHgxWVlZjB07luLiYmw2G1OnTqVjx47V+F0IIc4kU8FCVKPt27f/6LHExEScTifPPPMM69ev
 Jzw8nNdff528vDwAUlNTWbVq1aVuqhDiAkmwCnEZ0jSNuLg4OnXqhNVqpWnTprz33nvV3SwhxAWQ
 qWAhhBAiiGTxkhBCCBFEEqxCCCFEEEmwCiGEEEEkwSqEEEIEkQSrEEIIEUQSrEIIIUQQ/R93SH5Z
 ZCjndwAAAABJRU5ErkJggg==
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This is much nicer. Actors at late 30's played a lot of movies comparing different ages whereas women who are in their early 20's enjoy playing as much. Note that, the distribution does not reveal the absolute number of counts for the movies. As we see later, the number of movies whose main character is an actor is almos twice as the movies whose main character is an actress. Also, note that the distribution is much more widespread in actors whereas the actresses distribution is quite skewed. We could take the difference of kernels to see the difference better.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[93]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is much nicer. Actors at late 30's played a lot of movies comparing different ages whereas women who are in their early 20's enjoy playing as much. Note that, the distribution does not reveal the absolute number of counts for the movies. As we see later, the number of movies whose main character is an actor is almos twice as the movies whose main character is an actress. Also, note that the distribution is much more widespread in actors whereas the actresses distribution is quite skewed. We could take the difference of kernels to see the difference better.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[93]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VNX9P/D3vTOTjRAChLAGCAkkLAmEkIRdFmUVEUWr
 UlFcKlWhVb/2Z62t1tbaWmtra92oinWrKyqyyCI7QkJYQoAEQggJ2QgJ2ZeZuff8/kAiSxKSMHeZ
 mffreXyEZHI+n8yQeefee+45khBCgIiIiFxCNroBIiIiT8JgJSIiciEGKxERkQsxWImIiFyIwUpE
@@ -3327,39 +3377,39 @@ yZIlkGUZUVFRKC8vx6pVq5CZmYnFixejrKwMvr6+eO211xAfH2/gd0FEF+KpYCIDpaWlXfax0NBQ
 VFVV4YknnsD27dsREBCAl156CYWFhQCAqKgobNq0Se9WiaiVGKxEJiRJErp06YKEhAT4+PggPDwc
 b731ltFtEVEr8FQwERGRC3HyEhERkQsxWImIiFyIwUpERORCDFYiIiIXYrASERG5EIOViIjIhf4/
 0Ia+R6XjSjgAAAAASUVORK5CYII=
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;In this one, the ratio of actresses to total number of actresses comparing to actors before 32 is larger whereas actors enjoy after 32 to late 70's take role in movies comparing to actresses. After late 70's, I guess we could only say that women live longer than men.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[94]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this one, the ratio of actresses to total number of actresses comparing to actors before 32 is larger whereas actors enjoy after 32 to late 70's take role in movies comparing to actresses. After late 70's, I guess we could only say that women live longer than men.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[94]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcVHX+P/DXnBkGBoRRczW7miKRKYooKIPWaApuqOlK
 q7WlRnzDWi0xuny7+NVKu2x8tV1zTVdsrawsoyXN70/LxERQUCsvJZnWWqtmEjMiMsOcz+8PmiMj
 zGG4c4bX8/HgoTPncz7n857b+3zO5fPRCSEEiIiISBOktm4AERER+Y6Jm4iISEOYuImIiDSEiZuI
@@ -3654,39 +3704,39 @@ YmNjkZqaipEjR3qs8/rrr2PhwoWIiYnB7t27ERwcrCyvWa/7/3FxcSgoKMB///d/45ZbblHmkweq
 hg1Yt24d1q9f7/P68+bNw6hRo3Drrbc2qR0ffvgh8vPz8cILLzSpHiK6iOe4ifzQNddcgzFjxiAg
 IABdu3bFP/7xjwatP3/+fMyYMaNJiVuWZaxevRpvvvlmo+sgotrY4yYiItIQnuMmIiLSECZuIiIi
 DWHiJiIi0hAmbiIiIg1h4iYiItIQJm4iIiIN+f+2/71dtKpZvwAAAABJRU5ErkJggg==
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Actors unsurprisingly taller than actresses and surprisingly height distribution is not Gaussian, which is quite interesting.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[95]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Actors unsurprisingly taller than actresses and surprisingly height distribution is not Gaussian, which is quite interesting.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[95]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFkCAYAAADmPNjoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFkCAYAAADmPNjoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlgnHWd+PH388xMJvfkaK7eRxrKVZCjhaSoEaW41KOs
 KMqqSK0iuh502eO3rrvrAQguq67Cit0tnvWEuoUuWhdooKW1oXK1KQ3pfSVtjsnkmPN5fn9MnidJ
 m0wmyTzzzPF5/UOTmUm+KU0++Xy/n+/no+i6riOEEEKItKDavQAhhBBCxE8CtxBCCJFGJHALIYQQ
@@ -4152,39 +4202,39 @@ NnXqVNq3b09mZia9e/dm0qRJDBo0qNo6b7/9NjNmzKBHjx5s3rwZp9NZdf+5j115uU+fPnzxxRf8
 nOMWot5JTU1lxIgRWK1WkpOTeeONNy75sZ555hkmTJhwWYXbNE3efPNNFi9efMmPIYQ4S35xCyGE
 EFFEznELIYQQUUQKtxBCCBFFpHALIYQQUUQKtxBCCBFFpHALIYQQUeT/Aew54l9ewDCrAAAAAElF
 TkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The kernels are not good either as expected.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[98]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The kernels are not good either as expected.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[98]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGX2wPHvnZpAGiUEAkiASAmBEEIQDAmdhEWUYkFx
 Kbsiwq5gWVZZdq1sXHXdVVEB0VVEsfwURZpgkCZNiohCJITQIUAIJCFl2n1/fwQGQkIJBmYmnM/z
 +MjcO/fe856Zybnvba+mlFIIIYQQwicYPB2AEEIIIa6cFG4hhBDCh0jhFkIIIXyIFG4hhBDCh0jh
@@ -4684,39 +4734,39 @@ lnLkyBF+8YtfMGfOHD744ANM0wRAjbIpSutQLW5FUfB6vfz1r3/lscceo6amhri4OF5++WUSEhJY
 uHAhw4YNo1u3btx0000Eg0GqqqoQQjTY+lBRlMtDTU5TFEVRlHZEdZUriqIoSjuiAreiKIqitCMq
 cCuKoihKO6ICt6IoiqK0IypwK4qiKEo7ogK3oiiKorQjKnAriqIoSjuiAreiKIqitCP/H3h9qpUL
 ej0UAAAAAElFTkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The total number of movies whose main characters are actors is almost twice high as movies whose main characters are actresses. Although the ratio is more or less same, the absolute difference is getting larger over the years. Note that if movies have more than one main characters, all of them counted as main characters for the movies.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[105]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The total number of movies whose main characters are actors is almost twice high as movies whose main characters are actresses. Although the ratio is more or less same, the absolute difference is getting larger over the years. Note that if movies have more than one main characters, all of them counted as main characters for the movies.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[105]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmgAAAH8CAYAAABl8FOBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmgAAAH8CAYAAABl8FOBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvWmwZddZ3/1ba+3xDHfoSa32+PqV39eWI6GWDJKtUKYd
 F3ZVoGKgBCoDBickNkml7BTJl6TygUqqoJwYkgpVBlelAMcZwIVRyiGTIW5AETKxAL+FXXjCkmxZ
 6ukOZ9jjGt4Pa5997+1Jt6Xuvrdvr9+Xvn3uOfusvc65Z//PM/wf4ZxzBAKBQCAQCAT2DXKvFxAI
@@ -8121,39 +8171,39 @@ vZiDBgB/mTFjhi5cuKCGhgZJUnl5uR577DG1t7erpaVFq1evVn5+vvbs2aM///xTksQsEQD/C9xB
 A4C/hIeH66OPPlJpaakuXbqk2NhYvf/++5o4caKWL1+u5ORkTZ06VQUFBfJ6verp6ZHD4ZDD4bB6
 6ACuMiwSAAAAsBkecQIAANgMBQ0AAMBmKGgAAAA2Q0EDAACwGQoaAACAzVDQAAAAbIaCBgAAYDMU
 NAAAAJv5P3C7+u6eo5cNAAAAAElFTkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The revenues for the movies over the years are clearly getting better. We could also see a lot of movies that generate close to one billion dollars .&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[106]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The revenues for the movies over the years are clearly getting better. We could also see a lot of movies that generate close to one billion dollars .</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[106]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFkCAYAAAAnu5JEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFkCAYAAAAnu5JEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmAE+Xdx7+TZLPJbnazJ7AXLLfcl3jCIuLFsQgIiigK
 KlastRbqa9VSrVi86lHf+pZWW1BqxVpFREUEFfCqCgio3Oee7L3ZI8nmmvePbCbPTGZybZLdzf4+
 /5iZJDPPTFa+87s5nud5EARBEAQRt6g6ewEEQRAEQUQXEnuCIAiCiHNI7AmCIAgiziGxJwiCIIg4
@@ -8815,39 +8865,39 @@ aGtrw8WLF/H8889j0aJF2L59OwwGAwCAZQIZjMEP8+wZDAaPQqHAZ599hscffxy9vb2IiYnBRx99
 hLi4ONx///2YOHEikpKSsHTpUmg0GqjVanAcJxg9ymAwBh+sQI/BYDAYjCCHhfEZDAaDwQhymLFn
 MBgMBiPIYcaewWAwGIwghxl7BoPBYDCCHGbsGQwGg8EIcpixZzAYDAYjyGHGnsFgMBiMIOf/A0Pg
 tmmL2F71AAAAAElFTkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The median revenue is quite conservative whereas mean revenue of the movies is getting larger and larger over the years as a result of quite successful movies in terms of revenue have been directed in recent years as seen in the previous scatter plot.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[107]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The median revenue is quite conservative whereas mean revenue of the movies is getting larger and larger over the years as a result of quite successful movies in terms of revenue have been directed in recent years as seen in the previous scatter plot.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[107]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAFuCAYAAABtFwohAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAFuCAYAAABtFwohAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4VFX6x7/TUkgXAiIgoCAQghAIPQQCUmQVQcAOgoJt
 BRXRlR8Klt2oWFZlFdfoAou9I4uFdSGgi4AEBESWoiIdhCSTyWTKLef3x2QmU+6de+9kMi3v53l8
 JLeee+bOvOftOsYYA0EQBEEQCYU+2gMgCIIgCCL8kIAnCIIgiASEBDxBEARBJCAk4AmCIAgiASEB
@@ -9501,39 +9551,39 @@ L16M1atXIxgMAgAoC0gQfQOd4AmCMIwsy3jxxRdxzz33oKurC263G7///e9RVlaG2267DRMnTkR1
 dTW+9KUvwefzoaOjA4yxmHGaBEHkByqyIwiCIIgShEL0BEEQBFGCkIMnCIIgiBKEHDxBEARBlCDk
 4AmCIAiiBCEHTxAEQRAlCDl4giAIgihByMETBEEQRAlCDp4gCIIgSpD/H1ojLhZwdUkgAAAAAElF
 TkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The standard deviation is also getting larger over the years.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[109]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The standard deviation is also getting larger over the years.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[109]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFyCAYAAADyNHPCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFyCAYAAADyNHPCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmQZVV9+D93f/vrfZmFYWAQBIYdURFhVMByiQouqCWK
 BjUuMcZYibEstUwqxNJYmrKiUYtFlBgNYlxiIJagRKCUEPiFnWHW7unt7Xffzu+P2/OmZ+mZNxsz
 3ZzPPzP39Ln3nXveefd7z3dVhBACiUQikUgkyxb1WA9AIpFIJBLJ0UUKe4lEIpFIljlS2EskEolE
@@ -11594,39 +11644,39 @@ Q4fQ09MDAGhra8Pjjz+OG2+8EevWrcPBgwfxq1/9atb9Te7ze9/7Hn73u9/hkksuQSqVyi8vtt/Z
 trN161b873//w/XXX190DIkoRxJz3esjIlt44oknsHbtWnzuc5+rdFeIqEox2BMREdU43sYnIiKq
 cQz2RERENY7BnoiIqMYx2BMREdU4BnsiIqIax2BPRERU4xjsiYiIatz/A8bZlnv9ctNaAAAAAElF
 TkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Votes and revenue are quite correlated unsuprisingly.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[121]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Votes and revenue are quite correlated unsuprisingly.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[121]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAFyCAYAAAADPyhPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAFyCAYAAAADPyhPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmQZVdd+D/n7m9/r/fumclMJiuBJERAExD4BdFIUYAi
 LrhACCEWWGiksKzS0nKp0mhJrBJ3sAQRLQsEF0pLcQkaYyALQSAhyWQms/T09l6/9e7L+f1xX7/p
 7umZ6VkyW87nj5l+99537jnn3vu+93xXIaWUKBQKhUKhuKTRLnQHFAqFQqFQnD1KoCsUCoVCcRmg
@@ -13522,39 +13572,39 @@ zfB4PFizZg1Wr159Trn8K9ovfelLuPbaa7Flyxbs2LED//73v3HNNdfANE3cfPPNWL9+PYD0iPHW
 W2+9teB+J6p7/vYn2tf4MmvXrsXzzz+Pr3zlK1MeRyIChJzOz2YimhW//e1v0dnZiRtvvNHuqhDR
 HMWATkREVAV4D52IiKgKMKATERFVAQZ0IiKiKsCATkREVAUY0ImIiKoAAzoREVEVYEAnIiKqAv8P
 MW9XLQ2eqvkAAAAASUVORK5CYII=
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Rating and revenue's correlation is not as strong as revenue and votes. However, one thing to note is that if the rating is higher than 5, there is almost a rectangle between (5, 8) in rating and &lt;span class="math"&gt;\(\$1\)&lt;/span&gt; M, &lt;span class="math"&gt;\(\$200\)&lt;/span&gt;M which looks like almost a two dimensional uniform distribution.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[111]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Rating and revenue's correlation is not as strong as revenue and votes. However, one thing to note is that if the rating is higher than 5, there is almost a rectangle between (5, 8) in rating and <span class="math">\(\$1\)</span> M, <span class="math">\(\$200\)</span>M which looks like almost a two dimensional uniform distribution.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[111]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAGFCAYAAAD94YR2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAGFCAYAAAD94YR2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VHX2+PH3nZJGkiGFEsCETugJvYUuobsgKKiggLGh
 4rLrimVtu7rorvDV/anrropt110L7NIEFYGggCBFBEIvUgNpkz7tfn5/zCQQSSMkk0k4r+fxecjM
 ZO6ZQebM/Zz7OUdTSimEEEJc9wy1HYAQQgjfIAlBCCEEIAlBCCGEhyQEIYQQgCQEIYQQHpIQhBBC
@@ -14229,39 +14279,39 @@ G9HR0Rw9epT169eTl5fHggULOHLkSJMuk1K3Q48QlAKmTZvGq6++Snx8PF27dmX48OEsXrwYCDyX
 m3PxlLoleoSgFDB16lS6dOnCkiVLAHj55Zd57rnn6Nu3L36/n5deeon+/ftTXl5OZWUl06ZNY+nS
 pezfv5+0tDT8fj+jR49m2rRpuFwuJk+eTN++fbHZbMyfP7/RU66UClXa/bVSSilATxkppZSqp4Gg
 lFIK0EBQSilVTwNBKaUUoIGglFKqngaCUkopQANBKaVUvf8PKPOPeNMPfJkAAAAASUVORK5CYII=
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;If we fit a linear fit on votes and revenue per decade, we would get the above graph. Recent decades have higher correlation of revenue and votes comparing to older decades.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[126]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we fit a linear fit on votes and revenue per decade, we would get the above graph. Recent decades have higher correlation of revenue and votes comparing to older decades.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[126]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAGFCAYAAAAIHw/GAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAGFCAYAAAAIHw/GAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8FGX++N8zO9uS3WwKLYUEQgkIhBYkIQiiKKKIJwqi
 oMIpZ+VULN9rnnp3nv7sh95ZUMF2nsIph4oUkaJSRXrvmIQaks1usm1mnt8fkyxECFLTnPfrlRe7
 7Ow8z+eZ2eczz6c9khBCYGJiYmJicgLkuu6AiYmJiUn9xVQSJiYmJiY1YioJExMTE5MaMZWEiYmJ
@@ -15413,41 +15463,41 @@ bDZ3SiY9NWPGDHbs2MHFixdRSvHUU08FEoYQ4SBnEkJc1T5v0G7OnDlMnTqV0tJSCgoKGDt2LCNG
 jAjs6dFxrqHr/UcffZSCggI+//zzwOPBju/6+hkZGbz88svMnDkTwzCYMGECL7744q0KWYhfJaXC
 hRBChCTDTUIIIUKSJCGEECIkSRJCCCFCkiQhhBAiJEkSQgghQpIkIYQQIiRJEkIIIUL6f50mKxBn
 mMu1AAAAAElFTkSuQmCC
-"&gt;
+">
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;It is hard to make any conclusion around runtime and revenue graph.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="movies-that-generated-highest-revenues"&gt;Movies that generated highest revenues&lt;/h2&gt;
-&lt;p&gt;I listed movies that generate more than&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[114]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is hard to make any conclusion around runtime and revenue graph.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="movies-that-generated-highest-revenues">Movies that generated highest revenues</h2>
+<p>I listed movies that generate more than</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[114]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stderr"&gt;
-&lt;pre&gt;
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stderr">
+<pre>
 /Users/bugra/anaconda/lib/python2.7/site-packages/pandas/core/config.py:570: DeprecationWarning: height has been deprecated.
 
   warnings.warn(d.msg, DeprecationWarning)
@@ -15455,615 +15505,614 @@ In&amp;nbsp;[114]:
 
   warnings.warn(d.msg, DeprecationWarning)
 
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
-    Out[114]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[114]:</div>
+<div class="box-flex1 output_subarea output_pyout">
 
-&lt;div class="output_html rendered_html"&gt;
-&lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
-&lt;table border="1" class="dataframe"&gt;
-  &lt;thead&gt;
-    &lt;tr style="text-align: right;"&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;title&lt;/th&gt;
-      &lt;th&gt;year&lt;/th&gt;
-      &lt;th&gt;votes&lt;/th&gt;
-      &lt;th&gt;runtime_x&lt;/th&gt;
-      &lt;th&gt;revenue&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;13   &lt;/th&gt;
-      &lt;td&gt;                                            Avatar&lt;/td&gt;
-      &lt;td&gt; 2009&lt;/td&gt;
-      &lt;td&gt;  650065&lt;/td&gt;
-      &lt;td&gt; 162&lt;/td&gt;
-      &lt;td&gt; 2782275172&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;40   &lt;/th&gt;
-      &lt;td&gt;                                           Titanic&lt;/td&gt;
-      &lt;td&gt; 1997&lt;/td&gt;
-      &lt;td&gt;  552651&lt;/td&gt;
-      &lt;td&gt; 194&lt;/td&gt;
-      &lt;td&gt; 2185372302&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;401  &lt;/th&gt;
-      &lt;td&gt;                    Transformers: Dark of the Moon&lt;/td&gt;
-      &lt;td&gt; 2011&lt;/td&gt;
-      &lt;td&gt;  235772&lt;/td&gt;
-      &lt;td&gt; 154&lt;/td&gt;
-      &lt;td&gt; 1123746996&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;6    &lt;/th&gt;
-      &lt;td&gt;     The Lord of the Rings: The Return of the King&lt;/td&gt;
-      &lt;td&gt; 2003&lt;/td&gt;
-      &lt;td&gt;  828522&lt;/td&gt;
-      &lt;td&gt; 201&lt;/td&gt;
-      &lt;td&gt; 1119929521&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;11   &lt;/th&gt;
-      &lt;td&gt;                             The Dark Knight Rises&lt;/td&gt;
-      &lt;td&gt; 2012&lt;/td&gt;
-      &lt;td&gt;  741543&lt;/td&gt;
-      &lt;td&gt; 165&lt;/td&gt;
-      &lt;td&gt; 1078008948&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;126  &lt;/th&gt;
-      &lt;td&gt;                                       Toy Story 3&lt;/td&gt;
-      &lt;td&gt; 2010&lt;/td&gt;
-      &lt;td&gt;  348502&lt;/td&gt;
-      &lt;td&gt; 103&lt;/td&gt;
-      &lt;td&gt; 1063171911&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;347  &lt;/th&gt;
-      &lt;td&gt;       Pirates of the Caribbean: On Stranger Tides&lt;/td&gt;
-      &lt;td&gt; 2011&lt;/td&gt;
-      &lt;td&gt;  253863&lt;/td&gt;
-      &lt;td&gt; 136&lt;/td&gt;
-      &lt;td&gt; 1043871802&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;518  &lt;/th&gt;
-      &lt;td&gt;                               Alice in Wonderland&lt;/td&gt;
-      &lt;td&gt; 2010&lt;/td&gt;
-      &lt;td&gt;  224651&lt;/td&gt;
-      &lt;td&gt; 108&lt;/td&gt;
-      &lt;td&gt; 1024299904&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1    &lt;/th&gt;
-      &lt;td&gt;                                   The Dark Knight&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt; 1125214&lt;/td&gt;
-      &lt;td&gt; 152&lt;/td&gt;
-      &lt;td&gt; 1004558444&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;97   &lt;/th&gt;
-      &lt;td&gt;                                     The Lion King&lt;/td&gt;
-      &lt;td&gt; 1994&lt;/td&gt;
-      &lt;td&gt;  397397&lt;/td&gt;
-      &lt;td&gt;  89&lt;/td&gt;
-      &lt;td&gt;  951583777&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;346  &lt;/th&gt;
-      &lt;td&gt;         Harry Potter and the Order of the Phoenix&lt;/td&gt;
-      &lt;td&gt; 2007&lt;/td&gt;
-      &lt;td&gt;  256564&lt;/td&gt;
-      &lt;td&gt; 138&lt;/td&gt;
-      &lt;td&gt;  939885929&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;511  &lt;/th&gt;
-      &lt;td&gt;            Harry Potter and the Half-Blood Prince&lt;/td&gt;
-      &lt;td&gt; 2009&lt;/td&gt;
-      &lt;td&gt;  225700&lt;/td&gt;
-      &lt;td&gt; 153&lt;/td&gt;
-      &lt;td&gt;  934416487&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;10   &lt;/th&gt;
-      &lt;td&gt;             The Lord of the Rings: The Two Towers&lt;/td&gt;
-      &lt;td&gt; 2002&lt;/td&gt;
-      &lt;td&gt;  745191&lt;/td&gt;
-      &lt;td&gt; 179&lt;/td&gt;
-      &lt;td&gt;  926047111&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;78   &lt;/th&gt;
-      &lt;td&gt;                                      Finding Nemo&lt;/td&gt;
-      &lt;td&gt; 2003&lt;/td&gt;
-      &lt;td&gt;  441598&lt;/td&gt;
-      &lt;td&gt; 100&lt;/td&gt;
-      &lt;td&gt;  921111197&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;589  &lt;/th&gt;
-      &lt;td&gt;                                           Shrek 2&lt;/td&gt;
-      &lt;td&gt; 2004&lt;/td&gt;
-      &lt;td&gt;  222822&lt;/td&gt;
-      &lt;td&gt;  93&lt;/td&gt;
-      &lt;td&gt;  919838758&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;117  &lt;/th&gt;
-      &lt;td&gt;                                     Jurassic Park&lt;/td&gt;
-      &lt;td&gt; 1993&lt;/td&gt;
-      &lt;td&gt;  368791&lt;/td&gt;
-      &lt;td&gt; 127&lt;/td&gt;
-      &lt;td&gt;  914691118&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;297  &lt;/th&gt;
-      &lt;td&gt;               Harry Potter and the Goblet of Fire&lt;/td&gt;
-      &lt;td&gt; 2005&lt;/td&gt;
-      &lt;td&gt;  278378&lt;/td&gt;
-      &lt;td&gt; 157&lt;/td&gt;
-      &lt;td&gt;  896911078&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;343  &lt;/th&gt;
-      &lt;td&gt;                                      Spider-Man 3&lt;/td&gt;
-      &lt;td&gt; 2007&lt;/td&gt;
-      &lt;td&gt;  258922&lt;/td&gt;
-      &lt;td&gt; 139&lt;/td&gt;
-      &lt;td&gt;  890871626&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1717 &lt;/th&gt;
-      &lt;td&gt;                    Ice Age: Dawn of the Dinosaurs&lt;/td&gt;
-      &lt;td&gt; 2009&lt;/td&gt;
-      &lt;td&gt;  110923&lt;/td&gt;
-      &lt;td&gt;  94&lt;/td&gt;
-      &lt;td&gt;  886686817&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;290  &lt;/th&gt;
-      &lt;td&gt;           Harry Potter and the Chamber of Secrets&lt;/td&gt;
-      &lt;td&gt; 2002&lt;/td&gt;
-      &lt;td&gt;  281240&lt;/td&gt;
-      &lt;td&gt; 161&lt;/td&gt;
-      &lt;td&gt;  878979634&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;5    &lt;/th&gt;
-      &lt;td&gt; The Lord of the Rings: The Fellowship of the Ring&lt;/td&gt;
-      &lt;td&gt; 2001&lt;/td&gt;
-      &lt;td&gt;  855325&lt;/td&gt;
-      &lt;td&gt; 178&lt;/td&gt;
-      &lt;td&gt;  871530324&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2052 &lt;/th&gt;
-      &lt;td&gt;                        Ice Age: Continental Drift&lt;/td&gt;
-      &lt;td&gt; 2012&lt;/td&gt;
-      &lt;td&gt;   93462&lt;/td&gt;
-      &lt;td&gt;  88&lt;/td&gt;
-      &lt;td&gt;  867291788&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;405  &lt;/th&gt;
-      &lt;td&gt;               Transformers: Revenge of the Fallen&lt;/td&gt;
-      &lt;td&gt; 2009&lt;/td&gt;
-      &lt;td&gt;  235270&lt;/td&gt;
-      &lt;td&gt; 150&lt;/td&gt;
-      &lt;td&gt;  836303693&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2    &lt;/th&gt;
-      &lt;td&gt;                                         Inception&lt;/td&gt;
-      &lt;td&gt; 2010&lt;/td&gt;
-      &lt;td&gt;  920345&lt;/td&gt;
-      &lt;td&gt; 148&lt;/td&gt;
-      &lt;td&gt;  825532764&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;101  &lt;/th&gt;
-      &lt;td&gt;                                        Spider-Man&lt;/td&gt;
-      &lt;td&gt; 2002&lt;/td&gt;
-      &lt;td&gt;  381851&lt;/td&gt;
-      &lt;td&gt; 121&lt;/td&gt;
-      &lt;td&gt;  821708551&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;207  &lt;/th&gt;
-      &lt;td&gt;                                  Independence Day&lt;/td&gt;
-      &lt;td&gt; 1996&lt;/td&gt;
-      &lt;td&gt;  322696&lt;/td&gt;
-      &lt;td&gt; 145&lt;/td&gt;
-      &lt;td&gt;  817400891&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1206 &lt;/th&gt;
-      &lt;td&gt;                                   Shrek the Third&lt;/td&gt;
-      &lt;td&gt; 2007&lt;/td&gt;
-      &lt;td&gt;  151183&lt;/td&gt;
-      &lt;td&gt;  93&lt;/td&gt;
-      &lt;td&gt;  798958162&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;307  &lt;/th&gt;
-      &lt;td&gt;          Harry Potter and the Prisoner of Azkaban&lt;/td&gt;
-      &lt;td&gt; 2004&lt;/td&gt;
-      &lt;td&gt;  273828&lt;/td&gt;
-      &lt;td&gt; 142&lt;/td&gt;
-      &lt;td&gt;  796688549&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;614  &lt;/th&gt;
-      &lt;td&gt;                        E.T. the Extra-Terrestrial&lt;/td&gt;
-      &lt;td&gt; 1982&lt;/td&gt;
-      &lt;td&gt;  215698&lt;/td&gt;
-      &lt;td&gt; 115&lt;/td&gt;
-      &lt;td&gt;  792910554&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;359  &lt;/th&gt;
-      &lt;td&gt; Indiana Jones and the Kingdom of the Crystal S...&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt;  251788&lt;/td&gt;
-      &lt;td&gt; 122&lt;/td&gt;
-      &lt;td&gt;  786636033&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;311  &lt;/th&gt;
-      &lt;td&gt;                                      Spider-Man 2&lt;/td&gt;
-      &lt;td&gt; 2004&lt;/td&gt;
-      &lt;td&gt;  270884&lt;/td&gt;
-      &lt;td&gt; 127&lt;/td&gt;
-      &lt;td&gt;  783766341&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;711  &lt;/th&gt;
-      &lt;td&gt;                                              2012&lt;/td&gt;
-      &lt;td&gt; 2009&lt;/td&gt;
-      &lt;td&gt;  208295&lt;/td&gt;
-      &lt;td&gt; 158&lt;/td&gt;
-      &lt;td&gt;  769679473&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;489  &lt;/th&gt;
-      &lt;td&gt;                                 The Da Vinci Code&lt;/td&gt;
-      &lt;td&gt; 2006&lt;/td&gt;
-      &lt;td&gt;  233755&lt;/td&gt;
-      &lt;td&gt; 149&lt;/td&gt;
-      &lt;td&gt;  758239851&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1995 &lt;/th&gt;
-      &lt;td&gt;                               Shrek Forever After&lt;/td&gt;
-      &lt;td&gt; 2010&lt;/td&gt;
-      &lt;td&gt;   97772&lt;/td&gt;
-      &lt;td&gt;  93&lt;/td&gt;
-      &lt;td&gt;  752600867&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;280  &lt;/th&gt;
-      &lt;td&gt;                            The Amazing Spider-Man&lt;/td&gt;
-      &lt;td&gt; 2012&lt;/td&gt;
-      &lt;td&gt;  289873&lt;/td&gt;
-      &lt;td&gt; 136&lt;/td&gt;
-      &lt;td&gt;  752216557&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;195  &lt;/th&gt;
-      &lt;td&gt;                               The Matrix Reloaded&lt;/td&gt;
-      &lt;td&gt; 2003&lt;/td&gt;
-      &lt;td&gt;  328390&lt;/td&gt;
-      &lt;td&gt; 138&lt;/td&gt;
-      &lt;td&gt;  742128461&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;87   &lt;/th&gt;
-      &lt;td&gt;                                                Up&lt;/td&gt;
-      &lt;td&gt; 2009&lt;/td&gt;
-      &lt;td&gt;  415780&lt;/td&gt;
-      &lt;td&gt;  96&lt;/td&gt;
-      &lt;td&gt;  731342744&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;99   &lt;/th&gt;
-      &lt;td&gt;                                      Transformers&lt;/td&gt;
-      &lt;td&gt; 2007&lt;/td&gt;
-      &lt;td&gt;  391983&lt;/td&gt;
-      &lt;td&gt; 144&lt;/td&gt;
-      &lt;td&gt;  709709780&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1284 &lt;/th&gt;
-      &lt;td&gt;         The Twilight Saga: Breaking Dawn - Part 1&lt;/td&gt;
-      &lt;td&gt; 2011&lt;/td&gt;
-      &lt;td&gt;  140406&lt;/td&gt;
-      &lt;td&gt; 117&lt;/td&gt;
-      &lt;td&gt;  705058657&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;56012&lt;/th&gt;
-      &lt;td&gt;                                           Eclipse&lt;/td&gt;
-      &lt;td&gt; 1994&lt;/td&gt;
-      &lt;td&gt;     158&lt;/td&gt;
-      &lt;td&gt;  95&lt;/td&gt;
-      &lt;td&gt;  698491347&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;73   &lt;/th&gt;
-      &lt;td&gt;                                  The Hunger Games&lt;/td&gt;
-      &lt;td&gt; 2012&lt;/td&gt;
-      &lt;td&gt;  462642&lt;/td&gt;
-      &lt;td&gt; 142&lt;/td&gt;
-      &lt;td&gt;  686533290&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;9    &lt;/th&gt;
-      &lt;td&gt;                                      Forrest Gump&lt;/td&gt;
-      &lt;td&gt; 1994&lt;/td&gt;
-      &lt;td&gt;  780099&lt;/td&gt;
-      &lt;td&gt; 142&lt;/td&gt;
-      &lt;td&gt;  677387716&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;57   &lt;/th&gt;
-      &lt;td&gt;                                   The Sixth Sense&lt;/td&gt;
-      &lt;td&gt; 1999&lt;/td&gt;
-      &lt;td&gt;  508059&lt;/td&gt;
-      &lt;td&gt; 107&lt;/td&gt;
-      &lt;td&gt;  672806292&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1390 &lt;/th&gt;
-      &lt;td&gt;                             Ice Age: The Meltdown&lt;/td&gt;
-      &lt;td&gt; 2006&lt;/td&gt;
-      &lt;td&gt;  129198&lt;/td&gt;
-      &lt;td&gt;  91&lt;/td&gt;
-      &lt;td&gt;  655388158&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;37   &lt;/th&gt;
-      &lt;td&gt; Pirates of the Caribbean: The Curse of the Bla...&lt;/td&gt;
-      &lt;td&gt; 2003&lt;/td&gt;
-      &lt;td&gt;  561949&lt;/td&gt;
-      &lt;td&gt; 143&lt;/td&gt;
-      &lt;td&gt;  654264015&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;720  &lt;/th&gt;
-      &lt;td&gt;                                     Kung Fu Panda&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt;  206422&lt;/td&gt;
-      &lt;td&gt;  90&lt;/td&gt;
-      &lt;td&gt;  631744560&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;183  &lt;/th&gt;
-      &lt;td&gt;                                   The Incredibles&lt;/td&gt;
-      &lt;td&gt; 2004&lt;/td&gt;
-      &lt;td&gt;  332844&lt;/td&gt;
-      &lt;td&gt; 115&lt;/td&gt;
-      &lt;td&gt;  631442092&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;801  &lt;/th&gt;
-      &lt;td&gt;                                         Fast Five&lt;/td&gt;
-      &lt;td&gt; 2011&lt;/td&gt;
-      &lt;td&gt;  200568&lt;/td&gt;
-      &lt;td&gt; 130&lt;/td&gt;
-      &lt;td&gt;  626100000&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;503  &lt;/th&gt;
-      &lt;td&gt;                                           Hancock&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt;  228501&lt;/td&gt;
-      &lt;td&gt;  92&lt;/td&gt;
-      &lt;td&gt;  624386746&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;880  &lt;/th&gt;
-      &lt;td&gt;                                    Men in Black 3&lt;/td&gt;
-      &lt;td&gt; 2012&lt;/td&gt;
-      &lt;td&gt;  187247&lt;/td&gt;
-      &lt;td&gt; 106&lt;/td&gt;
-      &lt;td&gt;  624026776&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;194  &lt;/th&gt;
-      &lt;td&gt;                                        Iron Man 2&lt;/td&gt;
-      &lt;td&gt; 2010&lt;/td&gt;
-      &lt;td&gt;  329240&lt;/td&gt;
-      &lt;td&gt; 124&lt;/td&gt;
-      &lt;td&gt;  623933331&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;171  &lt;/th&gt;
-      &lt;td&gt;                                       Ratatouille&lt;/td&gt;
-      &lt;td&gt; 2007&lt;/td&gt;
-      &lt;td&gt;  336359&lt;/td&gt;
-      &lt;td&gt; 111&lt;/td&gt;
-      &lt;td&gt;  623722818&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;904  &lt;/th&gt;
-      &lt;td&gt;                     The Lost World: Jurassic Park&lt;/td&gt;
-      &lt;td&gt; 1997&lt;/td&gt;
-      &lt;td&gt;  184609&lt;/td&gt;
-      &lt;td&gt; 129&lt;/td&gt;
-      &lt;td&gt;  618638999&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1215 &lt;/th&gt;
-      &lt;td&gt;                         The Passion of the Christ&lt;/td&gt;
-      &lt;td&gt; 2004&lt;/td&gt;
-      &lt;td&gt;  149932&lt;/td&gt;
-      &lt;td&gt; 127&lt;/td&gt;
-      &lt;td&gt;  611899420&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1839 &lt;/th&gt;
-      &lt;td&gt;                                        Mamma Mia!&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt;  104405&lt;/td&gt;
-      &lt;td&gt; 108&lt;/td&gt;
-      &lt;td&gt;  609841637&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2024 &lt;/th&gt;
-      &lt;td&gt;                       Madagascar: Escape 2 Africa&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt;   94291&lt;/td&gt;
-      &lt;td&gt;  89&lt;/td&gt;
-      &lt;td&gt;  602308178&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_html rendered_html">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+      <th>runtime_x</th>
+      <th>revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13   </th>
+      <td>                                            Avatar</td>
+      <td> 2009</td>
+      <td>  650065</td>
+      <td> 162</td>
+      <td> 2782275172</td>
+    </tr>
+    <tr>
+      <th>40   </th>
+      <td>                                           Titanic</td>
+      <td> 1997</td>
+      <td>  552651</td>
+      <td> 194</td>
+      <td> 2185372302</td>
+    </tr>
+    <tr>
+      <th>401  </th>
+      <td>                    Transformers: Dark of the Moon</td>
+      <td> 2011</td>
+      <td>  235772</td>
+      <td> 154</td>
+      <td> 1123746996</td>
+    </tr>
+    <tr>
+      <th>6    </th>
+      <td>     The Lord of the Rings: The Return of the King</td>
+      <td> 2003</td>
+      <td>  828522</td>
+      <td> 201</td>
+      <td> 1119929521</td>
+    </tr>
+    <tr>
+      <th>11   </th>
+      <td>                             The Dark Knight Rises</td>
+      <td> 2012</td>
+      <td>  741543</td>
+      <td> 165</td>
+      <td> 1078008948</td>
+    </tr>
+    <tr>
+      <th>126  </th>
+      <td>                                       Toy Story 3</td>
+      <td> 2010</td>
+      <td>  348502</td>
+      <td> 103</td>
+      <td> 1063171911</td>
+    </tr>
+    <tr>
+      <th>347  </th>
+      <td>       Pirates of the Caribbean: On Stranger Tides</td>
+      <td> 2011</td>
+      <td>  253863</td>
+      <td> 136</td>
+      <td> 1043871802</td>
+    </tr>
+    <tr>
+      <th>518  </th>
+      <td>                               Alice in Wonderland</td>
+      <td> 2010</td>
+      <td>  224651</td>
+      <td> 108</td>
+      <td> 1024299904</td>
+    </tr>
+    <tr>
+      <th>1    </th>
+      <td>                                   The Dark Knight</td>
+      <td> 2008</td>
+      <td> 1125214</td>
+      <td> 152</td>
+      <td> 1004558444</td>
+    </tr>
+    <tr>
+      <th>97   </th>
+      <td>                                     The Lion King</td>
+      <td> 1994</td>
+      <td>  397397</td>
+      <td>  89</td>
+      <td>  951583777</td>
+    </tr>
+    <tr>
+      <th>346  </th>
+      <td>         Harry Potter and the Order of the Phoenix</td>
+      <td> 2007</td>
+      <td>  256564</td>
+      <td> 138</td>
+      <td>  939885929</td>
+    </tr>
+    <tr>
+      <th>511  </th>
+      <td>            Harry Potter and the Half-Blood Prince</td>
+      <td> 2009</td>
+      <td>  225700</td>
+      <td> 153</td>
+      <td>  934416487</td>
+    </tr>
+    <tr>
+      <th>10   </th>
+      <td>             The Lord of the Rings: The Two Towers</td>
+      <td> 2002</td>
+      <td>  745191</td>
+      <td> 179</td>
+      <td>  926047111</td>
+    </tr>
+    <tr>
+      <th>78   </th>
+      <td>                                      Finding Nemo</td>
+      <td> 2003</td>
+      <td>  441598</td>
+      <td> 100</td>
+      <td>  921111197</td>
+    </tr>
+    <tr>
+      <th>589  </th>
+      <td>                                           Shrek 2</td>
+      <td> 2004</td>
+      <td>  222822</td>
+      <td>  93</td>
+      <td>  919838758</td>
+    </tr>
+    <tr>
+      <th>117  </th>
+      <td>                                     Jurassic Park</td>
+      <td> 1993</td>
+      <td>  368791</td>
+      <td> 127</td>
+      <td>  914691118</td>
+    </tr>
+    <tr>
+      <th>297  </th>
+      <td>               Harry Potter and the Goblet of Fire</td>
+      <td> 2005</td>
+      <td>  278378</td>
+      <td> 157</td>
+      <td>  896911078</td>
+    </tr>
+    <tr>
+      <th>343  </th>
+      <td>                                      Spider-Man 3</td>
+      <td> 2007</td>
+      <td>  258922</td>
+      <td> 139</td>
+      <td>  890871626</td>
+    </tr>
+    <tr>
+      <th>1717 </th>
+      <td>                    Ice Age: Dawn of the Dinosaurs</td>
+      <td> 2009</td>
+      <td>  110923</td>
+      <td>  94</td>
+      <td>  886686817</td>
+    </tr>
+    <tr>
+      <th>290  </th>
+      <td>           Harry Potter and the Chamber of Secrets</td>
+      <td> 2002</td>
+      <td>  281240</td>
+      <td> 161</td>
+      <td>  878979634</td>
+    </tr>
+    <tr>
+      <th>5    </th>
+      <td> The Lord of the Rings: The Fellowship of the Ring</td>
+      <td> 2001</td>
+      <td>  855325</td>
+      <td> 178</td>
+      <td>  871530324</td>
+    </tr>
+    <tr>
+      <th>2052 </th>
+      <td>                        Ice Age: Continental Drift</td>
+      <td> 2012</td>
+      <td>   93462</td>
+      <td>  88</td>
+      <td>  867291788</td>
+    </tr>
+    <tr>
+      <th>405  </th>
+      <td>               Transformers: Revenge of the Fallen</td>
+      <td> 2009</td>
+      <td>  235270</td>
+      <td> 150</td>
+      <td>  836303693</td>
+    </tr>
+    <tr>
+      <th>2    </th>
+      <td>                                         Inception</td>
+      <td> 2010</td>
+      <td>  920345</td>
+      <td> 148</td>
+      <td>  825532764</td>
+    </tr>
+    <tr>
+      <th>101  </th>
+      <td>                                        Spider-Man</td>
+      <td> 2002</td>
+      <td>  381851</td>
+      <td> 121</td>
+      <td>  821708551</td>
+    </tr>
+    <tr>
+      <th>207  </th>
+      <td>                                  Independence Day</td>
+      <td> 1996</td>
+      <td>  322696</td>
+      <td> 145</td>
+      <td>  817400891</td>
+    </tr>
+    <tr>
+      <th>1206 </th>
+      <td>                                   Shrek the Third</td>
+      <td> 2007</td>
+      <td>  151183</td>
+      <td>  93</td>
+      <td>  798958162</td>
+    </tr>
+    <tr>
+      <th>307  </th>
+      <td>          Harry Potter and the Prisoner of Azkaban</td>
+      <td> 2004</td>
+      <td>  273828</td>
+      <td> 142</td>
+      <td>  796688549</td>
+    </tr>
+    <tr>
+      <th>614  </th>
+      <td>                        E.T. the Extra-Terrestrial</td>
+      <td> 1982</td>
+      <td>  215698</td>
+      <td> 115</td>
+      <td>  792910554</td>
+    </tr>
+    <tr>
+      <th>359  </th>
+      <td> Indiana Jones and the Kingdom of the Crystal S...</td>
+      <td> 2008</td>
+      <td>  251788</td>
+      <td> 122</td>
+      <td>  786636033</td>
+    </tr>
+    <tr>
+      <th>311  </th>
+      <td>                                      Spider-Man 2</td>
+      <td> 2004</td>
+      <td>  270884</td>
+      <td> 127</td>
+      <td>  783766341</td>
+    </tr>
+    <tr>
+      <th>711  </th>
+      <td>                                              2012</td>
+      <td> 2009</td>
+      <td>  208295</td>
+      <td> 158</td>
+      <td>  769679473</td>
+    </tr>
+    <tr>
+      <th>489  </th>
+      <td>                                 The Da Vinci Code</td>
+      <td> 2006</td>
+      <td>  233755</td>
+      <td> 149</td>
+      <td>  758239851</td>
+    </tr>
+    <tr>
+      <th>1995 </th>
+      <td>                               Shrek Forever After</td>
+      <td> 2010</td>
+      <td>   97772</td>
+      <td>  93</td>
+      <td>  752600867</td>
+    </tr>
+    <tr>
+      <th>280  </th>
+      <td>                            The Amazing Spider-Man</td>
+      <td> 2012</td>
+      <td>  289873</td>
+      <td> 136</td>
+      <td>  752216557</td>
+    </tr>
+    <tr>
+      <th>195  </th>
+      <td>                               The Matrix Reloaded</td>
+      <td> 2003</td>
+      <td>  328390</td>
+      <td> 138</td>
+      <td>  742128461</td>
+    </tr>
+    <tr>
+      <th>87   </th>
+      <td>                                                Up</td>
+      <td> 2009</td>
+      <td>  415780</td>
+      <td>  96</td>
+      <td>  731342744</td>
+    </tr>
+    <tr>
+      <th>99   </th>
+      <td>                                      Transformers</td>
+      <td> 2007</td>
+      <td>  391983</td>
+      <td> 144</td>
+      <td>  709709780</td>
+    </tr>
+    <tr>
+      <th>1284 </th>
+      <td>         The Twilight Saga: Breaking Dawn - Part 1</td>
+      <td> 2011</td>
+      <td>  140406</td>
+      <td> 117</td>
+      <td>  705058657</td>
+    </tr>
+    <tr>
+      <th>56012</th>
+      <td>                                           Eclipse</td>
+      <td> 1994</td>
+      <td>     158</td>
+      <td>  95</td>
+      <td>  698491347</td>
+    </tr>
+    <tr>
+      <th>73   </th>
+      <td>                                  The Hunger Games</td>
+      <td> 2012</td>
+      <td>  462642</td>
+      <td> 142</td>
+      <td>  686533290</td>
+    </tr>
+    <tr>
+      <th>9    </th>
+      <td>                                      Forrest Gump</td>
+      <td> 1994</td>
+      <td>  780099</td>
+      <td> 142</td>
+      <td>  677387716</td>
+    </tr>
+    <tr>
+      <th>57   </th>
+      <td>                                   The Sixth Sense</td>
+      <td> 1999</td>
+      <td>  508059</td>
+      <td> 107</td>
+      <td>  672806292</td>
+    </tr>
+    <tr>
+      <th>1390 </th>
+      <td>                             Ice Age: The Meltdown</td>
+      <td> 2006</td>
+      <td>  129198</td>
+      <td>  91</td>
+      <td>  655388158</td>
+    </tr>
+    <tr>
+      <th>37   </th>
+      <td> Pirates of the Caribbean: The Curse of the Bla...</td>
+      <td> 2003</td>
+      <td>  561949</td>
+      <td> 143</td>
+      <td>  654264015</td>
+    </tr>
+    <tr>
+      <th>720  </th>
+      <td>                                     Kung Fu Panda</td>
+      <td> 2008</td>
+      <td>  206422</td>
+      <td>  90</td>
+      <td>  631744560</td>
+    </tr>
+    <tr>
+      <th>183  </th>
+      <td>                                   The Incredibles</td>
+      <td> 2004</td>
+      <td>  332844</td>
+      <td> 115</td>
+      <td>  631442092</td>
+    </tr>
+    <tr>
+      <th>801  </th>
+      <td>                                         Fast Five</td>
+      <td> 2011</td>
+      <td>  200568</td>
+      <td> 130</td>
+      <td>  626100000</td>
+    </tr>
+    <tr>
+      <th>503  </th>
+      <td>                                           Hancock</td>
+      <td> 2008</td>
+      <td>  228501</td>
+      <td>  92</td>
+      <td>  624386746</td>
+    </tr>
+    <tr>
+      <th>880  </th>
+      <td>                                    Men in Black 3</td>
+      <td> 2012</td>
+      <td>  187247</td>
+      <td> 106</td>
+      <td>  624026776</td>
+    </tr>
+    <tr>
+      <th>194  </th>
+      <td>                                        Iron Man 2</td>
+      <td> 2010</td>
+      <td>  329240</td>
+      <td> 124</td>
+      <td>  623933331</td>
+    </tr>
+    <tr>
+      <th>171  </th>
+      <td>                                       Ratatouille</td>
+      <td> 2007</td>
+      <td>  336359</td>
+      <td> 111</td>
+      <td>  623722818</td>
+    </tr>
+    <tr>
+      <th>904  </th>
+      <td>                     The Lost World: Jurassic Park</td>
+      <td> 1997</td>
+      <td>  184609</td>
+      <td> 129</td>
+      <td>  618638999</td>
+    </tr>
+    <tr>
+      <th>1215 </th>
+      <td>                         The Passion of the Christ</td>
+      <td> 2004</td>
+      <td>  149932</td>
+      <td> 127</td>
+      <td>  611899420</td>
+    </tr>
+    <tr>
+      <th>1839 </th>
+      <td>                                        Mamma Mia!</td>
+      <td> 2008</td>
+      <td>  104405</td>
+      <td> 108</td>
+      <td>  609841637</td>
+    </tr>
+    <tr>
+      <th>2024 </th>
+      <td>                       Madagascar: Escape 2 Africa</td>
+      <td> 2008</td>
+      <td>   94291</td>
+      <td>  89</td>
+      <td>  602308178</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="what-is-next"&gt;What is next?&lt;/h3&gt;
-&lt;p&gt;This post will be the last post in this series for some time. If I could aggregate some more information from different sources, I will look at different aspects of movies. However, I do not have that data, at least yet. Stay tuned, though.&lt;/p&gt;
-&lt;/div&gt;</summary></entry><entry><title>Cultural Data Project Part 1</title><link href="http://bugra.github.io/work/notes/2014-02-01/cultural-data-project-part-1/" rel="alternate"></link><updated>2014-02-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-01:work/notes/2014-02-01/cultural-data-project-part-1/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Data is from &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better
-understanding, I seggregated the data by organization type. There are
-total 48 different organization types. Data follows &lt;a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf"&gt;data profile&lt;/a&gt; structure
-and I grouped organizations into 6 different subsections;
-employment statistics, their activities, pricing, website activity,
-attendance and finally number of contributors. Before looking at the
-distribution of the above metrics, let's look at when organizations are
-founded. The first cultural organization dates go back to 1636 according
-to data and youngest one seems to be 2012.
-&lt;img alt="Foundation Year of Organizations" src="/images/work/notes/2014/2/1/year_founded.png" title="Foundation Year" /&gt;
-Mean year is approximately 1975 and median year is 1984. The width of
-the plot shows the number of organizations that are founded in a year
-shown in the y axis. Most of the organizations are founded between 1950
-and 2000 where around 2000, it reaches its peak. This could also be
-observed from the difference in median and mean year.  &lt;/p&gt;
-&lt;p&gt;Unless, it is stated otherwise, every subsection will give the mean,
-median and sum statistics of the variables. The reason why three graphs
-are provided is because some of the organizations are quite large in
-terms of revenue, human resources and other metrics. As you will see
-later, these companies' metrics dominate other companies; sum and mean
-of those sections mostly reflect their statistics ignoring other
-organizations. Median provides a nice solution for this type of
-statistics as it is a metric which is quite robust to &lt;strong&gt;outliers&lt;/strong&gt;. Mean
-and sum statistics are provided as they are also very useful to
-summarize the data when there are not outliers or small number of
-outliers.&lt;/p&gt;
-&lt;p&gt;Organization types are sorted by alphabetical order so the &lt;em&gt;None of the
-Above&lt;/em&gt; should change &lt;em&gt;None of anything else&lt;/em&gt;.&lt;/p&gt;
-&lt;h2&gt;Employment&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Employment Mean grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_mean.png" title="Employment Mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Employment Median grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_median.png" title="Employment Median grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Employment Sum grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_sum.png" title="Employment Sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h2&gt;Activity&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Activity Types Mean grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_mean.png" title="Activity Types Mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Activity Types Median grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_median.png" title="Activity Types Median grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Activity Types Sum grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Activity Types Sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h2&gt;Pricing&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Pricing Mean grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_mean.png" title="Pricing Mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Pricing Median grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_median.png" title="Pricing Median grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Pricing Sum grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_sum.png" title="Pricing sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h2&gt;Web Activity&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Activity Mean grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_mean.png" title="Web Activity Mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Activity Median grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_median.png" title="Web Activity sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Activity Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_sum.png" title="Web Activity sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h2&gt;Web Income&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Income mean grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_mean.png" title="Web Income mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Income Median grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_median.png" title="Web Income median grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Income Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_sum.png" title="Web Income sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h2&gt;Attendance&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Attendance Mean grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_mean.png" title="Attendance mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Attendance Median grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_median.png" title="Attendance median grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Attendance Sum grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_sum.png" title="Attendance sum grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h2&gt;Number of Contributors&lt;/h2&gt;
-&lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Contributor Mean grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_mean.png" title="Contributor mean grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Contributor Median grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_median.png" title="Contributor median grouped by Institution" /&gt;&lt;/p&gt;
-&lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Contributor Sum grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_sum.png" title="Contributor sum grouped by Institution" /&gt;&lt;/p&gt;</summary></entry><entry><title>Phase Detection in Digital Signals</title><link href="http://bugra.github.io/work/notes/2012-09-01/Phase-Detection/" rel="alternate"></link><updated>2012-09-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-09-01:work/notes/2012-09-01/Phase-Detection/</id><summary type="html">&lt;p&gt;Phase Detection is an important concept in radar signals. It could be used to determine the time delay between radar signals and this time delay could be used to infer the distance of the object from the radar, which is the main aim of the radar. Even if it is assumed that transmitted signal and received signal should be same, there occurs to be noise.
-I was assigned to implement phase detection for FPGA's for my internship in Summer 2010 as they are used for radar signal processing. They can do complex and real-time processing, are cheaper than computers, portable, low power consumers.
-However, I did not go into implementation directly. I need a simulation which would yield promising results. Then, I could implement in VHDL. I chose Matlab and implemented three different methods. (This would decrease to two in VHDL).
-I will compare these methods as well, but it cannot be deduced that some method &lt;em&gt;always&lt;/em&gt; or even usually perform better than some other method based on the results provided. There are a numerous reasons, but I will just mention few of them. Firstly, this is just a &lt;strong&gt;simulation&lt;/strong&gt; after all. Secondly, the simulation takes into consideration only one of the signal is noisy(received), which may not hold true in general. Moreover, there are constant parameters which may favor some method over other ones.
-Before giving details of the methods, I am urged to mention an important concept that two methods use, Schmitt Trigger.&lt;/p&gt;
-&lt;h3&gt;Schmitt Trigger&lt;/h3&gt;
-&lt;p&gt;Schmitt Trigger is a comparator with two different threshold values. When the signal goes over &lt;strong&gt;High Threshold&lt;/strong&gt;, it yields 1(HIGH). It remains 1 until signal goes below &lt;strong&gt;Low Threshold&lt;/strong&gt;, it yields 0. It remains 0, until signal goes over ...  as it could be seen the figure below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger" /&gt;&lt;/p&gt;
-&lt;p&gt;In analog implementation of Schmitt Trigger, there is a feedback mechanism which uses hysteresis to adjust its threshold values. In this implementation, they are constant. Schmitt Trigger is used to prevent noise when analogous signal is transformed into a digital(binary) one. It prevents oscillation in the binary signal which is convenient and makes the binary signal robust to noise. Consider the figure below, A is a basic comparator. B is a Schmitt Trigger. Any fluctuation in the border of A resultss in oscillation in the digital signal. This is the general case for noisy signals. However, fluctuations in border B does not change digital signal since digital signal needs to wait for &lt;em&gt;high threshold&lt;/em&gt; value or &lt;em&gt;low threshold&lt;/em&gt; value to change.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger" /&gt;&lt;/p&gt;
-&lt;p&gt;It is important to note that if noise level is higher than the difference of two thresholds, schmitt trigger does not provide robustness to noise. It is still better than a basic comparator, though. Therefore, noise level should be taken into consideration when setting up the threshold values.&lt;/p&gt;
-&lt;h2&gt;PulseLag Method&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals" /&gt;&lt;/p&gt;
-&lt;p&gt;In this method, we multiply both signals $ f_c $ with another sinusoid, but a lower frequency $ f_{down} $  Then, low-pass filter this signal in order to get low frequency part.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals" /&gt;&lt;/p&gt;
-&lt;p&gt;After filtering the signal, we put it into Schmitt Trigger. Then, we get their difference which also gives time delay.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals" /&gt;&lt;/p&gt;
-&lt;p&gt;We need the ratio of the (number of times first signal is 1 and second signal is 0) over the total time. Then, we need to divide this ratio to $ f_c $ to find time delay.
-I apply 0.5 nanosecond delay in the signal and it will be constant for the other methods as well, for noiseless case method measures  4.5714e-10. For noise coefficient = 0.1, method measures  5.1429e-10. For noise coefficient = 0.2, method measures  8.0000e-10, which is not even close.
-Even if noiseless and when noise is small, this method performs well, for noisy cases, it is not robust to noise.&lt;/p&gt;
-&lt;h2&gt;Multiplication Method&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals" /&gt;
-If we multiply two signals with each other, we have a high pass term and a phase term if they have both the same frequency.(noiseless case)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal" /&gt;
-If we get inverse sin or cosine of the multiplied signal&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png" title=" Inverse of Filtered Multiplied Signal" /&gt;
-and take mean of the signal(after some heuristics), divide by $2 * \pi * f_c$, then we get a time delay.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal" /&gt;&lt;/p&gt;
-&lt;p&gt;For noiseless case method measures 4.9639e-10 which is quite close. For noise coefficient = 0.1, method measures  4.6909e-10. For noise coefficient = 0.2, method measures 5.8330e-10, which is quite close for such a high noise.&lt;/p&gt;
-&lt;h2&gt;FFT-Based Method&lt;/h2&gt;
-&lt;p&gt;FFT can be written in a Discrete Fourier Transform:
-$$ X[k] = \sum_{n=0}^{N-1} x[n] e^{\frac{-j 2 \pi n k}{N}} = A_k e^{j \phi_k} $$
-and
-$$ x[n] \leftrightarrow X[k]  $$
-$$ x[n-D] \leftrightarrow e^{\frac{-j2 \pi k D}{N}}X[k] $$
-It is important to note, in the magnitude response, the phase $e^{\frac{-j2 \pi k D}{N}}$ will be one. Therefore, it will not affect the magnitude response.
-Since we send periodic signals, the maximum of frequency response will occur at the dominant frequency which is the period of the signal. As the magnitude response will be same, we could just take the phase response of the same index in FFT to find the phase information between the signals.
-Original and delayed signal(0.5e-9) signals are given below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal" /&gt;&lt;/p&gt;
-&lt;p&gt;Magnitude response of the signals are given below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals" /&gt;&lt;/p&gt;
-&lt;p&gt;Phase response of the signals:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT" /&gt;&lt;/p&gt;
-&lt;p&gt;When we take the phases of the both signals and subtract, we get the phase difference. Time delay is only the ratio of phase difference over $ 2 * pi * fc $.
-For noiseless case method measures 4.9656e-10 which is quite close. For noise coefficient = 0.1, method measures  5.1161e-10. For noise coefficient = 0.2, method measures 3.9221e-10, which is not very close.&lt;/p&gt;
-&lt;h3&gt;Result&lt;/h3&gt;
-&lt;p&gt;For noiseless case, all of the methods perform quite well. For medium noise(n = 0.1), FFT-Based and PulseLag method; for high noise, Multiplication method performs better.&lt;/p&gt;
-&lt;h3&gt;Code&lt;/h3&gt;
-&lt;p&gt;All of the code and images used in this note is available in the &lt;a href="https://github.com/bugra/Phase-Detection" title="Phase-Detection-Matlab"&gt;here&lt;/a&gt;.
-Moreover, implementation of Multiplication and FFT-Based method in VHDL is also available in &lt;a href="https://github.com/bugra/Phase-Detection-VHDL" title="Phase-Detection-VHDL"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary></entry></feed>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="what-is-next">What is next?</h3>
+<p>This post will be the last post in this series for some time. If I could aggregate some more information from different sources, I will look at different aspects of movies. However, I do not have that data, at least yet. Stay tuned, though.</p>
+</div>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url=work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/ data-via="bugraa" data-lang="en">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2014-03-01T00:00:00">
+                            March 01, 2014
+                        </time>
+                    </i>
+                </li>
+                <li>
+                    <a id="comments-button" href="#disqus_thread">Show/read comments</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+(function () {
+
+    'use strict';
+
+    // Global object
+    var App = {};
+
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+
+        // Append container to body
+        document.body.appendChild( App.disqusContainer );
+
+        // Your Disqus shortname
+        App.disqus_shortname = 'bugra';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+
+})();
+</script>
+
+      </div>
+    </div>
+  </div>
+      <script src="/theme/js/logo.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'ua.eb0@du3n8y', [13,2,10,11,1,5,6,12,9,4,7,3,8]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>
