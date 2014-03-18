@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+  <div id="logo"><a href="/" class="at"></a></div>
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling</h1>
+        </header>
+        <div class='post-content'>
+            <h3>Bag of Words (BoW)</h3>
+<p>In text search and classification of text, word order contributes 
+less to the search result or document classification unless it is part of 
+a phrase. Therefore, it is a common practice to use the frequency
+of occurrence of words sacrificing the word order which is known as "bag
+of words". In this document representation method, document is converted
+to vectors by simply counting number of occurrence of words. For
+example, the following two sentences would have the same vector
+representation:
+"I am who I become" and "I become who I am"
+as the frequency of occurrence of words are same even though the word
+order is different. The rationality behind of this document
+representation is that, the presence and count of words do matter more
+than the word sequence in a sentence for classification. In practice,
+this representation is "lingua franca" along with tf-idf representation.</p>
+<h4>Corpus</h4>
+<p>In BoW setup, corpus corresponds to the distinct number of words that covers all of the documents that we have in our dataset.</p>
+<h4>Stop Words</h4>
+<p>Words that do not contribute to the distinctiveness of either class.
+They could occur quite a lot like (e.g. I, am, you, they) or occur
+infrequently. The ones that occur a lot may prevent the vectors to
+weight to the words that are distinct for particular class. The ones
+that occur infrequently prevents us to represent the documents
+efficiently and compactly as they make quite long corpus vectors.
+Therefore, for text classification, we want to remove both the words
+that occur infrequently and the words that occur a lot but do not
+contribute to the distinctiveness of either class. A very useful
+heuristics for these words are the most common (5% of the words that
+occur most) and the least common(5-10% of the words that occur least in
+the entire corpus). After removing these words, we would have a better
+corpus and hopefully better vector representation for the documents for
+each class. Note that, for a given dataset, due to nature of natural
+language, the distribution of a typical corpus follows long tail
+distribution. Therefore, even if the least common words would contribute
+to the distinctiveness of the classes, there may be trade-off where we
+gain some "information" incorporating the least common words and lose
+the compactness of vector representation.(This brings <strong>curse of
+dimensionality</strong> problem which we would try to resolve by bringing a
+dimensionality reduction method to the table.)</p>
+<p>After explanation of terms, let us give some concrete examples to
+explain how this actually works:
+consider following three sentences:</p>
+<ol>
+<li>I am who I become</li>
+<li>I become who I am</li>
+<li>Who am I?</li>
+</ol>
+<p>Ignoring the punctuation and uppercase, we have the following corpus for
+these three sentences:
+['am', 'become', 'i', 'who'] <br />
+(note that the words are sorted by alphabetical order) Quite a large corpus!
+Then the bag of words representation for the sentences are the
+following:</p>
+<ol>
+<li>[1, 1, 2, 1]</li>
+<li>[1, 1, 2, 1]</li>
+<li>[1, 0, 1, 1]</li>
+</ol>
+<p>As previously mentioned, the first and second sentences would result in
+the same bag of words representation even if the sentences are
+different. One thing to note is that since the corpus is unrealistically
+small, we did not stop any words but normally the contribution of
+auxiliarry verbs and subject pronouns  is minimal, so it is common
+practice to remove them alltogether. The default keyword list generally
+includes these type of words independent from the domain for the
+documents.</p>
+<p>It is easy to see that all of the documents would have the length of the
+corpus where the word "distribution" of the sentences would differ if
+the sentences are different(ignoring word order). 
+This is all good but as we have previously mentioned, this brings dimensionality problems and lose the vector representation's efficiency and accuracy. 
+This is due to the nature of bag of words representation, as all of the word frequency counts toward the vector, some of the not very informative words may overcome to the words that provides distinct character to the documents in a
+classification perspective. In order to prevent this, we may want to use
+a dimensionality reduction method. If the method preserves the relative
+distance of individual vectors in euclidean space, then we not only gain
+in terms of efficiency of the representation but also prevent curse of
+dimensionality and a better document representation! But taking a step
+back, how do measure the "distance" between two documents? Let's revisit
+an information theory measure for comparison of two probability
+distribution, namely K-L Divergence.</p>
+<h2>Kullback-Leibler Divergence</h2>
+<p>K-L divergence is a measure of the difference of two probability distributions, which is a special case of Bregman Divergence. For formal definition, if we have $p$ and $q$ discrete probability distributions, then the k-l divergence of these two distributions is defined as such:
+$$ D_{KL}(p|q) = \displaystyle\sum_i ln(\frac{p(i)}{q(i)}) \hspace{2 mm} p(i) $$ 
+Needless to say, this measure is not symmetric and is defined only $p$
+and $q$ sum to 1 for all possible $i$ values. Moreover, for a particular
+$i$, being $q(i)=0$ implies $p(i)$ to be $0$ as well, otherwise the whole
+term would be undefined. Adopting this measure into our bag of words
+representation to measure sentence difference brings us two problems.
+First, we only have the counts of the words that occur in sentence, not
+the distribution. Second, as sentences are only a small part of corpus,
+there will be lots of $0$'s in the vector representation(would be a sparse
+vector). In order to mitigate the first problem, we could divide the
+counts of words in the vector by the total sum of the word count. By
+doing so, we also make sure that we have two vectors whose values sum up
+to 1. But second one is the hard one, how do we fill the 0's? Luckily,
+this problem also comes up with in different domains and we have a
+solution: <em>smoothing</em>. There are a number of smoothing algorithms, but the
+one that I used is Laplace Smoothing(also called Additive Smoothing) which I will explain in the next section. </p>
+<p>As mentioned before, this measure is not symmetric, but note that it is not
+related to bag of words representation per se, so we will provide
+another remedy for that after introducing the smoothing.</p>
+<h3>Laplace Smoothing</h3>
+<p>Behind of smoothing the distributions is to remove the $0$'s from the
+distribution by introducing small amount of factor so that they will not 
+be $0$ but also they will not have a large share in overall distribution. 
+By doing so, we would mitigate the implausibility of $0$'s with very
+small cost. Formally Laplace Smoothing is applied to distribution $p$ as
+such:
+$$ \hat{p_i} = \frac{p_i + \alpha}{1 + \alpha N} \hspace{5 mm} (i=1, \ldots, N) $$ where $\alpha$ is the smoothing parameter and $N$ is the number of discrete terms in the distribution.  </p>
+<blockquote>
+<p>Note that without $\alpha$, $\hat{p_i}$ is $p_i$ as expected and
+adding $\alpha$ for every parameter would not change the sum of the
+distribution as in the denominator, we divide by $1 + \alpha N$.</p>
+</blockquote>
+<p>Very well, we removed our $0$'s and have "smooth" distributions. However, 
+what kind of measure is this K-L divergence if it is not symmetric? 
+Think about it one second, difference between sentence A and sentence B 
+would be different than difference between sentence B and sentence A. How
+ridiculuous is that! Luckily, we have a solution based on K-L
+divergence; Jensen Shannon Divergence which will be explained in the
+next section:</p>
+<h2>Jensen-Shannon Divergence</h2>
+<p>J-S Divergence builds itself on top of K-L divergence promising it is
+symmetric; which is nice and quite popular measure of two probability
+distributions. Formally it is defined for $p$ and $q$ distributions as
+such:
+$$ D_{JS}(p|q) = D_{JS}(q|p) = \frac{1}{2} D_{KL}(p|r) + \frac{1}{2} D_{KL}(q|r) $$
+where $r = \frac{1}{2} (p+q)$.<br />
+Instead of going through getting K-L divergence of individual
+distribution, J-S does this using a mixture distribution of $r$. Quite
+smart, huh? By doing so, it ensures that it is symmetric and nice measure for probability distribution differences.  </p>
+<h4>J-S Matrix</h4>
+<p>Say we have $N$ documents and we constructed our J-S matrix using J-S
+Divergence for each pair of smoothed bag of words of documents. This
+would result in $NxM$ matrix where the $M$ is the size of our corpus as
+every document is represented $1xM$ vectors. This matrix representation
+would not solve our curse of dimensionality problem. So, let us
+introduce a dimensionality reduction method(among many others);
+Multidimensional Scaling.</p>
+<h2>Multidimensional Scaling (MDS)</h2>
+<p>Over-simplified idea behind MDS is that if we could find an embedding
+which has a significantly lower dimension for high dimension space and
+preserve the distance between observation pairs, we do not lose much in
+relative sense since we are keeping the distance between the pairs.
+Further, we both reduce dimensionality quite a lot and preserve the relative
+distance to each other. This is somehow different than traditional
+dimensionality reduction methods where they they generally scale
+individual observations or all of the observations altogether. MDS seeks
+to fit a lower embedding for observation pairs. Since the J-S divergence 
+deals with document pairs, J-S Divergence matrix could be considered as a
+dissimilarity matrix for the documents in that sense. Therefore, it is 
+a perfect fit for MDS as MDS also tries to reduce the dimensionality of 
+J-S measure between two documents. We want to find 2-dimension lower 
+embedding in order to visualize the documents in a scatter plot but 
+1-dimension works as well as any number of dimension could be used for MDS. 
+Formally, loss function of MDS is defined as following:
+$$ Loss_{x_1, \ldots, x_n} = (\displaystyle\sum_{i\neq j=1, \ldots, N} (D_{i,j} - \lVert x_i - x_j \rVert)^2)^{\frac{1}{2}}  $$ where $D$ is the dissimilarity matrix $Nxk$ where $N$ is the number of observations and $k$ is the dimension of the original space. We are not going to show how the minimization works, but for a lower embedding(say 2), the minimization function could be optimized through gradient descent.  </p>
+<h3>Result</h3>
+<p>After we apply MDS to our J-S divergence matrix, we get $x$-$y$ pair of
+coordinates of each document and it looks like the following(for a
+selected documents):
+<img alt="J-S Matrix of Documents with MDS" src="/images/work/notes/2014/3/16/documents_mds.png" title="Document Visualization on J-S Divergence Matrix and MultiDimensional Scaling" />
+<a href="/images/work/notes/2014/3/16/documents_mds.png">Original Image(Larger version)</a><br />
+Data is from Yelp's reviews of restaurantts and first three sentences are negative and mention about how disappointing their experience was with restaurant. The rest of them are generally positive and even if their experience may include some negativity, their overall experience is quite positive.<br />
+As you could see from the scatter plot, the grouping of these two
+different class are somehow separate even though the documents are quite
+short and overall corpus is only 8 sentences.  </p>
+<h3>Possible Improvement</h3>
+<p>We talked about stop words but curating stop words is manual and
+laborious work. Further, it generally evolves to be domain specific as
+you incorporate more and more stop words. Instead of using stopwords,
+one may choose feature selection methods to choose the words from either
+classification accuracy or some information theory measure from the
+training dataset. This not only eliminates the stop words curation step
+alltogether but also increase the efficiency and compactness of the bag
+of words representation. As a result of this, when some dimensionality
+reduction method is applied to the vectors, they would position
+themselves better. </p>
+<h3>What is next?</h3>
+<p>An interactive app that allows user to type text and then visualize
+every sentence in a scatter plot. I have a working version of this, but
+it needs some polishing. </p>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" i
+              class="twitter-share-button"
+              data-url=work/notes/2014-03-16/jensen-shannon-divergence-matrix-multi-dimensional-scaling/
+              data-via="bugraa">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button_count"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2014-03-16T00:00:00">
+                            March 16, 2014
+                        </time>
+                    </i>
+                </li>
+                <li>
+                    <a id="comments-button" href="#disqus_thread">Show/read comments</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+(function () {
+
+    'use strict';
+
+    // Global object
+    var App = {};
+
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+
+        // Append container to body
+        document.body.appendChild( App.disqusContainer );
+
+        // Your Disqus shortname
+        App.disqus_shortname = 'bugra';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+
+})();
+</script>
+
+      </div>
+    </div>
+  </div>
+      <script src="/theme/js/logo.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'ua.eb0@du3n8y', [13,2,10,11,1,5,6,12,9,4,7,3,8]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>

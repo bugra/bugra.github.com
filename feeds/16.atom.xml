@@ -1,5 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/16.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2012-06-16T00:00:00+00:00</updated><entry><title>MongoDB Notes</title><link href="http://bugra.github.io/work/notes/2012-06-16/MongoDB-Notes/" rel="alternate"></link><updated>2012-06-16T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-06-16:work/notes/2012-06-16/MongoDB-Notes/</id><summary type="html">&lt;p&gt;Some Properties:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/16.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-03-16T00:00:00+00:00</updated><entry><title>Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling</title><link href="http://bugra.github.io/work/notes/2014-03-16/jensen-shannon-divergence-matrix-multi-dimensional-scaling/" rel="alternate"></link><updated>2014-03-16T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-16:work/notes/2014-03-16/jensen-shannon-divergence-matrix-multi-dimensional-scaling/</id><summary type="html">&lt;h3&gt;Bag of Words (BoW)&lt;/h3&gt;
+&lt;p&gt;In text search and classification of text, word order contributes 
+less to the search result or document classification unless it is part of 
+a phrase. Therefore, it is a common practice to use the frequency
+of occurrence of words sacrificing the word order which is known as "bag
+of words". In this document representation method, document is converted
+to vectors by simply counting number of occurrence of words. For
+example, the following two sentences would have the same vector
+representation:
+"I am who I become" and "I become who I am"
+as the frequency of occurrence of words are same even though the word
+order is different. The rationality behind of this document
+representation is that, the presence and count of words do matter more
+than the word sequence in a sentence for classification. In practice,
+this representation is "lingua franca" along with tf-idf representation.&lt;/p&gt;
+&lt;h4&gt;Corpus&lt;/h4&gt;
+&lt;p&gt;In BoW setup, corpus corresponds to the distinct number of words that covers all of the documents that we have in our dataset.&lt;/p&gt;
+&lt;h4&gt;Stop Words&lt;/h4&gt;
+&lt;p&gt;Words that do not contribute to the distinctiveness of either class.
+They could occur quite a lot like (e.g. I, am, you, they) or occur
+infrequently. The ones that occur a lot may prevent the vectors to
+weight to the words that are distinct for particular class. The ones
+that occur infrequently prevents us to represent the documents
+efficiently and compactly as they make quite long corpus vectors.
+Therefore, for text classification, we want to remove both the words
+that occur infrequently and the words that occur a lot but do not
+contribute to the distinctiveness of either class. A very useful
+heuristics for these words are the most common (5% of the words that
+occur most) and the least common(5-10% of the words that occur least in
+the entire corpus). After removing these words, we would have a better
+corpus and hopefully better vector representation for the documents for
+each class. Note that, for a given dataset, due to nature of natural
+language, the distribution of a typical corpus follows long tail
+distribution. Therefore, even if the least common words would contribute
+to the distinctiveness of the classes, there may be trade-off where we
+gain some "information" incorporating the least common words and lose
+the compactness of vector representation.(This brings &lt;strong&gt;curse of
+dimensionality&lt;/strong&gt; problem which we would try to resolve by bringing a
+dimensionality reduction method to the table.)&lt;/p&gt;
+&lt;p&gt;After explanation of terms, let us give some concrete examples to
+explain how this actually works:
+consider following three sentences:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I am who I become&lt;/li&gt;
+&lt;li&gt;I become who I am&lt;/li&gt;
+&lt;li&gt;Who am I?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Ignoring the punctuation and uppercase, we have the following corpus for
+these three sentences:
+['am', 'become', 'i', 'who'] &lt;br /&gt;
+(note that the words are sorted by alphabetical order) Quite a large corpus!
+Then the bag of words representation for the sentences are the
+following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;[1, 1, 2, 1]&lt;/li&gt;
+&lt;li&gt;[1, 1, 2, 1]&lt;/li&gt;
+&lt;li&gt;[1, 0, 1, 1]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As previously mentioned, the first and second sentences would result in
+the same bag of words representation even if the sentences are
+different. One thing to note is that since the corpus is unrealistically
+small, we did not stop any words but normally the contribution of
+auxiliarry verbs and subject pronouns  is minimal, so it is common
+practice to remove them alltogether. The default keyword list generally
+includes these type of words independent from the domain for the
+documents.&lt;/p&gt;
+&lt;p&gt;It is easy to see that all of the documents would have the length of the
+corpus where the word "distribution" of the sentences would differ if
+the sentences are different(ignoring word order). 
+This is all good but as we have previously mentioned, this brings dimensionality problems and lose the vector representation's efficiency and accuracy. 
+This is due to the nature of bag of words representation, as all of the word frequency counts toward the vector, some of the not very informative words may overcome to the words that provides distinct character to the documents in a
+classification perspective. In order to prevent this, we may want to use
+a dimensionality reduction method. If the method preserves the relative
+distance of individual vectors in euclidean space, then we not only gain
+in terms of efficiency of the representation but also prevent curse of
+dimensionality and a better document representation! But taking a step
+back, how do measure the "distance" between two documents? Let's revisit
+an information theory measure for comparison of two probability
+distribution, namely K-L Divergence.&lt;/p&gt;
+&lt;h2&gt;Kullback-Leibler Divergence&lt;/h2&gt;
+&lt;p&gt;K-L divergence is a measure of the difference of two probability distributions, which is a special case of Bregman Divergence. For formal definition, if we have $p$ and $q$ discrete probability distributions, then the k-l divergence of these two distributions is defined as such:
+$$ D_{KL}(p|q) = \displaystyle\sum_i ln(\frac{p(i)}{q(i)}) \hspace{2 mm} p(i) $$ 
+Needless to say, this measure is not symmetric and is defined only $p$
+and $q$ sum to 1 for all possible $i$ values. Moreover, for a particular
+$i$, being $q(i)=0$ implies $p(i)$ to be $0$ as well, otherwise the whole
+term would be undefined. Adopting this measure into our bag of words
+representation to measure sentence difference brings us two problems.
+First, we only have the counts of the words that occur in sentence, not
+the distribution. Second, as sentences are only a small part of corpus,
+there will be lots of $0$'s in the vector representation(would be a sparse
+vector). In order to mitigate the first problem, we could divide the
+counts of words in the vector by the total sum of the word count. By
+doing so, we also make sure that we have two vectors whose values sum up
+to 1. But second one is the hard one, how do we fill the 0's? Luckily,
+this problem also comes up with in different domains and we have a
+solution: &lt;em&gt;smoothing&lt;/em&gt;. There are a number of smoothing algorithms, but the
+one that I used is Laplace Smoothing(also called Additive Smoothing) which I will explain in the next section. &lt;/p&gt;
+&lt;p&gt;As mentioned before, this measure is not symmetric, but note that it is not
+related to bag of words representation per se, so we will provide
+another remedy for that after introducing the smoothing.&lt;/p&gt;
+&lt;h3&gt;Laplace Smoothing&lt;/h3&gt;
+&lt;p&gt;Behind of smoothing the distributions is to remove the $0$'s from the
+distribution by introducing small amount of factor so that they will not 
+be $0$ but also they will not have a large share in overall distribution. 
+By doing so, we would mitigate the implausibility of $0$'s with very
+small cost. Formally Laplace Smoothing is applied to distribution $p$ as
+such:
+$$ \hat{p_i} = \frac{p_i + \alpha}{1 + \alpha N} \hspace{5 mm} (i=1, \ldots, N) $$ where $\alpha$ is the smoothing parameter and $N$ is the number of discrete terms in the distribution.  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that without $\alpha$, $\hat{p_i}$ is $p_i$ as expected and
+adding $\alpha$ for every parameter would not change the sum of the
+distribution as in the denominator, we divide by $1 + \alpha N$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Very well, we removed our $0$'s and have "smooth" distributions. However, 
+what kind of measure is this K-L divergence if it is not symmetric? 
+Think about it one second, difference between sentence A and sentence B 
+would be different than difference between sentence B and sentence A. How
+ridiculuous is that! Luckily, we have a solution based on K-L
+divergence; Jensen Shannon Divergence which will be explained in the
+next section:&lt;/p&gt;
+&lt;h2&gt;Jensen-Shannon Divergence&lt;/h2&gt;
+&lt;p&gt;J-S Divergence builds itself on top of K-L divergence promising it is
+symmetric; which is nice and quite popular measure of two probability
+distributions. Formally it is defined for $p$ and $q$ distributions as
+such:
+$$ D_{JS}(p|q) = D_{JS}(q|p) = \frac{1}{2} D_{KL}(p|r) + \frac{1}{2} D_{KL}(q|r) $$
+where $r = \frac{1}{2} (p+q)$.&lt;br /&gt;
+Instead of going through getting K-L divergence of individual
+distribution, J-S does this using a mixture distribution of $r$. Quite
+smart, huh? By doing so, it ensures that it is symmetric and nice measure for probability distribution differences.  &lt;/p&gt;
+&lt;h4&gt;J-S Matrix&lt;/h4&gt;
+&lt;p&gt;Say we have $N$ documents and we constructed our J-S matrix using J-S
+Divergence for each pair of smoothed bag of words of documents. This
+would result in $NxM$ matrix where the $M$ is the size of our corpus as
+every document is represented $1xM$ vectors. This matrix representation
+would not solve our curse of dimensionality problem. So, let us
+introduce a dimensionality reduction method(among many others);
+Multidimensional Scaling.&lt;/p&gt;
+&lt;h2&gt;Multidimensional Scaling (MDS)&lt;/h2&gt;
+&lt;p&gt;Over-simplified idea behind MDS is that if we could find an embedding
+which has a significantly lower dimension for high dimension space and
+preserve the distance between observation pairs, we do not lose much in
+relative sense since we are keeping the distance between the pairs.
+Further, we both reduce dimensionality quite a lot and preserve the relative
+distance to each other. This is somehow different than traditional
+dimensionality reduction methods where they they generally scale
+individual observations or all of the observations altogether. MDS seeks
+to fit a lower embedding for observation pairs. Since the J-S divergence 
+deals with document pairs, J-S Divergence matrix could be considered as a
+dissimilarity matrix for the documents in that sense. Therefore, it is 
+a perfect fit for MDS as MDS also tries to reduce the dimensionality of 
+J-S measure between two documents. We want to find 2-dimension lower 
+embedding in order to visualize the documents in a scatter plot but 
+1-dimension works as well as any number of dimension could be used for MDS. 
+Formally, loss function of MDS is defined as following:
+$$ Loss_{x_1, \ldots, x_n} = (\displaystyle\sum_{i\neq j=1, \ldots, N} (D_{i,j} - \lVert x_i - x_j \rVert)^2)^{\frac{1}{2}}  $$ where $D$ is the dissimilarity matrix $Nxk$ where $N$ is the number of observations and $k$ is the dimension of the original space. We are not going to show how the minimization works, but for a lower embedding(say 2), the minimization function could be optimized through gradient descent.  &lt;/p&gt;
+&lt;h3&gt;Result&lt;/h3&gt;
+&lt;p&gt;After we apply MDS to our J-S divergence matrix, we get $x$-$y$ pair of
+coordinates of each document and it looks like the following(for a
+selected documents):
+&lt;img alt="J-S Matrix of Documents with MDS" src="/images/work/notes/2014/3/16/documents_mds.png" title="Document Visualization on J-S Divergence Matrix and MultiDimensional Scaling" /&gt;
+&lt;a href="/images/work/notes/2014/3/16/documents_mds.png"&gt;Original Image(Larger version)&lt;/a&gt;&lt;br /&gt;
+Data is from Yelp's reviews of restaurantts and first three sentences are negative and mention about how disappointing their experience was with restaurant. The rest of them are generally positive and even if their experience may include some negativity, their overall experience is quite positive.&lt;br /&gt;
+As you could see from the scatter plot, the grouping of these two
+different class are somehow separate even though the documents are quite
+short and overall corpus is only 8 sentences.  &lt;/p&gt;
+&lt;h3&gt;Possible Improvement&lt;/h3&gt;
+&lt;p&gt;We talked about stop words but curating stop words is manual and
+laborious work. Further, it generally evolves to be domain specific as
+you incorporate more and more stop words. Instead of using stopwords,
+one may choose feature selection methods to choose the words from either
+classification accuracy or some information theory measure from the
+training dataset. This not only eliminates the stop words curation step
+alltogether but also increase the efficiency and compactness of the bag
+of words representation. As a result of this, when some dimensionality
+reduction method is applied to the vectors, they would position
+themselves better. &lt;/p&gt;
+&lt;h3&gt;What is next?&lt;/h3&gt;
+&lt;p&gt;An interactive app that allows user to type text and then visualize
+every sentence in a scatter plot. I have a working version of this, but
+it needs some polishing. &lt;/p&gt;</summary></entry><entry><title>MongoDB Notes</title><link href="http://bugra.github.io/work/notes/2012-06-16/MongoDB-Notes/" rel="alternate"></link><updated>2012-06-16T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-06-16:work/notes/2012-06-16/MongoDB-Notes/</id><summary type="html">&lt;p&gt;Some Properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;MongoDB instances act as high-level container.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Collection&lt;/em&gt; is a synonym of table in sql.&lt;/li&gt;
