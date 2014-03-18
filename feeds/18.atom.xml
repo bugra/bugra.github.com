@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/18.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-03-18T00:00:00+00:00</updated><entry><title>Short Notes on Thinking with Data</title><link href="http://bugra.github.io/work/notes/2014-03-18/thinking-with-data-short-notes/" rel="alternate"></link><updated>2014-03-18T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-18:work/notes/2014-03-18/thinking-with-data-short-notes/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Arguments are how we convince ourselves that something is true.&lt;/li&gt;
+&lt;li&gt;Argument theory provides a useful set of mental models for
+  understanding arguments.&lt;/li&gt;
+&lt;li&gt;Data work is held together by arguments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Data&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Data are just (sadly) observations.&lt;/li&gt;
+&lt;li&gt;What we want is knowledge and representation, maybe even understanding
+  and insight.&lt;/li&gt;
+&lt;li&gt;By doing so, arguments move from what is unknown/not agreed upon yet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Arguments are how we turn observations into knowledge.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Arguments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Claim&lt;/strong&gt; =&amp;gt; Audience does not believe it(yet).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prior Knowledge&lt;/strong&gt; =&amp;gt; Things you/your audience believes already
+  before the case is made.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Evidence&lt;/strong&gt; =&amp;gt; Where data enters into an argument. It becomes part of
+  the argument, not just "data" anymore. It gains context in that sense.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Justification&lt;/strong&gt; =&amp;gt; Reasoning why evidence should cause vs to believe
+  the claim.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rebuttal&lt;/strong&gt; =&amp;gt; Any of the reasons why the justification might not
+  hold in this particular case.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Patterns of Arguments&lt;/h2&gt;
+&lt;h3&gt;Template for Claims&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Categories of Dispute&lt;/li&gt;
+&lt;li&gt;Causal Analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Causal Analysis&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Large set of patterns are necessary.&lt;/li&gt;
+&lt;li&gt;Goal is to claim to have reasonably accounted for alternative
+  explanations.&lt;/li&gt;
+&lt;li&gt;People will interpret our work causally, we should try our best to
+  make it reasonable to do so.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Conclusions&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Mental models make our lives and our work better.&lt;/li&gt;
+&lt;li&gt;Arguments are a deep part of working with data.&lt;/li&gt;
+&lt;/ul&gt;</summary></entry></feed>
