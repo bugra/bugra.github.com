@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/13.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-04-13T00:00:00+00:00</updated><entry><title>Workflow Engine Comparison(First Impressions)</title><link href="http://bugra.github.io/work/notes/2014-04-13/workflow-engine-comparison-first-impressions/" rel="alternate"></link><updated>2014-04-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-04-13:work/notes/2014-04-13/workflow-engine-comparison-first-impressions/</id><summary type="html">&lt;p&gt;I was looking at different options for workflow engines. I have
+some experience in Oozie, little experience in Luigi and no experience
+in Azkaban. In this post, I will try to give an overview of these
+engines in terms of their advantages and disadvantages. Take my word
+with a grain of salt(based on the experience I have with these tools),
+though. &lt;/p&gt;
+&lt;h3&gt;Crons do not scale(Surprise!)&lt;/h3&gt;
+&lt;p&gt;If you have a lot of processes which manipulate, transform and write
+data to database, you will sooner or later will face the limitations of
+the cron jobs. You want to be able to handle failures, debug processes
+and rerun the failed jobs. You want to have multiple scripts to run
+based on data availability, data dependency and time-based scheduling.
+You may want to also share the data workflow with many people where you 
+cannot do any of the items with cron jobs. &lt;/p&gt;
+&lt;h3&gt;What is sufficient?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Regular scheduling (depending on data availability and time-based)&lt;/li&gt;
+&lt;li&gt;Workflow of multiple jobs&lt;/li&gt;
+&lt;li&gt;You should be able to write workflows in the same way that you are
+  writing programs&lt;/li&gt;
+&lt;li&gt;You should handle the errors and failures gracefully&lt;/li&gt;
+&lt;li&gt;Communication between cluster and client should be secure&lt;/li&gt;
+&lt;li&gt;Community support should be very good &lt;/li&gt;
+&lt;li&gt;Continuous integration(whenever you push to the master, it should
+  adapt the changes(woohoo!))&lt;/li&gt;
+&lt;li&gt;Testing should be supported out of the box&lt;/li&gt;
+&lt;li&gt;Let's cut to the chase; pretty much anything that you want to expect from a  decent library or framework in terms of software quality and practices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Let's write our own workflow engine&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Resources are limited(time, effort, human resources)&lt;/li&gt;
+&lt;li&gt;Is your usage is too specific or could you make it work in one of the
+  available tools?&lt;/li&gt;
+&lt;li&gt;No need to reinvent the wheel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What do we want from the workflow engines?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;First and foremost: resilient to failures&lt;/li&gt;
+&lt;li&gt;Debugging is necessary and important advantage over cron jobs&lt;/li&gt;
+&lt;li&gt;If we have similar workflows, we should not write too much boilerplate
+  code to make it all work&lt;/li&gt;
+&lt;li&gt;Support for databases, HDFS and common file formats&lt;/li&gt;
+&lt;li&gt;You should be able to write workflows in the same way that you are
+writing programs&lt;/li&gt;
+&lt;li&gt;You should handle the errors and failures gracefully&lt;/li&gt;
+&lt;li&gt;Communication between cluster and client should be secure&lt;/li&gt;
+&lt;li&gt;Community support should be very good&lt;/li&gt;
+&lt;li&gt;Continuous integration(whenever you push to the master, it should
+adapt the changes(woohoo!))&lt;/li&gt;
+&lt;li&gt;Testing should be supported out of the box&lt;/li&gt;
+&lt;li&gt;Default logging would be icing on the cake&lt;/li&gt;
+&lt;li&gt;Let's cut to the chase; pretty much anything that you want to
+expect from a decent library or framework in terms of software 
+quality and practices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Oozie&lt;/h2&gt;
+&lt;h3&gt;Advantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Mature&lt;/li&gt;
+&lt;li&gt;Support from Hadoop community is strong&lt;/li&gt;
+&lt;li&gt;Documentation&lt;/li&gt;
+&lt;li&gt;Default support for Pig, ssh, java, filesystem&lt;/li&gt;
+&lt;li&gt;Coordinators: when data is available, do the computation. For
+  recurring jobs, you do not need to explicitly configure the job flow.&lt;/li&gt;
+&lt;li&gt;Security&lt;/li&gt;
+&lt;li&gt;Built in authentication&lt;/li&gt;
+&lt;li&gt;It has own testing suite(Mini Oozie) &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Disadvantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XML(Verbose)&lt;/li&gt;
+&lt;li&gt;Control flow is somehow restrictive&lt;/li&gt;
+&lt;li&gt;Directed Acyclic Graph(Hard to rerun only a component after failure,
+  perfectly goes along with Pig, though; Pig scripts also define DAG)&lt;/li&gt;
+&lt;li&gt;User Interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Luigi&lt;/h2&gt;
+&lt;h3&gt;Advantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Python!&lt;/li&gt;
+&lt;li&gt;Control flow is advanced as tasks are code&lt;/li&gt;
+&lt;li&gt;Dependencies between flows&lt;/li&gt;
+&lt;li&gt;Customization and code reuse through object-oriented programming&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Disadvantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Visualizer is not as good as Azkaban&lt;/li&gt;
+&lt;li&gt;No default support for Pig, Hive &lt;/li&gt;
+&lt;li&gt;No storage of history and generally persistent storage is lacking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Azkaban&lt;/h2&gt;
+&lt;h3&gt;Advantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;If you are using Voldemort, it supports out of the box&lt;/li&gt;
+&lt;li&gt;Visualizations for tasks (svg, interactive) is advanced&lt;/li&gt;
+&lt;li&gt;Authentication and Authorization&lt;/li&gt;
+&lt;li&gt;History of tasks(which are completed and which are not)&lt;/li&gt;
+&lt;li&gt;Plugins for Pig, Hive and many more&lt;/li&gt;
+&lt;li&gt;Web deployment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Disadvantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Support is not as good as Oozie.&lt;/li&gt;
+&lt;li&gt;Scheduling is only time based. AFAIK, no data availability scheduling&lt;/li&gt;
+&lt;li&gt;Workflow is somehow limited and restrictive comparing to Luigi and
+  even Oozie. &lt;/li&gt;
+&lt;/ul&gt;</summary></entry></feed>
