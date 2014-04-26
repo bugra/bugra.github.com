@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Introduction to Python</title>
+
+		<meta name="description" content="Python Introuction for novice and non-programmers">
+		<meta name="author" content="Bugra Akyildiz">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/tomorrow-night-bright.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                
+				<section>
+					<h1>Introduction to Python</h1>
+					<h3>For Beginners and Non-Programmers</h3>
+					<p>
+						<small>Created by <a href="http://bugra.github.io">Bugra Akyildiz</a></small> 
+					</p>
+				</section>
+                
+                <section>
+					<h2>Why Python ?</h2>
+					<ul>
+                        <li>High-Level (Close to plain English)</li>
+                        <li>Interactive (Interact with interpreter as you are programming)</li>
+                        <li>Full Batteries included (Standard Library is broad and great)</li>
+                        <li>Supports object-oriented, functional and procedural programming styles</li>
+                        <li>Easy to learn</li>
+                        <li>Easy to read</li>
+                        <li>More importantly, writing Python is pure joy!</li>
+                    </ul>
+				</section>
+
+				<section>
+                    <h2>Python Installation</h2>
+                    <ul>
+                    <li>It is already installed for Unix(Ubuntu, Fedora, ...) and Mac OS X. </li>
+                    <li>Windows Users can download the Python 2.7.5 from <a href="http://python.org/download/">python's download page</a></li>    
+                    <li>If you do not want to install Python, there is <a href="http://repl.it/languages/Python">Python repl</a> where you could write python and execute in the browser.</li>
+                    </ul>
+				    
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+						<h4>Type "python" in terminal for Unix, Mac Os X users</h4>
+                    <img src="static/terminal_screenshot.png" alt="Python Termninal">
+                    <h4>For windows users, first run Start ‣ Programs ‣ Accessories ‣ Command Prompt</h4>
+                    <h4>After opening command prompt, type "python"</h4>
+
+				</section>
+
+                <section>
+					<h2>Python Interpreter</h2>
+                    <h4>We are ready to dive in!</h4>
+					<pre><code data-trim contenteditable>
+def visualize_average_time_signal_clusters(avg_signal, indices, save=False, title='None'):
+    """
+    INPUT: avg_signal is 1D signal
+                indices has a key,value pair of cluster_number, cluster_indices in the signal
+                """
+    signal = np.asanyarray(avg_signal)
+    num_row_x = num_row_y = int(np.floor(np.sqrt(len(indices)-1))) + 1
+    fig, axarr = plt.subplots(num_row_x, num_row_y)
+    for k, v in indices.iteritems():
+        div = k // num_row_y
+        rem = k % num_row_y # div, rem = divmod(k, num_row_y)
+        axarr[div, rem].plot(signal[v])
+        axarr[div, rem].set_title('Cluster {}'.format(k+1))
+        axarr[div, rem].axis('off')
+    if save:
+        title = os.path.join(figure_path, title) + '.pdf'
+        fig.savefig(title)
+					</code></pre>
+					<p>Maybe something simpler?</p>
+				</section>
+                
+				<section>
+					<h2>Data Types</h2>
+					<ul>
+                        <li>Number</li>
+                        <li>String</li>
+                        <li>List</li>
+                        <li>Tuple</li>
+                        <li>Dictionary</li>
+                    </ul>
+                    <hr>
+                    <h3><font color="red">Comments</font></h3>
+                    <ul>
+                        <li><font color="#C00000">Single-line Comment</font></li>
+                    </ul>
+                    <pre><code># Single_line comment</code></pre>
+                    <ul>
+                        <li><font color="#C00000">Multi-line Comment</font></li>
+                    </ul>
+<pre><code>"""
+Multi_line comment
+This line has nothing to do with above
+Neither this one
+"""</code></pre>
+				</section>
+
+				<section>
+					<h2>Numeric Types</h2>
+					<ul>
+                        <li>Integer(default)</li>
+                        <ul>
+                            <li><font color="blue">Booleans</font></li>
+                        </ul>
+                        <li>Float</li>
+                        <li>Long</li>
+                        <li>Complex(?)</li>
+                    </ul>
+<pre><code>"""
+Assignment of variables are done by "="
+No need to declarations, variables are 
+automatically assigned data types(dynamic typing)
+"""
+
+a = 2        # a is an integer by default
+b = 3.14     # b is a float (decimal !)
+c = 10L      # c is a long (suitable for large numbers)
+d = 3 + 4j   # d is a complex number
+e = False    # e is boolean (False or True)
+f = True     # f is also a boolean
+a = True     # a becomes boolean (with no problem!)
+</code></pre>
+				</section>
+
+				<section data-markdown>
+                    <script type="text/template">
+## Booleans
+They could only have two values. `True` or `False`  
+Wait, booleans are subtypes of integers ?
+> Yes, they are. Let me show it to you.
+    
+    a = True # a is boolean
+    b = True # b is boolean
+    """ 
+    'print' function evaluates
+    the variable's value and prints out,
+    very useful to see the output of the statements
+    """
+    print(a + b) # prints 2 
+    print(a - b) # prints 0 => a, b are evaluated as 1
+    c = False    # c is boolean
+    print(a * c) # prints 0 => c is evaluated as 0
+				    </script>
+				</section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+### More Numbers
+    
+    # 'type()' evaluates the type of the variable
+    # isinstance() is a better choice, but we will see that later
+    type(2)        # prints 'int'
+    type(2.0)      # prints 'float'
+    type(3L)       # prints 'long'
+    type(3 + 4j)   # prints 'complex'
+    type(False)    # prints 'bool'
+    # If we want to convert one to another
+    a = int(3.14)     # truncates to 3
+    b = int(4.92)     # truncates to 4, does not round
+    c = float(3)      # c becomes float, is evaluated as 3.0
+    d = long(4)       # d becomes long, is evaluated as 4L
+    e = complex(a, b) # e is complex 3 + 4j
+    import math          # 'imports' built-in math module
+    f = math.ceil(4.92)  # f=5 , ceils evaluates closest larger integer
+    g = math.floor(4.92) # g=4, floor evaluates closest smallest integer
+    i = 10 ** 2 # power, i is evaluated as 100
+    j = 125 // 60 # integer division, j is evaluated as 2
+    k = 125 % 60  # remainder, k is evaluated as 5
+    # since the above two lines are quite common, there is a shortcut divmod() function
+    l, m = divmod(125, 60) # l is evaluated as 2, m to 5.
+                    </script>
+                </section>
+
+				<section data-markdown>
+                    <script type="text/template">
+## Strings
+These are the basic variables that represent __text__.  
+`''` or `""` could be used to create strings.  
+Let's see some examples:  
+
+    city_name = 'New York City' # _ is used to separaet two different names
+    state_name = "New York" # '' or "" does not differ in here but
+    question = "What's the name of the dog?" # If you want to use ' in the sentence, you'd better use "" to represent the text
+    so_called = 'That is the so-called "quality" of him. # "" is used just one.
+    # Concatenation
+    city_name = 'New York' ' City' #  this is valid
+    city_name = 'New York' " City" #  this is also valid
+    'City' " of New York" # Not valid, though. Note that there is no assignment '='
+    city = 'City of '
+    # + is used to concatenate two strings to each other
+    city_n = city + state_name
+    # If you want to add something different than string to a string, you could coerce
+    park_name = str(14) + ' th Street'
+                    </script>
+				</section>
+
+				<section data-markdown>
+                    <script type="text/template">
+### More Strings
+
+    python = 'python ' # Note that the space end of the 'python'
+    python * 5  # 'python python python python python '
+    # Some Slicing
+    python[0] # 'p'
+    python[0:2] # 'py'
+    python[2:4] # 'th'
+    python[2:]  # 'thon'
+    nyc = 'new york'
+    nyc[-1] # k
+    len(nyc) # 8
+    # -1 really corresponds to len(nyc)-1 which is 7
+    nyc[7] # k  so, negative number indexing is just a syntactic sugar, as -2(6), -3(5) and so on.
+    
+    
+                    
+                    </script>
+                </section>
+
+				<section data-markdown>
+					<script type="text/template">
+## Lists
+They are number indexed arrays, which store any data structure you want. They are also mutable, that is,
+we could change the elements of lists anytime we want.
+
+    fruit_list = ['apple', 'orange', 'banana', 'peach', 'pomegranate'] # Note the square brackets
+    len(fruit_list) # can you guess what it does ?
+    print(fruit_list[0]) # apple => Lists as strings are 0-indexed.
+    print(fruit_list[1:]) # returns the same list except apple
+    # They could also have mixed types
+    mixed_list = ['cats', 12, 'dogs', True, [2, 3, 4]] # Lists could also have lists inside of them
+    mixed_list.append('another thing') # 'another thing is added at the end of the list
+    mixed_list.remove('another thing') # we removed the 'another thing'
+    sorted(fruit_list) # returns the sorted list by letter
+    fruit_list[0] = 'mango' # we replace the first item by mango
+    print(fruit_list) # ['mango', 'orange', 'banana', 'peach', 'pomegranate']
+    
+    
+					</script>
+				</section>
+                
+                				<section data-markdown>
+					<script type="text/template">
+## Sets
+Remember venn diagrams ?  
+Sets are similar to lists except they could only contain unique elements.
+
+    fruit_list = ['apple', 'orange', 'banana', 'apple', 'peach', 'banana', 'pomegranate']
+    fruit_set = set(fruit_list) # set(['apple', 'orange', 'banana', 'peach', 'pomegranate'])
+    print(len(fruit_set)) # similar to list
+    another_fruit_set = set(['orange', 'pear', 'banana'])
+    print(fruit_set & another_fruit_set) # Intersection => set(['orange', 'banana'])
+    print(fruit_set - another_fruit_set) # Difference   => set(['apple', 'peach', ...])
+    print(fruit_set | another_fruit_set) # Union
+    print(fruit_set ^ another_fruit_set) # Symmetric Difference
+    
+    
+					</script>
+				</section>
+                
+                <section data-markdown>
+					<script type="text/template">
+## Tuples
+Very similar to lists, they could also contain any datastructure. One major difference between lists
+is that they are immutable. 
+
+    fruit_tuple = ('apple', 'orange', 'banana', 'peach', 'pomegranate') # Note the parantheses
+    len(fruit_tuple) # similar with lists
+    print(fruit_tuple[0]) # same with list
+    mixed_tuple = (mixed_list, mixed_list) # they could contain lists !
+    fruit_tuple[0] = 'mango' # ERROR, we cannot change the tuples
+    # Tuples are immutable, whereas lists are mutable. This is a major difference.
+    # There is no append, remove functions, can you guess why?
+    apple, orange, banana, peach, pomegranate = fruit_tuple # multiple assignments
+    print(apple) # apple, we assigned the string representation to the variables
+    
+					</script>
+				</section>
+                
+
+                
+                
+				<section data-markdown>
+					<script type="text/template">
+## Dictionaries
+Dictionaries are basic key-value pairs, where keys could be strings, numbers and hashable 
+structures.(more on to this later)  
+> Not ordered and keys have to be unique !
+
+    dictionary = {'new_york1': 212, 'new_york2': 646, 'new_york3': 917, 
+                  'brooklyn1': 718 }
+    print(dictionary['new_york1'] # 212, quite neat huh ?
+    print(dictionary.keys()) # returns a list of keys => ['new_york1', 'brooklyn1', 'new_york2',...]
+    print(dictionary.values()) # returns a list of values => [212, 646, 718, ...]
+    dictionary['brooklyn2'] = 347 # adding elements is just an assignment
+    del dictionary['brooklyn2'] # we could also remove key-value pairs as well
+    print('new_york2' in dictionary) # True, we could check if the key is present in dictionary
+    new_dictionary = dictionary.fromkeys() # create a new dictionary with the same key-value pairs
+    print(dictionary.get('brooklyn1')) # similar to dictionary['brooklyn1'], except it does not give error if the key is not there
+    dictionary.clear() # Removes all key-value pairs in the dictionary
+    
+    
+					</script>
+				</section>
+                
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
