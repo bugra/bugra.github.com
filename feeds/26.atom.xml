@@ -4282,7 +4282,15 @@ OAgGAABA0uEgGAAAAEnn/wNBsjuYCKEzHAAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Outliers are nicely captured in the signal. Note that since the scale is somehow large, the signal seems to not having any noise, but it is not perfectly linear.&lt;/p&gt;
-&lt;p&gt;I do not want to go into the discussion of Bayesian is better than Frequentist, but here are my observations for this specific case of advantages and disadvantages of Bayesian approach cin comparison with Frequentist. ### Advantages - Unlike Median Filtering and FFT, which requires a lot of parameters, MCMC requires only probability threshold. - As long as the model is nicely captured, the priors do not have to be known beforehand. The data leads the way. - If priors are known, they could be incorporated into the model whereas other models cannot use prior information. - Probabilistic, you could reason about probabilities whereas frequentist approaches do not provide a similar functionality like Bayesain methods. - We could build complex models, consider the outliers in this example. In Frequentist approaches, there is no similar mechanism to build such a system.&lt;/p&gt;
+&lt;p&gt;I do not want to go into the discussion of Bayesian is better than Frequentist, but here are my observations for this specific case of advantages and disadvantages of Bayesian approach cin comparison with Frequentist.&lt;/p&gt;
+&lt;h3 id="advantages"&gt;Advantages&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Unlike Median Filtering and FFT, which requires a lot of parameters, MCMC requires only probability threshold.&lt;/li&gt;
+&lt;li&gt;As long as the model is nicely captured, the priors do not have to be known beforehand. The data leads the way.&lt;/li&gt;
+&lt;li&gt;If priors are known, they could be incorporated into the model whereas other models cannot use prior information.&lt;/li&gt;
+&lt;li&gt;Probabilistic, you could reason about probabilities whereas frequentist approaches do not provide a similar functionality like Bayesain methods.&lt;/li&gt;
+&lt;li&gt;We could build complex models, consider the outliers in this example. In Frequentist approaches, there is no similar mechanism to build such a system.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id="disadvantages"&gt;Disadvantages&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;You need to design priors, models and inference schema beforehand whereas you do not need to do these things in frequentist methods.&lt;/li&gt;
