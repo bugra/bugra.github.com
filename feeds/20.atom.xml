@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/20.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-07-20T00:00:00+00:00</updated><entry><title>Pydata Silicon Valley 2014 Part 2</title><link href="http://bugra.github.io/work/notes/2014-07-20/pydata-silicon-valley-2014-part-2/" rel="alternate"></link><updated>2014-07-20T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-20:work/notes/2014-07-20/pydata-silicon-valley-2014-part-2/</id><summary type="html">&lt;p&gt;The Pydata Silicon Valley videos are put into Youtube, thanks to
+Facebook, Continuum and Parse.ly. Check it &lt;a href="https://www.youtube.com/user/PyDataTV"&gt;out&lt;/a&gt;.
+They are pretty great. &lt;/p&gt;
+&lt;p&gt;I already wrote about(kind of wrap-up) the presentations that I attended &lt;a href="http://bugra.github.io/work/notes/2014-05-12/pydata-silicon-valley-2014/"&gt;here&lt;/a&gt;.
+This one will be similar to the ones that I could not attend but watch the videos.&lt;/p&gt;
+&lt;p&gt;I somehow managed to miss some of the most interesting talks but could follow the presentation
+much better through their videos on Youtube than real-life so it kind of worked better
+than I expected.&lt;/p&gt;
+&lt;h3&gt;ggplot&lt;/h3&gt;
+&lt;p&gt;Presenter: Greg Lamb  &lt;/p&gt;
+&lt;h4&gt;What is ggplot?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Based on Grammar of Graphics&lt;/li&gt;
+&lt;li&gt;Implementation in Python(from R implementation, ggplot2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Matplotlib&lt;/h4&gt;
+&lt;h5&gt;Advantages&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Mature, it has been around for some time&lt;/li&gt;
+&lt;li&gt;Integration with Ipython Notebook&lt;/li&gt;
+&lt;li&gt;Customizable&lt;/li&gt;
+&lt;li&gt;Community&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Disadvantages&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;API, learning curve, syntax, default themes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;d3.js is like a Mona Lisa painting where &lt;code&gt;ggplot&lt;/code&gt; is like 
+a camera. You buy the painting to show off where camera is 
+more like a utility.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This comparison quite good, generally the plots(either ggplot or matplotlib) 
+are either ad-hoc analysises or for internal usage. If you are producing something
+consumer facing, you should be using much more suited library for the job. From
+the conference, I actually used &lt;code&gt;ggplot&lt;/code&gt; for couple of projects and I liked its syntax
+and api as well as the integration with pandas. From a 2-3 years matplotlib user, I think
+it will be great library when it reaches maturity. However, I think  &lt;code&gt;ggplot&lt;/code&gt; is more a
+competitor to &lt;code&gt;seaborn&lt;/code&gt; rather than matplotlib. Matlotlib is a plotting library 
+in a much broader sense(it has support for maps, images, 3D visualizations as well) 
+where &lt;code&gt;ggplot&lt;/code&gt; and &lt;code&gt;seaborn&lt;/code&gt; are more targeted to a specific subset of visualizations.
+The subset is quite important, though.&lt;/p&gt;
+&lt;p&gt;That being said, it attacks the disadvantages of matplotlib quite well. It has great API,
+concise syntax and much better default themes. &lt;/p&gt;
+&lt;h4&gt;Syntax&lt;/h4&gt;
+&lt;p&gt;Especially, syntax of &lt;code&gt;ggplot&lt;/code&gt; is great.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ggplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mtcars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="n"&gt;wt&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="n"&gt;mpg&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is &lt;em&gt;what&lt;/em&gt; step. This is where you say I want to bind 
+&lt;code&gt;wt&lt;/code&gt; to x axis and &lt;code&gt;mpg&lt;/code&gt; to y axis. Then, in the &lt;em&gt;how&lt;/em&gt; step, you
+will say how&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;geom_point&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This produces a scatterplot. If you want to produce a density
+graph, you could change it &lt;code&gt;p + geom_density()&lt;/code&gt; without changing
+&lt;em&gt;what&lt;/em&gt; step. This is pretty great. If you want to put also an 
+averaging window over the variable, &lt;code&gt;p + geom_point() + stat_smooth()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This layered approach provides couple of benefits. All of the layers
+can be treated independently as visualization is mainly defined in 
+&lt;em&gt;what&lt;/em&gt; step rather than &lt;em&gt;how&lt;/em&gt;. Therefore, you could easily experiment and
+play with different layers on your data visualization. Icing on the 
+cake, faceting becomes very easy with &lt;code&gt;ggplot&lt;/code&gt; as it has a faceting 
+utility out of the box. I am big fan of faceting, in order to understand
+some categorical variable on the parameters and to be able to see 
+the effect, so it is a great tool to do exploratory data analysis. 
+If you want to learn more, check out the &lt;a href="http://yhat.github.io/ggplot/"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Functional Performance with Core Data Structures&lt;/h4&gt;
+&lt;p&gt;Presenter: Matthew Rocklin&lt;/p&gt;
+&lt;p&gt;The premise of this talk is the following two:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pure Python is not slow&lt;/li&gt;
+&lt;li&gt;Python is a decent language.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In order to prove the first one, he provides benchmarks to show that Python is not “that” slow
+comparing to other languages. For second one, he introduces a functional programming library &lt;a href="https://github.com/pytoolz/toolz/"&gt;Toolz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The library is actually pretty great. He was influenced by Clojure which I wrote how great it is &lt;a href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/"&gt;here.&lt;/a&gt;
+The library promotes laziness, functions, pure functions, composability; all of the good stuff 
+that are common in functional programming languages. Surprisingly, some of the functions are actually same with standard 
+library function like; &lt;code&gt;groupby&lt;/code&gt; in &lt;code&gt;itertools&lt;/code&gt;, &lt;code&gt;filter&lt;/code&gt; and he claimed functions are actually faster than standard library
+equivalents. Some of the functions are not in the Python like &lt;code&gt;take&lt;/code&gt;, &lt;code&gt;interleave&lt;/code&gt;, or &lt;code&gt;pipe&lt;/code&gt;. &lt;code&gt;pipe&lt;/code&gt; is pretty good, it provides 
+a similar mechanism with &lt;code&gt;-&amp;gt;&amp;gt;&lt;/code&gt; clojure where you could chain a bunch of functions and does not sacrifice readability and execution order.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pipe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to get the string representation of 3.0. This is a great way to compose functions. &lt;/p&gt;
+&lt;p&gt;Another example he gave is much more impressive:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pipe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tale&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;two&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cities&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                    &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                                    &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                                    &lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                    &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stem&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                                    &lt;span class="n"&gt;frequencies&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is pretty great.&lt;/p&gt;
+&lt;p&gt;He also gave another library direction which implements the same functionality of Toolz 
+in C, which is more efficient, called unsurprisingly &lt;a href="https://github.com/pytoolz/cytoolz"&gt;Cytoolz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am quite happy to see there are great libraries like these two to make at least a dent for functional programming 
+in Python.&lt;/p&gt;
+&lt;p&gt;He then summarizes why Functional programming is becoming more relevant as following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Good software practices&lt;/li&gt;
+&lt;li&gt;Composition promotes scalable software systems&lt;/li&gt;
+&lt;li&gt;Purity, composition promotes testing&lt;/li&gt;
+&lt;li&gt;Sequence abstractions support streaming computation(if you have low memory, you have no other choice anyway)&lt;/li&gt;
+&lt;li&gt;Purity, serializability promotes parallel and concurrent processing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Querying your database in natural languages&lt;/h3&gt;
+&lt;p&gt;Presenter: Daniel Moisset  &lt;/p&gt;
+&lt;p&gt;This is one of the talk that I regretted most that I did not attend. Not only it is quite
+interesting on its own, one of previous project that I did(querying yelp restaurants
+with natural language) is directly related. &lt;/p&gt;
+&lt;p&gt;Generally, speaking or natural language in writing provides a much easy interface
+to user. However, the systems that process these inputs are in their early periods
+so they cannot really process the inputs very effectively. Therefore, you’d see all
+those radiobuttons, sliders, checkboxes and text input area for user to enter 
+structured information rather than user typing “show me the closest five restaurants
+that serve Turkish food and accepts credit card”. Question types vary quite a lot
+for different people and even the order, verbs and nouns are not something most
+people agree on. Therefore, most companies provide “intuitive” interfaces to get
+structuresd data, to make it easier sometimes they help, too.(autocomplete)
+&lt;a href="http://quepy.machinalis.com/"&gt;Quepy&lt;/a&gt; attacks the problem in a somehow different angle.
+First, it tries to find &lt;strong&gt;what&lt;/strong&gt; is being filtered and then, try to return the 
+query based on the filtering parameters. As I mentioned later, tackling the question
+variation in a regular expression way is somehow limited but since building different
+of versions of questions is easy, it kind of compensates its limitation by providing
+ease of use. Other than that, installing and integrating the library in your application
+is quite easy.(some of the commands resemble Django as well). It is a very nice library.&lt;/p&gt;
+&lt;h4&gt;Introduction&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Data is everywhere&lt;/li&gt;
+&lt;li&gt;Collecting data is not the problem but what to do with is the real problem&lt;/li&gt;
+&lt;li&gt;Any operation starts with selecting and filtering data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Natural Language Queries&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Very accessible, trivial to learn&lt;/li&gt;
+&lt;li&gt;Weak is mos applications as it has limited list of queries that it can handle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;a href="http://quepy.machinalis.com/"&gt;Quepy&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;They propose &lt;strong&gt;Quepy&lt;/strong&gt; which is an &lt;a href="https://github.com/machinalis/quepy"&gt;open-sourced&lt;/a&gt; 
+framework to translate natural language questions into a database query langauge. &lt;/li&gt;
+&lt;li&gt;Support for database query language is somehow limited(SparQL and MQL).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Approach&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;First it parses the query&lt;/li&gt;
+&lt;li&gt;Matches and creates an intermediate representation&lt;/li&gt;
+&lt;li&gt;Then, based on representation, it generates query and Domain Specific Language&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;Parsing&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;It is done in a word level&lt;ul&gt;
+&lt;li&gt;is: is/be/VBZ&lt;/li&gt;
+&lt;li&gt;swallows: swallows/swallow/NNS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Question Rule =&amp;gt; Regular expressions&lt;ul&gt;
+&lt;li&gt;Token(“what”) + Lemma (“be”) + Question Pos(“DT”) + Pos(“NN”)
+=&amp;gt; The word “what” followed by any verb “of to be” veryb, optionally followed 
+by a word determines the count(“all”, “every”), followed by one or more nouns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In my opinion, the biggest disadvantage is question rule. As the regular expressions
+are very limited in terms of structure, and it seems only could “answer” &lt;em&gt;Wh&lt;/em&gt; questions
+for specific forms. “Give me”, “Find me” order forms, yes-no questions, 
+subordinate clauses(this corresponds to “where” in sql langauge) do not exist. Otherwise, 
+library especially in terms of usage seems very good. However, various question forms
+could be easily added to the question types using &lt;code&gt;QuestionTemplate&lt;/code&gt;. However, I was
+still expecting, very common question type support out of the box for a natural langauge
+translator to database query.(Only this one is quite hard problem to be fair)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;Intermediate Representation&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Graph-like, with some known values and some holes(x0, x1, x2). Always has a “root”.&lt;/li&gt;
+&lt;li&gt;Similar to knowledge databases(like freebase)&lt;/li&gt;
+&lt;li&gt;Easy to build from python code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;DSL&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Single concepts with fixed relations or entities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;WhatIs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;QuestionTemplate&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Lemma&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;what&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Lemma&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;be&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; \
+        &lt;span class="n"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;POS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;DT&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Thing&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Question&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;POS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;interpret&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;DefinitionOf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;thing&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This Python code is great in terms of several aspects. First is very easy to 
+construct question types in this from. Second, it is very expressive and readable
+what type of question types that you cover if you want to see what types 
+of questions you already covered. For fixed type DSLs, it resembles a lot like
+freebase.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;IsPerson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FixedType&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;fixed_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;people&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;person&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
+    &lt;span class="n"&gt;fixed_type_relation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Apps: Gluing it all together&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;You build a Python package with&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;quepy&lt;/span&gt; &lt;span class="n"&gt;startapp&lt;/span&gt; &lt;span class="n"&gt;myapp&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;There you add dsl and questions templates&lt;/li&gt;
+&lt;li&gt;Then configure it editing &lt;code&gt;myapp/settings.py&lt;/code&gt;(output query language, data encoding)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Resembles a lot like Django.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;quepy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;myapp&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;question&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;what&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;love&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
+&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;metadata&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;question&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;The Good Things&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Effort to add questions template is small and the benefit is linear
+with respect to effort.&lt;/li&gt;
+&lt;li&gt;Good for industry applications.&lt;/li&gt;
+&lt;li&gt;Low specialization requireed to extend&lt;/li&gt;
+&lt;li&gt;Human work is very parallelizable&lt;/li&gt;
+&lt;li&gt;Easy to get many people to work on questions.&lt;/li&gt;
+&lt;li&gt;Better for domain specific databases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Future Directions&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Testing this under databases.&lt;/li&gt;
+&lt;li&gt;Improving performance&lt;/li&gt;
+&lt;li&gt;Collecting uncovered questions, add machine learning to learn 
+new patterns(Yes, especially trying to cover all of the forms from a 
+set of question forms would be very valuable)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;PyAlgoViz: Python Algorithm Visualization in the browser&lt;/h3&gt;
+&lt;p&gt;Presenter: Chriss Laffra&lt;/p&gt;
+&lt;p&gt;He presents a very nice visualization environment &lt;a href="http://pyalgoviz.appspot.com/"&gt;PyAlgoViz&lt;/a&gt;
+where any developer could visualize execution steps of the algorithm or 
+algorithm in general in a visualization rich way. This kind of opens up the algorithms black box
+and makes them more memorable through visualizations as well as nice way to learn
+what they are in the first place. Debugging would be also easier in this
+type of environment if your algorithm does not produce the output that you are expecting.&lt;/p&gt;
+&lt;h3&gt;Building an Army of Data Collecting Posts in Python&lt;/h3&gt;
+&lt;p&gt;Presenter: Freedom Dumlao  &lt;/p&gt;
+&lt;p&gt;This presentation’s focus is more on architecture than anything else. He took a 
+real-world problem and try to tackle it. Architecturing the whole framework bit by
+bit was a nice approach to build the system. &lt;/p&gt;
+&lt;p&gt;I really like the presentation style(along
+with James Horey) where they present the solutions in a story.(his friend and a 
+beginner Python developer)
+This makes somehow easier to both understand the problem, domain, contextand how 
+the proposed method solves the given problem.&lt;/p&gt;
+&lt;h4&gt;OpenGraph Protocol&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;This protocol enables any webpage to become a rich object in a social graph.&lt;/li&gt;
+&lt;li&gt;The reason when you share something, open graph title, url and image
+is used in the the social media that you are sharing with.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;RQ&lt;/h4&gt;
+&lt;p&gt;They used RQ to handle job queues with Redis to store the files.&lt;/p&gt;
+&lt;h4&gt;3 Services&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;ElasticSearch (it is used like a database, ), qbox.io&lt;/li&gt;
+&lt;li&gt;Task Queue (RQ &amp;amp; Redis) =&amp;gt; Redis to Go&lt;/li&gt;
+&lt;li&gt;Compute (Heroku)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Rules to keep in mind&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Don’t do DOS to your neighbors&lt;/li&gt;
+&lt;li&gt;Look at robots.txt if you are permitted&lt;/li&gt;
+&lt;li&gt;Don’t be a jerk.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Ferry Share and Deploy Big Data Applications with Docker&lt;/h3&gt;
+&lt;p&gt;Presenter: James Horey  &lt;/p&gt;
+&lt;p&gt;I had the chance to talk with &lt;a href="http://jhorey.github.io/"&gt;him&lt;/a&gt; on Saturday, his 
+presentation was also like him, quite awesome. If you want to understand what Docker
+or why it is necessary/beneficial, definitely watch his talk. It is a beginner talk
+for infrastructure. This is also one of the most organized presentation that I saw 
+as well so it is very easy to follow as well. He eventually introduces his library
+managing containers &lt;a href="http://ferry.opencore.io/"&gt;Ferry&lt;/a&gt;, which makes it easy to 
+manage the containers. &lt;/p&gt;
+&lt;h4&gt;Docker&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Encapsulates applications in isolated containers.&lt;/li&gt;
+&lt;li&gt;Makes it easy and safe to distribute applications.&lt;/li&gt;
+&lt;li&gt;Easy to get started.&lt;/li&gt;
+&lt;li&gt;Nice way to isolate the runtime environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker allows public images to be shared freely.&lt;/p&gt;
+&lt;p&gt;Using docker gives isolated environments advantages and very
+low overhead and disadvantages.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Cassandra&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Highly scalable and fault-tolerant.&lt;/li&gt;
+&lt;li&gt;Great for storing streaming data(sensors, messages)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Ferry&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Specify the containers that constitue your application in YAML.&lt;/li&gt;
+&lt;li&gt;Support for Hadoop, Cassandra, GlusterFS, and OpenMPI.&lt;/li&gt;
+&lt;li&gt;It’s a little bit like &lt;code&gt;pip&lt;/code&gt; for your Docker-based runtime
+environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Advantages of using Ferry&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Even simple applications can be complicated to install and run.&lt;/li&gt;
+&lt;li&gt;Docker solves this by encapsulating the entire runtime environment
+in lightweight containers.&lt;/li&gt;
+&lt;li&gt;Ferry enables plugging in external big data dependencies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Crushing the Head of the Snake&lt;/h3&gt;
+&lt;p&gt;Presenter: Robert Brewer  &lt;/p&gt;
+&lt;p&gt;It was an optimization talks where he walks through what to do improving the 
+speed of the code. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;timeit&lt;/code&gt;’s default argument is 1000000, nobody wants to wait that long
+to profile. It has also overhead, so for benchmarking, that needs to be
+subtracted from the end result.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Timer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;repeat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In this run, take the minimum of three as the others may have some other background
+or some other overhead processes are added.&lt;/p&gt;
+&lt;h4&gt;Some Rule of Thumbs&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Use Python builtins. As they are written in C, the ones that you will be using
+from external libraries would be slower(written in Python).&lt;/li&gt;
+&lt;li&gt;Reduce function calls. There is some overhead in calling functions in Python.&lt;/li&gt;
+&lt;li&gt;Vector operations can be done in Numpy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Parallelization&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;multiprocessin&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Pool&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;run&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pool&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;run_one&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;segments&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;stddev&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Introducing x-ray: extended arrays for scientific datasets&lt;/h3&gt;
+&lt;p&gt;Presenter: Stephan Hoyer  &lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xray.readthedocs.org/en/stable/"&gt;X-ray&lt;/a&gt; is a library that provides a rich
+datastructure for weather data which handles multidimensional data.&lt;/p&gt;
+&lt;h4&gt;Why it is necessary?&lt;/h4&gt;
+&lt;p&gt;5 dimensional weather forecasts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;labeled&lt;/li&gt;
+&lt;li&gt;big&lt;/li&gt;
+&lt;li&gt;binary&lt;/li&gt;
+&lt;li&gt;high-dimensioanl&lt;/li&gt;
+&lt;li&gt;not very natural to put in a pandas dataframe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;What we want?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Like &lt;code&gt;numpy.ndarray&lt;/code&gt;, but better&lt;/li&gt;
+&lt;li&gt;N-dimensional&lt;/li&gt;
+&lt;li&gt;Handles missing data&lt;/li&gt;
+&lt;li&gt;Labeled dimensions(axes)&lt;ul&gt;
+&lt;li&gt;“time”, “latitude”, “longitude”&lt;/li&gt;
+&lt;li&gt;not “index” and “columns”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Labeled coordinates(ticks)&lt;/li&gt;
+&lt;li&gt;Lazy array acess(out of memory data)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Xray Design Goals&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Labeld, N-dimensional arrays for scientific data&lt;/li&gt;
+&lt;li&gt;Don’t rebuild the wheel&lt;ul&gt;
+&lt;li&gt;reuse pandas indexing&lt;/li&gt;
+&lt;li&gt;copy the pandas API&lt;/li&gt;
+&lt;li&gt;Interoperate with the rest of the scientific task.&lt;/li&gt;
+&lt;li&gt;Implement a proven data model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Xray Data Model&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DataArray&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;N-dimensional&lt;/li&gt;
+&lt;li&gt;labeled dimensions (axes)&lt;/li&gt;
+&lt;li&gt;labeled coordinates (indices)&lt;/li&gt;
+&lt;li&gt;homogeneous dtype&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dataset&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a dict-like container of DataArrays&lt;/li&gt;
+&lt;li&gt;shared dimensions and coordinates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Both keep track of arbitrary metadata (attributes)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Pointers&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://xray.readthedocs.org/en/stable/"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/xray/xray"&gt;Source&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Generators Will Free Your Mind&lt;/h3&gt;
+&lt;p&gt;Presenter: James Powell  &lt;/p&gt;
+&lt;p&gt;James why usage of generators may change our programming style or at least
+how we approach problems. I think a better title for this talk “Functional Programming
+Will Free Your Mind” as most of the concepts and some portion of talk is about why 
+functional programming is better than imperative style. Some of the code he writes,
+especially how he tackles the formatting problem is quite mind-opening. Especially,
+I come to like adding predicates instead of &lt;code&gt;if else&lt;/code&gt; into code whenever I want to add
+some feature to the existing code. This not only makes less assumptions on the 
+data that you are getting but also makes it easier to read and more maintainable code.
+Generators, lazy evaluations part is also great. Instead of giving me the &lt;strong&gt;all&lt;/strong&gt; data
+give me as much as I want. If I want to process the data in a batch fashion, let me
+handle that for myself.(less assumption, memory efficiency). It was a quite great talk.&lt;/p&gt;
+&lt;h4&gt;Themes&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Generators are a very useful way of modeling problems in Python&lt;/li&gt;
+&lt;li&gt;The ways we model problems using generators is fundamentally
+different&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Functional Programming&lt;/h4&gt;
+&lt;p&gt;Modalities could be &lt;strong&gt;injected&lt;/strong&gt; through functional programming.&lt;/p&gt;
+&lt;h5&gt;Template Usage&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="p"&gt;}:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;align&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;profit&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;
+&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;region&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;profit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;profit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;align&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;align&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;What is generator &amp;amp; Coroutine?&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;islice&lt;/span&gt;
+&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;islice&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Nice Util Functions for Functional Programming&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;islice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;izip&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tee&lt;/span&gt;
+&lt;span class="n"&gt;nwise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;izip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;islice&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tee&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="n"&gt;ratio&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;fro&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nwise&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;islice&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ratio&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;takewhile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dropwhile&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;islice&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;takewhile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;Pointers&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://nbviewer.ipython.org/urls/gist.githubusercontent.com/dutc/4eb5124bda88eedd476e/raw/a06c32ab62dd9ca941ef8537dab796d212348201/generators-free-your-mind.ipynb"&gt;Ipython Notebook-Slides&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;How to Spy with Python&lt;/h3&gt;
+&lt;p&gt;Presenter: Lynn Root  &lt;/p&gt;
+&lt;p&gt;This talk was about how to sniff packages around Python, at least for most part of it.
+Otherwise, she presented a great historical context what an NSA is, how it may be doing
+the surveillance, using metadata, and whatnot. This not only provides a much more richer
+context than what is available, but also provides where it started and where it is 
+growing/going. &lt;/p&gt;
+&lt;h4&gt;Prism&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Planning tool for Resource Integration, Synchronization and Management&lt;/li&gt;
+&lt;li&gt;Mines electronic data for the purpose of mass surveillance.&lt;/li&gt;
+&lt;li&gt;Collects intelligence that passes through US servers&lt;/li&gt;
+&lt;li&gt;Targets foreigners, but is elusive about data on US citizens.&lt;/li&gt;
+&lt;li&gt;Only collects metadata(supposedly).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;What is XKeyScore?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Digital Network Intelligence Exploitation System&lt;/li&gt;
+&lt;li&gt;Federated Query System of completely unfiltered data&lt;/li&gt;
+&lt;li&gt;500-700 servers, as of 2008&lt;/li&gt;
+&lt;li&gt;Gives users ability to query for email addresses, a target’s activity, phone numbers,
+HTTP traffic, extract file attachments, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Technologies&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.secdev.org/projects/scapy/"&gt;scapy&lt;/a&gt;: packet sniffing &amp;amp; manipulation&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.google.com/p/pygeoip/"&gt;pygeoip&lt;/a&gt;: API for GEOIP databases&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://geojson.org/"&gt;geojson&lt;/a&gt;: bindings &amp;amp; utilities for GeoJSON&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://xael.org/norman/python/python-nmap/"&gt;python-nmap&lt;/a&gt;: wrapper around nmap port scanner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Wrap-Up&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Long historical precedence for mass surveillance with very little oversight or restriction.&lt;/li&gt;
+&lt;li&gt;Safe to assume they spy everyone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Pointers&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://rogue.ly/spy"&gt;The presentation material&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://nbviewer.ipython.org/urls/gist.github.com/econchick/7610860/raw/bfd06d3b326ee019425f2a46e9a088d3dbba1ca6/pycones.ipynb"&gt;The notebook here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://rogue.ly/spy-quick"&gt;Introduction to Scapy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/econchick/spy"&gt;Spy Github Repo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Hustle: A column Oriented, Distributed Event Database&lt;/h3&gt;
+&lt;p&gt;Presenter: Tim Spurway  &lt;/p&gt;
+&lt;p&gt;Hustle is another distributed database. It is relational and claims to do super
+fast queries and distributed writes(inserts). It is an interesting concept and
+its domain query language is Python based. Seeing Python to be different DSL’s of 
+data processing frameworks, it was not a big suprise for me seeing a database
+solely depends on Python for all querying tasks. &lt;/p&gt;
+&lt;h4&gt;Hustle Features&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Open Source&lt;/li&gt;
+&lt;li&gt;Column Oriented, pipelined execution = Fast queries&lt;/li&gt;
+&lt;li&gt;Embarrasingly distributed =&amp;gt; Disco MIR pipelines, DDFS&lt;/li&gt;
+&lt;li&gt;Embarrasingly fast = LMDB bt Tree&lt;/li&gt;
+&lt;li&gt;Relational = Join Large Tables&lt;/li&gt;
+&lt;li&gt;Partitioned = Smart, Automatic Sharding&lt;/li&gt;
+&lt;li&gt;Query Language: Python DSL&lt;/li&gt;
+&lt;li&gt;Advanced Compression; store even more&lt;/li&gt;
+&lt;li&gt;Command Line Interface: Ad-hoc queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Column Orientation&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;As opposed to traditional row oriented DBMSes&lt;/li&gt;
+&lt;li&gt;Typical use-case is extremely large datasets.&lt;/li&gt;
+&lt;li&gt;Very efficient column aggreggation&lt;/li&gt;
+&lt;li&gt;Excellent compression characteristics.&lt;/li&gt;
+&lt;li&gt;Works well with Bitmap indices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Insert into Hustle&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Distributed inserts - support massive write overload(millions recors/sec)&lt;/li&gt;
+&lt;li&gt;Two steps:&lt;ul&gt;
+&lt;li&gt;Create standalone Marble file (LMDB)&lt;/li&gt;
+&lt;li&gt;Push Marble to DDFS (cheap, cluster-to-local)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;An insert can create and push any number of partitioned Marbles.&lt;/li&gt;
+&lt;li&gt;CSV, JSON, fixed field supported&lt;/li&gt;
+&lt;li&gt;Bulk append semantics - pay careful attention to ETL.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Query Hustle&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Python DSL - operator overloads in where clause&lt;/li&gt;
+&lt;li&gt;Aggregating Functions/ Grouping (h-sum, h-count, h-avg)&lt;/li&gt;
+&lt;li&gt;Efficient, distributed join&lt;/li&gt;
+&lt;li&gt;Order, limit, desc, distinct&lt;/li&gt;
+&lt;li&gt;Nested queries&lt;/li&gt;
+&lt;li&gt;Extensible query language&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Hustle Query Execution&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Hustle queries are distributed Disco pipeline jobs&lt;/li&gt;
+&lt;li&gt;Query optimizer and replication minimize data movement in cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Pointers&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/chango/hustle"&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Socialite Python Integrated Query Langauge for Big Data Analysis&lt;/h3&gt;
+&lt;p&gt;Presenter: Jiwon Seo  &lt;/p&gt;
+&lt;p&gt;Another big data processing framework and its query language could be integrated into Python
+seamlessly as you could use the variables of Python in the query language or vice versa.
+It claims to be faster than Graphlab and Not necessarily than Spark I guess,
+it is memory-in computation, so in that aspect it differs from Hadoop-based frameworks.&lt;/p&gt;
+&lt;h4&gt;Why Another Big Data Platform?&lt;/h4&gt;
+&lt;p&gt;Problems in existing platforms:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Too difficult(low-level primitives)&lt;/li&gt;
+&lt;li&gt;Inefficient(not network bound)&lt;/li&gt;
+&lt;li&gt;Too many (sub) framework&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Introducing Socialite&lt;/h4&gt;
+&lt;p&gt;Socialite is a high level language:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Easy and efficient&lt;/li&gt;
+&lt;li&gt;Compiled to optimized code&lt;/li&gt;
+&lt;li&gt;Python integration(Jython)&lt;/li&gt;
+&lt;li&gt;Good for&lt;ul&gt;
+&lt;li&gt;Graph Analysis&lt;/li&gt;
+&lt;li&gt;Data Mining &lt;/li&gt;
+&lt;li&gt;Relational Queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Outline&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Concepts in Socialite&lt;ul&gt;
+&lt;li&gt;Distributed Tables&lt;/li&gt;
+&lt;li&gt;Python Integration (Jython and Python)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;System overview&lt;/li&gt;
+&lt;li&gt;Analysis Algorithms&lt;ul&gt;
+&lt;li&gt;Shortest paths, PageRank&lt;/li&gt;
+&lt;li&gt;K-Means, Logistic Regression&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Evaluation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Distributed In-Memory Tables&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Primary data structure in Socialite&lt;/li&gt;
+&lt;li&gt;Column oriented storage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Python Integration&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Socialite queries in Python code&lt;ul&gt;
+&lt;li&gt;Queries are quoted in backtick&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python functions, variables are accessible in Socialite queries.&lt;/li&gt;
+&lt;li&gt;Socialite tables are readable from Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;41&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;answer&lt;/span&gt;&lt;span class="err"&gt;”`&lt;/span&gt;
+&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
+&lt;span class="sb"&gt;`Foo[i](s) :- i=44,s=$func`&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="sb"&gt;`Foo[i](s)`&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;System Optimizations&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Custom Memory Allocator (temporary table)&lt;/li&gt;
+&lt;li&gt;Optimized Serialization&lt;/li&gt;
+&lt;li&gt;Direct ByteBuffer (network Buffer)&lt;/li&gt;
+&lt;li&gt;Multiple network channels among workers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Summary&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Distributed query language&lt;/li&gt;
+&lt;li&gt;Integration with Python&lt;/li&gt;
+&lt;li&gt;Easy and efficient&lt;/li&gt;
+&lt;li&gt;Algorithms in Socialite&lt;/li&gt;
+&lt;li&gt;Competitive Performance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Pointers&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://socialite-lang.github.io/"&gt;Project page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary></entry></feed>
