@@ -124,8 +124,8 @@
     <textarea id="source">
 
 class: center, middle, inverse
-        
-# Luigi 
+
+# Luigi
 
 ---
 
@@ -137,62 +137,68 @@ Workflow framework that allows for management of complex pipelines.
 - Error handling
 - Idempotence
 - Dependency Management
-- HDFS and other file system support        
+- HDFS and other file system support
 - Last but not least, written in pure Python!
-        
-        
+
+
 #### Use Case
 - Farhan used to retrieve the raw data for Alexa.
 - I compute the change and growth metrics in the performance tab based on raw data.(Dependency)
 - Farhan's cron jobs also has dependency themselves(raw data -> fixer)
 - When Farhan's cron jobs fail, mines would work whatever data is available. To me, it is all good(silent failure)
 - If there is a problem in data, I would not know if the issue is in raw data, fixer(Farhan) or in my computation.(failure inspection)
-- Anytime, we could check which jobs run properly visually. 
+- Anytime, we could check which jobs run properly visually.
 
 ---
-        
+
 ### Spotify Usage
 ![User Recommendation Dependency](https://raw.githubusercontent.com/spotify/luigi/master/doc/user_recs.png "Documentation Image")
-        
-        
+
+
 ---
 #### Tasks
 - Every cron job can be considered as __task__.
 - Chaining tasks is one of the functionality(Luigi is a plumber!)
 - Task can be anything(a service, a db connection, cron job)
-- Dependencies and execution order based on dependency handled by Luigi.        
+- Dependencies and execution order based on dependency handled by Luigi.
 
 #### Targets
 - File, checkpoint in db.
 - We could check data availability via targets instead of running the jobs.
-- We are using LocalTarget to write a temp file when the job is executed successfully. 
-        
----
-        
-## Our Usage 
-![Alexa Computation](http://i.imgur.com/75P54HR.png "Alexa Computation")
-        
----
-        
-[Cron Server Jobs](http://cron1.cbinsights.com:8082/static/visualiser/index.html#)        
-![Tasks](http://i.imgur.com/7SrfWBg.png "Tasks")
-        
----
-        
-![Python Code](http://i.imgur.com/IdFGRMA.png "Luigi")
-                
----        
+- We are using LocalTarget to write a temp file when the job is executed successfully.
 
-        
+---
+
+## Our Usage
+![Alexa Computation](http://i.imgur.com/75P54HR.png "Alexa Computation")
+
+---
+
+
+## Failure
+![Failure](http://i.imgur.com/Uw1kTMv.png "Failure")
+
+---
+
+[Cron Server Jobs](http://cron1.cbinsights.com:8082/static/visualiser/index.html#)
+![Tasks](http://i.imgur.com/7SrfWBg.png "Tasks")
+
+---
+
+![Python Code](http://i.imgur.com/IdFGRMA.png "Luigi")
+
+---
+
+
 ### Disadvantages
 - No built-in support for MySQL(there is 3rd party but Farhan tried and failed). Spotify uses Postgresql and has built-in support for that.
 - No scheduling mechanism(this is a big one, IMO). You need to put the Luigi task in a cron job to regulate the scheduling.(Not pretty)
-- Only Python.(You may be saying how that is a disadvantage and I agree with you wholeheartedly) 
+- Only Python.(You may be saying how that is a disadvantage and I agree with you wholeheartedly)
 - You need to wrap your jobs in `subprocess` module (shell function call mechanism in Python), and then create a Python class wrapper.(Requires some work there)
 - No parallelization mechanism across jobs in execution order even if one job should start different jobs.
 - Developed in Spotify and mostly it answers Spotify needs(somehow low dev activity in general, minimal outside of Spotify. Still quite popular in Python community, though.)
 
-        
+
 
     </textarea>
     <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
