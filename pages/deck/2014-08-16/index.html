@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Asyncronous Web Scraping with Asyncio</title>
+		<title>Asynchronous Web Scraping with Asyncio</title>
 
-		<meta name="description" content="Asyncronous Web Scraping with Asyncio">
+		<meta name="description" content="Asynchronous Web Scraping with Asyncio">
 		<meta name="author" content="Bugra Akyildiz">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -39,7 +39,7 @@
 <div class="slides">
 
     <section>
-        <h2>Asyncronous Web Scraping with Asyncio</h2>
+        <h2>Asynchronous Web Scraping with Asyncio</h2>
         <a href="https://twitter.com/bugraa">@bugraa</a><br>
         <a href="https://bugra.github.io">bugra.github.io</a><br><br>
         <b>Bugra Akyildiz</b><br>
@@ -93,6 +93,11 @@
 </blockquote>
 </section>
 
+
+<section >
+<img src="http://i.imgur.com/IodHyXu.jpg" alt="Asynchronous Inception" style="width: 512px; height: 1024px;">
+</section>
+
 <!-- Asynchronous Programming Advantages -->
 <section data-markdown>
 ### Asynchronous Programming Advantages
@@ -101,6 +106,7 @@
 - Blocking operations do not matter as much.
 
 </section>
+
 
 <!-- Asyncio Programming Advantages over Multithreading Programming -->
 <section data-markdown>
@@ -112,6 +118,12 @@
     - No need for communication between threads.
     - You have control all over the data, variables and whole namespace.
 - Full control(instead of OS to decide which treads to be used) over the program.
+
+</section>
+
+<section>
+<img src="http://i.imgur.com/KT1LBlg.jpg" alt="Asynchronous Seriousness" style="width: 1280px; height: 1024px;">
+
 
 </section>
 
@@ -135,6 +147,10 @@
     - It is _the_ __Future__. (We will come back to this later)
 </section>
 
+<section>
+<blockquote class="twitter-tweet" lang="en" ><p>those who don’t There are two types of people in the world: those who understand asynchronous jokes and</p>&mdash; Zach Holman (@holman) <a href="https://twitter.com/holman/statuses/485883220697694209">July 6, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</section>
 <!-- Asyncio Module -->
 <section data-markdown>
 ## Asyncio Module
@@ -154,7 +170,7 @@
 
 <!-- Asyncio Module -->
 <section data-markdown>
-## Asyncio Module
+## Asyncio Module A Closer Look
 - Concurrent Primitives
 - Coroutines
 - Event Loop
@@ -165,6 +181,11 @@
 - and many more ...
 
 </section>
+
+<section>
+    <img src="http://i.imgur.com/iHk18gH.gif" alt="Here we go" style="width: 1024px; height: 512px;">
+</section>
+
 
 <!-- Event Loop -->
 <section data-markdown>
@@ -183,13 +204,15 @@
 </section>
 
 <section data-markdown>
-- Coroutines cannot be run outside of event loops
-- They are the schedulers and also the place that coroutines exist
+### Event Loop
+- Schedulers
+- Where coroutines exist
 ```python
 loop = asyncio.get_event_loop() # create a loop
 f = asyncio.wait([inform(link_blob) for link_blob in links]) # List of corotine functions
 loop.run_until_complete(f) # Run them
 ```
+> Coroutines cannot be run outside of event loops
 </section>
 
 <!-- Concurrent Primitives -->
@@ -201,11 +224,6 @@ loop.run_until_complete(f) # Run them
 
 </section>
 
-
-<section>
-<h2>Lock</h2>
-<img src="static/img/lock.jpg" alt="Lock" style="width: 512px; height: 384px;">
-</section>
 
 <!-- Locks -->
 <section data-markdown>
@@ -219,7 +237,7 @@ loop.run_until_complete(f) # Run them
 
 <section>
 <h2>Semaphore</h2>
-<img src="static/img/semaphore.png" alt="Semaphore" style="width: 368; height: 207px;">
+<img src="static/img/semaphore.png" alt="Semaphore" style="width: 1024; height: 768;">
 </section>
 
 <!-- Semaphores -->
@@ -232,8 +250,7 @@ loop.run_until_complete(f) # Run them
   execution.(like in a synchronous procedure)
 - Very useful if you want to limit the coroutines that run at a single
   time.
-- We will revisit this concept in Responsive Web Scraping which is quite
-  important.
+- We will revisit this concept in Responsive Web Scraping
 </section>
 
 <section>
@@ -248,7 +265,6 @@ loop.run_until_complete(f) # Run them
 - If you do not want to use coroutines, they also support `get_nowait()`
   and `put_nowait()` functions to remove the asynchronous nature of
 calls.
-    - Going to synchronous.
 </section>
 
 <!-- Coroutines -->
