@@ -43,10 +43,10 @@
         <a href="https://twitter.com/bugraa">@bugraa</a><br>
         <a href="https://bugra.github.io">bugra.github.io</a><br><br>
         <b>Bugra Akyildiz</b><br>
+        Machine Learning Engineer @ <a href="http://www.cbinsights.com/">CB Insights</a><br>
         <a style="color:#57068C;">bugra@nyu.edu</a><br><br>
         <a href="http://bit.ly/pygotham-2014"> http://bit.ly/pygotham-2014</a> | Repo<br>
-
-
+        <a href="http://bit.ly/pygotham-2014-notebooks">http://bit.ly/pygotham-2014-notebooks</a><br>
     </section>
 
 
@@ -117,7 +117,7 @@
     - Easier to manage and control the processes in a single thread.
     - No need for communication between threads.
     - You have control all over the data, variables and whole namespace.
-- Full control(instead of OS to decide which treads to be used) over the program.
+- Full control(instead of OS to decide which threads to be used) over the program.
 
 </section>
 
@@ -129,7 +129,7 @@
 
 <section data-markdown>
 ### Global Interpreter Lock (GIL)
-- CPython interpreter uses GIL and only one thread could execute.
+- CPython interpreter uses GIL and only one native thread could execute.
 - Due to GIL, the overhead Python pays for multithreading is quite large even if your machine has multiprocessors.
     - In the same time, GIL makes it more efficient for single thread.
 - Due to GIL, execution speed does not increase linearly with the number of threads you are using.
@@ -209,7 +209,7 @@
 - Where coroutines exist
 ```python
 loop = asyncio.get_event_loop() # create a loop
-f = asyncio.wait([inform(link_blob) for link_blob in links]) # List of corotine functions
+f = asyncio.wait([inform(link_blob) for link_blob in links]) # List of coroutine functions
 loop.run_until_complete(f) # Run them
 ```
 > Coroutines cannot be run outside of event loops
@@ -327,6 +327,7 @@ print('It has been {}'.format(time.perf_counter() - start))
 - [urrlib](https://docs.python.org/2/library/urllib.html), [urrlib2](https://docs.python.org/2/library/urllib2.html) and their API is somehow broken in Python 2.
 - New [`urllib`](https://docs.python.org/3/library/urllib.html) library is more sane in Python 3 and provides a more coherent namespace.
 - Yet, its API is still not as good as [Requests](http://docs.python-requests.org/en/latest/)
+- [Streams Library](https://docs.python.org/3/library/asyncio-stream.html) provides nice wrappers, I will be using this one to open asynchronous connections.
 
 > Requests and most of the HTTP libraries are synchronous.
 > HTTP protocol is also synchronous, no surprise there
@@ -483,6 +484,34 @@ page = yield from get_body(url
 </section>
 
 <section data-markdown>
+### Asnychronous Web Scraping
+```python
+@asyncio.coroutine
+def get_body(url):
+    url = urlsplit(url)
+    path = '/' * (not url.path) + url.path + '?' * bool(url.query) + url.query # Booleans are sub-class of integers
+    # Check out Strems: https://docs.python.org/3/library/asyncio-stream.html
+    reader, writer = yield from asyncio.open_connection(
+        host=url.hostname,
+        port=url.port or (443 if url.scheme == 'https' else 80),
+        ssl=(url.scheme == 'https'))
+    with contextlib.closing(writer):
+        writer.write(b'GET ' + path.encode('ascii') + b' HTTP/1.1\r\n'
+                     b'Host: ' + url.netloc.encode('ascii') + b'\r\n'
+                     b'Connection: close\r\n\r\n')
+        while True:
+            line = yield from reader.readline()
+            line = line.rstrip(b'\n\r')
+            print(line.decode('latin-1'))
+            if not line:
+                break
+        body = yield from reader.read()
+    return body
+```
+</section>
+
+
+<section data-markdown>
 ### What next?
 - Try to think the problems in an asynchronous manner.
 - Try to use `asyncio` in your next project which depends on I/O.
@@ -490,13 +519,17 @@ page = yield from get_body(url
 - Try to learn more advanced and low-level `asyncio` primitives; transports and protocols.
 
 > Syncronous is not cool... You know what is cool? __Asynchronous__.
+
 </section>
 
 <section data-markdown>
-### Materials on Coroutine
+### Further Reading Material for Asyncio
+- [Asyncio Bundle](https://bitly.com/bundles/bugraa/2)
 - [Coroutines by David Beazley](http://www.dabeaz.com/coroutines/) (For core concepts, it is good start, outdated ~2008 though)
 - [Difference between `yield` and `yield from` by Guido van Rossum](https://groups.google.com/forum/#!msg/python-tulip/bmphRrryuFk/aB45sEJUomYJ)
--
+- [Haypo Notes](http://haypo-notes.readthedocs.org/en/latest/asyncio.html)
+- [Playing with Asyncio Blog Post](http://www.getoffmalawn.com/blog/playing-with-asyncio)
+- [http://asyncio.org/#tutorials](http://asyncio.org/#tutorials)
 
 </section>
 
@@ -516,6 +549,7 @@ page = yield from get_body(url
 - [Portia - Visual Scraping](https://github.com/scrapinghub/portia)
 
 </section>
+
 <!-- Credits -->
 <section data-markdown>
 ### Credits
