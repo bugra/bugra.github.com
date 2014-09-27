@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="/theme/css/main.css">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"type="text/javascript"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -1464,8 +1464,7 @@ input.engine_num_input{height:20px;margin-bottom:2px;padding-top:0;padding-botto
 .ansibgpurple{background-color:magenta;}
 .ansibgcyan{background-color:cyan;}
 .ansibggray{background-color:gray;}
-.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}.cell.selected{border-radius:4px;border:thin #ababab solid;}
-div.cell{width:100%;padding:5px 5px 5px 0px;margin:2px 0px 2px 7px;outline:none;}
+div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;padding:5px 5px 5px 0px;margin:2px 0px 2px 7px;outline:none;}div.cell.selected{border-radius:4px;border:thin #ababab solid;}
 div.prompt{width:11ex;padding:0.4em;margin:0px;font-family:monospace;text-align:right;line-height:1.231em;}
 .celltoolbar{border:thin solid #CFCFCF;border-bottom:none;background:#EEE;border-top-right-radius:3px;border-top-left-radius:3px;width:100%;-webkit-box-pack:end;height:22px;}
 .no_input_radius{border-top-right-radius:0px;border-top-left-radius:0px;}
@@ -1691,7 +1690,7 @@ table.dataframe th, td {
 </blockquote>
 <h3 id="formal-definition">Formal Definition</h3>
 <p>A Bayesian Network <span class="math">\(N\)</span> is a Directed Acyclic Graph which defines a Joint Probability Distribution over random variables.</p>
-<p><span class="math">\[N = \langle N, \Theta \rangle\]</span> where <span class="math">\(N\)</span> represents the graph which is defined over <span class="math">\(X_1, X_2, \ldots,  X_K\)</span> random variables, then Joint Probability Distribution could be written as in the following:</p>
+<p><span class="math">\[N = \langle N, \Theta \rangle\]</span> where <span class="math">\(N\)</span> represents the graph which is defined over <span class="math">\(X_1, X_2, \ldots, X_K\)</span> random variables, then Joint Probability Distribution could be written as in the following:</p>
 <p><span class="math">\[ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}\]</span> where <span class="math">\(\theta_{X_i|\pi_i} = P_N(X_i|\pi_i)\)</span></p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2078,7 +2077,7 @@ In&nbsp;[52]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
- [----             12%                  ] 1242 of 10000 complete in 0.5 sec [--------         21%                  ] 2120 of 10000 complete in 1.0 sec
+ [----             12%                  ] 1242 of 10000 complete in 0.5 sec [--------         21%                  ] 2120 of 10000 complete in 1.0 sec [-----------      30%                  ] 3071 of 10000 complete in 1.5 sec [---------------- 42%                  ] 4276 of 10000 complete in 2.0 sec [-----------------54%                  ] 5457 of 10000 complete in 2.5 sec [-----------------64%----              ] 6429 of 10000 complete in 3.0 sec [-----------------74%--------          ] 7491 of 10000 complete in 3.5 sec [-----------------83%-----------       ] 8331 of 10000 complete in 4.0 sec [-----------------91%--------------    ] 9194 of 10000 complete in 4.5 sec [-----------------100%-----------------] 10000 of 10000 complete in 4.9 sec
 </pre>
 </div>
 </div>
@@ -2127,7 +2126,9 @@ In&nbsp;[54]:
 <pre>
 Plotting p_grass_wet_0
 Plotting sprinkler_0
-Plotting
+Plotting p_sprinkler_0
+Plotting rain_0
+
 </pre>
 </div>
 </div>
