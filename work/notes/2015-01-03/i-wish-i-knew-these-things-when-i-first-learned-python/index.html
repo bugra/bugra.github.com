@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>I wish I knew these things when I learned Python | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+  <div id="logo"><a href="/" class="at"></a></div>
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>I wish I knew these things when I learned Python</h1>
+        </header>
+        <div class='post-content'>
+            <p>I sometimes found myself asking myself how I cannot know simpler way of doing 
+“this” thing in Python 3. When I seek solution, I of course find much more elegant,
+efficient and more bug-free code parts over time. In total(not just this post), 
+the total sum of “those” things were far more than I expect/admit, but here is 
+the first crop of features that was not obvious to me and learned later as I 
+sought more efficient/simple/maintainable code.</p>
+<h2>Dictionary Stuff</h2>
+<h3>Dictionary <code>keys()</code> and <code>items()</code></h3>
+<p>You could do various interesting operations in keys and items of dictionaries. They
+are set-like.</p>
+<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">mike</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">kathy</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">steve</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">hillary</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">}</span>
+<span class="n">bb</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">mike</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ben</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">hillary</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">}</span>
+
+<span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">bb</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># {‘mike’, ‘hillary’} # these are set-like</span>
+<span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># {‘kathy’, ‘steve’}</span>
+<span class="c"># If you want to get the common key-value pairs in the two dictionaries</span>
+<span class="n">aa</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">bb</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="c"># {(‘mike’, ‘male’), (‘hillary’, ‘female’)}</span>
+</pre></div>
+
+
+<p>Pretty neat!</p>
+<h3>Checking Existence of a key in dictionary</h3>
+<p>How many times you write the following code?</p>
+<div class="highlight"><pre><span class="n">dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This is not so bad, but why do you need if statement every now and then?</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="n">dictionary</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c"># defaults to list</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+    <span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Much cleaner and there is not an if statement which unnecessarily
+obscures the code.</p>
+<h3>Update a dictionary with another dictionary</h3>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">x</span><span class="err">’</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="err">‘</span><span class="n">y</span><span class="err">’</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="err">‘</span><span class="n">z</span><span class="err">’</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">y</span><span class="err">’</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="err">‘</span><span class="n">s</span><span class="err">’</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="err">‘</span><span class="n">x</span><span class="err">’</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="err">‘</span><span class="n">z</span><span class="err">’</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+
+<span class="c"># Update a with b </span>
+<span class="n">c</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<span class="n">c</span> <span class="c"># {‘y’: 5, ‘s’: 10, ‘x’: 3, ‘z’: 6}</span>
+</pre></div>
+
+
+<p>Well, this is good but not very concise and terse. Let’s see
+if we could do better:</p>
+<div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Much cleaner and readable!</p>
+<h3>Getting the maximum! from a dictionary</h3>
+<p>If you want to get the maximum value in a dictionary, it is straightforward:</p>
+<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
+<span class="n">aa</span> <span class="c"># {0: 0, 1: 0, 2: 1, 3: 3, 4: 6, 5: 10, 6: 15, 7: 21, 8: 28, 9: 36}</span>
+<span class="nb">max</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="c">#36</span>
+</pre></div>
+
+
+<p>which works, but what if you need the key, you need to do another 
+lookup based on value. Instead, we could flatten the representation via <code>zip</code>
+and then return the key-value pair as in the following:</p>
+<div class="highlight"><pre><span class="nb">max</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="c"># (36, 9) =&gt; value, key pair</span>
+</pre></div>
+
+
+<p>Similarly, if you want to traverse the dictionary by maximum value to minimum value
+you could do the following:</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c"># [(36, 9), (28, 8), (21, 7), (15, 6), (10, 5), (6, 4), (3, 3), (1, 2), (0, 1), (0, 0)]</span>
+</pre></div>
+
+
+<h3>Unpacking Arbitrary Number of Items in a List</h3>
+<p>We could capture arbitrary number of items into a list using <code>*</code> magic:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">compute_average_salary</span><span class="p">(</span><span class="n">person_salary</span><span class="p">):</span>
+    <span class="n">person</span><span class="p">,</span> <span class="o">*</span><span class="n">salary</span> <span class="o">=</span> <span class="n">person_salary</span>
+    <span class="k">return</span> <span class="n">person</span><span class="p">,</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">salary</span><span class="p">)))</span>
+
+<span class="n">person</span><span class="p">,</span> <span class="n">average_salary</span> <span class="o">=</span> <span class="n">compute_average_salary</span><span class="p">([</span><span class="err">“</span><span class="n">mike</span><span class="err">”</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">])</span>
+<span class="n">person</span> <span class="c"># ‘mike’</span>
+<span class="n">average_salary</span> <span class="c"># 50000.0</span>
+</pre></div>
+
+
+<p>This was not very interesting, but what if I tell you you could do the following 
+as well:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">compute_average_salary</span><span class="p">(</span><span class="n">person_salary_age</span><span class="p">):</span>
+    <span class="n">person</span><span class="p">,</span> <span class="o">*</span><span class="n">salary</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="n">person_salary_age</span>
+    <span class="k">return</span> <span class="n">person</span><span class="p">,</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">salary</span><span class="p">))),</span> <span class="n">age</span>
+
+<span class="n">person</span><span class="p">,</span> <span class="n">average_salary</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="n">compute_average_salary</span><span class="p">([</span><span class="err">“</span><span class="n">mike</span><span class="err">”</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">,</span> <span class="mi">42</span><span class="p">])</span>
+<span class="n">age</span> <span class="c"># 42</span>
+</pre></div>
+
+
+<p>This is pretty neat.  </p>
+<p>When you think about a dictionary that has a string key and a list as value, 
+instead of traversing a dictionary and then process the values in a sequential 
+manner, one can use a flat representation(list inside of a list) like this:</p>
+<div class="highlight"><pre><span class="c"># Instead of doing this</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c"># we are separating head and the rest, and process the values</span>
+<span class="c"># as a list similar to the above. head becomes the key value</span>
+<span class="k">for</span> <span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+
+<span class="c"># if not very clear, consider the following example</span>
+<span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)}</span> <span class="c"># range returns an iterator</span>
+<span class="n">aa</span> <span class="c"># {0: [], 1: [0], 2: [0, 1], 3: [0, 1, 2], 4: [0, 1, 2, 3]}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">aa</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c">#0</span>
+<span class="c">#0</span>
+<span class="c">#1</span>
+<span class="c">#3</span>
+<span class="c">#6</span>
+
+<span class="c"># Instead</span>
+<span class="n">aa</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ii</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">jj</span><span class="p">))</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="ow">in</span> <span class="n">aa</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">rest</span><span class="p">))</span>
+
+<span class="c">#0</span>
+<span class="c">#0</span>
+<span class="c">#1</span>
+<span class="c">#3</span>
+<span class="c">#6</span>
+</pre></div>
+
+
+<p>You could <em>unpack</em> the <code>list</code> into <code>head, *rest, tail</code> as well.</p>
+<h3><code>collections</code> Gotta love Counter</h3>
+<p><code>collections</code> is one of my favorite standard library in Python. If you need any other
+data structures than the original default data structures in the Python, you should 
+take a look at it. </p>
+<p>One of the essential part of my job on a daily basis is to count things. Mostly words
+but not necessarily always. One may be tempted to say, you could build a dictionary
+with words as keys and the number of occurrences as values, and I would agree with 
+you if I did not know about it <code>Counter</code> in the <code>collections</code>(yes, the introduction
+blurb is because of Counter). </p>
+<p>Let’s say you read, Python programming language wikipedia page into a string and then
+convert into a list(by tokenizing, well sort of):</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">word_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">r</span><span class="err">’</span><span class="p">[;,:(</span>\<span class="o">.</span>\<span class="n">s</span><span class="p">)]</span>\<span class="n">s</span><span class="o">*</span><span class="err">’</span><span class="p">,</span> <span class="n">python_string</span><span class="p">)))</span>
+<span class="n">word_list</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="c"># [‘python’, ‘is’, ‘a’, ‘widely’, ‘used’, ‘general-purpose’, ‘high-level’, ‘programming’, ‘language’, ‘[17][18][19]’]</span>
+</pre></div>
+
+
+<p>So far, so good. But if I want to count the words in this list:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c"># again, collections!</span>
+<span class="n">dictionary</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
+    <span class="n">dictionary</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>This is not so bad, but if you have <code>Counter</code>, you would use your time
+in a more meaningful task.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+<span class="c"># Getting the most common 10 words</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">[(</span><span class="err">‘</span><span class="n">the</span><span class="err">’</span><span class="p">,</span> <span class="mi">164</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="ow">and</span><span class="err">’</span><span class="p">,</span> <span class="mi">161</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="n">a</span><span class="err">’</span><span class="p">,</span> <span class="mi">138</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="n">python</span><span class="err">’</span><span class="p">,</span> <span class="mi">138</span><span class="p">),</span> 
+<span class="p">(</span><span class="err">‘</span><span class="n">of</span><span class="err">’</span><span class="p">,</span> <span class="mi">131</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="ow">is</span><span class="err">’</span><span class="p">,</span> <span class="mi">102</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="n">to</span><span class="err">’</span><span class="p">,</span> <span class="mi">91</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="ow">in</span><span class="err">’</span><span class="p">,</span> <span class="mi">88</span><span class="p">),</span> <span class="p">(</span><span class="err">‘’</span><span class="p">,</span> <span class="mi">56</span><span class="p">)]</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">keys</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span> <span class="c"># just like a dictionary</span>
+<span class="p">[</span><span class="err">‘’</span><span class="p">,</span> <span class="err">‘</span><span class="n">limited</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="nb">all</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">code</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">managed</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">multi</span><span class="o">-</span><span class="n">paradigm</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">exponentiation</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">fromosing</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">dynamic</span><span class="err">’</span><span class="p">]</span>
+</pre></div>
+
+
+<p>This is pretty neat, but if we look at what available methods exist for counter:</p>
+<div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+<span class="p">[</span><span class="err">‘</span><span class="n">__add__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__and__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__class__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__cmp__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__contains__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__delattr__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__delitem__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__dict__</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">__doc__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__eq__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__format__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__ge__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__getattribute__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__getitem__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__gt__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__hash__</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">__init__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__iter__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__le__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__len__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__lt__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__missing__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__module__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__ne__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__new__</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">__or__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__reduce__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__reduce_ex__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__repr__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__setattr__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__setitem__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__sizeof__</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">__str__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__sub__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__subclasshook__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__weakref__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">clear</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">copy</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">elements</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">fromkeys</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">get</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">has_key</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">items</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">iteritems</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">iterkeys</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">itervalues</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">keys</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">most_common</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">pop</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">popitem</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">setdefault</span><span class="err">’</span><span class="p">,</span> 
+<span class="err">‘</span><span class="n">subtract</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">update</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">values</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">viewitems</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">viewkeys</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">viewvalues</span><span class="err">’</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Did you see <code>__add__</code> and <code>__sub__</code> methods? Yes, counters support <code>+</code> and <code>-</code> operations! So, if you have
+a lot of text and want to count words, you do not need Hadoop, you could parallelize a bunch of counters(map)
+and then sum them together(reduce). You have your mapreduce built on top of counter. You could thank me later.</p>
+<h3>Flattening Nested Lists</h3>
+<p><code>collections</code> has also <code>_chain</code> function which could be used to flatten
+nested lists:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="n">ls</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kk</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">kk</span><span class="p">))</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">flattened_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">_chain</span><span class="p">(</span><span class="o">*</span><span class="n">ls</span><span class="p">))</span>
+</pre></div>
+
+
+<h3>Opening two files simultaneously</h3>
+<p>If you are processing one file(e.g. line by line) and write the 
+processed line into another file, you may be tempted to write the following:</p>
+<div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="err">‘</span><span class="n">w</span><span class="err">’</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inputfile</span><span class="p">:</span>
+            <span class="n">outputfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Except, you can open multiple files in the same line as in the following:</p>
+<div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="err">‘</span><span class="n">w</span><span class="err">’</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inputfile</span><span class="p">:</span>
+        <span class="n">outputfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+</pre></div>
+
+
+<p>This is much more neat.</p>
+<h3>Finding Monday from a Date</h3>
+<p>If you have a date and want to normalize(say to previous or next Monday), you
+could do the following:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">previous_monday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">some_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">())</span>
+<span class="c"># Similarly, you could map to next monday as well</span>
+<span class="n">next_monday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">+</span> <span class="n">date_time</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="n">some_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">(),</span> <span class="n">weeks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And, that is about it.</p>
+<h3>Handling HTML</h3>
+<p>If you scrape websites either for fun or profit, chances are that you face
+html tags time to time. In order to strip various html tags, you could
+do use <code>html.parser</code>:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">html.parser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
+
+<span class="k">class</span> <span class="nc">HTMLStrip</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ls</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">handle_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="err">‘’</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ls</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="n">snippet</span><span class="p">):</span>
+        <span class="n">html_strip</span> <span class="o">=</span> <span class="n">HTMLStrip</span><span class="p">()</span>
+        <span class="n">html_strip</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">snippet</span><span class="p">)</span>
+        <span class="n">clean_text</span> <span class="o">=</span> <span class="n">html_strip</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clean_text</span>
+
+<span class="n">snippet</span> <span class="o">=</span> <span class="n">HTMLStrip</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">html_snippet</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If you only want to escape <code>html</code>:</p>
+<div class="highlight"><pre><span class="n">escaped_snippet</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">html_snippet</span><span class="p">)</span>
+
+<span class="c"># Back to html snippets(this is new in Python 3.4)</span>
+<span class="n">html_snippet</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">unescape</span><span class="p">(</span><span class="n">escaped_snippet</span><span class="p">)</span>
+<span class="c"># and so forth ...</span>
+</pre></div>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" i
+              class="twitter-share-button"
+              data-url="http://bugra.github.io/work/notes/2015-01-03/i-wish-i-knew-these-things-when-i-first-learned-python/"
+              data-via="bugraa">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button_count"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2015-01-03T00:00:00">
+                            January 03, 2015
+                        </time>
+                    </i>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'bugra'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      </div>
+    </div>
+</div>
+      <!-- Timesheet JS and CSS -->
+      <script src="/theme/js/timesheet.js"></script>
+      <script src="/theme/js/timesheet.bubble.js"></script>
+      <script type='text/javascript'>new Timesheet('timesheet', 2008, 2020, [
+  ['09/2006', '05/2011', 'B.S Electrical Engineering at Bilkent University', 'dolor'],
+  ['06/2009', '09/2009', 'Software Developer Intern at Optisis Inc.', 'dolor'],
+  ['06/2010', '09/2010', 'Software Developer Intern at Tubitak R&D', 'dolor'],
+  ['06/2011', '09/2011', 'Research Internship at Koc University', 'dolor'],
+  ['09/2011', '05/2013', 'M.S Electrical and Computer Engineering at NYU', 'lorem'],
+  ['12/2012', '05/2013', 'Part-Time Software Developer at Viacom', 'lorem'],
+  ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
+  ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
+  ['12/2014', '2/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+]);</script>
+      <!-- Timesheet End -->
+      <script src="/theme/js/logo.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>
