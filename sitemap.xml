@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://bugra.github.io/index.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/archives.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/tags.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/categories.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://bugra.github.io/work/notes/2015-01-25/blog-in-review-2014/</loc>
+<lastmod>2015-01-25T00:00:00-00:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -334,175 +341,182 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://bugra.github.io/category/1.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/11.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/12.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/13.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/15.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/16.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/17.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/18.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/19.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/20.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/21.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/22.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/23.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/24.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://bugra.github.io/category/25.html</loc>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/26.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/27.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/28.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/3.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/30.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/31.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/4.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/5.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/8.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/category/9.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://bugra.github.io/author/bugra-akyildiz.html</loc>
-<lastmod>2015-01-17T15:47:16-00:00</lastmod>
+<lastmod>2015-01-25T18:04:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
