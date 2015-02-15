@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>K-Means, Sparse Coding, Dictionary Learning and All That | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+  <div id="logo"><a href="/" class="at"></a></div>
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>K-Means, Sparse Coding, Dictionary Learning and All That</h1>
+        </header>
+        <div class='post-content'>
+            <h2>Feature Learning</h2>
+<p>Feature learning especially from images is a fundamental step in a classification
+pipeline of images as the raw pixels create both huge feature vectors per image
+and not necessarily represent good features for image classification problems.</p>
+<h2>Unsupervised Feature Learning</h2>
+<p>Computer vision community came up with engineered feature detectors first
+(SIFT, HoG and so on), then try to use unsupervised learning algorithm
+to find useful visual “word”s in the image so that they could be used for the 
+classification. Nowadays, deep learning is used for feature extraction and also 
+classification at some extent. However, one thing did not change; to be able to 
+learn important and relevant features from the images in an automated way.</p>
+<p><a href="http://www.cs.stanford.edu/~acoates/">Adam Coates</a> in <a href="http://cs.stanford.edu/people/ang/">Andrew Ng</a>’s group put a lot of work 
+in this area. The premise is quite exciting, to be able to learn features similar
+to sparse coding or dictionary learning using one of the simplest and efficient 
+algorithm(k-means, surprise!) which is easily scalable and parallelizable(a 
+variant of k-means albeit).</p>
+<h2>Experiments</h2>
+<p>I used <a href="http://www.cs.toronto.edu/~kriz/cifar.html">CIFAR 100</a> datasets to learn and display the filters. Sadly, I could not
+even get better than what papers reported so I’ll skip on reporting the classification
+accuracies. Every section will have the filters that are learned in the CIFAR 
+dataset so that you could also have chance to observe similarities and differences.</p>
+<h3>K-Means</h3>
+<p>K-Means could be one of the most commonly used unsupervised learning algorithm 
+both it is easy to implement, efficient and also it is easy to reason about.
+Basic premise of the K-Means boils down to represent the observations in a much
+efficient representation where some observations are mapped to a cluster points.</p>
+<h4>K-Means Problem Formulation</h4>
+<p>There are $n$ observations given a dataset $P$ where we represent the samples as
+follows:</p>
+<p>$$ P = {x^{(i)}}_{i=1}^n \subseteq R^d   $$
+where we want to represent the samples in a number of clusters $k \in N$.(so the
+k-means name)</p>
+<h4>K-Means Objective Function</h4>
+<p>We want to find $k$ number of centroids ${c^{1}, \ldots, c^{(k)}} \subseteq R^d$,
+which are the local(global minimum is intractable) minimum of the following 
+objective function:
+$$ B_P(c) = \frac{1}{n}\displaystyle\sum_{i=1}^n \min_{j \in k} \lVert x^{(i)} - c^{(j)} \rVert_2^2$$</p>
+<p>Most common algorithm is to use an EM(Expectation Maximization Algorithm); first
+change the centroids position(or randomly initialize) and then compute the distance
+of the observations to the centroids and then reassign the observations to the 
+closest centroids. After a number of iterations, either centroids would not move 
+at all, or their distance change would be minimal, so the convergence.</p>
+<h3>K-Means Triangle</h3>
+<p>There is a modified version of K-Means which is called K-Means Tri where 
+every observation does not get the hard cluster assignments(1 or 0) but rather
+a score within each cluster. This creates a competition in the features inside 
+of the cluster. This allows each feature to “compete” to get the highest score.
+This could be much more accurate for the clusters that are quite large where the
+all of the observations get same score. <a href="http://ai.stanford.edu/~ang/papers/nipsdlufl10-AnalysisSingleLayerUnsupervisedFeatureLearning.pdf">Empirically</a>,
+it also produces sparse outputs as well.</p>
+<h4>K-Means Tri Objective Function</h4>
+<p>Objective function does not change but the scores of each observation changes. 
+$$ f_k(x) = \max(0, \mu(z) - z_k)  $$
+where $z_k=\lVert x - c^{k} \rVert_2 $ and $\mu(z)$ is the mean of observations
+in $z$.</p>
+<h5>K-Means Results</h5>
+<p>I run the K-Means with whitening and without whitening on the dataset. My observation,
+for the K-Means without whitening is the patches end up low-frequency and color
+dominant whereas the whitened patches are more like edge-like filters.</p>
+<h6>Patch Length = 8</h6>
+<p>These are the whitened filters:
+<img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_8_100.png" title="‘K-Means Filters with Stride=8’" /></p>
+<p>These are the not-whitened filters:
+<img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_8_unnormalized_100.png" title="‘K-Means Filters - Unnormalized with Stride=8’" /></p>
+<h6>Patch Length = 4</h6>
+<p>These are the whitened filters:
+<img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_4_100.png" title="‘K-Means Filters with Stride=4’" /></p>
+<p>These are the not-whitened filters:
+<img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_4_unnormalized_100.png" title="‘K-Means Filters with Stride=4’" /></p>
+<blockquote>
+<p>Generally people use some whitening for various reasons; for K-Means, it makes
+easier to converge also filters-learned are more edge-like rather than pure colors 
+or low-frequency parts in the image as you could see the result of the images given 
+above.</p>
+</blockquote>
+<h3>Sparse Coding</h3>
+<p>Sparse Coding like most of the decomposition/factorization methods try to represent
+a signal with different atoms, in the case of sparse coding, these atoms are 
+sparse and the matrix that yields this atom is overcomplete. This sparsity and
+overcompleteness nature of the matrix enables a robust reconstruction of the signal
+from very few atoms as long as some conditions are met.</p>
+<p>Representation of image could be done by linear transform in the following way:</p>
+<p>$$ x = \displaystyle\sum_{i=1}^m a_i \phi_i  $$
+where $ m \gt n$ so that we have an overcomplete representation of the original
+observation matrix. </p>
+<p>Sparse coding and most of the atom based methods try to get a variety of atoms
+either it is a precomputed matrix(FFT, PCA, etc) or a “dictionary” as 
+in the dictionary learning which is trained from a train set. The premise remains
+same we want to get a superposition of atoms such that we would have the most exact
+and accurate information from the images and since we know which atoms we use, we 
+have a good representation of image as well.</p>
+<p>Since it is an overcomplete basis and atoms are not linearly independent from each
+other, the input and output images relationship is not as linear as other 
+transformations which have atoms that are linearly independent from each other.</p>
+<h4>Biological Reasoning</h4>
+<p>This may not work very well for other type of images or other types of signal, 
+but empirically it gives good results and nice representation of natural images. 
+There are also biological reasons why representing an image in a sparse way might 
+be a good idea:</p>
+<ol>
+<li>It increases capacity of memory(associative)</li>
+<li>It also makes it easy to form associations</li>
+<li>It minimizes the wiring length</li>
+<li>It increases the metabolic efficiency.</li>
+</ol>
+<p>However, this part is mostly concerned the early visual cortex and trying to mimic
+that part of the brain may not be very accurate for image representation. </p>
+<h4>Mathematical Reasoning</h4>
+<p>Natural images could be represented as a small number of primitives(mostly low-frequency)
+like edges, lines, etc. This is also the reasoning behind Gabor filters and early
+work in the signal processing community that built a lot of filtering work to represent
+images. <a href="http://www.naturalimagestatistics.net/nis_preprintFeb2009.pdf">Natural Image Statistics</a> examines more closely
+in this type of behavior and states similar conclusion and a method(ICA) which learns
+Gabor-like filters.</p>
+<h4>Sparse Coding Objective Function</h4>
+<p>We would like to minimize the following objective function and it has a sparsity
+regularizer since we want the basis atoms to be sparse:</p>
+<p>$$ minimize_{a_i^{j}, \phi_i} \displaystyle\sum_{j=1}^n \lVert x^{j} - \displaystyle\sum_{i=1}^m a_i^{(j)} \phi_i \rVert^2 + \lambda \lVert a \rVert $$ 
+subject to:</p>
+<p>$$ \lVert \phi_i^2 \rVert^2 \leq C, \forall i=1, \ldots, n $$</p>
+<p>Normally, $l_0$ measures the direct sparsity that is imposed on the coefficients but it is
+non-differentiable and difficult to minimize the objective function if it had been
+used. $l_1$ penalty provides a trade-off option where $l_0$ is not good for optimization
+and $l_2$ is not a term that would contribute the sparsity of the signal.</p>
+<h3>Dictionary Learning</h3>
+<p>In the Dictionary Learning problem, we are given a data and asked to represent 
+a number of basises, very similar to Principal Component Analysis(PCA) or 
+Fast Fourier Transform(FFT) in nature. However, with a big distinction, basises(atoms)
+do not have to be orthogonal and also the dictionary matrix is larger than
+the total number of vectors that we want to represent. With a sparse penalization
+regularization term, one can build very efficient representations of natural signals
+(natural images) from these sparse atoms. </p>
+<p>Dictionary learning is very similar to sparse coding in terms oh it tries to represent
+the data, it tries to find good atoms from a “dictionary” where the dictionary atoms
+are learned from the training set. Especially, for classification tasks, as long
+as the user has a good dictionary, one could build very efficient vectors using atoms
+from the dictionary for a variety of tasks including denoising and classification.</p>
+<h4>Dictionary Objective Function</h4>
+<p>$$ t(x, D) = \min_{\alpha \in R^n} \frac{1}{2} \lVert x - D\alpha \rVert_2^2 + \lambda \lVert \alpha \rVert_1 $$</p>
+<p>where as in the case of sparse coding, $\lambda$ is our sparse constraint. This 
+objective function is called <em>basis pursuit</em> and also <em>Lasso</em> as well. </p>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" i
+              class="twitter-share-button"
+              data-url="http://bugra.github.io/work/notes/2015-02-07/k-means-sparse-coding-dictionary-learning-and-all-that/"
+              data-via="bugraa">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button_count"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2015-02-07T00:00:00">
+                            February 07, 2015
+                        </time>
+                    </i>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'bugra'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      </div>
+    </div>
+</div>
+
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+      <!-- Timesheet JS and CSS -->
+      <script src="/theme/js/timesheet.js"></script>
+      <script src="/theme/js/timesheet.bubble.js"></script>
+      <script type='text/javascript'>new Timesheet('timesheet', 2008, 2020, [
+  ['09/2006', '05/2011', 'B.S Electrical Engineering at Bilkent University', 'dolor'],
+  ['06/2009', '09/2009', 'Software Developer Intern at Optisis Inc.', 'dolor'],
+  ['06/2010', '09/2010', 'Software Developer Intern at Tubitak R&D', 'dolor'],
+  ['06/2011', '09/2011', 'Research Internship at Koc University', 'dolor'],
+  ['09/2011', '05/2013', 'M.S Electrical and Computer Engineering at NYU', 'lorem'],
+  ['12/2012', '05/2013', 'Part-Time Software Developer at Viacom', 'lorem'],
+  ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
+  ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
+  ['12/2014', '2/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+]);</script>
+      <!-- Timesheet End -->
+      <script src="/theme/js/logo.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>

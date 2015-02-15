@@ -17,8 +17,8 @@ to sparse coding or dictionary learning using one of the simplest and efficient
 algorithm(k-means, surprise!) which is easily scalable and parallelizable(a 
 variant of k-means albeit).&lt;/p&gt;
 &lt;h2&gt;Experiments&lt;/h2&gt;
-&lt;p&gt;I used &lt;a href="http://www.cs.toronto.edu/~kriz/cifar.html"&gt;CIFAR 100&lt;/a&gt; datasets to learn and display the filters. Sadly, I could not
-even get better than what papers reported so I’ll skip on reporting the classification
+&lt;p&gt;I used &lt;a href="http://www.cs.toronto.edu/~kriz/cifar.html"&gt;CIFAR 100&lt;/a&gt; datasets to learn and display the filters. Sadly, I could 
+not get better than what papers reported so I’ll skip on reporting the classification
 accuracies. Every section will have the filters that are learned in the CIFAR
 dataset so that you could also have chance to observe similarities and differences.&lt;/p&gt;
 &lt;h3&gt;K-Means&lt;/h3&gt;
@@ -56,7 +56,7 @@ $$ f_k(x) = \max(0, \mu(z) - z_k)  $$
 where $z_k=\lVert x - c^{k} \rVert_2 $ and $\mu(z)$ is the mean of observations
 in $z$.&lt;/p&gt;
 &lt;h5&gt;K-Means Results&lt;/h5&gt;
-&lt;p&gt;I run the K-Means with whitening and without whitening on the dataset. My observation,
+&lt;p&gt;I run the K-Means Tri with whitening and without whitening on the dataset. My observation,
 for the K-Means without whitening is the patches end up low-frequency and color
 dominant whereas the whitened patches are more like edge-like filters.&lt;/p&gt;
 &lt;h6&gt;Patch Length = 8&lt;/h6&gt;
@@ -131,8 +131,10 @@ Fast Fourier Transform(FFT) in nature. However, with a big distinction, basises(
 do not have to be orthogonal and also the dictionary matrix is larger than
 the total number of vectors that we want to represent. With a sparse penalization
 regularization term, one can build very efficient representations of natural signals
-(natural images) from these sparse atoms. &lt;/p&gt;
-&lt;p&gt;Dictionary learning is very similar to sparse coding in terms oh it tries to represent
+(natural images) from these sparse atoms. Moreover, after building these dictionaries
+one could only pass the dictionary along with the representation of the vector to 
+enable robust recovery similar to FFT. &lt;/p&gt;
+&lt;p&gt;Dictionary learning is very similar to sparse coding in terms of it tries to represent
 the data, it tries to find good atoms from a “dictionary” where the dictionary atoms
 are learned from the training set. Especially, for classification tasks, as long
 as the user has a good dictionary, one could build very efficient vectors using atoms
@@ -140,4 +142,15 @@ from the dictionary for a variety of tasks including denoising and classificatio
 &lt;h4&gt;Dictionary Objective Function&lt;/h4&gt;
 &lt;p&gt;$$ t(x, D) = \min_{\alpha \in R^n} \frac{1}{2} \lVert x - D\alpha \rVert_2^2 + \lambda \lVert \alpha \rVert_1 $$&lt;/p&gt;
 &lt;p&gt;where as in the case of sparse coding, $\lambda$ is our sparse constraint. This 
-objective function is called &lt;em&gt;basis pursuit&lt;/em&gt; and also &lt;em&gt;Lasso&lt;/em&gt; as well. &lt;/p&gt;</summary></entry></feed>
+objective function is called &lt;em&gt;basis pursuit&lt;/em&gt; and also &lt;em&gt;Lasso&lt;/em&gt; as well. &lt;/p&gt;
+&lt;h3&gt;Results&lt;/h3&gt;
+&lt;p&gt;I am providing 256 patches from the dictionary. Some of them are quite similar to 
+what K-Means filters are like. However, some of them only capture the corners in 
+the images and there are a couple of filters that they differ only by translation. 
+Some of the filters learn only colors similar to some of the filters in K-Means 
+that are somehow similar to each other after selecting 20 of them by hand. Some of 
+even if after whitening, which was somehow disappointing. &lt;/p&gt;
+&lt;h4&gt;Whitened Filters&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="Whitened Filters" src="/images/work/notes/2015/2/10/dictionary_learning_stride_8_256.png" title="‘Dictionary Learning Whitened Filters’" /&gt;&lt;/p&gt;
+&lt;h4&gt;Unwhitened Filters&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="Unwhitened Filters" src="/images/work/notes/2015/2/10/dictionary_learning_stride_8_256_unnormalized.png" title="‘Dictionary Learning Unwhitened Filters’" /&gt;&lt;/p&gt;</summary></entry></feed>
