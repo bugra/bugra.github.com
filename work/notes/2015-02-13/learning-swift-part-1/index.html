@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>Learning Swift Part 1 | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+  <div id="logo"><a href="/" class="at"></a></div>
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>Learning Swift Part 1</h1>
+        </header>
+        <div class='post-content'>
+            <p>I have recently become interested in the very new programming language as it 
+provides a sweetspot for iOS developers who are tired writing Objective-C. </p>
+<p>I spent about 5 hours looking at its syntax and functionality; I must say it feels
+mostly Scala to me. There are places where syntax is much simpler and sometimes
+feels like a dynamic programming language; yet it is statically typed language where
+functions are first class citizens and you could write object oriented programming
+if you want to; very much like Scala. </p>
+<p>I really liked the Playground, it feeld like a REPL and allows you to see the
+changes and expressions evaluated in real time. For iterative process, it is 
+equivalent of IPython for Python which I use all the time for development.</p>
+<p>The things that I did not like; they still somehow need to maintain legacy 
+Objective-c interoperability which makes some of the interfaces quite complicated 
+to deal with, also some of the types are carried to the Swift. The language has been
+around 2011 and it is new which means it is quite immature in terms of development 
+ecosystem as well as libraries. However, the last one seems likely to disappear 
+as more and more developers opt-in using Swift over Objective-c.</p>
+<h2>Basic Language Structs</h2>
+<h3>Type Inference</h3>
+<p>From Javaland, most people complain how verbose it is. There are many reasons
+for verbosity in java, but one of the most important lacking thing in Java is 
+type inference. You not only need to express the type in the declaration of a 
+variable but also you need to give the type arguments when you are assigning it.
+When I saw Scala, I thought this is a clear improvement for statically typed languages
+and Swift follows the same path. When you declare variables or assigning them, you
+do not need to explicitly write the information, compiler will interfere the type
+for you.</p>
+<h3>Explicit Types vs Implicit Types</h3>
+<p>However, you <em>could</em> always use explicit type:</p>
+<div class="highlight"><pre><span class="n">var</span> <span class="n">euroDollarParity</span><span class="o">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mf">0.88</span>
+<span class="c1">// instead of </span>
+<span class="n">var</span> <span class="n">euroDollarParity</span> <span class="o">=</span> <span class="mf">0.88</span>
+</pre></div>
+
+
+<h3><code>var</code> to make variable and <code>let</code> to make it constant</h3>
+<p>Constants cannot be assigned twice. When you declare the variable as constant, you
+kind of removed possibility of using variable again.</p>
+<h3>No Implicit Type Conversion</h3>
+<p>Strong statically typed languages do not allow you to combine oranges with apples for
+good reason. Swift(even in string concatenation) follows this convention. You cannot
+concatenate doubles with strings, you need to explicitly convert the integer or 
+double to String before you concatenate the strings.</p>
+<div class="highlight"><pre><span class="n">let</span> <span class="n">euroDollarSentence</span> <span class="o">=</span> <span class="err">“</span><span class="n">You</span> <span class="n">could</span> <span class="n">buy</span><span class="err">”</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">euroDollarParity</span><span class="p">)</span> <span class="o">+</span> <span class="err">“</span><span class="n">euro</span> <span class="n">with</span> <span class="n">one</span> <span class="n">dollar</span><span class="err">”</span>
+</pre></div>
+
+
+<p>But this is ugly apart from the fact that you need to do explicit conversion, you
+need to also handle string concatenation. Swift provides a nice formatting for this
+type of formatting the string:</p>
+<div class="highlight"><pre><span class="n">let</span> <span class="n">euroDollar</span> <span class="o">=</span> <span class="err">“</span><span class="n">You</span> <span class="n">could</span> <span class="n">buy</span> <span class="err">\</span><span class="p">(</span><span class="n">euroDollarParity</span><span class="p">)</span> <span class="n">euro</span> <span class="n">with</span> <span class="n">one</span> <span class="n">dollar</span><span class="err">”</span>
+</pre></div>
+
+
+<p>which is much nicer to read and not string conversion.</p>
+<h3>Arrays and Dictionaries</h3>
+<p>Apart from Integer, String, Double and all of the primitive data structures, there 
+are dictionary-like structures and array-like structures, which are called <code>dictionary</code>
+and <code>array</code>.
+They both use <code>[]</code> but <code>:</code> makes the difference between elements. <code>:</code> signifies key
+value pair relationship whereas commas would only signify the order in the array.</p>
+<p>As in the string, integer and double; you do not need to give the types of key, value
+pairs of dictionary, or the elements in the array.</p>
+<div class="highlight"><pre><span class="n">var</span> <span class="n">currencyList</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">dinar</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">dollar</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">franc</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">lira</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">peso</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">pound</span><span class="err">”</span><span class="p">]</span>
+<span class="n">var</span> <span class="n">currencyDict</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">dinar</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.96</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">franc</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.21</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">dollar</span><span class="err">”</span><span class="o">:</span> <span class="mf">1.00</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">lira</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.62</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">peso</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.84</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">pound</span><span class="err">”</span><span class="o">:</span> <span class="mf">2.31</span>
+<span class="p">]</span>
+</pre></div>
+
+
+<p>You could initialize the arrays with type, but you do not have to.</p>
+<div class="highlight"><pre><span class="n">var</span> <span class="n">validArray</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">var</span> <span class="n">validDict</span> <span class="o">=</span> <span class="p">[</span><span class="o">:</span><span class="p">]</span>
+
+<span class="n">var</span> <span class="n">validArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="p">]()</span>
+<span class="n">var</span> <span class="n">validDict</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="o">:</span> <span class="n">Double</span><span class="p">]()</span>
+</pre></div>
+
+
+<p>Syntax is somehow similar to Python except the <code>{}</code>. If you access a key that does
+not exist, it does not prompt an error unlike Python. It returns simply <code>nil</code>.</p>
+<h3>Conditionals</h3>
+<p><code>for-in</code> loop behaves exactly in Python except the <code>{}</code>. This time other way around.</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">elem</span> <span class="n">in</span> <span class="n">array</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+
+
+<p>where you traverse the array.</p>
+<h3>Optionality</h3>
+<p>You could define optional strings as well, based on check, you could check if there 
+is a value or not. Since you cannot pass a string to if block and expect it to be 
+evaluated false(like “” in Python), nil value in Optional provides a nice way to
+provide such functionality.</p>
+<h3><code>Switch</code> Block</h3>
+<div class="highlight"><pre><span class="n">let</span> <span class="n">kind</span><span class="o">=</span><span class="err">”</span><span class="n">HEARTS</span><span class="err">”</span>
+
+<span class="k">switch</span> <span class="n">kind</span><span class="p">.</span><span class="n">lowercaseString</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">hearts</span><span class="err">”</span>:
+        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span> <span class="c1">// this will get printed out</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">clubs</span><span class="err">”</span>:
+        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">spades</span><span class="err">”</span>:
+        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">diamonds</span><span class="err">”</span>:
+        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
+<span class="nl">default:</span>
+    <span class="n">println</span><span class="p">(</span><span class="err">“</span><span class="n">WHAT</span><span class="err">”</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Functions</h3>
+<p>First thing is that, functions are first-class citizens. You could pass them around,
+define one inside of another, write your function which returns a function and so on.</p>
+<p>Function signature is almost same with Scala except <code>func</code> and <code>-&gt;</code> to show the
+return type, other than that type assignment, order are same. Since developers write
+“Hello World” and fibonacci computation all the time(this is how we make our living
+after all), let’s see how one could write a fibonacci number computation in Swift.</p>
+<div class="highlight"><pre><span class="n">func</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>We are defining a function which takes an integer and returns an integer. That was
+easy.</p>
+<p>What if we want to get all the parameters and do something in the function? As long
+as the types are same, we could use <code>...</code> in parameter declaration in the function to collect
+all of the parameters in a list.</p>
+<div class="highlight"><pre><span class="n">func</span> <span class="nf">computeStatistics</span><span class="p">(</span><span class="n">numbers</span><span class="o">:</span> <span class="n">Int</span><span class="p">...)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">max</span><span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">min</span><span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">mean</span><span class="o">:</span> <span class="n">Double</span><span class="p">,</span> <span class="n">median</span><span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">max</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">var</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">var</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">var</span> <span class="n">median</span><span class="o">:</span> <span class="n">Int</span>
+    <span class="k">if</span> <span class="n">numbers</span><span class="p">.</span><span class="n">count</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">{</span>
+        <span class="n">median</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">numbers</span><span class="p">.</span><span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">median</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[(</span><span class="n">numbers</span><span class="p">.</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">number</span> <span class="n">in</span> <span class="n">numbers</span> <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;=</span> <span class="n">max</span><span class="p">{</span>
+            <span class="n">max</span> <span class="o">=</span> <span class="n">number</span>
+        <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="n">min</span> <span class="p">{</span>
+            <span class="n">min</span> <span class="o">=</span> <span class="n">number</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">var</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">Double</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span> <span class="o">/</span> <span class="n">Double</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">max</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">median</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">println</span><span class="p">(</span><span class="n">computeStatistics</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Assume that the parameters is given in order(for median).</p>
+<p>One of the cool things about functions is, you could return tuples(pretty much same
+with Python and Scala), but you could access both by position AND by name. Isn’t that
+convenient? </p>
+<div class="highlight"><pre><span class="n">func</span> <span class="nf">prime</span><span class="p">(</span><span class="n">n</span><span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">primeNumber</span><span class="o">:</span><span class="n">Int</span><span class="p">,</span> <span class="n">primeList</span><span class="o">:</span> <span class="p">[</span><span class="n">Int</span><span class="p">])</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">var</span> <span class="n">primeNumber</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">var</span> <span class="n">primeList</span> <span class="o">=</span> <span class="p">[</span><span class="n">Int</span><span class="p">]()</span>
+    <span class="k">while</span> <span class="n">ii</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="p">{</span>
+        <span class="n">primeNumber</span><span class="o">++</span>
+        <span class="k">if</span> <span class="n">isPrime</span><span class="p">(</span><span class="n">primeNumber</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ii</span><span class="o">++</span>
+            <span class="n">primeList</span> <span class="o">+=</span> <span class="p">[</span><span class="n">primeNumber</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">primeNumber</span><span class="p">,</span> <span class="n">primeList</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">var</span> <span class="n">primeN</span> <span class="o">=</span> <span class="n">prime</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">primeN</span><span class="p">.</span><span class="n">primeNumber</span>
+<span class="n">primeN</span><span class="p">.</span><span class="n">primeList</span>
+
+<span class="n">primeN</span><span class="mf">.0</span> <span class="c1">// same with primeN.primeNumber</span>
+<span class="n">primeN</span><span class="mf">.1</span> <span class="c1">// same with primeN.primeList</span>
+</pre></div>
+
+
+<p>That is pretty cool. </p>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" i
+              class="twitter-share-button"
+              data-url="http://bugra.github.io/work/notes/2015-02-13/learning-swift-part-1/"
+              data-via="bugraa">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button_count"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2015-02-13T00:00:00">
+                            February 13, 2015
+                        </time>
+                    </i>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'bugra'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      </div>
+    </div>
+</div>
+
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+      <!-- Timesheet JS and CSS -->
+      <script src="/theme/js/timesheet.js"></script>
+      <script src="/theme/js/timesheet.bubble.js"></script>
+      <script type='text/javascript'>new Timesheet('timesheet', 2008, 2020, [
+  ['09/2006', '05/2011', 'B.S Electrical Engineering at Bilkent University', 'dolor'],
+  ['06/2009', '09/2009', 'Software Developer Intern at Optisis Inc.', 'dolor'],
+  ['06/2010', '09/2010', 'Software Developer Intern at Tubitak R&D', 'dolor'],
+  ['06/2011', '09/2011', 'Research Internship at Koc University', 'dolor'],
+  ['09/2011', '05/2013', 'M.S Electrical and Computer Engineering at NYU', 'lorem'],
+  ['12/2012', '05/2013', 'Part-Time Software Developer at Viacom', 'lorem'],
+  ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
+  ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
+  ['12/2014', '2/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+]);</script>
+      <!-- Timesheet End -->
+      <script src="/theme/js/logo.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/7.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-02-07T00:00:00+00:00</updated><entry><title>K-Means, Sparse Coding, Dictionary Learning and All That</title><link href="http://bugra.github.io/work/notes/2015-02-07/k-means-sparse-coding-dictionary-learning-and-all-that/" rel="alternate"></link><updated>2015-02-07T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-02-07:work/notes/2015-02-07/k-means-sparse-coding-dictionary-learning-and-all-that/</id><summary type="html">&lt;h2&gt;Feature Learning&lt;/h2&gt;
+&lt;p&gt;Feature learning especially from images is a fundamental step in a classification
+pipeline of images as the raw pixels create both huge feature vectors per image
+and not necessarily represent good features for image classification problems.&lt;/p&gt;
+&lt;h2&gt;Unsupervised Feature Learning&lt;/h2&gt;
+&lt;p&gt;Computer vision community came up with engineered feature detectors first
+(SIFT, HoG and so on), then try to use unsupervised learning algorithm
+to find useful visual “word”s in the image so that they could be used for the 
+classification. Nowadays, deep learning is used for feature extraction and also 
+classification at some extent. However, one thing did not change; to be able to 
+learn important and relevant features from the images in an automated way.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cs.stanford.edu/~acoates/"&gt;Adam Coates&lt;/a&gt; in &lt;a href="http://cs.stanford.edu/people/ang/"&gt;Andrew Ng&lt;/a&gt;’s group put a lot of work 
+in this area. The premise is quite exciting, to be able to learn features similar
+to sparse coding or dictionary learning using one of the simplest and efficient 
+algorithm(k-means, surprise!) which is easily scalable and parallelizable(a 
+variant of k-means albeit).&lt;/p&gt;
+&lt;h2&gt;Experiments&lt;/h2&gt;
+&lt;p&gt;I used &lt;a href="http://www.cs.toronto.edu/~kriz/cifar.html"&gt;CIFAR 100&lt;/a&gt; datasets to learn and display the filters. Sadly, I could not
+even get better than what papers reported so I’ll skip on reporting the classification
+accuracies. Every section will have the filters that are learned in the CIFAR 
+dataset so that you could also have chance to observe similarities and differences.&lt;/p&gt;
+&lt;h3&gt;K-Means&lt;/h3&gt;
+&lt;p&gt;K-Means could be one of the most commonly used unsupervised learning algorithm 
+both it is easy to implement, efficient and also it is easy to reason about.
+Basic premise of the K-Means boils down to represent the observations in a much
+efficient representation where some observations are mapped to a cluster points.&lt;/p&gt;
+&lt;h4&gt;K-Means Problem Formulation&lt;/h4&gt;
+&lt;p&gt;There are $n$ observations given a dataset $P$ where we represent the samples as
+follows:&lt;/p&gt;
+&lt;p&gt;$$ P = {x^{(i)}}_{i=1}^n \subseteq R^d   $$
+where we want to represent the samples in a number of clusters $k \in N$.(so the
+k-means name)&lt;/p&gt;
+&lt;h4&gt;K-Means Objective Function&lt;/h4&gt;
+&lt;p&gt;We want to find $k$ number of centroids ${c^{1}, \ldots, c^{(k)}} \subseteq R^d$,
+which are the local(global minimum is intractable) minimum of the following 
+objective function:
+$$ B_P(c) = \frac{1}{n}\displaystyle\sum_{i=1}^n \min_{j \in k} \lVert x^{(i)} - c^{(j)} \rVert_2^2$$&lt;/p&gt;
+&lt;p&gt;Most common algorithm is to use an EM(Expectation Maximization Algorithm); first
+change the centroids position(or randomly initialize) and then compute the distance
+of the observations to the centroids and then reassign the observations to the 
+closest centroids. After a number of iterations, either centroids would not move 
+at all, or their distance change would be minimal, so the convergence.&lt;/p&gt;
+&lt;h3&gt;K-Means Triangle&lt;/h3&gt;
+&lt;p&gt;There is a modified version of K-Means which is called K-Means Tri where 
+every observation does not get the hard cluster assignments(1 or 0) but rather
+a score within each cluster. This creates a competition in the features inside 
+of the cluster. This allows each feature to “compete” to get the highest score.
+This could be much more accurate for the clusters that are quite large where the
+all of the observations get same score. &lt;a href="http://ai.stanford.edu/~ang/papers/nipsdlufl10-AnalysisSingleLayerUnsupervisedFeatureLearning.pdf"&gt;Empirically&lt;/a&gt;,
+it also produces sparse outputs as well.&lt;/p&gt;
+&lt;h4&gt;K-Means Tri Objective Function&lt;/h4&gt;
+&lt;p&gt;Objective function does not change but the scores of each observation changes. 
+$$ f_k(x) = \max(0, \mu(z) - z_k)  $$
+where $z_k=\lVert x - c^{k} \rVert_2 $ and $\mu(z)$ is the mean of observations
+in $z$.&lt;/p&gt;
+&lt;h5&gt;K-Means Results&lt;/h5&gt;
+&lt;p&gt;I run the K-Means with whitening and without whitening on the dataset. My observation,
+for the K-Means without whitening is the patches end up low-frequency and color
+dominant whereas the whitened patches are more like edge-like filters.&lt;/p&gt;
+&lt;h6&gt;Patch Length = 8&lt;/h6&gt;
+&lt;p&gt;These are the whitened filters:
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_8_100.png" title="‘K-Means Filters with Stride=8’" /&gt;&lt;/p&gt;
+&lt;p&gt;These are the not-whitened filters:
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_8_unnormalized_100.png" title="‘K-Means Filters - Unnormalized with Stride=8’" /&gt;&lt;/p&gt;
+&lt;h6&gt;Patch Length = 4&lt;/h6&gt;
+&lt;p&gt;These are the whitened filters:
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_4_100.png" title="‘K-Means Filters with Stride=4’" /&gt;&lt;/p&gt;
+&lt;p&gt;These are the not-whitened filters:
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/7/kmeans_filters_stride_4_unnormalized_100.png" title="‘K-Means Filters with Stride=4’" /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Generally people use some whitening for various reasons; for K-Means, it makes
+easier to converge also filters-learned are more edge-like rather than pure colors 
+or low-frequency parts in the image as you could see the result of the images given 
+above.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Sparse Coding&lt;/h3&gt;
+&lt;p&gt;Sparse Coding like most of the decomposition/factorization methods try to represent
+a signal with different atoms, in the case of sparse coding, these atoms are 
+sparse and the matrix that yields this atom is overcomplete. This sparsity and
+overcompleteness nature of the matrix enables a robust reconstruction of the signal
+from very few atoms as long as some conditions are met.&lt;/p&gt;
+&lt;p&gt;Representation of image could be done by linear transform in the following way:&lt;/p&gt;
+&lt;p&gt;$$ x = \displaystyle\sum_{i=1}^m a_i \phi_i  $$
+where $ m \gt n$ so that we have an overcomplete representation of the original
+observation matrix. &lt;/p&gt;
+&lt;p&gt;Sparse coding and most of the atom based methods try to get a variety of atoms
+either it is a precomputed matrix(FFT, PCA, etc) or a “dictionary” as 
+in the dictionary learning which is trained from a train set. The premise remains
+same we want to get a superposition of atoms such that we would have the most exact
+and accurate information from the images and since we know which atoms we use, we 
+have a good representation of image as well.&lt;/p&gt;
+&lt;p&gt;Since it is an overcomplete basis and atoms are not linearly independent from each
+other, the input and output images relationship is not as linear as other 
+transformations which have atoms that are linearly independent from each other.&lt;/p&gt;
+&lt;h4&gt;Biological Reasoning&lt;/h4&gt;
+&lt;p&gt;This may not work very well for other type of images or other types of signal, 
+but empirically it gives good results and nice representation of natural images. 
+There are also biological reasons why representing an image in a sparse way might 
+be a good idea:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It increases capacity of memory(associative)&lt;/li&gt;
+&lt;li&gt;It also makes it easy to form associations&lt;/li&gt;
+&lt;li&gt;It minimizes the wiring length&lt;/li&gt;
+&lt;li&gt;It increases the metabolic efficiency.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;However, this part is mostly concerned the early visual cortex and trying to mimic
+that part of the brain may not be very accurate for image representation. &lt;/p&gt;
+&lt;h4&gt;Mathematical Reasoning&lt;/h4&gt;
+&lt;p&gt;Natural images could be represented as a small number of primitives(mostly low-frequency)
+like edges, lines, etc. This is also the reasoning behind Gabor filters and early
+work in the signal processing community that built a lot of filtering work to represent
+images. &lt;a href="http://www.naturalimagestatistics.net/nis_preprintFeb2009.pdf"&gt;Natural Image Statistics&lt;/a&gt; examines more closely
+in this type of behavior and states similar conclusion and a method(ICA) which learns
+Gabor-like filters.&lt;/p&gt;
+&lt;h4&gt;Sparse Coding Objective Function&lt;/h4&gt;
+&lt;p&gt;We would like to minimize the following objective function and it has a sparsity
+regularizer since we want the basis atoms to be sparse:&lt;/p&gt;
+&lt;p&gt;$$ minimize_{a_i^{j}, \phi_i} \displaystyle\sum_{j=1}^n \lVert x^{j} - \displaystyle\sum_{i=1}^m a_i^{(j)} \phi_i \rVert^2 + \lambda \lVert a \rVert $$ 
+subject to:&lt;/p&gt;
+&lt;p&gt;$$ \lVert \phi_i^2 \rVert^2 \leq C, \forall i=1, \ldots, n $$&lt;/p&gt;
+&lt;p&gt;Normally, $l_0$ measures the direct sparsity that is imposed on the coefficients but it is
+non-differentiable and difficult to minimize the objective function if it had been
+used. $l_1$ penalty provides a trade-off option where $l_0$ is not good for optimization
+and $l_2$ is not a term that would contribute the sparsity of the signal.&lt;/p&gt;
+&lt;h3&gt;Dictionary Learning&lt;/h3&gt;
+&lt;p&gt;In the Dictionary Learning problem, we are given a data and asked to represent 
+a number of basises, very similar to Principal Component Analysis(PCA) or 
+Fast Fourier Transform(FFT) in nature. However, with a big distinction, basises(atoms)
+do not have to be orthogonal and also the dictionary matrix is larger than
+the total number of vectors that we want to represent. With a sparse penalization
+regularization term, one can build very efficient representations of natural signals
+(natural images) from these sparse atoms. &lt;/p&gt;
+&lt;p&gt;Dictionary learning is very similar to sparse coding in terms oh it tries to represent
+the data, it tries to find good atoms from a “dictionary” where the dictionary atoms
+are learned from the training set. Especially, for classification tasks, as long
+as the user has a good dictionary, one could build very efficient vectors using atoms
+from the dictionary for a variety of tasks including denoising and classification.&lt;/p&gt;
+&lt;h4&gt;Dictionary Objective Function&lt;/h4&gt;
+&lt;p&gt;$$ t(x, D) = \min_{\alpha \in R^n} \frac{1}{2} \lVert x - D\alpha \rVert_2^2 + \lambda \lVert \alpha \rVert_1 $$&lt;/p&gt;
+&lt;p&gt;where as in the case of sparse coding, $\lambda$ is our sparse constraint. This 
+objective function is called &lt;em&gt;basis pursuit&lt;/em&gt; and also &lt;em&gt;Lasso&lt;/em&gt; as well. &lt;/p&gt;</summary></entry></feed>
