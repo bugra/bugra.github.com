@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/21.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-03-21T00:00:00+00:00</updated><entry><title>Data Products Made Easy</title><link href="http://bugra.github.io/work/notes/2014-03-21/data-products-made-easy/" rel="alternate"></link><updated>2014-03-21T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-21:work/notes/2014-03-21/data-products-made-easy/</id><summary type="html">&lt;p&gt;I read &lt;a href="http://www.oreilly.com/data/free/data-jujitsu.csp"&gt;Data Jujitsu&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/21.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-02-21T00:00:00+00:00</updated><entry><title>Topic Modeling for the Uninitiated</title><link href="http://bugra.github.io/work/notes/2015-02-21/topic-modeling-for-the-uninitiated/" rel="alternate"></link><updated>2015-02-21T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-02-21:work/notes/2015-02-21/topic-modeling-for-the-uninitiated/</id><summary type="html">&lt;h2&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;As more and more data are stored digitally and people have better and improved tools for publishing, we are witnessing more and more text data has been collected and published in various mediums.(e-books, blogs, newspaper websites, magazines and mobile applications) So-called big data era not only enable people to collect more and more data through different forms but also provide a set of tools to analyze, infer various structures in the data and interpret that knowledge in various forms. &lt;/p&gt;
+&lt;p&gt;Search became more and more important to find the needle in this haystack. 
+Especially, if you need a very specific document, the only option you have is to depend on the search engine’s capabilities and hope for the best. &lt;/p&gt;
+&lt;p&gt;Search is good, it brings the exact document that has the specific keyword and maybe the most relevant document based on your history. It may even go further and do a link analysis in a link network if it really want the bring best in the class. However, it comes to short when you want to read a collection of documents that are about “Iraq War” or it comes to short when you want to analyze the documents that are about “literature in Renaissance”. One of the reasons why they came short is because they build indices on top of documents not themes or topics. Iraq War or literature in Renaissance implicitly suggests a theme rather than keyword or phrase. &lt;/p&gt;
+&lt;p&gt;In order to overcome this problem, topic models provide a nice way to explore a collection of documents that share a single common theme so-called “topic”.&lt;/p&gt;
+&lt;h2&gt;Definition&lt;/h2&gt;
+&lt;p&gt;Probabilistic topic models aka Topic Models are probabilistic generative models which uncovers hidden thematic structures in large collection of documents.&lt;/p&gt;
+&lt;p&gt;Its statistical nature does not need any information other than the text itself. It does not use metadata, labels or annotations to build up the topics from the text. One needs to define only the number of clusters(this is quite hard, albeit). There are various different inference algorithms that enables fast inference in the corpus and some of the them also work in an online fashion so that one does not have to load the data into the memory. &lt;/p&gt;
+&lt;p&gt;As most of the unsupervised learning algorithms, since there is no definitive number of clusters, the topics in the corpus are quite hard to evaluate. One could define various metrics either inter-topic(distance between different topics) or intra-topic(topic coherence). However, it generally depends on manual inspection and humans to decide the exact number of clusters in the dataset. While increasing the number of topics in the dataset may provide more granular information in the dataset, it could divide a very coherent topic into two parts that may be very close to each other. &lt;/p&gt;
+&lt;p&gt;Although Latent Dirichlet Allocation is one of the topic models, I somehow interchangeably used to mean topic model and vice versa.&lt;/p&gt;
+&lt;h3&gt;Word Distribution&lt;/h3&gt;
+&lt;p&gt;Since topic models treat corpus and documents as bag of words, occurrences rather than position of words play an important role. The probability distribution of a particular word not only changes the topic assignment of the topic assignment the document that it belongs to but also may change the word distribution in the topic as well. &lt;/p&gt;
+&lt;p&gt;One thing to be noted before applying Topic Modeling is that you need to care a lot about word distribution in both corpus and also in the topics. Not only the words themselves affect the probability but also they will affect the co-occurrence probability. One word probability both plays a role in assignment of a topic for that particular word but also on other words that they are likely to occur.&lt;/p&gt;
+&lt;p&gt;Due to that reason, one needs to remove very common words as they do not contribute the topic assignment and shadow the other words probabilities in the topics which results in incoherent topics. Similarly, if the word occurrences is very small in the corpus, those probabilities have very small probabilities and would likely to have small effect on the word distribution and word co-occurrences. They may not affect the topics as much as very common words, yet they may increase the convergence time in the Gibbs sampling.  Due to that reason, one should also remove the very infrequent words in the corpus as well.&lt;/p&gt;
+&lt;h3&gt;Learning Topics&lt;/h3&gt;
+&lt;p&gt;Using Gibbs Sampling, one could learn the topics in the following way:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We first assign a random topic to each word in the document&lt;/li&gt;
+&lt;li&gt;For each word in the document&lt;ul&gt;
+&lt;li&gt;Compute the topic likelihood given document (1)&lt;/li&gt;
+&lt;li&gt;Compute the word likelihood given a topic (2)&lt;/li&gt;
+&lt;li&gt;Reassign the topic to the word which is a multiplicative of (1) and (2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Topic distribution is drawn from a Dirichlet Distribution so the Dirichlet in Latent Dirichlet Allocation. The hidden structure among words in topics is latent so the Latent in LDA. &lt;/p&gt;
+&lt;h3&gt;Experimentation&lt;/h3&gt;
+&lt;p&gt;I generally run the topic models for a number of different clusters and determine the optimal number based on manual inspection. Although it is not easily quantified information, since the topics is plausible to a human being, it is easy to interpret. Especially, if you are doing exploratory analysis. This is also a good way to get a feeling in the dataset &lt;/p&gt;
+&lt;h3&gt;Assumptions&lt;/h3&gt;
+&lt;h4&gt;First One&lt;/h4&gt;
+&lt;p&gt;As most of statical models, topic models also do a lot of assumptions in order to build its inference on top of the observations. One of the assumptions that it makes, there is a structure on the words that compose a topic gives its power. This hidden structure that the inference of topic models uncover is quite intuitive to the humans. By looking at the word distributions, one could immediately grasp the topic. &lt;/p&gt;
+&lt;h4&gt;Second One&lt;/h4&gt;
+&lt;p&gt;Second assumption is that all of the documents is composed of multiple topics and different documents share the topics in a different proportions. This is very much like a mixture model where every observation has mixed membership among many classes(in topic modeling, they are topics). This membership could also be used document retrieval as we could compute the maximum likelihood of documents given a topic: $\max P(*|t_0)$. By doing so, one could build a topic search engine as the most relevant documents are brought for a particular topic search. If one want to go further, she could assign topic memberships on individual words as the topics are word distributions themselves. &lt;/p&gt;
+&lt;h3&gt;LDA Limitations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;It does not use metadata or any related  information about the documents.&lt;/li&gt;
+&lt;li&gt;It does not allow correlation among topics and does not have a good way  to model the correlations.&lt;/li&gt;
+&lt;li&gt;You cannot incorporate temporal information(date of the publication) to measure the change occurring in the topic distribution. &lt;/li&gt;
+&lt;li&gt;It assumes a bag of words model on top of words and phrases. You cannot use the word order information in the text.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;LDA Extensions&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Nearly all of the limitations of LDA are addressed in different variants of LDA.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.cs.columbia.edu/~blei/papers/BleiLafferty2006a.pdf"&gt;Dynamic Topic Models&lt;/a&gt; use temporal information to detect changes in the topic frequency over time.&lt;/li&gt;
+&lt;li&gt;There is &lt;a href="https://www.cs.princeton.edu/~blei/papers/BleiLafferty2006.pdf"&gt;Correlated Topic Model&lt;/a&gt; which allows correlation between different topics. &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mimno.infosci.cornell.edu/info6150/readings/398.pdf"&gt;Author-Topic Models&lt;/a&gt; allows you to incorporate various author related information into the topic models.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cs.nyu.edu/~dsontag/papers/AroraEtAl_icml13.pdf"&gt;Online Topic Models&lt;/a&gt; allow you to infer the topics in an online manner without having to load the text data into the memory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Tools&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://nlp.stanford.edu/software/tmt/tmt-0.4/"&gt;Stanford Topic Modeling Toolbox&lt;/a&gt; is quite good and if you want to look at the end results in Excel, it has a bunch of nice helper functions to use.  You could programmatically use Scala library as well.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mallet.cs.umass.edu/"&gt;Mallet&lt;/a&gt; is somehow outdated, yet it is mature and has a bunch of nice evaluation methods and nice default parameters. It could be also used via terminal without using its Java interface as well.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://factorie.cs.umass.edu/"&gt;Factorie&lt;/a&gt; is not for topic modeling per se, it is much more comprehensive but has a suite of algorithms and implementation that could be used for topic modeling as well.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cran.r-project.org/web/packages/lda/"&gt;lda&lt;/a&gt; is for people who like R and has a number of variants of LDA as well(correlated topic model is one of them).&lt;/li&gt;
+&lt;li&gt;Also check out the &lt;a href="http://www.cs.princeton.edu/~blei/topicmodeling.html"&gt;topic modeling page of David Blei&lt;/a&gt;. He is the main author of highly cited &lt;a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf"&gt;LDA paper&lt;/a&gt; as well.&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>Data Products Made Easy</title><link href="http://bugra.github.io/work/notes/2014-03-21/data-products-made-easy/" rel="alternate"></link><updated>2014-03-21T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-21:work/notes/2014-03-21/data-products-made-easy/</id><summary type="html">&lt;p&gt;I read &lt;a href="http://www.oreilly.com/data/free/data-jujitsu.csp"&gt;Data Jujitsu&lt;/a&gt;
 recently and enjoyed it a lot. DJ Patil presents a nice set of hard
 learned things that he experienced in (mainly) Linkedin. I like this
 type of &lt;strong&gt;real&lt;/strong&gt; experiences rather than a set of rules that advocates
