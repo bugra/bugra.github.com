@@ -1,5 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/26.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-12-26T00:00:00+00:00</updated><entry><title>Building Language Detector via Scikit-Learn</title><link href="http://bugra.github.io/work/notes/2014-12-26/language-detector-via-scikit-learn/" rel="alternate"></link><updated>2014-12-26T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-12-26:work/notes/2014-12-26/language-detector-via-scikit-learn/</id><summary type="html">&lt;style type="text/css"&gt;.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/26.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-04-26T00:00:00+00:00</updated><entry><title>Machine Learning for Programming</title><link href="http://bugra.github.io/work/notes/2015-04-26/machine-learning-for-programming/" rel="alternate"></link><updated>2015-04-26T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-04-26:work/notes/2015-04-26/machine-learning-for-programming/</id><summary type="html">&lt;p&gt;&lt;a href="http://norvig.com/"&gt;Peter Norvig&lt;/a&gt; presented a great overview how programming
+could use more machine learning. He presented quite nice overview of what has
+been done in research and what could be possible. Generally, the presentation
+followed a question-answer style where he first presented the question and then
+try to give answer by providing additional context. I liked this format a lot. It
+is both easy to follow and also easy to build the solution step by step.&lt;/p&gt;
+&lt;h3&gt;What is programming?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Given a specification of a function f&lt;/li&gt;
+&lt;li&gt;Implement f that meets the specification&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What is Machine Learning?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Given some example (x, y) pairs&lt;/li&gt;
+&lt;li&gt;Induce f such that y=f(x) for given pairs, and generalizes well for unseen x.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Questions &amp;amp; Answers&lt;/h4&gt;
+&lt;p&gt;Q: Can we learn functions from examples?&lt;br /&gt;
+A: Yes, for many kinds of functions.&lt;/p&gt;
+&lt;p&gt;Q: Can we learn parts of programs from examples?&lt;br /&gt;
+A: Yes, machine learning is the ultimate agile programming.  &lt;/p&gt;
+&lt;h3&gt;Program Induction&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1980s: Logical Functional Languages&lt;/li&gt;
+&lt;li&gt;2000s: Probabilistic search rather than logical&lt;/li&gt;
+&lt;li&gt;2010s: Deep, LSTM: intermediate representations&lt;/li&gt;
+&lt;li&gt;TOOWTDI languages&lt;/li&gt;
+&lt;li&gt;Only one of “a+1” or “1+a” is allowed&lt;/li&gt;
+&lt;li&gt;Stranger type systems&lt;/li&gt;
+&lt;li&gt;Total functional programming: only allow recursion that probably terminates&lt;/li&gt;
+&lt;li&gt;DSLs, such as regular expressions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Q: Can we learn entire programs from examples?&lt;br /&gt;
+A: Yes, for short programs; no, for complex programs&lt;/p&gt;
+&lt;h2&gt;Mini Lesson in ML&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Regression&lt;/li&gt;
+&lt;li&gt;Gradient Descent&lt;/li&gt;
+&lt;li&gt;Neural Networks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Regression&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Find a function, f, to minimize error on examples, and generalization
+(previously unseen) erro.&lt;/li&gt;
+&lt;li&gt;$f =min_f Loss(f)$&lt;/li&gt;
+&lt;li&gt;$Loss(f) = EmpiricalLoss(f) + GeneralizeLoss(f)$&lt;/li&gt;
+&lt;li&gt;$Empiricalloss(f) = \sum_i (y_i - f(x_i))^2$&lt;/li&gt;
+&lt;li&gt;Linear regression: calculate exact answers(Gauss)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Gradient Descent&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;For linear functions =&amp;gt; minimization function is convex&lt;/li&gt;
+&lt;li&gt;Non-linear functions =&amp;gt; surface is more complicated&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Neural Network&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Has nothing to do with Neural&lt;/li&gt;
+&lt;li&gt;Sums + Products + Squashing Function (complicated function to optimize)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Q: Can we learn complex non-traditional programs from examples?&lt;br /&gt;
+A: Not yet, maybe someday.&lt;/p&gt;
+&lt;p&gt;Q: Can we learn to optimize programs?&lt;br /&gt;
+A: Yes, short parts.&lt;/p&gt;
+&lt;p&gt;Q: Can we learn to efficiently execute declarative programs?&lt;br /&gt;
+A: Maybe. So far, not done via learning. Need help with languages.&lt;/p&gt;
+&lt;h3&gt;Declarative Languages for AI/ML Applications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DYNA(Jason Eisner)&lt;ul&gt;
+&lt;li&gt;Probabilistic Context Free Parser&lt;/li&gt;
+&lt;li&gt;A single word is a phrase(given an appropriate grammar rule)&lt;/li&gt;
+&lt;li&gt;phrase(X, I, J) += rewrite(X, W) * word(W, I, J)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Probabilistic(Relational Languages: any variables can be input or output)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Q: Can we learn an interpreter?&lt;br /&gt;
+A: Partly, that is not the point.&lt;/p&gt;
+&lt;p&gt;Q: Can we learn a user’s language?&lt;br /&gt;
+A: Interesting idea, but so far done by hand.&lt;/p&gt;
+&lt;p&gt;Q: Can we learn tutoring feedback from examples?&lt;br /&gt;
+A: Yes! Works better as a human/machine partnership.&lt;/p&gt;</summary></entry><entry><title>Building Language Detector via Scikit-Learn</title><link href="http://bugra.github.io/work/notes/2014-12-26/language-detector-via-scikit-learn/" rel="alternate"></link><updated>2014-12-26T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-12-26:work/notes/2014-12-26/language-detector-via-scikit-learn/</id><summary type="html">&lt;style type="text/css"&gt;.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
