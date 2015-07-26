@@ -1,5 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/9.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-07-09T00:00:00+00:00</updated><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase" /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/9.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-09T00:00:00+00:00</updated><entry><title>Learning Lua as a Python Developer</title><link href="http://bugra.github.io/work/notes/2015-05-09/learning-lua-as-a-python-developer/" rel="alternate"></link><updated>2015-05-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-09:work/notes/2015-05-09/learning-lua-as-a-python-developer/</id><summary type="html">&lt;p&gt;This tutorial is not the millionth tutorial that walks you through 
+basic concepts of Lua language. First there are quite excellent 
+&lt;a href="http://tylerneylon.com/a/learn-lua/"&gt;tutorials&lt;/a&gt;
+that actually aims to do exactly that. This post would be to tell a tutorial on Lua
+from a Pythonista, comparing Lua features with various Python features and try
+to create various associations. Make no mistake, I will actually go through
+basic concepts but somehow comparing the Lua with Python all the time. I think
+these two languages are very similar in various aspects and those associations
+may make the learning curve a little bit smoother.&lt;/p&gt;
+&lt;p&gt;(If you ask me the steeper the learning curve is better, as the slope is how 
+&lt;em&gt;fast&lt;/em&gt; you could learn(x axis is time). The steeper curve has higher slope, 
+therefore you could learn faster. Not sure why steeper learning curve has 
+connotation of hard concepts or hard to understand material. Contrarily, we 
+should say steeper learning curve for easy concepts. But, hey. Nobody claimed 
+that the languages are and should be consistent.)&lt;/p&gt;
+&lt;p&gt;Anyways, where was I? Yes, Lua it is. And of course Python. Making comparisons 
+between languages not only makes you remember the syntax easily but also you could
+get a feeling of the language if the two languages are very similar in various
+aspects. If you learned Java as a your first language, then whenever you learn an
+OOP(Object Oriented Programming) focused programming language, you would get the 
+same feeling. Classes and objects are kind of big deal. You’d better use it 
+wherever you can. &lt;/p&gt;
+&lt;p&gt;But let’s step back for a second. Why Lua? It is compact, fast and dynamic. It is 
+somehow easy to learn. You could also list a bunch of advantages of Lua as well, but
+my reason was quite pragmatist if there is a spectrum of reasons why you learn a
+new programming language. My aim is to learn more about tools in Deep Learning and
+more specifically &lt;a href="http://torch.ch/"&gt;Torch&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;And Lua is all good, huh? Not really. It is not very popular so community support 
+is not there and not good comparing to Python. The standard library is not very 
+large. From Python’s batteries included approach, it gets hard to get used to 
+DIY(Do It Yourself) from there should be a library for that if it does not exist
+in the standard library already. &lt;/p&gt;
+&lt;h2&gt;Similarities&lt;/h2&gt;
+&lt;h3&gt;Strings&lt;/h3&gt;
+&lt;p&gt;String definitions are same, &lt;code&gt;’&lt;/code&gt; or &lt;code&gt;”&lt;/code&gt; works and they do not have any difference.
+Python uses &lt;code&gt;”””&lt;/code&gt; for multi-line strings and Lua uses &lt;code&gt;[[]]&lt;/code&gt;. Strings are immutable
+and can be concatenated to each other. Lua uses &lt;code&gt;..&lt;/code&gt; as concatenation operator
+where Python uses good old plus operator &lt;code&gt;+&lt;/code&gt;. &lt;code&gt;len&lt;/code&gt;, &lt;code&gt;split&lt;/code&gt; and various functions
+in string module works as in the same way in Python. &lt;/p&gt;
+&lt;h3&gt;Logical Operators&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;not&lt;/code&gt;, &lt;code&gt;and&lt;/code&gt;, &lt;code&gt;or&lt;/code&gt; works in the same way as you expect. Only difference is &lt;code&gt;nil&lt;/code&gt; and
+&lt;code&gt;false&lt;/code&gt; are evaluated as &lt;code&gt;false&lt;/code&gt; in Lua where in Python empty string, list, set and
+even 0 are evaluated as &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Table usage&lt;/h3&gt;
+&lt;p&gt;Table syntax and usage of sets and lists are very similar to Python. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;first_key&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;second_key&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="c1"&gt;-- They get automatically 1 upto 6 as keys&lt;/span&gt;
+&lt;span class="c1"&gt;-- Under the hood it is still an associative array&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;&lt;code&gt;print&lt;/code&gt; and &lt;code&gt;type&lt;/code&gt; functions&lt;/h3&gt;
+&lt;p&gt;They behave exactly the same way as in Python. You could get the type information
+via &lt;code&gt;type&lt;/code&gt; function and print out the results with &lt;code&gt;print&lt;/code&gt; function.&lt;/p&gt;
+&lt;h3&gt;No braces and semicolons&lt;/h3&gt;
+&lt;p&gt;There are no braces and semicolons. They made the compromise on the end keyword
+which is understandable. As long as developer adheres the indentation for his
+function definition and programming style, then it should be as readable as Python.&lt;/p&gt;
+&lt;h3&gt;There is one way and prefereably only one way to do things&lt;/h3&gt;
+&lt;p&gt;Since the language is compact and somehow barebone, there is generally only one
+way of doing things. Actually, sometimes there is not.(e.g. getting keys from a table)
+This makes it easy to read the code that other people wrote if they have not exploited
+the metatables quite a lot.&lt;/p&gt;
+&lt;h3&gt;Explicit &lt;code&gt;self&lt;/code&gt;s&lt;/h3&gt;
+&lt;p&gt;Both languages use explicit selfs in function definition. Lua even attempts to pass
+the object in a regular function call(so much object oriented after all). However,
+it provides a syntactic sugar which I will show in a bit.&lt;/p&gt;
+&lt;h3&gt;Multiple Return values and multiple assignment&lt;/h3&gt;
+&lt;p&gt;Both languages support returning multiple values in functions and you could assign
+multiple assignment as well.
+In Lua, it looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;first_table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second_table&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{},&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="n"&gt;first_table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;“&lt;/span&gt;&lt;span class="n"&gt;first_value&lt;/span&gt;&lt;span class="err"&gt;”&lt;/span&gt;
+&lt;span class="n"&gt;first_table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second_table&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;second_table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first_table&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If there are more variables in the right hand side than the left hand side in the
+assignment operation, then Lua errors where Python raises &lt;code&gt;ValueError&lt;/code&gt; exception, 
+though.&lt;/p&gt;
+&lt;h3&gt;Both Languages support &lt;code&gt;unpack&lt;/code&gt;ing lists&lt;/h3&gt;
+&lt;p&gt;If you have a function, you could put all of the parameters into a list and then
+&lt;code&gt;unpack&lt;/code&gt; them in Lua where in Python you would use &lt;code&gt;*&lt;/code&gt; prefix to the list to unpack.&lt;/p&gt;
+&lt;p&gt;In Lua, the following&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;is similar to&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;in Python.&lt;/p&gt;
+&lt;h3&gt;Enumeration on &lt;code&gt;table&lt;/code&gt;s or dictionaries&lt;/h3&gt;
+&lt;p&gt;Both languages provide a way to traverse lists with enumerated version. This holds
+true for dictionary or table as well.&lt;/p&gt;
+&lt;p&gt;In Lua, one could call &lt;code&gt;pairs&lt;/code&gt; in the table to traverse both key-value in the table.
+If you call &lt;code&gt;ipairs&lt;/code&gt; in the list, then you would get the enumerated indices along
+with the values that are in the list.&lt;/p&gt;
+&lt;h3&gt;Iterators gonna iterate&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;for&lt;/code&gt; can be used for iterators in both languages. One can also define custom
+iterators as well which could be used in the for construct as well, which is pretty
+nice.&lt;/p&gt;
+&lt;h2&gt;Differences&lt;/h2&gt;
+&lt;h3&gt;Whitespace vs &lt;code&gt;end&lt;/code&gt; keyword&lt;/h3&gt;
+&lt;p&gt;Lua opts in using &lt;code&gt;end&lt;/code&gt; keyword for ending function definition or for loop where
+Python uses whitespace for function definition, control flows and so on.&lt;/p&gt;
+&lt;h3&gt;Functions&lt;/h3&gt;
+&lt;p&gt;Function definitions are somehow similar to Javascript dropping &lt;code&gt;{}&lt;/code&gt; in favor of 
+&lt;code&gt;end&lt;/code&gt; keyword.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;factorial&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;could be also assigned to a variable similar to Javascript. You could define
+anoymous functions and assign them into a variable in Python to be fair. But 
+more ofthen than not, people just pass the function itself rather than the variable
+that is assigned to.&lt;/p&gt;
+&lt;h3&gt;Variable Scope&lt;/h3&gt;
+&lt;p&gt;All of the variables are defaulted as global variables. Not sure why the language
+creators thought this is a good idea, but you could explicitly put &lt;code&gt;local&lt;/code&gt; keyword
+in front of the variable declaration to make it “local”. Contrarily, you could 
+explicitly make a global variable putting &lt;code&gt;global&lt;/code&gt; in front of the variable 
+declaration.&lt;/p&gt;
+&lt;h3&gt;Tables vs Dictionaries, Lists and Sets&lt;/h3&gt;
+&lt;p&gt;In Lua, we trust tables, Python needs to bring dictionaries, lists and sets. Tables
+are the only compound data structure(did anyone tell that Lua is a very compact
+language). Tables are associative arrays similar to dictionaries in Python, but
+they could be also used as lists(defaulting the keys as integers).&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;x,y&lt;/code&gt; “range” syntax includes beginning and end-point&lt;/h3&gt;
+&lt;p&gt;The tables when they are used as lists, start indexing at 1. When you define
+a range of integers using &lt;code&gt;1,100&lt;/code&gt;, which produces 100 integers from 1 upto 100 
+including 1 and 100. If you have the list, you could get the length of the list
+via &lt;code&gt;#list&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Objects&lt;/h3&gt;
+&lt;p&gt;Lua does not support object oriented programming. They provide certain ways of 
+doing OOP, similar to Javascript’s prototype based style, but even that requires
+somehow different syntax to call the object. Of course, there is no object by the
+way. It is a table which you could call functions from it. You could add almost
+any behavior on tables via “metatables” though. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;object&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;is nothing but a syntactic sugar for the following for example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+              &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Lua is fast&lt;/h3&gt;
+&lt;p&gt;I meant LuaJIT is fast. Comparing to Python, it is quite faster, which is important
+if you are doing expensive numerical operations. Considering its dynamic nature, this
+is a little surprise to me,but it is a good surprise. &lt;/p&gt;
+&lt;h3&gt;Lua assigns &lt;code&gt;nil&lt;/code&gt; when a variable is not defined&lt;/h3&gt;
+&lt;p&gt;If you are accessing a variable that you did not define in Lua, it does not error,
+it silently assigns a &lt;code&gt;nil&lt;/code&gt; to the variable and does not complain where you would 
+get a &lt;code&gt;NameError&lt;/code&gt; in Python. In general, since most of the things are tables and 
+if you access a non-existent key to the table, it simply returns &lt;code&gt;nil&lt;/code&gt;, there would
+be less explicit error or exception but rather nil checking for those statements 
+if the key actually exists in the first place in the table.&lt;/p&gt;
+&lt;h3&gt;Lua does proper tail recursion&lt;/h3&gt;
+&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</summary></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase" /&gt;
 My humble contribution to &lt;a href="http://bigdatapix.tumblr.com/"&gt;ridiculous images on big data&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post is about &lt;a href="https://github.com/Netflix/PigPen"&gt;PigPen&lt;/a&gt;, a library that Netflix
 open sourced in the beginning of this year. Yet, in order to introduce the library, 

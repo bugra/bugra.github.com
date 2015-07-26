@@ -36,6 +36,17 @@ a:hover {
   margin-bottom: 20px;
   overflow: hidden;
 }
+#mln-io {
+    position: fixed;
+    float: left:
+    max-width: 300px;
+    min-width: 150px;
+    width: 20%;
+    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-left: 10px;
+    overflow: hidden;
+}
 #logo svg {
   cursor: pointer;
 }
@@ -263,6 +274,9 @@ p {
 @media only screen and (max-width: 960px) {
   #logo {
     display: none;
+  }
+  #mln-io {
+      display: none;
   }
 }
 
