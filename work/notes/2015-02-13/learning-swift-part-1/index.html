@@ -9,7 +9,7 @@
         <title>Learning Swift Part 1 | Bugra Akyildiz</title>
 
         <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -71,9 +71,9 @@ do not need to explicitly write the information, compiler will interfere the typ
 for you.</p>
 <h3>Explicit Types vs Implicit Types</h3>
 <p>However, you <em>could</em> always use explicit type:</p>
-<div class="highlight"><pre><span class="n">var</span> <span class="n">euroDollarParity</span><span class="o">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mf">0.88</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nv">euroDollarParity</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mf">0.88</span>
 <span class="c1">// instead of </span>
-<span class="n">var</span> <span class="n">euroDollarParity</span> <span class="o">=</span> <span class="mf">0.88</span>
+<span class="kd">var</span> <span class="nv">euroDollarParity</span> <span class="p">=</span> <span class="mf">0.88</span>
 </pre></div>
 
 
@@ -85,14 +85,14 @@ kind of removed possibility of using variable again.</p>
 good reason. Swift(even in string concatenation) follows this convention. You cannot
 concatenate doubles with strings, you need to explicitly convert the integer or 
 double to String before you concatenate the strings.</p>
-<div class="highlight"><pre><span class="n">let</span> <span class="n">euroDollarSentence</span> <span class="o">=</span> <span class="err">“</span><span class="n">You</span> <span class="n">could</span> <span class="n">buy</span><span class="err">”</span> <span class="o">+</span> <span class="n">String</span><span class="p">(</span><span class="n">euroDollarParity</span><span class="p">)</span> <span class="o">+</span> <span class="err">“</span><span class="n">euro</span> <span class="n">with</span> <span class="n">one</span> <span class="n">dollar</span><span class="err">”</span>
+<div class="highlight"><pre><span class="kd">let</span> <span class="nv">euroDollarSentence</span> <span class="p">=</span> <span class="err">“</span><span class="n">You</span> <span class="n">could</span> <span class="n">buy</span><span class="err">”</span> <span class="o">+</span> <span class="nb">String</span><span class="p">(</span><span class="n">euroDollarParity</span><span class="p">)</span> <span class="o">+</span> <span class="err">“</span><span class="n">euro</span> <span class="n">with</span> <span class="n">one</span> <span class="n">dollar</span><span class="err">”</span>
 </pre></div>
 
 
 <p>But this is ugly apart from the fact that you need to do explicit conversion, you
 need to also handle string concatenation. Swift provides a nice formatting for this
 type of formatting the string:</p>
-<div class="highlight"><pre><span class="n">let</span> <span class="n">euroDollar</span> <span class="o">=</span> <span class="err">“</span><span class="n">You</span> <span class="n">could</span> <span class="n">buy</span> <span class="err">\</span><span class="p">(</span><span class="n">euroDollarParity</span><span class="p">)</span> <span class="n">euro</span> <span class="n">with</span> <span class="n">one</span> <span class="n">dollar</span><span class="err">”</span>
+<div class="highlight"><pre><span class="kd">let</span> <span class="nv">euroDollar</span> <span class="p">=</span> <span class="err">“</span><span class="n">You</span> <span class="n">could</span> <span class="n">buy</span> <span class="err">\</span><span class="p">(</span><span class="n">euroDollarParity</span><span class="p">)</span> <span class="n">euro</span> <span class="n">with</span> <span class="n">one</span> <span class="n">dollar</span><span class="err">”</span>
 </pre></div>
 
 
@@ -105,23 +105,23 @@ They both use <code>[]</code> but <code>:</code> makes the difference between el
 value pair relationship whereas commas would only signify the order in the array.</p>
 <p>As in the string, integer and double; you do not need to give the types of key, value
 pairs of dictionary, or the elements in the array.</p>
-<div class="highlight"><pre><span class="n">var</span> <span class="n">currencyList</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">dinar</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">dollar</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">franc</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">lira</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">peso</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">pound</span><span class="err">”</span><span class="p">]</span>
-<span class="n">var</span> <span class="n">currencyDict</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">dinar</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.96</span><span class="p">,</span>
-                    <span class="err">“</span><span class="n">franc</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.21</span><span class="p">,</span>
-                    <span class="err">“</span><span class="n">dollar</span><span class="err">”</span><span class="o">:</span> <span class="mf">1.00</span><span class="p">,</span>
-                    <span class="err">“</span><span class="n">lira</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.62</span><span class="p">,</span>
-                    <span class="err">“</span><span class="n">peso</span><span class="err">”</span><span class="o">:</span> <span class="mf">0.84</span><span class="p">,</span>
-                    <span class="err">“</span><span class="n">pound</span><span class="err">”</span><span class="o">:</span> <span class="mf">2.31</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nv">currencyList</span> <span class="p">=</span> <span class="p">[</span><span class="err">“</span><span class="n">dinar</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">dollar</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">franc</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">lira</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">peso</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">pound</span><span class="err">”</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nv">currencyDict</span> <span class="p">=</span> <span class="p">[</span><span class="err">“</span><span class="n">dinar</span><span class="err">”</span><span class="p">:</span> <span class="mf">0.96</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">franc</span><span class="err">”</span><span class="p">:</span> <span class="mf">0.21</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">dollar</span><span class="err">”</span><span class="p">:</span> <span class="mf">1.00</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">lira</span><span class="err">”</span><span class="p">:</span> <span class="mf">0.62</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">peso</span><span class="err">”</span><span class="p">:</span> <span class="mf">0.84</span><span class="p">,</span>
+                    <span class="err">“</span><span class="n">pound</span><span class="err">”</span><span class="p">:</span> <span class="mf">2.31</span>
 <span class="p">]</span>
 </pre></div>
 
 
 <p>You could initialize the arrays with type, but you do not have to.</p>
-<div class="highlight"><pre><span class="n">var</span> <span class="n">validArray</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">var</span> <span class="n">validDict</span> <span class="o">=</span> <span class="p">[</span><span class="o">:</span><span class="p">]</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nv">validArray</span> <span class="p">=</span> <span class="p">[]</span>
+<span class="kd">var</span> <span class="nv">validDict</span> <span class="p">=</span> <span class="p">[:]</span>
 
-<span class="n">var</span> <span class="n">validArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="p">]()</span>
-<span class="n">var</span> <span class="n">validDict</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="o">:</span> <span class="n">Double</span><span class="p">]()</span>
+<span class="kd">var</span> <span class="nv">validArray</span> <span class="p">=</span> <span class="p">[</span><span class="nb">String</span><span class="p">]()</span>
+<span class="kd">var</span> <span class="nv">validDict</span> <span class="p">=</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Double</span><span class="p">]()</span>
 </pre></div>
 
 
@@ -129,7 +129,7 @@ pairs of dictionary, or the elements in the array.</p>
 not exist, it does not prompt an error unlike Python. It returns simply <code>nil</code>.</p>
 <h3>Conditionals</h3>
 <p><code>for-in</code> loop behaves exactly in Python except the <code>{}</code>. This time other way around.</p>
-<div class="highlight"><pre><span class="k">for</span> <span class="n">elem</span> <span class="n">in</span> <span class="n">array</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">elem</span> <span class="k">in</span> <span class="n">array</span> <span class="p">{</span>
 
 <span class="p">}</span>
 </pre></div>
@@ -142,19 +142,19 @@ is a value or not. Since you cannot pass a string to if block and expect it to b
 evaluated false(like “” in Python), nil value in Optional provides a nice way to
 provide such functionality.</p>
 <h3><code>Switch</code> Block</h3>
-<div class="highlight"><pre><span class="n">let</span> <span class="n">kind</span><span class="o">=</span><span class="err">”</span><span class="n">HEARTS</span><span class="err">”</span>
+<div class="highlight"><pre><span class="kd">let</span> <span class="nv">kind</span><span class="p">=</span><span class="err">”</span><span class="n">HEARTS</span><span class="err">”</span>
 
 <span class="k">switch</span> <span class="n">kind</span><span class="p">.</span><span class="n">lowercaseString</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="err">“</span><span class="n">hearts</span><span class="err">”</span>:
-        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span> <span class="c1">// this will get printed out</span>
-    <span class="k">case</span> <span class="err">“</span><span class="n">clubs</span><span class="err">”</span>:
-        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
-    <span class="k">case</span> <span class="err">“</span><span class="n">spades</span><span class="err">”</span>:
-        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
-    <span class="k">case</span> <span class="err">“</span><span class="n">diamonds</span><span class="err">”</span>:
-        <span class="n">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
-<span class="nl">default:</span>
-    <span class="n">println</span><span class="p">(</span><span class="err">“</span><span class="n">WHAT</span><span class="err">”</span><span class="p">)</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">hearts</span><span class="err">”</span><span class="p">:</span>
+        <span class="bp">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span> <span class="c1">// this will get printed out</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">clubs</span><span class="err">”</span><span class="p">:</span>
+        <span class="bp">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">spades</span><span class="err">”</span><span class="p">:</span>
+        <span class="bp">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
+    <span class="k">case</span> <span class="err">“</span><span class="n">diamonds</span><span class="err">”</span><span class="p">:</span>
+        <span class="bp">println</span><span class="p">(</span><span class="n">kind</span><span class="p">.</span><span class="n">uppercaseString</span><span class="p">)</span>
+<span class="k">default</span><span class="p">:</span>
+    <span class="bp">println</span><span class="p">(</span><span class="err">“</span><span class="n">WHAT</span><span class="err">”</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -166,8 +166,8 @@ define one inside of another, write your function which returns a function and s
 return type, other than that type assignment, order are same. Since developers write
 “Hello World” and fibonacci computation all the time(this is how we make our living
 after all), let’s see how one could write a fibonacci number computation in Swift.</p>
-<div class="highlight"><pre><span class="n">func</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">{</span>
+<div class="highlight"><pre><span class="kd">func</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="p">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="p">==</span> <span class="mi">1</span><span class="p">{</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
@@ -181,29 +181,29 @@ easy.</p>
 <p>What if we want to get all the parameters and do something in the function? As long
 as the types are same, we could use <code>...</code> in parameter declaration in the function to collect
 all of the parameters in a list.</p>
-<div class="highlight"><pre><span class="n">func</span> <span class="nf">computeStatistics</span><span class="p">(</span><span class="n">numbers</span><span class="o">:</span> <span class="n">Int</span><span class="p">...)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">max</span><span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">min</span><span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">mean</span><span class="o">:</span> <span class="n">Double</span><span class="p">,</span> <span class="n">median</span><span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">max</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">var</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">var</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">var</span> <span class="n">median</span><span class="o">:</span> <span class="n">Int</span>
-    <span class="k">if</span> <span class="n">numbers</span><span class="p">.</span><span class="n">count</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">{</span>
-        <span class="n">median</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">numbers</span><span class="p">.</span><span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+<div class="highlight"><pre><span class="kd">func</span> <span class="nf">computeStatistics</span><span class="p">(</span><span class="n">numbers</span><span class="p">:</span> <span class="nb">Int</span><span class="p">...)</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="bp">max</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="bp">min</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">mean</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">median</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">max</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nv">min</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nv">sum</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="kd">var</span> <span class="nv">median</span><span class="p">:</span> <span class="nb">Int</span>
+    <span class="k">if</span> <span class="n">numbers</span><span class="p">.</span><span class="bp">count</span> <span class="o">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span><span class="p">{</span>
+        <span class="n">median</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">numbers</span><span class="p">.</span><span class="bp">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="n">median</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[(</span><span class="n">numbers</span><span class="p">.</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">median</span> <span class="p">=</span> <span class="n">numbers</span><span class="p">[(</span><span class="n">numbers</span><span class="p">.</span><span class="bp">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="k">for</span> <span class="n">number</span> <span class="n">in</span> <span class="n">numbers</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">number</span> <span class="k">in</span> <span class="n">numbers</span> <span class="p">{</span>
         <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span>
-        <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;=</span> <span class="n">max</span><span class="p">{</span>
-            <span class="n">max</span> <span class="o">=</span> <span class="n">number</span>
-        <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="n">min</span> <span class="p">{</span>
-            <span class="n">min</span> <span class="o">=</span> <span class="n">number</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;=</span> <span class="bp">max</span><span class="p">{</span>
+            <span class="bp">max</span> <span class="p">=</span> <span class="n">number</span>
+        <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="bp">min</span> <span class="p">{</span>
+            <span class="bp">min</span> <span class="p">=</span> <span class="n">number</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="n">var</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">Double</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span> <span class="o">/</span> <span class="n">Double</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">count</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">max</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">median</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nv">mean</span> <span class="p">=</span> <span class="nb">Double</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span> <span class="o">/</span> <span class="nb">Double</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="bp">count</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="bp">max</span><span class="p">,</span> <span class="bp">min</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">median</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="n">println</span><span class="p">(</span><span class="n">computeStatistics</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="bp">println</span><span class="p">(</span><span class="n">computeStatistics</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 
 
@@ -211,10 +211,10 @@ all of the parameters in a list.</p>
 <p>One of the cool things about functions is, you could return tuples(pretty much same
 with Python and Scala), but you could access both by position AND by name. Isn’t that
 convenient? </p>
-<div class="highlight"><pre><span class="n">func</span> <span class="nf">prime</span><span class="p">(</span><span class="n">n</span><span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">primeNumber</span><span class="o">:</span><span class="n">Int</span><span class="p">,</span> <span class="n">primeList</span><span class="o">:</span> <span class="p">[</span><span class="n">Int</span><span class="p">])</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">var</span> <span class="n">primeNumber</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">var</span> <span class="n">primeList</span> <span class="o">=</span> <span class="p">[</span><span class="n">Int</span><span class="p">]()</span>
+<div class="highlight"><pre><span class="kd">func</span> <span class="nf">prime</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="n">primeNumber</span><span class="p">:</span><span class="nb">Int</span><span class="p">,</span> <span class="n">primeList</span><span class="p">:</span> <span class="p">[</span><span class="nb">Int</span><span class="p">])</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">ii</span> <span class="p">=</span> <span class="mi">0</span>
+    <span class="kd">var</span> <span class="nv">primeNumber</span> <span class="p">=</span> <span class="mi">2</span>
+    <span class="kd">var</span> <span class="nv">primeList</span> <span class="p">=</span> <span class="p">[</span><span class="nb">Int</span><span class="p">]()</span>
     <span class="k">while</span> <span class="n">ii</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="p">{</span>
         <span class="n">primeNumber</span><span class="o">++</span>
         <span class="k">if</span> <span class="n">isPrime</span><span class="p">(</span><span class="n">primeNumber</span><span class="p">)</span> <span class="p">{</span>
@@ -225,12 +225,12 @@ convenient? </p>
     <span class="k">return</span> <span class="p">(</span><span class="n">primeNumber</span><span class="p">,</span> <span class="n">primeList</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">var</span> <span class="n">primeN</span> <span class="o">=</span> <span class="n">prime</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nv">primeN</span> <span class="p">=</span> <span class="n">prime</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">primeN</span><span class="p">.</span><span class="n">primeNumber</span>
 <span class="n">primeN</span><span class="p">.</span><span class="n">primeList</span>
 
-<span class="n">primeN</span><span class="mf">.0</span> <span class="c1">// same with primeN.primeNumber</span>
-<span class="n">primeN</span><span class="mf">.1</span> <span class="c1">// same with primeN.primeList</span>
+<span class="n">primeN</span><span class="p">.</span><span class="mi">0</span> <span class="c1">// same with primeN.primeNumber</span>
+<span class="n">primeN</span><span class="p">.</span><span class="mi">1</span> <span class="c1">// same with primeN.primeList</span>
 </pre></div>
 
 
@@ -274,7 +274,7 @@ convenient? </p>
                 <li>
                     <strong>Published: </strong>
                     <i>
-                        <time datetime="2015-02-13T00:00:00">
+                        <time datetime="2015-02-13T00:00:00+00:00">
                             February 13, 2015
                         </time>
                     </i>
@@ -312,9 +312,9 @@ convenient? </p>
     </div>
 </div>
 
-    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.3.0/base-min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <link rel="stylesheet" href="/theme/css/main.css">
@@ -333,12 +333,13 @@ convenient? </p>
   ['12/2012', '05/2013', 'Part-Time Software Developer at Viacom', 'lorem'],
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
-  ['12/2014', '2/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
   ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>
-      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="https://d3js.org/d3.v3.min.js"></script>
       <script src="/theme/js/scramble.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script type="text/javascript">init();</script>

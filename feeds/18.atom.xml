@@ -99,23 +99,23 @@
 
 
 &lt;p&gt;With type inference, Scala generally feels like a dynamic language even if it is strongly typed language when it comes to variables. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Immutable &lt;/span&gt;
-&lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;1&lt;/span&gt;
-&lt;span class="c1"&gt;// Following gives: &lt;/span&gt;
-&lt;span class="c1"&gt;//&amp;lt;console&amp;gt;:9: error: value += is not a member of Int&lt;/span&gt;
-&lt;span class="c1"&gt;//              ii += 1&lt;/span&gt;
-&lt;span class="c1"&gt;//                 ^&lt;/span&gt;
-&lt;span class="c1"&gt;// which means + operator is not defined on the immutable Int&lt;/span&gt;
-&lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mh"&gt;1&lt;/span&gt; 
-&lt;span class="c1"&gt;// Immutable data structures cannot be reassigned&lt;/span&gt;
-&lt;span class="c1"&gt;// It gives the following error&lt;/span&gt;
-&lt;span class="c1"&gt;// &amp;lt;console&amp;gt;:8: error: reassignment to val&lt;/span&gt;
-&lt;span class="c1"&gt;//       ii = 3&lt;/span&gt;
-&lt;span class="c1"&gt;//          ^&lt;/span&gt;
-&lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;3&lt;/span&gt; 
-&lt;span class="c1"&gt;// Instead use mutable with var&lt;/span&gt;
-&lt;span class="k"&gt;var&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0&lt;/span&gt;
-&lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mh"&gt;1&lt;/span&gt; &lt;span class="c1"&gt;// ii = 1&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;// Immutable 
+val ii = 1
+// Following gives: 
+//&amp;lt;console&amp;gt;:9: error: value += is not a member of Int
+//              ii += 1
+//                 ^
+// which means + operator is not defined on the immutable Int
+ii += 1 
+// Immutable data structures cannot be reassigned
+// It gives the following error
+// &amp;lt;console&amp;gt;:8: error: reassignment to val
+//       ii = 3
+//          ^
+ii = 3 
+// Instead use mutable with var
+var ii = 0
+ii += 1 // ii = 1
 &lt;/pre&gt;&lt;/div&gt;
 
 

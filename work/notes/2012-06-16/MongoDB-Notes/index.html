@@ -9,7 +9,7 @@
         <title>MongoDB Notes | Bugra Akyildiz</title>
 
         <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -306,16 +306,16 @@ Id's of documents can also be selected using <code>_id</code> field in the colle
 
 <h3>MongoDB Repair in Ubuntu</h3>
 <p>First, try to repair.</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">rm</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span><span class="n">mongod</span><span class="p">.</span><span class="n">lock</span>
-<span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">mongodb</span><span class="o">:</span><span class="n">mongodb</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mongodb</span><span class="o">/</span>
-<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">mongodb</span> <span class="n">mongod</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongodb</span><span class="p">.</span><span class="n">conf</span> <span class="o">--</span><span class="n">repair</span>
-<span class="n">sudo</span> <span class="n">service</span> <span class="n">mongodb</span> <span class="n">start</span>
+<div class="highlight"><pre>sudo rm /var/lib/mongodb/mongod.lock
+sudo chown -R mongodb:mongodb /var/lib/mongodb/
+sudo -u mongodb mongod -f /etc/mongodb.conf --repair
+sudo service mongodb start
 </pre></div>
 
 
 <p>Then, restart the database.</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">service</span> <span class="n">mongod</span> <span class="n">start</span>
-<span class="n">mongo</span>
+<div class="highlight"><pre>sudo service mongod start
+mongo
 </pre></div>
         </div>
     </article>
@@ -356,7 +356,7 @@ Id's of documents can also be selected using <code>_id</code> field in the colle
                 <li>
                     <strong>Published: </strong>
                     <i>
-                        <time datetime="2012-06-16T00:00:00">
+                        <time datetime="2012-06-16T00:00:00+00:00">
                             June 16, 2012
                         </time>
                     </i>
@@ -394,9 +394,9 @@ Id's of documents can also be selected using <code>_id</code> field in the colle
     </div>
 </div>
 
-    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.3.0/base-min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <link rel="stylesheet" href="/theme/css/main.css">
@@ -415,12 +415,13 @@ Id's of documents can also be selected using <code>_id</code> field in the colle
   ['12/2012', '05/2013', 'Part-Time Software Developer at Viacom', 'lorem'],
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
-  ['12/2014', '2/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
   ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>
-      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="https://d3js.org/d3.v3.min.js"></script>
       <script src="/theme/js/scramble.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script type="text/javascript">init();</script>
