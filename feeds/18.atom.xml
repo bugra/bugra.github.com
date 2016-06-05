@@ -22,7 +22,7 @@
 &lt;li&gt;Syntax. There are ton of features in the language, and some of the features could be applied with syntactic sugar. This is not disadvantage per se, but still contributes the problem of having many ways to do one thing.&lt;/li&gt;
 &lt;li&gt;There is a native XML data structure. The following code is valid in Scala:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;xmlRepresentation&lt;/span&gt; &lt;span class="k"&gt;=&lt;/span&gt;  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://bugra.github.io/&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nc"&gt;Bugra&lt;/span&gt; &lt;span class="nc"&gt;Akyildiz&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;xmlRepresentation&lt;/span&gt; &lt;span class="k"&gt;=&lt;/span&gt;  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://bugra.github.io/&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nc"&gt;Bugra&lt;/span&gt; &lt;span class="nc"&gt;Akyildiz&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -30,20 +30,20 @@
 &lt;h4&gt;Installation on Mac OS X&lt;/h4&gt;
 &lt;h5&gt;Homebrew&lt;/h5&gt;
 &lt;p&gt;If you do not have &lt;code&gt;homebrew&lt;/code&gt; in Mac OS X, use the following command to install first the package manager:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ruby -e “&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install&lt;span class="k"&gt;)&lt;/span&gt;”
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ruby -e “&lt;span class="k"&gt;$(&lt;/span&gt;curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install&lt;span class="k"&gt;)&lt;/span&gt;”
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h5&gt;Scala&lt;/h5&gt;
 &lt;p&gt;Then, you could install &lt;code&gt;scala&lt;/code&gt; via home-brew:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;brew install scala
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install scala
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;After installing the scala, you could type scala to the command line in order to start the interactive REPL.&lt;/p&gt;
 &lt;h5&gt;Sbt&lt;/h5&gt;
 &lt;p&gt;In the meantime, you want to install &lt;code&gt;sbt&lt;/code&gt;(scala build tool), similar to &lt;code&gt;maven&lt;/code&gt; and &lt;code&gt;ant&lt;/code&gt; in Java if you are familiar with one of those.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;brew install sbt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install sbt
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -51,7 +51,7 @@
 &lt;p&gt;Scala has official support for Eclipse, one can use Intellij IDEA for Scala through Plugin. I am using Intellij, so I installed plugin(Preferences -&amp;gt; Plugins -&amp;gt; Scala). Installation is quite straightforward. &lt;/p&gt;
 &lt;h4&gt;Variables in Scala&lt;/h4&gt;
 &lt;p&gt;There are two different ways to define variables in Scala. First one is immutable(which is a nice fit for functional programming style) and the other one is mutable ones(surprise!). Immutable data structures cannot be changed after variables are assigned whereas mutable data structures could be changed. In order to define immutable ones, one can use &lt;code&gt;val&lt;/code&gt; and for mutable ones &lt;code&gt;var&lt;/code&gt;. Unlike Python, you could have a mutable and immutable string or integer, whereas in Python you have a predefined datasets which are immutable(string and tuple) and mutable(list and dictionary). &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// String&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// String&lt;/span&gt;
 &lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;firstName&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;String&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Bugra&amp;quot;&lt;/span&gt;
 &lt;span class="c1"&gt;// We could leave the type, and type inference takes into place&lt;/span&gt;
 &lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;firstName&lt;/span&gt; &lt;span class="k"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Bugra&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;// firstName is still string&lt;/span&gt;
@@ -71,7 +71,7 @@
 &lt;span class="c1"&gt;// Symbols are useful string representation for string interning&lt;/span&gt;
 &lt;span class="c1"&gt;// also makes it easier to compare two strings&lt;/span&gt;
 &lt;span class="c1"&gt;// There is no symbol equivalent for Python&lt;/span&gt;
-&lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;symbol&lt;/span&gt; &lt;span class="k"&gt;=&lt;/span&gt; &lt;span class="-Symbol"&gt;&amp;#39;ha&lt;/span&gt;
+&lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;symbol&lt;/span&gt; &lt;span class="k"&gt;=&lt;/span&gt; &lt;span class=" -Symbol"&gt;&amp;#39;ha&lt;/span&gt;
 &lt;span class="c1"&gt;// null, same null in Java, similar to None in Python&lt;/span&gt;
 &lt;span class="k"&gt;val&lt;/span&gt; &lt;span class="n"&gt;non&lt;/span&gt; &lt;span class="k"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;
 &lt;span class="c1"&gt;// List (First get Range and then convert it into list)&lt;/span&gt;
@@ -99,7 +99,7 @@
 
 
 &lt;p&gt;With type inference, Scala generally feels like a dynamic language even if it is strongly typed language when it comes to variables. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;// Immutable 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;// Immutable 
 val ii = 1
 // Following gives: 
 //&amp;lt;console&amp;gt;:9: error: value += is not a member of Int
@@ -121,13 +121,13 @@ ii += 1 // ii = 1
 
 &lt;h4&gt;Variables in Python&lt;/h4&gt;
 &lt;p&gt;In Python, there are some immutable data structures like tuple, string and some of them are mutable (list and dictionary) unlike Scala.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# string&lt;/span&gt;
-&lt;span class="n"&gt;first_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Bugra&amp;quot;&lt;/span&gt;
-&lt;span class="c"&gt;# integer&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# string&lt;/span&gt;
+&lt;span class="n"&gt;first_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Bugra&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# integer&lt;/span&gt;
 &lt;span class="n"&gt;first_prime_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="c"&gt;# double&lt;/span&gt;
+&lt;span class="c1"&gt;# double&lt;/span&gt;
 &lt;span class="n"&gt;double_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;3.0&lt;/span&gt;
-&lt;span class="c"&gt;# long&lt;/span&gt;
+&lt;span class="c1"&gt;# long&lt;/span&gt;
 &lt;span class="n"&gt;long_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;5L&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;There is no character variable in Python, this is string as well&lt;/span&gt;
@@ -140,15 +140,15 @@ ii += 1 // ii = 1
 &lt;span class="sd"&gt;different data structures &lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="c"&gt;# Tuple&lt;/span&gt;
+&lt;span class="c1"&gt;# Tuple&lt;/span&gt;
 &lt;span class="n"&gt;tup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;first_char&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first_prime_numbers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="c"&gt;# indexing tuples and lists are same, with square brackets&lt;/span&gt;
+&lt;span class="c1"&gt;# indexing tuples and lists are same, with square brackets&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tup&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;first_char&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; 
-&lt;span class="c"&gt;# Dictionary, JSON-like hash-maps of Python&lt;/span&gt;
+&lt;span class="c1"&gt;# Dictionary, JSON-like hash-maps of Python&lt;/span&gt;
 &lt;span class="n"&gt;blue_whale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-                            &lt;span class="s"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Blue Whale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                            &lt;span class="s"&gt;&amp;#39;weight&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;170&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                            &lt;span class="s"&gt;&amp;#39;height&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Blue Whale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="s1"&gt;&amp;#39;weight&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;170&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                            &lt;span class="s1"&gt;&amp;#39;height&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                          &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -157,17 +157,17 @@ ii += 1 // ii = 1
 &lt;p&gt;There are a lot of ways to define functions in Scala whereas in Python there are two ways; functions and anonymous functions. This "there are a lot of ways" is common afterwards in Scala. We will see there are a lot of ways to define classes as well in the next section. &lt;/p&gt;
 &lt;h4&gt;Functions in Python&lt;/h4&gt;
 &lt;p&gt;You could define a function with a name, or define an anonymous function using &lt;code&gt;lambda&lt;/code&gt; expression and then assign it to to a name. Lambda expressions are limited to single line and cannot accept optional parameters. So, in practice, anonymous functions are generally used ad-hoc.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
-&lt;span class="n"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# 7&lt;/span&gt;
+&lt;span class="n"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 7&lt;/span&gt;
 &lt;span class="n"&gt;adder&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
-&lt;span class="n"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# 7 again&lt;/span&gt;
+&lt;span class="n"&gt;adder&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 7 again&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h4&gt;Functions in Scala&lt;/h4&gt;
 &lt;p&gt;The same adder can be defined in scala following way(Other than types, it is very similar to Python)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="n"&gt;adder1&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="n"&gt;adder1&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="c1"&gt;//  We could leave out the return type and return statement&lt;/span&gt;
@@ -203,7 +203,7 @@ ii += 1 // ii = 1
 &lt;p&gt;Both Python and Scala support object oriented programming style. They do not enforce the usage of object oriented programming style unlike Java, though. In that aspect, they are similar. But as in the case of functions, there are many ways to create classes in Scala and it has also quite some syntactic sugars when it comes to commonly used constructs in classes.&lt;/p&gt;
 &lt;h4&gt;Classes in Python&lt;/h4&gt;
 &lt;p&gt;Python classes can be defined as in the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Operation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Operation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot; Arithmetic Operations on two numbers&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 
@@ -264,18 +264,18 @@ ii += 1 // ii = 1
     &lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_y&lt;/span&gt;
 
 &lt;span class="n"&gt;operation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Operation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# 7&lt;/span&gt;
-&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# -1&lt;/span&gt;
-&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# 12&lt;/span&gt;
-&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# 0.75&lt;/span&gt;
+&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 7&lt;/span&gt;
+&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# -1&lt;/span&gt;
+&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 12&lt;/span&gt;
+&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 0.75&lt;/span&gt;
 &lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
 &lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# 15&lt;/span&gt;
+&lt;span class="n"&gt;operation&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 15&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;In Scala, we could make a shortcut of the properties as in the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Mutable, we want to change the values as in the following&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Mutable, we want to change the values as in the following&lt;/span&gt;
 &lt;span class="c1"&gt;// val operation = new Operation(3, 4)&lt;/span&gt;
 &lt;span class="c1"&gt;// operation.x = 5 &lt;/span&gt;
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Operation&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;var&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="k"&gt;:&lt;/span&gt; &lt;span class="kt"&gt;Int&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
