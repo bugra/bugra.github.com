@@ -53,20 +53,20 @@ sought more efficient/simple/maintainable code.</p>
 <h3>Dictionary <code>keys()</code> and <code>items()</code></h3>
 <p>You could do various interesting operations in keys and items of dictionaries. They
 are set-like.</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">mike</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">kathy</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">steve</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">hillary</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">mike</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">kathy</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">steve</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">hillary</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">}</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">mike</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">ben</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">male</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">hillary</span><span class="err">’</span><span class="p">:</span> <span class="err">‘</span><span class="n">female</span><span class="err">’</span><span class="p">}</span>
 
-<span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">bb</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># {‘mike’, ‘hillary’} # these are set-like</span>
-<span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># {‘kathy’, ‘steve’}</span>
-<span class="c"># If you want to get the common key-value pairs in the two dictionaries</span>
-<span class="n">aa</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">bb</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="c"># {(‘mike’, ‘male’), (‘hillary’, ‘female’)}</span>
+<span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">bb</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># {‘mike’, ‘hillary’} # these are set-like</span>
+<span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># {‘kathy’, ‘steve’}</span>
+<span class="c1"># If you want to get the common key-value pairs in the two dictionaries</span>
+<span class="n">aa</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">bb</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="c1"># {(‘mike’, ‘male’), (‘hillary’, ‘female’)}</span>
 </pre></div>
 
 
 <p>Pretty neat!</p>
 <h3>Checking Existence of a key in dictionary</h3>
 <p>How many times you write the following code?</p>
-<div class="highlight"><pre><span class="n">dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
         <span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -75,8 +75,8 @@ are set-like.</p>
 
 
 <p>This is not so bad, but why do you need if statement every now and then?</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="n">dictionary</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c"># defaults to list</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="n">dictionary</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1"># defaults to list</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
     <span class="n">dictionary</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
@@ -85,19 +85,19 @@ are set-like.</p>
 <p>Much cleaner and there is not an if statement which unnecessarily
 obscures the code.</p>
 <h3>Update a dictionary with another dictionary</h3>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">x</span><span class="err">’</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="err">‘</span><span class="n">y</span><span class="err">’</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="err">‘</span><span class="n">z</span><span class="err">’</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
 <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">y</span><span class="err">’</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="err">‘</span><span class="n">s</span><span class="err">’</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="err">‘</span><span class="n">x</span><span class="err">’</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="err">‘</span><span class="n">z</span><span class="err">’</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
 
-<span class="c"># Update a with b </span>
+<span class="c1"># Update a with b </span>
 <span class="n">c</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-<span class="n">c</span> <span class="c"># {‘y’: 5, ‘s’: 10, ‘x’: 3, ‘z’: 6}</span>
+<span class="n">c</span> <span class="c1"># {‘y’: 5, ‘s’: 10, ‘x’: 3, ‘z’: 6}</span>
 </pre></div>
 
 
 <p>Well, this is good but not very concise and terse. Let’s see
 if we could do better:</p>
-<div class="highlight"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">c</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 
@@ -105,47 +105,47 @@ if we could do better:</p>
 <p>Much cleaner and readable!</p>
 <h3>Getting the maximum! from a dictionary</h3>
 <p>If you want to get the maximum value in a dictionary, it is straightforward:</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
-<span class="n">aa</span> <span class="c"># {0: 0, 1: 0, 2: 1, 3: 3, 4: 6, 5: 10, 6: 15, 7: 21, 8: 28, 9: 36}</span>
-<span class="nb">max</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="c">#36</span>
+<div class="highlight"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
+<span class="n">aa</span> <span class="c1"># {0: 0, 1: 0, 2: 1, 3: 3, 4: 6, 5: 10, 6: 15, 7: 21, 8: 28, 9: 36}</span>
+<span class="nb">max</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="c1">#36</span>
 </pre></div>
 
 
 <p>which works, but what if you need the key, you need to do another 
 lookup based on value. Instead, we could flatten the representation via <code>zip</code>
 and then return the key-value pair as in the following:</p>
-<div class="highlight"><pre><span class="nb">max</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
-<span class="c"># (36, 9) =&gt; value, key pair</span>
+<div class="highlight"><pre><span></span><span class="nb">max</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="c1"># (36, 9) =&gt; value, key pair</span>
 </pre></div>
 
 
 <p>Similarly, if you want to traverse the dictionary by maximum value to minimum value
 you could do the following:</p>
-<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="c"># [(36, 9), (28, 8), (21, 7), (15, 6), (10, 5), (6, 4), (3, 3), (1, 2), (0, 1), (0, 0)]</span>
+<div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">aa</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># [(36, 9), (28, 8), (21, 7), (15, 6), (10, 5), (6, 4), (3, 3), (1, 2), (0, 1), (0, 0)]</span>
 </pre></div>
 
 
 <h3>Unpacking Arbitrary Number of Items in a List</h3>
 <p>We could capture arbitrary number of items into a list using <code>*</code> magic:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">compute_average_salary</span><span class="p">(</span><span class="n">person_salary</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_average_salary</span><span class="p">(</span><span class="n">person_salary</span><span class="p">):</span>
     <span class="n">person</span><span class="p">,</span> <span class="o">*</span><span class="n">salary</span> <span class="o">=</span> <span class="n">person_salary</span>
     <span class="k">return</span> <span class="n">person</span><span class="p">,</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">salary</span><span class="p">)))</span>
 
 <span class="n">person</span><span class="p">,</span> <span class="n">average_salary</span> <span class="o">=</span> <span class="n">compute_average_salary</span><span class="p">([</span><span class="err">“</span><span class="n">mike</span><span class="err">”</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">])</span>
-<span class="n">person</span> <span class="c"># ‘mike’</span>
-<span class="n">average_salary</span> <span class="c"># 50000.0</span>
+<span class="n">person</span> <span class="c1"># ‘mike’</span>
+<span class="n">average_salary</span> <span class="c1"># 50000.0</span>
 </pre></div>
 
 
 <p>This was not very interesting, but what if I tell you you could do the following 
 as well:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">compute_average_salary</span><span class="p">(</span><span class="n">person_salary_age</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_average_salary</span><span class="p">(</span><span class="n">person_salary_age</span><span class="p">):</span>
     <span class="n">person</span><span class="p">,</span> <span class="o">*</span><span class="n">salary</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="n">person_salary_age</span>
     <span class="k">return</span> <span class="n">person</span><span class="p">,</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">salary</span><span class="p">))),</span> <span class="n">age</span>
 
 <span class="n">person</span><span class="p">,</span> <span class="n">average_salary</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="n">compute_average_salary</span><span class="p">([</span><span class="err">“</span><span class="n">mike</span><span class="err">”</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">,</span> <span class="mi">42</span><span class="p">])</span>
-<span class="n">age</span> <span class="c"># 42</span>
+<span class="n">age</span> <span class="c1"># 42</span>
 </pre></div>
 
 
@@ -153,37 +153,37 @@ as well:</p>
 <p>When you think about a dictionary that has a string key and a list as value, 
 instead of traversing a dictionary and then process the values in a sequential 
 manner, one can use a flat representation(list inside of a list) like this:</p>
-<div class="highlight"><pre><span class="c"># Instead of doing this</span>
+<div class="highlight"><pre><span></span><span class="c1"># Instead of doing this</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">process</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
-<span class="c"># we are separating head and the rest, and process the values</span>
-<span class="c"># as a list similar to the above. head becomes the key value</span>
+<span class="c1"># we are separating head and the rest, and process the values</span>
+<span class="c1"># as a list similar to the above. head becomes the key value</span>
 <span class="k">for</span> <span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
     <span class="n">process</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
 
-<span class="c"># if not very clear, consider the following example</span>
-<span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)}</span> <span class="c"># range returns an iterator</span>
-<span class="n">aa</span> <span class="c"># {0: [], 1: [0], 2: [0, 1], 3: [0, 1, 2], 4: [0, 1, 2, 3]}</span>
+<span class="c1"># if not very clear, consider the following example</span>
+<span class="n">aa</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)}</span> <span class="c1"># range returns an iterator</span>
+<span class="n">aa</span> <span class="c1"># {0: [], 1: [0], 2: [0, 1], 3: [0, 1, 2], 4: [0, 1, 2, 3]}</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">aa</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
-<span class="c">#0</span>
-<span class="c">#0</span>
-<span class="c">#1</span>
-<span class="c">#3</span>
-<span class="c">#6</span>
+<span class="c1">#0</span>
+<span class="c1">#0</span>
+<span class="c1">#1</span>
+<span class="c1">#3</span>
+<span class="c1">#6</span>
 
-<span class="c"># Instead</span>
+<span class="c1"># Instead</span>
 <span class="n">aa</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ii</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">jj</span><span class="p">))</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))]</span>
 <span class="k">for</span> <span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="ow">in</span> <span class="n">aa</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">rest</span><span class="p">))</span>
 
-<span class="c">#0</span>
-<span class="c">#0</span>
-<span class="c">#1</span>
-<span class="c">#3</span>
-<span class="c">#6</span>
+<span class="c1">#0</span>
+<span class="c1">#0</span>
+<span class="c1">#1</span>
+<span class="c1">#3</span>
+<span class="c1">#6</span>
 </pre></div>
 
 
@@ -199,14 +199,14 @@ you if I did not know about it <code>Counter</code> in the <code>collections</co
 blurb is because of Counter). </p>
 <p>Let’s say you read, Python programming language wikipedia page into a string and then
 convert into a list(by tokenizing, well sort of):</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="n">word_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">r</span><span class="err">’</span><span class="p">[;,:(</span>\<span class="o">.</span>\<span class="n">s</span><span class="p">)]</span>\<span class="n">s</span><span class="o">*</span><span class="err">’</span><span class="p">,</span> <span class="n">python_string</span><span class="p">)))</span>
-<span class="n">word_list</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="c"># [‘python’, ‘is’, ‘a’, ‘widely’, ‘used’, ‘general-purpose’, ‘high-level’, ‘programming’, ‘language’, ‘[17][18][19]’]</span>
+<span class="n">word_list</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># [‘python’, ‘is’, ‘a’, ‘widely’, ‘used’, ‘general-purpose’, ‘high-level’, ‘programming’, ‘language’, ‘[17][18][19]’]</span>
 </pre></div>
 
 
 <p>So far, so good. But if I want to count the words in this list:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c"># again, collections!</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c1"># again, collections!</span>
 <span class="n">dictionary</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
     <span class="n">dictionary</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -215,20 +215,20 @@ convert into a list(by tokenizing, well sort of):</p>
 
 <p>This is not so bad, but if you have <code>Counter</code>, you would use your time
 in a more meaningful task.</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
-<span class="c"># Getting the most common 10 words</span>
+<span class="c1"># Getting the most common 10 words</span>
 <span class="n">counter</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="p">[(</span><span class="err">‘</span><span class="n">the</span><span class="err">’</span><span class="p">,</span> <span class="mi">164</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="ow">and</span><span class="err">’</span><span class="p">,</span> <span class="mi">161</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="n">a</span><span class="err">’</span><span class="p">,</span> <span class="mi">138</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="n">python</span><span class="err">’</span><span class="p">,</span> <span class="mi">138</span><span class="p">),</span> 
 <span class="p">(</span><span class="err">‘</span><span class="n">of</span><span class="err">’</span><span class="p">,</span> <span class="mi">131</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="ow">is</span><span class="err">’</span><span class="p">,</span> <span class="mi">102</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="n">to</span><span class="err">’</span><span class="p">,</span> <span class="mi">91</span><span class="p">),</span> <span class="p">(</span><span class="err">‘</span><span class="ow">in</span><span class="err">’</span><span class="p">,</span> <span class="mi">88</span><span class="p">),</span> <span class="p">(</span><span class="err">‘’</span><span class="p">,</span> <span class="mi">56</span><span class="p">)]</span>
-<span class="n">counter</span><span class="o">.</span><span class="n">keys</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span> <span class="c"># just like a dictionary</span>
+<span class="n">counter</span><span class="o">.</span><span class="n">keys</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># just like a dictionary</span>
 <span class="p">[</span><span class="err">‘’</span><span class="p">,</span> <span class="err">‘</span><span class="n">limited</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="nb">all</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">code</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">managed</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">multi</span><span class="o">-</span><span class="n">paradigm</span><span class="err">’</span><span class="p">,</span> 
 <span class="err">‘</span><span class="n">exponentiation</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">fromosing</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">dynamic</span><span class="err">’</span><span class="p">]</span>
 </pre></div>
 
 
 <p>This is pretty neat, but if we look at what available methods exist for counter:</p>
-<div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
 <span class="p">[</span><span class="err">‘</span><span class="n">__add__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__and__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__class__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__cmp__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__contains__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__delattr__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__delitem__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__dict__</span><span class="err">’</span><span class="p">,</span> 
 <span class="err">‘</span><span class="n">__doc__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__eq__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__format__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__ge__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__getattribute__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__getitem__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__gt__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__hash__</span><span class="err">’</span><span class="p">,</span> 
 <span class="err">‘</span><span class="n">__init__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__iter__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__le__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__len__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__lt__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__missing__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__module__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__ne__</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">__new__</span><span class="err">’</span><span class="p">,</span> 
@@ -245,7 +245,7 @@ and then sum them together(reduce). You have your mapreduce built on top of coun
 <h3>Flattening Nested Lists</h3>
 <p><code>collections</code> has also <code>_chain</code> function which could be used to flatten
 nested lists:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">chain</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">chain</span>
 <span class="n">ls</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kk</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">kk</span><span class="p">))</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
 <span class="n">flattened_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">_chain</span><span class="p">(</span><span class="o">*</span><span class="n">ls</span><span class="p">))</span>
 </pre></div>
@@ -254,7 +254,7 @@ nested lists:</p>
 <h3>Opening two files simultaneously</h3>
 <p>If you are processing one file(e.g. line by line) and write the 
 processed line into another file, you may be tempted to write the following:</p>
-<div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">:</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="err">‘</span><span class="n">w</span><span class="err">’</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inputfile</span><span class="p">:</span>
             <span class="n">outputfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
@@ -262,7 +262,7 @@ processed line into another file, you may be tempted to write the following:</p>
 
 
 <p>Except, you can open multiple files in the same line as in the following:</p>
-<div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="err">‘</span><span class="n">w</span><span class="err">’</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="err">‘</span><span class="n">w</span><span class="err">’</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inputfile</span><span class="p">:</span>
         <span class="n">outputfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">process</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
 </pre></div>
@@ -272,9 +272,9 @@ processed line into another file, you may be tempted to write the following:</p>
 <h3>Finding Monday from a Date</h3>
 <p>If you have a date and want to normalize(say to previous or next Monday), you
 could do the following:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">datetime</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="n">previous_monday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">some_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">())</span>
-<span class="c"># Similarly, you could map to next monday as well</span>
+<span class="c1"># Similarly, you could map to next monday as well</span>
 <span class="n">next_monday</span> <span class="o">=</span> <span class="n">some_date</span> <span class="o">+</span> <span class="n">date_time</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="n">some_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">(),</span> <span class="n">weeks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
@@ -284,7 +284,7 @@ could do the following:</p>
 <p>If you scrape websites either for fun or profit, chances are that you face
 html tags time to time. In order to strip various html tags, you could
 do use <code>html.parser</code>:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">html.parser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">html.parser</span> <span class="kn">import</span> <span class="n">HTMLParser</span>
 
 <span class="k">class</span> <span class="nc">HTMLStrip</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
 
@@ -311,11 +311,11 @@ do use <code>html.parser</code>:</p>
 
 
 <p>If you only want to escape <code>html</code>:</p>
-<div class="highlight"><pre><span class="n">escaped_snippet</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">html_snippet</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">escaped_snippet</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">html_snippet</span><span class="p">)</span>
 
-<span class="c"># Back to html snippets(this is new in Python 3.4)</span>
+<span class="c1"># Back to html snippets(this is new in Python 3.4)</span>
 <span class="n">html_snippet</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">unescape</span><span class="p">(</span><span class="n">escaped_snippet</span><span class="p">)</span>
-<span class="c"># and so forth ...</span>
+<span class="c1"># and so forth ...</span>
 </pre></div>
         </div>
     </article>
@@ -416,8 +416,8 @@ do use <code>html.parser</code>:</p>
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
   ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
-  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
-  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>

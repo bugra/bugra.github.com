@@ -229,7 +229,7 @@ and also the layout of the programs tend to very similar. Most people hate paren
 but coming from Python, even if it is not readable as Python, it is much more pleasant
 than say Java or Perl where they exploit a lot of different non-characters to form
 their syntax. This makes it also learn the syntax of Clojure piece of cake.</p>
-<div class="highlight"><pre><span class="p">(</span><span class="k">def </span><span class="nv">fibonacci</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="k">def </span><span class="nv">fibonacci</span>
     <span class="p">(</span><span class="nb">lazy-cat </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span><span class="p">]</span> <span class="p">(</span><span class="nb">map + </span><span class="p">(</span><span class="nb">rest </span><span class="nv">fibonacci</span><span class="p">)</span> <span class="nv">fibonacci</span><span class="p">)))</span>
 <span class="p">(</span><span class="nb">take </span><span class="mi">10</span> <span class="nv">fibonacci</span><span class="p">)</span> <span class="c1">; Get first 10 fibonacci numbers</span>
 </pre></div>
@@ -237,7 +237,7 @@ their syntax. This makes it also learn the syntax of Clojure piece of cake.</p>
 
 <p>S expressions are good but they become quite hard to unread if you are doing step 
 by step data processing. Consider the next example;</p>
-<div class="highlight"><pre><span class="p">(</span><span class="nb">map str </span><span class="p">(</span><span class="nb">map inc </span><span class="p">(</span><span class="nb">filter pos? </span><span class="p">(</span><span class="nb">range </span><span class="mi">-5</span> <span class="mi">6</span><span class="p">))))</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">map str </span><span class="p">(</span><span class="nb">map inc </span><span class="p">(</span><span class="nb">filter pos? </span><span class="p">(</span><span class="nb">range </span><span class="mi">-5</span> <span class="mi">6</span><span class="p">))))</span>
 </pre></div>
 
 
@@ -248,7 +248,7 @@ we want to abstract each step(i/o, extract-tranformation-load(etl), preprocessin
 processing). Clojure provides threading macro mechanism to handle this type of 
 sequence processing.</p>
 <h5>Macros to rescue</h5>
-<div class="highlight"><pre> <span class="p">(</span><span class="nf">-&gt;&gt;</span>
+<div class="highlight"><pre><span></span> <span class="p">(</span><span class="nf">-&gt;&gt;</span>
    <span class="p">(</span><span class="nb">range </span><span class="mi">-5</span> <span class="mi">6</span><span class="p">)</span>
    <span class="p">(</span><span class="nb">filter </span><span class="nv">pos?</span><span class="p">)</span>
    <span class="p">(</span><span class="nb">map </span><span class="nv">inc</span><span class="p">)</span>
@@ -260,26 +260,26 @@ sequence processing.</p>
 you could follow the execution order where in the previous representation you need
 to go from the inner expressions to the outer expressions. What would be equivalent
 of this processing in Python.</p>
-<div class="highlight"><pre><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">if</span> <span class="n">ii</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">if</span> <span class="n">ii</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Definitely, very readable but not perfect(Pythonic, though).
 Python supports functional programming to some degree, so we could use functional programming approach to tackle the same
 problem.</p>
-<div class="highlight"><pre><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))))</span>
+<div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)))))</span>
 </pre></div>
 
 
 <p>We could improve the <code>lambda</code> expressions if we abstract into functions similar
 to clojure:</p>
-<div class="highlight"><pre><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">inc_</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)))))</span>
+<div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">inc_</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)))))</span>
 </pre></div>
 
 
 <p>More readable and improved, yet it is not Pythonic and still suffers reading from
 the inner expressions to outer expressions, hard to read:</p>
-<div class="highlight"><pre><span class="n">pos_vals</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">pos_vals</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">inc_vals</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">inc_</span><span class="p">,</span> <span class="n">pos_vals</span><span class="p">)</span>
 <span class="n">str_vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">inc_vals</span><span class="p">))</span>
 </pre></div>
@@ -318,7 +318,7 @@ representation of a string. JVM works for Clojure, exploit it wherever you can w
 than Pig. You could write general purpose functions and reuse all the time, e.g 
 loading data:</li>
 </ol>
-<div class="highlight"><pre><span class="p">(</span><span class="kd">defn </span><span class="nv">input-data</span> <span class="p">[</span><span class="nv">input-path</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">defn </span><span class="nv">input-data</span> <span class="p">[</span><span class="nv">input-path</span><span class="p">]</span>
   <span class="p">(</span><span class="nf">pig/load-tsv</span> <span class="nv">input-path</span><span class="p">))</span>
 </pre></div>
 
@@ -328,7 +328,7 @@ loading data:</li>
 this is straightforward. (If you are using Jython for Python UDF’s, jars, dependencies become a nightmare after some time.) To be able to use it, only the following lines are needed in 
 <code>project.clj</code>:</li>
 </ol>
-<div class="highlight"><pre><span class="ss">:dependencies</span> <span class="p">[[</span><span class="nv">org.clojure/clojure</span> <span class="err">“</span><span class="mf">1.6</span><span class="nv">.0</span><span class="err">”</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="ss">:dependencies</span> <span class="p">[[</span><span class="nv">org.clojure/clojure</span> <span class="err">“</span><span class="mf">1.6</span><span class="nv">.0</span><span class="err">”</span><span class="p">]</span>
                <span class="p">[</span><span class="nv">com.netflix.pigpen/pigpen</span> <span class="err">“</span><span class="mf">0.2</span><span class="nv">.6</span><span class="err">”</span><span class="p">]]</span>
 </pre></div>
 
@@ -343,7 +343,7 @@ dependency and that is it. </p>
 <li>Pig is actually another library that you import and you could use Pig functions
 wherever you need to. Pig functions could be called after importing PigPen:</li>
 </ol>
-<div class="highlight"><pre><span class="p">(</span><span class="nf">require</span> <span class="err">‘</span><span class="p">[</span><span class="nv">pigpen.core</span> <span class="ss">:as</span> <span class="nv">pig</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span> <span class="err">‘</span><span class="p">[</span><span class="nv">pigpen.core</span> <span class="ss">:as</span> <span class="nv">pig</span><span class="p">])</span>
 </pre></div>
 
 
@@ -351,7 +351,7 @@ wherever you need to. Pig functions could be called after importing PigPen:</li>
 Pig functions. 
 7. Scripts are not specific to jobs, they are regular functions that could use other
 functions. See the example:</p>
-<div class="highlight"><pre><span class="p">(</span><span class="kd">defn </span><span class="nv">process-data</span> <span class="p">[</span><span class="nv">input-path</span> <span class="nv">output-path</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">defn </span><span class="nv">process-data</span> <span class="p">[</span><span class="nv">input-path</span> <span class="nv">output-path</span><span class="p">]</span>
      <span class="p">(</span><span class="nf">input-data</span> <span class="nv">input-path</span><span class="p">)</span>
      <span class="p">(</span><span class="nf">process</span><span class="p">)</span>
      <span class="p">(</span><span class="nf">pig/dump</span><span class="p">)</span>
@@ -465,8 +465,8 @@ straightforward. This is pure beauty.</p>
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
   ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
-  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
-  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>

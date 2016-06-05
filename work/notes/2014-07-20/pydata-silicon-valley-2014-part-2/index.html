@@ -92,14 +92,14 @@ The subset is quite important, though.</p>
 concise syntax and much better default themes. </p>
 <h4>Syntax</h4>
 <p>Especially, syntax of <code>ggplot</code> is great.</p>
-<div class="highlight"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="err">’</span><span class="n">wt</span><span class="err">’</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="err">’</span><span class="n">mpg</span><span class="err">’</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="err">’</span><span class="n">wt</span><span class="err">’</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="err">’</span><span class="n">mpg</span><span class="err">’</span><span class="p">))</span>
 </pre></div>
 
 
 <p>This is <em>what</em> step. This is where you say I want to bind 
 <code>wt</code> to x axis and <code>mpg</code> to y axis. Then, in the <em>how</em> step, you
 will say how</p>
-<div class="highlight"><pre><span class="n">p</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">()</span>
 </pre></div>
 
 
@@ -131,13 +131,13 @@ that are common in functional programming languages. Surprisingly, some of the f
 library function like; <code>groupby</code> in <code>itertools</code>, <code>filter</code> and he claimed functions are actually faster than standard library
 equivalents. Some of the functions are not in the Python like <code>take</code>, <code>interleave</code>, or <code>pipe</code>. <code>pipe</code> is pretty good, it provides 
 a similar mechanism with <code>-&gt;&gt;</code> clojure where you could chain a bunch of functions and does not sacrifice readability and execution order.</p>
-<div class="highlight"><pre><span class="n">pipe</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">double</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">pipe</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">double</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 </pre></div>
 
 
 <p>to get the string representation of 3.0. This is a great way to compose functions. </p>
 <p>Another example he gave is much more impressive:</p>
-<div class="highlight"><pre><span class="n">pipe</span><span class="p">(</span><span class="err">‘</span><span class="n">data</span><span class="o">/</span><span class="n">tale</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">two</span><span class="o">-</span><span class="n">cities</span><span class="o">.</span><span class="n">txt</span><span class="err">’</span><span class="p">,</span> <span class="nb">open</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="n">pipe</span><span class="p">(</span><span class="err">‘</span><span class="n">data</span><span class="o">/</span><span class="n">tale</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">two</span><span class="o">-</span><span class="n">cities</span><span class="o">.</span><span class="n">txt</span><span class="err">’</span><span class="p">,</span> <span class="nb">open</span><span class="p">,</span>
                                     <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">),</span>
                                     <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">),</span>
                                     <span class="n">concat</span><span class="p">,</span>
@@ -237,7 +237,7 @@ translator to database query.(Only this one is quite hard problem to be fair)</p
 <ul>
 <li>Single concepts with fixed relations or entities.</li>
 </ul>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">WhatIs</span><span class="p">(</span><span class="n">QuestionTemplate</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WhatIs</span><span class="p">(</span><span class="n">QuestionTemplate</span><span class="p">):</span>
     <span class="n">regex</span> <span class="o">=</span> <span class="n">Lemma</span><span class="p">(</span><span class="err">“</span><span class="n">what</span><span class="err">”</span><span class="p">)</span> <span class="o">+</span> <span class="n">Lemma</span><span class="p">(</span><span class="err">“</span><span class="n">be</span><span class="err">”</span><span class="p">)</span> <span class="o">+</span> \
         <span class="n">Question</span><span class="p">(</span><span class="n">POS</span><span class="p">(</span><span class="err">“</span><span class="n">DT</span><span class="err">”</span><span class="p">))</span> <span class="o">+</span> <span class="n">Thing</span><span class="p">()</span> <span class="o">+</span> <span class="n">Question</span><span class="p">(</span><span class="n">POS</span><span class="p">(</span><span class="err">“</span><span class="o">.</span><span class="err">”</span><span class="p">))</span>
 
@@ -251,7 +251,7 @@ construct question types in this from. Second, it is very expressive and readabl
 what type of question types that you cover if you want to see what types 
 of questions you already covered. For fixed type DSLs, it resembles a lot like
 freebase.</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">IsPerson</span><span class="p">(</span><span class="n">FixedType</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IsPerson</span><span class="p">(</span><span class="n">FixedType</span><span class="p">):</span>
     <span class="n">fixed_type</span> <span class="o">=</span> <span class="err">“</span><span class="o">/</span><span class="n">people</span><span class="o">/</span><span class="n">person</span><span class="err">”</span>
     <span class="n">fixed_type_relation</span> <span class="o">=</span> <span class="err">“</span><span class="o">/</span><span class="nb">type</span><span class="o">/</span><span class="nb">object</span><span class="o">/</span><span class="nb">type</span><span class="err">”</span>
 </pre></div>
@@ -261,7 +261,7 @@ freebase.</p>
 <ul>
 <li>You build a Python package with</li>
 </ul>
-<div class="highlight"><pre><span class="n">quepy</span> <span class="n">startapp</span> <span class="n">myapp</span>
+<div class="highlight"><pre><span></span><span class="n">quepy</span> <span class="n">startapp</span> <span class="n">myapp</span>
 </pre></div>
 
 
@@ -272,7 +272,7 @@ freebase.</p>
 <blockquote>
 <p>Resembles a lot like Django.</p>
 </blockquote>
-<div class="highlight"><pre><span class="n">app</span> <span class="o">=</span> <span class="n">quepy</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="err">“</span><span class="n">myapp</span><span class="err">”</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">quepy</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="err">“</span><span class="n">myapp</span><span class="err">”</span><span class="p">)</span>
 <span class="n">question</span> <span class="o">=</span> <span class="err">“</span><span class="n">what</span> <span class="ow">is</span> <span class="n">love</span><span class="err">”</span>
 <span class="n">target</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_query</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
 <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -384,7 +384,7 @@ speed of the code. </p>
 to profile. It has also overhead, so for benchmarking, that needs to be
 subtracted from the end result.</p>
 </blockquote>
-<div class="highlight"><pre><span class="n">Timer</span><span class="p">(</span><span class="err">“</span><span class="nb">xrange</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="err">”</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">Timer</span><span class="p">(</span><span class="err">“</span><span class="nb">xrange</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="err">”</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
 
@@ -398,7 +398,7 @@ from external libraries would be slower(written in Python).</li>
 <li>Vector operations can be done in Numpy.</li>
 </ul>
 <h4>Parallelization</h4>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">multiprocessin</span> <span class="kn">import</span> <span class="n">Pool</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessin</span> <span class="kn">import</span> <span class="n">Pool</span>
 <span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">()</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">run_one</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">segments</span><span class="p">))</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">stddev</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
@@ -491,13 +491,13 @@ different</li>
 <h4>Functional Programming</h4>
 <p>Modalities could be <strong>injected</strong> through functional programming.</p>
 <h5>Template Usage</h5>
-<div class="highlight"><pre><span class="n">template</span> <span class="o">=</span> <span class="err">‘</span><span class="p">{</span><span class="n">region</span><span class="p">}:</span> <span class="p">{</span><span class="n">align</span><span class="p">}</span> <span class="o">-</span> <span class="p">{</span><span class="n">profit</span><span class="p">}</span><span class="err">’</span><span class="o">.</span><span class="n">format</span>
+<div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="err">‘</span><span class="p">{</span><span class="n">region</span><span class="p">}:</span> <span class="p">{</span><span class="n">align</span><span class="p">}</span> <span class="o">-</span> <span class="p">{</span><span class="n">profit</span><span class="p">}</span><span class="err">’</span><span class="o">.</span><span class="n">format</span>
 <span class="n">line</span> <span class="o">=</span> <span class="n">template</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">profit</span><span class="o">=</span><span class="n">profit</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="n">align</span><span class="p">)</span>
 </pre></div>
 
 
 <h4>What is generator &amp; Coroutine?</h4>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">a</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
@@ -508,7 +508,7 @@ different</li>
 
 
 <h4>Nice Util Functions for Functional Programming</h4>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">izip</span><span class="p">,</span> <span class="n">tee</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">izip</span><span class="p">,</span> <span class="n">tee</span>
 <span class="n">nwise</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">g</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">izip</span><span class="p">(</span><span class="o">**</span><span class="n">islice</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tee</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">n</span><span class="p">)))</span>
 <span class="n">ratio</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">x</span> <span class="n">fro</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">nwise</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">ratio</span><span class="p">(</span><span class="n">fib</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)))</span>
@@ -676,7 +676,7 @@ it is memory-in computation, so in that aspect it differs from Hadoop-based fram
 <li>Python functions, variables are accessible in Socialite queries.</li>
 <li>Socialite tables are readable from Python.</li>
 </ul>
-<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="err">“</span><span class="n">This</span> <span class="ow">is</span> <span class="n">Python</span> <span class="n">code</span><span class="err">”</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="err">“</span><span class="n">This</span> <span class="ow">is</span> <span class="n">Python</span> <span class="n">code</span><span class="err">”</span><span class="p">)</span>
 <span class="err">`</span><span class="n">Foo</span><span class="p">[</span><span class="nb">int</span> <span class="n">i</span><span class="p">](</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span>
 <span class="n">Foo</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">s</span><span class="p">)</span> <span class="p">:</span><span class="o">-</span> <span class="n">i</span><span class="o">=</span><span class="mi">41</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="err">”</span><span class="n">the</span> <span class="n">answer</span><span class="err">”`</span>
 <span class="n">v</span><span class="o">=</span><span class="err">”</span><span class="n">Python</span> <span class="n">variable</span><span class="err">”</span>
@@ -804,8 +804,8 @@ it is memory-in computation, so in that aspect it differs from Hadoop-based fram
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
   ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
-  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
-  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>

@@ -68,17 +68,17 @@ bad to explain separate sections but not necessarily tell the whole story of wha
 <h4>Machine Learning vs Control Structures</h4>
 <p>If we have domain expertise about a classification problem, we could hard-code this knowledge in control structures to tackle the problem. Consider a classification problem in text domain where we want to do classify human resources news than other news. The words that are interest of us could be action verbs that are "hiring", "laying off", "resignation", "joining" and so on. </p>
 <h5>Control Structures</h5>
-<div class="highlight"><pre><span class="c"># we could get the lemmas in order to remove the variation of the words hire, hired, hiring, hires</span>
-<span class="c"># A better approach to use regular expressions after deciding on the lemmas</span>
-<span class="k">if</span> <span class="s">&#39;hire&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s">&#39;hiring&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s">&#39;join&#39;</span> <span class="ow">or</span> <span class="s">&#39;joining&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s">&#39;laying off&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s">&#39;resign&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>   
+<div class="highlight"><pre><span></span><span class="c1"># we could get the lemmas in order to remove the variation of the words hire, hired, hiring, hires</span>
+<span class="c1"># A better approach to use regular expressions after deciding on the lemmas</span>
+<span class="k">if</span> <span class="s1">&#39;hire&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s1">&#39;hiring&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s1">&#39;join&#39;</span> <span class="ow">or</span> <span class="s1">&#39;joining&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s1">&#39;laying off&#39;</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">or</span> <span class="s1">&#39;resign&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>   
     <span class="n">confidence</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="c"># Job titles are definitely good again, HR articles generally say the position of the new hire</span>
+<span class="c1"># Job titles are definitely good again, HR articles generally say the position of the new hire</span>
 <span class="k">for</span> <span class="n">job_title</span> <span class="ow">in</span> <span class="n">job_titles</span><span class="p">:</span>
   <span class="k">if</span> <span class="n">job_title</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
     <span class="n">confidence</span> <span class="o">+=</span> <span class="mi">10</span>
 
-<span class="c"># If we have company name, that is a good sign as article could be in business domain</span>
+<span class="c1"># If we have company name, that is a good sign as article could be in business domain</span>
 <span class="k">for</span> <span class="n">company_name</span> <span class="ow">in</span> <span class="n">company_names</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">company_name</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
         <span class="n">confidence</span> <span class="o">+=</span> <span class="mi">10</span>
@@ -87,13 +87,13 @@ bad to explain separate sections but not necessarily tell the whole story of wha
 
 <h5>Machine Learning Approach</h5>
 <p>If we have data and labels for that class, we could train a classifier based on that data along with features, feature selection, and then classify the sample based on that classifier. </p>
-<div class="highlight"><pre><span class="c"># Given trained classifier, vectorizer and feature selection method</span>
-<span class="c"># This is how one may classify an article in Scikit-learn</span>
-<span class="c">## Convert into a vector</span>
+<div class="highlight"><pre><span></span><span class="c1"># Given trained classifier, vectorizer and feature selection method</span>
+<span class="c1"># This is how one may classify an article in Scikit-learn</span>
+<span class="c1">## Convert into a vector</span>
 <span class="n">count</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
-<span class="c">## Do feature selection</span>
+<span class="c1">## Do feature selection</span>
 <span class="n">selected_feats</span> <span class="o">=</span> <span class="n">feat_selector</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-<span class="c">## Classify</span>
+<span class="c1">## Classify</span>
 <span class="n">pred_class</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">selected_feats</span><span class="p">)</span>
 </pre></div>
 
@@ -254,8 +254,8 @@ needs to be strong(noise free or should have very minimal noise ideally) and als
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
   ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
-  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
-  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>

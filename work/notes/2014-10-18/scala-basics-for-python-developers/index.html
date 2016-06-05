@@ -66,7 +66,7 @@
 <li>Syntax. There are ton of features in the language, and some of the features could be applied with syntactic sugar. This is not disadvantage per se, but still contributes the problem of having many ways to do one thing.</li>
 <li>There is a native XML data structure. The following code is valid in Scala:</li>
 </ul>
-<div class="highlight"><pre><span class="k">val</span> <span class="n">xmlRepresentation</span> <span class="k">=</span>  <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://bugra.github.io/&quot;</span><span class="o">&gt;</span><span class="nc">Bugra</span> <span class="nc">Akyildiz</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">xmlRepresentation</span> <span class="k">=</span>  <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&quot;http://bugra.github.io/&quot;</span><span class="o">&gt;</span><span class="nc">Bugra</span> <span class="nc">Akyildiz</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </pre></div>
 
 
@@ -74,20 +74,20 @@
 <h4>Installation on Mac OS X</h4>
 <h5>Homebrew</h5>
 <p>If you do not have <code>homebrew</code> in Mac OS X, use the following command to install first the package manager:</p>
-<div class="highlight"><pre>ruby -e “<span class="k">$(</span>curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install<span class="k">)</span>”
+<div class="highlight"><pre><span></span>ruby -e “<span class="k">$(</span>curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install<span class="k">)</span>”
 </pre></div>
 
 
 <h5>Scala</h5>
 <p>Then, you could install <code>scala</code> via home-brew:</p>
-<div class="highlight"><pre>brew install scala
+<div class="highlight"><pre><span></span>brew install scala
 </pre></div>
 
 
 <p>After installing the scala, you could type scala to the command line in order to start the interactive REPL.</p>
 <h5>Sbt</h5>
 <p>In the meantime, you want to install <code>sbt</code>(scala build tool), similar to <code>maven</code> and <code>ant</code> in Java if you are familiar with one of those.</p>
-<div class="highlight"><pre>brew install sbt
+<div class="highlight"><pre><span></span>brew install sbt
 </pre></div>
 
 
@@ -95,7 +95,7 @@
 <p>Scala has official support for Eclipse, one can use Intellij IDEA for Scala through Plugin. I am using Intellij, so I installed plugin(Preferences -&gt; Plugins -&gt; Scala). Installation is quite straightforward. </p>
 <h4>Variables in Scala</h4>
 <p>There are two different ways to define variables in Scala. First one is immutable(which is a nice fit for functional programming style) and the other one is mutable ones(surprise!). Immutable data structures cannot be changed after variables are assigned whereas mutable data structures could be changed. In order to define immutable ones, one can use <code>val</code> and for mutable ones <code>var</code>. Unlike Python, you could have a mutable and immutable string or integer, whereas in Python you have a predefined datasets which are immutable(string and tuple) and mutable(list and dictionary). </p>
-<div class="highlight"><pre><span class="c1">// String</span>
+<div class="highlight"><pre><span></span><span class="c1">// String</span>
 <span class="k">val</span> <span class="n">firstName</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&quot;Bugra&quot;</span>
 <span class="c1">// We could leave the type, and type inference takes into place</span>
 <span class="k">val</span> <span class="n">firstName</span> <span class="k">=</span> <span class="s">&quot;Bugra&quot;</span> <span class="c1">// firstName is still string</span>
@@ -115,7 +115,7 @@
 <span class="c1">// Symbols are useful string representation for string interning</span>
 <span class="c1">// also makes it easier to compare two strings</span>
 <span class="c1">// There is no symbol equivalent for Python</span>
-<span class="k">val</span> <span class="n">symbol</span> <span class="k">=</span> <span class="-Symbol">&#39;ha</span>
+<span class="k">val</span> <span class="n">symbol</span> <span class="k">=</span> <span class=" -Symbol">&#39;ha</span>
 <span class="c1">// null, same null in Java, similar to None in Python</span>
 <span class="k">val</span> <span class="n">non</span> <span class="k">=</span> <span class="kc">null</span>
 <span class="c1">// List (First get Range and then convert it into list)</span>
@@ -143,7 +143,7 @@
 
 
 <p>With type inference, Scala generally feels like a dynamic language even if it is strongly typed language when it comes to variables. </p>
-<div class="highlight"><pre>// Immutable 
+<div class="highlight"><pre><span></span>// Immutable 
 val ii = 1
 // Following gives: 
 //&lt;console&gt;:9: error: value += is not a member of Int
@@ -165,13 +165,13 @@ ii += 1 // ii = 1
 
 <h4>Variables in Python</h4>
 <p>In Python, there are some immutable data structures like tuple, string and some of them are mutable (list and dictionary) unlike Scala.</p>
-<div class="highlight"><pre><span class="c"># string</span>
-<span class="n">first_name</span> <span class="o">=</span> <span class="s">&quot;Bugra&quot;</span>
-<span class="c"># integer</span>
+<div class="highlight"><pre><span></span><span class="c1"># string</span>
+<span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Bugra&quot;</span>
+<span class="c1"># integer</span>
 <span class="n">first_prime_number</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="c"># double</span>
+<span class="c1"># double</span>
 <span class="n">double_number</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="c"># long</span>
+<span class="c1"># long</span>
 <span class="n">long_number</span> <span class="o">=</span> <span class="il">5L</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">There is no character variable in Python, this is string as well</span>
@@ -184,15 +184,15 @@ ii += 1 // ii = 1
 <span class="sd">different data structures </span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">numbers</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="c"># Tuple</span>
+<span class="c1"># Tuple</span>
 <span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="n">first_char</span><span class="p">,</span> <span class="n">first_prime_numbers</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
-<span class="c"># indexing tuples and lists are same, with square brackets</span>
+<span class="c1"># indexing tuples and lists are same, with square brackets</span>
 <span class="k">print</span><span class="p">(</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">//</span> <span class="n">first_char</span><span class="p">,</span> <span class="mi">1</span> 
-<span class="c"># Dictionary, JSON-like hash-maps of Python</span>
+<span class="c1"># Dictionary, JSON-like hash-maps of Python</span>
 <span class="n">blue_whale</span> <span class="o">=</span> <span class="p">{</span>
-                            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Blue Whale&#39;</span><span class="p">,</span>
-                            <span class="s">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">170</span><span class="p">,</span>
-                            <span class="s">&#39;height&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+                            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Blue Whale&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">170</span><span class="p">,</span>
+                            <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
                          <span class="p">}</span>
 </pre></div>
 
@@ -201,17 +201,17 @@ ii += 1 // ii = 1
 <p>There are a lot of ways to define functions in Scala whereas in Python there are two ways; functions and anonymous functions. This "there are a lot of ways" is common afterwards in Scala. We will see there are a lot of ways to define classes as well in the next section. </p>
 <h4>Functions in Python</h4>
 <p>You could define a function with a name, or define an anonymous function using <code>lambda</code> expression and then assign it to to a name. Lambda expressions are limited to single line and cannot accept optional parameters. So, in practice, anonymous functions are generally used ad-hoc.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
-<span class="n">adder</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c"># 7</span>
+<span class="n">adder</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># 7</span>
 <span class="n">adder</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
-<span class="n">adder</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c"># 7 again</span>
+<span class="n">adder</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># 7 again</span>
 </pre></div>
 
 
 <h4>Functions in Scala</h4>
 <p>The same adder can be defined in scala following way(Other than types, it is very similar to Python)</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="n">adder1</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="n">adder1</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 <span class="o">}</span>
 <span class="c1">//  We could leave out the return type and return statement</span>
@@ -247,7 +247,7 @@ ii += 1 // ii = 1
 <p>Both Python and Scala support object oriented programming style. They do not enforce the usage of object oriented programming style unlike Java, though. In that aspect, they are similar. But as in the case of functions, there are many ways to create classes in Scala and it has also quite some syntactic sugars when it comes to commonly used constructs in classes.</p>
 <h4>Classes in Python</h4>
 <p>Python classes can be defined as in the following:</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Operation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Operation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Arithmetic Operations on two numbers</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -308,18 +308,18 @@ ii += 1 // ii = 1
     <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
 
 <span class="n">operation</span> <span class="o">=</span> <span class="n">Operation</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">operation</span><span class="o">.</span><span class="n">add</span><span class="p">()</span> <span class="c"># 7</span>
-<span class="n">operation</span><span class="o">.</span><span class="n">sub</span><span class="p">()</span> <span class="c"># -1</span>
-<span class="n">operation</span><span class="o">.</span><span class="n">mul</span><span class="p">()</span> <span class="c"># 12</span>
-<span class="n">operation</span><span class="o">.</span><span class="n">div</span><span class="p">()</span> <span class="c"># 0.75</span>
+<span class="n">operation</span><span class="o">.</span><span class="n">add</span><span class="p">()</span> <span class="c1"># 7</span>
+<span class="n">operation</span><span class="o">.</span><span class="n">sub</span><span class="p">()</span> <span class="c1"># -1</span>
+<span class="n">operation</span><span class="o">.</span><span class="n">mul</span><span class="p">()</span> <span class="c1"># 12</span>
+<span class="n">operation</span><span class="o">.</span><span class="n">div</span><span class="p">()</span> <span class="c1"># 0.75</span>
 <span class="n">operation</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">operation</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">operation</span><span class="o">.</span><span class="n">add</span><span class="p">()</span> <span class="c"># 15</span>
+<span class="n">operation</span><span class="o">.</span><span class="n">add</span><span class="p">()</span> <span class="c1"># 15</span>
 </pre></div>
 
 
 <p>In Scala, we could make a shortcut of the properties as in the following:</p>
-<div class="highlight"><pre><span class="c1">// Mutable, we want to change the values as in the following</span>
+<div class="highlight"><pre><span></span><span class="c1">// Mutable, we want to change the values as in the following</span>
 <span class="c1">// val operation = new Operation(3, 4)</span>
 <span class="c1">// operation.x = 5 </span>
 <span class="k">class</span> <span class="nc">Operation</span><span class="o">(</span><span class="k">var</span> <span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="k">var</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
@@ -453,8 +453,8 @@ ii += 1 // ii = 1
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
   ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
-  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
-  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>

@@ -88,7 +88,7 @@ in string module works as in the same way in Python. </p>
 even 0 are evaluated as <code>False</code>.</p>
 <h3>Table usage</h3>
 <p>Table syntax and usage of sets and lists are very similar to Python. </p>
-<div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">first_key</span><span class="err">’</span><span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="err">‘</span><span class="n">second_key</span><span class="err">’</span><span class="o">=</span> <span class="mi">20</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">first_key</span><span class="err">’</span><span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="err">‘</span><span class="n">second_key</span><span class="err">’</span><span class="o">=</span> <span class="mi">20</span><span class="p">}</span>
 <span class="n">list</span> <span class="o">=</span> <span class="p">{</span><span class="err">‘</span><span class="n">a</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">b</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">c</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">d</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">e</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">f</span><span class="err">’</span><span class="p">}</span> <span class="c1">-- They get automatically 1 upto 6 as keys</span>
 <span class="c1">-- Under the hood it is still an associative array</span>
 </pre></div>
@@ -114,7 +114,7 @@ it provides a syntactic sugar which I will show in a bit.</p>
 <p>Both languages support returning multiple values in functions and you could assign
 multiple assignment as well.
 In Lua, it looks like this:</p>
-<div class="highlight"><pre><span class="n">first_table</span><span class="p">,</span> <span class="n">second_table</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+<div class="highlight"><pre><span></span><span class="n">first_table</span><span class="p">,</span> <span class="n">second_table</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
 <span class="n">first_table</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="err">“</span><span class="n">first_value</span><span class="err">”</span>
 <span class="n">first_table</span><span class="p">,</span> <span class="n">second_table</span> <span class="o">=</span> <span class="n">second_table</span><span class="p">,</span> <span class="n">first_table</span>
 </pre></div>
@@ -127,12 +127,12 @@ though.</p>
 <p>If you have a function, you could put all of the parameters into a list and then
 <code>unpack</code> them in Lua where in Python you would use <code>*</code> prefix to the list to unpack.</p>
 <p>In Lua, the following</p>
-<div class="highlight"><pre><span class="n">func</span><span class="p">(</span><span class="nb">unpack</span><span class="p">(</span><span class="n">list</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="nb">unpack</span><span class="p">(</span><span class="n">list</span><span class="p">))</span>
 </pre></div>
 
 
 <p>is similar to</p>
-<div class="highlight"><pre><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">ls</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">ls</span><span class="p">)</span>
 </pre></div>
 
 
@@ -154,7 +154,7 @@ Python uses whitespace for function definition, control flows and so on.</p>
 <h3>Functions</h3>
 <p>Function definitions are somehow similar to Javascript dropping <code>{}</code> in favor of 
 <code>end</code> keyword.</p>
-<div class="highlight"><pre><span class="k">function</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">then</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span>
@@ -164,7 +164,7 @@ Python uses whitespace for function definition, control flows and so on.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="n">factorial</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">factorial</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="k">then</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span>
@@ -200,14 +200,14 @@ doing OOP, similar to Javascript’s prototype based style, but even that requir
 somehow different syntax to call the object. Of course, there is no object by the
 way. It is a table which you could call functions from it. You could add almost
 any behavior on tables via “metatables” though. </p>
-<div class="highlight"><pre><span class="k">function</span> <span class="nf">object</span><span class="p">:</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">function</span> <span class="nf">object</span><span class="p">:</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="k">end</span>
 </pre></div>
 
 
 <p>is nothing but a syntactic sugar for the following for example:</p>
-<div class="highlight"><pre><span class="n">object</span><span class="p">.</span><span class="n">func</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">object</span><span class="p">.</span><span class="n">func</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
                 <span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
               <span class="k">end</span>
 </pre></div>
@@ -325,8 +325,8 @@ if the key actually exists in the first place in the table.</p>
   ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
   ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
   ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
-  ['08/2015', '01/2016', 'Senior Machine Learning Engineer', 'ipsum'],
-  ['03/2014', '2/2015', 'Consultant in Text and Time Series Analysis', 'default']
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
 ]);</script>
       <!-- Timesheet End -->
       <script src="/theme/js/logo.js"></script>
