@@ -1139,58 +1139,57 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-&lt;/style&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;/style&gt;&lt;html&gt;&lt;body&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I will talk about graphs, graph databases and mainly the paper that powers &lt;a href="http://graphlab.com/"&gt;Graphlab&lt;/a&gt;. At the end of the post, I will go over briefly basic capabilities of Graphlab as well.&lt;/p&gt;
-&lt;h2 id="Graph-Definition"&gt;Graph Definition&lt;a class="anchor-link" href="#Graph-Definition"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Generally speaking, graphs that are relevant to graph theory and graph databases are defined as following(most general definition):&lt;/p&gt;
+&lt;h2 id="Graph-Definition"&gt;Graph Definition&lt;a class="anchor-link" href="#Graph-Definition"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Generally speaking, graphs that are relevant to graph theory and graph databases are defined as following(most general definition):&lt;/p&gt;
 &lt;p&gt;Graph is an ordered pair $G = (V, E)$ 
 where the $V$ represents the vertices(nodes) of graph and $E$ represents the edges(relations) that connect the nodes. If edges do not have any orientations, then graph is composed of unordered pairs and graph is called undirected graph.&lt;/p&gt;
-&lt;h3 id="Components"&gt;Components&lt;a class="anchor-link" href="#Components"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;It has two simple components:&lt;/p&gt;
+&lt;h3 id="Components"&gt;Components&lt;a class="anchor-link" href="#Components"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;It has two simple components:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Node (Vertex) &lt;/li&gt;
 &lt;li&gt;Edge [Relationship]&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;where both structures have properties defined on them. Node properties are likely to define the nodes and the properties on the edges define the relationship between nodes.&lt;/p&gt;
-&lt;h3 id="Graphs"&gt;Graphs&lt;a class="anchor-link" href="#Graphs"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Graphs are ubiquitous. Apart from giant network that we use daily basis(read World Wide Web), almost all of social websites(Facebook, Twitter, Linkedin and so on) have inherently graphical representations for their networks. Not only they are good for representing networks, graphs have their own subsection in machine learning, namely graphical models. It is a combination of statistics, machine learning and graph theory(all the good parts, too). Further, they have also a variety of applications in machine learning, most predominantly recommender systems thanks to bipartite graphs. In social sciences, it is important to be able to identify different communities and how they interact each other in order to understand both intra-community and inter-community behaviors. Some social scientists may also be interested in the people who are more likely to influence others for making decisions and how an event propagates across time and different communities. They all need data mining, machine learning but more importantly a scalable, efficient and natural representation of graphs to do the computation as graphs grow exponentially with respect to number of edges and nodes.&lt;/p&gt;
-&lt;h2 id="Graph-Databases"&gt;Graph Databases&lt;a class="anchor-link" href="#Graph-Databases"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;h3 id="Graph-Databases-Introduction"&gt;Graph Databases Introduction&lt;a class="anchor-link" href="#Graph-Databases-Introduction"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Graphs"&gt;Graphs&lt;a class="anchor-link" href="#Graphs"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Graphs are ubiquitous. Apart from giant network that we use daily basis(read World Wide Web), almost all of social websites(Facebook, Twitter, Linkedin and so on) have inherently graphical representations for their networks. Not only they are good for representing networks, graphs have their own subsection in machine learning, namely graphical models. It is a combination of statistics, machine learning and graph theory(all the good parts, too). Further, they have also a variety of applications in machine learning, most predominantly recommender systems thanks to bipartite graphs. In social sciences, it is important to be able to identify different communities and how they interact each other in order to understand both intra-community and inter-community behaviors. Some social scientists may also be interested in the people who are more likely to influence others for making decisions and how an event propagates across time and different communities. They all need data mining, machine learning but more importantly a scalable, efficient and natural representation of graphs to do the computation as graphs grow exponentially with respect to number of edges and nodes.&lt;/p&gt;
+&lt;h2 id="Graph-Databases"&gt;Graph Databases&lt;a class="anchor-link" href="#Graph-Databases"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;h3 id="Graph-Databases-Introduction"&gt;Graph Databases Introduction&lt;a class="anchor-link" href="#Graph-Databases-Introduction"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Apply graph theory in the storage of information about the relationship between entries&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="Why-not-Relational-Databases?"&gt;Why not Relational Databases?&lt;a class="anchor-link" href="#Why-not-Relational-Databases?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Relations, we have relations! Let's represent our graphs with old-trusted relational databases. This is actually possible, but for one second think about the SQL query of the social network that you will end up if you want to get the 4th degree of people in a graph. Imagine the &lt;code&gt;join&lt;/code&gt;s that you will do, imagine how many times you will join the same table over and over. Let's go one further step ahead, getting the full social network of a single individual person. Do you imagine how much time that recursive &lt;code&gt;join&lt;/code&gt; operation requires and what does SQL query look like. Why is this such an important shortcoming, are relational databases supposed to be very good at representing the relations after all? Relational databases are good at representing one-to-many relationships where one table are connected multiple tables. And in this scenario, if you want to get your relation structure, you could get a way with a few joins. However, most of the natural graphs are inherently many-to-many relations in which you need to break down the many-to-many relations into many one-to-many relations. This results in a huge number of tables in your database. Not only that, whenever you want to do query something, you need to pay the price of the join of all the tables. (Note that one-to-one relations could be put into the same table.) Moreover, the portion that you want to explore in the graph is also dependent on the amount of &lt;strong&gt;total data&lt;/strong&gt; that you have. This is one of the biggest issue of RDMS's when it comes to scale for graph data.&lt;/p&gt;
-&lt;h3 id="Why-Graph-databases?"&gt;Why Graph databases?&lt;a class="anchor-link" href="#Why-Graph-databases?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Why-not-Relational-Databases?"&gt;Why not Relational Databases?&lt;a class="anchor-link" href="#Why-not-Relational-Databases?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Relations, we have relations! Let's represent our graphs with old-trusted relational databases. This is actually possible, but for one second think about the SQL query of the social network that you will end up if you want to get the 4th degree of people in a graph. Imagine the &lt;code&gt;join&lt;/code&gt;s that you will do, imagine how many times you will join the same table over and over. Let's go one further step ahead, getting the full social network of a single individual person. Do you imagine how much time that recursive &lt;code&gt;join&lt;/code&gt; operation requires and what does SQL query look like. Why is this such an important shortcoming, are relational databases supposed to be very good at representing the relations after all? Relational databases are good at representing one-to-many relationships where one table are connected multiple tables. And in this scenario, if you want to get your relation structure, you could get a way with a few joins. However, most of the natural graphs are inherently many-to-many relations in which you need to break down the many-to-many relations into many one-to-many relations. This results in a huge number of tables in your database. Not only that, whenever you want to do query something, you need to pay the price of the join of all the tables. (Note that one-to-one relations could be put into the same table.) Moreover, the portion that you want to explore in the graph is also dependent on the amount of &lt;strong&gt;total data&lt;/strong&gt; that you have. This is one of the biggest issue of RDMS's when it comes to scale for graph data.&lt;/p&gt;
+&lt;h3 id="Why-Graph-databases?"&gt;Why Graph databases?&lt;a class="anchor-link" href="#Why-Graph-databases?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Data is getting more and more connected everyday. Think about Internet of things, social media, smartphones and so on. The data or digital print that you put on web, on physical devices will be eventually connected and graph databases are very well suited this type of networks.&lt;/li&gt;
 &lt;li&gt;Individualization and decentralization of content, so-called Web 2.0 allowed people to create content and contribute to a common space. This already created huge social networks and there is no reason for other similar networks do not appear in the future.&lt;/li&gt;
 &lt;li&gt;They can represent graphs and networks with performance with native data structures which could represent the graphs naturally. Icing on the cake, they would support some graph theory operations to do computation more elegantly.&lt;/li&gt;
 &lt;li&gt;They are not as rigid as SQL databases, schemas can be changed over time. Some of them also allow semi-structured data.&lt;/li&gt;
 &lt;li&gt;They are faster than relational databases in graph representation. Unlike relational databases, the time that query takes is not proportional to the data that you have in the database but how much you want to explore the graph in the network.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="Stand-shoulders-of-giants"&gt;Stand shoulders of giants&lt;a class="anchor-link" href="#Stand-shoulders-of-giants"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id="Stand-shoulders-of-giants"&gt;Stand shoulders of giants&lt;a class="anchor-link" href="#Stand-shoulders-of-giants"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Graph theory is well established field and luckily a number of well-known and knowledgeable mathematicians(Euler(1707-1783) to be the most prominent) worked on different graph theory problems which resulted in a theoretically sound field. Compare this field with the Relational Model theory(at most 50 years-old). Relational Model Theory is not in its infancy but definitely does not have the maturity and depth of the graph theory has.  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="Graphlab-Powergraph"&gt;Graphlab Powergraph&lt;a class="anchor-link" href="#Graphlab-Powergraph"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Graphlab Powergraph is scalable, computation efficient graph processing framework. It builds on Graphlab(early version).  Although I talked about Graph databases earlier, this is not graph database but rather scalable and efficient graph processing library.&lt;br&gt;
-(What I like about company and framework is that they are purely research-based(they have two papers and two frameworks; Graphlab and GraphChi). People like it and they commercialized it. You have your business right there.)&lt;br&gt;
+&lt;h2 id="Graphlab-Powergraph"&gt;Graphlab Powergraph&lt;a class="anchor-link" href="#Graphlab-Powergraph"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Graphlab Powergraph is scalable, computation efficient graph processing framework. It builds on Graphlab(early version).  Although I talked about Graph databases earlier, this is not graph database but rather scalable and efficient graph processing library.&lt;br /&gt;
+(What I like about company and framework is that they are purely research-based(they have two papers and two frameworks; Graphlab and GraphChi). People like it and they commercialized it. You have your business right there.)&lt;br /&gt;
 &lt;a href="http://kowshik.github.io/JPregel/pregel_paper.pdf"&gt;Early work from Google Pregel&lt;/a&gt; presents a message passing algorithm along with parent steps where parent steps can be run in parallel without interfering each other. By doing so, graph gets broken down to a number of steps that can be run in parallel which improves the computation time. Graphlab Powergraph shows that they are faster and more scalable than Pregel both theoretically and empirically.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.select.cs.cmu.edu/publications/paperdir/osdi2012-gonzalez-low-gu-bickson-guestrin.pdf"&gt;Original paper&lt;/a&gt; is as follows:&lt;/p&gt;
-&lt;h3 id="Problem-Statement"&gt;Problem Statement&lt;a class="anchor-link" href="#Problem-Statement"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Natural graphs are derived from natural phenomenon and from various websites across world wide web. There is a need for scalable and efficient computation in natural graphs. Due to &lt;strong&gt;power-law degree distribution&lt;/strong&gt; of natural graphs, graphs do not have balanced cuts. Traditional graph-partitioning algorithms are unsuccessful in natural graphs.&lt;/p&gt;
-&lt;h3 id="Method"&gt;Method&lt;a class="anchor-link" href="#Method"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;They introduce an algorithm Powergraph which builds on top of Graphlab algorithm they introduced earlier. The algorithm has different components but let's look at first to the state of art before this paper.&lt;/p&gt;
-&lt;h4 id="Graph-Parallel-Abstraction"&gt;Graph-Parallel Abstraction&lt;a class="anchor-link" href="#Graph-Parallel-Abstraction"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h3 id="Problem-Statement"&gt;Problem Statement&lt;a class="anchor-link" href="#Problem-Statement"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Natural graphs are derived from natural phenomenon and from various websites across world wide web. There is a need for scalable and efficient computation in natural graphs. Due to &lt;strong&gt;power-law degree distribution&lt;/strong&gt; of natural graphs, graphs do not have balanced cuts. Traditional graph-partitioning algorithms are unsuccessful in natural graphs.&lt;/p&gt;
+&lt;h3 id="Method"&gt;Method&lt;a class="anchor-link" href="#Method"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;They introduce an algorithm Powergraph which builds on top of Graphlab algorithm they introduced earlier. The algorithm has different components but let's look at first to the state of art before this paper.&lt;/p&gt;
+&lt;h4 id="Graph-Parallel-Abstraction"&gt;Graph-Parallel Abstraction&lt;a class="anchor-link" href="#Graph-Parallel-Abstraction"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Constrains interaction along edges.&lt;/li&gt;
 &lt;li&gt;Use messages and share states.&lt;/li&gt;
 &lt;li&gt;Parallel: multiple-vertex programs run simultaneously.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="High-degree-vertices-is-hard(Surprise!)"&gt;High-degree vertices is hard(Surprise!)&lt;a class="anchor-link" href="#High-degree-vertices-is-hard(Surprise!)"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id="High-degree-vertices-is-hard(Surprise!)"&gt;High-degree vertices is hard(Surprise!)&lt;a class="anchor-link" href="#High-degree-vertices-is-hard(Surprise!)"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Sequentially process edges.(Very Naive!)&lt;/li&gt;
 &lt;li&gt;Synchronous and mutliple messages(Pregel)&lt;/li&gt;
 &lt;li&gt;Asynchronous and partitioning(Graphlab) =&amp;gt; requires locking.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="Downside"&gt;Downside&lt;a class="anchor-link" href="#Downside"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id="Downside"&gt;Downside&lt;a class="anchor-link" href="#Downside"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;In Pregel case, communication overhead. Needs to send the same message to different vertices(read machines)!&lt;/li&gt;
 &lt;li&gt;Graphlab creates ghost vertices in order to handle this issue but that creates a large amount of network traffic.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="What-do-we-do?"&gt;What do we do?&lt;a class="anchor-link" href="#What-do-we-do?"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id="What-do-we-do?"&gt;What do we do?&lt;a class="anchor-link" href="#What-do-we-do?"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Graph partitioning&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Minimize communication&lt;/li&gt;
@@ -1200,17 +1199,17 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 &lt;li&gt;&lt;p&gt;Pregel and Graphlab both use random partitioning on natural graphs. However, this results in low quality partitioning. High degree vertices still create problems for communication overhead. Let's introduce new algorithm: &lt;strong&gt;Powergraph&lt;/strong&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="Powergraph"&gt;Powergraph&lt;a class="anchor-link" href="#Powergraph"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Powergraph"&gt;Powergraph&lt;a class="anchor-link" href="#Powergraph"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;More computation to data. Moving data and especially "big" data is costly operation and especially if you do not want to store the end result but only do computation on top of it. Even if you are doing ETL, you should always carry the computation to the data in order to scale better.&lt;/li&gt;
 &lt;li&gt;Parallelize high-degree vertices with the method that intoduce GAS(Gather, Apply, Scatter). &lt;/li&gt;
 &lt;li&gt;Partitioning vertex in order to effectively distribute large power-law graphs(natural graphs).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="GAS-decomposed"&gt;GAS decomposed&lt;a class="anchor-link" href="#GAS-decomposed"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id="GAS-decomposed"&gt;GAS decomposed&lt;a class="anchor-link" href="#GAS-decomposed"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Gather: Accumulate information about neighborhood.&lt;/li&gt;
 &lt;li&gt;Apply: Apply the accumulated value to center vertex.&lt;/li&gt;
 &lt;li&gt;Scatter: Update adjacent vertices and edges, update edge data and activate neighbors.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="Communitcation-minimized"&gt;Communitcation minimized&lt;a class="anchor-link" href="#Communitcation-minimized"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id="Communitcation-minimized"&gt;Communitcation minimized&lt;a class="anchor-link" href="#Communitcation-minimized"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Percolation theory suggests that power law graphs have good vertex cuts: For any edge-cut, we can directly construct a vertex-cut which requires strictly less communication and storage.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In order to do so:&lt;/p&gt;
@@ -1218,20 +1217,19 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 &lt;li&gt;Evenly assign edges to machines. Minimize machines spanned by each vertex.&lt;/li&gt;
 &lt;li&gt;Assign each edge as it is loaded. Touch each edge only once.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="Three-Distributed-Approaches"&gt;Three Distributed Approaches&lt;a class="anchor-link" href="#Three-Distributed-Approaches"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;h5 id="Random-Edge-Placement"&gt;Random Edge Placement&lt;a class="anchor-link" href="#Random-Edge-Placement"&gt;&amp;#182;&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
+&lt;h4 id="Three-Distributed-Approaches"&gt;Three Distributed Approaches&lt;a class="anchor-link" href="#Three-Distributed-Approaches"&gt;¶&lt;/a&gt;&lt;/h4&gt;&lt;h5 id="Random-Edge-Placement"&gt;Random Edge Placement&lt;a class="anchor-link" href="#Random-Edge-Placement"&gt;¶&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
 &lt;li&gt;Place edges on machines which already have the vertices in that edge.&lt;/li&gt;
 &lt;li&gt;De-randomization: greedily minimizes the expected number of machines spanned.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id="Coordinated-Greedy-Edge-Placement"&gt;Coordinated Greedy Edge Placement&lt;a class="anchor-link" href="#Coordinated-Greedy-Edge-Placement"&gt;&amp;#182;&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
+&lt;h5 id="Coordinated-Greedy-Edge-Placement"&gt;Coordinated Greedy Edge Placement&lt;a class="anchor-link" href="#Coordinated-Greedy-Edge-Placement"&gt;¶&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
 &lt;li&gt;Requires coordination to place each edge&lt;/li&gt;
 &lt;li&gt;Slower but it yields higher quality cuts.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id="Oblivious-Greedy-Edge-Placement"&gt;Oblivious Greedy Edge Placement&lt;a class="anchor-link" href="#Oblivious-Greedy-Edge-Placement"&gt;&amp;#182;&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
+&lt;h5 id="Oblivious-Greedy-Edge-Placement"&gt;Oblivious Greedy Edge Placement&lt;a class="anchor-link" href="#Oblivious-Greedy-Edge-Placement"&gt;¶&lt;/a&gt;&lt;/h5&gt;&lt;ul&gt;
 &lt;li&gt;Approximately greed objective without coordination.&lt;/li&gt;
 &lt;li&gt;Faster but it yields lower quality cuts.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The paper talks about performance evaluation and gives promising comparison of Graphlab with other graph databases. It also implements a number of algorithms; Singular Value Decomposition, Non-Negative Matrix Factorization, Stochastic Gradient Descent, Pagerank, Triangle Counting, graph coloring and Latent Dirichlet Allocation.&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1241,23 +1239,22 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;They recently released a Python wrapper on top of it called GraphLab Create. In the following section, I will be mainly using that.&lt;/p&gt;
-&lt;h3 id="Why-Graphlab-Create?"&gt;Why Graphlab Create?&lt;a class="anchor-link" href="#Why-Graphlab-Create?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Why-Graphlab-Create?"&gt;Why Graphlab Create?&lt;a class="anchor-link" href="#Why-Graphlab-Create?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Easy to setup, easy to learn, easy to use. If you know Pandas and Python in general, you are good to go at least for Graplab Create. &lt;/li&gt;
 &lt;li&gt;Source code of the Graphlab Powergraph is open source, not graphlab create, though.&lt;/li&gt;
 &lt;li&gt;Data is not stored in memory but harddisk. Therefore, you could process large datasets with a moderate RAM.&lt;/li&gt;
 &lt;li&gt;Model is to be planned to be stored in the harddisk as well in the future(right now it is stored in memory, though.)&lt;/li&gt;
 &lt;li&gt;Documentation coverage seems to be OK.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="Disadvantages"&gt;Disadvantages&lt;a class="anchor-link" href="#Disadvantages"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Disadvantages"&gt;Disadvantages&lt;a class="anchor-link" href="#Disadvantages"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Python wrapper is not feature rich. It lacks analytics and clustering algorithms that the original package has.&lt;/li&gt;
 &lt;li&gt;SFrames do not have all of the functionalities of dataframes. I was expecting that they will build on top of dataframes. Even if they introduce new functionalities, some of them are not there. As you you could use dataframes for algorithms, this is not a huge disadvantage. It would be great to enjoy dataframes in harddisk, though.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="SFrame"&gt;SFrame&lt;a class="anchor-link" href="#SFrame"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="SFrame"&gt;SFrame&lt;a class="anchor-link" href="#SFrame"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;SFrame is the basic data structure that Graphlab uses under the hood. If you are familiar with Pandas, what dataframe to Pandas is what SFrame to Graphlab.&lt;/li&gt;
 &lt;li&gt;Its columns SArray's are immutable whereas SFrame is mutable. SArray's are also stored in harddisk to allow large scale computation. &lt;/li&gt;
 &lt;li&gt;Methods of SFrame are generally similar to Pandas dataframe but does not support some of the capabilities of dataframe, e.g groupby operation.&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1266,16 +1263,15 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Dataset"&gt;Dataset&lt;a class="anchor-link" href="#Dataset"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The data that I will use is from earlier work that I did some time ago. In order to understand, see the posts &lt;a href="http://bugra.github.io/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;1&lt;/a&gt;, &lt;a href="http://bugra.github.io/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;2&lt;/a&gt;, &lt;a href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/"&gt;3&lt;/a&gt; and &lt;a href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/"&gt;4&lt;/a&gt;. Do come back, though.&lt;/p&gt;
-
+&lt;h2 id="Dataset"&gt;Dataset&lt;a class="anchor-link" href="#Dataset"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The data that I will use is from earlier work that I did some time ago. In order to understand, see the posts &lt;a href="http://bugra.github.io/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;1&lt;/a&gt;, &lt;a href="http://bugra.github.io/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;2&lt;/a&gt;, &lt;a href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/"&gt;3&lt;/a&gt; and &lt;a href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/"&gt;4&lt;/a&gt;. Do come back, though.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[39]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [39]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;csv&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;
@@ -1288,283 +1284,253 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;scipy&lt;/span&gt;
 
 &lt;span class="c1"&gt;# I can haz large graphs ?&lt;/span&gt;
-&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;figure.figsize&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;axes.labelsize&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;
-&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;xtick.labelsize&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;
-&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ytick.labelsize&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;
-&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;xtick.direction&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;out&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ytick.direction&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;out&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'figure.figsize'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'axes.labelsize'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;
+&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'xtick.labelsize'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;
+&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'ytick.labelsize'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;
+&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'xtick.direction'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'out'&lt;/span&gt;
+&lt;span class="n"&gt;mpl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rcParams&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'ytick.direction'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'out'&lt;/span&gt;
 
-&lt;span class="n"&gt;DATA_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;movies.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;DATA_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'data'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'movies.csv'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[81]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [81]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DATA_PATH&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[82]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [82]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;num_rows&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;num_cols&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[82]:&lt;/div&gt;
-
-
 &lt;div class="output_text output_subarea output_execute_result"&gt;
 &lt;pre&gt;(100042, 34)&lt;/pre&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[83]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [83]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[83]:&lt;/div&gt;
-
-
 &lt;div class="output_text output_subarea output_execute_result"&gt;
 &lt;pre&gt;(100042, 34)&lt;/pre&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[84]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [84]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[84]:&lt;/div&gt;
-
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-  &lt;thead&gt;
-    &lt;tr style="text-align: right;"&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;title&lt;/th&gt;
-      &lt;th&gt;year&lt;/th&gt;
-      &lt;th&gt;rating&lt;/th&gt;
-      &lt;th&gt;runtime&lt;/th&gt;
-      &lt;th&gt;votes&lt;/th&gt;
-      &lt;th&gt;genres&lt;/th&gt;
-      &lt;th&gt;outline&lt;/th&gt;
-      &lt;th&gt;director&lt;/th&gt;
-      &lt;th&gt;actors&lt;/th&gt;
-      &lt;th&gt;certificate&lt;/th&gt;
-      &lt;th&gt;Action&lt;/th&gt;
-      &lt;th&gt;Adult&lt;/th&gt;
-      &lt;th&gt;Adventure&lt;/th&gt;
-      &lt;th&gt;Animation&lt;/th&gt;
-      &lt;th&gt;Biography&lt;/th&gt;
-      &lt;th&gt;Comedy&lt;/th&gt;
-      &lt;th&gt;Crime&lt;/th&gt;
-      &lt;th&gt;Drama&lt;/th&gt;
-      &lt;th&gt;Family&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt; 0&lt;/td&gt;
-      &lt;td&gt; The Shawshank Redemption&lt;/td&gt;
-      &lt;td&gt; 1994&lt;/td&gt;
-      &lt;td&gt; 9.3&lt;/td&gt;
-      &lt;td&gt; 142&lt;/td&gt;
-      &lt;td&gt; 1157455&lt;/td&gt;
-      &lt;td&gt;                                 [Crime, Drama]&lt;/td&gt;
-      &lt;td&gt; Two imprisoned men bond over a number of years...&lt;/td&gt;
-      &lt;td&gt;    Frank Darabont&lt;/td&gt;
-      &lt;td&gt;         [Tim Robbins, Morgan Freeman, Bob Gunton]&lt;/td&gt;
-      &lt;td&gt;     R&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;...&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt; 1&lt;/td&gt;
-      &lt;td&gt;          The Dark Knight&lt;/td&gt;
-      &lt;td&gt; 2008&lt;/td&gt;
-      &lt;td&gt; 9.0&lt;/td&gt;
-      &lt;td&gt; 152&lt;/td&gt;
-      &lt;td&gt; 1125214&lt;/td&gt;
-      &lt;td&gt;               [Action, Crime, Drama, Thriller]&lt;/td&gt;
-      &lt;td&gt; When Batman, Gordon and Harvey Dent launch an ...&lt;/td&gt;
-      &lt;td&gt; Christopher Nolan&lt;/td&gt;
-      &lt;td&gt;     [Christian Bale, Heath Ledger, Aaron Eckhart]&lt;/td&gt;
-      &lt;td&gt; PG_13&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;...&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt; 2&lt;/td&gt;
-      &lt;td&gt;                Inception&lt;/td&gt;
-      &lt;td&gt; 2010&lt;/td&gt;
-      &lt;td&gt; 8.8&lt;/td&gt;
-      &lt;td&gt; 148&lt;/td&gt;
-      &lt;td&gt;  920345&lt;/td&gt;
-      &lt;td&gt; [Action, Adventure, Mystery, Sci-Fi, Thriller]&lt;/td&gt;
-      &lt;td&gt; A skilled extractor is offered a chance to reg...&lt;/td&gt;
-      &lt;td&gt; Christopher Nolan&lt;/td&gt;
-      &lt;td&gt; [Leonardo DiCaprio, Joseph Gordon-Levitt, Elle...&lt;/td&gt;
-      &lt;td&gt; PG_13&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;...&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;3&lt;/th&gt;
-      &lt;td&gt; 3&lt;/td&gt;
-      &lt;td&gt;             Pulp Fiction&lt;/td&gt;
-      &lt;td&gt; 1994&lt;/td&gt;
-      &lt;td&gt; 9.0&lt;/td&gt;
-      &lt;td&gt; 154&lt;/td&gt;
-      &lt;td&gt;  893719&lt;/td&gt;
-      &lt;td&gt;                       [Crime, Drama, Thriller]&lt;/td&gt;
-      &lt;td&gt; The lives of two mob hit men, a boxer, a gangs...&lt;/td&gt;
-      &lt;td&gt; Quentin Tarantino&lt;/td&gt;
-      &lt;td&gt;   [John Travolta, Uma Thurman, Samuel L. Jackson]&lt;/td&gt;
-      &lt;td&gt;     R&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;...&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;4&lt;/th&gt;
-      &lt;td&gt; 4&lt;/td&gt;
-      &lt;td&gt;               Fight Club&lt;/td&gt;
-      &lt;td&gt; 1999&lt;/td&gt;
-      &lt;td&gt; 8.9&lt;/td&gt;
-      &lt;td&gt; 139&lt;/td&gt;
-      &lt;td&gt;  881325&lt;/td&gt;
-      &lt;td&gt;                                        [Drama]&lt;/td&gt;
-      &lt;td&gt; An insomniac office worker looking for a way t...&lt;/td&gt;
-      &lt;td&gt;     David Fincher&lt;/td&gt;
-      &lt;td&gt;  [Brad Pitt, Edward Norton, Helena Bonham Carter]&lt;/td&gt;
-      &lt;td&gt;     R&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;  True&lt;/td&gt;
-      &lt;td&gt; False&lt;/td&gt;
-      &lt;td&gt;...&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+&lt;thead&gt;
+&lt;tr style="text-align: right;"&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;title&lt;/th&gt;
+&lt;th&gt;year&lt;/th&gt;
+&lt;th&gt;rating&lt;/th&gt;
+&lt;th&gt;runtime&lt;/th&gt;
+&lt;th&gt;votes&lt;/th&gt;
+&lt;th&gt;genres&lt;/th&gt;
+&lt;th&gt;outline&lt;/th&gt;
+&lt;th&gt;director&lt;/th&gt;
+&lt;th&gt;actors&lt;/th&gt;
+&lt;th&gt;certificate&lt;/th&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;th&gt;Adult&lt;/th&gt;
+&lt;th&gt;Adventure&lt;/th&gt;
+&lt;th&gt;Animation&lt;/th&gt;
+&lt;th&gt;Biography&lt;/th&gt;
+&lt;th&gt;Comedy&lt;/th&gt;
+&lt;th&gt;Crime&lt;/th&gt;
+&lt;th&gt;Drama&lt;/th&gt;
+&lt;th&gt;Family&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;td&gt; 0&lt;/td&gt;
+&lt;td&gt; The Shawshank Redemption&lt;/td&gt;
+&lt;td&gt; 1994&lt;/td&gt;
+&lt;td&gt; 9.3&lt;/td&gt;
+&lt;td&gt; 142&lt;/td&gt;
+&lt;td&gt; 1157455&lt;/td&gt;
+&lt;td&gt;                                 [Crime, Drama]&lt;/td&gt;
+&lt;td&gt; Two imprisoned men bond over a number of years...&lt;/td&gt;
+&lt;td&gt;    Frank Darabont&lt;/td&gt;
+&lt;td&gt;         [Tim Robbins, Morgan Freeman, Bob Gunton]&lt;/td&gt;
+&lt;td&gt;     R&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;td&gt; 1&lt;/td&gt;
+&lt;td&gt;          The Dark Knight&lt;/td&gt;
+&lt;td&gt; 2008&lt;/td&gt;
+&lt;td&gt; 9.0&lt;/td&gt;
+&lt;td&gt; 152&lt;/td&gt;
+&lt;td&gt; 1125214&lt;/td&gt;
+&lt;td&gt;               [Action, Crime, Drama, Thriller]&lt;/td&gt;
+&lt;td&gt; When Batman, Gordon and Harvey Dent launch an ...&lt;/td&gt;
+&lt;td&gt; Christopher Nolan&lt;/td&gt;
+&lt;td&gt;     [Christian Bale, Heath Ledger, Aaron Eckhart]&lt;/td&gt;
+&lt;td&gt; PG_13&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;td&gt; 2&lt;/td&gt;
+&lt;td&gt;                Inception&lt;/td&gt;
+&lt;td&gt; 2010&lt;/td&gt;
+&lt;td&gt; 8.8&lt;/td&gt;
+&lt;td&gt; 148&lt;/td&gt;
+&lt;td&gt;  920345&lt;/td&gt;
+&lt;td&gt; [Action, Adventure, Mystery, Sci-Fi, Thriller]&lt;/td&gt;
+&lt;td&gt; A skilled extractor is offered a chance to reg...&lt;/td&gt;
+&lt;td&gt; Christopher Nolan&lt;/td&gt;
+&lt;td&gt; [Leonardo DiCaprio, Joseph Gordon-Levitt, Elle...&lt;/td&gt;
+&lt;td&gt; PG_13&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;td&gt; 3&lt;/td&gt;
+&lt;td&gt;             Pulp Fiction&lt;/td&gt;
+&lt;td&gt; 1994&lt;/td&gt;
+&lt;td&gt; 9.0&lt;/td&gt;
+&lt;td&gt; 154&lt;/td&gt;
+&lt;td&gt;  893719&lt;/td&gt;
+&lt;td&gt;                       [Crime, Drama, Thriller]&lt;/td&gt;
+&lt;td&gt; The lives of two mob hit men, a boxer, a gangs...&lt;/td&gt;
+&lt;td&gt; Quentin Tarantino&lt;/td&gt;
+&lt;td&gt;   [John Travolta, Uma Thurman, Samuel L. Jackson]&lt;/td&gt;
+&lt;td&gt;     R&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;td&gt; 4&lt;/td&gt;
+&lt;td&gt;               Fight Club&lt;/td&gt;
+&lt;td&gt; 1999&lt;/td&gt;
+&lt;td&gt; 8.9&lt;/td&gt;
+&lt;td&gt; 139&lt;/td&gt;
+&lt;td&gt;  881325&lt;/td&gt;
+&lt;td&gt;                                        [Drama]&lt;/td&gt;
+&lt;td&gt; An insomniac office worker looking for a way t...&lt;/td&gt;
+&lt;td&gt;     David Fincher&lt;/td&gt;
+&lt;td&gt;  [Brad Pitt, Edward Norton, Helena Bonham Carter]&lt;/td&gt;
+&lt;td&gt;     R&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;  True&lt;/td&gt;
+&lt;td&gt; False&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;5 rows × 34 columns&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[85]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [85]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;votes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;votes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'year'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'year'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'votes'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'votes'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;make_integer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;''&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nan&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1572,35 +1538,29 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
             &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
         &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
             &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nan&lt;/span&gt;
-&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;runtime&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;runtime&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;make_integer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'runtime'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'runtime'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;make_integer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[86]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [86]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Mean Rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Variance of Rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Standard deviation of Rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Minimum rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Maximum rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Number of non-zero entries: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nnz&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Mean Rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Variance of Rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Standard deviation of Rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Minimum rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Maximum rating: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Number of non-zero entries: &lt;/span&gt;&lt;span class="si"&gt;{}&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'rating'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nnz&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Mean Rating: 6.05980388237
@@ -1612,23 +1572,19 @@ Number of non-zero entries: 100042
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[87]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [87]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;first_part&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;second_part&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1636,7 +1592,6 @@ Number of non-zero entries: 100042
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Divide the SFrame 4 by 1. Nice utility function by the way!&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1645,97 +1600,78 @@ Number of non-zero entries: 100042
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Exploratory-Graph-Analysis"&gt;Exploratory Graph Analysis&lt;a class="anchor-link" href="#Exploratory-Graph-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Exploratory-Graph-Analysis"&gt;Exploratory Graph Analysis&lt;a class="anchor-link" href="#Exploratory-Graph-Analysis"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[17]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [17]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/perf.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;column_type_hints&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;weight&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SFrame&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'data/perf.csv'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;column_type_hints&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;'year'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'weight'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'id'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[20]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [20]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actor&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actor_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
-&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actor_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;film_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;film_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'actor'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'actor_name'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'actor_name'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'film_name'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'film_name'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="n"&gt;actors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actor&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;films&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;actors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'actor'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;films&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 
 &lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Graph&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actor&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;actor&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'actor'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;g&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'actor'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[21]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [21]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;summary&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[21]:&lt;/div&gt;
-
-
 &lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;{&amp;#39;num_edges&amp;#39;: 312730, &amp;#39;num_vertices&amp;#39;: 97723}&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+&lt;pre&gt;{'num_edges': 312730, 'num_vertices': 97723}&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[47]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [47]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dark_knights&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;The Dark Knight&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;The Dark Knight Rises&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; 
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dark_knights&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'The Dark Knight'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'The Dark Knight Rises'&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt; 
 &lt;span class="n"&gt;top_grass_graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Graph&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;top_grass_graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;top_grass_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst_ids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dark_knights&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__src_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__dst_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;top_grass_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vlabel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dark_knights&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;top_grass_graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;top_grass_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dst_ids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dark_knights&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'__src_id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'__dst_id'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;top_grass_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vlabel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;dark_knights&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8VfX9P/DXOXdk7wUJWYQRUBEQBBQQB7jQrxMHs/qz
@@ -3979,40 +3915,31 @@ AQAAAABJj3AMAAAAAEh6hGMAAAAAQNIjHAMAAAAAkh7hGAAAAACQ9AjHAAAAAICkRzgGAAAAACQ9
 wjEAAAAAIOkRjgEAAAAASY9wDAAAAABIeoRjAAAAAEDSIxwDAAAAAJIe4RgAAAAAkPQIxwAAAACA
 pEc4BgAAAAAkPcIxAAAAACDpEY4BAAAAAEmPcAwAAAAASHqEYwAAAABA0vv/2OYFx7Tpkx4AAAAA
 SUVORK5CYII=
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[53]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [53]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;plot_graph_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actor_name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;movies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src_ids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;actor_name&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="n"&gt;graph_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Graph&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="n"&gt;graph_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;graph_&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__src_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                              &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__dst_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;graph_&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vlabel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;elabel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;character&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;actor_name&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;plot_graph_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Morgan Freeman&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;graph_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;graph_&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'__src_id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                              &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'__dst_id'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;graph_&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vlabel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;elabel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'character'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;actor_name&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;plot_graph_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Morgan Freeman'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8FPX5B/DP7JVkc4ccJOQikHCIcimKyKG1ar2KWvGm
@@ -6297,14 +6224,11 @@ AAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjH
 AAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzC
 MQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADzv
 /wNGdbQ6jhQ8qAAAAABJRU5ErkJggg==
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -6312,29 +6236,22 @@ MQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADzv
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Morgan Freeman has quite a number of movies. Edges are the character names as you might imagine.&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[54]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [54]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_graph_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Christian Bale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_graph_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Christian Bale'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8XFX9//H3ncxM9jR72qRJ27ShaZIWClj2xYVFvqAI
@@ -7681,14 +7598,11 @@ gHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHji
 GAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAA
 gHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHji
 GAAAgHjiGAAAgHjiGAAAgHi/APDPKivFH2DsAAAAAElFTkSuQmCC
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -7696,29 +7610,22 @@ GAAAgHjiGAAAgHjiGAAAgHi/APDPKivFH2DsAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Who is the Batman?&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[61]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [61]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_grap_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Kate Winslet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_grap_actor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Kate Winslet'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VPW9//H3mS0bWckGSVjCFrYAgttPsVq7KGqtS63W
@@ -9002,14 +8909,11 @@ AAAAABD3CMcAAAAAgLhHOAYAAAAAxD3CMQAAAAAg7hGOAQAAAABxj3AMAACA/7/9OhAAAAAAEORv
 PchlEcCeHAMAALAnxwAAAOzJMQAAAHtyDAAAwJ4cAwAAsCfHAAAA7MkxAAAAe3IMAADAnhwDAACw
 J8cAAADsyTEAAAB7cgwAAMCeHAMAALAnxwAAAOzJMQAAAHtyDAAAwJ4cAwAAsCfHAAAA7MkxAAAA
 ewFuKAmjYYPoNAAAAABJRU5ErkJggg==
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -9017,37 +8921,30 @@ ewFuKAmjYYPoNAAAAABJRU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;We could also display the movies that the actors/actresses played&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[67]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [67]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
+&lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actor_name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;movies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src_ids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;actor_name&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
     &lt;span class="n"&gt;costar_graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Graph&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__dst_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'__dst_id'&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
         &lt;span class="n"&gt;costar_graph&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;costar_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_edges&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;src_ids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;dst_ids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-                                  &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__src_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__dst_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;costar_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;__dst_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+                                  &lt;span class="n"&gt;src_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'__src_id'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dst_field&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'__dst_id'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;costar_graph&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;highlight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;movies&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'__dst_id'&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
     
-&lt;span class="n"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Morgan Freeman&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Morgan Freeman'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3WmQJOd93/nv8zyZWVVdfU333DcwwAADgABIAjwlkZRI
@@ -13835,34 +13732,25 @@ hWMRERERERHpewrHIiIiIiIi0vcUjkVERERERKTvKRyLiIiIiIhI31M4FhERERERkb6ncCwiIiIi
 IiJ9T+FYRERERERE+p7CsYiIiIiIiPQ9hWMRERERERHpewrHIiIiIiIi0vcUjkVERERERKTvKRyL
 iIiIiIhI31M4FhERERERkb6ncCwiIiIiIiJ9T+FYRERERERE+t7/B23lj5s64HyBAAAAAElFTkSu
 QmCC
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[68]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [68]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Kate Winslet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Kate Winslet'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl0XNl9H/jvvW+pHSjsxMIFAEGQBMBmsxctrda+WLLj
@@ -17077,34 +16965,25 @@ k2MAAAD25BgAAIA9OQYAAGBPjgEAANiTYwAAAPbkGAAAgD05BgAAYE+OAQAA2JNjAAAA9uQYAACA
 PTkGAABgT44BAADYk2MAAAD25BgAAIA9OQYAAGBPjgEAANiTYwAAAPbkGAAAgD05BgAAYE+OAQAA
 2JNjAAAA9uQYAACAPTkGAABgT44BAADYk2MAAAD25BgAAIA9OQYAAGBPjgEAANiTYwAAAPbkGAAA
 gD05BgAAYE+OAQAA2Asz+5pwD+IU8AAAAABJRU5ErkJggg==
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[69]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In [69]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Christian Bale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plot_costar_movies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Christian Bale'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
-
-
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt0nPd93/n377nNDO4EQIAkQIJ3iqTuF1uSL5FkxU7S
@@ -20625,14 +20504,11 @@ RESk5Skci4iIiIiISMtTOBYREREREZGWp3AsIiIiIiIiLU/hWERERERERFqewrGIiIiIiIi0PIVj
 ERERERERaXkKxyIiIiIiItLyFI5FRERERESk5Skci4iIiIiISMtTOBYREREREZGWp3AsIiIiIiIi
 LU/hWERERERERFqewrGIiIiIiIi0PIVjERERERERaXkKxyIiIiIiItLyFI5FRERERESk5Skci4iI
 iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
-"&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
+" /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -20640,7 +20516,6 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Are not graphs beautiful? Another reason why we want to use them whenever possible.&lt;/p&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -20649,8 +20524,7 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I will build a recommender system with Graphlab for movies. Although its Python binding is limited in some areas, recommender system is not among them. Stay tuned.&lt;/p&gt;
-
+&lt;h2 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I will build a recommender system with Graphlab for movies. Although its Python binding is limited in some areas, recommender system is not among them. Stay tuned.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -20659,7 +20533,7 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Partial-List-of-Graph-Databases"&gt;Partial List of Graph Databases&lt;a class="anchor-link" href="#Partial-List-of-Graph-Databases"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;h2 id="Partial-List-of-Graph-Databases"&gt;Partial List of Graph Databases&lt;a class="anchor-link" href="#Partial-List-of-Graph-Databases"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/GraphChi"&gt;GraphCHI(CMU)&lt;/a&gt; - &lt;a href="http://select.cs.cmu.edu/publications/paperdir/osdi2012-kyrola-blelloch-guestrin.pdf"&gt;Original Paper&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://graphlab.com/"&gt;Graphlab(formerly CMU)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.kobrix.com/hgdb.jsp"&gt;HypergraphDB&lt;/a&gt;&lt;/li&gt;
@@ -20676,10 +20550,9 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 &lt;li&gt;&lt;a href="http://research.microsoft.com/en-us/projects/trinity/"&gt;Trinity(Microsoft)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I know some of them have horrible names but do not forget the predominant player in sql is MySQL.&lt;/p&gt;
-&lt;h2 id="Free-Ebook"&gt;Free Ebook&lt;a class="anchor-link" href="#Free-Ebook"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;h2 id="Free-Ebook"&gt;Free Ebook&lt;a class="anchor-link" href="#Free-Ebook"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.graphdatabases.com/"&gt;Graph Databases(focuses on Neo4j)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
