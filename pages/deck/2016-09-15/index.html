@@ -104,17 +104,16 @@
 1. Compatible People Query [Postgres -> User, Ethnicity, EthnicityPreference, Religion, ReligionPreference]
 2. Produce Eligible People List by removing people that are in Bloom Filter passed by Relationship Service.
     - Filter out all of you friends [Fetched from Facebook, but queried from Redis]
-3. Count total number of skips for eligible people
-4. Write `player` and his/her demography information to `Demography` table if s/he does not have enough potentials.
-5. Get `VW` Scores for save probability and reverse save probabilities.
-6. Compute the conversation rate of people(player and eligible people)
-7. Subsample a crop for 100 people.[`crop rotation`]
-8. Count total number of skips for eligible people
-9. Get all of the predictions from `VW`.
-10. Compute the prediction score by multiply
-11. Prioritize based on distance
-12. Prioritize based on degree of friends
-13. Write the predictions into Prediction table[Dynamodb]
+3. Write `player` and his/her demography information to `Demography` table if s/he does not have enough potentials.
+4. Get `VW` Scores for save probability and reverse save probabilities.
+5. Compute the conversation rate of people(player and eligible people)
+6. Subsample a crop for 100 people.[`crop rotation`]
+7. Count total number of skips for eligible people
+8. Get all of the predictions from `VW`.
+9. Compute the prediction score by multiply
+10. Prioritize based on distance
+11. Prioritize based on degree of friends
+12. Write the predictions into Prediction table[Dynamodb]
 </section>
 
 
