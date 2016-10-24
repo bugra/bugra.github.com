@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="author" content="Bugra Akyildiz">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <title>DynamoDB Learnings | Bugra Akyildiz</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Bugra Akyildiz blog atom feed" href="/feeds/all.atom.xml" />
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    </head>
+
+  <body>
+      <div id="logo"><a href="/" class="at"></a></div>
+      <div id="mln-io"><a href="http://www.mln.io/">Machine Learning Newsletter</a></div>
+
+  <div id="content">
+    <div class="post">
+      <div class="post-content">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="post">
+    <article>
+        <header>
+            <h1>DynamoDB Learnings</h1>
+        </header>
+        <div class='post-content'>
+            <p>At <a href="https://hinge.co/">Hinge</a>, we have been using Dynamodb in production for more than 8 months and we just relaunched <a href="https://techcrunch.com/2016/10/11/the-new-hinge-focused-exclusively-on-real-relationships-now-costs-7month/">two weeks ago</a> with full capacity. I want to share couple of learnings and why it made sense for us to store ratings in DynamoDB since I own the rating processing in the application. 
+We are processing millions of ratings per day, upto so far, DynamoDB is holding pretty good so far. They are also crucial for our recommender to get smarter, so care is very much needed for ratings.</p>
+<h3>DynamoDB</h3>
+<p>It is a NoSQL database which is very similar to other NoSQL databases like Mongo, or other key-value storages like SimpleDB, but it is also different in various ways. These differences
+include a bunch of advantages and disadvantages.</p>
+<h4>Advantages</h4>
+<ul>
+<li>It is managed and hosted by AWS. You do not need to setup any infrastructure. AWS takes care of everything in terms of managing this database for you.</li>
+<li>It is very easy to setup the database; you only need database table name and throughput numbers to get started(not so much about <code>partition</code>-<code>range</code> key design). You want to create your <code>cloudformation</code> template for reproduciability and key schema design so that you do not have to go through AWS web interface.</li>
+<li>It supports <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.html">triggers</a> through AWS Lambda; if you want to take an action or fire an event from another application, you can do that through this trigger support.</li>
+<li>Integrates very well with Redshift(in general with other AWS offerings); you could load data into Redshift with a SQL command like in the following:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">TRUNCATE</span> <span class="n">REDSHIFT_TABLE_NAME</span><span class="p">;</span>
+<span class="k">COPY</span> <span class="n">REDSHIFT_TABLE_NAME</span> <span class="k">FROM</span> <span class="s1">&#39;dynamodb://DYNAMO_DB_TABLE_NAME&#39;</span> 
+<span class="n">CREDENTIALS</span> <span class="s1">&#39;aws_access_key_id=$AWS_ACCESS_KEY_ID;aws_secret_access_key=$AWS_SECRET_KEY_ID&#39;</span>
+<span class="n">TIMEFORMAT</span> <span class="s1">&#39;epochsecs&#39;</span>
+<span class="n">READRATIO</span> <span class="mi">10</span>
+<span class="p">;</span>
+</pre></div>
+
+
+<p>If you pass <code>TIMEFORMAT</code>, then it recognizes the <code>datetime</code> field and automatically converts to the timestamp. It works for <code>epochmillisecs</code> as well. <code>READRATIO</code> is what percentage of read throughput is this command is going to use when it tries to export the data. </p>
+<ul>
+<li>There is no seemingly upper bound on how much scale you could get. The scaling is done by provisioning various   </li>
+<li>You pay for your usage or throughput, not the storage. I think this is a huge gain especially if your dataset grows very large quickly. If the most data becomes stale over time(never accessed), even better. </li>
+<li>Availability/Durability: all data is replicated to different availability zones by AWS, works like a charm.</li>
+<li>Scalable/Fast: they advertise the database "single-digit" millisecond in terms of speed and it definitely is fast. If you grow the database(say 1 Billion items), it still is single-digit millisecond. This is <code>nice</code>. We are Python shop and using <code>boto</code> to access the database, it averages 8 milliseconds for reads and 9 milliseconds for writes. We are happy about the performance so far. </li>
+<li>What they offer is actually not a database; it is an API which does database operations. Even RDS offerings of AWS, you need to do some configuration where you do not need anyhting in terms of operations for DynamoDB. </li>
+<li>It supports consistent reads. You can also do eventual consistent reads which are twice cheaper. It is flexible around consistency.</li>
+</ul>
+<p>Everything is great, then? Not really, there are some things not so great about DynamoDB as well.</p>
+<h4>Disadvantages</h4>
+<ul>
+<li>Lock-in. DynamoDB is not open-source and the time you start using the database, you are locked in the AWS.</li>
+<li>Even if it is very easy to setup the database, you need a good data model around <code>hash</code> and <code>range</code> key schema in order to utilize the database in a cost effective manner; especially considering you are paying for throughput, you do not want to do scan operations in the database. </li>
+<li>Dynamodb is not feature-rich in terms of how you index your data. You need to be cognizant of how you are going to query and write the data into database. Unlike Mongo, it does not support multi-indexing, you cannot add arbitrary indexes after you created the table. You cannot index the columns arbitrarily. You need to have a proper data model, you need to come up with a proper plan how you are going to read and write the data into DynamoDB with your <code>hash</code> and <code>range</code> keys. Spend time on designing data model before you even consider using the DynamoDB.  </li>
+<li>The single record cannot exceed 400 kb. If your data record is going to increase over time, be cognizant on this limitation. </li>
+<li>It puts limit on the total size of records(1 MB) when you want to query the database. </li>
+<li>Documentation is not very straightforward and I do not like the API <code>boto3</code> offers. You need to <code>batch_write_item</code> operation even if you want to delete a batch of items. Also, the keyword arguments and parameters you are passing is not very Pythonic. </li>
+<li>Native data types are limited, there is no <code>datetime</code> support. You may want to convert the datetime into epoch seconds or milliseconds and store them as a <code>Number</code>(which is <code>decimal.Decimal</code> in Python) </li>
+<li>There is no automated provisioning for throughput. Everyhing around on this one is handled by AWS, but not this. There are third party libraries(like <a href="http://dynamic-dynamodb.readthedocs.io/en/latest/"><code>dynamic-dynamodb</code></a> that does this for you, but we have not used it. This could be considered something not a bug but a feature. Because what happens is that, you end up overprovisioning the tables since aumated way is not supported, where you end paying more than you need, which is good for AWS, not so great for the user. </li>
+<li>You can downscale provisioned capacity only 6 times per 24 hours. Similarly, it could be a feature not a bug. </li>
+<li>Once you hit the provisioned rate limit, all of the consecutive requests are going to fail, which is not great. You need to be careful what you provision in terms of read and write throughput.  </li>
+<li>Tooling around the database is not great; you do not know how many machines are running, if your <code>hash</code> keys are uniformly distributed(I will explain in a bit what this means). Monitoring could be done only through Cloudwatch, which is not great. </li>
+<li>Writes are five times more expensive than reads. Something to consider if your database operations are write heavy.</li>
+<li>You cannot remove all of the records in the database. There is no operation that is similar to <code>TRUNCATE</code> in the sql world. When we were doing load testing, we were wiping out the database and you could wipe out all of the records if you know what all of the partition keys are. If you do not have the partition keys, you can delete and recreate it from start. </li>
+</ul>
+<h3>Our Usage</h3>
+<p>We have ratings which is actually a person's action on the other person. Currently, we have five allowed ratings; a person could <code>block</code>, <code>report</code>, <code>skip</code>, <code>like</code>, <code>note</code> another person in the app.
+This is not a <code>rating</code> per se, but this is part of our company vocabulary, so you are going to stick with that for the rest of the post. We want to store the actions of these people in order to recommend and not recommend people to each other. We also want to store a timestamp(<code>created_at</code>) when this action first created and updated(<code>updated_at</code>) in order to make a decision if we want to find out who the "first actor" is or "second actor" is.
+Another thing we want to store is the action itself of course which we call <code>state</code> which is an <code>enum</code> maps various actions into integers. Also, since we are allowing content like in the app, we also want to store that piece of <code>content</code> as well as content type(<code>content_type</code>). </p>
+<h4>Design and Plan</h4>
+<p>We used to have MongoDB for our legacy rating table and that had a few issues when we have 1 TB of data, the query times got longer and longer over time and it was not performing well(to put it lightly). We were looking at different solutions at that point and there were two main alternatives we were looking at; Cassandra and DynamoDB. We eventually chose DynamoDB because it is hosted and managed by AWS(we did not want to go through the same thing with MongoDB),but Cassandra was as performant as DynamoDB for our use case. We did the testing for both databases in large number of records(1 Billion Items) and we were happy about the performance of both databases. </p>
+<p>We call the person who is acting <code>player</code> and person who is being acted as <code>subject</code>. In previous version of Hinge(Hinge v3), we were doing reads per pair of people to be able to see what their states are to process the new rating. We were also querying the database per <code>player</code> only to be able to generate <code>ineligible</code> people for the person, which means the people whom the <code>player</code> rated(exception being is the <code>skip</code>). That means we are going to two different read queries <code>player_id</code> and <code>player_id-subject_id</code>. This is great news! Because we do not need a whole bunch of indexes and if we can do two indexes which is kind of hierarchical(we are not going to query per <code>subject_id</code>, but always depend on the <code>player_id</code>), then it is all good. </p>
+<p>DynamoDB allows you to define a <code>hash</code> or <code>partition</code> key and we can map <code>player_id</code> to be <code>hash</code> key and <code>subject_id</code> to be <code>range</code> key pretty easily. Since subjects are always going to be under the umbrella of <code>player_id</code>, it fits naturally to key schema that DynamoDB provides and which is exactly what we did following the guideline.  </p>
+<div class="highlight"><pre><span></span>| Partition key value                            | Uniformity |
+| User ID, where the application has many users. | Good       | 
+</pre></div>
+
+
+<p><a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForTables.html#GuidelinesForTables.Partitions">AWS Guideline for Tables</a></p>
+<p>As long as the guidelines is concerned, we are using user id for the partition key and another user id for range key; should be good. </p>
+<p>We could have a single <code>partition</code> key which combines <code>player_id</code> and <code>subject_id</code>, but that required double writes for our use case since the states are not bidirectional. And if you remember writes are five times more expensive than reads, we opted in read query one more time to do the rating resolution rather than double-insert. Rating resolution is to figure out if the two people should be a connection or not.  </p>
+<p>One problem is that, DynamoDB does the splitting(under the hood) based on the partition key and power users who like to rate a lot of people will have splitted partitions when the partition gets very large in terms of the total data that is being stored(<a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForTables.html">larger than 10 gb</a>), which will reduce our throughput. In these cases, the most optimal solution to somehow determine power users and inactive users so that you could assign them into the same partition in order to distribute the total data size uniformly within a single partition so that you would hit that 10 gb limit. However, we have not done this portion in this part of the design process, but it is something we keep an eye on. </p>
+<p>AWS does not provide a way to introspect the partitions, I wish there is a way to introspect(the total number of items and total size of the partition) to see and understand a little bit better what is going on under the hood. </p>
+<h5>Data Model</h5>
+<div class="highlight"><pre><span></span>| player_id | subject_id | state | created_at | content | content_type | 
+</pre></div>
+
+
+<p>Where <code>player_id</code>, <code>subject_id</code>, 'content<code>and</code>content_type<code>are strings and</code>state<code>and</code>created_at<code>are Numbers. We thought having a local secondary index on</code>state` as well to produce ineligible list(which I am explaining in the next section), but we were not happy with the performance.  </p>
+<h5>Ineligible People</h5>
+<p>We produce an ineligible people list every time when we generate recommendations for our users. This is done by querying <code>subject_id</code>s of <code>player_id</code> from DynamoDB and putting into Bloom Filter before passing to the recommender service(we have SOA). This query is done against <code>player_id</code> and very fast. Its payload is going to be large as time goes by, but nowhere near to 1 MB in near future(one needs to rate 62500 people since uuids are 16 bytes). Even so, we can do the query in two steps and it should not have bad performance characteristics. </p>
+<h5>Reads per pair</h5>
+<p>Reads that are done against <code>player_id</code>-<code>subject_id</code> are very fast as well as the writes. This was very important as we are processing very large volume of rating activity per day and even shaving 100 milliseconds would benefit the whole system. We do rating resolution every time when we process a rating which is like a FSM in order to figure out what the next state should be between people. We are doing an extra read in this operation since we are not double-inserting them into the database when we write the pair into the database.  </p>
+<h5>Load Testing</h5>
+<p>We of course did a load testing since we knew this database is going to get large very quickly and we did not want to have the similar problem in the early version of Hinge. What we did is that we sampled a bunch of ratings and filled a DynamoDB with 1.2 billion records and see what the performance of those queries would look like with that size.</p>
+<p><img alt="Timing Against 1.2 Billion Records" src="/images/work/notes/2016/10/23/timing-dynamodb-violinplot.png" /></p>
+<p>Timings in <code>millisecond</code> in the above graph and <code>write_record</code> signifies a single write timing, <code>query_player_subject</code> is read operation for <code>player_id</code>-<code>subject_id</code> and finally <code>get_subject_id_list</code> is the list of subjects that player has rated.  </p>
+<p>The timings were pretty great as you can see from the above graph. On average reading <code>player_id-subject_id</code> which is the busiest lookup operation takes around 9 milliseconds and write was also in the similar timing range(8-9 milliseconds). The construction of bloom filter takes more than 15 milliseconds on average for that volume, but not even close to 20 milliseconds.</p>
+<p>One thing is that, the timings have pretty long tail and I cut around 200 milliseconds. </p>
+<h4>Possible Improvements</h4>
+<p>If we were to store the both parties' actions into a single rating record, that would be better in terms of number of queries are done against to the database, but I am not sure how much we would lose efficiency in terms of payload size. Right now we have connection object which is kind of two ratings merged into a single object. Also the bloated(already) <code>state</code> enum would become more complex since the states need to encode 3 or 4 actions.(it encodes at most 2 actions right now). We can combine all of what happened into a single record, that would be much efficient and better in terms of query performance. However, I am not sure if that solution would be cleaner and better than what we have right now.  </p>
+<h4>Performance in the Wild</h4>
+<p>It has been two weeks DynamoDB in the production since global relaunch. I have of course graphs(CloudWatch, albeit)<br />
+Especially, in the launch day, we knew that it was going to be crazy because of the PR and push. So, we overprovisioned pretty much everything in terms of infrastructure. DynamoDB was no exception.</p>
+<h5>Read Capacity</h5>
+<p>Except the first day, the graph looks pretty much cylical and periodic which is expected. We downscaled since we are not using much of our provisioned throughput after some time.<br />
+<img alt="Read Capacity Provisioned and Consumed" src="/images/work/notes/2016/10/23/read-capacity-dynamodb.png" /></p>
+<h5>Write Capacity</h5>
+<p>Write capacity follows read capacity similarly. Especially with user activity, both reads and writes are increasing and that is being reflected consumed throughput. 
+<img alt="Write Capacity Provisioned and Consumed" src="/images/work/notes/2016/10/23/write-capacity-dynamodb.png" /></p>
+<p>So, what about the performance? At this point, we have many million ratings and large volume of ratings happening in every second. </p>
+<h5>Read Latency</h5>
+<p>Except the first day(the activity bursted on that day), DynamoDB provides single digit millisecond consistently. What is amazing is that its performance does not degrade over time because of how they partition and do the request routing for a single query. We do not experience less than 4 millisecond timings from the application, though. We experience 8-9 milliseconds from the application.
+<img alt="Read Latency" src="/images/work/notes/2016/10/23/read-latency-dynamodb.png" /></p>
+<h5>Write Latency</h5>
+<p>Writes are more stable than reads even around the first day.<br />
+<img alt="Write Latency" src="/images/work/notes/2016/10/23/write-latency-dynamodb.png" /></p>
+<h3>Conclusion</h3>
+<p>In software engineering, you can make technical decisions based on a number of factor things: how much you know about it(I do not know anything about DynamoDB, we should not choose it), how bad your bias is around it(MongoDB is terrible, everything about that db is just terrible), how much you understand(I do not know any SQL, so we should go with NoSQL, better yet, MongoDB), how easy it would be to implement(SQLAlchemy already provides a connection to Posgresql, let's go with that one), how much code do you need to remove(I already wrote a wrapper around DB A, we should not go with DB B), how much you are interested in that area(DB is not my area, let's implement some solution and move on) and so forth. All of the decision factors yield a suboptimal solution for the problem you have because your decision around that decision does not necessarily address the <strong>problem</strong> at the moment, but rather your interpretation of what the problem is.  </p>
+<p>Looking back, I think this is one of the things that I am extremely proud and will remember at my time at Hinge, not because the technology was cool(which kind of is), but we did our due diligence around the technology. We examined our needs, we knew what we needed from the database, we did load testing and scalability testing before dedicating ourselves fully. All of our ducks were in a row, when I start implementation on this one, we have not had any slight concern around the database capability since everything was so well-planned and therefore predictable. We kept an open mind since we did not want to experience putting out fire on the database when you have large amount of load. I am not saying we did not have any biases, I think we had a huge bias which made us choosing DynamoDB; where we really did not want to host and manage the database ourselves. At least, we acknowledged it and we knew about it. It did not get lost in translation. </p>
+<p>When <strong>Mise en place</strong> is in action, the only thing is needed crafting and implementing the solution is itself, which is the easiest part. </p>
+        </div>
+    </article>
+          <ul class="social-media-links" style="text-align: center;">
+            <li class="twitter" style="display:inline;">
+            <a href="https://twitter.com/share" i
+              class="twitter-share-button"
+              data-url="http://bugra.github.io/work/notes/2016-10-23/dynamodb-learnings/"
+              data-via="bugraa">Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </li>
+           <li class="fb-like" style="display:inline;">
+              <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="32" data-type="button_count"></div>
+           </li>
+           <li class="google-plus" style="display:inline;">
+             <!-- Place this tag where you want the +1 button to render. -->
+             <div class="g-plusone" data-size="medium"></div>
+
+             <!-- Place this tag after the last +1 button tag. -->
+             <script type="text/javascript">
+                 (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                           po.src = 'https://apis.google.com/js/platform.js';
+                               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+             </script>
+           </li>
+             <li class="pinterest" style="display:inline;">
+               <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-shape="round" data-pin-height="32"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" /></a><!-- Please call pinit.js only once per page --><script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+               </a>
+             </li>
+           </li>
+         </ul>
+    <div class="metadata">
+
+        <div class="left">
+            <ul>
+                <li>
+                    <strong>Published: </strong>
+                    <i>
+                        <time datetime="2016-10-23T00:00:00+00:00">
+                            October 23, 2016
+                        </time>
+                    </i>
+                </li>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'bugra'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+      </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+      </div>
+    </div>
+</div>
+
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.3.0/base-min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/pygments.css">
+        <link rel="stylesheet" href="/theme/css/main.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+      <!-- Timesheet JS and CSS -->
+      <script src="/theme/js/timesheet.js"></script>
+      <script src="/theme/js/timesheet.bubble.js"></script>
+      <script type='text/javascript'>new Timesheet('timesheet', 2008, 2020, [
+  ['09/2006', '05/2011', 'B.S Electrical Engineering at Bilkent University', 'dolor'],
+  ['06/2009', '09/2009', 'Software Developer Intern at Optisis Inc.', 'dolor'],
+  ['06/2010', '09/2010', 'Software Developer Intern at Tubitak R&D', 'dolor'],
+  ['06/2011', '09/2011', 'Research Internship at Koc University', 'dolor'],
+  ['09/2011', '05/2013', 'M.S Electrical and Computer Engineering at NYU', 'lorem'],
+  ['12/2012', '05/2013', 'Part-Time Software Developer at Viacom', 'lorem'],
+  ['05/2013', '12/2013', 'Algorithms Engineer at dMetrics Inc.', 'ipsum'],
+  ['12/2013', '12/2014', 'Machine Learning Engineer at CB Insights', 'ipsum'],
+  ['12/2014', '08/2015', 'Data Scientist at Axial', 'ipsum'],
+  ['08/2015', '08/2016', 'Senior Machine Learning Engineer at Hinge', 'ipsum'],
+  ['03/2014', '08/2016', 'Senior Machine learning Consultant', 'default']
+]);</script>
+      <!-- Timesheet End -->
+      <script src="/theme/js/logo.js"></script>
+      <script src="https://d3js.org/d3.v3.min.js"></script>
+      <script src="/theme/js/scramble.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script type="text/javascript">init();</script>
+      <script>
+        emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+      </script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-32814563-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+    </body>
+</html>

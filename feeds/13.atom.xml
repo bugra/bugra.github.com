@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/13.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-02-13T00:00:00+00:00</updated><entry><title>Learning Swift Part 1</title><link href="http://bugra.github.io/work/notes/2015-02-13/learning-swift-part-1/" rel="alternate"></link><updated>2015-02-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-02-13:work/notes/2015-02-13/learning-swift-part-1/</id><summary type="html">&lt;p&gt;I have recently become interested in the very new programming language as it 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/13.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-02-13T00:00:00+00:00</updated><entry><title>Learning Swift Part 1</title><link href="http://bugra.github.io/work/notes/2015-02-13/learning-swift-part-1/" rel="alternate"></link><published>2015-02-13T00:00:00+00:00</published><updated>2015-02-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-02-13:work/notes/2015-02-13/learning-swift-part-1/</id><summary type="html">&lt;p&gt;I have recently become interested in the very new programming language as it 
 provides a sweetspot for iOS developers who are tired writing Objective-C. &lt;/p&gt;
 &lt;p&gt;I spent about 5 hours looking at its syntax and functionality; I must say it feels
 mostly Scala to me. There are places where syntax is much simpler and sometimes
@@ -190,7 +190,7 @@ convenient? &lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;That is pretty cool. &lt;/p&gt;</summary></entry><entry><title>First, Second Derivative, Convolution and Quadratic Fitting and all that via MCMC</title><link href="http://bugra.github.io/work/notes/2014-06-13/first-second-derivative-convolution-quadratic-fitting-and-all-that-via-MCMC/" rel="alternate"></link><updated>2014-06-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-06-13:work/notes/2014-06-13/first-second-derivative-convolution-quadratic-fitting-and-all-that-via-MCMC/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;That is pretty cool. &lt;/p&gt;</summary></entry><entry><title>First, Second Derivative, Convolution and Quadratic Fitting and all that via MCMC</title><link href="http://bugra.github.io/work/notes/2014-06-13/first-second-derivative-convolution-quadratic-fitting-and-all-that-via-MCMC/" rel="alternate"></link><published>2014-06-13T00:00:00+00:00</published><updated>2014-06-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-06-13:work/notes/2014-06-13/first-second-derivative-convolution-quadratic-fitting-and-all-that-via-MCMC/</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -9267,7 +9267,7 @@ AAwhjAMAAACG/D8D9wcpHI9HrwAAAABJRU5ErkJggg==
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>Workflow Engine Comparison(First Impressions)</title><link href="http://bugra.github.io/work/notes/2014-04-13/workflow-engine-comparison-first-impressions/" rel="alternate"></link><updated>2014-04-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-04-13:work/notes/2014-04-13/workflow-engine-comparison-first-impressions/</id><summary type="html">&lt;p&gt;I was looking at different options for workflow engines. I have
+</summary></entry><entry><title>Workflow Engine Comparison(First Impressions)</title><link href="http://bugra.github.io/work/notes/2014-04-13/workflow-engine-comparison-first-impressions/" rel="alternate"></link><published>2014-04-13T00:00:00+00:00</published><updated>2014-04-13T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-04-13:work/notes/2014-04-13/workflow-engine-comparison-first-impressions/</id><summary type="html">&lt;p&gt;I was looking at different options for workflow engines. I have
 some experience in Oozie, little experience in Luigi and no experience
 in Azkaban. In this post, I will try to give an overview of these
 engines in terms of their advantages and disadvantages. Take my word

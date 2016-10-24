@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/25.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-01-25T00:00:00+00:00</updated><entry><title>Blog in Review 2014</title><link href="http://bugra.github.io/work/notes/2015-01-25/blog-in-review-2014/" rel="alternate"></link><updated>2015-01-25T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-01-25:work/notes/2015-01-25/blog-in-review-2014/</id><summary type="html">&lt;p&gt;This blog(I guess no matter how much I do not like this term, this website
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/25.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-01-25T00:00:00+00:00</updated><entry><title>Blog in Review 2014</title><link href="http://bugra.github.io/work/notes/2015-01-25/blog-in-review-2014/" rel="alternate"></link><published>2015-01-25T00:00:00+00:00</published><updated>2015-01-25T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-01-25:work/notes/2015-01-25/blog-in-review-2014/</id><summary type="html">&lt;p&gt;This blog(I guess no matter how much I do not like this term, this website
 is a blog) has been around more than 3 years by now. Last year, I made a conscious
 decision that I should write more regularly and removing some of the posts that
 are all about rants and ideas about everything and keep the ones that are mostly
@@ -70,7 +70,7 @@ traffic but that traffic does not persist over time. Search results do persist,
 as long as people are clicking on my links when they tpye a query and stay for a long 
 time, which means they are happy, search engine keeps showing that link in order
 to make sure that the engagement is increasing.
-&lt;img alt="Organic Search Sessions" src="/images/work/notes/2015/1/25/organic_search_sessions_over_months.png" title="‘Organic Search Results’" /&gt;
+![Organic Search Sessions](/images/work/notes/2015/1/25/organic_search_sessions_over_months.png ‘Organic Search Results’)
 &lt;a href="/images/work/notes/2015/1/25/organic_search_sessions_over_months.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I started to write regularly at the end of the January, so this graph is pretty 
 amazing to me, growth is in the right direction. The absolute number of sessions 
@@ -78,24 +78,24 @@ is low albeit.&lt;/p&gt;
 &lt;h4&gt;Type of Devices&lt;/h4&gt;
 &lt;p&gt;I knew that most of the devices are actually desktop computer, but I did not know
 that it is less than 20%. Tablet’s percentage is not good either.
-&lt;img alt="Type of Devices" src="/images/work/notes/2015/1/25/sessions_by_device_category.png" title="‘Type of Device Types’" /&gt;
+![Type of Devices](/images/work/notes/2015/1/25/sessions_by_device_category.png ‘Type of Device Types’)
 &lt;a href="/images/work/notes/2015/1/25/sessions_by_device_category.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Desktop is still dominates in the audience.&lt;/p&gt;
 &lt;h4&gt;Session Numbers of Blog Pages&lt;/h4&gt;
 &lt;p&gt;It follows Zipf’s law as not all posts are created equal. In 2015, I want to change
 this unequal distribution into a more uniform one. Equality for posts!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Session Numbers" src="/images/work/notes/2015/1/25/session_number_of_blog_landing_pages.png" title="‘Session Numbers’" /&gt;
+&lt;p&gt;![Session Numbers](/images/work/notes/2015/1/25/session_number_of_blog_landing_pages.png ‘Session Numbers’)
 &lt;a href="/images/work/notes/2015/1/25/session_number_of_blog_landing_pages.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Session Duration of Blog Pages&lt;/h4&gt;
 &lt;p&gt;Some of them are clearly outliers as one cannot &lt;strong&gt;simply&lt;/strong&gt; spend 40 minutes but I 
 blame Google Analytics for those types of mistakes. Here is another Zipf’s Law Graph:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Session Duration" src="/images/work/notes/2015/1/25/session_duration_of_blog_landing_pages.png" title="‘Session Duration’" /&gt;
+&lt;p&gt;![Session Duration](/images/work/notes/2015/1/25/session_duration_of_blog_landing_pages.png ‘Session Duration’)
 &lt;a href="/images/work/notes/2015/1/25/session_duration_of_blog_landing_pages.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Average Session Duration by Referrals&lt;/h4&gt;
 &lt;p&gt;Apparently, Linkedin users read more than other referrals or they refer posts that
 are longer than others. I’d like to think the latter as one of the somehow longer 
 post is shared in Linkedin quite heavily.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Session Duration of Network Referrals" src="/images/work/notes/2015/1/25/average_session_duration_of_network_referrals.png" title="‘Session Duration of Network Referrals’" /&gt;
+&lt;p&gt;![Session Duration of Network Referrals](/images/work/notes/2015/1/25/average_session_duration_of_network_referrals.png ‘Session Duration of Network Referrals’)
 &lt;a href="/images/work/notes/2015/1/25/average_session_duration_of_network_referrals.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Hacker news reader seems to just skimm the post rather than taking time to read it.
 If you think my two posts that become in the first page of HN are quite long.&lt;/p&gt;
@@ -104,13 +104,13 @@ If you think my two posts that become in the first page of HN are quite long.&lt
 it is still &lt;a href="http://bugra.github.io/work/notes/2014-08-23/on-machine-learning/"&gt;On Machine Learning&lt;/a&gt;
 As most of my metrics is spiked around on September, it is mostly due to that post
 which get a lot love from HN, Linkedin and Twitter.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Average Session over Months" src="/images/work/notes/2015/1/25/average_sesssion_per_month.png" title="‘Average Session over months’" /&gt;
+&lt;p&gt;![Average Session over Months](/images/work/notes/2015/1/25/average_sesssion_per_month.png ‘Average Session over months’)
 &lt;a href="/images/work/notes/2015/1/25/average_sesssion_per_month.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Blog Users Flow&lt;/h4&gt;
 &lt;p&gt;I am happy with most of the data that Google Analytics provide and this section 
 is not one of them. They would just allow a weird screenshot of the users flow in
 the website and does not give any raw data.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Blog Users Flow" src="/images/work/notes/2015/1/25/blog-users-flow.png" title="‘Blog User’s Flow’" /&gt;
+&lt;p&gt;![Blog Users Flow](/images/work/notes/2015/1/25/blog-users-flow.png ‘Blog User’s Flow’)
 &lt;a href="/images/work/notes/2015/1/25/blog-users-flow.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;There are a lot of drop offs when they hit the website and I guess I need to provide
 better tools to expose other content in the website. It seems Disqus does not do
@@ -122,17 +122,17 @@ could only go back to home page and then go to the another post.&lt;/p&gt;
 a lot of surprise, except the confusion that Google Analytics causes. I have no
 idea what “Other” or “Direct” means in the below graph, but I am putting to stress
 on how important the social media for my blog is.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Session Numbers by Channel" src="/images/work/notes/2015/1/25/channel_by_session.png" title="‘Session Numbers by Channel’" /&gt;
+&lt;p&gt;![Session Numbers by Channel](/images/work/notes/2015/1/25/channel_by_session.png ‘Session Numbers by Channel’)
 &lt;a href="/images/work/notes/2015/1/25/channel_by_session.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Session Numbers over Month&lt;/h4&gt;
 &lt;p&gt;If I want to see how much HN drives traffic to my website, I just need to visualize
 the number of sessions over month; and the peaks are when my blog post makes it
 to front page.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Session Numbers over Months" src="/images/work/notes/2015/1/25/n_session_per_month.png" title="‘Session Numbers over Month’" /&gt;
+&lt;p&gt;![Session Numbers over Months](/images/work/notes/2015/1/25/n_session_per_month.png ‘Session Numbers over Month’)
 &lt;a href="/images/work/notes/2015/1/25/n_session_per_month.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Number of Unique Users over Month&lt;/h4&gt;
 &lt;p&gt;Unsurprisingly, number of unique users also follow session numbers over the month.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Number of Unique Users over Months" src="/images/work/notes/2015/1/25/n_session_per_month.png" title="‘Number of Unique Users over Month’" /&gt;
+&lt;p&gt;![Number of Unique Users over Months](/images/work/notes/2015/1/25/n_session_per_month.png ‘Number of Unique Users over Month’)
 &lt;a href="/images/work/notes/2015/1/25/n_session_per_month.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Number of Session by Network Referrals&lt;/h4&gt;
 &lt;p&gt;If I actually want to learn which social network actually drives most of the traffic,
@@ -143,7 +143,7 @@ They do not disclose the number of visitors or other audience metrics, but when
 your website becomes the first page for 3-4 hours, it guarantees 10K users in a very
 small period of time. As I mentioned earlier, two of my posts made it to front page
 and that was more than enough to make HN the first among many other social networks.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Number of Session by Network Referrals" src="/images/work/notes/2015/1/25/number_of_sessions_of_network_referrals.png" title="‘Number of Sessions by Network Referrals’" /&gt;
+&lt;p&gt;![Number of Session by Network Referrals](/images/work/notes/2015/1/25/number_of_sessions_of_network_referrals.png ‘Number of Sessions by Network Referrals’)
 &lt;a href="/images/work/notes/2015/1/25/number_of_sessions_of_network_referrals.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Pageviews&lt;/h3&gt;
 &lt;p&gt;What about the pageviews grouped by different aspects of the audience.&lt;/p&gt;
@@ -151,34 +151,34 @@ and that was more than enough to make HN the first among many other social netwo
 &lt;p&gt;Pageviews of network referrals closely follows the number of session with couple of
 small twists, Twitter users are apparently more exploring more on the website and
 HN users only consume what they come for.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Pageviews by Network Referrals" src="/images/work/notes/2015/1/25/page_views_of_network_referrals.png" title="‘Pageviews by Network Referrals’" /&gt;
+&lt;p&gt;![Pageviews by Network Referrals](/images/work/notes/2015/1/25/page_views_of_network_referrals.png ‘Pageviews by Network Referrals’)
 &lt;a href="/images/work/notes/2015/1/25/page_views_of_network_referrals.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Pageviews/Session of Network Referrals&lt;/h4&gt;
 &lt;p&gt;Which social network user does most of the page views per session?&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Pageviews by Network Referrals" src="/images/work/notes/2015/1/25/page_views_of_network_referrals.png" title="‘Pageviews by Network Referrals’" /&gt;
+&lt;p&gt;![Pageviews by Network Referrals](/images/work/notes/2015/1/25/page_views_of_network_referrals.png ‘Pageviews by Network Referrals’)
 &lt;a href="/images/work/notes/2015/1/25/page_views_of_network_referrals.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Apparently, one Linkedin user comes, she sees another page as well.&lt;/p&gt;
 &lt;h4&gt;Percentage of New Sessions/total Sessions&lt;/h4&gt;
 &lt;p&gt;Percentage of new sessions follow total number of sessions loosely. When new peak
 appears, then the new sessions peaks as well.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Percentage of New Sessions/Total Sessions" src="/images/work/notes/2015/1/25/percentage_new_sessions_vs_sessions.png" title="‘Percentage of New Sessions over Total Sesssions’" /&gt;
+&lt;p&gt;![Percentage of New Sessions/Total Sessions](/images/work/notes/2015/1/25/percentage_new_sessions_vs_sessions.png ‘Percentage of New Sessions over Total Sesssions’)
 &lt;a href="/images/work/notes/2015/1/25/percentage_new_sessions_vs_sessions.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Percentage of Sessions By Browser&lt;/h4&gt;
 &lt;p&gt;Chrome is the most dominant and Firefox is the second, no surprise here. However,
 I was not expecting Safari and its position in the list. IE does not have much 
 weight, which I am glad, as I do not have an environment to test IE.(which is pretty
 great excuse)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Percentage of Sessions by Browser" src="/images/work/notes/2015/1/25/percentage_of_sessions_by_browser.png" title="‘Percentage of Sessions by Browser’" /&gt;
+&lt;p&gt;![Percentage of Sessions by Browser](/images/work/notes/2015/1/25/percentage_of_sessions_by_browser.png ‘Percentage of Sessions by Browser’)
 &lt;a href="/images/work/notes/2015/1/25/percentage_of_sessions_by_browser.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Percentage of Sessions by Device Brand&lt;/h4&gt;
 &lt;p&gt;Apple products get the top 2 and there are couple of Goole Nexuses and Samsungs in
 the top 20, and then the remaining ones are your long tail(mostly Samsungs and
 other Android OEMs)&lt;/p&gt;
 &lt;h5&gt;First 20&lt;/h5&gt;
-&lt;p&gt;&lt;img alt="First 20 Mobile Brands" src="/images/work/notes/2015/1/25/percentage_of_sessions_by_device_brand_first_20.png" title="‘Top 20 Mobile Brands’" /&gt;
+&lt;p&gt;![First 20 Mobile Brands](/images/work/notes/2015/1/25/percentage_of_sessions_by_device_brand_first_20.png ‘Top 20 Mobile Brands’)
 &lt;a href="/images/work/notes/2015/1/25/percentage_of_sessions_by_device_brand_first_20.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h5&gt;Remaining 80&lt;/h5&gt;
-&lt;p&gt;&lt;img alt="Remaining 80 Mobile Brands" src="/images/work/notes/2015/1/25/percentage_of_sessions_by_device_brand_from_20_to_100.png" title="‘Remaining 80 Mobile Brands’" /&gt;
+&lt;p&gt;![Remaining 80 Mobile Brands](/images/work/notes/2015/1/25/percentage_of_sessions_by_device_brand_from_20_to_100.png ‘Remaining 80 Mobile Brands’)
 &lt;a href="/images/work/notes/2015/1/25/percentage_of_sessions_by_device_brand_from_20_to_100.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Samsung seems to be quite dominant from a very small sample size. However, sum of
 Apple products is more than sum of Android phones and other phones(there are few
@@ -188,11 +188,11 @@ Microsoft phones)&lt;/p&gt;
 disappoint. Even though UK and Canada is small countries by population comparing 
 to Germany and France, they are leading in terms of users. I’d expect more users
 from China and India.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Users by Country" src="/images/work/notes/2015/1/25/percentage_of_sessions_by_location.png" title="‘Users by country’" /&gt;
+&lt;p&gt;![Users by Country](/images/work/notes/2015/1/25/percentage_of_sessions_by_location.png ‘Users by country’)
 &lt;a href="/images/work/notes/2015/1/25/percentage_of_sessions_by_location.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Distribution of Operating Systems of Users&lt;/h4&gt;
 &lt;p&gt;Windows is the leading OS, which surprised me as the IE gets very small share from
 browser share. Apparently, Google succeeded to convince Windows users Chrome is 
 better than their favorite browser.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Users by Country" src="/images/work/notes/2015/1/25/percentage_of_sessions_by_location.png" title="‘Users by country’" /&gt;
+&lt;p&gt;![Users by Country](/images/work/notes/2015/1/25/percentage_of_sessions_by_location.png ‘Users by country’)
 &lt;a href="/images/work/notes/2015/1/25/percentage_of_sessions_by_location.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;</summary></entry></feed>

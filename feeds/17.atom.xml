@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/17.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-17T00:00:00+00:00</updated><entry><title>1. Introduction to Deep Learning with Lua - Gradients</title><link href="http://bugra.github.io/work/notes/2015-05-17/introduction-to-deep-learning-with-lua-gradients/" rel="alternate"></link><updated>2015-05-17T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-17:work/notes/2015-05-17/introduction-to-deep-learning-with-lua-gradients/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/17.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-17T00:00:00+00:00</updated><entry><title>1. Introduction to Deep Learning with Lua - Gradients</title><link href="http://bugra.github.io/work/notes/2015-05-17/introduction-to-deep-learning-with-lua-gradients/" rel="alternate"></link><published>2015-05-17T00:00:00+00:00</published><updated>2015-05-17T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-17:work/notes/2015-05-17/introduction-to-deep-learning-with-lua-gradients/</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1464,7 +1464,7 @@ which is much nicer to deal with and compute as long as you have a function that
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>Mining a VC</title><link href="http://bugra.github.io/work/notes/2015-01-17/mining-a-vc/" rel="alternate"></link><updated>2015-01-17T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-01-17:work/notes/2015-01-17/mining-a-vc/</id><summary type="html">&lt;p&gt;Fred Wilson is one of the most popular VCs(rightly so) who is based in NY and
+</summary></entry><entry><title>Mining a VC</title><link href="http://bugra.github.io/work/notes/2015-01-17/mining-a-vc/" rel="alternate"></link><published>2015-01-17T00:00:00+00:00</published><updated>2015-01-17T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-01-17:work/notes/2015-01-17/mining-a-vc/</id><summary type="html">&lt;p&gt;Fred Wilson is one of the most popular VCs(rightly so) who is based in NY and
 he has a really great &lt;a href="http://avc.com/"&gt;blog&lt;/a&gt;, where he talks about pretty much
 anything with a focus on startups, venture capital and technology. No surprise here.&lt;/p&gt;
 &lt;p&gt;His &lt;a href="http://avc.com/2003/09/my_first_post/"&gt;first post&lt;/a&gt; dates back to 23rd September
@@ -1549,7 +1549,7 @@ will understand why it is low coherence and have very small distance to corpus:
 time people good back make years thing work post things great day made long year past hard week big put find times world idea blog ago point end part&lt;/p&gt;
 &lt;p&gt;and another topic similar to the above one get filtered out due to its has low coherence and similar to corpus.&lt;/p&gt;
 &lt;h3&gt;Which topic is most dominant?&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Topic Frequency Percentage" src="/images/work/notes/2015/1/17/topic-frequency.png" title="‘Topic Frequency Percentage’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Topic Frequency Percentage](/images/work/notes/2015/1/17/topic-frequency.png ‘Topic Frequency Percentage’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/topic-frequency.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Comments topic has also elements of community and his venture firm(USV) as well. So, it
 is not very surprising. As he invests in tech companies and most of the stuff about
@@ -1599,25 +1599,25 @@ in order to get the medium range trend signal. &lt;/p&gt;
 &lt;p&gt;Some of the topics are unsurprising winner like Internet Regulation and Mobile Apps
 but do you find any suprising/interesting topics?&lt;/p&gt;
 &lt;h5&gt;Internet Regulation&lt;/h5&gt;
-&lt;p&gt;&lt;img alt="Internet Regulation" src="/images/work/notes/2015/1/17/internet-regulation-topic-trend.png" title="‘Internet Regulation’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Internet Regulation](/images/work/notes/2015/1/17/internet-regulation-topic-trend.png ‘Internet Regulation’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/internet-regulation-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Net neurality hit some nerves right there.&lt;/p&gt;
 &lt;h4&gt;Mobile Apps&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Mobile Apps" src="/images/work/notes/2015/1/17/mobile-apps-topic-trend.png" title="‘Mobile Apps’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Mobile Apps](/images/work/notes/2015/1/17/mobile-apps-topic-trend.png ‘Mobile Apps’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/internet-regulation-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Mobile apps do not seem to even flatten in the near future. &lt;/p&gt;
 &lt;h4&gt;NYC - Community&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="NYC Community" src="/images/work/notes/2015/1/17/nyc-community-topic-trend.png" title="‘NYC Community’" /&gt;&lt;/p&gt;
+&lt;p&gt;![NYC Community](/images/work/notes/2015/1/17/nyc-community-topic-trend.png ‘NYC Community’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/nyc-community-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Making money is good, but so is community.&lt;/p&gt;
 &lt;h4&gt;Technology&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Technology" src="/images/work/notes/2015/1/17/technology-topic-trend.png" title="‘Technology’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Technology](/images/work/notes/2015/1/17/technology-topic-trend.png ‘Technology’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/technology-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Even though he says he does not invest in technology but networks or the things
 that technology enables, apparently he cannot seems to write anything but 
 technology.&lt;/p&gt;
 &lt;h4&gt;Comments&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Comments" src="/images/work/notes/2015/1/17/comments-topic-trend.png" title="‘Comments’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Comments](/images/work/notes/2015/1/17/comments-topic-trend.png ‘Comments’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/comments-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This topic is one of the most surprising topic, yes USV invested in Disqus, they
 care a lot about community, audience but it feels to me it shouldn’t be this much,
@@ -1625,57 +1625,57 @@ but apparently comments topic is big.&lt;/p&gt;
 &lt;h3&gt;Loser Topics&lt;/h3&gt;
 &lt;p&gt;News, Email and Live Music are the obvious losers. Politics is big one as well.&lt;/p&gt;
 &lt;h4&gt;Email&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Email" src="/images/work/notes/2015/1/17/email-topic-trend.png" title="‘Email’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Email](/images/work/notes/2015/1/17/email-topic-trend.png ‘Email’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/email-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Email is not fun anymore, not even fun to complain about. So 2000.&lt;/p&gt;
 &lt;h4&gt;News&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="News" src="/images/work/notes/2015/1/17/news-topic-trend.png" title="‘News’" /&gt;&lt;/p&gt;
+&lt;p&gt;![News](/images/work/notes/2015/1/17/news-topic-trend.png ‘News’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/news-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Live Music&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Live Music" src="/images/work/notes/2015/1/17/live-music-topic-trend.png" title="‘Live Music’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Live Music](/images/work/notes/2015/1/17/live-music-topic-trend.png ‘Live Music’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/live-music-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Music&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Music" src="/images/work/notes/2015/1/17/music-topic-trend.png" title="‘Music’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Music](/images/work/notes/2015/1/17/music-topic-trend.png ‘Music’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/music-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Politics&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Politics" src="/images/work/notes/2015/1/17/politics-topic-trend.png" title="‘Politics’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Politics](/images/work/notes/2015/1/17/politics-topic-trend.png ‘Politics’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/politics-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Not so winner, but not so loser either topics&lt;/h3&gt;
 &lt;h4&gt;Ads - Business Models&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Ads Business Models" src="/images/work/notes/2015/1/17/ads-business-models-topic-trend.png" title="‘Ads Business Models’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Ads Business Models](/images/work/notes/2015/1/17/ads-business-models-topic-trend.png ‘Ads Business Models’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/ads-business-models-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Burn Rate&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Burn Rate" src="/images/work/notes/2015/1/17/burn-rate-topic-trend.png" title="‘Burn Rate’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Burn Rate](/images/work/notes/2015/1/17/burn-rate-topic-trend.png ‘Burn Rate’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/burn-rate-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Company Management&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Company Management" src="/images/work/notes/2015/1/17/company-management-topic-trend.png" title="‘Company Management’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Company Management](/images/work/notes/2015/1/17/company-management-topic-trend.png ‘Company Management’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/company-management-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Company Team&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Company Team" src="/images/work/notes/2015/1/17/company-team-topic-trend.png" title="‘Company Team’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Company Team](/images/work/notes/2015/1/17/company-team-topic-trend.png ‘Company Team’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/company-team-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Culture&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Culture" src="/images/work/notes/2015/1/17/culture-topic-trend.png" title="‘Culture’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Culture](/images/work/notes/2015/1/17/culture-topic-trend.png ‘Culture’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/culture-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Family&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Family" src="/images/work/notes/2015/1/17/family-topic-trend.png" title="‘Family’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Family](/images/work/notes/2015/1/17/family-topic-trend.png ‘Family’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/family-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Multimedia&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Multimedia" src="/images/work/notes/2015/1/17/multimedia-topic-trend.png" title="‘Multimedia’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Multimedia](/images/work/notes/2015/1/17/multimedia-topic-trend.png ‘Multimedia’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/multimedia-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Search&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Search" src="/images/work/notes/2015/1/17/search-topic-trend.png" title="‘Search’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Search](/images/work/notes/2015/1/17/search-topic-trend.png ‘Search’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/search-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Social Media&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Social Media" src="/images/work/notes/2015/1/17/social-media-topic-trend.png" title="‘Social Media’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Social Media](/images/work/notes/2015/1/17/social-media-topic-trend.png ‘Social Media’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/social-media-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Note that USV invested in Tumblr at then end of 2008, they invested in Twitter, Foursquare
 in 2009. &lt;/p&gt;
 &lt;h4&gt;Traveling&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Traveling" src="/images/work/notes/2015/1/17/traveling-topic-trend.png" title="‘Traveling’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Traveling](/images/work/notes/2015/1/17/traveling-topic-trend.png ‘Traveling’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/traveling-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Valuation&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Valuation" src="/images/work/notes/2015/1/17/valuation-topic-trend.png" title="‘Valuation’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Valuation](/images/work/notes/2015/1/17/valuation-topic-trend.png ‘Valuation’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/valuation-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;Venture Capital&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Politics" src="/images/work/notes/2015/1/17/venture-capital-topic-trend.png" title="‘Venture Capital’" /&gt;&lt;/p&gt;
+&lt;p&gt;![Politics](/images/work/notes/2015/1/17/venture-capital-topic-trend.png ‘Venture Capital’)&lt;/p&gt;
 &lt;p&gt;&lt;a href="/images/work/notes/2015/1/17/venture capital-topic-trend.png"&gt;Larger Image&lt;/a&gt;&lt;/p&gt;</summary></entry></feed>

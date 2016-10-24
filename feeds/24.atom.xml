@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/24.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-07-24T00:00:00+00:00</updated><entry><title>Trend Estimation Methods for Time Series Signals</title><link href="http://bugra.github.io/work/notes/2015-07-24/trend-estimation-methods-time-series-signals/" rel="alternate"></link><updated>2015-07-24T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-07-24:work/notes/2015-07-24/trend-estimation-methods-time-series-signals/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/24.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-07-24T00:00:00+00:00</updated><entry><title>Trend Estimation Methods for Time Series Signals</title><link href="http://bugra.github.io/work/notes/2015-07-24/trend-estimation-methods-time-series-signals/" rel="alternate"></link><published>2015-07-24T00:00:00+00:00</published><updated>2015-07-24T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-07-24:work/notes/2015-07-24/trend-estimation-methods-time-series-signals/</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -33607,7 +33607,7 @@ IvQAAAAAAABx6f8Dxtr1MhteZVYAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>Trend Estimation via Hodrick Prescott Filter</title><link href="http://bugra.github.io/work/notes/2014-11-24/trend-estimation-via-hodrick-prescott-filter/" rel="alternate"></link><updated>2014-11-24T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-11-24:work/notes/2014-11-24/trend-estimation-via-hodrick-prescott-filter/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary></entry><entry><title>Trend Estimation via Hodrick Prescott Filter</title><link href="http://bugra.github.io/work/notes/2014-11-24/trend-estimation-via-hodrick-prescott-filter/" rel="alternate"></link><published>2014-11-24T00:00:00+00:00</published><updated>2014-11-24T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-11-24:work/notes/2014-11-24/trend-estimation-via-hodrick-prescott-filter/</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

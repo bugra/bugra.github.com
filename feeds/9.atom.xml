@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/9.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-09T00:00:00+00:00</updated><entry><title>Learning Lua as a Python Developer</title><link href="http://bugra.github.io/work/notes/2015-05-09/learning-lua-as-a-python-developer/" rel="alternate"></link><updated>2015-05-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-09:work/notes/2015-05-09/learning-lua-as-a-python-developer/</id><summary type="html">&lt;p&gt;This tutorial is not the millionth tutorial that walks you through 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/9.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-09T00:00:00+00:00</updated><entry><title>Learning Lua as a Python Developer</title><link href="http://bugra.github.io/work/notes/2015-05-09/learning-lua-as-a-python-developer/" rel="alternate"></link><published>2015-05-09T00:00:00+00:00</published><updated>2015-05-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-09:work/notes/2015-05-09/learning-lua-as-a-python-developer/</id><summary type="html">&lt;p&gt;This tutorial is not the millionth tutorial that walks you through 
 basic concepts of Lua language. First there are quite excellent 
 &lt;a href="http://tylerneylon.com/a/learn-lua/"&gt;tutorials&lt;/a&gt;
 that actually aims to do exactly that. This post would be to tell a tutorial on Lua
@@ -181,7 +181,7 @@ if you access a non-existent key to the table, it simply returns &lt;code&gt;nil
 be less explicit error or exception but rather nil checking for those statements 
 if the key actually exists in the first place in the table.&lt;/p&gt;
 &lt;h3&gt;Lua does proper tail recursion&lt;/h3&gt;
-&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</summary></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase" /&gt;
+&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</summary></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><published>2014-07-09T00:00:00+00:00</published><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;![Big Data vs me](http://i.imgur.com/dJ5nhHd.jpg Me, When I see “big data” phrase)
 My humble contribution to &lt;a href="http://bigdatapix.tumblr.com/"&gt;ridiculous images on big data&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post is about &lt;a href="https://github.com/Netflix/PigPen"&gt;PigPen&lt;/a&gt;, a library that Netflix
 open sourced in the beginning of this year. Yet, in order to introduce the library, 
@@ -434,7 +434,7 @@ methods in a readable fashion. Scalding (Scala implementation of Cascading) also
 provides a very similar syntax and feeling, if you are familiar, check that out as
 well.&lt;/p&gt;
 &lt;h1&gt;PigPen&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="PigPen" src="http://i.imgur.com/mhil2yS.png" title="PigPen Logo" /&gt;
+&lt;p&gt;![PigPen](http://i.imgur.com/mhil2yS.png PigPen Logo)
 PigPen combines the Clojure awesomeness namely functional programming, Lisp and JVM 
 on top of Pig. This is quite awesome for a number of reasons:&lt;/p&gt;
 &lt;ol&gt;
@@ -503,7 +503,7 @@ Reuse in this example should be obvious, and all of the logic is in the process
 that could change independently from the i/o. Orthogonality is increased. You 
 could further abstract input and output if you want. This could be done in Pig at 
 some level using Macros to be fair. But not this clean and not this 
-straightforward. This is pure beauty.&lt;/p&gt;</summary></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 4</title><link href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/" rel="alternate"></link><updated>2014-03-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-09:work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+straightforward. This is pure beauty.&lt;/p&gt;</summary></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 4</title><link href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/" rel="alternate"></link><published>2014-03-09T00:00:00+00:00</published><updated>2014-03-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-09:work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -7247,7 +7247,7 @@ AFmLo4MAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>Pig Not So Foreign Language Paper Notes</title><link href="http://bugra.github.io/work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/" rel="alternate"></link><updated>2014-02-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-09:work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/</id><summary type="html">&lt;p&gt;These are notes that I took from the &lt;a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf"&gt;paper&lt;/a&gt;, where the authors
+</summary></entry><entry><title>Pig Not So Foreign Language Paper Notes</title><link href="http://bugra.github.io/work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/" rel="alternate"></link><published>2014-02-09T00:00:00+00:00</published><updated>2014-02-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-09:work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/</id><summary type="html">&lt;p&gt;These are notes that I took from the &lt;a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf"&gt;paper&lt;/a&gt;, where the authors
 explain the design principles and some theoretical aspects of Pig the
 programming language. I gave a basic overview in &lt;a href="/work/notes/2014-02-08/pig-advantages-and-disadvantages/"&gt;Pig Advantages and
 Disadvantages&lt;/a&gt;. &lt;/p&gt;
