@@ -1016,14 +1016,12 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Discrete Fourier Transform(DFT) and Discrete Cosine Transform(DCT) are commonly used algorithms to represent an arbitrary signal in terms of orhonormal basises. In DFT case, these basis functions are cosine and sinusoids(in complex form) where DCT depends on cosine signals to represent the signal. Even though DCT is more used than DFT, the approach that they use to represent signal are similar but they only differ by basis functions.</p>
-
 </div>
 </div>
 </div>
@@ -1032,16 +1030,15 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h3><h4 id="DFT">DFT<a class="anchor-link" href="#DFT">&#182;</a></h4><p>DFT tries to represent the signal in the following form:
+<h3 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">¶</a></h3><h4 id="DFT">DFT<a class="anchor-link" href="#DFT">¶</a></h4><p>DFT tries to represent the signal in the following form:
 $$ X_k = \sum_{n=0}^{N-1} x_n e^{{-2j\pi kn}{N}} $$
 where $$k \in Z $$
 and $e^{\frac{-2j\pi kn}{N}}$ could be simplified by the Euler's formula in the following form:
 $$e^{\frac{-2j\pi kn}{N}} = cos(\frac{2\pi kn}{N}) + jsin(\frac{2\pi kn}{N})$$</p>
-<h4 id="DCT">DCT<a class="anchor-link" href="#DCT">&#182;</a></h4><p>DCT uses only cosines
+<h4 id="DCT">DCT<a class="anchor-link" href="#DCT">¶</a></h4><p>DCT uses only cosines
 $$ X_k = \sum_{n=0}^{N-1} x_n cos[\frac{\pi}{N} (n + \frac{1}{2}) k] $$
 where 
 $$ k = 0, \ldots, N-1 $$</p>
-
 </div>
 </div>
 </div>
@@ -1051,7 +1048,6 @@ $$ k = 0, \ldots, N-1 $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since the basis functions are real cosine functions in DCT, the signals that we are trying to compress using DCT needs to be real as well, where DFT could represent complex signals as well. Experimentally and also theoretically(with a better boundary condisitions), DCT transform yields smaller coefficients for natural  images and audios. Therefore, for compression purposes, DCT is de facto method for a number of applications including JPEG and lossy compression for audios.</p>
-
 </div>
 </div>
 </div>
@@ -1061,7 +1057,6 @@ $$ k = 0, \ldots, N-1 $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's see how one might approach the compression of images using.</p>
-
 </div>
 </div>
 </div>
@@ -1070,15 +1065,15 @@ $$ k = 0, \ldots, N-1 $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="DCT">DCT<a class="anchor-link" href="#DCT">&#182;</a></h2>
+<h2 id="DCT">DCT<a class="anchor-link" href="#DCT">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -1089,11 +1084,9 @@ $$ k = 0, \ldots, N-1 $$</p>
 <span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">IPython</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1104,53 +1097,50 @@ $$ k = 0, \ldots, N-1 $$</p>
 <p><strong>Scipy</strong> provides <code>dct</code> out of the box in the fftpack submodule, so one can implement 2-d dct by taking dct on the rows of the image, and then get the dct of the transposed image in the same way. I am using <code>nomr='ortho'</code> as this corresponds to <strong>Type II</strong> dct which is when people say dct, what they refer to. If you are familiar with Matlab, this optional parameter makes what you get when you use <code>dct(y)</code> in Matlab, too. (Note that there are eight different variants of dct and this one is the most common, I will not mention differences, but feel free to check it in <a href="http://en.wikipedia.org/wiki/Discrete_cosine_transform">wikipedia</a>.)</p>
 <p>For <code>idct</code>, it is almost same with <code>dct</code>, with two i's are introduced into the function as fftpack provides very similar api for <code>idct</code> with <code>dct</code>, it becomes relatively straightforward.</p>
 <p>In order to reconstruct the image, the image is clipped between 0 and 255 in order to have <code>uint8</code> to have an image that we begin with.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_url</span><span class="o">=</span><span class="s1">&#39;http://i.imgur.com/8vuLtqi.png&#39;</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_url</span><span class="o">=</span><span class="s1">'http://i.imgur.com/8vuLtqi.png'</span>
 
-<span class="k">def</span> <span class="nf">get_image_from_url</span><span class="p">(</span><span class="n">image_url</span><span class="o">=</span><span class="s1">&#39;http://i.imgur.com/8vuLtqi.png&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">get_image_from_url</span><span class="p">(</span><span class="n">image_url</span><span class="o">=</span><span class="s1">'http://i.imgur.com/8vuLtqi.png'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)):</span>
     <span class="n">file_descriptor</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span>
     <span class="n">image_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file_descriptor</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span>
     <span class="n">img_color</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">img_grey</span> <span class="o">=</span> <span class="n">img_color</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+    <span class="n">img_grey</span> <span class="o">=</span> <span class="n">img_color</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'L'</span><span class="p">)</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_grey</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">img</span>
  
 <span class="k">def</span> <span class="nf">get_2D_dct</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Get 2D Cosine Transform of Image</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">dct</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">dct</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
+    <span class="sd">""" Get 2D Cosine Transform of Image</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">dct</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">dct</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">'ortho'</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">'ortho'</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_2d_idct</span><span class="p">(</span><span class="n">coefficients</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Get 2D Inverse Cosine Transform of Image</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">coefficients</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
+    <span class="sd">""" Get 2D Inverse Cosine Transform of Image</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">fftpack</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">coefficients</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">'ortho'</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">'ortho'</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_reconstructed_image</span><span class="p">(</span><span class="n">raw</span><span class="p">):</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'uint8'</span><span class="p">)</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">img</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pixels</span> <span class="o">=</span> <span class="n">get_image_from_url</span><span class="p">(</span><span class="n">image_url</span><span class="o">=</span><span class="n">image_url</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
 <span class="n">dct_size</span> <span class="o">=</span> <span class="n">pixels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">dct</span> <span class="o">=</span> <span class="n">get_2D_dct</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
@@ -1168,35 +1158,27 @@ $$ k = 0, \ldots, N-1 $$</p>
     <span class="c1"># Create a list of images</span>
     <span class="n">reconstructed_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reconstructed_image</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;DCT Coefficient Amplitude vs. Order of Coefficient&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Order of DCT Coefficients&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;DCT Coefficients Amplitude in log scale&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span> <span class="n">c</span><span class="o">=</span><span class="s1">'#348ABD'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'DCT Coefficient Amplitude vs. Order of Coefficient'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Order of DCT Coefficients'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'DCT Coefficients Amplitude in log scale'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA70AAALcCAYAAAArAtfnAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd0XOWZP/DvrdM16rItuWPjQjc4FMcQ6o9NgZACi00n
@@ -6831,38 +6813,29 @@ Jn3961/XbbfdpgULFmjPnj2l/tlEIqHHH39cDz30kBYuXKjOzk599atfVS6Xm/D3nez4wQcfVCgU
 HMePuaZpcp5nruvKMAzp+z7LsuR5nl+9ua5rtm1L13XZ9z33fWee57Rtm3EcM03Tx6UJALzef/md
 AwAAAP4Bl14AAADKEr0AAACUJXoBAAAoS/QCAABQlugFAACgLNELAABAWaIXAACAskQvAAAAZYle
 AAAAyvoGuc8N1AV9Ct4AAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Amplitude of DCT Coefficients (log-scaled)&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of DCT Coefficients&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitude distribution of DCT Coefficients&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dct</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#348ABD'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">'stepfilled'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Amplitude of DCT Coefficients (log-scaled)'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Number of DCT Coefficients'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Amplitude distribution of DCT Coefficients'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA7wAAALcCAYAAADEwLzZAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VPXZ//HPhISdJMgSIIEEJRGhyGpAZNMEEERF24JA
@@ -7393,14 +7366,11 @@ qZOio6PVq1cvDR482O9r7e81lKTg4GD985//1KJFixQREaGPP/5YY8aMqVbfhx9+qL/85S8+awcA
 duvTpw/NLgBYQMMLAAAuGhs2bFB8fLwuueQSff755/rss8/8ntIMAGj8OKUZAAAAAOBIHOEFAAAA
 ADgSDS8AAAAAwJFoeAEAAAAAjkTDCwAAAABwJBpeAAAAAIAj0fACAAAAABzp/wGCEFAXn170ZgAA
 AABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7409,30 +7379,23 @@ AABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>These graphs are important in several ways. First it tells us that large coefficients and very small coefficients is quite small number.(Note that X axis is log-scaled.) So, the trade-off between compression and image quality generally depends on the coefficients that have middle range values. It is easy to get very large coefficients and reject very small coefficients in the reconstructed image but not very easy to either include or reject middle values based on their solely amplitudes. In these coefficients, one needs to look at the frequencies that they belong to, if they are in somehow high frequency range, then it would be rejected whereas if they belong to lower frequency range, it may introduce noticeable and large artifacts into the signal. Instead of comparing to only Root Mean Squared Error(RMMS) to learn where to stop in the coefficients, one could check better metrics which consider visual fidelity or even perceived quality to find the sweet spot between compression ratio and image quality. In implementations at least for JPEG, this is done by a predetermined number. Therefore, if an image has a different pixel distributions than most of the natural images, or has very high frequency compoenents, then one could see very noticeable artifacts around the edges in the images.</p>
 <p>Wavelet based approaches(JPEG 2000) is far better than DCT based approaches in textured images or images that have a lot of edges as they could preserve local texture better than dct-based approaches. However, JPEG2000's licence is not permissive unlike JPEG and JPEG seems pretty work well for people who are not professional photographers. Therefore, the adoption.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dct</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="p">:</span><span class="mi">50</span><span class="p">]),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;First 2500 coefficients in Grid&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'First 2500 coefficients in Grid'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP0AAAEICAYAAACUHfLiAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXtYVVX+/9+Hy+GAiOCFgxcUVEBBBUrD25iI4PhNCXUy
@@ -7633,14 +7596,11 @@ IATIpleAN8286QVIs6twyqCvOHXCGc3YFd4020Ov1sAga3VYq4e3Pga6rrkrAVj2wimD/tfr15zR
 jF3hTTNvegHS7CrIpicID8Mpg/7ShUpnNGNXeNPMm16ANLsKh76y+/7771FXV+eo6gmCUCA4OBi3
 3nqr7GcOHfQEQbgfZNMThIdBg54gPAwa9AThYdCgJwgPgwY9QXgY/x93YawZZrDUBQAAAABJRU5E
 rkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7648,7 +7608,6 @@ rkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we look at the first first 2500 coefficients in a 50x50 grid, then we could see that a lot of the coefficients are actually very small comparing to the few very large ones. This not only provides a good compaction for the image(less coeffcients means high compaction rate), but also provides a good compromise between compression and image quality. Generally, very low frequencies have a higher ratio of magnitude orders and similar to very high frequencies.</p>
-
 </div>
 </div>
 </div>
@@ -7657,15 +7616,15 @@ rkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="First-64-Images">First 64 Images<a class="anchor-link" href="#First-64-Images">&#182;</a></h4>
+<h4 id="First-64-Images">First 64 Images<a class="anchor-link" href="#First-64-Images">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -7674,18 +7633,12 @@ rkJggg==
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAAOLCAYAAAD5ExZjAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnT2PLN1V/fe89dznsTF+EbLk3LG/AQkkiPAvWWAQBmJI
@@ -17352,14 +17305,11 @@ CmsRO2VbFHMZoLG2222lUikDV2dmZsweP336ZLRV7FGSxQtyipmZGb1//15/+9vfbMYLuSMMHgZM
 HxLq8fchv6bHXy0WQwkllFBCCSWUUEIJJZRQQvn/KXe/UzyUUEIJJZRQQgkllFBCCSWU//MSFouh
 hBJKKKGEEkoooYQSSiihfCZhsRhKKKGEEkoooYQSSiihhBLKZxIWi6GEEkoooYQSSiihhBJKKKF8
 JmGxGEoooYQSSiihhBJKKKGEEspn8h8xW7mBfU+GHwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -17367,7 +17317,6 @@ JmGxGEoooYQSSiihhBJKKKGEEspn8h8xW7mBfU+GHwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The reason why DCT is so succesful could be seen from these images as you could see first 40-50 coefficients out of 256 could capture most of the image(there are some noticeable artifacts around edges alebei). If we want to use these coefficients to reconstruct the image, we could get high compression where we do not lose much image quality in the process. Lossy compressions generally use this type of schema to get a compression rate. They discard some of the high frequency information(edges and fast transition images where they preserve the slow changes and constant colors). Since most of the signals are low frequency by nature, this approach works quite good in practice. We remove the high frequency coefficients and transmit the "important" coefficients (the coefficients that have most information about the signal).</p>
-
 </div>
 </div>
 </div>
@@ -17376,15 +17325,15 @@ JmGxGEoooYQSSiihhBJKKKGEEspn8h8xW7mBfU+GHwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Second-64-Images">Second 64 Images<a class="anchor-link" href="#Second-64-Images">&#182;</a></h4>
+<h4 id="Second-64-Images">Second 64 Images<a class="anchor-link" href="#Second-64-Images">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ii</span> <span class="o">-</span> <span class="mi">63</span><span class="p">)</span>
@@ -17393,18 +17342,12 @@ JmGxGEoooYQSSiihhBJKKKGEEspn8h8xW7mBfU+GHwAAAABJRU5ErkJggg==
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAAOLCAYAAAD5ExZjAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvdlvnOd5PnzNvpMznBlS3BeRIqnV2qjNS2zZjZO4CIoW
@@ -31042,14 +30985,11 @@ DQlx/G5IiON3Q0IcvxsS4vjdkBDH74Z8HY5fmyyGEkoooYQSSiihhBJKKKGE8t8p3/qexVBCCSWU
 UEIJJZRQQgkllFD+eyRMFkMJJZRQQgkllFBCCSWUUEI5JWGyGEoooYQSSiihhBJKKKGEEsopCZPF
 UEIJJZRQQgkllFBCCSWUUE5JmCyGEkoooYQSSiihhBJKKKGEckr+Bx5z31IB4Y1OAAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -31057,7 +30997,6 @@ QmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>IN this set of 64 images, most of the artifacts around edges become unnoticeable as we have more and more high frequency components in the reconstructed image.</p>
-
 </div>
 </div>
 </div>
@@ -31066,15 +31005,15 @@ QmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Third-64-Images">Third 64 Images<a class="anchor-link" href="#Third-64-Images">&#182;</a></h4>
+<h4 id="Third-64-Images">Third 64 Images<a class="anchor-link" href="#Third-64-Images">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">192</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ii</span> <span class="o">-</span> <span class="mi">127</span><span class="p">)</span>
@@ -31083,18 +31022,12 @@ QmCC
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAAOLCAYAAAD5ExZjAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfelv3Nd59Zl9hhwOh5skiiK1WJZlWYYlWxJJLXazNY4t
@@ -43909,29 +43842,26 @@ DRz/MMYGjn8Y40Y43tBZ3BgbY2NsjI2xMTbGxtgYG2NjbIyN8f/muOmexY2xMTbGxtgYG2NjbIyN
 sTE2xsbYGP/vjQ1ncWNsjI2xMTbGxtgYG2NjbIyNsTE2xqqx4SxujI2xMTbGxtgYG2NjbNmXazQA
 AABCSURBVIyNsTE2xsZYNTacxY2xMTbGxtgYG2NjbIyNsTE2xsbYGKvGhrO4MTbGxtgYG2NjbIyN
 sTE2xsbYGBtj1fjfxNhdG1jD/ucAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Last-64-Images">Last 64 Images<a class="anchor-link" href="#Last-64-Images">&#182;</a></h3>
+<h3 id="Last-64-Images">Last 64 Images<a class="anchor-link" href="#Last-64-Images">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -43940,18 +43870,12 @@ sTE2xsbYGBtj1fjfxNhdG1jD/ucAAAAASUVORK5CYII=
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAAOLCAYAAAD5ExZjAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvVeQXNd1/b1ux+nuyRGJBCjMDEARgUkUqWCRFimbVqJk
@@ -54676,14 +54600,11 @@ xjqOvx5jHcdfj3ErHG/pLK6P9bE+1sf6WB/rY32sj/WxPtbH+vj/c9zxPYvrY32sj/WxPtbH+lgf
 62N9rI/1sT7+/xnrzuL6WB/rY32sj/WxPtbH+lgf62N9rI9VY91ZXB/rY32sj/WxPtbH+lgf62N9
 rI/1sWqsO4vrY32sj/WxPtbH+lgf62N9rI/1sT5WjXVncX2sj/WxPtbH+lgf62N9rI/1sT7Wx6rx
 fwDbkXoZtmTPKgAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -54691,37 +54612,28 @@ fwDbkXoZtmTPKgAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The last 64 images are constructed using (192-256) coefficients and they look very similar to each other, almost identical. The last image is actually the original image.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://www.ultraimg.com/images/Bk39G.gif&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'http://www.ultraimg.com/images/Bk39G.gif'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <img src="http://www.ultraimg.com/images/Bk39G.gif" />
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -54729,7 +54641,6 @@ fwDbkXoZtmTPKgAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is what it looks like when we add coefficients to reconstruct the image. Note that first coefficients are mostly color and hue differences, then it reconstructs a coarse, very approximate image. Then, with high frequency components, we could get a high quality image. You could also see the artifacts going away when the high frequency components are added to the image. Nice way to think about the compression in general.</p>
-
 </div>
 </div>
 </div>
@@ -54738,7 +54649,7 @@ fwDbkXoZtmTPKgAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">&#182;</a></h3><ul>
+<h3 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">¶</a></h3><ul>
 <li>DCT is surprisingly good for compression when it comes to natural images and even very few coefficients, you could construct the image quite well.(thanks to its energy compaction properties)</li>
 <li>Since the basis functions are orthogonal(for common type, it is actually orthonormal as well), the coefficients are uncorrelated to each other and missing one coefficient does not affect the remaining ones. This provides a reliable reconstruction even if one or more coefficients are missing. In transformative coding or other coding schemas that coefficients are somehow related, the error in the communication channel may propagate to other pixels and reconstructed image and original image difference would result in quite big error even if only a few coefficients get corrupted.</li>
 <li>In the receiver, one needs to only take inverse dct transform as the basis functions are same in both transmitter and receiver, transmitter does not have to send the basis functions to the receiver. This provides a common, universal coding schema where if your computer has inverse dct transform capability, you just need to download few coefficients to reconstruct the image.</li>
@@ -54746,7 +54657,6 @@ fwDbkXoZtmTPKgAAAABJRU5ErkJggg==
 <li>In general, DCT throws aways very high frequency components so it may be better to use some other compression schema if your image has high frequency components(rich texture, lots of transitions and sharp edges)</li>
 <li>DFT produces symetric signals in frequency domain for real signals. Therefore, part of the computation becomes a waste as you could reproduce the half of the coefficients from the rest of the coefficients. DCT not only produces more compact representation than DFT but also does not have this disadvantage that DFT has.</li>
 </ul>
-
 </div>
 </div>
 </div>

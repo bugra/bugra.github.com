@@ -1016,13 +1016,12 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><p>Data is from IMDB and it includes all of the popularly voted 100042 movies from 1950 to 2013.(I know why 100000 is there but have no idea how 42 movies get squeezed. Instead of blaming my web scraping skills, I blame the <a href="https://www.google.com/search?q=the+answer+to+life+the+universe+and+everything">universe</a>, though).</p>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">¶</a></h2><p>Data is from IMDB and it includes all of the popularly voted 100042 movies from 1950 to 2013.(I know why 100000 is there but have no idea how 42 movies get squeezed. Instead of blaming my web scraping skills, I blame the <a href="https://www.google.com/search?q=the+answer+to+life+the+universe+and+everything">universe</a>, though).</p>
 <p>The reason why I chose the number of
 votes as a metric to order the movies is because, generally the information (title, certificate, outline, director and so on) about movie are more likely to be complete for the movies that have high number of votes. Moreover, IMDB uses number of votes as a metric to determine the ranking as well so number of votes also correlate with the rating as well.  Further, everybody at least has an idea on IMDB Top 250 or IMDB Top 1000 which are ordered by the ratings computed by IMDB.</p>
 <p>Although the data is quite rich in terms of basic information, only year, rating and votes are complete for all of the movies. Only ~80% of the movies have runtime information(minutes). The categories are mostly 90% complete which could be considered good but the certificate information of the movies is the most sparse (only ~25% of them have it).</p>
@@ -1030,7 +1029,6 @@ votes as a metric to order the movies is because, generally the information (tit
 <p>I will let the <strong>data speak for itself</strong> by providing scatter plots and sometimes histograms as well as useful tables for movies.(I know tables are <em>the worst</em> but in some cases they are still useful.)</p>
 <p>As categories go, I considered 23 categories although there are 25 categories in the top 100K movies. I removed <em>Game-Show</em> and <em>TV-Reality</em> movies as they have less than 5 movies in the top 100K movies.</p>
 <p>Let's get started.</p>
-
 </div>
 </div>
 </div>
@@ -1039,7 +1037,7 @@ votes as a metric to order the movies is because, generally the information (tit
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Best-Rated-Movies-for-Each-Year">Best Rated Movies for Each Year<a class="anchor-link" href="#Best-Rated-Movies-for-Each-Year">&#182;</a></h2>
+<h2 id="Best-Rated-Movies-for-Each-Year">Best Rated Movies for Each Year<a class="anchor-link" href="#Best-Rated-Movies-for-Each-Year">¶</a></h2>
 </div>
 </div>
 </div>
@@ -1049,772 +1047,745 @@ votes as a metric to order the movies is because, generally the information (tit
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I put the rating as 8.5 and also filtered the movies that have less than 25000 votes as there are number of movies which get quite high ratings whereas the number of votes are quite small.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="prompt input_prompt">In [82]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>Movies</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0 </th>
-      <td> 1950</td>
-      <td>                                      Sunset Blvd.</td>
-    </tr>
-    <tr>
-      <th>1 </th>
-      <td> 1951</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>2 </th>
-      <td> 1952</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>3 </th>
-      <td> 1953</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>4 </th>
-      <td> 1954</td>
-      <td>                       Rear Window - Seven Samurai</td>
-    </tr>
-    <tr>
-      <th>5 </th>
-      <td> 1955</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>6 </th>
-      <td> 1956</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>7 </th>
-      <td> 1957</td>
-      <td>                                      12 Angry Men</td>
-    </tr>
-    <tr>
-      <th>8 </th>
-      <td> 1958</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>9 </th>
-      <td> 1959</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td> 1960</td>
-      <td>                                            Psycho</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td> 1961</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td> 1962</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td> 1963</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td> 1964</td>
-      <td> Dr. Strangelove or: How I Learned to Stop Worr...</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td> 1965</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td> 1966</td>
-      <td>                    The Good, the Bad and the Ugly</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td> 1967</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td> 1968</td>
-      <td>                      Once Upon a Time in the West</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td> 1969</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td> 1970</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td> 1971</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td> 1972</td>
-      <td>                                     The Godfather</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td> 1973</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td> 1974</td>
-      <td>                            The Godfather: Part II</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td> 1975</td>
-      <td>              One Flew Over the Cuckoo&amp;#x27;s Nest</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td> 1976</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td> 1977</td>
-      <td>                                         Star Wars</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td> 1978</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td> 1979</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td> 1980</td>
-      <td>    Star Wars: Episode V - The Empire Strikes Back</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td> 1981</td>
-      <td>                           Raiders of the Lost Ark</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td> 1982</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td> 1983</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td> 1984</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td> 1985</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td> 1986</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td> 1987</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td> 1988</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td> 1989</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td> 1990</td>
-      <td>                                        Goodfellas</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td> 1991</td>
-      <td>                          The Silence of the Lambs</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td> 1992</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td> 1993</td>
-      <td>                             Schindler&amp;#x27;s List</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td> 1994</td>
-      <td> The Shawshank Redemption - Pulp Fiction - Forr...</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td> 1995</td>
-      <td>                        Se7en - The Usual Suspects</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td> 1996</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td> 1997</td>
-      <td>                                 Life Is Beautiful</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td> 1998</td>
-      <td>          Saving Private Ryan - American History X</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td> 1999</td>
-      <td>                           Fight Club - The Matrix</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td> 2000</td>
-      <td>                                           Memento</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td> 2001</td>
-      <td> The Lord of the Rings: The Fellowship of the R...</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td> 2002</td>
-      <td> The Lord of the Rings: The Two Towers - City o...</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td> 2003</td>
-      <td>     The Lord of the Rings: The Return of the King</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td> 2004</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>55</th>
-      <td> 2005</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>56</th>
-      <td> 2006</td>
-      <td>                                   Rang De Basanti</td>
-    </tr>
-    <tr>
-      <th>57</th>
-      <td> 2007</td>
-      <td>                               Like Stars on Earth</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td> 2008</td>
-      <td>                                   The Dark Knight</td>
-    </tr>
-    <tr>
-      <th>59</th>
-      <td> 2009</td>
-      <td>                                                  </td>
-    </tr>
-    <tr>
-      <th>60</th>
-      <td> 2010</td>
-      <td>                                         Inception</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td> 2011</td>
-      <td>                                  The Intouchables</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td> 2012</td>
-      <td>                             The Dark Knight Rises</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td> 2013</td>
-      <td>                                                  </td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Year</th>
+<th>Movies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0 </th>
+<td> 1950</td>
+<td>                                      Sunset Blvd.</td>
+</tr>
+<tr>
+<th>1 </th>
+<td> 1951</td>
+<td> </td>
+</tr>
+<tr>
+<th>2 </th>
+<td> 1952</td>
+<td> </td>
+</tr>
+<tr>
+<th>3 </th>
+<td> 1953</td>
+<td> </td>
+</tr>
+<tr>
+<th>4 </th>
+<td> 1954</td>
+<td>                       Rear Window - Seven Samurai</td>
+</tr>
+<tr>
+<th>5 </th>
+<td> 1955</td>
+<td> </td>
+</tr>
+<tr>
+<th>6 </th>
+<td> 1956</td>
+<td> </td>
+</tr>
+<tr>
+<th>7 </th>
+<td> 1957</td>
+<td>                                      12 Angry Men</td>
+</tr>
+<tr>
+<th>8 </th>
+<td> 1958</td>
+<td> </td>
+</tr>
+<tr>
+<th>9 </th>
+<td> 1959</td>
+<td> </td>
+</tr>
+<tr>
+<th>10</th>
+<td> 1960</td>
+<td>                                            Psycho</td>
+</tr>
+<tr>
+<th>11</th>
+<td> 1961</td>
+<td> </td>
+</tr>
+<tr>
+<th>12</th>
+<td> 1962</td>
+<td> </td>
+</tr>
+<tr>
+<th>13</th>
+<td> 1963</td>
+<td> </td>
+</tr>
+<tr>
+<th>14</th>
+<td> 1964</td>
+<td> Dr. Strangelove or: How I Learned to Stop Worr...</td>
+</tr>
+<tr>
+<th>15</th>
+<td> 1965</td>
+<td> </td>
+</tr>
+<tr>
+<th>16</th>
+<td> 1966</td>
+<td>                    The Good, the Bad and the Ugly</td>
+</tr>
+<tr>
+<th>17</th>
+<td> 1967</td>
+<td> </td>
+</tr>
+<tr>
+<th>18</th>
+<td> 1968</td>
+<td>                      Once Upon a Time in the West</td>
+</tr>
+<tr>
+<th>19</th>
+<td> 1969</td>
+<td> </td>
+</tr>
+<tr>
+<th>20</th>
+<td> 1970</td>
+<td> </td>
+</tr>
+<tr>
+<th>21</th>
+<td> 1971</td>
+<td> </td>
+</tr>
+<tr>
+<th>22</th>
+<td> 1972</td>
+<td>                                     The Godfather</td>
+</tr>
+<tr>
+<th>23</th>
+<td> 1973</td>
+<td> </td>
+</tr>
+<tr>
+<th>24</th>
+<td> 1974</td>
+<td>                            The Godfather: Part II</td>
+</tr>
+<tr>
+<th>25</th>
+<td> 1975</td>
+<td>              One Flew Over the Cuckoo&amp;#x27;s Nest</td>
+</tr>
+<tr>
+<th>26</th>
+<td> 1976</td>
+<td> </td>
+</tr>
+<tr>
+<th>27</th>
+<td> 1977</td>
+<td>                                         Star Wars</td>
+</tr>
+<tr>
+<th>28</th>
+<td> 1978</td>
+<td> </td>
+</tr>
+<tr>
+<th>29</th>
+<td> 1979</td>
+<td> </td>
+</tr>
+<tr>
+<th>30</th>
+<td> 1980</td>
+<td>    Star Wars: Episode V - The Empire Strikes Back</td>
+</tr>
+<tr>
+<th>31</th>
+<td> 1981</td>
+<td>                           Raiders of the Lost Ark</td>
+</tr>
+<tr>
+<th>32</th>
+<td> 1982</td>
+<td> </td>
+</tr>
+<tr>
+<th>33</th>
+<td> 1983</td>
+<td> </td>
+</tr>
+<tr>
+<th>34</th>
+<td> 1984</td>
+<td> </td>
+</tr>
+<tr>
+<th>35</th>
+<td> 1985</td>
+<td> </td>
+</tr>
+<tr>
+<th>36</th>
+<td> 1986</td>
+<td> </td>
+</tr>
+<tr>
+<th>37</th>
+<td> 1987</td>
+<td> </td>
+</tr>
+<tr>
+<th>38</th>
+<td> 1988</td>
+<td> </td>
+</tr>
+<tr>
+<th>39</th>
+<td> 1989</td>
+<td> </td>
+</tr>
+<tr>
+<th>40</th>
+<td> 1990</td>
+<td>                                        Goodfellas</td>
+</tr>
+<tr>
+<th>41</th>
+<td> 1991</td>
+<td>                          The Silence of the Lambs</td>
+</tr>
+<tr>
+<th>42</th>
+<td> 1992</td>
+<td> </td>
+</tr>
+<tr>
+<th>43</th>
+<td> 1993</td>
+<td>                             Schindler&amp;#x27;s List</td>
+</tr>
+<tr>
+<th>44</th>
+<td> 1994</td>
+<td> The Shawshank Redemption - Pulp Fiction - Forr...</td>
+</tr>
+<tr>
+<th>45</th>
+<td> 1995</td>
+<td>                        Se7en - The Usual Suspects</td>
+</tr>
+<tr>
+<th>46</th>
+<td> 1996</td>
+<td> </td>
+</tr>
+<tr>
+<th>47</th>
+<td> 1997</td>
+<td>                                 Life Is Beautiful</td>
+</tr>
+<tr>
+<th>48</th>
+<td> 1998</td>
+<td>          Saving Private Ryan - American History X</td>
+</tr>
+<tr>
+<th>49</th>
+<td> 1999</td>
+<td>                           Fight Club - The Matrix</td>
+</tr>
+<tr>
+<th>50</th>
+<td> 2000</td>
+<td>                                           Memento</td>
+</tr>
+<tr>
+<th>51</th>
+<td> 2001</td>
+<td> The Lord of the Rings: The Fellowship of the R...</td>
+</tr>
+<tr>
+<th>52</th>
+<td> 2002</td>
+<td> The Lord of the Rings: The Two Towers - City o...</td>
+</tr>
+<tr>
+<th>53</th>
+<td> 2003</td>
+<td>     The Lord of the Rings: The Return of the King</td>
+</tr>
+<tr>
+<th>54</th>
+<td> 2004</td>
+<td> </td>
+</tr>
+<tr>
+<th>55</th>
+<td> 2005</td>
+<td> </td>
+</tr>
+<tr>
+<th>56</th>
+<td> 2006</td>
+<td>                                   Rang De Basanti</td>
+</tr>
+<tr>
+<th>57</th>
+<td> 2007</td>
+<td>                               Like Stars on Earth</td>
+</tr>
+<tr>
+<th>58</th>
+<td> 2008</td>
+<td>                                   The Dark Knight</td>
+</tr>
+<tr>
+<th>59</th>
+<td> 2009</td>
+<td> </td>
+</tr>
+<tr>
+<th>60</th>
+<td> 2010</td>
+<td>                                         Inception</td>
+</tr>
+<tr>
+<th>61</th>
+<td> 2011</td>
+<td>                                  The Intouchables</td>
+</tr>
+<tr>
+<th>62</th>
+<td> 2012</td>
+<td>                             The Dark Knight Rises</td>
+</tr>
+<tr>
+<th>63</th>
+<td> 2013</td>
+<td> </td>
+</tr>
+</tbody>
 </table>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Highly-Voted-Movies-per-Year">Highly Voted Movies per Year<a class="anchor-link" href="#Highly-Voted-Movies-per-Year">&#182;</a></h2>
+<h2 id="Highly-Voted-Movies-per-Year">Highly Voted Movies per Year<a class="anchor-link" href="#Highly-Voted-Movies-per-Year">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[175]:</div>
+<div class="prompt input_prompt">In [175]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
 <div class="output_html rendered_html output_subarea ">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>Movies</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0 </th>
-      <td> 1950</td>
-      <td>                                      Sunset Blvd.</td>
-    </tr>
-    <tr>
-      <th>1 </th>
-      <td> 1951</td>
-      <td>                               Alice in Wonderland</td>
-    </tr>
-    <tr>
-      <th>2 </th>
-      <td> 1952</td>
-      <td>                          Singin&amp;#x27; in the Rain</td>
-    </tr>
-    <tr>
-      <th>3 </th>
-      <td> 1953</td>
-      <td>                                     Roman Holiday</td>
-    </tr>
-    <tr>
-      <th>4 </th>
-      <td> 1954</td>
-      <td>                                       Rear Window</td>
-    </tr>
-    <tr>
-      <th>5 </th>
-      <td> 1955</td>
-      <td>                             Rebel Without a Cause</td>
-    </tr>
-    <tr>
-      <th>6 </th>
-      <td> 1956</td>
-      <td>                                     The Searchers</td>
-    </tr>
-    <tr>
-      <th>7 </th>
-      <td> 1957</td>
-      <td>                                      12 Angry Men</td>
-    </tr>
-    <tr>
-      <th>8 </th>
-      <td> 1958</td>
-      <td>                                           Vertigo</td>
-    </tr>
-    <tr>
-      <th>9 </th>
-      <td> 1959</td>
-      <td>                                North by Northwest</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td> 1960</td>
-      <td>                                            Psycho</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td> 1961</td>
-      <td>                       Breakfast at Tiffany&amp;#x27;s</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td> 1962</td>
-      <td>                             To Kill a Mockingbird</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td> 1963</td>
-      <td>                                  The Great Escape</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td> 1964</td>
-      <td> Dr. Strangelove or: How I Learned to Stop Worr...</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td> 1965</td>
-      <td>                                The Sound of Music</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td> 1966</td>
-      <td>                    The Good, the Bad and the Ugly</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td> 1967</td>
-      <td>                                      The Graduate</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td> 1968</td>
-      <td>                             2001: A Space Odyssey</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td> 1969</td>
-      <td>                Butch Cassidy and the Sundance Kid</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td> 1970</td>
-      <td>                                            Patton</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td> 1971</td>
-      <td>                                A Clockwork Orange</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td> 1972</td>
-      <td>                                     The Godfather</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td> 1973</td>
-      <td>                                      The Exorcist</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td> 1974</td>
-      <td>                            The Godfather: Part II</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td> 1975</td>
-      <td>              One Flew Over the Cuckoo&amp;#x27;s Nest</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td> 1976</td>
-      <td>                                       Taxi Driver</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td> 1977</td>
-      <td>                                         Star Wars</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td> 1978</td>
-      <td>                                   The Deer Hunter</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td> 1979</td>
-      <td>                                             Alien</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td> 1980</td>
-      <td>    Star Wars: Episode V - The Empire Strikes Back</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td> 1981</td>
-      <td>                           Raiders of the Lost Ark</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td> 1982</td>
-      <td>                                      Blade Runner</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td> 1983</td>
-      <td>        Star Wars: Episode VI - Return of the Jedi</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td> 1984</td>
-      <td>                                    The Terminator</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td> 1985</td>
-      <td>                                Back to the Future</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td> 1986</td>
-      <td>                                            Aliens</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td> 1987</td>
-      <td>                                 Full Metal Jacket</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td> 1988</td>
-      <td>                                          Die Hard</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td> 1989</td>
-      <td>                Indiana Jones and the Last Crusade</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td> 1990</td>
-      <td>                                        Goodfellas</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td> 1991</td>
-      <td>                          The Silence of the Lambs</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td> 1992</td>
-      <td>                                    Reservoir Dogs</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td> 1993</td>
-      <td>                             Schindler&amp;#x27;s List</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td> 1994</td>
-      <td>                          The Shawshank Redemption</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td> 1995</td>
-      <td>                                             Se7en</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td> 1996</td>
-      <td>                                     Trainspotting</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td> 1997</td>
-      <td>                                           Titanic</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td> 1998</td>
-      <td>                               Saving Private Ryan</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td> 1999</td>
-      <td>                                        Fight Club</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td> 2000</td>
-      <td>                                         Gladiator</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td> 2001</td>
-      <td> The Lord of the Rings: The Fellowship of the Ring</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td> 2002</td>
-      <td>             The Lord of the Rings: The Two Towers</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td> 2003</td>
-      <td>     The Lord of the Rings: The Return of the King</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td> 2004</td>
-      <td>             Eternal Sunshine of the Spotless Mind</td>
-    </tr>
-    <tr>
-      <th>55</th>
-      <td> 2005</td>
-      <td>                                     Batman Begins</td>
-    </tr>
-    <tr>
-      <th>56</th>
-      <td> 2006</td>
-      <td>                                      The Departed</td>
-    </tr>
-    <tr>
-      <th>57</th>
-      <td> 2007</td>
-      <td>                            No Country for Old Men</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td> 2008</td>
-      <td>                                   The Dark Knight</td>
-    </tr>
-    <tr>
-      <th>59</th>
-      <td> 2009</td>
-      <td>                                            Avatar</td>
-    </tr>
-    <tr>
-      <th>60</th>
-      <td> 2010</td>
-      <td>                                         Inception</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td> 2011</td>
-      <td>      Harry Potter and the Deathly Hallows: Part 2</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td> 2012</td>
-      <td>                             The Dark Knight Rises</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td> 2013</td>
-      <td>                                      Man of Steel</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Year</th>
+<th>Movies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0 </th>
+<td> 1950</td>
+<td>                                      Sunset Blvd.</td>
+</tr>
+<tr>
+<th>1 </th>
+<td> 1951</td>
+<td>                               Alice in Wonderland</td>
+</tr>
+<tr>
+<th>2 </th>
+<td> 1952</td>
+<td>                          Singin&amp;#x27; in the Rain</td>
+</tr>
+<tr>
+<th>3 </th>
+<td> 1953</td>
+<td>                                     Roman Holiday</td>
+</tr>
+<tr>
+<th>4 </th>
+<td> 1954</td>
+<td>                                       Rear Window</td>
+</tr>
+<tr>
+<th>5 </th>
+<td> 1955</td>
+<td>                             Rebel Without a Cause</td>
+</tr>
+<tr>
+<th>6 </th>
+<td> 1956</td>
+<td>                                     The Searchers</td>
+</tr>
+<tr>
+<th>7 </th>
+<td> 1957</td>
+<td>                                      12 Angry Men</td>
+</tr>
+<tr>
+<th>8 </th>
+<td> 1958</td>
+<td>                                           Vertigo</td>
+</tr>
+<tr>
+<th>9 </th>
+<td> 1959</td>
+<td>                                North by Northwest</td>
+</tr>
+<tr>
+<th>10</th>
+<td> 1960</td>
+<td>                                            Psycho</td>
+</tr>
+<tr>
+<th>11</th>
+<td> 1961</td>
+<td>                       Breakfast at Tiffany&amp;#x27;s</td>
+</tr>
+<tr>
+<th>12</th>
+<td> 1962</td>
+<td>                             To Kill a Mockingbird</td>
+</tr>
+<tr>
+<th>13</th>
+<td> 1963</td>
+<td>                                  The Great Escape</td>
+</tr>
+<tr>
+<th>14</th>
+<td> 1964</td>
+<td> Dr. Strangelove or: How I Learned to Stop Worr...</td>
+</tr>
+<tr>
+<th>15</th>
+<td> 1965</td>
+<td>                                The Sound of Music</td>
+</tr>
+<tr>
+<th>16</th>
+<td> 1966</td>
+<td>                    The Good, the Bad and the Ugly</td>
+</tr>
+<tr>
+<th>17</th>
+<td> 1967</td>
+<td>                                      The Graduate</td>
+</tr>
+<tr>
+<th>18</th>
+<td> 1968</td>
+<td>                             2001: A Space Odyssey</td>
+</tr>
+<tr>
+<th>19</th>
+<td> 1969</td>
+<td>                Butch Cassidy and the Sundance Kid</td>
+</tr>
+<tr>
+<th>20</th>
+<td> 1970</td>
+<td>                                            Patton</td>
+</tr>
+<tr>
+<th>21</th>
+<td> 1971</td>
+<td>                                A Clockwork Orange</td>
+</tr>
+<tr>
+<th>22</th>
+<td> 1972</td>
+<td>                                     The Godfather</td>
+</tr>
+<tr>
+<th>23</th>
+<td> 1973</td>
+<td>                                      The Exorcist</td>
+</tr>
+<tr>
+<th>24</th>
+<td> 1974</td>
+<td>                            The Godfather: Part II</td>
+</tr>
+<tr>
+<th>25</th>
+<td> 1975</td>
+<td>              One Flew Over the Cuckoo&amp;#x27;s Nest</td>
+</tr>
+<tr>
+<th>26</th>
+<td> 1976</td>
+<td>                                       Taxi Driver</td>
+</tr>
+<tr>
+<th>27</th>
+<td> 1977</td>
+<td>                                         Star Wars</td>
+</tr>
+<tr>
+<th>28</th>
+<td> 1978</td>
+<td>                                   The Deer Hunter</td>
+</tr>
+<tr>
+<th>29</th>
+<td> 1979</td>
+<td>                                             Alien</td>
+</tr>
+<tr>
+<th>30</th>
+<td> 1980</td>
+<td>    Star Wars: Episode V - The Empire Strikes Back</td>
+</tr>
+<tr>
+<th>31</th>
+<td> 1981</td>
+<td>                           Raiders of the Lost Ark</td>
+</tr>
+<tr>
+<th>32</th>
+<td> 1982</td>
+<td>                                      Blade Runner</td>
+</tr>
+<tr>
+<th>33</th>
+<td> 1983</td>
+<td>        Star Wars: Episode VI - Return of the Jedi</td>
+</tr>
+<tr>
+<th>34</th>
+<td> 1984</td>
+<td>                                    The Terminator</td>
+</tr>
+<tr>
+<th>35</th>
+<td> 1985</td>
+<td>                                Back to the Future</td>
+</tr>
+<tr>
+<th>36</th>
+<td> 1986</td>
+<td>                                            Aliens</td>
+</tr>
+<tr>
+<th>37</th>
+<td> 1987</td>
+<td>                                 Full Metal Jacket</td>
+</tr>
+<tr>
+<th>38</th>
+<td> 1988</td>
+<td>                                          Die Hard</td>
+</tr>
+<tr>
+<th>39</th>
+<td> 1989</td>
+<td>                Indiana Jones and the Last Crusade</td>
+</tr>
+<tr>
+<th>40</th>
+<td> 1990</td>
+<td>                                        Goodfellas</td>
+</tr>
+<tr>
+<th>41</th>
+<td> 1991</td>
+<td>                          The Silence of the Lambs</td>
+</tr>
+<tr>
+<th>42</th>
+<td> 1992</td>
+<td>                                    Reservoir Dogs</td>
+</tr>
+<tr>
+<th>43</th>
+<td> 1993</td>
+<td>                             Schindler&amp;#x27;s List</td>
+</tr>
+<tr>
+<th>44</th>
+<td> 1994</td>
+<td>                          The Shawshank Redemption</td>
+</tr>
+<tr>
+<th>45</th>
+<td> 1995</td>
+<td>                                             Se7en</td>
+</tr>
+<tr>
+<th>46</th>
+<td> 1996</td>
+<td>                                     Trainspotting</td>
+</tr>
+<tr>
+<th>47</th>
+<td> 1997</td>
+<td>                                           Titanic</td>
+</tr>
+<tr>
+<th>48</th>
+<td> 1998</td>
+<td>                               Saving Private Ryan</td>
+</tr>
+<tr>
+<th>49</th>
+<td> 1999</td>
+<td>                                        Fight Club</td>
+</tr>
+<tr>
+<th>50</th>
+<td> 2000</td>
+<td>                                         Gladiator</td>
+</tr>
+<tr>
+<th>51</th>
+<td> 2001</td>
+<td> The Lord of the Rings: The Fellowship of the Ring</td>
+</tr>
+<tr>
+<th>52</th>
+<td> 2002</td>
+<td>             The Lord of the Rings: The Two Towers</td>
+</tr>
+<tr>
+<th>53</th>
+<td> 2003</td>
+<td>     The Lord of the Rings: The Return of the King</td>
+</tr>
+<tr>
+<th>54</th>
+<td> 2004</td>
+<td>             Eternal Sunshine of the Spotless Mind</td>
+</tr>
+<tr>
+<th>55</th>
+<td> 2005</td>
+<td>                                     Batman Begins</td>
+</tr>
+<tr>
+<th>56</th>
+<td> 2006</td>
+<td>                                      The Departed</td>
+</tr>
+<tr>
+<th>57</th>
+<td> 2007</td>
+<td>                            No Country for Old Men</td>
+</tr>
+<tr>
+<th>58</th>
+<td> 2008</td>
+<td>                                   The Dark Knight</td>
+</tr>
+<tr>
+<th>59</th>
+<td> 2009</td>
+<td>                                            Avatar</td>
+</tr>
+<tr>
+<th>60</th>
+<td> 2010</td>
+<td>                                         Inception</td>
+</tr>
+<tr>
+<th>61</th>
+<td> 2011</td>
+<td>      Harry Potter and the Deathly Hallows: Part 2</td>
+</tr>
+<tr>
+<th>62</th>
+<td> 2012</td>
+<td>                             The Dark Knight Rises</td>
+</tr>
+<tr>
+<th>63</th>
+<td> 2013</td>
+<td>                                      Man of Steel</td>
+</tr>
+</tbody>
 </table>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Category-Distribution-(Mean-Values)">Category Distribution (Mean Values)<a class="anchor-link" href="#Category-Distribution-(Mean-Values)">&#182;</a></h2>
+<h2 id="Category-Distribution-(Mean-Values)">Category Distribution (Mean Values)<a class="anchor-link" href="#Category-Distribution-(Mean-Values)">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In [77]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x10f061c10&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZsAAAENCAYAAADZp8imAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X1cz/f++PHHp0guIhI7Y6ZhRvXpykVlrGbDGXHk5Hqm
@@ -2186,52 +2157,39 @@ GB4eTo1Gw9WrV3PlypXcsWOHor4Mt09J8uOPP6YkSfzpp59G7acwtYjB0wS3pFKpUFtbC6PRONGh
 5fX19fVh165dSEtLu41RCpOBKDaCWxrror5we1RXVyM8PBw6nQ5ZWVk4cOCAw40W4/HHH39Ap9Ph
 4sWL2Lhx422OVJho4ms0QRAEwenEmY0gCILgdKLYCIIgCE4nio0gCILgdKLYCIIgCE4nio0gCILg
 dKLYCIIgCE73P+K7eDgYFdGiAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Runtime-vs-Rating">Runtime vs Rating<a class="anchor-link" href="#Runtime-vs-Rating">&#182;</a></h3>
+<h3 id="Runtime-vs-Rating">Runtime vs Rating<a class="anchor-link" href="#Runtime-vs-Rating">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x1221edc50&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYYAAAESCAYAAAD5d3KwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvUewHdd1Lvzt1OGEmxAuACYxmKZMUQxiEElZki3L9d5f
@@ -3737,14 +3695,11 @@ obHUi0s89sorr2Dt2rXIZrP44he/iIcffhgLFy4EADzxxBP4gz/4A+i6fsJzJ5jZSAhuCRKcBvzb
 v/0b3n77bTz00ENTcn7XdbFy5Ups3boVs2bNmpIYEkwfJBNDggQJEiSoQZJKSpAgQYIENUgmhgQJ
 EiRIUINkYkiQIEGCBDVIJoYECRIkSFCDZGJIkCBBggQ1SCaGBAkSJEhQg2RiSJAgQYIENUgmhgQJ
 EiRIUIP/D5POR6F0ERkOAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3752,7 +3707,6 @@ EiRIUIP/D5POR6F0ERkOAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There are small number of movies which is shorter 50 minutes and longer than 200 minutes. What else can we get this graph? Well, one thing, not average runtimes(&gt;120 and &lt;70) are correlated high ratings. This may due to selection bias; people who prefer longer movies, have specific taste or interest to the movie so they enjoy movie more.</p>
-
 </div>
 </div>
 </div>
@@ -3761,29 +3715,23 @@ EiRIUIP/D5POR6F0ERkOAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Votes-vs-Rating">Votes vs Rating<a class="anchor-link" href="#Votes-vs-Rating">&#182;</a></h3>
+<h3 id="Votes-vs-Rating">Votes vs Rating<a class="anchor-link" href="#Votes-vs-Rating">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAEXCAYAAABGeIg9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvcmvHdd5L/pba9Wqqt2dlp0kSlbka1mWpSRucHOvrQRB
@@ -5001,14 +4949,11 @@ v8aMGTOwbds2LF26VH9vMt3C8cpSjDF88IMfxP3334/29nZs2rQJjz76KACgVCrhF7/4BX74wx9i
 1rqAtXaWmchJ/sXBNYG76+95ykDgS/WSNNm2LdM0/Xl/8vW09L5v5nn+XiulpNaa4zgyDEP2fU+t
 NaWUJMmyLHmeJ6WUrOuarut+PMt1XRnHMX3f5zzP3Pf961z8T36CA6Dh5gBAQxwAaIgDAA1xAKAh
 DgA0xAGAhjgA0BAHABriAEDjA/XCTuz3QgIXAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -5016,14 +4961,13 @@ DgA0xAGAhjgA0BAHABriAEDjA/XCTuz3QgIXAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There is a clear correlation between number of votes and rating as IMDB explains(only regular voters are considered for top 250 movies, though):</p>
-<p>weighted rank = $\frac{v*X + k*C}{v+k}$<br>
+<p>weighted rank = $\frac{v*X + k*C}{v+k}$<br />
 where</p>
-<p>$X$ = average for the movie (mean)<br>
-$v$ = number of votes for the movie<br>
-$k$ = minimum votes required to be listed in the top 250 (currently 25000)<br>
+<p>$X$ = average for the movie (mean)<br />
+$v$ = number of votes for the movie<br />
+$k$ = minimum votes required to be listed in the top 250 (currently 25000)<br />
 $C$ = the mean vote across the whole report (currently 6.90)</p>
 <p>Therefore, it may be safe to assume this ranking more or less holds true for non-top 250 movies as well.</p>
-
 </div>
 </div>
 </div>
@@ -5032,38 +4976,28 @@ $C$ = the mean vote across the whole report (currently 6.90)</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Rating-vs-Year">Rating vs Year<a class="anchor-link" href="#Rating-vs-Year">&#182;</a></h3>
+<h3 id="Rating-vs-Year">Rating vs Year<a class="anchor-link" href="#Rating-vs-Year">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x116847250&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX4AAAESCAYAAAD67L7dAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvVmMZdeVnvntM945bsw5kSKTTJKiRFIci6JkSVUsqQbD
@@ -7016,14 +6950,11 @@ QAdcffXV+MQnPpGy3TOazSbuvvtu7N27F3feeSeklLjrrrtS+umzMUNUgbmPYsdfoEAbCCFw7733
 ly7Fk08+iQceeACLFy/G1Vdfjb/+67+GUgq9vb145JFH8Bu/8RtYsGABHnvsMdx5552p8sWOv0A3
 onDuFihQoMBFhmLHX6BAgQIXGYqFv0CBAgUuMhQLf4ECBQpcZCgW/gIFChS4yFAs/AUKFChwkaFY
 +AsUKFDgIkOx8BcoUKDARYZi4S9QoECBiwzFwl+gQIECFxn+PyrYAblgkZHYAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7032,7 +6963,6 @@ onDuFihQoMBFhmLHX6BAgQIXGYqFv0CBAgUuMhQLf4ECBQpcZCgW/gIFChS4yFAs/AUKFChwkaFY
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I think this result is mostly due to selection bias as most people prefer good old movies whereas they are not that selective
 choosing contemporary movies.</p>
-
 </div>
 </div>
 </div>
@@ -7041,29 +6971,23 @@ choosing contemporary movies.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Votes-vs-Year">Votes vs Year<a class="anchor-link" href="#Votes-vs-Year">&#182;</a></h3>
+<h3 id="Votes-vs-Year">Votes vs Year<a class="anchor-link" href="#Votes-vs-Year">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAEVCAYAAAAPRfkLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXuQHUd5Nv5098y57FUrWZIvkiywbMvGsi1Zl71LBmED
@@ -9108,52 +9032,39 @@ bcDAm8KYFAwY+AXQ2dnJo48+yp133kk0GqWrq4u//Mu/RCmFz+fjnnvu4dd+7dcIh8M89NBD3Hjj
 jU3nGzsFA8sNhqPZgAEDBgzoMHYKBgwYMGBAhzEpGDBgwIABHcakYMCAAQMGdBiTggEDBgwY0GFM
 CgYMGDBgQIcxKRgwYMCAAR3GpGDAgAEDBnQYk4IBAwYMGNBhTAoGDBgwYEDH/w8QT3kpyFhTdQAA
 AABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Number-of-Movies-for-each-Year">Number of Movies for each Year<a class="anchor-link" href="#Number-of-Movies-for-each-Year">&#182;</a></h3>
+<h3 id="Number-of-Movies-for-each-Year">Number of Movies for each Year<a class="anchor-link" href="#Number-of-Movies-for-each-Year">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x10b13e810&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYsAAAESCAYAAAAMifkAAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcVWXa+P/PVslGTRIPoGwOJic3oiK21TySgUiGpjN4
@@ -9430,52 +9341,39 @@ ObZv306HDh3MX19++SUXLlwAYO/evQwcOJCOHTvSoUMH9uzZw+XLl83v1blzZykUwu5IN5QQDczd
 9RZdunTB3d2dVatWoSgKDz30EGvWrCEyMhInJyc2b97M2LFjLY6XKwthj2SAWwghRJ3kykIIIUSd
 pFgIIYSokxQLIYQQdZJiIYQQok5SLIQQQtRJioUQQog6SbEQQghRJykWQggh6iTFQgghRJ3+P/WP
 4pHWQyJJAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Number-of-Movies-with-Rating">Number of Movies with Rating<a class="anchor-link" href="#Number-of-Movies-with-Rating">&#182;</a></h3>
+<h3 id="Number-of-Movies-with-Rating">Number of Movies with Rating<a class="anchor-link" href="#Number-of-Movies-with-Rating">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x10abac890&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZYAAAESCAYAAADe2fNYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X9cVHXe///HIKhXpiiugTIgbgwqOv5MpB9usQaLmKjY
@@ -9739,52 +9637,39 @@ k08+aZKzpULx1FNP8ctf/pIhQ4YwaNAg5syZw7p161r4CwlxY3KjLyGEwyuvvMKWLVvYu3ev0VFE
 JyZjLEJ0YadOneL999/nypUrfPrpp7z44ovMnDnT6Fiik5OuMCG6sEuXLvHLX/6S0tJS+vbtS1xc
 HElJSUbHEp2cdIUJIYRwKekKE0II4VJSWIQQQriUFBYhhBAuJYVFCCGES0lhEUII4VJSWIQQQrjU
 /wdkPiytd1quPwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Number-of-Movies-with-Runtime">Number of Movies with Runtime<a class="anchor-link" href="#Number-of-Movies-with-Runtime">&#182;</a></h3>
+<h3 id="Number-of-Movies-with-Runtime">Number of Movies with Runtime<a class="anchor-link" href="#Number-of-Movies-with-Runtime">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x10acc4390&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZkAAAESCAYAAAAv0qjVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcVOXe///XIKhliIcUkgExAQVFSw3p4PYURJhoVBiU
@@ -10027,14 +9912,11 @@ zz77LHV1dc2+jvvuu4/Dhw9z4sSJZvfVkoZ1rszSXK6Gtq+//pqQkBBcXV2ZNm0aa9aswcfHB4AN
 GzYwa9YsXFxcrrpv8dsmF2MKoZj33nuPwsJCVq1apcv+z507xy233MLevXu58cYbdckg1CFFRggh
 hN3IcJkQQgi7kSIjhBDCbqTICCGEsBspMkIIIexGiowQQgi7kSIjhBDCbqTICCGEsBspMkIIIezm
 /wOhhsPXVlBhRwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -10043,7 +9925,6 @@ hN3IcJkQQgi7kSIjhBDCbqTICCGEsBspMkIIIexGiowQQgi7kSIjhBDCbqTICCGEsBspMkIIIezm
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Most of the movies are in the band of 90-100 minutes, it is almost like a gaussian if it is distributed a little evenly between 80 and 100
 minutes.</p>
-
 </div>
 </div>
 </div>
@@ -10052,420 +9933,412 @@ minutes.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Long-Movies">Long Movies<a class="anchor-link" href="#Long-Movies">&#182;</a></h3>
+<h3 id="Long-Movies">Long Movies<a class="anchor-link" href="#Long-Movies">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>rating</th>
-      <th>runtime</th>
-      <th>votes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3373 </th>
-      <td>                                Gangs of Wasseypur</td>
-      <td> 2012</td>
-      <td> 8.6</td>
-      <td>  320</td>
-      <td> 20236</td>
-    </tr>
-    <tr>
-      <th>4087 </th>
-      <td>                                              1900</td>
-      <td> 1976</td>
-      <td> 7.8</td>
-      <td>  317</td>
-      <td> 14487</td>
-    </tr>
-    <tr>
-      <th>4241 </th>
-      <td>                                 The Best of Youth</td>
-      <td> 2003</td>
-      <td> 8.5</td>
-      <td>  383</td>
-      <td> 13439</td>
-    </tr>
-    <tr>
-      <th>7405 </th>
-      <td>                                        Satantango</td>
-      <td> 1994</td>
-      <td> 8.5</td>
-      <td>  450</td>
-      <td>  4584</td>
-    </tr>
-    <tr>
-      <th>7996 </th>
-      <td>                                     War and Peace</td>
-      <td> 1966</td>
-      <td> 7.7</td>
-      <td>  427</td>
-      <td>  3958</td>
-    </tr>
-    <tr>
-      <th>16123</th>
-      <td>                                        The Deluge</td>
-      <td> 1974</td>
-      <td> 8.0</td>
-      <td>  315</td>
-      <td>  1009</td>
-    </tr>
-    <tr>
-      <th>19135</th>
-      <td>                                     Little Dorrit</td>
-      <td> 1988</td>
-      <td> 7.6</td>
-      <td>  357</td>
-      <td>   714</td>
-    </tr>
-    <tr>
-      <th>21310</th>
-      <td>                 La r&amp;#xE9;volution fran&amp;#xE7;aise</td>
-      <td> 1989</td>
-      <td> 7.5</td>
-      <td>  360</td>
-      <td>   579</td>
-    </tr>
-    <tr>
-      <th>21321</th>
-      <td>                                  The Great Battle</td>
-      <td> 1969</td>
-      <td> 8.0</td>
-      <td>  470</td>
-      <td>   578</td>
-    </tr>
-    <tr>
-      <th>22608</th>
-      <td>                          La Commune (Paris, 1871)</td>
-      <td> 2000</td>
-      <td> 7.8</td>
-      <td>  345</td>
-      <td>   517</td>
-    </tr>
-    <tr>
-      <th>22766</th>
-      <td>                                 My Uncle Napoleon</td>
-      <td> 1976</td>
-      <td> 8.5</td>
-      <td>  770</td>
-      <td>   511</td>
-    </tr>
-    <tr>
-      <th>23770</th>
-      <td>                                          Aszparuh</td>
-      <td> 1981</td>
-      <td> 8.4</td>
-      <td>  323</td>
-      <td>   471</td>
-    </tr>
-    <tr>
-      <th>24230</th>
-      <td>                       Hitler: A Film from Germany</td>
-      <td> 1977</td>
-      <td> 7.7</td>
-      <td>  442</td>
-      <td>   454</td>
-    </tr>
-    <tr>
-      <th>24485</th>
-      <td>                           And Quiet Flows the Don</td>
-      <td> 1957</td>
-      <td> 7.8</td>
-      <td>  340</td>
-      <td>   446</td>
-    </tr>
-    <tr>
-      <th>25102</th>
-      <td>                                     Broken Saints</td>
-      <td> 2003</td>
-      <td> 7.5</td>
-      <td>  720</td>
-      <td>   425</td>
-    </tr>
-    <tr>
-      <th>29248</th>
-      <td>                                             Out 1</td>
-      <td> 1971</td>
-      <td> 7.9</td>
-      <td>  729</td>
-      <td>   314</td>
-    </tr>
-    <tr>
-      <th>29605</th>
-      <td>                             The Cure for Insomnia</td>
-      <td> 1987</td>
-      <td> 5.9</td>
-      <td> 5220</td>
-      <td>   306</td>
-    </tr>
-    <tr>
-      <th>32547</th>
-      <td>                                             Sleep</td>
-      <td> 1963</td>
-      <td> 4.1</td>
-      <td>  321</td>
-      <td>   252</td>
-    </tr>
-    <tr>
-      <th>33165</th>
-      <td>                                     Shchit i mech</td>
-      <td> 1968</td>
-      <td> 7.7</td>
-      <td>  344</td>
-      <td>   243</td>
-    </tr>
-    <tr>
-      <th>37346</th>
-      <td>                                       Noce i dnie</td>
-      <td> 1975</td>
-      <td> 7.5</td>
-      <td>  632</td>
-      <td>   189</td>
-    </tr>
-    <tr>
-      <th>40239</th>
-      <td>                                   Bitva za Moskvu</td>
-      <td> 1985</td>
-      <td> 7.3</td>
-      <td>  358</td>
-      <td>   160</td>
-    </tr>
-    <tr>
-      <th>42022</th>
-      <td>                    Khleb - imya sushchestvitelnoe</td>
-      <td> 1988</td>
-      <td> 7.4</td>
-      <td>  580</td>
-      <td>   146</td>
-    </tr>
-    <tr>
-      <th>42526</th>
-      <td>   The Longest Most Meaningless Movie in the World</td>
-      <td> 1970</td>
-      <td> 6.8</td>
-      <td> 2880</td>
-      <td>   141</td>
-    </tr>
-    <tr>
-      <th>43661</th>
-      <td>                                    Legenda o Tile</td>
-      <td> 1977</td>
-      <td> 7.6</td>
-      <td>  311</td>
-      <td>   133</td>
-    </tr>
-    <tr>
-      <th>46124</th>
-      <td>                                 Sobri, ponyvafilm</td>
-      <td> 2002</td>
-      <td> 3.9</td>
-      <td>  301</td>
-      <td>   117</td>
-    </tr>
-    <tr>
-      <th>48382</th>
-      <td>                                       Melancholia</td>
-      <td> 2008</td>
-      <td> 7.1</td>
-      <td>  450</td>
-      <td>   104</td>
-    </tr>
-    <tr>
-      <th>50639</th>
-      <td>                            Star Spangled to Death</td>
-      <td> 2004</td>
-      <td> 7.2</td>
-      <td>  402</td>
-      <td>    93</td>
-    </tr>
-    <tr>
-      <th>52108</th>
-      <td>                    Evolution of a Filipino Family</td>
-      <td> 2004</td>
-      <td> 7.3</td>
-      <td>  540</td>
-      <td>    86</td>
-    </tr>
-    <tr>
-      <th>53045</th>
-      <td>                                 The Satin Slipper</td>
-      <td> 1985</td>
-      <td> 7.2</td>
-      <td>  410</td>
-      <td>    82</td>
-    </tr>
-    <tr>
-      <th>55760</th>
-      <td>                     Death in the Land of Encantos</td>
-      <td> 2007</td>
-      <td> 7.3</td>
-      <td>  540</td>
-      <td>    72</td>
-    </tr>
-    <tr>
-      <th>60766</th>
-      <td>                                  Batang West Side</td>
-      <td> 2001</td>
-      <td> 7.1</td>
-      <td>  315</td>
-      <td>    57</td>
-    </tr>
-    <tr>
-      <th>61110</th>
-      <td>                               Century of Birthing</td>
-      <td> 2011</td>
-      <td> 7.3</td>
-      <td>  360</td>
-      <td>    56</td>
-    </tr>
-    <tr>
-      <th>61546</th>
-      <td>                     Apocalypse Now: The Workprint</td>
-      <td> 1978</td>
-      <td> 7.6</td>
-      <td>  307</td>
-      <td>    55</td>
-    </tr>
-    <tr>
-      <th>63955</th>
-      <td> Heremias: Unang aklat - Ang alamat ng prinsesa...</td>
-      <td> 2006</td>
-      <td> 7.5</td>
-      <td>  540</td>
-      <td>    50</td>
-    </tr>
-    <tr>
-      <th>64344</th>
-      <td>                               The Cremaster Cycle</td>
-      <td> 2003</td>
-      <td> 6.3</td>
-      <td>  398</td>
-      <td>    49</td>
-    </tr>
-    <tr>
-      <th>64742</th>
-      <td>                                              ****</td>
-      <td> 1967</td>
-      <td> 6.5</td>
-      <td> 1100</td>
-      <td>    48</td>
-    </tr>
-    <tr>
-      <th>65313</th>
-      <td>               The Big Red One: The Reconstruction</td>
-      <td> 2005</td>
-      <td> 7.6</td>
-      <td>  316</td>
-      <td>    47</td>
-    </tr>
-    <tr>
-      <th>70520</th>
-      <td>                         The Weathered Underground</td>
-      <td> 2010</td>
-      <td> 6.6</td>
-      <td>  310</td>
-      <td>    38</td>
-    </tr>
-    <tr>
-      <th>72636</th>
-      <td>                           Florentina Hubaldo, CTE</td>
-      <td> 2012</td>
-      <td> 6.1</td>
-      <td>  360</td>
-      <td>    35</td>
-    </tr>
-    <tr>
-      <th>80673</th>
-      <td>                                   Soldaty Svobody</td>
-      <td> 1977</td>
-      <td> 5.5</td>
-      <td>  420</td>
-      <td>    26</td>
-    </tr>
-    <tr>
-      <th>81284</th>
-      <td>                                         Die Nacht</td>
-      <td> 1985</td>
-      <td> 8.0</td>
-      <td>  360</td>
-      <td>    25</td>
-    </tr>
-    <tr>
-      <th>83139</th>
-      <td>                                Konstantin Filosof</td>
-      <td> 1983</td>
-      <td> 5.8</td>
-      <td>  308</td>
-      <td>    24</td>
-    </tr>
-    <tr>
-      <th>83321</th>
-      <td>          Scooby-Doo! Laff-A-Lympics: Spooky Games</td>
-      <td> 2012</td>
-      <td> 7.3</td>
-      <td>  308</td>
-      <td>    23</td>
-    </tr>
-    <tr>
-      <th>84497</th>
-      <td>                                       Matrjoschka</td>
-      <td> 2006</td>
-      <td> 5.4</td>
-      <td> 5700</td>
-      <td>    22</td>
-    </tr>
-    <tr>
-      <th>84621</th>
-      <td>              The New Media Bible: Book of Genesis</td>
-      <td> 1979</td>
-      <td> 6.7</td>
-      <td>  312</td>
-      <td>    22</td>
-    </tr>
-    <tr>
-      <th>90440</th>
-      <td>                            In Search of Myster Ey</td>
-      <td> 2008</td>
-      <td> 4.3</td>
-      <td> 2100</td>
-      <td>    18</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>rating</th>
+<th>runtime</th>
+<th>votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>3373 </th>
+<td>                                Gangs of Wasseypur</td>
+<td> 2012</td>
+<td> 8.6</td>
+<td>  320</td>
+<td> 20236</td>
+</tr>
+<tr>
+<th>4087 </th>
+<td>                                              1900</td>
+<td> 1976</td>
+<td> 7.8</td>
+<td>  317</td>
+<td> 14487</td>
+</tr>
+<tr>
+<th>4241 </th>
+<td>                                 The Best of Youth</td>
+<td> 2003</td>
+<td> 8.5</td>
+<td>  383</td>
+<td> 13439</td>
+</tr>
+<tr>
+<th>7405 </th>
+<td>                                        Satantango</td>
+<td> 1994</td>
+<td> 8.5</td>
+<td>  450</td>
+<td>  4584</td>
+</tr>
+<tr>
+<th>7996 </th>
+<td>                                     War and Peace</td>
+<td> 1966</td>
+<td> 7.7</td>
+<td>  427</td>
+<td>  3958</td>
+</tr>
+<tr>
+<th>16123</th>
+<td>                                        The Deluge</td>
+<td> 1974</td>
+<td> 8.0</td>
+<td>  315</td>
+<td>  1009</td>
+</tr>
+<tr>
+<th>19135</th>
+<td>                                     Little Dorrit</td>
+<td> 1988</td>
+<td> 7.6</td>
+<td>  357</td>
+<td>   714</td>
+</tr>
+<tr>
+<th>21310</th>
+<td>                 La r&amp;#xE9;volution fran&amp;#xE7;aise</td>
+<td> 1989</td>
+<td> 7.5</td>
+<td>  360</td>
+<td>   579</td>
+</tr>
+<tr>
+<th>21321</th>
+<td>                                  The Great Battle</td>
+<td> 1969</td>
+<td> 8.0</td>
+<td>  470</td>
+<td>   578</td>
+</tr>
+<tr>
+<th>22608</th>
+<td>                          La Commune (Paris, 1871)</td>
+<td> 2000</td>
+<td> 7.8</td>
+<td>  345</td>
+<td>   517</td>
+</tr>
+<tr>
+<th>22766</th>
+<td>                                 My Uncle Napoleon</td>
+<td> 1976</td>
+<td> 8.5</td>
+<td>  770</td>
+<td>   511</td>
+</tr>
+<tr>
+<th>23770</th>
+<td>                                          Aszparuh</td>
+<td> 1981</td>
+<td> 8.4</td>
+<td>  323</td>
+<td>   471</td>
+</tr>
+<tr>
+<th>24230</th>
+<td>                       Hitler: A Film from Germany</td>
+<td> 1977</td>
+<td> 7.7</td>
+<td>  442</td>
+<td>   454</td>
+</tr>
+<tr>
+<th>24485</th>
+<td>                           And Quiet Flows the Don</td>
+<td> 1957</td>
+<td> 7.8</td>
+<td>  340</td>
+<td>   446</td>
+</tr>
+<tr>
+<th>25102</th>
+<td>                                     Broken Saints</td>
+<td> 2003</td>
+<td> 7.5</td>
+<td>  720</td>
+<td>   425</td>
+</tr>
+<tr>
+<th>29248</th>
+<td>                                             Out 1</td>
+<td> 1971</td>
+<td> 7.9</td>
+<td>  729</td>
+<td>   314</td>
+</tr>
+<tr>
+<th>29605</th>
+<td>                             The Cure for Insomnia</td>
+<td> 1987</td>
+<td> 5.9</td>
+<td> 5220</td>
+<td>   306</td>
+</tr>
+<tr>
+<th>32547</th>
+<td>                                             Sleep</td>
+<td> 1963</td>
+<td> 4.1</td>
+<td>  321</td>
+<td>   252</td>
+</tr>
+<tr>
+<th>33165</th>
+<td>                                     Shchit i mech</td>
+<td> 1968</td>
+<td> 7.7</td>
+<td>  344</td>
+<td>   243</td>
+</tr>
+<tr>
+<th>37346</th>
+<td>                                       Noce i dnie</td>
+<td> 1975</td>
+<td> 7.5</td>
+<td>  632</td>
+<td>   189</td>
+</tr>
+<tr>
+<th>40239</th>
+<td>                                   Bitva za Moskvu</td>
+<td> 1985</td>
+<td> 7.3</td>
+<td>  358</td>
+<td>   160</td>
+</tr>
+<tr>
+<th>42022</th>
+<td>                    Khleb - imya sushchestvitelnoe</td>
+<td> 1988</td>
+<td> 7.4</td>
+<td>  580</td>
+<td>   146</td>
+</tr>
+<tr>
+<th>42526</th>
+<td>   The Longest Most Meaningless Movie in the World</td>
+<td> 1970</td>
+<td> 6.8</td>
+<td> 2880</td>
+<td>   141</td>
+</tr>
+<tr>
+<th>43661</th>
+<td>                                    Legenda o Tile</td>
+<td> 1977</td>
+<td> 7.6</td>
+<td>  311</td>
+<td>   133</td>
+</tr>
+<tr>
+<th>46124</th>
+<td>                                 Sobri, ponyvafilm</td>
+<td> 2002</td>
+<td> 3.9</td>
+<td>  301</td>
+<td>   117</td>
+</tr>
+<tr>
+<th>48382</th>
+<td>                                       Melancholia</td>
+<td> 2008</td>
+<td> 7.1</td>
+<td>  450</td>
+<td>   104</td>
+</tr>
+<tr>
+<th>50639</th>
+<td>                            Star Spangled to Death</td>
+<td> 2004</td>
+<td> 7.2</td>
+<td>  402</td>
+<td>    93</td>
+</tr>
+<tr>
+<th>52108</th>
+<td>                    Evolution of a Filipino Family</td>
+<td> 2004</td>
+<td> 7.3</td>
+<td>  540</td>
+<td>    86</td>
+</tr>
+<tr>
+<th>53045</th>
+<td>                                 The Satin Slipper</td>
+<td> 1985</td>
+<td> 7.2</td>
+<td>  410</td>
+<td>    82</td>
+</tr>
+<tr>
+<th>55760</th>
+<td>                     Death in the Land of Encantos</td>
+<td> 2007</td>
+<td> 7.3</td>
+<td>  540</td>
+<td>    72</td>
+</tr>
+<tr>
+<th>60766</th>
+<td>                                  Batang West Side</td>
+<td> 2001</td>
+<td> 7.1</td>
+<td>  315</td>
+<td>    57</td>
+</tr>
+<tr>
+<th>61110</th>
+<td>                               Century of Birthing</td>
+<td> 2011</td>
+<td> 7.3</td>
+<td>  360</td>
+<td>    56</td>
+</tr>
+<tr>
+<th>61546</th>
+<td>                     Apocalypse Now: The Workprint</td>
+<td> 1978</td>
+<td> 7.6</td>
+<td>  307</td>
+<td>    55</td>
+</tr>
+<tr>
+<th>63955</th>
+<td> Heremias: Unang aklat - Ang alamat ng prinsesa...</td>
+<td> 2006</td>
+<td> 7.5</td>
+<td>  540</td>
+<td>    50</td>
+</tr>
+<tr>
+<th>64344</th>
+<td>                               The Cremaster Cycle</td>
+<td> 2003</td>
+<td> 6.3</td>
+<td>  398</td>
+<td>    49</td>
+</tr>
+<tr>
+<th>64742</th>
+<td>                                              ****</td>
+<td> 1967</td>
+<td> 6.5</td>
+<td> 1100</td>
+<td>    48</td>
+</tr>
+<tr>
+<th>65313</th>
+<td>               The Big Red One: The Reconstruction</td>
+<td> 2005</td>
+<td> 7.6</td>
+<td>  316</td>
+<td>    47</td>
+</tr>
+<tr>
+<th>70520</th>
+<td>                         The Weathered Underground</td>
+<td> 2010</td>
+<td> 6.6</td>
+<td>  310</td>
+<td>    38</td>
+</tr>
+<tr>
+<th>72636</th>
+<td>                           Florentina Hubaldo, CTE</td>
+<td> 2012</td>
+<td> 6.1</td>
+<td>  360</td>
+<td>    35</td>
+</tr>
+<tr>
+<th>80673</th>
+<td>                                   Soldaty Svobody</td>
+<td> 1977</td>
+<td> 5.5</td>
+<td>  420</td>
+<td>    26</td>
+</tr>
+<tr>
+<th>81284</th>
+<td>                                         Die Nacht</td>
+<td> 1985</td>
+<td> 8.0</td>
+<td>  360</td>
+<td>    25</td>
+</tr>
+<tr>
+<th>83139</th>
+<td>                                Konstantin Filosof</td>
+<td> 1983</td>
+<td> 5.8</td>
+<td>  308</td>
+<td>    24</td>
+</tr>
+<tr>
+<th>83321</th>
+<td>          Scooby-Doo! Laff-A-Lympics: Spooky Games</td>
+<td> 2012</td>
+<td> 7.3</td>
+<td>  308</td>
+<td>    23</td>
+</tr>
+<tr>
+<th>84497</th>
+<td>                                       Matrjoschka</td>
+<td> 2006</td>
+<td> 5.4</td>
+<td> 5700</td>
+<td>    22</td>
+</tr>
+<tr>
+<th>84621</th>
+<td>              The New Media Bible: Book of Genesis</td>
+<td> 1979</td>
+<td> 6.7</td>
+<td>  312</td>
+<td>    22</td>
+</tr>
+<tr>
+<th>90440</th>
+<td>                            In Search of Myster Ey</td>
+<td> 2008</td>
+<td> 4.3</td>
+<td> 2100</td>
+<td>    18</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -10474,7 +10347,6 @@ minutes.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>Well, what can we say? Apparently, there are long movies and people are not watching most of them(looking at the votes).</p>
 </blockquote>
-
 </div>
 </div>
 </div>
@@ -10483,998 +10355,956 @@ minutes.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="High-Rating-Movies">High Rating Movies<a class="anchor-link" href="#High-Rating-Movies">&#182;</a></h2>
+<h2 id="High-Rating-Movies">High Rating Movies<a class="anchor-link" href="#High-Rating-Movies">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0    </th>
-      <td>                          The Shawshank Redemption</td>
-      <td> 1994</td>
-      <td> 9.3</td>
-      <td> 1157455</td>
-    </tr>
-    <tr>
-      <th>1    </th>
-      <td>                                   The Dark Knight</td>
-      <td> 2008</td>
-      <td> 9.0</td>
-      <td> 1125214</td>
-    </tr>
-    <tr>
-      <th>3    </th>
-      <td>                                      Pulp Fiction</td>
-      <td> 1994</td>
-      <td> 9.0</td>
-      <td>  893719</td>
-    </tr>
-    <tr>
-      <th>4    </th>
-      <td>                                        Fight Club</td>
-      <td> 1999</td>
-      <td> 8.9</td>
-      <td>  881325</td>
-    </tr>
-    <tr>
-      <th>5    </th>
-      <td> The Lord of the Rings: The Fellowship of the Ring</td>
-      <td> 2001</td>
-      <td> 8.9</td>
-      <td>  855325</td>
-    </tr>
-    <tr>
-      <th>6    </th>
-      <td>     The Lord of the Rings: The Return of the King</td>
-      <td> 2003</td>
-      <td> 8.9</td>
-      <td>  828522</td>
-    </tr>
-    <tr>
-      <th>8    </th>
-      <td>                                     The Godfather</td>
-      <td> 1972</td>
-      <td> 9.2</td>
-      <td>  805802</td>
-    </tr>
-    <tr>
-      <th>21   </th>
-      <td>                             Schindler&amp;#x27;s List</td>
-      <td> 1993</td>
-      <td> 8.9</td>
-      <td>  587233</td>
-    </tr>
-    <tr>
-      <th>32   </th>
-      <td>                            The Godfather: Part II</td>
-      <td> 1974</td>
-      <td> 9.1</td>
-      <td>  529579</td>
-    </tr>
-    <tr>
-      <th>94   </th>
-      <td>                    The Good, the Bad and the Ugly</td>
-      <td> 1966</td>
-      <td> 9.0</td>
-      <td>  347858</td>
-    </tr>
-    <tr>
-      <th>154  </th>
-      <td>                                      12 Angry Men</td>
-      <td> 1957</td>
-      <td> 8.9</td>
-      <td>  286958</td>
-    </tr>
-    <tr>
-      <th>3419 </th>
-      <td>                                              Waar</td>
-      <td> 2013</td>
-      <td> 9.4</td>
-      <td>   19775</td>
-    </tr>
-    <tr>
-      <th>4553 </th>
-      <td>         The Rascals&amp;#x27; Class Misses its Grades</td>
-      <td> 1976</td>
-      <td> 8.9</td>
-      <td>   11858</td>
-    </tr>
-    <tr>
-      <th>4985 </th>
-      <td>                               The Foster Brothers</td>
-      <td> 1976</td>
-      <td> 8.9</td>
-      <td>    9973</td>
-    </tr>
-    <tr>
-      <th>5646 </th>
-      <td>                               The Marathon Family</td>
-      <td> 1982</td>
-      <td> 8.9</td>
-      <td>    7811</td>
-    </tr>
-    <tr>
-      <th>10937</th>
-      <td>                               The Moromete Family</td>
-      <td> 1988</td>
-      <td> 8.9</td>
-      <td>    2157</td>
-    </tr>
-    <tr>
-      <th>11107</th>
-      <td>                                         Yesterday</td>
-      <td> 1988</td>
-      <td> 9.1</td>
-      <td>    2095</td>
-    </tr>
-    <tr>
-      <th>52166</th>
-      <td>                 Hunter X Hunter: The Last Mission</td>
-      <td> 2013</td>
-      <td> 9.0</td>
-      <td>      86</td>
-    </tr>
-    <tr>
-      <th>55565</th>
-      <td>               How to Act and Eat at the Same Time</td>
-      <td> 2012</td>
-      <td> 8.9</td>
-      <td>      73</td>
-    </tr>
-    <tr>
-      <th>56594</th>
-      <td>                                        Betty I Am</td>
-      <td> 2012</td>
-      <td> 8.9</td>
-      <td>      69</td>
-    </tr>
-    <tr>
-      <th>56624</th>
-      <td>                                Angels of Darkness</td>
-      <td> 1954</td>
-      <td> 9.0</td>
-      <td>      69</td>
-    </tr>
-    <tr>
-      <th>69376</th>
-      <td>                              The Voice of La Raza</td>
-      <td> 1972</td>
-      <td> 8.9</td>
-      <td>      40</td>
-    </tr>
-    <tr>
-      <th>71004</th>
-      <td>                                       Annabel Lee</td>
-      <td> 2009</td>
-      <td> 8.9</td>
-      <td>      37</td>
-    </tr>
-    <tr>
-      <th>73185</th>
-      <td>                                          Santiago</td>
-      <td> 2011</td>
-      <td> 8.9</td>
-      <td>      34</td>
-    </tr>
-    <tr>
-      <th>73896</th>
-      <td>               Muse - Live at Rome Olympic Stadium</td>
-      <td> 2013</td>
-      <td> 8.9</td>
-      <td>      33</td>
-    </tr>
-    <tr>
-      <th>74674</th>
-      <td>                                          Ilegales</td>
-      <td> 2010</td>
-      <td> 8.9</td>
-      <td>      32</td>
-    </tr>
-    <tr>
-      <th>76091</th>
-      <td>                                Nawab Sirajuddaula</td>
-      <td> 1967</td>
-      <td> 8.9</td>
-      <td>      31</td>
-    </tr>
-    <tr>
-      <th>80372</th>
-      <td>                                Kraljeva zavrsnica</td>
-      <td> 1987</td>
-      <td> 8.9</td>
-      <td>      26</td>
-    </tr>
-    <tr>
-      <th>80535</th>
-      <td>                                             Kljuc</td>
-      <td> 1965</td>
-      <td> 8.9</td>
-      <td>      26</td>
-    </tr>
-    <tr>
-      <th>82902</th>
-      <td>                                 Od petka do petka</td>
-      <td> 1985</td>
-      <td> 9.0</td>
-      <td>      24</td>
-    </tr>
-    <tr>
-      <th>84791</th>
-      <td>                                 Akher ayam el ard</td>
-      <td> 2009</td>
-      <td> 8.9</td>
-      <td>      22</td>
-    </tr>
-    <tr>
-      <th>85750</th>
-      <td>                                  Rat Rod Rockers!</td>
-      <td> 2010</td>
-      <td> 8.9</td>
-      <td>      21</td>
-    </tr>
-    <tr>
-      <th>88748</th>
-      <td>                                    Bella Biondina</td>
-      <td> 2011</td>
-      <td> 8.9</td>
-      <td>      19</td>
-    </tr>
-    <tr>
-      <th>92352</th>
-      <td> Silnee vsekh inykh veleniy (Syuita na russkie ...</td>
-      <td> 1987</td>
-      <td> 8.9</td>
-      <td>      17</td>
-    </tr>
-    <tr>
-      <th>92436</th>
-      <td>                                             Timon</td>
-      <td> 1973</td>
-      <td> 9.1</td>
-      <td>      17</td>
-    </tr>
-    <tr>
-      <th>93706</th>
-      <td>                        Poslijepodne jednog fazana</td>
-      <td> 1972</td>
-      <td> 9.1</td>
-      <td>      16</td>
-    </tr>
-    <tr>
-      <th>93981</th>
-      <td>                    Whichever Way the Ball Bounces</td>
-      <td> 1974</td>
-      <td> 9.1</td>
-      <td>      16</td>
-    </tr>
-    <tr>
-      <th>94001</th>
-      <td>                             Benny Hill: A Tribute</td>
-      <td> 1992</td>
-      <td> 9.1</td>
-      <td>      16</td>
-    </tr>
-    <tr>
-      <th>95737</th>
-      <td>                                          Idu dani</td>
-      <td> 1970</td>
-      <td> 9.0</td>
-      <td>      15</td>
-    </tr>
-    <tr>
-      <th>96666</th>
-      <td>           Zaghlul and Zaharias: Zagreb in My Life</td>
-      <td> 1994</td>
-      <td> 8.9</td>
-      <td>      15</td>
-    </tr>
-    <tr>
-      <th>97327</th>
-      <td>                                             Agnes</td>
-      <td> 2013</td>
-      <td> 9.1</td>
-      <td>      14</td>
-    </tr>
-    <tr>
-      <th>97374</th>
-      <td>                                   Separate Checks</td>
-      <td> 2011</td>
-      <td> 8.9</td>
-      <td>      14</td>
-    </tr>
-    <tr>
-      <th>97670</th>
-      <td>                               The Way to Paradise</td>
-      <td> 1970</td>
-      <td> 9.1</td>
-      <td>      14</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0    </th>
+<td>                          The Shawshank Redemption</td>
+<td> 1994</td>
+<td> 9.3</td>
+<td> 1157455</td>
+</tr>
+<tr>
+<th>1    </th>
+<td>                                   The Dark Knight</td>
+<td> 2008</td>
+<td> 9.0</td>
+<td> 1125214</td>
+</tr>
+<tr>
+<th>3    </th>
+<td>                                      Pulp Fiction</td>
+<td> 1994</td>
+<td> 9.0</td>
+<td>  893719</td>
+</tr>
+<tr>
+<th>4    </th>
+<td>                                        Fight Club</td>
+<td> 1999</td>
+<td> 8.9</td>
+<td>  881325</td>
+</tr>
+<tr>
+<th>5    </th>
+<td> The Lord of the Rings: The Fellowship of the Ring</td>
+<td> 2001</td>
+<td> 8.9</td>
+<td>  855325</td>
+</tr>
+<tr>
+<th>6    </th>
+<td>     The Lord of the Rings: The Return of the King</td>
+<td> 2003</td>
+<td> 8.9</td>
+<td>  828522</td>
+</tr>
+<tr>
+<th>8    </th>
+<td>                                     The Godfather</td>
+<td> 1972</td>
+<td> 9.2</td>
+<td>  805802</td>
+</tr>
+<tr>
+<th>21   </th>
+<td>                             Schindler&amp;#x27;s List</td>
+<td> 1993</td>
+<td> 8.9</td>
+<td>  587233</td>
+</tr>
+<tr>
+<th>32   </th>
+<td>                            The Godfather: Part II</td>
+<td> 1974</td>
+<td> 9.1</td>
+<td>  529579</td>
+</tr>
+<tr>
+<th>94   </th>
+<td>                    The Good, the Bad and the Ugly</td>
+<td> 1966</td>
+<td> 9.0</td>
+<td>  347858</td>
+</tr>
+<tr>
+<th>154  </th>
+<td>                                      12 Angry Men</td>
+<td> 1957</td>
+<td> 8.9</td>
+<td>  286958</td>
+</tr>
+<tr>
+<th>3419 </th>
+<td>                                              Waar</td>
+<td> 2013</td>
+<td> 9.4</td>
+<td>   19775</td>
+</tr>
+<tr>
+<th>4553 </th>
+<td>         The Rascals&amp;#x27; Class Misses its Grades</td>
+<td> 1976</td>
+<td> 8.9</td>
+<td>   11858</td>
+</tr>
+<tr>
+<th>4985 </th>
+<td>                               The Foster Brothers</td>
+<td> 1976</td>
+<td> 8.9</td>
+<td>    9973</td>
+</tr>
+<tr>
+<th>5646 </th>
+<td>                               The Marathon Family</td>
+<td> 1982</td>
+<td> 8.9</td>
+<td>    7811</td>
+</tr>
+<tr>
+<th>10937</th>
+<td>                               The Moromete Family</td>
+<td> 1988</td>
+<td> 8.9</td>
+<td>    2157</td>
+</tr>
+<tr>
+<th>11107</th>
+<td>                                         Yesterday</td>
+<td> 1988</td>
+<td> 9.1</td>
+<td>    2095</td>
+</tr>
+<tr>
+<th>52166</th>
+<td>                 Hunter X Hunter: The Last Mission</td>
+<td> 2013</td>
+<td> 9.0</td>
+<td>      86</td>
+</tr>
+<tr>
+<th>55565</th>
+<td>               How to Act and Eat at the Same Time</td>
+<td> 2012</td>
+<td> 8.9</td>
+<td>      73</td>
+</tr>
+<tr>
+<th>56594</th>
+<td>                                        Betty I Am</td>
+<td> 2012</td>
+<td> 8.9</td>
+<td>      69</td>
+</tr>
+<tr>
+<th>56624</th>
+<td>                                Angels of Darkness</td>
+<td> 1954</td>
+<td> 9.0</td>
+<td>      69</td>
+</tr>
+<tr>
+<th>69376</th>
+<td>                              The Voice of La Raza</td>
+<td> 1972</td>
+<td> 8.9</td>
+<td>      40</td>
+</tr>
+<tr>
+<th>71004</th>
+<td>                                       Annabel Lee</td>
+<td> 2009</td>
+<td> 8.9</td>
+<td>      37</td>
+</tr>
+<tr>
+<th>73185</th>
+<td>                                          Santiago</td>
+<td> 2011</td>
+<td> 8.9</td>
+<td>      34</td>
+</tr>
+<tr>
+<th>73896</th>
+<td>               Muse - Live at Rome Olympic Stadium</td>
+<td> 2013</td>
+<td> 8.9</td>
+<td>      33</td>
+</tr>
+<tr>
+<th>74674</th>
+<td>                                          Ilegales</td>
+<td> 2010</td>
+<td> 8.9</td>
+<td>      32</td>
+</tr>
+<tr>
+<th>76091</th>
+<td>                                Nawab Sirajuddaula</td>
+<td> 1967</td>
+<td> 8.9</td>
+<td>      31</td>
+</tr>
+<tr>
+<th>80372</th>
+<td>                                Kraljeva zavrsnica</td>
+<td> 1987</td>
+<td> 8.9</td>
+<td>      26</td>
+</tr>
+<tr>
+<th>80535</th>
+<td>                                             Kljuc</td>
+<td> 1965</td>
+<td> 8.9</td>
+<td>      26</td>
+</tr>
+<tr>
+<th>82902</th>
+<td>                                 Od petka do petka</td>
+<td> 1985</td>
+<td> 9.0</td>
+<td>      24</td>
+</tr>
+<tr>
+<th>84791</th>
+<td>                                 Akher ayam el ard</td>
+<td> 2009</td>
+<td> 8.9</td>
+<td>      22</td>
+</tr>
+<tr>
+<th>85750</th>
+<td>                                  Rat Rod Rockers!</td>
+<td> 2010</td>
+<td> 8.9</td>
+<td>      21</td>
+</tr>
+<tr>
+<th>88748</th>
+<td>                                    Bella Biondina</td>
+<td> 2011</td>
+<td> 8.9</td>
+<td>      19</td>
+</tr>
+<tr>
+<th>92352</th>
+<td> Silnee vsekh inykh veleniy (Syuita na russkie ...</td>
+<td> 1987</td>
+<td> 8.9</td>
+<td>      17</td>
+</tr>
+<tr>
+<th>92436</th>
+<td>                                             Timon</td>
+<td> 1973</td>
+<td> 9.1</td>
+<td>      17</td>
+</tr>
+<tr>
+<th>93706</th>
+<td>                        Poslijepodne jednog fazana</td>
+<td> 1972</td>
+<td> 9.1</td>
+<td>      16</td>
+</tr>
+<tr>
+<th>93981</th>
+<td>                    Whichever Way the Ball Bounces</td>
+<td> 1974</td>
+<td> 9.1</td>
+<td>      16</td>
+</tr>
+<tr>
+<th>94001</th>
+<td>                             Benny Hill: A Tribute</td>
+<td> 1992</td>
+<td> 9.1</td>
+<td>      16</td>
+</tr>
+<tr>
+<th>95737</th>
+<td>                                          Idu dani</td>
+<td> 1970</td>
+<td> 9.0</td>
+<td>      15</td>
+</tr>
+<tr>
+<th>96666</th>
+<td>           Zaghlul and Zaharias: Zagreb in My Life</td>
+<td> 1994</td>
+<td> 8.9</td>
+<td>      15</td>
+</tr>
+<tr>
+<th>97327</th>
+<td>                                             Agnes</td>
+<td> 2013</td>
+<td> 9.1</td>
+<td>      14</td>
+</tr>
+<tr>
+<th>97374</th>
+<td>                                   Separate Checks</td>
+<td> 2011</td>
+<td> 8.9</td>
+<td>      14</td>
+</tr>
+<tr>
+<th>97670</th>
+<td>                               The Way to Paradise</td>
+<td> 1970</td>
+<td> 9.1</td>
+<td>      14</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="High-Rating-and-Best-Voted-Movies">High Rating and Best Voted Movies<a class="anchor-link" href="#High-Rating-and-Best-Voted-Movies">&#182;</a></h3>
+<h3 id="High-Rating-and-Best-Voted-Movies">High Rating and Best Voted Movies<a class="anchor-link" href="#High-Rating-and-Best-Voted-Movies">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0  </th>
-      <td>                          The Shawshank Redemption</td>
-      <td> 1994</td>
-      <td> 9.3</td>
-      <td> 1157455</td>
-    </tr>
-    <tr>
-      <th>1  </th>
-      <td>                                   The Dark Knight</td>
-      <td> 2008</td>
-      <td> 9.0</td>
-      <td> 1125214</td>
-    </tr>
-    <tr>
-      <th>3  </th>
-      <td>                                      Pulp Fiction</td>
-      <td> 1994</td>
-      <td> 9.0</td>
-      <td>  893719</td>
-    </tr>
-    <tr>
-      <th>4  </th>
-      <td>                                        Fight Club</td>
-      <td> 1999</td>
-      <td> 8.9</td>
-      <td>  881325</td>
-    </tr>
-    <tr>
-      <th>5  </th>
-      <td> The Lord of the Rings: The Fellowship of the Ring</td>
-      <td> 2001</td>
-      <td> 8.9</td>
-      <td>  855325</td>
-    </tr>
-    <tr>
-      <th>6  </th>
-      <td>     The Lord of the Rings: The Return of the King</td>
-      <td> 2003</td>
-      <td> 8.9</td>
-      <td>  828522</td>
-    </tr>
-    <tr>
-      <th>8  </th>
-      <td>                                     The Godfather</td>
-      <td> 1972</td>
-      <td> 9.2</td>
-      <td>  805802</td>
-    </tr>
-    <tr>
-      <th>21 </th>
-      <td>                             Schindler&amp;#x27;s List</td>
-      <td> 1993</td>
-      <td> 8.9</td>
-      <td>  587233</td>
-    </tr>
-    <tr>
-      <th>32 </th>
-      <td>                            The Godfather: Part II</td>
-      <td> 1974</td>
-      <td> 9.1</td>
-      <td>  529579</td>
-    </tr>
-    <tr>
-      <th>94 </th>
-      <td>                    The Good, the Bad and the Ugly</td>
-      <td> 1966</td>
-      <td> 9.0</td>
-      <td>  347858</td>
-    </tr>
-    <tr>
-      <th>154</th>
-      <td>                                      12 Angry Men</td>
-      <td> 1957</td>
-      <td> 8.9</td>
-      <td>  286958</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0  </th>
+<td>                          The Shawshank Redemption</td>
+<td> 1994</td>
+<td> 9.3</td>
+<td> 1157455</td>
+</tr>
+<tr>
+<th>1  </th>
+<td>                                   The Dark Knight</td>
+<td> 2008</td>
+<td> 9.0</td>
+<td> 1125214</td>
+</tr>
+<tr>
+<th>3  </th>
+<td>                                      Pulp Fiction</td>
+<td> 1994</td>
+<td> 9.0</td>
+<td>  893719</td>
+</tr>
+<tr>
+<th>4  </th>
+<td>                                        Fight Club</td>
+<td> 1999</td>
+<td> 8.9</td>
+<td>  881325</td>
+</tr>
+<tr>
+<th>5  </th>
+<td> The Lord of the Rings: The Fellowship of the Ring</td>
+<td> 2001</td>
+<td> 8.9</td>
+<td>  855325</td>
+</tr>
+<tr>
+<th>6  </th>
+<td>     The Lord of the Rings: The Return of the King</td>
+<td> 2003</td>
+<td> 8.9</td>
+<td>  828522</td>
+</tr>
+<tr>
+<th>8  </th>
+<td>                                     The Godfather</td>
+<td> 1972</td>
+<td> 9.2</td>
+<td>  805802</td>
+</tr>
+<tr>
+<th>21 </th>
+<td>                             Schindler&amp;#x27;s List</td>
+<td> 1993</td>
+<td> 8.9</td>
+<td>  587233</td>
+</tr>
+<tr>
+<th>32 </th>
+<td>                            The Godfather: Part II</td>
+<td> 1974</td>
+<td> 9.1</td>
+<td>  529579</td>
+</tr>
+<tr>
+<th>94 </th>
+<td>                    The Good, the Bad and the Ugly</td>
+<td> 1966</td>
+<td> 9.0</td>
+<td>  347858</td>
+</tr>
+<tr>
+<th>154</th>
+<td>                                      12 Angry Men</td>
+<td> 1957</td>
+<td> 8.9</td>
+<td>  286958</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Low-Rating-Movies">Low Rating Movies<a class="anchor-link" href="#Low-Rating-Movies">&#182;</a></h2>
+<h2 id="Low-Rating-Movies">Low Rating Movies<a class="anchor-link" href="#Low-Rating-Movies">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>14397</th>
-      <td>                                       Ax &amp;#x27;Em</td>
-      <td> 1992</td>
-      <td> 1.2</td>
-      <td> 1262</td>
-    </tr>
-    <tr>
-      <th>17138</th>
-      <td>                         Gulczas, a jak myslisz...</td>
-      <td> 2001</td>
-      <td> 1.2</td>
-      <td>  896</td>
-    </tr>
-    <tr>
-      <th>17467</th>
-      <td>                    Yyyreek!!! Kosmiczna nominacja</td>
-      <td> 2002</td>
-      <td> 1.1</td>
-      <td>  860</td>
-    </tr>
-    <tr>
-      <th>19121</th>
-      <td>                                    Proud American</td>
-      <td> 2008</td>
-      <td> 1.1</td>
-      <td>  715</td>
-    </tr>
-    <tr>
-      <th>19277</th>
-      <td>                        The Maize 2: Forever Yours</td>
-      <td> 2006</td>
-      <td> 1.2</td>
-      <td>  704</td>
-    </tr>
-    <tr>
-      <th>19398</th>
-      <td>                         The Legend of the Titanic</td>
-      <td> 1999</td>
-      <td> 1.3</td>
-      <td>  695</td>
-    </tr>
-    <tr>
-      <th>20206</th>
-      <td>                     Santa and the Ice Cream Bunny</td>
-      <td> 1972</td>
-      <td> 1.3</td>
-      <td>  644</td>
-    </tr>
-    <tr>
-      <th>20255</th>
-      <td>                                      Xuxa Popstar</td>
-      <td> 2000</td>
-      <td> 1.3</td>
-      <td>  641</td>
-    </tr>
-    <tr>
-      <th>20662</th>
-      <td>                              Rocket Attack U.S.A.</td>
-      <td> 1961</td>
-      <td> 1.4</td>
-      <td>  616</td>
-    </tr>
-    <tr>
-      <th>21230</th>
-      <td>                                    Hunting of Man</td>
-      <td> 2003</td>
-      <td> 1.4</td>
-      <td>  583</td>
-    </tr>
-    <tr>
-      <th>21901</th>
-      <td>                                           Ricky 1</td>
-      <td> 1988</td>
-      <td> 1.3</td>
-      <td>  549</td>
-    </tr>
-    <tr>
-      <th>22187</th>
-      <td>                                  Leather and Iron</td>
-      <td> 2002</td>
-      <td> 1.3</td>
-      <td>  535</td>
-    </tr>
-    <tr>
-      <th>23079</th>
-      <td>                                          Kac Wawa</td>
-      <td> 2012</td>
-      <td> 1.4</td>
-      <td>  498</td>
-    </tr>
-    <tr>
-      <th>23553</th>
-      <td>                                                99</td>
-      <td> 2006</td>
-      <td> 1.4</td>
-      <td>  480</td>
-    </tr>
-    <tr>
-      <th>23971</th>
-      <td>                                        Szuperbojz</td>
-      <td> 2009</td>
-      <td> 1.3</td>
-      <td>  464</td>
-    </tr>
-    <tr>
-      <th>25054</th>
-      <td>       Xuxinha and Guto Against the Space Monsters</td>
-      <td> 2005</td>
-      <td> 1.3</td>
-      <td>  427</td>
-    </tr>
-    <tr>
-      <th>25215</th>
-      <td>                                         Cockfight</td>
-      <td> 2002</td>
-      <td> 1.3</td>
-      <td>  422</td>
-    </tr>
-    <tr>
-      <th>25310</th>
-      <td>                                 Lost in the Woods</td>
-      <td> 2009</td>
-      <td> 1.4</td>
-      <td>  418</td>
-    </tr>
-    <tr>
-      <th>25986</th>
-      <td> Holnap t&amp;#xF6;rt&amp;#xE9;nt - A nagy bulv&amp;#xE1;rfilm</td>
-      <td> 2009</td>
-      <td> 1.0</td>
-      <td>  397</td>
-    </tr>
-    <tr>
-      <th>26109</th>
-      <td>                                      Killer Bitch</td>
-      <td> 2010</td>
-      <td> 1.4</td>
-      <td>  393</td>
-    </tr>
-    <tr>
-      <th>27263</th>
-      <td>                                   Tangy Guacamole</td>
-      <td> 2003</td>
-      <td> 1.4</td>
-      <td>  362</td>
-    </tr>
-    <tr>
-      <th>28018</th>
-      <td>                                    Super Agent K9</td>
-      <td> 2008</td>
-      <td> 1.4</td>
-      <td>  343</td>
-    </tr>
-    <tr>
-      <th>29872</th>
-      <td>                                 The Sobbing Stone</td>
-      <td> 2005</td>
-      <td> 1.4</td>
-      <td>  301</td>
-    </tr>
-    <tr>
-      <th>31267</th>
-      <td>                      Venni vidi e m&amp;#x27;arrapaoh</td>
-      <td> 1984</td>
-      <td> 1.2</td>
-      <td>  274</td>
-    </tr>
-    <tr>
-      <th>31331</th>
-      <td>   Shirley Pimple in the John Wayne Temple of Doom</td>
-      <td> 2000</td>
-      <td> 1.4</td>
-      <td>  273</td>
-    </tr>
-    <tr>
-      <th>34032</th>
-      <td>                          In Search of the Titanic</td>
-      <td> 2004</td>
-      <td> 1.3</td>
-      <td>  231</td>
-    </tr>
-    <tr>
-      <th>36703</th>
-      <td>                                        Xuxa Twins</td>
-      <td> 2006</td>
-      <td> 1.2</td>
-      <td>  196</td>
-    </tr>
-    <tr>
-      <th>37730</th>
-      <td>            Xuxa and the Lost Treasure&amp;#x27;s City</td>
-      <td> 2004</td>
-      <td> 1.3</td>
-      <td>  185</td>
-    </tr>
-    <tr>
-      <th>38930</th>
-      <td>                        Captain Battle: Legacy War</td>
-      <td> 2013</td>
-      <td> 1.4</td>
-      <td>  172</td>
-    </tr>
-    <tr>
-      <th>44275</th>
-      <td>                                 Body Motion Reads</td>
-      <td> 1997</td>
-      <td> 1.4</td>
-      <td>  129</td>
-    </tr>
-    <tr>
-      <th>44572</th>
-      <td>                           The Auditor&amp;#x27;s Code</td>
-      <td> 1997</td>
-      <td> 1.4</td>
-      <td>  127</td>
-    </tr>
-    <tr>
-      <th>49928</th>
-      <td>               The Warrior Didi and the Ninja Lili</td>
-      <td> 2008</td>
-      <td> 1.4</td>
-      <td>   97</td>
-    </tr>
-    <tr>
-      <th>53898</th>
-      <td>                                       After Party</td>
-      <td> 2002</td>
-      <td> 1.4</td>
-      <td>   79</td>
-    </tr>
-    <tr>
-      <th>54542</th>
-      <td>                           Composition of the Bank</td>
-      <td> 1966</td>
-      <td> 1.4</td>
-      <td>   77</td>
-    </tr>
-    <tr>
-      <th>63271</th>
-      <td>                        The Secret of Flag Results</td>
-      <td> 1977</td>
-      <td> 1.2</td>
-      <td>   52</td>
-    </tr>
-    <tr>
-      <th>63272</th>
-      <td>                          The Bank and Its Pattern</td>
-      <td> 1964</td>
-      <td> 1.3</td>
-      <td>   52</td>
-    </tr>
-    <tr>
-      <th>63276</th>
-      <td>                                           Reality</td>
-      <td> 1969</td>
-      <td> 1.2</td>
-      <td>   52</td>
-    </tr>
-    <tr>
-      <th>63750</th>
-      <td>                               General Information</td>
-      <td> 1966</td>
-      <td> 1.4</td>
-      <td>   51</td>
-    </tr>
-    <tr>
-      <th>65180</th>
-      <td>                           The Pattern of the Bank</td>
-      <td> 1964</td>
-      <td> 1.4</td>
-      <td>   48</td>
-    </tr>
-    <tr>
-      <th>67928</th>
-      <td>                                 No Longer My Twin</td>
-      <td> 2002</td>
-      <td> 1.4</td>
-      <td>   43</td>
-    </tr>
-    <tr>
-      <th>70941</th>
-      <td>                                      Avise la fin</td>
-      <td> 2012</td>
-      <td> 1.0</td>
-      <td>   38</td>
-    </tr>
-    <tr>
-      <th>72605</th>
-      <td>                                   Ostra Randka 3D</td>
-      <td> 2013</td>
-      <td> 1.3</td>
-      <td>   35</td>
-    </tr>
-    <tr>
-      <th>76254</th>
-      <td>                                      Futures Past</td>
-      <td> 2012</td>
-      <td> 1.3</td>
-      <td>   31</td>
-    </tr>
-    <tr>
-      <th>80445</th>
-      <td>              Ich denk&amp;#x27;, mich tritt ein Pferd</td>
-      <td> 1975</td>
-      <td> 1.1</td>
-      <td>   26</td>
-    </tr>
-    <tr>
-      <th>84880</th>
-      <td>                                         Genderuwo</td>
-      <td> 2007</td>
-      <td> 1.0</td>
-      <td>   22</td>
-    </tr>
-    <tr>
-      <th>86465</th>
-      <td>                                  Half Way to Hell</td>
-      <td> 1961</td>
-      <td> 1.2</td>
-      <td>   21</td>
-    </tr>
-    <tr>
-      <th>87340</th>
-      <td>                              Primavera di granito</td>
-      <td> 2002</td>
-      <td> 1.1</td>
-      <td>   20</td>
-    </tr>
-    <tr>
-      <th>99148</th>
-      <td>                              Curse of Kilimanjaro</td>
-      <td> 1978</td>
-      <td> 1.4</td>
-      <td>   14</td>
-    </tr>
-    <tr>
-      <th>99366</th>
-      <td>                                  Pride of Ireland</td>
-      <td> 2000</td>
-      <td> 1.2</td>
-      <td>   14</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>14397</th>
+<td>                                       Ax &amp;#x27;Em</td>
+<td> 1992</td>
+<td> 1.2</td>
+<td> 1262</td>
+</tr>
+<tr>
+<th>17138</th>
+<td>                         Gulczas, a jak myslisz...</td>
+<td> 2001</td>
+<td> 1.2</td>
+<td>  896</td>
+</tr>
+<tr>
+<th>17467</th>
+<td>                    Yyyreek!!! Kosmiczna nominacja</td>
+<td> 2002</td>
+<td> 1.1</td>
+<td>  860</td>
+</tr>
+<tr>
+<th>19121</th>
+<td>                                    Proud American</td>
+<td> 2008</td>
+<td> 1.1</td>
+<td>  715</td>
+</tr>
+<tr>
+<th>19277</th>
+<td>                        The Maize 2: Forever Yours</td>
+<td> 2006</td>
+<td> 1.2</td>
+<td>  704</td>
+</tr>
+<tr>
+<th>19398</th>
+<td>                         The Legend of the Titanic</td>
+<td> 1999</td>
+<td> 1.3</td>
+<td>  695</td>
+</tr>
+<tr>
+<th>20206</th>
+<td>                     Santa and the Ice Cream Bunny</td>
+<td> 1972</td>
+<td> 1.3</td>
+<td>  644</td>
+</tr>
+<tr>
+<th>20255</th>
+<td>                                      Xuxa Popstar</td>
+<td> 2000</td>
+<td> 1.3</td>
+<td>  641</td>
+</tr>
+<tr>
+<th>20662</th>
+<td>                              Rocket Attack U.S.A.</td>
+<td> 1961</td>
+<td> 1.4</td>
+<td>  616</td>
+</tr>
+<tr>
+<th>21230</th>
+<td>                                    Hunting of Man</td>
+<td> 2003</td>
+<td> 1.4</td>
+<td>  583</td>
+</tr>
+<tr>
+<th>21901</th>
+<td>                                           Ricky 1</td>
+<td> 1988</td>
+<td> 1.3</td>
+<td>  549</td>
+</tr>
+<tr>
+<th>22187</th>
+<td>                                  Leather and Iron</td>
+<td> 2002</td>
+<td> 1.3</td>
+<td>  535</td>
+</tr>
+<tr>
+<th>23079</th>
+<td>                                          Kac Wawa</td>
+<td> 2012</td>
+<td> 1.4</td>
+<td>  498</td>
+</tr>
+<tr>
+<th>23553</th>
+<td>                                                99</td>
+<td> 2006</td>
+<td> 1.4</td>
+<td>  480</td>
+</tr>
+<tr>
+<th>23971</th>
+<td>                                        Szuperbojz</td>
+<td> 2009</td>
+<td> 1.3</td>
+<td>  464</td>
+</tr>
+<tr>
+<th>25054</th>
+<td>       Xuxinha and Guto Against the Space Monsters</td>
+<td> 2005</td>
+<td> 1.3</td>
+<td>  427</td>
+</tr>
+<tr>
+<th>25215</th>
+<td>                                         Cockfight</td>
+<td> 2002</td>
+<td> 1.3</td>
+<td>  422</td>
+</tr>
+<tr>
+<th>25310</th>
+<td>                                 Lost in the Woods</td>
+<td> 2009</td>
+<td> 1.4</td>
+<td>  418</td>
+</tr>
+<tr>
+<th>25986</th>
+<td> Holnap t&amp;#xF6;rt&amp;#xE9;nt - A nagy bulv&amp;#xE1;rfilm</td>
+<td> 2009</td>
+<td> 1.0</td>
+<td>  397</td>
+</tr>
+<tr>
+<th>26109</th>
+<td>                                      Killer Bitch</td>
+<td> 2010</td>
+<td> 1.4</td>
+<td>  393</td>
+</tr>
+<tr>
+<th>27263</th>
+<td>                                   Tangy Guacamole</td>
+<td> 2003</td>
+<td> 1.4</td>
+<td>  362</td>
+</tr>
+<tr>
+<th>28018</th>
+<td>                                    Super Agent K9</td>
+<td> 2008</td>
+<td> 1.4</td>
+<td>  343</td>
+</tr>
+<tr>
+<th>29872</th>
+<td>                                 The Sobbing Stone</td>
+<td> 2005</td>
+<td> 1.4</td>
+<td>  301</td>
+</tr>
+<tr>
+<th>31267</th>
+<td>                      Venni vidi e m&amp;#x27;arrapaoh</td>
+<td> 1984</td>
+<td> 1.2</td>
+<td>  274</td>
+</tr>
+<tr>
+<th>31331</th>
+<td>   Shirley Pimple in the John Wayne Temple of Doom</td>
+<td> 2000</td>
+<td> 1.4</td>
+<td>  273</td>
+</tr>
+<tr>
+<th>34032</th>
+<td>                          In Search of the Titanic</td>
+<td> 2004</td>
+<td> 1.3</td>
+<td>  231</td>
+</tr>
+<tr>
+<th>36703</th>
+<td>                                        Xuxa Twins</td>
+<td> 2006</td>
+<td> 1.2</td>
+<td>  196</td>
+</tr>
+<tr>
+<th>37730</th>
+<td>            Xuxa and the Lost Treasure&amp;#x27;s City</td>
+<td> 2004</td>
+<td> 1.3</td>
+<td>  185</td>
+</tr>
+<tr>
+<th>38930</th>
+<td>                        Captain Battle: Legacy War</td>
+<td> 2013</td>
+<td> 1.4</td>
+<td>  172</td>
+</tr>
+<tr>
+<th>44275</th>
+<td>                                 Body Motion Reads</td>
+<td> 1997</td>
+<td> 1.4</td>
+<td>  129</td>
+</tr>
+<tr>
+<th>44572</th>
+<td>                           The Auditor&amp;#x27;s Code</td>
+<td> 1997</td>
+<td> 1.4</td>
+<td>  127</td>
+</tr>
+<tr>
+<th>49928</th>
+<td>               The Warrior Didi and the Ninja Lili</td>
+<td> 2008</td>
+<td> 1.4</td>
+<td>   97</td>
+</tr>
+<tr>
+<th>53898</th>
+<td>                                       After Party</td>
+<td> 2002</td>
+<td> 1.4</td>
+<td>   79</td>
+</tr>
+<tr>
+<th>54542</th>
+<td>                           Composition of the Bank</td>
+<td> 1966</td>
+<td> 1.4</td>
+<td>   77</td>
+</tr>
+<tr>
+<th>63271</th>
+<td>                        The Secret of Flag Results</td>
+<td> 1977</td>
+<td> 1.2</td>
+<td>   52</td>
+</tr>
+<tr>
+<th>63272</th>
+<td>                          The Bank and Its Pattern</td>
+<td> 1964</td>
+<td> 1.3</td>
+<td>   52</td>
+</tr>
+<tr>
+<th>63276</th>
+<td>                                           Reality</td>
+<td> 1969</td>
+<td> 1.2</td>
+<td>   52</td>
+</tr>
+<tr>
+<th>63750</th>
+<td>                               General Information</td>
+<td> 1966</td>
+<td> 1.4</td>
+<td>   51</td>
+</tr>
+<tr>
+<th>65180</th>
+<td>                           The Pattern of the Bank</td>
+<td> 1964</td>
+<td> 1.4</td>
+<td>   48</td>
+</tr>
+<tr>
+<th>67928</th>
+<td>                                 No Longer My Twin</td>
+<td> 2002</td>
+<td> 1.4</td>
+<td>   43</td>
+</tr>
+<tr>
+<th>70941</th>
+<td>                                      Avise la fin</td>
+<td> 2012</td>
+<td> 1.0</td>
+<td>   38</td>
+</tr>
+<tr>
+<th>72605</th>
+<td>                                   Ostra Randka 3D</td>
+<td> 2013</td>
+<td> 1.3</td>
+<td>   35</td>
+</tr>
+<tr>
+<th>76254</th>
+<td>                                      Futures Past</td>
+<td> 2012</td>
+<td> 1.3</td>
+<td>   31</td>
+</tr>
+<tr>
+<th>80445</th>
+<td>              Ich denk&amp;#x27;, mich tritt ein Pferd</td>
+<td> 1975</td>
+<td> 1.1</td>
+<td>   26</td>
+</tr>
+<tr>
+<th>84880</th>
+<td>                                         Genderuwo</td>
+<td> 2007</td>
+<td> 1.0</td>
+<td>   22</td>
+</tr>
+<tr>
+<th>86465</th>
+<td>                                  Half Way to Hell</td>
+<td> 1961</td>
+<td> 1.2</td>
+<td>   21</td>
+</tr>
+<tr>
+<th>87340</th>
+<td>                              Primavera di granito</td>
+<td> 2002</td>
+<td> 1.1</td>
+<td>   20</td>
+</tr>
+<tr>
+<th>99148</th>
+<td>                              Curse of Kilimanjaro</td>
+<td> 1978</td>
+<td> 1.4</td>
+<td>   14</td>
+</tr>
+<tr>
+<th>99366</th>
+<td>                                  Pride of Ireland</td>
+<td> 2000</td>
+<td> 1.2</td>
+<td>   14</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Overrated-Movies-(High-Number-of-Votes-and-low-ratings)">Overrated Movies (High Number of Votes and low ratings)<a class="anchor-link" href="#Overrated-Movies-(High-Number-of-Votes-and-low-ratings)">&#182;</a></h3>
+<h3 id="Overrated-Movies-(High-Number-of-Votes-and-low-ratings)">Overrated Movies (High Number of Votes and low ratings)<a class="anchor-link" href="#Overrated-Movies-(High-Number-of-Votes-and-low-ratings)">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>394</th>
-      <td>               The Twilight Saga: New Moon</td>
-      <td> 2009</td>
-      <td> 4.6</td>
-      <td> 178416</td>
-    </tr>
-    <tr>
-      <th>531</th>
-      <td>                       Batman &amp;#x26; Robin</td>
-      <td> 1997</td>
-      <td> 3.6</td>
-      <td> 148286</td>
-    </tr>
-    <tr>
-      <th>566</th>
-      <td>                The Twilight Saga: Eclipse</td>
-      <td> 2010</td>
-      <td> 4.9</td>
-      <td> 142679</td>
-    </tr>
-    <tr>
-      <th>577</th>
-      <td> The Twilight Saga: Breaking Dawn - Part 1</td>
-      <td> 2011</td>
-      <td> 4.9</td>
-      <td> 140406</td>
-    </tr>
-    <tr>
-      <th>816</th>
-      <td>                            Wild Wild West</td>
-      <td> 1999</td>
-      <td> 4.7</td>
-      <td> 107150</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>394</th>
+<td>               The Twilight Saga: New Moon</td>
+<td> 2009</td>
+<td> 4.6</td>
+<td> 178416</td>
+</tr>
+<tr>
+<th>531</th>
+<td>                       Batman &amp;#x26; Robin</td>
+<td> 1997</td>
+<td> 3.6</td>
+<td> 148286</td>
+</tr>
+<tr>
+<th>566</th>
+<td>                The Twilight Saga: Eclipse</td>
+<td> 2010</td>
+<td> 4.9</td>
+<td> 142679</td>
+</tr>
+<tr>
+<th>577</th>
+<td> The Twilight Saga: Breaking Dawn - Part 1</td>
+<td> 2011</td>
+<td> 4.9</td>
+<td> 140406</td>
+</tr>
+<tr>
+<th>816</th>
+<td>                            Wild Wild West</td>
+<td> 1999</td>
+<td> 4.7</td>
+<td> 107150</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Certificate">Certificate<a class="anchor-link" href="#Certificate">&#182;</a></h3>
+<h3 id="Certificate">Certificate<a class="anchor-link" href="#Certificate">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[160]:</div>
+<div class="prompt input_prompt">In [160]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[160]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x110dbc110&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAa4AAAENCAYAAABXfYHaAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlcVOX+B/DPsCggiIgIKHAR0CuL6AC5r1jiBrLkAuZu
@@ -11735,14 +11565,11 @@ pUhKSkJBQQHu37+PQ4cOobi4GLq6umjVqhW0tbUb9Psi4keFixAFzZ8/H+vWrcPq1avRvn172NjY
 eXl56Nq1K+7duwdDQ0N+/5AhQzBp0iRMnz6dYToidnTFRQhRqsrKSoSHhyMwMFCuaMnQd2XSWDqs
 AxBCNEdxcTHMzc3RqVMnHDt2rMZjGjsZhRAaKiSEECIqNFRICCFEVKhwEUIIERUqXIQQQkSFChch
 hBBRocJFCCFEVKhwEUIIEZX/BzQ8bLW4UzhAAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -11750,38 +11577,27 @@ hBBRocJFCCFEVKhwEUIIEZX/BzQ8bLW4UzhAAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Apparently, there are not good movies for people who are older than 7 years-old(however little, they are people, too!)(TV_Y7 =&gt; suitable for children age 7 or older)</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[159]:</div>
+<div class="prompt input_prompt">In [159]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[159]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x117584390&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbgAAAENCAYAAAB9zXB1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X1czXf/B/BX5S7KXaMiDcXSDY4ac0/mXkUmyty7jK1d
@@ -12056,14 +11872,11 @@ ZsyYIvuOGTMG48ePh729PXJzc/HFF18AABwcHPDdd9/h008/lT7XlStXlrmLlKo2FjwlIoNKTU2F
 i4sLbt26BSsrK2l97969MWbMGEycONGI6ciU8QqOiAwmPz8fK1euRGBgoE7jVoB/X5Mh8S5KIjKI
 rKws2NraokWLFjh8+HCx+1T0phqi0rCLkoiITBK7KImIyCSxgSMiIpPEBo6IiEwSGzgiIjJJbOCI
 iMgksYEjIiKT9P9p3+MfpWW6LQAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12071,140 +11884,131 @@ iMgksYEjIiKT9P9p3+MfpWW6LQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sorry, under 14 years-olds, you are missing a lot of discussion as well! (TV_14 =&gt; is suitable for people who are 14 or older)</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In [84]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Movie Count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Drama</th>
-      <td> 48406</td>
-    </tr>
-    <tr>
-      <th>Comedy</th>
-      <td> 30167</td>
-    </tr>
-    <tr>
-      <th>Romance</th>
-      <td> 13408</td>
-    </tr>
-    <tr>
-      <th>Thriller</th>
-      <td> 13399</td>
-    </tr>
-    <tr>
-      <th>Action</th>
-      <td> 12408</td>
-    </tr>
-    <tr>
-      <th>Crime</th>
-      <td>  9795</td>
-    </tr>
-    <tr>
-      <th>Horror</th>
-      <td>  8697</td>
-    </tr>
-    <tr>
-      <th>Adventure</th>
-      <td>  6545</td>
-    </tr>
-    <tr>
-      <th>Family</th>
-      <td>  4853</td>
-    </tr>
-    <tr>
-      <th>Mystery</th>
-      <td>  4356</td>
-    </tr>
-    <tr>
-      <th>Sci-Fi</th>
-      <td>  4342</td>
-    </tr>
-    <tr>
-      <th>Fantasy</th>
-      <td>  4155</td>
-    </tr>
-    <tr>
-      <th>War</th>
-      <td>  2923</td>
-    </tr>
-    <tr>
-      <th>Musical</th>
-      <td>  2735</td>
-    </tr>
-    <tr>
-      <th>Western</th>
-      <td>  2180</td>
-    </tr>
-    <tr>
-      <th>History</th>
-      <td>  1989</td>
-    </tr>
-    <tr>
-      <th>Animation</th>
-      <td>  1955</td>
-    </tr>
-    <tr>
-      <th>Biography</th>
-      <td>  1597</td>
-    </tr>
-    <tr>
-      <th>Music</th>
-      <td>  1558</td>
-    </tr>
-    <tr>
-      <th>Sport</th>
-      <td>  1039</td>
-    </tr>
-    <tr>
-      <th>Film-Noir</th>
-      <td>   255</td>
-    </tr>
-    <tr>
-      <th>Adult</th>
-      <td>    23</td>
-    </tr>
-    <tr>
-      <th>News</th>
-      <td>     6</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Movie Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Drama</th>
+<td> 48406</td>
+</tr>
+<tr>
+<th>Comedy</th>
+<td> 30167</td>
+</tr>
+<tr>
+<th>Romance</th>
+<td> 13408</td>
+</tr>
+<tr>
+<th>Thriller</th>
+<td> 13399</td>
+</tr>
+<tr>
+<th>Action</th>
+<td> 12408</td>
+</tr>
+<tr>
+<th>Crime</th>
+<td>  9795</td>
+</tr>
+<tr>
+<th>Horror</th>
+<td>  8697</td>
+</tr>
+<tr>
+<th>Adventure</th>
+<td>  6545</td>
+</tr>
+<tr>
+<th>Family</th>
+<td>  4853</td>
+</tr>
+<tr>
+<th>Mystery</th>
+<td>  4356</td>
+</tr>
+<tr>
+<th>Sci-Fi</th>
+<td>  4342</td>
+</tr>
+<tr>
+<th>Fantasy</th>
+<td>  4155</td>
+</tr>
+<tr>
+<th>War</th>
+<td>  2923</td>
+</tr>
+<tr>
+<th>Musical</th>
+<td>  2735</td>
+</tr>
+<tr>
+<th>Western</th>
+<td>  2180</td>
+</tr>
+<tr>
+<th>History</th>
+<td>  1989</td>
+</tr>
+<tr>
+<th>Animation</th>
+<td>  1955</td>
+</tr>
+<tr>
+<th>Biography</th>
+<td>  1597</td>
+</tr>
+<tr>
+<th>Music</th>
+<td>  1558</td>
+</tr>
+<tr>
+<th>Sport</th>
+<td>  1039</td>
+</tr>
+<tr>
+<th>Film-Noir</th>
+<td>   255</td>
+</tr>
+<tr>
+<th>Adult</th>
+<td>    23</td>
+</tr>
+<tr>
+<th>News</th>
+<td>     6</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12212,7 +12016,6 @@ iMgksYEjIiKT9P9p3+MfpWW6LQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Drama and Comedy are big in IMDB and movie industry apparently.</p>
-
 </div>
 </div>
 </div>
@@ -12221,31 +12024,24 @@ iMgksYEjIiKT9P9p3+MfpWW6LQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Distribution-of-Movies-for-each-Category-over-Rating">Distribution of Movies for each Category over Rating<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Rating">&#182;</a></h2><blockquote><p>From the following distributions, purple is the movie distribution for each category and turquoise is the mean distribution of all of the movies across different categories.</p>
+<h2 id="Distribution-of-Movies-for-each-Category-over-Rating">Distribution of Movies for each Category over Rating<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Rating">¶</a></h2><blockquote><p>From the following distributions, purple is the movie distribution for each category and turquoise is the mean distribution of all of the movies across different categories.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[167]:</div>
+<div class="prompt input_prompt">In [167]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4FFWiNvC301lJQCGEBLIRwhbCFtYQogyj4AoIIqDi
@@ -13189,43 +12985,34 @@ SA7mhkh/THmjYb1YvHgxysvLsXr16mBXhQyEuSG5mB2Sg7khOZgbIt9axRUsrZw8eRKHDx+GIAjI
 ycnB22+/jalTpwa7WqRzzA3JxeyQHMwNycHcEPkvNNgVMJPa2lrMmjULJSUliImJwdNPP43JkycH
 u1qkc8wNycXskBzMDcnB3BD5j10EiYiIiIiIFMIugkRERERERAphA4uIiIiIiEghbGAREREREREp
 hA0sIiIiIiIihbCBRUREREREpJD/B4Cb681x+NnRAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Distribution-of-Movies-for-each-Category-over-Year">Distribution of Movies for each Category over Year<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Year">&#182;</a></h2>
+<h2 id="Distribution-of-Movies-for-each-Category-over-Year">Distribution of Movies for each Category over Year<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Year">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[141]:</div>
+<div class="prompt input_prompt">In [141]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8FfW9//HXyQ4kBAhLAiFhBwFZVVQQAav+FBVt9bpr
@@ -14497,14 +14284,11 @@ BrrYIsAkbkRvSNyI3pLYEb0hcSNE35IBVhdSUlL48MMPefTRRxk5ciSpqan87W9/QylFXFwcy5cv
 55ZbbmHYsGG89dZbLFiwwOvzcndnYJK4Eb0hcSN6S2JH9IbEjRB9Rxa5EEIIIYQQQgg/kSdYQggh
 hBBCCOEnMsASQgghhBBCCD+RAZYQQgghhBBC+IkMsIQQQgghhBDCT2SAJYQQQgghhBB+IgMsIYQQ
 QgghhPATGWAJIYQQQgghhJ/IAEsIIYQQQggh/OT/B05b3Fteil4yAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -14512,7 +14296,6 @@ QgghhPATGWAJIYQQQgghhJ/IAEsIIYQQQggh/OT/B05b3Fteil4yAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Drama, Comedy and other main categories almost follow the mean distribution unsurprisingly. Other than mainstream categories, almost other categories have higher number of movies than their historical means except Western and Film-Noir. Adult and News categories have quite a few numbers so it may not be meaningful to reach any conclusions for these categories.</p>
-
 </div>
 </div>
 </div>
@@ -14521,29 +14304,23 @@ QgghhPATGWAJIYQQQgghhJ/IAEsIIYQQQggh/OT/B05b3Fteil4yAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Distribution-of-Movies-for-each-Category-over-Runtime">Distribution of Movies for each Category over Runtime<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Runtime">&#182;</a></h2>
+<h2 id="Distribution-of-Movies-for-each-Category-over-Runtime">Distribution of Movies for each Category over Runtime<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Runtime">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[142]:</div>
+<div class="prompt input_prompt">In [142]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVPX+P/DXACIKooQKKAKKIooKaooLKJraNxWXynK3
@@ -15531,14 +15308,11 @@ ISEh6NixI+bOnYvq6uoG18V0A2HpiIy1+taO4FhqqytvkJgb5kYpZofZUYK5YW6UYG6YG3IhEqku
 KipK8vf3lx566CGH18rLy5Nat24ttWrVSlq+fLnD65HjMDekFLNDSjA3pARzQ3RzOkniYQEiIiIi
 IiI1NKlLBImIiIiIiLSMHSwiIiIiIiKVsINFRERERESkEnawiIiIiIiIVMIOFhERERERkUrYwSIi
 IiIiIlLJ/wfWjuFfvEohNAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -15547,7 +15321,6 @@ IiIiIlLJ/wfWjuFfvEohNAAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>History and Biographies are longer than average, but I guess nobody is really surprised. What I found interesting is that Animation
 and Film-Noir movies are quite close to each other in terms of runtime.</p>
-
 </div>
 </div>
 </div>
@@ -15556,29 +15329,23 @@ and Film-Noir movies are quite close to each other in terms of runtime.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Distribution-of-Movies-for-each-Category-over-Number-of-Votes">Distribution of Movies for each Category over Number of Votes<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Number-of-Votes">&#182;</a></h2>
+<h2 id="Distribution-of-Movies-for-each-Category-over-Number-of-Votes">Distribution of Movies for each Category over Number of Votes<a class="anchor-link" href="#Distribution-of-Movies-for-each-Category-over-Number-of-Votes">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[158]:</div>
+<div class="prompt input_prompt">In [158]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FNX6B/Dvpve2pFcIKSSBhGYoCUZEvFJEvICgFEVE
@@ -16669,14 +16436,11 @@ DAaD4yk7ly9floiICPHz8xOr1SonT54UEZG7d+9KRESE+Pj4iNFolJycHJmcnFyQ4yR1MTekBHND
 SjA3pARzQ+Q+NCIiCz3kEREREREReYIldYsgERERERHRfOKARUREREREpBIOWERERERERCrhgEVE
 RERERKQSDlhEREREREQq4YBFRERERESkEg5YREREREREKuGARUREREREpJL/AGSNw0cVga08AAAA
 AElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -16684,7 +16448,6 @@ AElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This distribution graphs are not very useful as only very few movies could get a lot of votes. However, I included them because these are the only graphs that show Zipf's law all of the above graphs. And as everyone knows about distribution, if you do not show a Zipf distribution, then your analysis is not complete.</p>
-
 </div>
 </div>
 </div>
@@ -16693,9 +16456,8 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h3><p>I was planning to include best directors by rating and also actors and actresses. Which <em>director</em> is best or <em>actor</em> and <em>actress</em> in terms of rating? What about votes? Can we get the activity of directors over time looking at the movies that they direct?</p>
+<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h3><p>I was planning to include best directors by rating and also actors and actresses. Which <em>director</em> is best or <em>actor</em> and <em>actress</em> in terms of rating? What about votes? Can we get the activity of directors over time looking at the movies that they direct?</p>
 <p>Further, I got more ambitious if we could cluster the movies using outlines. To be able to determine the movie type from outline would be nice, wouldn't it? Stay tuned for the next week.</p>
-
 </div>
 </div>
 </div>

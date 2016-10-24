@@ -1016,40 +1016,36 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Agenda">Agenda<a class="anchor-link" href="#Agenda">&#182;</a></h3><p>I will look at in this post:</p>
+<h3 id="Agenda">Agenda<a class="anchor-link" href="#Agenda">¶</a></h3><p>I will look at in this post:</p>
 <ul>
 <li>First,  how we approach fitting a curve to a perfect quadratic function, using first order and second order derivatives of the function. </li>
 <li>Second, how one can do curve fitting in a quadratic function via Monte Carlo Markov Chain(MCMC) via Pymc.  </li>
 <li>Last, how convolution could be used for numerical differentiation to estimate the coefficients of quadratic function.</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="prompt input_prompt">In [101]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In [102]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1058,28 +1054,25 @@ h6:hover .anchor-link {
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">signal</span> <span class="k">as</span> <span class="n">ssignal</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The following signal would be our perfect signal, in the sense that it is quadratic and we want to estimate its parameters through MCMC, and then using gradients(first derivative and second derivative) of the function. The range would be from 0 to 1000 and the coefficient numbers are chosen arbitrarily.<br>
+<p>The following signal would be our perfect signal, in the sense that it is quadratic and we want to estimate its parameters through MCMC, and then using gradients(first derivative and second derivative) of the function. The range would be from 0 to 1000 and the coefficient numbers are chosen arbitrarily.<br />
 To see the advantages of the MCMC over taking simple derivatives, I will add some noise to the signal as well as. Noisy signal would be useful to show the advantages of MCMC. Noisy signal is also more realistic and close to real world signal, as almost never we would have processes that produce a perfect second order quadratic signal. Even the systems that are supposed to produce that type of signals, they cannot do that due to environmental, component-dependent noise.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="prompt input_prompt">In [103]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Constucting our perfect signal</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1088,33 +1081,25 @@ To see the advantages of the MCMC over taking simple derivatives, I will add som
 <span class="n">signal</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
 <span class="n">noisy_signal</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">+</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In [104]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">r&#39;$5 x^2 + 10 x + 50$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">r'$5 x^2 + 10 x + 50$'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuQAAALOCAYAAADhkwY1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X1clHWi///3MAygM4CgeH+PgqhRkVomkN1odmdamanV
@@ -1557,36 +1542,27 @@ xx57zOSJ0JuefvpptbW16amnntJTTz0lSXrggQf06KOPyu12KzMzU/PmzZPFYtEtt9yipUuXyufz
 v/3bv2np0qXyeDz6wQ9+oDFjxrAugpjFYpGks/q5sWTJEt13331aunSpwsPDtXLlytN/H+PzJ8UA
 AAAA6FUBdcoKAAAA4G8IcgAAAMBEBDkAAABgIoIcAAAAMBFBDgAAAJiIIAcAAABMRJADAAAAJiLI
 AQAAABP9f3zmVKL4hU1OAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In [105]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">noisy_signal</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Noisy Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Noisy Signal'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAukAAALJCAYAAAAJaL09AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlgVPW9///X7JPMTDYIO0Zktxo1gkpZxFbvtVYt2LpA
@@ -2296,49 +2272,38 @@ PHpcLRaLRaWlpVq6dCnzIo6NHj1ae/fu1YQJExQIBLR8+XJ1796deRHniouL9dBDD6moqEjnzp3T
 ggUL1L9/f+ZFnLNYLJLUpt8dU6ZM0eLFi1VUVKTExEStX7+++XsY4cU0AAAAANrddV/uAgAAAFxr
 COkAAACAyRDSAQAAAJMhpAMAAAAmQ0gHAAAATIaQDgAAAJgMIR0AAAAwGUI6AAAAYDL/Dyc6wWFr
 OHlNAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In [106]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">first_derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
 <span class="n">second_derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">first_derivative</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In [107]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">second_derivative</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">second_derivative</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsYAAALACAYAAACQMbSoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X+QnXdB6P/35kdbSNIvRaNXBWrsQAvcixhaqFIKOogd
@@ -2510,14 +2475,11 @@ WWc1OzvbS17yko444ogJz/7wMzU11UUXXdQrX/lK63+IPelJT+pjH/tYT3va0/Zcw7/v+77P2i+T
 c889t4svvrizzjqrnTt3tmnTph75yEda/2UwNTVVtahrzTOe8Yxe+tKXdtZZZ3XEEUf0xje+ccJ7
 cd81NTXV7Oxsl112Wd/7vd+75186e9zjHtf555+/JOvvV0IDAEB+wQcAAFTCGAAAKmEMAACVMAYA
 gEoYAwBAJYwBAKASxgAAUAljAACo6v8BTY9hfqbYvtkAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2526,30 +2488,23 @@ gEoYAwBAJYwBAKASxgAAUAljAACo6v8BTY9hfqbYvtkAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This plot is our $2a$ plot, it is because the second derivative of $ax^2 + bx +c $ is $2a$(Note that the first derivative is $2ax + b$). We could see that the $a$ is actually 5 as $2a$ is 10. For a quadratic function, if you want to get the coefficient of the second order term in a quadratic function, instead of curve fitting, we could get its second derivative by doing so.</p>
 <p>Note that the borders(boundary conditions are not well-defined for derivative of the function) do not obey rest of the second derivative but this is easy to fix, getting the median of the whole second derivative term. If you do not want to deal with boundaries, you could truncate the second derivative and first derivative terms without loss of generalization.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In [108]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">first_derivative</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">first_derivative</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtgAAALACAYAAACpVgXzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3VtsW4dh//HfORQpWxQlWbJsd2thDEbiJZJISrmsGRIv
@@ -2924,14 +2879,11 @@ atu2bZL+N8W+detWrVu3LjHFPvpuIQsWLNCyZcsUj8e1ZcsWJy895dx6661qbGzUvffeK0mqqqpy
 FtPatWs1b948zn8KuFwuSZrQ15v77rtPGzZs0PLly5Wenq6dO3c6/CiSl8vlUjwe144dO3T11Vcn
 3pnupptu0urVq62cP1PpAAAAgEXT7hYRAAAAIJkR2AAAAIBFBDYAAABgEYENAAAAWERgAwAAABYR
 2AAAAIBFBDYAAABgEYENAAAAWPT/+movfzKu4nYAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2939,38 +2891,28 @@ FtPatWs1b948zn8KuFwuSZrQ15v77rtPGzZs0PLly5Wenq6dO3c6/CiSl8vlUjwe144dO3T11Vcn
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What about the coefficient of $x$, namely $b$? We could find its value from the first derivative as we already found $a$. As mentioned earlier, the graph of first derivative is $10x + b$ and by looking at any $(x, y)$ pairs, we could easily find the value of $b$.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In [109]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">first_derivative</span><span class="p">[</span><span class="mi">500</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[109]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>5010.0</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2978,33 +2920,26 @@ FtPatWs1b948zn8KuFwuSZrQ15v77rtPGzZs0PLly5Wenq6dO3c6/CiSl8vlUjwe144dO3T11Vcn
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For $(x, y) = (500, 5010)$, we could see $b=10$, but does that hold true for every point? We could check by computing an error term or we could directly look athe value of the b, which I will do the later in the next graph.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In [110]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b_</span> <span class="o">=</span> <span class="p">[</span><span class="n">jj</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">first_derivative</span><span class="o">.</span><span class="n">tolist</span><span class="p">())]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b_</span><span class="p">);</span>
 <span class="c1"># To get rid of boundary</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">990</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArwAAALACAYAAABxWqH5AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGJVJREFUeJzt3V+s1wX9x/H3l3MQ4sgxXOeicmPEmFqbF5jONqeMCzoX
@@ -3119,14 +3054,11 @@ NFTz58+v3t7earVadfvtt9eyZctqZGSk1q1bVxdddNF5np5zrdVq1YYNG+r++++3H1RV1aJFi+q5
 556rW265pUZGRmrLli313ve+144wauXKlbVx48ZatmxZDQ8P1/r16+sDH/iAHeGMeLQwAADRfKQB
 AIBoghcAgGiCFwCAaIIXAIBoghcAgGiCFwCAaIIXAIBoghcAgGj/BarT77kuFPujAAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3134,38 +3066,28 @@ QmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Apparently for every point in the first derivative this holds true, so it is fair to conclude that $b=10$. Similarly, after finding the $a$ and $b$ values, we could similarly estimate $c$ from the $(x, y)$ pairs in the original signal.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
+<div class="prompt input_prompt">In [111]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">signal</span><span class="p">[</span><span class="mi">50</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[111]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>13050</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3174,31 +3096,24 @@ QmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The signal that we have is now $5x^2 + 10x + c$ and for $x=50$ that corresponds to $13000 + c$ and if we put the value of $x,y$ pair above, we would find that the $c$ is 50.</p>
 <p>Similarly, we could plot the value of $c$ for different $x$ values;</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="prompt input_prompt">In [112]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c_</span> <span class="o">=</span> <span class="p">[</span><span class="n">jj</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">ii</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span><span class="n">ii</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">tolist</span><span class="p">())]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c_</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALACAYAAACO+IQbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAG09JREFUeJzt3VuMXQXd9/Hf7glKD9bCSILFFhsEJR6oQDSWQwxqYxpj
@@ -3325,14 +3240,11 @@ lizJggULsm/fvixfvjxjxox5m6dnuLRaraxYsSIrV660F0ew8847L88880zmzp2bffv2pbu7O+9/
 //vtxRGus7MzXV1dWbBgQQYGBnLNNdfktNNOsxdHsFarlSRv6efG/Pnz853vfCcLFizImDFjcvvt
 tw99nKZxq2kAAPgXFwUDAEAhkAEAoBDIAABQCGQAACgEMgAAFAIZAAAKgQwAAIVABgCA4v8A0Ml7
 MljbVx4AAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3340,7 +3252,6 @@ MljbVx4AAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$c$ seems to be 50.</p>
-
 </div>
 </div>
 </div>
@@ -3349,46 +3260,37 @@ MljbVx4AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Derivation-in-the-Noisy-Signal">Derivation in the Noisy Signal<a class="anchor-link" href="#Derivation-in-the-Noisy-Signal">&#182;</a></h3><p>Since most of the real world datasets do not have perfect signals, they have noise, taking the derivatives from the noisy signal does not work. Take the <code>noisy_signal</code> example:</p>
-
+<h3 id="Derivation-in-the-Noisy-Signal">Derivation in the Noisy Signal<a class="anchor-link" href="#Derivation-in-the-Noisy-Signal">¶</a></h3><p>Since most of the real world datasets do not have perfect signals, they have noise, taking the derivatives from the noisy signal does not work. Take the <code>noisy_signal</code> example:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In [113]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">noisy_first_derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">noisy_signal</span><span class="p">)</span>
 <span class="n">noisy_second_derivative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">noisy_first_derivative</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In [114]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">second_derivative</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Second derivative of noiseless signal&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">noisy_second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">noisy_second_derivative</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Second derivative of noisy signal&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">second_derivative</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Second derivative of noiseless signal'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">noisy_second_derivative</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">noisy_second_derivative</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Second derivative of noisy signal'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'k'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuMAAALACAYAAAA5RXw8AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd0VNXexvHvZDKhpFBDD53QA4RQA0iHiIBKCaEIUkWC
@@ -5393,14 +5295,11 @@ detGVlYW8fHx7tfwBg0aqPcVJCkpiccee4wRI0Zw5swZxo0bx4033qj+VwCLxQJwWa81w4cPZ+LE
 iYwYMYLAwEBmz55t8qPwXhaLBZfLxcyZM6lfv757hb6bb76ZlJQUj/TfYpw7CUlERERERCqMV09T
 ERERERHxZgrjIiIiIiImURgXERERETGJwriIiIiIiEkUxkVERERETKIwLiIiIiJiEoVxERERERGT
 KIyLiIiIiJjk/wNw0jQ+GGOGugAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -5408,7 +5307,6 @@ KIyLiIiIiJjk/wNw0jQ+GGOGugAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There is not a single coherent value in the second derivative of the noisy signal. This is because the noise gets worse when we get the derivative of the signal(high-pass filtered signal, will become clear in the convolution section)  as I have mentioned a little bit in <a href="">here</a> as well.</p>
-
 </div>
 </div>
 </div>
@@ -5417,54 +5315,49 @@ KIyLiIiIiJjk/wNw0jQ+GGOGugAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Curve-Fitting-via-MCMC">Curve Fitting via MCMC<a class="anchor-link" href="#Curve-Fitting-via-MCMC">&#182;</a></h2><h3 id="Priors">Priors<a class="anchor-link" href="#Priors">&#182;</a></h3><p>Since we do not have any informed opinions on priors, what we could do is just selecting the priors from the uniform distribution to have an unbiased beginning and data will update the posterior by itself.</p>
-
+<h2 id="Curve-Fitting-via-MCMC">Curve Fitting via MCMC<a class="anchor-link" href="#Curve-Fitting-via-MCMC">¶</a></h2><h3 id="Priors">Priors<a class="anchor-link" href="#Priors">¶</a></h3><p>Since we do not have any informed opinions on priors, what we could do is just selecting the priors from the uniform distribution to have an unbiased beginning and data will update the posterior by itself.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In [115]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sig</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;sig&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sig</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">'sig'</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">'b'</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">'c'</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Quadratic-Model">Quadratic Model<a class="anchor-link" href="#Quadratic-Model">&#182;</a></h3>
+<h3 id="Quadratic-Model">Quadratic Model<a class="anchor-link" href="#Quadratic-Model">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">In [116]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@pymc</span><span class="o">.</span><span class="n">deterministic</span>
 <span class="k">def</span> <span class="nf">quadratic_model</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span>
 
-<span class="n">quad_y</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;quad_y&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">quadratic_model</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">noisy_signal</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">quad_y</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">'quad_y'</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">quadratic_model</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">noisy_signal</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">quad_model</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">quad_y</span><span class="p">])</span>
 <span class="n">quadratic_mcmc</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">quad_model</span><span class="p">)</span>    
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -5472,7 +5365,6 @@ KIyLiIiIiJjk/wNw0jQ+GGOGugAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Quadratic model is defined as a straightforward 2nd order equation and we want to estimate a Gaussian where its mean is our quadratic function.</p>
-
 </div>
 </div>
 </div>
@@ -5481,70 +5373,58 @@ KIyLiIiIiJjk/wNw0jQ+GGOGugAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Inference">Inference<a class="anchor-link" href="#Inference">&#182;</a></h3>
+<h3 id="Inference">Inference<a class="anchor-link" href="#Inference">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">In [117]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre> [-----------------100%-----------------] 100000 of 100000 complete in 40.4 sec</pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">In [118]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Quadratic Function Coefficients</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[:]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)[:]</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)[:]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)[:]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'b'</span><span class="p">)[:]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">quadratic_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'c'</span><span class="p">)[:]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[119]:</div>
+<div class="prompt input_prompt">In [119]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last value of a: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last value of b: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last value of c: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Last value of a: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Last value of b: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Last value of c: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Last value of a: 5.01246794716, and the median value is 5.01247082111
@@ -5553,10 +5433,8 @@ Last value of c: 4.05537704958e-05, and the median value is 0.00119246364763
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -5564,7 +5442,6 @@ Last value of c: 4.05537704958e-05, and the median value is 0.00119246364763
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The meaningful values are the median values as they reflect the estimated values better. If we look at the numbers, they are quite close to the real values(except c), but let's see how they are distributed to get a better idea on posterior distribution of the plots.</p>
-
 </div>
 </div>
 </div>
@@ -5573,30 +5450,24 @@ Last value of c: 4.05537704958e-05, and the median value is 0.00119246364763
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Posterior-Plots">Posterior Plots<a class="anchor-link" href="#Posterior-Plots">&#182;</a></h3>
+<h3 id="Posterior-Plots">Posterior Plots<a class="anchor-link" href="#Posterior-Plots">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[120]:</div>
+<div class="prompt input_prompt">In [120]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAALMCAYAAADaYRW1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X+QXXVh///X3mxi6maDkzG2dda9tgy/LC51JXTBIeXT
@@ -5826,35 +5697,26 @@ npck2bZt29jr733ve/O6170uJ598cq699tqsWrUqv/ALv5DnP//5qdWmZ1GH0AYAoIjLLrts7H+/
 zY1PPPFEtm/fnlNPPTWXXnppkqeuoq9Zs2bCcaxfvz7vf//7s3379tRqtWzdurXUKY/T1nrm4hUA
 AGBKuBkSAAAKENoAAFCA0AYAgAKENgAAFCC0AQCgAKENAAAFCG0AAChAaAMAQAH/P0EP+zcSdLCK
 AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">In [121]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAALACAYAAACto9XOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X901fd93/GXhFBI9MMZK+vaUcsuB5i3VF4U4IA7FNom
@@ -6092,35 +5954,26 @@ fuqn8u/+3b+b05860qg5ff8n/rS0tOQzn/nMnN+j3ahZjY+P54EHHsjw8HCS5IEHHsgtt9zSsDlM
 p5H/7f2jf/SP8uM//uP5qZ/6qYadf70aNaeXXnop27dvz9jYWM6ePZtPfvKTWbNmTSNHMa1GzerF
 F1/M1q1bU6vV8uY3vzn/+B//4yk/7c4t2AEAoAA3rAEAgAKENgAAFCC0AQCgAKENAAAFCG0AAChA
 aAMAQAFCGwAAChDaAABQwP8DZQLVAdrodIMAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">In [122]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtQAAALACAYAAACzauV9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X2QledB///PLstKuw+t/L74uM2GMoFvamejW2Agyhad
@@ -6334,42 +6187,33 @@ aJhrLnV9/uRP/uRFX8tnJ1NpKtfmu971Lp+dTJnLWZvPPfdc3vGOd2TLli256aabzu1/qZ+bs/Lo
 4GCS+OxkSk3l2vTZyVS6nLX5u7/7u/mrv/qrLF68+NzrfPrTn84zzzxzSZ+bHj0OAAAFPNgFAAAK
 CGoAACggqAEAoICgBgCAAoIaAAAKCGoAACggqAEAoICgBgCAAv8/by8qATBvh3YAAAAASUVORK5C
 YII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">In [123]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="n">cc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
 <span class="n">constructed_signal</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">bb</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">cc</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">noisy_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Noisy Signal&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">constructed_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Constructed Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">noisy_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Noisy Signal'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">constructed_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Constructed Signal'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAukAAALACAYAAAAuZ+z1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlgVOW9//H3mTXLZIWEJYQAgbAaIIBLWYrVtt4uXr3V
@@ -7220,14 +7064,11 @@ P+Dn4gw2e/ZsrFq1CldccQVkWcYPf/hDVFVV8XNxhrvpppvwve99D9deey0SiQTuvPNOjBs3jp+L
 M5wgCABwRP92XHPNNViwYAGuvfZa2O12PProo30/h6JvpiEiIiIiopPutG93ISIiIiI61TCkExER
 ERHlGIZ0IiIiIqIcw5BORERERJRjGNKJiIiIiHIMQzoRERERUY5hSCciIiIiyjEM6UREREREOeb/
 A3SJp1urHWCNAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7235,7 +7076,6 @@ A3SJp1urHWCNAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that the constructed signal is quite good in terms of noise handling and it is very close to original signal that we started with.</p>
-
 </div>
 </div>
 </div>
@@ -7244,7 +7084,7 @@ A3SJp1urHWCNAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Linear-Model">Linear Model<a class="anchor-link" href="#Linear-Model">&#182;</a></h3>
+<h3 id="Linear-Model">Linear Model<a class="anchor-link" href="#Linear-Model">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7254,7 +7094,6 @@ A3SJp1urHWCNAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Similarly, we could do linear regression on the first derivative of the function in order to estimate the second order and first order terms in the function.</p>
-
 </div>
 </div>
 </div>
@@ -7263,7 +7102,7 @@ A3SJp1urHWCNAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Priors">Priors<a class="anchor-link" href="#Priors">&#182;</a></h3>
+<h3 id="Priors">Priors<a class="anchor-link" href="#Priors">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7273,97 +7112,82 @@ A3SJp1urHWCNAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Priors could be chosen from Uniform distribution as previously as we do not have prior information on the parameters, linear model is basic linear regression except that it is using MCMC to estimate the slope and intercept of the linear function.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="prompt input_prompt">In [132]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">'m'</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">'n'</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In [133]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@pymc</span><span class="o">.</span><span class="n">deterministic</span>
 <span class="k">def</span> <span class="nf">linear_model</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">n</span>
-<span class="n">linear_y</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;linear_y&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">linear_model</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">first_derivative</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">linear_y</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">'linear_y'</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">linear_model</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">sig</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">first_derivative</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">linear_model</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">linear_y</span><span class="p">])</span>
 <span class="n">linear_mcmc</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">linear_model</span><span class="p">)</span>  
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Inference">Inference<a class="anchor-link" href="#Inference">&#182;</a></h3>
+<h3 id="Inference">Inference<a class="anchor-link" href="#Inference">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[134]:</div>
+<div class="prompt input_prompt">In [134]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">linear_mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre> [-----------------100%-----------------] 100000 of 100000 complete in 29.5 sec</pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[135]:</div>
+<div class="prompt input_prompt">In [135]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Linear Function Coefficients</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">linear_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)[:]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">linear_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)[:]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last value of m: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">m</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last value of n: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">linear_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'m'</span><span class="p">)[:]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">linear_mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'n'</span><span class="p">)[:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Last value of m: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">m</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Last value of n: </span><span class="si">{}</span><span class="s1">, and the median value is </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Last value of m: 9.99190707125, and the median value is 10.0003068209
@@ -7371,10 +7195,8 @@ Last value of n: 12.6452367342, and the median value is 9.8141133337
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7383,7 +7205,6 @@ Last value of n: 12.6452367342, and the median value is 9.8141133337
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the above, note that $m$ corresponds to $2a$ and $n$ corresponds to $b$ in the original signal. The $c$ could be found in the same way we found earlier, checking the $x, y$ pairs of the function.</p>
 <p>The approach of first taking the derivative of the function and then doing linear regression would be useful to estimate the coefficients that are not constant if the curve fitting takes either too much time to converge or function's second derivative is not meaningful. Note that one does not have to do curve fitting on a function if function is differentiable. We could always use the first derivative to estimate the parameters(albeit not the constants), then use the estimated parameters to estimate the constant.</p>
-
 </div>
 </div>
 </div>
@@ -7392,11 +7213,10 @@ Last value of n: 12.6452367342, and the median value is 9.8141133337
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Taking-Derivatives-through-convolution">Taking Derivatives through convolution<a class="anchor-link" href="#Taking-Derivatives-through-convolution">&#182;</a></h3><p>The first and second derivative is obtained by convenient <code>numpy</code> function <code>gradient</code> but this is not only way to take the derivative of the function. We could also apply a <strong>high-pass</strong> filter to get the gradient of the function. Arguably, the simplest high-pass filter <code>[-1, 1]</code> could just do that.</p>
+<h3 id="Taking-Derivatives-through-convolution">Taking Derivatives through convolution<a class="anchor-link" href="#Taking-Derivatives-through-convolution">¶</a></h3><p>The first and second derivative is obtained by convenient <code>numpy</code> function <code>gradient</code> but this is not only way to take the derivative of the function. We could also apply a <strong>high-pass</strong> filter to get the gradient of the function. Arguably, the simplest high-pass filter <code>[-1, 1]</code> could just do that.</p>
 <p>For the second derivative filter, we could apply one more time the same filter which will result in second derivative filter. However, the convolution operation is linear operation so instead of applying the same filter twice to the signal, we could convolve the filter with <strong>itself</strong> to get the second derivative filter, namely <strong>Discrete Laplace Filter</strong>.</p>
-<h4 id="Theory">Theory<a class="anchor-link" href="#Theory">&#182;</a></h4><p>Derivation at least in the broad sense of derivation is defined in the continuous signals. To be able to get derivatives of finite series, we need to depend on numerical differentiation. That is, the derivation is not done in <em>infinitesimally</em> function parts but rather it would be a discrete difference. So, when we define the derviation in the discrete series more formally, we could write as follows:
+<h4 id="Theory">Theory<a class="anchor-link" href="#Theory">¶</a></h4><p>Derivation at least in the broad sense of derivation is defined in the continuous signals. To be able to get derivatives of finite series, we need to depend on numerical differentiation. That is, the derivation is not done in <em>infinitesimally</em> function parts but rather it would be a discrete difference. So, when we define the derviation in the discrete series more formally, we could write as follows:
 $$ f^{\prime} = \lim_{h \rightarrow 0} \frac{f(x+h) - f(x)}{f(h)} $$</p>
-
 </div>
 </div>
 </div>
@@ -7411,25 +7231,24 @@ Note that, even if we are computing the derivative of the function at $x$, we ar
 $$f^{\prime\prime} = lim_{h \rightarrow 0} \frac{f(x+2h) - f(x) - [f(x) - f(x-2h)]}{2h * 2h}$$
 .</p>
 $$f^{\prime\prime} = lim_{h \rightarrow 0} \frac{f(x+2h) - 2f(x) + f(x-2h)]}{4h^2}$$<p>If we look at the numerator coefficients of both first derivative and second derivative, then we would see something coherent, first derivative is [1, -1] and second derivative is [1, -2, 1]. The second derivative filter is called also <strong>Laplace Operator</strong>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In [128]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### High-Pass Filtering</span>
 <span class="k">def</span> <span class="nf">get_first_and_second_derivative_through_convolution</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
     <span class="c1"># Simple High Pass Filter</span>
     <span class="n">high_pass_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="n">first_derivative</span> <span class="o">=</span> <span class="n">ssignal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">high_pass_filter</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">)</span>
+    <span class="n">first_derivative</span> <span class="o">=</span> <span class="n">ssignal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">high_pass_filter</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'valid'</span><span class="p">)</span>
     <span class="c1"># If we convolve the first derivative filter with itself, we get 2nd derivative filter</span>
     <span class="c1"># Laplacian Operator =&gt; 2nd Derivative Filter </span>
     <span class="n">laplacian</span> <span class="o">=</span> <span class="n">ssignal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">high_pass_filter</span><span class="p">,</span> <span class="n">high_pass_filter</span><span class="p">)</span>
     <span class="c1"># This is gain, that we just applied the filter once to the signal to get 2nd derivative</span>
-    <span class="n">second_derivative</span> <span class="o">=</span> <span class="n">ssignal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">laplacian</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">)</span>
+    <span class="n">second_derivative</span> <span class="o">=</span> <span class="n">ssignal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">laplacian</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'valid'</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">first_derivative</span><span class="p">,</span> <span class="n">second_derivative</span><span class="p">)</span>
 
 <span class="c1"># For noiseless signal</span>
@@ -7437,33 +7256,27 @@ $$f^{\prime\prime} = lim_{h \rightarrow 0} \frac{f(x+2h) - 2f(x) + f(x-2h)]}{4h^
 <span class="c1"># For noisy signal</span>
 <span class="n">f_noisy_signal</span><span class="p">,</span> <span class="n">s_noisy_signal</span> <span class="o">=</span> <span class="n">get_first_and_second_derivative_through_convolution</span><span class="p">(</span><span class="n">noisy_signal</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">In [129]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Laplacian Filter</span>
 <span class="n">high_pass_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">laplacian_filter</span> <span class="o">=</span> <span class="n">ssignal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">high_pass_filter</span><span class="p">,</span> <span class="n">high_pass_filter</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;High Pass Filter: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">high_pass_filter</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Laplacian: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">laplacian_filter</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'High Pass Filter: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">high_pass_filter</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Laplacian: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">laplacian_filter</span><span class="p">))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>High Pass Filter: [ 1. -1.]
@@ -7471,10 +7284,8 @@ Laplacian: [ 1. -2.  1.]
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7482,30 +7293,23 @@ Laplacian: [ 1. -2.  1.]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nothing unexpected. We are doing <em>one</em> convolution with a large signal instead of <em>two</em> convolution based on the assumption that convolution of signal with a filter is significantly more computationally expensive than the filter's convolution with itself.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="prompt input_prompt">In [130]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">s_signal</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">s_signal</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtsAAALGCAYAAACUOF3tAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X2QnXV9///X2c0GYnbzQ/iGjjYNGoSICsENUK0EHVta
@@ -7723,37 +7527,28 @@ b0p3d3fmzZs39Dj+m7/5m9b/AOnq6sqf//mf57zzzsvOnTtz+eWX59WvfrX1PwBqtVqSPKfHm3PP
 PTdXX311zjvvvEycODGf+MQnmnwWB6darZZ6vZ6lS5fmpS996dBfuPvt3/7tXHzxxftt7WvVyIuE
 AACA/eYFexkJAAAc7MQ2AAAUIrYBAKAQsQ0AAIWIbQAAKERsAwBAIWIbAAAKEdsAAFDI/w9SdbOc
 nc6dBQAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In [131]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Second Derivative of Noiseless Signal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_noisy_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Second Derivative of Noisy Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Second Derivative of Noiseless Signal'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_noisy_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Second Derivative of Noisy Signal'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuMAAALACAYAAAA5RXw8AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8FNXax3+7KYQ0Qgk2IIACelVQLmABAdsVfUVRQZpX
@@ -9277,28 +9072,24 @@ rFmjVatWybZtPfHEE0pOTjZcPeLB5XKppqZG3/nOd+iJSe62225Td3e3SkpKZNu2Nm3apKuvvpre
 mMTKy8v17W9/W6tWrdKFCxe0fv163XjjjfTEJOdyuSRpTNuOlStXqrq6WqtWrVJycrIaGxtH/h/O
 pZNgAAAAAMTNhJmmAgAAAFxpCOMAAACAIYRxAAAAwBDCOAAAAGAIYRwAAAAwhDAOAAAAGEIYBwAA
 AAwhjAMAAACG/D8D9wcpHI9HrwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">&#182;</a></h3><ul>
+<h3 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">¶</a></h3><ul>
 <li>If you have a perfect quadratic or similar to quadratic signal, instead of doing MCMC, you may want to go get its derivatives for parameter estimation.</li>
 <li>Convolution is powerful, you could filter the signal based on frequency, smooth it, high-pass filter it. In this particular implementation, convolution is used for second-order derivative as well. Since it is linear, you could combine a bunch of filters(through convolution) and instead of applyting the filters separately on the signal, you could apply one filter to whole signal in order to reduce the computation.</li>
 <li>For noisy signals, getting high-pass filter response of the signals deteriorate the signal as the noise response is also quite high. In order to apply, high-pass filters, you need to first smooth the signal to reduce the noise in a sane level. Then, you may have a better Signal-to-Noise Ratio(SNR).</li>
 <li>MCMC handles the noise quite well to estimate the parameters, real-world datasets, MCMC is quite good as it could reject the noise quite well and captures the main signal. But it is more on computationally expensive side. You may want to try <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">Scipy Curve Fit</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html">Numpy Poly Fit</a> where the first one uses non-linear least square and latter uses the linear least square method. They should result in faster results than MCMC.(not as correct as MCMC albeit)</li>
 <li>Generally, linear regression is de-facto method for regression, but if you want to estimate the change and different points in the signal, linear regression will give a constant slope for every point. In order to allow slope to vary across time, you need to fit a higher-order function. It will be computationally expensive, but as long as you do not overfit, the fit would be better than linear regression and you would get a slope function as well to estimate the changes in the function over time.</li>
 </ul>
-
 </div>
 </div>
 </div>

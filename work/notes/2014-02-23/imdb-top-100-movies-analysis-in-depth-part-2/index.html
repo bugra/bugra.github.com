@@ -1016,15 +1016,13 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h3><p>Data is from IMDB and includes top 100042 popularly voted movies. This post is second in series, see the <a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/">first post</a>.  I had some great feedback from <a href="https://news.ycombinator.com/item?id=7249717">HN</a> and decided to deal with more on categories of movies.
+<h3 id="Data">Data<a class="anchor-link" href="#Data">¶</a></h3><p>Data is from IMDB and includes top 100042 popularly voted movies. This post is second in series, see the <a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/">first post</a>.  I had some great feedback from <a href="https://news.ycombinator.com/item?id=7249717">HN</a> and decided to deal with more on categories of movies.
 In this one, I will first look at number of movies per category over time and rating of the categories. Second, I will compare popularly voted directors with other directors, give best directors for popularly voted categories. At the end, I will look at the correlation of the categories and do PCA on the movies. As in the first post, I will let the data speak for itself rather than explaining every single graph.</p>
-
 </div>
 </div>
 </div>
@@ -1033,7 +1031,7 @@ In this one, I will first look at number of movies per category over time and ra
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Are-old-movies-better-than-the-contemporary-ones-?">Are old movies better than the contemporary ones ?<a class="anchor-link" href="#Are-old-movies-better-than-the-contemporary-ones-?">&#182;</a></h3>
+<h3 id="Are-old-movies-better-than-the-contemporary-ones-?">Are old movies better than the contemporary ones ?<a class="anchor-link" href="#Are-old-movies-better-than-the-contemporary-ones-?">¶</a></h3>
 </div>
 </div>
 </div>
@@ -1042,29 +1040,23 @@ In this one, I will first look at number of movies per category over time and ra
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Mean-Score-of-Ratings-over-Year">Mean Score of Ratings over Year<a class="anchor-link" href="#Mean-Score-of-Ratings-over-Year">&#182;</a></h4>
+<h4 id="Mean-Score-of-Ratings-over-Year">Mean Score of Ratings over Year<a class="anchor-link" href="#Mean-Score-of-Ratings-over-Year">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="prompt input_prompt">In [201]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfAAAAFkCAYAAADfW2mzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VPW9P/D37JNlMlkmCSEhhGwkgRiBELawBFDQQETc
@@ -1353,14 +1345,11 @@ mTMH999/v2cbarUaACCTyfDxxx9j165d+Oc//4kpU6Zg165dyMvLG/rGiCIIz4ETRbiCggJ0dnZi
 RUU4efJkUHohiiTcAyeKcCqVCv/3f/+HVatWoaenB1qtFhs3bkRCQgIeffRRjBkzBqmpqbj99tth
 s9lgsVggkUg80yuWlJRgypQpGDt2LKKjozF+/HjccsstQe6KKPzxHDgREZEI8RA6ERGRCDHAiYiI
 RIgBTkREJEIMcCIiIhFigBMREYkQA5yIiEiEGOBEREQi9P8Bwq0f/m452t8AAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1368,7 +1357,6 @@ RIgBTkREJEIMcCIiIhFigBMREYkQA5yIiEiEGOBEREQi9P8Bwq0f/m452t8AAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the first post, we observed that the movies that are old consistently rated higher than the contemporary ones. When we look at the mean rating of movies per year(ignoring the count), we could observe this much more clearly. But, wait a second, maybe there are a lot of outliers which manipulate the rating to lower end for the movies that are released in 90's and 00's.</p>
-
 </div>
 </div>
 </div>
@@ -1377,29 +1365,23 @@ RIgBTkREJEIMcCIiIhFigBMREYkQA5yIiEiEGOBEREQi9P8Bwq0f/m452t8AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Median-Score-of-Ratings-over-Year">Median Score of Ratings over Year<a class="anchor-link" href="#Median-Score-of-Ratings-over-Year">&#182;</a></h4>
+<h4 id="Median-Score-of-Ratings-over-Year">Median Score of Ratings over Year<a class="anchor-link" href="#Median-Score-of-Ratings-over-Year">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[202]:</div>
+<div class="prompt input_prompt">In [202]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfAAAAFkCAYAAADfW2mzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl81IWd//HXHMlMziHJhIDcV+QKyClgAFEqKErxrl2r
@@ -1680,14 +1662,11 @@ nnqKv/mbv6GxsZHdu3fz0EMPsXDhQv7yl78QiUQA+PoLdp999hlz585lzpw5rFixgrFjx7Jr1y4A
 LS0tWCyW2GkVJ06cyMyZMxk/fjzp6elMnjyZK6+8EoD169ezZMmSZMYTOe/pPXAROedmz57NK6+8
 gtvtTvYoIuctvYQuIufUSy+9xI033qjyFkkwHYGLiIiYkI7ARURETEgFLiIiYkIqcBERERNSgYuI
 iJiQClxERMSE/j9teGDdKa1GZwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1695,7 +1674,6 @@ iJiQClxERMSE/j9teGDdKa1GZwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nope, still they are low. Although not as low as the mean rating, they are still low. Yet, they are getting better although not as high as old movies. However, this is too coarse as there are a number of different categories and we are counting over all of the categories and then get the median rating of the movies. Maybe, some of the categories are quite different than the all movies.</p>
-
 </div>
 </div>
 </div>
@@ -1704,9 +1682,8 @@ iJiQClxERMSE/j9teGDdKa1GZwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Categories-over-Time">Categories over Time<a class="anchor-link" href="#Categories-over-Time">&#182;</a></h2><p>In this section, I separated the 23 categories into 4 different sections(6,6,6,5) based on the count of the categories. My aim is to first look at the count of the categories and then track the median rating for the categories to get a better understanding of how movies per category gets rated in IMDB. I give the total count of the categories in the first post.<br>
+<h2 id="Categories-over-Time">Categories over Time<a class="anchor-link" href="#Categories-over-Time">¶</a></h2><p>In this section, I separated the 23 categories into 4 different sections(6,6,6,5) based on the count of the categories. My aim is to first look at the count of the categories and then track the median rating for the categories to get a better understanding of how movies per category gets rated in IMDB. I give the total count of the categories in the first post.<br />
 Movies given in the following four sections are sorted by the total number of movies. The graphs are also sorted by the count of categories. The largest category for each section would be in the bottom.</p>
-
 </div>
 </div>
 </div>
@@ -1715,7 +1692,7 @@ Movies given in the following four sections are sorted by the total number of mo
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="First-Section">First Section<a class="anchor-link" href="#First-Section">&#182;</a></h3><ul>
+<h3 id="First-Section">First Section<a class="anchor-link" href="#First-Section">¶</a></h3><ul>
 <li>Drama</li>
 <li>Comedy</li>
 <li>Action</li>
@@ -1723,29 +1700,22 @@ Movies given in the following four sections are sorted by the total number of mo
 <li>Crime</li>
 <li>Thriller</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[204]:</div>
+<div class="prompt input_prompt">In [204]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAH9CAYAAADRUVCQAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt8VNW99/HvJEyuZMLVYKuACHgLIloQDQn1AgYiAoI+
@@ -2156,34 +2126,25 @@ zBhkZmYCAOrr68FfbDIMw0iHj1wzDMNolB49eqBXr15ITk4GAGzZsgWzZs3CypUr0aZNG+zcuRPA
 lF4dhmGYFgGfFsIwDKNBdu3aBW9vb6SmpnJjzTAM8x/CR64ZhmEYhmEYRib4yDXDMAzDMAzDyAQ3
 1wzDMAzDMAwjE9xcMwzDMAzDMIxMcHPNMAzDMAzDMDLBzTXDMAzDMAzDyAQ31wzDMAzDMAwjE/8D
 0/mBYO/Z44EAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[205]:</div>
+<div class="prompt input_prompt">In [205]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAAHwCAYAAACYMcj+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8XGW9+PHPmX3LTPZJmjRJ030vlJadshQKLdAFvcrl
@@ -3847,21 +3808,18 @@ MkTDhg3TkiVLJEmrV6/WU089pZUrVyo8PFxr166V5L3oMTc3VwMHDlReXp7GjBmjU6dOybIsWZYV
 xFcAAH0fPdoA0AuVlZVpxowZOnjwoEJDQ4O9HADADdA6AgC9zDvvvKMJEyZoxYoVhGwA+BbjjDYA
 AABgA85oAwAAADYgaAMAAAA2IGgDAAAANiBoAwAAADYgaAMAAAA2IGgDAAAANvg/fyIprHCjq50A
 AAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Second-Section">Second Section<a class="anchor-link" href="#Second-Section">&#182;</a></h3><ul>
+<h3 id="Second-Section">Second Section<a class="anchor-link" href="#Second-Section">¶</a></h3><ul>
 <li>Horror</li>
 <li>Adventure</li>
 <li>Family</li>
@@ -3869,29 +3827,22 @@ AAAASUVORK5CYII=
 <li>Fantasy</li>
 <li>Mystery</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="prompt input_prompt">In [206]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtYAAAH9CAYAAAA+kzuuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt4FOXd//HP5gRJyIZwKGhb4MEoKlFEAdGQICoUjChH
@@ -4315,34 +4266,25 @@ AODEiRNISEgAABQWFmLTpk2YP38+ioqKAAA9PT3gNzMZhmHkw1esGYZh3JAJEyZg0qRJyMrKAgC8
 DMO4Id9++y0SEhJw5swZDBs2TO3VYRiGGRLwrSAMwzBuxptvvomgoCDk5ORwU80wDPMjwlesGYZh
 GIZhGEYB+Io1wzAMwzAMwygAN9YMwzAMwzAMowDcWDMMwzAMwzCMAnBjzTAMwzAMwzAKwI01wzAM
 wzAMwygAN9YMwzAMwzAMowD/B0fT/iLfXdMPAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="prompt input_prompt">In [207]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAAHwCAYAAACYMcj+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8XHW9//HXObPv2ZOm+0JbaIGugliWAgJCVTYVRUEF
@@ -6385,21 +6327,18 @@ ySefxF133YV3330XAKBpGvgLTSIifbGiTUTUTw0dOhSFhYVYvnw5AGDDhg146KGHsHbtWlgsFmza
 tAlA5KLHiooKDBo0CJWVlRg3bhxOnz4NSZIgSVIvPgMiopsbe7SJiPqpCxcuYNasWfjss89gMpl6
 +3SIiKgdto4QEfVDf/3rX1FWVoY1a9YwySYi6qNY0SYiIiIi0gEr2kREREREOmCiTURERESkAyba
 REREREQ6YKJNRERERKQDJtpERERERDpgok1EREREpIP/D8QT45WLC7jHAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Third-Section">Third Section<a class="anchor-link" href="#Third-Section">&#182;</a></h3><ul>
+<h3 id="Third-Section">Third Section<a class="anchor-link" href="#Third-Section">¶</a></h3><ul>
 <li>Musical</li>
 <li>War</li>
 <li>History</li>
@@ -6407,29 +6346,22 @@ REREREQ6YKJNRERERKQDJtpERERERDpgok1EREREpIP/D8QT45WLC7jHAAAAAElFTkSuQmCC
 <li>Western</li>
 <li>Biography</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="prompt input_prompt">In [208]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtIAAAH9CAYAAAA3eJvUAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VNX9//H3JEwkhCREQKQqWgxaIQJB9iVhKcgiyupS
@@ -6850,34 +6782,25 @@ AwYMwKBBg5Ceng4AePfdd7Fo0SKsXbsW3bp1w65duwBce1NhZGQkvLy8EBUVhbvuugtnz56FTqeD
 TqdTcQQMwzDahO+RZhiG0Ti///47YmNjcfLkSdx8881q7w7DMIzTwLd2MAzDaJjdu3fDz88PmZmZ
 3EQzDMP8x/AVaYZhGIZhGIZRAF+RZhiGYRiGYRgFcCPNMAzDMAzDMArgRpphGIZhGIZhFMCNNMMw
 DMMwDMMogBtphmEYhmEYhlEAN9IMwzAMwzAMo4D/A4Eh0/HPIadQAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="prompt input_prompt">In [209]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtEAAAHwCAYAAABg0TMJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VNX5wPHvnclMMjPJTJLJvgJJCBCQRVwA2XHfQFRs
@@ -8580,50 +8503,40 @@ JNm2LX7ICACFRSYaAErQpEmTdPbZZ2vp0qWSpGeeeUa33367Vq5cqXA4rNWrV0tKXCCcP3++zjjj
 DC1YsEDnnXee3n//fRmGIcMwivgZAIC/URMNACVo3759uuKKK/TWW28pGAwWezkAgFNQzgEAJWbN
 mjWaNWuWVqxYQQANACWKTDQAAACQJTLRAAAAQJYIogEAAIAsEUQDAAAAWSKIBgAAALJEEA0AAABk
 iSAaAAAAyNL/B+zoAp4d8egHAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Fourth-Section">Fourth Section<a class="anchor-link" href="#Fourth-Section">&#182;</a></h3><ul>
+<h3 id="Fourth-Section">Fourth Section<a class="anchor-link" href="#Fourth-Section">¶</a></h3><ul>
 <li>Music</li>
 <li>Sport</li>
 <li>Film-Noir</li>
 <li>Adult</li>
 <li>News</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="prompt input_prompt">In [210]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtEAAAH9CAYAAADcTyDXAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8VFX+//H3RAKJaQSIENeCiIgkASHSIaELAaUINnYR
@@ -8963,34 +8876,25 @@ RNbid6KJiCxWWVmJxsZGZGdnIzs7G5s3b0ZLSwsA4Pnz5ygpKQEA+P1+XLp0CeXl5QgEAgCAaDQK
 b8fw8DBcLhdcLpfBGRAR2YnfiSYisti3b99QUlKC9+/fIyUlxfSvQ0TkGPw6BxGRpZ48eQK32436
 +npuoImI/s94JZqIiIiISBOvRBMRERERaeImmoiIiIhIEzfRRERERESauIkmIiIiItLETTQRERER
 kSZuoomIiIiINP0XY227JJkyvs4AAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="prompt input_prompt">In [211]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtEAAAHwCAYAAABg0TMJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4XAW5P/DvmTWzZ1+bpE2TNGnTNd1XaEuRTaAu4EWt
@@ -9759,23 +9663,19 @@ dujqq6/WNddco/LycklSZWWlZs+erUWLFikYDGrt2rWSWi4gLCoq0hVXXKHi4mINGDBAP/74ozwe
 jzwej4vPAAA6NmaiAaAd+vXXXzV69Gh988038vv9bi8HANAK4xwA0M6sW7dOeXl5WrhwIQEaANop
 OtEAAACARXSiAQAAAIsI0QAAAIBFhGgAAADAIkI0AAAAYBEhGgAAALCIEA0AAABY9D8S3+VRufnl
 ZQAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Directors">Directors<a class="anchor-link" href="#Directors">&#182;</a></h2><p>In this section, I will look at the directors whose movies median rating is larger than 7 and median vote is larger than 200000. Although the thresholds are arbitrary, it gives good directors if not best. Surprisingly, some of the directors that I thought good are not on the list if they do not satisfy these requirements. For an example, Woody Allen is not on the list as his median vote is about ~24000 even though his median rating is above 7. I did not look at the number of movies, maybe I should but if the movie quality is good and watched(read this one voted), director should make to the list. Ben Affleck is such a director among others.<br>
+<h2 id="Directors">Directors<a class="anchor-link" href="#Directors">¶</a></h2><p>In this section, I will look at the directors whose movies median rating is larger than 7 and median vote is larger than 200000. Although the thresholds are arbitrary, it gives good directors if not best. Surprisingly, some of the directors that I thought good are not on the list if they do not satisfy these requirements. For an example, Woody Allen is not on the list as his median vote is about ~24000 even though his median rating is above 7. I did not look at the number of movies, maybe I should but if the movie quality is good and watched(read this one voted), director should make to the list. Ben Affleck is such a director among others.<br />
 In the distribution graphs, turquoise is the mean distribution over all of the directors and purple is the director's distribution given on the subplot.</p>
-
 </div>
 </div>
 </div>
@@ -9784,29 +9684,23 @@ In the distribution graphs, turquoise is the mean distribution over all of the d
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Rating-of-Directors">Rating of Directors<a class="anchor-link" href="#Rating-of-Directors">&#182;</a></h3>
+<h3 id="Rating-of-Directors">Rating of Directors<a class="anchor-link" href="#Rating-of-Directors">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[213]:</div>
+<div class="prompt input_prompt">In [213]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABHgAAAMfCAYAAACtpGAvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8TOf+B/DPZJJIbI3aSpEgtWQfSYhYY4vYt6KooOrS
@@ -11461,14 +11355,11 @@ OBo8AAAAAAAAEUeDBwAAAAAAIOJo8AAAAAAAAEQcDR4AAAAAAICIo8EDAAAAAAAQcTR4AAAAAAAA
 Io4GDwAAAAAAQMTR4AEAAAAAAIg4GjwAAAAAAAARR4MHAAAAAAAg4mjwAAAAAAAARBwNHgAAAAAA
 gIijwQMAAAAAABBxNHgAAAAAAAAijgYPAAAAAABAxNHgAQAAAAAAiDgaPAAAAAAAABFHgwcAAAAA
 ACDiaPAAAAAAAABEHA0eAAAAAACAiPt/T+ycsUKxU90AAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -11476,7 +11367,6 @@ ACDiaPAAAAAAAABEHA0eAAAAAACAiPt/T+ycsUKxU90AAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Christopher Nolan is consistently higher in his all of movies. Surprisingly, Ben Affleck is on the list. Median rating tolerates one bad movie where the movie is Swept Away for Guy Ritchie has a movie rated below 4.</p>
-
 </div>
 </div>
 </div>
@@ -11485,29 +11375,23 @@ ACDiaPAAAAAAAABEHA0eAAAAAACAiPt/T+ycsUKxU90AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Number-of-Movies-over-Year">Number of Movies over Year<a class="anchor-link" href="#Number-of-Movies-over-Year">&#182;</a></h3>
+<h3 id="Number-of-Movies-over-Year">Number of Movies over Year<a class="anchor-link" href="#Number-of-Movies-over-Year">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[214]:</div>
+<div class="prompt input_prompt">In [214]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABIEAAAMbCAYAAADabIVqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdUFFcbB+Df7NKWKk0sqNgbajR2UTAa+xeNGjVYsERj
@@ -13942,14 +13826,11 @@ jDGmApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYY
 YyrASSDGGGOMMcYYY4wxFeAkEGOMMcYYY4wxxpgKcBKIMcYYY4wxxhhjTAU4CcQYY4wxxhhjjDGm
 ApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYYYyrw
 /wFRefBwwFOmgQAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13957,7 +13838,6 @@ ApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYYYyrw
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Generally, directors produce the movies for a decade or two. Steven Spielberg, Tim Burton, George Lucas and James Cameron are the biggest exceptions.</p>
-
 </div>
 </div>
 </div>
@@ -13966,29 +13846,23 @@ ApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYYYyrw
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Runtime-of-Movies">Runtime of Movies<a class="anchor-link" href="#Runtime-of-Movies">&#182;</a></h3>
+<h3 id="Runtime-of-Movies">Runtime of Movies<a class="anchor-link" href="#Runtime-of-Movies">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[215]:</div>
+<div class="prompt input_prompt">In [215]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABMQAAAMaCAYAAABpo5orAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FNX7NvB7No10UimhhBIIXXoLJAgCAl8QpAuEIooI
@@ -16234,14 +16108,11 @@ AAAAgKwoiAEAAACQFQUxAAAAALKiIAYAAABAVhTEAAAAAMiKghgAAAAAWVEQAwAAACArCmIAAAAA
 ZEVBDAAAAICsKIgBAAAAkBUFMQAAAACyoiAGAAAAQFYUxAAAAADIioIYAAAAAFlREAMAAAAgKwpi
 AAAAAGRFQQwAAACArCiIAQAAAJAVBTEAAAAAsqIgBgAAAEBWFMQAAAAAyIqCGAAAAABZURADAAAA
 ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -16249,7 +16120,6 @@ ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Frank Darabont likes to direct long movies whereas Quentin Tarantion is the only director who covers a wide range from 60 minutes to 170 minutes. General observation is the runtime of the given directors are longer than the average runtime of the movies.</p>
-
 </div>
 </div>
 </div>
@@ -16258,8 +16128,7 @@ ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="List-of-Directors">List of Directors<a class="anchor-link" href="#List-of-Directors">&#182;</a></h2><p>What about directors for specific category? In this section, I will give director tables for the categories that have the highest number of movies. If you do not get bored looking at a bunch of tables, skip to the end to see the correlation and eigenvectors of movies at the end of the post.</p>
-
+<h2 id="List-of-Directors">List of Directors<a class="anchor-link" href="#List-of-Directors">¶</a></h2><p>What about directors for specific category? In this section, I will give director tables for the categories that have the highest number of movies. If you do not get bored looking at a bunch of tables, skip to the end to see the correlation and eigenvectors of movies at the end of the post.</p>
 </div>
 </div>
 </div>
@@ -16268,1221 +16137,1133 @@ ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Highly-Voted-Directors">Highly Voted Directors<a class="anchor-link" href="#Highly-Voted-Directors">&#182;</a></h3><p>Directors whose vote for all of the movies is higher than 200000. (It is biased towards the directors who has more movies)</p>
-
+<h3 id="Highly-Voted-Directors">Highly Voted Directors<a class="anchor-link" href="#Highly-Voted-Directors">¶</a></h3><p>Directors whose vote for all of the movies is higher than 200000. (It is biased towards the directors who has more movies)</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="prompt input_prompt">In [216]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[216]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Andrew Stanton</th>
-      <td> 2008.0</td>
-      <td> 8.20</td>
-      <td> 441598.0</td>
-    </tr>
-    <tr>
-      <th>Andy Wachowski</th>
-      <td> 2003.0</td>
-      <td> 7.20</td>
-      <td> 284176.0</td>
-    </tr>
-    <tr>
-      <th>Ben Affleck</th>
-      <td> 2010.0</td>
-      <td> 7.70</td>
-      <td> 218875.0</td>
-    </tr>
-    <tr>
-      <th>Brad Bird</th>
-      <td> 2005.5</td>
-      <td> 7.95</td>
-      <td> 297197.5</td>
-    </tr>
-    <tr>
-      <th>Christopher Nolan</th>
-      <td> 2005.5</td>
-      <td> 8.55</td>
-      <td> 621646.5</td>
-    </tr>
-    <tr>
-      <th>Darren Aronofsky</th>
-      <td> 2006.0</td>
-      <td> 8.00</td>
-      <td> 215504.0</td>
-    </tr>
-    <tr>
-      <th>David Fincher</th>
-      <td> 2002.0</td>
-      <td> 7.80</td>
-      <td> 240169.0</td>
-    </tr>
-    <tr>
-      <th>David Silverman</th>
-      <td> 2007.0</td>
-      <td> 7.40</td>
-      <td> 203239.0</td>
-    </tr>
-    <tr>
-      <th>David Yates</th>
-      <td> 2009.0</td>
-      <td> 7.40</td>
-      <td> 230345.0</td>
-    </tr>
-    <tr>
-      <th>Duncan Jones</th>
-      <td> 2010.0</td>
-      <td> 7.75</td>
-      <td> 223877.5</td>
-    </tr>
-    <tr>
-      <th>Eric Bress</th>
-      <td> 2004.0</td>
-      <td> 7.70</td>
-      <td> 265886.0</td>
-    </tr>
-    <tr>
-      <th>Frank Darabont</th>
-      <td> 2000.0</td>
-      <td> 7.85</td>
-      <td> 327959.5</td>
-    </tr>
-    <tr>
-      <th>Frank Miller</th>
-      <td> 2006.5</td>
-      <td> 6.50</td>
-      <td> 265593.5</td>
-    </tr>
-    <tr>
-      <th>George Lucas</th>
-      <td> 1988.0</td>
-      <td> 7.15</td>
-      <td> 338221.0</td>
-    </tr>
-    <tr>
-      <th>Guy Ritchie</th>
-      <td> 2005.0</td>
-      <td> 7.50</td>
-      <td> 234892.0</td>
-    </tr>
-    <tr>
-      <th>J.J. Abrams</th>
-      <td> 2010.0</td>
-      <td> 7.50</td>
-      <td> 240840.0</td>
-    </tr>
-    <tr>
-      <th>James Cameron</th>
-      <td> 1990.0</td>
-      <td> 7.85</td>
-      <td> 377029.5</td>
-    </tr>
-    <tr>
-      <th>Joseph Kosinski</th>
-      <td> 2011.5</td>
-      <td> 6.95</td>
-      <td> 218585.0</td>
-    </tr>
-    <tr>
-      <th>Lee Unkrich</th>
-      <td> 2010.0</td>
-      <td> 8.50</td>
-      <td> 348502.0</td>
-    </tr>
-    <tr>
-      <th>Marc Webb</th>
-      <td> 2010.5</td>
-      <td> 7.50</td>
-      <td> 279448.5</td>
-    </tr>
-    <tr>
-      <th>Matthew Vaughn</th>
-      <td> 2008.5</td>
-      <td> 7.80</td>
-      <td> 246075.5</td>
-    </tr>
-    <tr>
-      <th>Michael Bay</th>
-      <td> 2004.0</td>
-      <td> 6.55</td>
-      <td> 213725.0</td>
-    </tr>
-    <tr>
-      <th>Neill Blomkamp</th>
-      <td> 2011.0</td>
-      <td> 7.35</td>
-      <td> 296052.5</td>
-    </tr>
-    <tr>
-      <th>Pete Docter</th>
-      <td> 2005.0</td>
-      <td> 8.20</td>
-      <td> 390384.5</td>
-    </tr>
-    <tr>
-      <th>Peter Farrelly</th>
-      <td> 1994.0</td>
-      <td> 7.30</td>
-      <td> 212771.0</td>
-    </tr>
-    <tr>
-      <th>Quentin Tarantino</th>
-      <td> 2003.0</td>
-      <td> 8.20</td>
-      <td> 446671.0</td>
-    </tr>
-    <tr>
-      <th>Roger Allers</th>
-      <td> 2000.0</td>
-      <td> 7.35</td>
-      <td> 222764.0</td>
-    </tr>
-    <tr>
-      <th>Seth MacFarlane</th>
-      <td> 2012.0</td>
-      <td> 7.10</td>
-      <td> 317497.0</td>
-    </tr>
-    <tr>
-      <th>Shane Black</th>
-      <td> 2009.0</td>
-      <td> 7.55</td>
-      <td> 239256.0</td>
-    </tr>
-    <tr>
-      <th>Zack Snyder</th>
-      <td> 2009.5</td>
-      <td> 7.40</td>
-      <td> 225854.0</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Andrew Stanton</th>
+<td> 2008.0</td>
+<td> 8.20</td>
+<td> 441598.0</td>
+</tr>
+<tr>
+<th>Andy Wachowski</th>
+<td> 2003.0</td>
+<td> 7.20</td>
+<td> 284176.0</td>
+</tr>
+<tr>
+<th>Ben Affleck</th>
+<td> 2010.0</td>
+<td> 7.70</td>
+<td> 218875.0</td>
+</tr>
+<tr>
+<th>Brad Bird</th>
+<td> 2005.5</td>
+<td> 7.95</td>
+<td> 297197.5</td>
+</tr>
+<tr>
+<th>Christopher Nolan</th>
+<td> 2005.5</td>
+<td> 8.55</td>
+<td> 621646.5</td>
+</tr>
+<tr>
+<th>Darren Aronofsky</th>
+<td> 2006.0</td>
+<td> 8.00</td>
+<td> 215504.0</td>
+</tr>
+<tr>
+<th>David Fincher</th>
+<td> 2002.0</td>
+<td> 7.80</td>
+<td> 240169.0</td>
+</tr>
+<tr>
+<th>David Silverman</th>
+<td> 2007.0</td>
+<td> 7.40</td>
+<td> 203239.0</td>
+</tr>
+<tr>
+<th>David Yates</th>
+<td> 2009.0</td>
+<td> 7.40</td>
+<td> 230345.0</td>
+</tr>
+<tr>
+<th>Duncan Jones</th>
+<td> 2010.0</td>
+<td> 7.75</td>
+<td> 223877.5</td>
+</tr>
+<tr>
+<th>Eric Bress</th>
+<td> 2004.0</td>
+<td> 7.70</td>
+<td> 265886.0</td>
+</tr>
+<tr>
+<th>Frank Darabont</th>
+<td> 2000.0</td>
+<td> 7.85</td>
+<td> 327959.5</td>
+</tr>
+<tr>
+<th>Frank Miller</th>
+<td> 2006.5</td>
+<td> 6.50</td>
+<td> 265593.5</td>
+</tr>
+<tr>
+<th>George Lucas</th>
+<td> 1988.0</td>
+<td> 7.15</td>
+<td> 338221.0</td>
+</tr>
+<tr>
+<th>Guy Ritchie</th>
+<td> 2005.0</td>
+<td> 7.50</td>
+<td> 234892.0</td>
+</tr>
+<tr>
+<th>J.J. Abrams</th>
+<td> 2010.0</td>
+<td> 7.50</td>
+<td> 240840.0</td>
+</tr>
+<tr>
+<th>James Cameron</th>
+<td> 1990.0</td>
+<td> 7.85</td>
+<td> 377029.5</td>
+</tr>
+<tr>
+<th>Joseph Kosinski</th>
+<td> 2011.5</td>
+<td> 6.95</td>
+<td> 218585.0</td>
+</tr>
+<tr>
+<th>Lee Unkrich</th>
+<td> 2010.0</td>
+<td> 8.50</td>
+<td> 348502.0</td>
+</tr>
+<tr>
+<th>Marc Webb</th>
+<td> 2010.5</td>
+<td> 7.50</td>
+<td> 279448.5</td>
+</tr>
+<tr>
+<th>Matthew Vaughn</th>
+<td> 2008.5</td>
+<td> 7.80</td>
+<td> 246075.5</td>
+</tr>
+<tr>
+<th>Michael Bay</th>
+<td> 2004.0</td>
+<td> 6.55</td>
+<td> 213725.0</td>
+</tr>
+<tr>
+<th>Neill Blomkamp</th>
+<td> 2011.0</td>
+<td> 7.35</td>
+<td> 296052.5</td>
+</tr>
+<tr>
+<th>Pete Docter</th>
+<td> 2005.0</td>
+<td> 8.20</td>
+<td> 390384.5</td>
+</tr>
+<tr>
+<th>Peter Farrelly</th>
+<td> 1994.0</td>
+<td> 7.30</td>
+<td> 212771.0</td>
+</tr>
+<tr>
+<th>Quentin Tarantino</th>
+<td> 2003.0</td>
+<td> 8.20</td>
+<td> 446671.0</td>
+</tr>
+<tr>
+<th>Roger Allers</th>
+<td> 2000.0</td>
+<td> 7.35</td>
+<td> 222764.0</td>
+</tr>
+<tr>
+<th>Seth MacFarlane</th>
+<td> 2012.0</td>
+<td> 7.10</td>
+<td> 317497.0</td>
+</tr>
+<tr>
+<th>Shane Black</th>
+<td> 2009.0</td>
+<td> 7.55</td>
+<td> 239256.0</td>
+</tr>
+<tr>
+<th>Zack Snyder</th>
+<td> 2009.5</td>
+<td> 7.40</td>
+<td> 225854.0</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Highly-Voted-and-Rated-Directors">Highly Voted and Rated Directors<a class="anchor-link" href="#Highly-Voted-and-Rated-Directors">&#182;</a></h3><p>Directors whose sum vote is higher than 200000 and rating is higher than 8. (Best of Best)</p>
-
+<h3 id="Highly-Voted-and-Rated-Directors">Highly Voted and Rated Directors<a class="anchor-link" href="#Highly-Voted-and-Rated-Directors">¶</a></h3><p>Directors whose sum vote is higher than 200000 and rating is higher than 8. (Best of Best)</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[217]:</div>
+<div class="prompt input_prompt">In [217]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[217]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Andrew Stanton</th>
-      <td> 2008.0</td>
-      <td> 8.20</td>
-      <td> 441598.0</td>
-    </tr>
-    <tr>
-      <th>Christopher Nolan</th>
-      <td> 2005.5</td>
-      <td> 8.55</td>
-      <td> 621646.5</td>
-    </tr>
-    <tr>
-      <th>Lee Unkrich</th>
-      <td> 2010.0</td>
-      <td> 8.50</td>
-      <td> 348502.0</td>
-    </tr>
-    <tr>
-      <th>Pete Docter</th>
-      <td> 2005.0</td>
-      <td> 8.20</td>
-      <td> 390384.5</td>
-    </tr>
-    <tr>
-      <th>Quentin Tarantino</th>
-      <td> 2003.0</td>
-      <td> 8.20</td>
-      <td> 446671.0</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Andrew Stanton</th>
+<td> 2008.0</td>
+<td> 8.20</td>
+<td> 441598.0</td>
+</tr>
+<tr>
+<th>Christopher Nolan</th>
+<td> 2005.5</td>
+<td> 8.55</td>
+<td> 621646.5</td>
+</tr>
+<tr>
+<th>Lee Unkrich</th>
+<td> 2010.0</td>
+<td> 8.50</td>
+<td> 348502.0</td>
+</tr>
+<tr>
+<th>Pete Docter</th>
+<td> 2005.0</td>
+<td> 8.20</td>
+<td> 390384.5</td>
+</tr>
+<tr>
+<th>Quentin Tarantino</th>
+<td> 2003.0</td>
+<td> 8.20</td>
+<td> 446671.0</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Overrated-Directors">Overrated Directors<a class="anchor-link" href="#Overrated-Directors">&#182;</a></h3>
+<h3 id="Overrated-Directors">Overrated Directors<a class="anchor-link" href="#Overrated-Directors">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[218]:</div>
+<div class="prompt input_prompt">In [218]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[218]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Aaron Seltzer</th>
-      <td> 2006</td>
-      <td> 2.70</td>
-      <td> 44496.0</td>
-    </tr>
-    <tr>
-      <th>Bo Welch</th>
-      <td> 2003</td>
-      <td> 3.70</td>
-      <td> 28442.0</td>
-    </tr>
-    <tr>
-      <th>Harold P. Warren</th>
-      <td> 1966</td>
-      <td> 1.90</td>
-      <td> 28410.0</td>
-    </tr>
-    <tr>
-      <th>Jason Friedberg</th>
-      <td> 2008</td>
-      <td> 2.60</td>
-      <td> 62441.0</td>
-    </tr>
-    <tr>
-      <th>Joe Alves</th>
-      <td> 1983</td>
-      <td> 3.50</td>
-      <td> 22236.0</td>
-    </tr>
-    <tr>
-      <th>Lawrence Guterman</th>
-      <td> 2003</td>
-      <td> 3.65</td>
-      <td> 33697.5</td>
-    </tr>
-    <tr>
-      <th>Marco Schnabel</th>
-      <td> 2008</td>
-      <td> 3.80</td>
-      <td> 37049.0</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Aaron Seltzer</th>
+<td> 2006</td>
+<td> 2.70</td>
+<td> 44496.0</td>
+</tr>
+<tr>
+<th>Bo Welch</th>
+<td> 2003</td>
+<td> 3.70</td>
+<td> 28442.0</td>
+</tr>
+<tr>
+<th>Harold P. Warren</th>
+<td> 1966</td>
+<td> 1.90</td>
+<td> 28410.0</td>
+</tr>
+<tr>
+<th>Jason Friedberg</th>
+<td> 2008</td>
+<td> 2.60</td>
+<td> 62441.0</td>
+</tr>
+<tr>
+<th>Joe Alves</th>
+<td> 1983</td>
+<td> 3.50</td>
+<td> 22236.0</td>
+</tr>
+<tr>
+<th>Lawrence Guterman</th>
+<td> 2003</td>
+<td> 3.65</td>
+<td> 33697.5</td>
+</tr>
+<tr>
+<th>Marco Schnabel</th>
+<td> 2008</td>
+<td> 3.80</td>
+<td> 37049.0</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Comedy-Category">Directors in Comedy Category<a class="anchor-link" href="#Directors-in-Comedy-Category">&#182;</a></h3>
+<h3 id="Directors-in-Comedy-Category">Directors in Comedy Category<a class="anchor-link" href="#Directors-in-Comedy-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[220]:</div>
+<div class="prompt input_prompt">In [220]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[220]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Barry Levinson</th>
-      <td> 1994.0</td>
-      <td> 6.60</td>
-      <td> 22288.0</td>
-    </tr>
-    <tr>
-      <th>Billy Wilder</th>
-      <td> 1960.0</td>
-      <td> 7.40</td>
-      <td>  9975.0</td>
-    </tr>
-    <tr>
-      <th>Dennis Dugan</th>
-      <td> 2004.5</td>
-      <td> 5.75</td>
-      <td> 51076.0</td>
-    </tr>
-    <tr>
-      <th>Garry Marshall</th>
-      <td> 1996.0</td>
-      <td> 5.90</td>
-      <td> 18070.0</td>
-    </tr>
-    <tr>
-      <th>Harold Ramis</th>
-      <td> 1996.0</td>
-      <td> 5.90</td>
-      <td> 56095.0</td>
-    </tr>
-    <tr>
-      <th>Ivan Reitman</th>
-      <td> 1989.5</td>
-      <td> 5.90</td>
-      <td> 44069.5</td>
-    </tr>
-    <tr>
-      <th>John Landis</th>
-      <td> 1986.0</td>
-      <td> 6.30</td>
-      <td> 20268.0</td>
-    </tr>
-    <tr>
-      <th>Mike Nichols</th>
-      <td> 1989.0</td>
-      <td> 6.70</td>
-      <td> 12781.0</td>
-    </tr>
-    <tr>
-      <th>Rob Reiner</th>
-      <td> 1994.5</td>
-      <td> 7.20</td>
-      <td> 37438.0</td>
-    </tr>
-    <tr>
-      <th>Woody Allen</th>
-      <td> 1991.5</td>
-      <td> 7.25</td>
-      <td> 24462.5</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Barry Levinson</th>
+<td> 1994.0</td>
+<td> 6.60</td>
+<td> 22288.0</td>
+</tr>
+<tr>
+<th>Billy Wilder</th>
+<td> 1960.0</td>
+<td> 7.40</td>
+<td>  9975.0</td>
+</tr>
+<tr>
+<th>Dennis Dugan</th>
+<td> 2004.5</td>
+<td> 5.75</td>
+<td> 51076.0</td>
+</tr>
+<tr>
+<th>Garry Marshall</th>
+<td> 1996.0</td>
+<td> 5.90</td>
+<td> 18070.0</td>
+</tr>
+<tr>
+<th>Harold Ramis</th>
+<td> 1996.0</td>
+<td> 5.90</td>
+<td> 56095.0</td>
+</tr>
+<tr>
+<th>Ivan Reitman</th>
+<td> 1989.5</td>
+<td> 5.90</td>
+<td> 44069.5</td>
+</tr>
+<tr>
+<th>John Landis</th>
+<td> 1986.0</td>
+<td> 6.30</td>
+<td> 20268.0</td>
+</tr>
+<tr>
+<th>Mike Nichols</th>
+<td> 1989.0</td>
+<td> 6.70</td>
+<td> 12781.0</td>
+</tr>
+<tr>
+<th>Rob Reiner</th>
+<td> 1994.5</td>
+<td> 7.20</td>
+<td> 37438.0</td>
+</tr>
+<tr>
+<th>Woody Allen</th>
+<td> 1991.5</td>
+<td> 7.25</td>
+<td> 24462.5</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Drama-Category">Directors in Drama Category<a class="anchor-link" href="#Directors-in-Drama-Category">&#182;</a></h3>
+<h3 id="Directors-in-Drama-Category">Directors in Drama Category<a class="anchor-link" href="#Directors-in-Drama-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[221]:</div>
+<div class="prompt input_prompt">In [221]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[221]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Akira Kurosawa</th>
-      <td> 1961.0</td>
-      <td> 8.10</td>
-      <td>  14382.0</td>
-    </tr>
-    <tr>
-      <th>Ang Lee</th>
-      <td> 1999.5</td>
-      <td> 7.65</td>
-      <td>  33296.5</td>
-    </tr>
-    <tr>
-      <th>Barry Levinson</th>
-      <td> 1994.0</td>
-      <td> 6.60</td>
-      <td>  22288.0</td>
-    </tr>
-    <tr>
-      <th>Brian De Palma</th>
-      <td> 1983.0</td>
-      <td> 6.20</td>
-      <td>  10157.0</td>
-    </tr>
-    <tr>
-      <th>Clint Eastwood</th>
-      <td> 1992.5</td>
-      <td> 6.90</td>
-      <td>  29193.0</td>
-    </tr>
-    <tr>
-      <th>Francis Ford Coppola</th>
-      <td> 1983.0</td>
-      <td> 6.70</td>
-      <td>  10281.0</td>
-    </tr>
-    <tr>
-      <th>Gus Van Sant</th>
-      <td> 2000.0</td>
-      <td> 6.80</td>
-      <td>  22004.0</td>
-    </tr>
-    <tr>
-      <th>Joel Schumacher</th>
-      <td> 1997.0</td>
-      <td> 6.40</td>
-      <td>  34449.0</td>
-    </tr>
-    <tr>
-      <th>John Woo</th>
-      <td> 1986.0</td>
-      <td> 6.20</td>
-      <td>    815.0</td>
-    </tr>
-    <tr>
-      <th>Jonathan Demme</th>
-      <td> 1987.0</td>
-      <td> 6.60</td>
-      <td>   2966.0</td>
-    </tr>
-    <tr>
-      <th>Lasse HallstrÃ¶m</th>
-      <td> 1999.0</td>
-      <td> 6.70</td>
-      <td>  13101.0</td>
-    </tr>
-    <tr>
-      <th>Martin Scorsese</th>
-      <td> 1990.0</td>
-      <td> 7.50</td>
-      <td>  53493.0</td>
-    </tr>
-    <tr>
-      <th>Mike Newell</th>
-      <td> 1994.0</td>
-      <td> 6.60</td>
-      <td>   4233.0</td>
-    </tr>
-    <tr>
-      <th>Mike Nichols</th>
-      <td> 1989.0</td>
-      <td> 6.70</td>
-      <td>  12781.0</td>
-    </tr>
-    <tr>
-      <th>Milos Forman</th>
-      <td> 1980.0</td>
-      <td> 7.45</td>
-      <td>   6898.5</td>
-    </tr>
-    <tr>
-      <th>Oliver Stone</th>
-      <td> 1993.0</td>
-      <td> 6.80</td>
-      <td>  58419.0</td>
-    </tr>
-    <tr>
-      <th>Paul Verhoeven</th>
-      <td> 1975.0</td>
-      <td> 6.70</td>
-      <td>   1461.0</td>
-    </tr>
-    <tr>
-      <th>Peter Weir</th>
-      <td> 1985.5</td>
-      <td> 7.25</td>
-      <td>  18885.0</td>
-    </tr>
-    <tr>
-      <th>Phillip Noyce</th>
-      <td> 1993.5</td>
-      <td> 6.70</td>
-      <td>  19316.0</td>
-    </tr>
-    <tr>
-      <th>Richard Linklater</th>
-      <td> 2002.0</td>
-      <td> 7.10</td>
-      <td>  24084.0</td>
-    </tr>
-    <tr>
-      <th>Ridley Scott</th>
-      <td> 2000.0</td>
-      <td> 7.10</td>
-      <td>  88218.0</td>
-    </tr>
-    <tr>
-      <th>Rob Reiner</th>
-      <td> 1994.5</td>
-      <td> 7.20</td>
-      <td>  37438.0</td>
-    </tr>
-    <tr>
-      <th>Roger Donaldson</th>
-      <td> 1992.0</td>
-      <td> 6.60</td>
-      <td>  21028.0</td>
-    </tr>
-    <tr>
-      <th>Roman Polanski</th>
-      <td> 1982.5</td>
-      <td> 7.30</td>
-      <td>  20157.0</td>
-    </tr>
-    <tr>
-      <th>Ron Howard</th>
-      <td> 1995.5</td>
-      <td> 6.55</td>
-      <td>  45696.0</td>
-    </tr>
-    <tr>
-      <th>Sidney Lumet</th>
-      <td> 1975.0</td>
-      <td> 6.70</td>
-      <td>   3160.0</td>
-    </tr>
-    <tr>
-      <th>Spike Lee</th>
-      <td> 1996.0</td>
-      <td> 6.50</td>
-      <td>   7737.0</td>
-    </tr>
-    <tr>
-      <th>Steven Soderbergh</th>
-      <td> 2003.0</td>
-      <td> 6.95</td>
-      <td>  31193.5</td>
-    </tr>
-    <tr>
-      <th>Steven Spielberg</th>
-      <td> 1993.0</td>
-      <td> 7.55</td>
-      <td> 186191.5</td>
-    </tr>
-    <tr>
-      <th>Wolfgang Petersen</th>
-      <td> 1991.0</td>
-      <td> 6.90</td>
-      <td>  68807.0</td>
-    </tr>
-    <tr>
-      <th>Woody Allen</th>
-      <td> 1991.5</td>
-      <td> 7.25</td>
-      <td>  24462.5</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Akira Kurosawa</th>
+<td> 1961.0</td>
+<td> 8.10</td>
+<td>  14382.0</td>
+</tr>
+<tr>
+<th>Ang Lee</th>
+<td> 1999.5</td>
+<td> 7.65</td>
+<td>  33296.5</td>
+</tr>
+<tr>
+<th>Barry Levinson</th>
+<td> 1994.0</td>
+<td> 6.60</td>
+<td>  22288.0</td>
+</tr>
+<tr>
+<th>Brian De Palma</th>
+<td> 1983.0</td>
+<td> 6.20</td>
+<td>  10157.0</td>
+</tr>
+<tr>
+<th>Clint Eastwood</th>
+<td> 1992.5</td>
+<td> 6.90</td>
+<td>  29193.0</td>
+</tr>
+<tr>
+<th>Francis Ford Coppola</th>
+<td> 1983.0</td>
+<td> 6.70</td>
+<td>  10281.0</td>
+</tr>
+<tr>
+<th>Gus Van Sant</th>
+<td> 2000.0</td>
+<td> 6.80</td>
+<td>  22004.0</td>
+</tr>
+<tr>
+<th>Joel Schumacher</th>
+<td> 1997.0</td>
+<td> 6.40</td>
+<td>  34449.0</td>
+</tr>
+<tr>
+<th>John Woo</th>
+<td> 1986.0</td>
+<td> 6.20</td>
+<td>    815.0</td>
+</tr>
+<tr>
+<th>Jonathan Demme</th>
+<td> 1987.0</td>
+<td> 6.60</td>
+<td>   2966.0</td>
+</tr>
+<tr>
+<th>Lasse HallstrÃ¶m</th>
+<td> 1999.0</td>
+<td> 6.70</td>
+<td>  13101.0</td>
+</tr>
+<tr>
+<th>Martin Scorsese</th>
+<td> 1990.0</td>
+<td> 7.50</td>
+<td>  53493.0</td>
+</tr>
+<tr>
+<th>Mike Newell</th>
+<td> 1994.0</td>
+<td> 6.60</td>
+<td>   4233.0</td>
+</tr>
+<tr>
+<th>Mike Nichols</th>
+<td> 1989.0</td>
+<td> 6.70</td>
+<td>  12781.0</td>
+</tr>
+<tr>
+<th>Milos Forman</th>
+<td> 1980.0</td>
+<td> 7.45</td>
+<td>   6898.5</td>
+</tr>
+<tr>
+<th>Oliver Stone</th>
+<td> 1993.0</td>
+<td> 6.80</td>
+<td>  58419.0</td>
+</tr>
+<tr>
+<th>Paul Verhoeven</th>
+<td> 1975.0</td>
+<td> 6.70</td>
+<td>   1461.0</td>
+</tr>
+<tr>
+<th>Peter Weir</th>
+<td> 1985.5</td>
+<td> 7.25</td>
+<td>  18885.0</td>
+</tr>
+<tr>
+<th>Phillip Noyce</th>
+<td> 1993.5</td>
+<td> 6.70</td>
+<td>  19316.0</td>
+</tr>
+<tr>
+<th>Richard Linklater</th>
+<td> 2002.0</td>
+<td> 7.10</td>
+<td>  24084.0</td>
+</tr>
+<tr>
+<th>Ridley Scott</th>
+<td> 2000.0</td>
+<td> 7.10</td>
+<td>  88218.0</td>
+</tr>
+<tr>
+<th>Rob Reiner</th>
+<td> 1994.5</td>
+<td> 7.20</td>
+<td>  37438.0</td>
+</tr>
+<tr>
+<th>Roger Donaldson</th>
+<td> 1992.0</td>
+<td> 6.60</td>
+<td>  21028.0</td>
+</tr>
+<tr>
+<th>Roman Polanski</th>
+<td> 1982.5</td>
+<td> 7.30</td>
+<td>  20157.0</td>
+</tr>
+<tr>
+<th>Ron Howard</th>
+<td> 1995.5</td>
+<td> 6.55</td>
+<td>  45696.0</td>
+</tr>
+<tr>
+<th>Sidney Lumet</th>
+<td> 1975.0</td>
+<td> 6.70</td>
+<td>   3160.0</td>
+</tr>
+<tr>
+<th>Spike Lee</th>
+<td> 1996.0</td>
+<td> 6.50</td>
+<td>   7737.0</td>
+</tr>
+<tr>
+<th>Steven Soderbergh</th>
+<td> 2003.0</td>
+<td> 6.95</td>
+<td>  31193.5</td>
+</tr>
+<tr>
+<th>Steven Spielberg</th>
+<td> 1993.0</td>
+<td> 7.55</td>
+<td> 186191.5</td>
+</tr>
+<tr>
+<th>Wolfgang Petersen</th>
+<td> 1991.0</td>
+<td> 6.90</td>
+<td>  68807.0</td>
+</tr>
+<tr>
+<th>Woody Allen</th>
+<td> 1991.5</td>
+<td> 7.25</td>
+<td>  24462.5</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Romance-Category">Directors in Romance Category<a class="anchor-link" href="#Directors-in-Romance-Category">&#182;</a></h3>
+<h3 id="Directors-in-Romance-Category">Directors in Romance Category<a class="anchor-link" href="#Directors-in-Romance-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[222]:</div>
+<div class="prompt input_prompt">In [222]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[222]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Billy Wilder</th>
-      <td> 1960.0</td>
-      <td> 7.40</td>
-      <td>  9975.0</td>
-    </tr>
-    <tr>
-      <th>Garry Marshall</th>
-      <td> 1996.0</td>
-      <td> 5.90</td>
-      <td> 18070.0</td>
-    </tr>
-    <tr>
-      <th>Lasse HallstrÃ¶m</th>
-      <td> 1999.0</td>
-      <td> 6.70</td>
-      <td> 13101.0</td>
-    </tr>
-    <tr>
-      <th>Woody Allen</th>
-      <td> 1991.5</td>
-      <td> 7.25</td>
-      <td> 24462.5</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Billy Wilder</th>
+<td> 1960.0</td>
+<td> 7.40</td>
+<td>  9975.0</td>
+</tr>
+<tr>
+<th>Garry Marshall</th>
+<td> 1996.0</td>
+<td> 5.90</td>
+<td> 18070.0</td>
+</tr>
+<tr>
+<th>Lasse HallstrÃ¶m</th>
+<td> 1999.0</td>
+<td> 6.70</td>
+<td> 13101.0</td>
+</tr>
+<tr>
+<th>Woody Allen</th>
+<td> 1991.5</td>
+<td> 7.25</td>
+<td> 24462.5</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Thriller-Category">Directors in Thriller Category<a class="anchor-link" href="#Directors-in-Thriller-Category">&#182;</a></h3>
+<h3 id="Directors-in-Thriller-Category">Directors in Thriller Category<a class="anchor-link" href="#Directors-in-Thriller-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[223]:</div>
+<div class="prompt input_prompt">In [223]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[223]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Alfred Hitchcock</th>
-      <td> 1957.0</td>
-      <td> 7.50</td>
-      <td> 29298.0</td>
-    </tr>
-    <tr>
-      <th>Brian De Palma</th>
-      <td> 1983.0</td>
-      <td> 6.20</td>
-      <td> 10157.0</td>
-    </tr>
-    <tr>
-      <th>Clint Eastwood</th>
-      <td> 1992.5</td>
-      <td> 6.90</td>
-      <td> 29193.0</td>
-    </tr>
-    <tr>
-      <th>Joel Schumacher</th>
-      <td> 1997.0</td>
-      <td> 6.40</td>
-      <td> 34449.0</td>
-    </tr>
-    <tr>
-      <th>John Woo</th>
-      <td> 1986.0</td>
-      <td> 6.20</td>
-      <td>   815.0</td>
-    </tr>
-    <tr>
-      <th>Renny Harlin</th>
-      <td> 1999.0</td>
-      <td> 5.60</td>
-      <td> 26739.0</td>
-    </tr>
-    <tr>
-      <th>Sidney Lumet</th>
-      <td> 1975.0</td>
-      <td> 6.70</td>
-      <td>  3160.0</td>
-    </tr>
-    <tr>
-      <th>Steven Soderbergh</th>
-      <td> 2003.0</td>
-      <td> 6.95</td>
-      <td> 31193.5</td>
-    </tr>
-    <tr>
-      <th>Tony Scott</th>
-      <td> 1995.0</td>
-      <td> 6.80</td>
-      <td> 64974.0</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Alfred Hitchcock</th>
+<td> 1957.0</td>
+<td> 7.50</td>
+<td> 29298.0</td>
+</tr>
+<tr>
+<th>Brian De Palma</th>
+<td> 1983.0</td>
+<td> 6.20</td>
+<td> 10157.0</td>
+</tr>
+<tr>
+<th>Clint Eastwood</th>
+<td> 1992.5</td>
+<td> 6.90</td>
+<td> 29193.0</td>
+</tr>
+<tr>
+<th>Joel Schumacher</th>
+<td> 1997.0</td>
+<td> 6.40</td>
+<td> 34449.0</td>
+</tr>
+<tr>
+<th>John Woo</th>
+<td> 1986.0</td>
+<td> 6.20</td>
+<td>   815.0</td>
+</tr>
+<tr>
+<th>Renny Harlin</th>
+<td> 1999.0</td>
+<td> 5.60</td>
+<td> 26739.0</td>
+</tr>
+<tr>
+<th>Sidney Lumet</th>
+<td> 1975.0</td>
+<td> 6.70</td>
+<td>  3160.0</td>
+</tr>
+<tr>
+<th>Steven Soderbergh</th>
+<td> 2003.0</td>
+<td> 6.95</td>
+<td> 31193.5</td>
+</tr>
+<tr>
+<th>Tony Scott</th>
+<td> 1995.0</td>
+<td> 6.80</td>
+<td> 64974.0</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Action-Category">Directors in Action Category<a class="anchor-link" href="#Directors-in-Action-Category">&#182;</a></h3>
+<h3 id="Directors-in-Action-Category">Directors in Action Category<a class="anchor-link" href="#Directors-in-Action-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[224]:</div>
+<div class="prompt input_prompt">In [224]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[224]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>John Woo</th>
-      <td> 1986</td>
-      <td> 6.2</td>
-      <td>   815</td>
-    </tr>
-    <tr>
-      <th>Renny Harlin</th>
-      <td> 1999</td>
-      <td> 5.6</td>
-      <td> 26739</td>
-    </tr>
-    <tr>
-      <th>Robert Rodriguez</th>
-      <td> 2003</td>
-      <td> 6.1</td>
-      <td> 52205</td>
-    </tr>
-    <tr>
-      <th>Roland Emmerich</th>
-      <td> 1996</td>
-      <td> 5.8</td>
-      <td> 86714</td>
-    </tr>
-    <tr>
-      <th>Tony Scott</th>
-      <td> 1995</td>
-      <td> 6.8</td>
-      <td> 64974</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>John Woo</th>
+<td> 1986</td>
+<td> 6.2</td>
+<td>   815</td>
+</tr>
+<tr>
+<th>Renny Harlin</th>
+<td> 1999</td>
+<td> 5.6</td>
+<td> 26739</td>
+</tr>
+<tr>
+<th>Robert Rodriguez</th>
+<td> 2003</td>
+<td> 6.1</td>
+<td> 52205</td>
+</tr>
+<tr>
+<th>Roland Emmerich</th>
+<td> 1996</td>
+<td> 5.8</td>
+<td> 86714</td>
+</tr>
+<tr>
+<th>Tony Scott</th>
+<td> 1995</td>
+<td> 6.8</td>
+<td> 64974</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Crime-Category">Directors in Crime Category<a class="anchor-link" href="#Directors-in-Crime-Category">&#182;</a></h3>
+<h3 id="Directors-in-Crime-Category">Directors in Crime Category<a class="anchor-link" href="#Directors-in-Crime-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[225]:</div>
+<div class="prompt input_prompt">In [225]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[225]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Brian De Palma</th>
-      <td> 1983</td>
-      <td> 6.2</td>
-      <td> 10157</td>
-    </tr>
-    <tr>
-      <th>Sidney Lumet</th>
-      <td> 1975</td>
-      <td> 6.7</td>
-      <td>  3160</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Brian De Palma</th>
+<td> 1983</td>
+<td> 6.2</td>
+<td> 10157</td>
+</tr>
+<tr>
+<th>Sidney Lumet</th>
+<td> 1975</td>
+<td> 6.7</td>
+<td>  3160</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Directors-in-Horror-Category">Directors in Horror Category<a class="anchor-link" href="#Directors-in-Horror-Category">&#182;</a></h3>
+<h3 id="Directors-in-Horror-Category">Directors in Horror Category<a class="anchor-link" href="#Directors-in-Horror-Category">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[226]:</div>
+<div class="prompt input_prompt">In [226]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[226]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rating</th>
-      <th>votes</th>
-    </tr>
-    <tr>
-      <th>director</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>John Carpenter</th>
-      <td> 1986.5</td>
-      <td> 6.75</td>
-      <td> 35121</td>
-    </tr>
-    <tr>
-      <th>Wes Craven</th>
-      <td> 1991.0</td>
-      <td> 6.00</td>
-      <td> 17465</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>year</th>
+<th>rating</th>
+<th>votes</th>
+</tr>
+<tr>
+<th>director</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>John Carpenter</th>
+<td> 1986.5</td>
+<td> 6.75</td>
+<td> 35121</td>
+</tr>
+<tr>
+<th>Wes Craven</th>
+<td> 1991.0</td>
+<td> 6.00</td>
+<td> 17465</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Correlation-Matrix-for-Categories">Correlation Matrix for Categories<a class="anchor-link" href="#Correlation-Matrix-for-Categories">&#182;</a></h2>
+<h2 id="Correlation-Matrix-for-Categories">Correlation Matrix for Categories<a class="anchor-link" href="#Correlation-Matrix-for-Categories">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[230]:</div>
+<div class="prompt input_prompt">In [230]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlEAAAIBCAYAAABp8uopAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VNX9//HXnUkmCYQkIGvCFvYAgiBLSEhCWIMCXxEV
@@ -18108,14 +17889,11 @@ Xc6l0j9ITk4O9BKINIcbRAok3s4LMRsbG5icnMTi4iJsNhsaGhqQnp4e6GUREUnS398PQRBgMBhg
 tVoxPDyM5eXlQC+LQgSLqBB1d3cHQRAwNTXF6eREFPS4QaRAYBFFRESawQ0i/SQWUUREREQSMPqX
 iIiISAIWUUREREQSsIgiIiIikoBFFBEREZEELKKIiIiIJGARRURERCTBf80eDVcTOmrGAAAAAElF
 TkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -18128,7 +17906,6 @@ TkSuQmCC
 <li>Thriller is quite correlated with Crime and Mystery. </li>
 <li>Drama does not go along with Comedy and Horror. </li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -18137,30 +17914,23 @@ TkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PCA">PCA<a class="anchor-link" href="#PCA">&#182;</a></h2><p>Correlation matrices are all good but what if we want to build category vectors to be able to represent the movies that we have in our dataset, possibly with a small number of vectors. <a href="http://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component Analysis</a> is such method that captures the maximum variance in a small number of eigenvectors by Singular Value Decomposition. I also wrote an introduction to PCA, and one of its application in computer vision called <a href="(/work/notes/2013-07-27/PCA-EigenFace-And-All-That/">EigenFace</a>), source code linked to the at the end of post.</p>
-
+<h2 id="PCA">PCA<a class="anchor-link" href="#PCA">¶</a></h2><p>Correlation matrices are all good but what if we want to build category vectors to be able to represent the movies that we have in our dataset, possibly with a small number of vectors. <a href="http://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component Analysis</a> is such method that captures the maximum variance in a small number of eigenvectors by Singular Value Decomposition. I also wrote an introduction to PCA, and one of its application in computer vision called <a href="(/work/notes/2013-07-27/PCA-EigenFace-And-All-That/">EigenFace</a>), source code linked to the at the end of post.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="prompt input_prompt">In [232]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfcAAAFgCAYAAACmFjDcAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlYVPXiBvD3zAwIigyCmKAZKimbIuCujQKpmKm40M3M
@@ -18392,14 +18162,11 @@ GxuLNm3aGD9n9erVmDx5Mj744AN07twZjo6OZmeMjIxETEwM5s+fDwDo0qULunTpAl9fX7i7u2P0
 IqnhLV+JqE787W9/Q3R0NFq2bIkNGzbgu+++w/r1620di6hB4pE7EdWJNm3aYMCAAbCzs4Orqyu+
 /vprW0ciarB45E5ERCQznFBHREQkMyx3IiIimWG5ExERyQzLnYiISGZY7kRERDLDciciIpKZ/wdt
 bhwLM7ubpAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -18408,29 +18175,22 @@ bhwLM7ubpAAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>Only 19 eigenvector captures more than 99% of the variance in our movies dataset.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[233]:</div>
+<div class="prompt input_prompt">In [233]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAw0AAAKsCAYAAACu1lEfAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xlcjen7B/DPU5KKdknJMmPft5JKSmOplCWVKIXJ8CVp
@@ -19836,14 +19596,11 @@ AAA2sRAaAAAATod10PYh0wAAAADAJoIGAAAAADYRNAAAAACwiaABAAAAgE0shAYAAIDTMbES2i5k
 GgAAAADYRNAAAAAAwCaCBgAAAAA2ETQAAAAAsImF0AAAAHA6rdu0atHxvb29W3R8exE0AAAAwKlY
 LJaWnsJjh/IkAAAAADYRNAAAAACwiaABAAAAgE0EDQAAAABsImgAAAAAYNP/A21UXSXuQTO/AAAA
 AElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -19854,7 +19611,6 @@ AElFTkSuQmCC
 category in the movie dataset. Second eigenvector is similar to thriller, horror and action movies. Since Drama itself is correlated
 with other movies, there is no single eigenvector which has strong component in Drama but rather the category is distributed among
 eigenvectors except first and second eigenvectors. More importantly, movies are very similar to each other in terms of categories that are on IMDB. By only keeping 19 eigenvector, I am able to capture more than 99% of the variance(consider we have 100042 movies).</p>
-
 </div>
 </div>
 </div>
@@ -19863,11 +19619,10 @@ eigenvectors except first and second eigenvectors. More importantly, movies are 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h3><p>I will look at the actors and actresses similarly to directors, also do some regression analysis on rating, votes and categories as well as directors and actors. It would be pretty interesting to see if some of the directors prefer working with specific actors and actresses.
+<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h3><p>I will look at the actors and actresses similarly to directors, also do some regression analysis on rating, votes and categories as well as directors and actors. It would be pretty interesting to see if some of the directors prefer working with specific actors and actresses.
 Stay tuned for the next week.</p>
-<h3 id="What-did-not-work?">What did not work?<a class="anchor-link" href="#What-did-not-work?">&#182;</a></h3><p>The outlines turned out to be not informative since they are one or two sentences at most. Furher, most of the movies on IMDB do not have an explanation of the movie but rather an excerpt from its plot. Most of the clusters become family-related and turned out to be pretty useless.</p>
-<h3 id="What-is-the-plan?">What is the plan?<a class="anchor-link" href="#What-is-the-plan?">&#182;</a></h3><p>I  started combining budget information of the movies but got so far around ~2000, ~98042 to go. Apart from impossibiliy to combine all of the movies, I think this would be a quite important variable in terms of both rating and votes.</p>
-
+<h3 id="What-did-not-work?">What did not work?<a class="anchor-link" href="#What-did-not-work?">¶</a></h3><p>The outlines turned out to be not informative since they are one or two sentences at most. Furher, most of the movies on IMDB do not have an explanation of the movie but rather an excerpt from its plot. Most of the clusters become family-related and turned out to be pretty useless.</p>
+<h3 id="What-is-the-plan?">What is the plan?<a class="anchor-link" href="#What-is-the-plan?">¶</a></h3><p>I  started combining budget information of the movies but got so far around ~2000, ~98042 to go. Apart from impossibiliy to combine all of the movies, I think this would be a quite important variable in terms of both rating and votes.</p>
 </div>
 </div>
 </div>

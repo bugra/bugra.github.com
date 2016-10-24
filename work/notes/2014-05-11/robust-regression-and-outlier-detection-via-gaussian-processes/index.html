@@ -1016,25 +1016,23 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Previously, I wrote <a href="http://bugra.github.io/work/notes/2014-03-31/outlier-detection-in-time-series-signals-fft-median-filtering/">outlier detection using FFT and Median Filtering</a> and <a href="http://bugra.github.io/work/notes/2014-04-26/outlier-detection-markov-chain-monte-carlo-via-pymc/">outlier detection via MCMC</a>. This post will be third in outlier detection series.</p>
 <p>In the last post, I showed after removal of the outliers, one can do a linear regression on the remaining data which is called <strong>robust linear regression</strong>. However, instead of detecting the outliers then fit the regression model, we can do better. Choose a model that is robust to outliers and flexible enough to capture all main signal by excluding the outliers. But not necessarily very opinionated so that we would have some flexibility what we could capture the data as well.</p>
-<h3 id="Nonparametric-Regression">Nonparametric Regression<a class="anchor-link" href="#Nonparametric-Regression">&#182;</a></h3><p>Nonparametric regression provides such a mechanism. It does not make any assumption on the data and does not necessarily enforce anything on the data. By doing so, it provides great flexibility and if your signal happens to be something that the nonparametric regressions's base distribution can fit, you are in luck. However, in order to fully exploit nonparametric model, one needs more data than what she needs in the parametric model case as the data will also create the structure. Therefore, nonparametric models would work best when there is abundance of data available.</p>
-<h4 id="Why-nonparametric-regression-instead-of-model-dependent(say-Linear-Regression)?">Why nonparametric regression instead of model dependent(say Linear Regression)?<a class="anchor-link" href="#Why-nonparametric-regression-instead-of-model-dependent(say-Linear-Regression)?">&#182;</a></h4><ul>
+<h3 id="Nonparametric-Regression">Nonparametric Regression<a class="anchor-link" href="#Nonparametric-Regression">¶</a></h3><p>Nonparametric regression provides such a mechanism. It does not make any assumption on the data and does not necessarily enforce anything on the data. By doing so, it provides great flexibility and if your signal happens to be something that the nonparametric regressions's base distribution can fit, you are in luck. However, in order to fully exploit nonparametric model, one needs more data than what she needs in the parametric model case as the data will also create the structure. Therefore, nonparametric models would work best when there is abundance of data available.</p>
+<h4 id="Why-nonparametric-regression-instead-of-model-dependent(say-Linear-Regression)?">Why nonparametric regression instead of model dependent(say Linear Regression)?<a class="anchor-link" href="#Why-nonparametric-regression-instead-of-model-dependent(say-Linear-Regression)?">¶</a></h4><ul>
 <li>Basic linear regression model assumes that errors are independent. However, generally speaking, this condition does not hold true. It is not true for time-series signals as time-series has high temporal dependencies. </li>
 <li>Flexible representation to capture. Parametric approaches are restricted the model and parameters whereas nonparametric approaches are more flexible. They are also constrained so-called hyper parameters but do not suffer as much as parametric methods.</li>
 <li>Model is constructed what data suggests.</li>
 <li>Relation between observations and raw data is not linear even if it looks like linear. We are trying to summarize a richer relation into an intercept and slope. This not only captures a very approximate relation but also may lead wrong conclusions.</li>
 <li>Basically, we need better models which capture the richness of data.</li>
 </ul>
-<h2 id="Gaussian-Processes">Gaussian Processes<a class="anchor-link" href="#Gaussian-Processes">&#182;</a></h2><p>One of the most commonly used nonparametric models are Gaussian processes. They can be used both for regression and also for classification purposes. It brings to the table flexible priors(Gaussian as you could guess) and also nonparametric approach to the regression world. Not only that but it also provides best linear unbiased estimate(so-called BLUE) for the prediction. This behavior significantly differs from spline-like regression where they only provide smoothness guarantee, based on the regularization term. 
+<h2 id="Gaussian-Processes">Gaussian Processes<a class="anchor-link" href="#Gaussian-Processes">¶</a></h2><p>One of the most commonly used nonparametric models are Gaussian processes. They can be used both for regression and also for classification purposes. It brings to the table flexible priors(Gaussian as you could guess) and also nonparametric approach to the regression world. Not only that but it also provides best linear unbiased estimate(so-called BLUE) for the prediction. This behavior significantly differs from spline-like regression where they only provide smoothness guarantee, based on the regularization term. 
 So, you could approach to the problem in a Bayesian setting out of the box. Due to nice functionalities of Gaussian distribution, the solution for the posterior distribution can be solved analytical expressions.</p>
-
 </div>
 </div>
 </div>
@@ -1043,14 +1041,13 @@ So, you could approach to the problem in a Bayesian setting out of the box. Due 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h3><p>Good, old linear regression problem could be formulated in the following way for the signal way; we have $y$ and $X$ vectors which we want to learn how they relate in a linear fashion in the following way(considering the noise):
+<h3 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">¶</a></h3><p>Good, old linear regression problem could be formulated in the following way for the signal way; we have $y$ and $X$ vectors which we want to learn how they relate in a linear fashion in the following way(considering the noise):
 $$y = X^T w + \epsilon $$
 where noise is modeled as in the following:
 $$ \epsilon \sim \mathcal{N}(0, \sigma_n^2) $$</p>
-<h2 id="Gaussian-Processes-Problem-Formulation">Gaussian Processes Problem Formulation<a class="anchor-link" href="#Gaussian-Processes-Problem-Formulation">&#182;</a></h2><h4 id="Likelihood">Likelihood<a class="anchor-link" href="#Likelihood">&#182;</a></h4><p>Given $X$ and $w$, we could get the likelihood $y$ in the following:
+<h2 id="Gaussian-Processes-Problem-Formulation">Gaussian Processes Problem Formulation<a class="anchor-link" href="#Gaussian-Processes-Problem-Formulation">¶</a></h2><h4 id="Likelihood">Likelihood<a class="anchor-link" href="#Likelihood">¶</a></h4><p>Given $X$ and $w$, we could get the likelihood $y$ in the following:
 $$P(y|X, w) = \prod_{i=1}^{n} p(y_i | x_i, w) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma_n} exp(-\frac{(y_i - x_i^T w)^2}{2\sigma_n^2})$$</p>
 <p>Likelihood of gaussian extends on the gaussian distribution. If the prior is also chosen as prior, posterior will be also Gaussian. Not only that, the posterior computation will be boiled down to the linear algebra and matrix manipulations.</p>
-
 </div>
 </div>
 </div>
@@ -1063,7 +1060,6 @@ $$P(y|X, w) = \prod_{i=1}^{n} p(y_i | x_i, w) = \prod_{i=1}^{n} \frac{1}{\sqrt{2
 $$ P(y|X, w) =  \frac{1}{(\sqrt{2\pi} \sigma_n^2)^n}{exp(-\frac{1}{2\sigma_n^2}(y - X^Tw)^2)}$$<p>This expression could be shown in a shortform like in the following:
 $$ P(y|X, w) = \mathcal{N}(X^T w, \sigma_n^2 I) $$</p>
 <p>After getting the likelihood, we could compute to the posterior computation.</p>
-
 </div>
 </div>
 </div>
@@ -1074,7 +1070,6 @@ $$ P(y|X, w) = \mathcal{N}(X^T w, \sigma_n^2 I) $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we want to estimate the posterior distribution, we could use famous Bayes' formula ignoring the denominator:
 $$ p(posterior) \propto p(likelihood) p(prior) $$</p>
-
 </div>
 </div>
 </div>
@@ -1106,7 +1101,6 @@ $$p(w| X, y) \sim \mathcal{N}((XX^T)^{-1}Xy + \Sigma_p\sigma_n^{-2}Xy, \Sigma_p 
 <p>where $\Sigma_p$ is the Gaussian prior covariance matrix.</p>
 <p>Mean of Gaussian distribution also happens to be mode of the distribution and Maximum a Posteriori(MAP) estimate of $w$ as well. The prediction $\bar{y}$ for new observation $\bar{x}$ is immediate:
 $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \sigma_n^2 (XX^T)^{-1}) Xy, \bar{x}^T (\Sigma_p + (XX^T)^{-1}\sigma_n^2)) \bar{x}) $$</p>
-
 </div>
 </div>
 </div>
@@ -1116,7 +1110,6 @@ $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The predictive distribution is also Gaussian but I guess at this point nobody is really suprised. The interesting thing of this distribution is that the mean of the distribution is nothing but average of the posterior distribution over all possible weights.</p>
-
 </div>
 </div>
 </div>
@@ -1126,7 +1119,6 @@ $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that even if we start with the problem formulation, since we are using Gaussian priors, likelihoods, posterior distribution can be obtained via an analytical solution with matrix linear algebraic operations.</p>
-
 </div>
 </div>
 </div>
@@ -1136,15 +1128,14 @@ $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After problem formulation, let's look at how one can implement Gaussian processes in the next section.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">pymc</span>
@@ -1153,31 +1144,25 @@ $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \s
 <span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="k">import</span> <span class="n">GaussianProcess</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Couldn&#39;t import dot_parser, loading of dot files will not be possible.
+<pre>Couldn't import dot_parser, loading of dot files will not be possible.
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">2.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
 <span class="c1"># Add some noise</span>
@@ -1193,11 +1178,9 @@ $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \s
     
 <span class="c1">#y_with_outlier = np.asarray(y_with_outlier)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1205,33 +1188,26 @@ $$ p(\bar{y}|\bar{x}, X, y) = \mathcal{N}(\sigma_n^{-2} \bar{x}^T (\Sigma_p + \s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I put some random noise to the signal before introducing the outliers as I want to preserve the small variance but not very distant ones.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7A68A6&quot;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#7A68A6"</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Original Signal'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;original-signal.png&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'original-signal.png'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsoAAAF7CAYAAADL6K0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VOd59//PrNp3gRBa2CQQYgezGmxswBvxEtvBAW+x
@@ -1632,38 +1608,29 @@ M2cas2bNMmbNmmXs2rXLaG5uNgoKCoz09HSjsLDQuHLliq+HCh/55JNPjOXLlxuGYZALGJ9//rkx
 e/ZsY8aMGcaTTz5ptLa2kgsYr732mpGdnW3k5uYazz77rOFwOMhFEHr66aeNCRMmGKGhoUZqaqrx
 5ptv3jYHr776qjFt2jQjMzPTKCkpGfTz2XAEAAAAMDGiG44AAAAAowWFMgAAAGCCQhkAAAAwQaEM
 AAAAmKBQBgAAAExQKAMAAAAmKJQBAAAAExTKAAAAgIn/ByDiY7gJMrqMAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y_with_outlier</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">y_with_outlier</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7A68A6&quot;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Signal with Outliers&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y_with_outlier</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">y_with_outlier</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#7A68A6"</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Signal with Outliers'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_with_outlier</span><span class="p">)]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;original-signal-with-outlier.png&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'original-signal-with-outlier.png'</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6kAAAHqCAYAAADmjAhYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4lPW9///XzGTfE8gCCUmAbIQ9LEEIZQmouOBaLNal
@@ -2124,31 +2091,27 @@ flkej4csI6z86Ec/0t69e2W1WlVQUKCf/exn6uzsJMcIecXFxTpy5Iiam5uVmpqqH/7wh9q0adNt
 s/v888/rpZdekt1u1wsvvKB169YNef0JbVIBAAAAABjKhE33BQAAAABgODSpAAAAAICQQZMKAAAA
 AAgZNKkAAAAAgJBBkwoAAAAACBk0qQAAAACAkEGTCgAAAAAIGf8fUKhLyV0CuI8AAAAASUVORK5C
 YII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gaussian-Processes-via-Scikit-Learn">Gaussian Processes via Scikit Learn<a class="anchor-link" href="#Gaussian-Processes-via-Scikit-Learn">&#182;</a></h2><p>Scikit learn in general provides a nice API for unsupervised and supervised learning. Gaussian processes are no exception. Fitting Gaussian processes  and then predict observations are only two functions; <code>fit</code> and <code>predict</code> after we created the <code>GaussianProcess</code> object.
+<h2 id="Gaussian-Processes-via-Scikit-Learn">Gaussian Processes via Scikit Learn<a class="anchor-link" href="#Gaussian-Processes-via-Scikit-Learn">¶</a></h2><p>Scikit learn in general provides a nice API for unsupervised and supervised learning. Gaussian processes are no exception. Fitting Gaussian processes  and then predict observations are only two functions; <code>fit</code> and <code>predict</code> after we created the <code>GaussianProcess</code> object.
 <code>nugget</code> parameter is the normalized variance and determines how flexible GaussianProcess will be in terms of capturing outliers.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">y_with_outlier</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span><span class="o">.</span><span class="n">T</span>
@@ -2159,36 +2122,28 @@ YII=
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">)</span>
 <span class="n">confidence_interval</span> <span class="o">=</span>  <span class="mf">2.236</span> <span class="o">*</span> <span class="n">sigma</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#7A68A6&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observations&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Observations and Predictions&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#7A68A6"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Observations'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">'p'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Predictions'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Observations and Predictions'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">120</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6kAAALKCAYAAADQyBfzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlYVdXeB/DvPiMcBkEUFBAZVcQZFTXNudLSTMuUHMqs
@@ -2835,14 +2790,11 @@ c4WFhZbP57Nyc3Otzz77zLIs3ud28+KLL1rjx4+34uLiLI/HY23cuPE3G69cudKaNGmSNXnyZKu2
 tjaCK0d//Lr3hg0brG3btlkej8eKj4+3XC6XNWPGjND99B7+btc8LS3NSklJsfLy8qy8vDzr5Zdf
 Dt0fbnOHZf3qq3IBAAAAAIiQYbXdFwAAAABgbwypAAAAAICowZAKAAAAAIgaDKkAAAAAgKjBkAoA
 AAAAiBoMqQAAAACAqMGQCgAAAACIGgypAAAAAICo8b9XZtrDSGJg5AAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2850,35 +2802,28 @@ AAAAiBoMqQAAAACAqMGQCgAAAACIGgypAAAAAICo8b9XZtrDSGJg5AAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We could label all of the observations that are outside of the condidence interval as <strong>outliers</strong>, which can be shown in the next plot.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#348ABD&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outliers&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#348ABD"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Outliers'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">x_pred</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">confidence_interval</span><span class="p">,</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">+</span> <span class="n">confidence_interval</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
-                                        <span class="n">alpha</span><span class="o">=.</span><span class="mi">9</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;98</span><span class="si">% c</span><span class="s1">onfidence interval&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Outliers and Confidence Interval&#39;</span><span class="p">);</span>
+                                        <span class="n">alpha</span><span class="o">=.</span><span class="mi">9</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'98</span><span class="si">% c</span><span class="s1">onfidence interval'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Outliers and Confidence Interval'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">120</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6kAAALKCAYAAADQyBfzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8TOf+B/DPOTOTRYglaYJECCKIEltVqVqr1YVLquSH
@@ -3617,14 +3562,11 @@ Oycnxx43bpz92muv2bbN77nT3HrrrfZFF11ke71eOz093V6yZMk5M543b549cuRIe8yYMXZlZWUU
 K0d3dMx78eLF9sqVK+309HQ7KSnJ9vl89vXXXx88n7zj39kyHzVqlJ2RkWGPHz/eHj9+vH3XXXcF
 zw81c8u2O9wqFwAAAACAKImr7b4AAAAAAGejSQUAAAAAxAyaVAAAAABAzKBJBQAAAADEDJpUAAAA
 AEDMoEkFAAAAAMQMmlQAAAAAQMygSQUAAAAAxIz/D2bEZgBHv7ndAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3635,15 +3577,14 @@ AEDMoEkFAAAAAMQMmlQAAAAAQMygSQUAAAAAxIz/D2bEZgBHv7ndAAAAAElFTkSuQmCC
 Similar to the example(they use $x sin(x) $ that Scikit-Learn has for Gaussian Process regression, in the following example we want to learn a function in the form of:
 $$ f(x) =  2\, x \, sin(x)\, cos(x) $$ 
 and then make predictions in the data. In this one, our main aim is not to be able to detect outliers, but just regression via Gaussian Processes.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In [63]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -3655,7 +3596,7 @@ and then make predictions in the data. In this one, our main aim is not to be ab
 <span class="n">y</span> <span class="o">+=</span> <span class="n">noise</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
-<span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcess</span><span class="p">(</span><span class="n">corr</span><span class="o">=</span><span class="s1">&#39;squared_exponential&#39;</span><span class="p">,</span> <span class="n">theta0</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+<span class="n">gp</span> <span class="o">=</span> <span class="n">GaussianProcess</span><span class="p">(</span><span class="n">corr</span><span class="o">=</span><span class="s1">'squared_exponential'</span><span class="p">,</span> <span class="n">theta0</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
                      <span class="n">thetaL</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">thetaU</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                      <span class="n">nugget</span><span class="o">=</span><span class="p">(</span><span class="n">dy</span> <span class="o">/</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span>
                      <span class="n">random_start</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -3664,29 +3605,23 @@ and then make predictions in the data. In this one, our main aim is not to be ab
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">MSE</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#7A68A6&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$f(x) = x\,\sin(x)\,\cos(x)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#7A68A6'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$f(x) = x\,\sin(x)\,\cos(x)$'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Prediction'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
         <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_pred</span> <span class="o">-</span> <span class="mf">1.9600</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span>
                        <span class="p">(</span><span class="n">y_pred</span> <span class="o">+</span> <span class="mf">1.9600</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]),</span>
-        <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence interval&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+        <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'None'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'95</span><span class="si">% c</span><span class="s1">onfidence interval'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'$x$'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'$f(x)$'</span><span class="p">)</span>
 <span class="c1">#plt.ylim(-10, 20)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAt8AAALQCAYAAABIXBwRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VPW9P/7XZCb7vkAChMga1rALgoBFBHel6rWWini7
@@ -4549,14 +4484,11 @@ GcePH1dfX59qa2s1f/587dq1S7t379aaNWsUiUScHg8Acg5XvgEgj9XU1EiSzp49q3g8rsLCQt11
 110OTwUAuYudbwDIY7/5zW+0f/9+/eQnP9GKFSskSS+99JLDUwFA7uLKNwDksZdfflmXLl1SRUWF
 enp69MILL2jSpElOjwUAOYudbwAAACBDWDsBAAAAMoTyDQAAAGQI5RsAAADIEMo3AAAAkCGUbwAA
 ACBDKN8AAABAhlC+AQAAgAyhfAMAAAAZ8v8DWJSkRvQjJwYAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4565,9 +4497,8 @@ ACBDKN8AAABAhlC+AQAAgAyhfAMAAAAZ8v8DWJSkRvQjJwYAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that as we get more and more data, we could be more sure of our predictions. This is generally true for nonparametric models as they are more flexible and data dependent comparing to parametric models. 
 Probabilistic nature of the model could give us confidence intervals and they could be used for classification of the observations(outlier vs. inlier). Consider this scenario, you want to be able to detect outliers in real-time, but instead of approaching problem as a classification problem, you could use your old regresssion model that you trained and then convert it into a classifier without putting extra work. Moreover, as you get more and more data, you could both train your "classifier" and also do the prediction. Sounds quite awesome.)</p>
-<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h3><p>Up to now, I did mostly toy examples, very simple regression models. However, for models to be useful, they need to solve real-world problems. I will compare the approaches that I introduced upto now in real-world examples.</p>
-<h4 id="What-are-you-using?">What are you using?<a class="anchor-link" href="#What-are-you-using?">&#182;</a></h4><p>Of course, if you have more and useful methods for outlier detection, please leave a comment.</p>
-
+<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h3><p>Up to now, I did mostly toy examples, very simple regression models. However, for models to be useful, they need to solve real-world problems. I will compare the approaches that I introduced upto now in real-world examples.</p>
+<h4 id="What-are-you-using?">What are you using?<a class="anchor-link" href="#What-are-you-using?">¶</a></h4><p>Of course, if you have more and useful methods for outlier detection, please leave a comment.</p>
 </div>
 </div>
 </div>

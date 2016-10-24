@@ -1016,13 +1016,12 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Unsupervised-Learning">Unsupervised Learning<a class="anchor-link" href="#Unsupervised-Learning">&#182;</a></h2>
+<h2 id="Unsupervised-Learning">Unsupervised Learning<a class="anchor-link" href="#Unsupervised-Learning">¶</a></h2>
 </div>
 </div>
 </div>
@@ -1033,7 +1032,6 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Unsupervised learning is the most applicable subfield on machine learning as it does not require any labels in the dataset and world is <strong>itself</strong> is an abundance of dataset. Human beings and their actions are recorded more and more every day(through photographs in Instagram, health data through wearables, internet activity through cookies and so on). Even the part of our lives which are not digital will be recorded in near future thanks to internet of things. In such a diversified and unlabeled dataset, unsupervised learning will become more and more important in the future.</p>
 <p>Not only it could be useful for dimensionality reduction in the feature set(like a preprocessing step) but also could be useful as feature extraction method. PCA(Principal Component Analysis) could be one of the most used unsupervised learning algorithm(PCA to unsupervised learning, linear regression equivalent to regression). It could be used both a dimensionality reduction in order to reduce data but also while it compresses(reduces) data, since it tries to capture the variance, it could pick up <em>interesting</em> featurse, so could be used as a feature extraction method.</p>
-
 </div>
 </div>
 </div>
@@ -1043,7 +1041,6 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this notebook, I will use PCA to both reduce dimensionality in the dataset and also build our feature vector. This specific method is called EigenFace(due to PCA extracting the eigenvectors and they could be visualized as face).</p>
-
 </div>
 </div>
 </div>
@@ -1052,15 +1049,15 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dimensionality-Reduction-&amp;-Feature-Extraction-via-PCA-(EigenFace)">Dimensionality Reduction &amp; Feature Extraction via PCA (EigenFace)<a class="anchor-link" href="#Dimensionality-Reduction-&amp;-Feature-Extraction-via-PCA-(EigenFace)">&#182;</a></h2>
+<h2 id="Dimensionality-Reduction-&amp;-Feature-Extraction-via-PCA-(EigenFace)">Dimensionality Reduction &amp; Feature Extraction via PCA (EigenFace)<a class="anchor-link" href="#Dimensionality-Reduction-&amp;-Feature-Extraction-via-PCA-(EigenFace)">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1080,50 +1077,42 @@ h6:hover .anchor-link {
 
 <span class="kn">import</span> <span class="nn">time</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Modified-Olivetti-faces-dataset">Modified Olivetti faces dataset<a class="anchor-link" href="#Modified-Olivetti-faces-dataset">&#182;</a></h4>
+<h4 id="Modified-Olivetti-faces-dataset">Modified Olivetti faces dataset<a class="anchor-link" href="#Modified-Olivetti-faces-dataset">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">faces</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">olivetti_faces</span><span class="o">.</span><span class="n">fetch_olivetti_faces</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">faces</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Modified Olivetti faces dataset.
@@ -1150,53 +1139,40 @@ consists of 64x64 images.
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">faces_images</span> <span class="o">=</span> <span class="n">faces</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">faces_images</span> <span class="o">=</span> <span class="n">faces</span><span class="p">[</span><span class="s1">'images'</span><span class="p">]</span>
 <span class="n">faces_data</span> <span class="o">=</span> <span class="n">faces</span><span class="o">.</span><span class="n">data</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">faces_images</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(400, 64, 64)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1205,38 +1181,28 @@ consists of 64x64 images.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Images are nothing but reshaped <code>faces_data</code>. It makes it easier for us to visualize the faces in an image grid but, we will
 use the faces_data to apply PCA. This is because PCA expects two dimensions <code>(n_observations, n_dimensions)</code>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">faces_data</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(400, 4096)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1244,7 +1210,6 @@ use the faces_data to apply PCA. This is because PCA expects two dimensions <cod
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have 400 instances and their vector dimension is 4096(256 * 256). We could reduce this dimension by applying PCA(Principal Component Analysis) and also PCA would extract features as well.</p>
-
 </div>
 </div>
 </div>
@@ -1254,15 +1219,14 @@ use the faces_data to apply PCA. This is because PCA expects two dimensions <cod
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's see some faces.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># It starts with one</span>
@@ -1271,18 +1235,12 @@ use the faces_data to apply PCA. This is because PCA expects two dimensions <cod
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA9sAAAOLCAYAAABAB5ArAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvcmOZdl13v/dvr83+si2KqtJFgnaJmlAoj31wFO9gwA9
@@ -8070,14 +8028,11 @@ YEWWuO7z87MlNNBhgmniNe8JJ2E37TZGVvzWJP5xvePT755jvV63ZyQR4yQMIOPTotPf8eNXUfnz
 8/P8U3b/MpvN5n9rfTP//5zM/2mT+T9tMv+nTeb/tMn8nzaZ/9Plu7mfdzo2hBBCCCGEEEL4D0iw
 HUIIIYQQQgghHJlftpGHEEIIIYQQQgjhz0hlO4QQQgghhBBCODIJtkMIIYQQQgghhCOTYDuEEEII
 IYQQQjgyCbZDCCGEEEIIIYQj8xP/SBE13mcj1wAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8085,80 +8040,61 @@ IYQQQjgyCbZDCCGEEEIIIYQj8xP/SBE13mcj1wAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's try first number of eigenfaces 16 and then see what type of eigenfaces we get. Note that I am also passing the <code>whiten=True</code> in the PCA in order to remove the low-frequency(constant) areas in the face as those areas are not as important as areas that have variation and change(PCA also makes an assumption on the data very similarly).</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_eigenfaces</span> <span class="o">=</span> <span class="mi">16</span>
 <span class="c1"># Creating PCA object</span>
 <span class="n">pca</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">RandomizedPCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_eigenfaces</span><span class="p">,</span> <span class="n">whiten</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># We are applying PCA to the data</span>
 <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">faces_data</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>RandomizedPCA(copy=True, iterated_power=3, n_components=16, random_state=None,
        whiten=True)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(16, 4096)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;EigenFaces&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'EigenFaces'</span><span class="p">);</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># It starts with one</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
@@ -8166,18 +8102,12 @@ IYQQQjgyCbZDCCGEEEIIIYQj8xP/SBE13mcj1wAAAABJRU5ErkJggg==
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8EAAAPnCAYAAAAPvU4rAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvU+oZFub5rV25DknM++9WD3oidgozi0U/DMRHDloRRBp
@@ -12386,37 +12316,28 @@ Kq8q44qNLK+mTXr205g+16NtpDzaH3WdYjzudhPfpx3UaR/P+rLv8nvq50Yks51l3+IpxkfuS046
 fr9sv7DlbNL8wk6pb9myZcuWLVu2bNmyZcuWfxvZJHjLli1btmzZsmXLli1btvzbyLgcesuWLVu2
 bNmyZcuWLVu2bPn/TfZM8JYtW7Zs2bJly5YtW7Zs+beRTYK3bNmyZcuWLVu2bNmyZcu/jWwSvGXL
 li1btmzZsmXLli1b/m1kk+AtW7Zs2bJly5YtW7Zs2fJvI/8HlAX3kSg8jtAAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">):</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Explained Variance Ratio over Component&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Explained Variance Ratio over Component'</span><span class="p">);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBoAAAL4CAYAAADVgJTsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XuYXXV9L/7Pmtkzk2QyYSaQhJALBAkks0MgNiCNWDnc
@@ -12889,37 +12810,28 @@ nvcEvSWU0ZNPPqlUKkVJdRU4efKkfvSjH2lwcFCbN2/Wm9/85qC3hDK477779NJLL8n3fV1yySW6
 8sorg94SSuz+++/Xjh07FI/Hdd555+l973sf93NVYKL3nXu6yjbRez6E+7nKNNF7Ptv7uXkTNAAA
 AAAAgIVvXvRoAAAAAAAAlYGgAQAAAAAAlAxBAwAAAAAAKBmCBgAAAAAAUDIEDQAAAAAAoGQIGgAA
 AAAAQMkQNAAAAAAAgJIhaAAAAAAAACXz/wG5k/ppnQy3eAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">):</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cumulative Explained Variance over EigenFace&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Cumulative Explained Variance over EigenFace'</span><span class="p">);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">cumsum</span><span class="p">());</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBQAAAL4CAYAAADLSaRfAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl01PW9//HX7DPZF0jCEmQJS0gIO60gtrhhtShady/a
@@ -13413,41 +13325,32 @@ zIJisRjFYjEiIpIkiZGREXP0VcD1XPVyTVddXM9VnyO5nst0dXXNatz0+OOPx7e//e2IiLjsssti
 9tlx8cUXp90Ss+Cf//mf45lnnokkSeKcc86Jd77znWm3xDS7++6747HHHouenp44+eST4+qrr3Y9
 VwUOdN5d01W2A53zN7meq0wHOudTvZ6b9UABAAAAmPtmdYcCAAAAUBkECgAAAMCUCRQAAACAKRMo
 AAAAAFMmUAAAAACmTKAAAAAATJlAAQAAAJgygQIAAAAwZf8/U2KyhEE7PmcAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PCA captures </span><span class="si">{:.2f}</span><span class="s1"> percent of the variance in the dataset&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'PCA captures </span><span class="si">{:.2f}</span><span class="s1"> percent of the variance in the dataset'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>PCA captures 73.09 percent of the variance in the dataset
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13456,66 +13359,50 @@ AAAAAFMmUAAAAACmTKAAAAAATJlAAQAAAJgygQIAAAAwZf8/U2KyhEE7PmcAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is kind of low, we generally want 95% to be able to say, we could represent the dataset quite accurately with small number
 of dimensions. Let's increase the number of dimensions.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_eigenfaces</span> <span class="o">=</span> <span class="mi">121</span>
 <span class="c1"># Creating PCA object</span>
 <span class="n">pca</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">RandomizedPCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_eigenfaces</span><span class="p">,</span> <span class="n">whiten</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># We are applying PCA to the data</span>
 <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">faces_data</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>RandomizedPCA(copy=True, iterated_power=3, n_components=121,
        random_state=None, whiten=True)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">):</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cumulative Explained Variance over EigenFace &#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Cumulative Explained Variance over EigenFace '</span><span class="p">);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">cumsum</span><span class="p">());</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBcAAAL4CAYAAAAgfh9cAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VPW9//H37JN9JWHfA4SEsOOCS6m7FkVbrUpdqrZV
@@ -13987,41 +13874,32 @@ ntixY8da/uOhwWc+85nYtGlTlEqluPHGG+MjH/mINUpSnn766ZicnIx7773X2iQZb731VnzhC1+I
 H374gmvRGmUtLbY2z98T3XDDDfHRj340Ii59ba55uAAAAAC0lzWduQAAAAC0H+ECAAAA0BLhAgAA
 ANAS4QIAAADQEuECAAAA0BLhAgAAANAS4QIAAADQEuECAAAA0JL/H8uQVVXy+rmDAAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PCA captures </span><span class="si">{:.2f}</span><span class="s1"> percent of the variance in the dataset&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'PCA captures </span><span class="si">{:.2f}</span><span class="s1"> percent of the variance in the dataset'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>PCA captures 94.85 percent of the variance in the dataset
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -14029,17 +13907,16 @@ QmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is good enough. Let's look what kind of eigenfaces we have this time.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;EigenFaces&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'EigenFaces'</span><span class="p">);</span>
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># It starts with one</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
@@ -14047,18 +13924,12 @@ QmCC
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+MAAAPnCAYAAABEFZ3GAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvVuIrFt77/V/69BV3XXs05xzrTWz8iXXbhQ8EBAMAS+2
@@ -22417,21 +22288,18 @@ hyIYDLpiKfP8mf+2MX/ev33Mn/lvG/Pn/dvH/Jn/tjF/3r99zJ/5bxvz5/3bx/yZ/7bx//vzdr8d
 mMc85jGPecxjHvOYxzz+78R8Mj6PecxjHvOYxzzmMY95zGMe85jHbxzzZnwe85jHPOYxj3nMYx7z
 mMc85jGP3zjmzfg85jGPecxjHvOYxzzmMY95zGMev3HMm/F5zGMe85jHPOYxj3nMYx7zmMc8fuP4
 X7T6uNCRX+56AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Pointers">Pointers<a class="anchor-link" href="#Pointers">&#182;</a></h3><p><shameless-self-promotion></p>
+<h3 id="Pointers">Pointers<a class="anchor-link" href="#Pointers">¶</a></h3><p><shameless-self-promotion></shameless-self-promotion></p>
 <ul>
 <li><a href="http://bugra.github.io/work/notes/2013-07-27/PCA-EigenFace-And-All-That/">PCA and Its applications | Application on Yale Face Database</a></li>
 <li><a href="https://github.com/bugra/EigenFace">EigenFace Library for Yale Face Database</a></li>
@@ -22439,7 +22307,6 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
 &lt;/shameless-self-promotion&gt;</li>
 <li><a href="http://www.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Original EigenFace Paper</a></li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -22448,7 +22315,7 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Clustering-Algorithms-Comparison-on-Toy-Datasets">Clustering Algorithms Comparison on Toy Datasets<a class="anchor-link" href="#Clustering-Algorithms-Comparison-on-Toy-Datasets">&#182;</a></h3>
+<h3 id="Clustering-Algorithms-Comparison-on-Toy-Datasets">Clustering Algorithms Comparison on Toy Datasets<a class="anchor-link" href="#Clustering-Algorithms-Comparison-on-Toy-Datasets">¶</a></h3>
 </div>
 </div>
 </div>
@@ -22458,7 +22325,6 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's generate some datasets. Put random <code>seed=0</code> for reproducibility. The datasets are synthetic and I added a little noise on top of every dataset in order not to have very clean signals.</p>
-
 </div>
 </div>
 </div>
@@ -22468,7 +22334,6 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It is always good practice to test your machine learning pipeline on the synthetic datasets similar to original dataset that you have due to two reasons; first you could measure the effectiveness relatively easy dataset and if the results are not promising you would not waste your time to prepare the original dataset, second it is easy to compare different clustering algorithms on well-known dataset whereas it might be harder to compare in an original dataset(e.g. if we do not know how many clusters that we have in dataset).</p>
-
 </div>
 </div>
 </div>
@@ -22478,15 +22343,14 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Especially, if you do not have knowledge on how all the clustering methods work and want to simply experiment, the datasets that Scikit-learn provides becomes quite handy.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">2500</span>
@@ -22509,11 +22373,9 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
                 <span class="n">swiss_roll</span>
                <span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -22521,19 +22383,18 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Put six different clustering algorithms to compare their performances on the dataset.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ii</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="s1">&#39;#30a2da, #fc4f30, #e5ae38, #6d904f, #8b8b8b&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)])</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ii</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="s1">'#30a2da, #fc4f30, #e5ae38, #6d904f, #8b8b8b'</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)])</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">colors</span><span class="p">]</span> <span class="o">*</span> <span class="mi">200</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">):</span>
+<span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=.</span><span class="mi">001</span><span class="p">,</span> <span class="n">right</span><span class="o">=.</span><span class="mi">999</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=.</span><span class="mi">001</span><span class="p">,</span> <span class="n">top</span><span class="o">=.</span><span class="mi">96</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span>
                         <span class="n">hspace</span><span class="o">=.</span><span class="mi">01</span><span class="p">)</span>
 
@@ -22561,28 +22422,28 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
         <span class="n">ms</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">MeanShift</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">bin_seeding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">two_means</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">)</span>
         <span class="n">ward</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span>
-                        <span class="n">linkage</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="n">connectivity</span><span class="p">)</span>
+                        <span class="n">linkage</span><span class="o">=</span><span class="s1">'ward'</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="n">connectivity</span><span class="p">)</span>
         <span class="n">spectral</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">SpectralClustering</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span>
-                                              <span class="n">eigen_solver</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">,</span>
-                                              <span class="n">affinity</span><span class="o">=</span><span class="s2">&quot;nearest_neighbors&quot;</span><span class="p">)</span>
+                                              <span class="n">eigen_solver</span><span class="o">=</span><span class="s1">'arpack'</span><span class="p">,</span>
+                                              <span class="n">affinity</span><span class="o">=</span><span class="s2">"nearest_neighbors"</span><span class="p">)</span>
         <span class="n">dbscan</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=.</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">affinity_propagation</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">AffinityPropagation</span><span class="p">(</span><span class="n">damping</span><span class="o">=.</span><span class="mi">9</span><span class="p">,</span>
                                                            <span class="n">preference</span><span class="o">=-</span><span class="mi">200</span><span class="p">)</span>
 
-        <span class="n">average_linkage</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">linkage</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">,</span>
-                                <span class="n">affinity</span><span class="o">=</span><span class="s2">&quot;cityblock&quot;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span>
+        <span class="n">average_linkage</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">linkage</span><span class="o">=</span><span class="s2">"average"</span><span class="p">,</span>
+                                <span class="n">affinity</span><span class="o">=</span><span class="s2">"cityblock"</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span>
                                 <span class="n">connectivity</span><span class="o">=</span><span class="n">connectivity</span><span class="p">)</span>
 
         
 
         <span class="n">clustering_algos</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="p">(</span><span class="s1">&#39;MiniBatchKMeans&#39;</span><span class="p">,</span> <span class="n">two_means</span><span class="p">),</span>
-                    <span class="p">(</span><span class="s1">&#39;AffinityPropagation&#39;</span><span class="p">,</span> <span class="n">affinity_propagation</span><span class="p">),</span>
-        <span class="c1">#           (&#39;MeanShift&#39;, ms),</span>
-                    <span class="p">(</span><span class="s1">&#39;SpectralClustering&#39;</span><span class="p">,</span> <span class="n">spectral</span><span class="p">),</span>
-                    <span class="p">(</span><span class="s1">&#39;Ward&#39;</span><span class="p">,</span> <span class="n">ward</span><span class="p">),</span>
-                    <span class="p">(</span><span class="s1">&#39;AgglomerativeClustering&#39;</span><span class="p">,</span> <span class="n">average_linkage</span><span class="p">),</span>
-                    <span class="p">(</span><span class="s1">&#39;DBSCAN&#39;</span><span class="p">,</span> <span class="n">dbscan</span><span class="p">)</span>
+                    <span class="p">(</span><span class="s1">'MiniBatchKMeans'</span><span class="p">,</span> <span class="n">two_means</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">'AffinityPropagation'</span><span class="p">,</span> <span class="n">affinity_propagation</span><span class="p">),</span>
+        <span class="c1">#           ('MeanShift', ms),</span>
+                    <span class="p">(</span><span class="s1">'SpectralClustering'</span><span class="p">,</span> <span class="n">spectral</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">'Ward'</span><span class="p">,</span> <span class="n">ward</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">'AgglomerativeClustering'</span><span class="p">,</span> <span class="n">average_linkage</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">'DBSCAN'</span><span class="p">,</span> <span class="n">dbscan</span><span class="p">)</span>
                    <span class="p">]</span>
 
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="n">clustering_algos</span><span class="p">:</span>
@@ -22590,7 +22451,7 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
             <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="n">algorithm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
             <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="s1">&#39;labels_&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="s1">'labels_'</span><span class="p">):</span>
                 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">labels_</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -22600,7 +22461,7 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
                 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">y_pred</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="s1">&#39;cluster_centers_&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="s1">'cluster_centers_'</span><span class="p">):</span>
                 <span class="n">centers</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">cluster_centers_</span>
                 <span class="n">center_colors</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">centers</span><span class="p">)]</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">center_colors</span><span class="p">)</span>
@@ -22608,23 +22469,17 @@ X7T6uNCRX+56AAAAAElFTkSuQmCC
             <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span> <span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">s&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">),</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span> <span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="p">(</span><span class="s1">'</span><span class="si">%.2f</span><span class="s1">s'</span> <span class="o">%</span> <span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">'0'</span><span class="p">),</span>
                      <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-                     <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+                     <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
             <span class="n">plot_num</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABasAAARyCAYAAACpwamvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXecVcX1wL/nvr59l45UpQkoiho7lqBRY48lJrafJcYS
@@ -35271,26 +35126,22 @@ scSwECOb5GIhRjeJYSFGP6mnhRjdeothmQZECCGEEEIIIYQQQgghRNpJY7UQQgghhBBCCCGEEEKI
 tJPGaiGEEEIIIYQQQgghhBBpF3fOaiGEEEIIIYQQQgghhBBiuEjPaiGEEEIIIYQQQgghhBBpJ43V
 QgghhBBCCCGEEEIIIdJOGquFEEIIIYQQQgghhBBCpJ00VgshhBBCCCGEEEIIIYRIO2msFkIIIYQQ
 QgghhBBCCJF2/w+M5tUD2sGU8wAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Some-Questions-to-Think-About">Some Questions to Think About<a class="anchor-link" href="#Some-Questions-to-Think-About">&#182;</a></h3><ul>
+<h3 id="Some-Questions-to-Think-About">Some Questions to Think About<a class="anchor-link" href="#Some-Questions-to-Think-About">¶</a></h3><ul>
 <li>In the 4the dataset, since the inner circle is quite close to outer circle, all of the algorithms performed poorly. Can you think any trick that may be able to separate before applying algorithm? Does Squaring x and y values would resolve problem?</li>
 <li>Clustering is ill-posed problem because most of the time you may not know how many clusters you have in the dataset. Determining the number of clusters could be another part of the problem. Unsurprisingly, Scikit-Learn provides clustering evaluation metrics as well. <code>metrics.mutual_info_score</code>, <code>metrics.silhouette_score</code> are two popular ones. </li>
 <li>If you are doing text or document clustering, chances are that you want to do topic modeling as well. LDA(Latent Dirichlet Allocation) is not implemented in Scikit-Learn (at least yet). </li>
 </ul>
-
 </div>
 </div>
 </div>

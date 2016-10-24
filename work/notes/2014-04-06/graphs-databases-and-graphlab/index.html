@@ -1016,58 +1016,57 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I will talk about graphs, graph databases and mainly the paper that powers <a href="http://graphlab.com/">Graphlab</a>. At the end of the post, I will go over briefly basic capabilities of Graphlab as well.</p>
-<h2 id="Graph-Definition">Graph Definition<a class="anchor-link" href="#Graph-Definition">&#182;</a></h2><p>Generally speaking, graphs that are relevant to graph theory and graph databases are defined as following(most general definition):</p>
+<h2 id="Graph-Definition">Graph Definition<a class="anchor-link" href="#Graph-Definition">¶</a></h2><p>Generally speaking, graphs that are relevant to graph theory and graph databases are defined as following(most general definition):</p>
 <p>Graph is an ordered pair $G = (V, E)$ 
 where the $V$ represents the vertices(nodes) of graph and $E$ represents the edges(relations) that connect the nodes. If edges do not have any orientations, then graph is composed of unordered pairs and graph is called undirected graph.</p>
-<h3 id="Components">Components<a class="anchor-link" href="#Components">&#182;</a></h3><p>It has two simple components:</p>
+<h3 id="Components">Components<a class="anchor-link" href="#Components">¶</a></h3><p>It has two simple components:</p>
 <ul>
 <li>Node (Vertex) </li>
 <li>Edge [Relationship]</li>
 </ul>
 <p>where both structures have properties defined on them. Node properties are likely to define the nodes and the properties on the edges define the relationship between nodes.</p>
-<h3 id="Graphs">Graphs<a class="anchor-link" href="#Graphs">&#182;</a></h3><p>Graphs are ubiquitous. Apart from giant network that we use daily basis(read World Wide Web), almost all of social websites(Facebook, Twitter, Linkedin and so on) have inherently graphical representations for their networks. Not only they are good for representing networks, graphs have their own subsection in machine learning, namely graphical models. It is a combination of statistics, machine learning and graph theory(all the good parts, too). Further, they have also a variety of applications in machine learning, most predominantly recommender systems thanks to bipartite graphs. In social sciences, it is important to be able to identify different communities and how they interact each other in order to understand both intra-community and inter-community behaviors. Some social scientists may also be interested in the people who are more likely to influence others for making decisions and how an event propagates across time and different communities. They all need data mining, machine learning but more importantly a scalable, efficient and natural representation of graphs to do the computation as graphs grow exponentially with respect to number of edges and nodes.</p>
-<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">&#182;</a></h2><h3 id="Graph-Databases-Introduction">Graph Databases Introduction<a class="anchor-link" href="#Graph-Databases-Introduction">&#182;</a></h3><ul>
+<h3 id="Graphs">Graphs<a class="anchor-link" href="#Graphs">¶</a></h3><p>Graphs are ubiquitous. Apart from giant network that we use daily basis(read World Wide Web), almost all of social websites(Facebook, Twitter, Linkedin and so on) have inherently graphical representations for their networks. Not only they are good for representing networks, graphs have their own subsection in machine learning, namely graphical models. It is a combination of statistics, machine learning and graph theory(all the good parts, too). Further, they have also a variety of applications in machine learning, most predominantly recommender systems thanks to bipartite graphs. In social sciences, it is important to be able to identify different communities and how they interact each other in order to understand both intra-community and inter-community behaviors. Some social scientists may also be interested in the people who are more likely to influence others for making decisions and how an event propagates across time and different communities. They all need data mining, machine learning but more importantly a scalable, efficient and natural representation of graphs to do the computation as graphs grow exponentially with respect to number of edges and nodes.</p>
+<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">¶</a></h2><h3 id="Graph-Databases-Introduction">Graph Databases Introduction<a class="anchor-link" href="#Graph-Databases-Introduction">¶</a></h3><ul>
 <li>Apply graph theory in the storage of information about the relationship between entries</li>
 </ul>
-<h3 id="Why-not-Relational-Databases?">Why not Relational Databases?<a class="anchor-link" href="#Why-not-Relational-Databases?">&#182;</a></h3><p>Relations, we have relations! Let's represent our graphs with old-trusted relational databases. This is actually possible, but for one second think about the SQL query of the social network that you will end up if you want to get the 4th degree of people in a graph. Imagine the <code>join</code>s that you will do, imagine how many times you will join the same table over and over. Let's go one further step ahead, getting the full social network of a single individual person. Do you imagine how much time that recursive <code>join</code> operation requires and what does SQL query look like. Why is this such an important shortcoming, are relational databases supposed to be very good at representing the relations after all? Relational databases are good at representing one-to-many relationships where one table are connected multiple tables. And in this scenario, if you want to get your relation structure, you could get a way with a few joins. However, most of the natural graphs are inherently many-to-many relations in which you need to break down the many-to-many relations into many one-to-many relations. This results in a huge number of tables in your database. Not only that, whenever you want to do query something, you need to pay the price of the join of all the tables. (Note that one-to-one relations could be put into the same table.) Moreover, the portion that you want to explore in the graph is also dependent on the amount of <strong>total data</strong> that you have. This is one of the biggest issue of RDMS's when it comes to scale for graph data.</p>
-<h3 id="Why-Graph-databases?">Why Graph databases?<a class="anchor-link" href="#Why-Graph-databases?">&#182;</a></h3><ul>
+<h3 id="Why-not-Relational-Databases?">Why not Relational Databases?<a class="anchor-link" href="#Why-not-Relational-Databases?">¶</a></h3><p>Relations, we have relations! Let's represent our graphs with old-trusted relational databases. This is actually possible, but for one second think about the SQL query of the social network that you will end up if you want to get the 4th degree of people in a graph. Imagine the <code>join</code>s that you will do, imagine how many times you will join the same table over and over. Let's go one further step ahead, getting the full social network of a single individual person. Do you imagine how much time that recursive <code>join</code> operation requires and what does SQL query look like. Why is this such an important shortcoming, are relational databases supposed to be very good at representing the relations after all? Relational databases are good at representing one-to-many relationships where one table are connected multiple tables. And in this scenario, if you want to get your relation structure, you could get a way with a few joins. However, most of the natural graphs are inherently many-to-many relations in which you need to break down the many-to-many relations into many one-to-many relations. This results in a huge number of tables in your database. Not only that, whenever you want to do query something, you need to pay the price of the join of all the tables. (Note that one-to-one relations could be put into the same table.) Moreover, the portion that you want to explore in the graph is also dependent on the amount of <strong>total data</strong> that you have. This is one of the biggest issue of RDMS's when it comes to scale for graph data.</p>
+<h3 id="Why-Graph-databases?">Why Graph databases?<a class="anchor-link" href="#Why-Graph-databases?">¶</a></h3><ul>
 <li>Data is getting more and more connected everyday. Think about Internet of things, social media, smartphones and so on. The data or digital print that you put on web, on physical devices will be eventually connected and graph databases are very well suited this type of networks.</li>
 <li>Individualization and decentralization of content, so-called Web 2.0 allowed people to create content and contribute to a common space. This already created huge social networks and there is no reason for other similar networks do not appear in the future.</li>
 <li>They can represent graphs and networks with performance with native data structures which could represent the graphs naturally. Icing on the cake, they would support some graph theory operations to do computation more elegantly.</li>
 <li>They are not as rigid as SQL databases, schemas can be changed over time. Some of them also allow semi-structured data.</li>
 <li>They are faster than relational databases in graph representation. Unlike relational databases, the time that query takes is not proportional to the data that you have in the database but how much you want to explore the graph in the network.</li>
 </ul>
-<h4 id="Stand-shoulders-of-giants">Stand shoulders of giants<a class="anchor-link" href="#Stand-shoulders-of-giants">&#182;</a></h4><ul>
+<h4 id="Stand-shoulders-of-giants">Stand shoulders of giants<a class="anchor-link" href="#Stand-shoulders-of-giants">¶</a></h4><ul>
 <li>Graph theory is well established field and luckily a number of well-known and knowledgeable mathematicians(Euler(1707-1783) to be the most prominent) worked on different graph theory problems which resulted in a theoretically sound field. Compare this field with the Relational Model theory(at most 50 years-old). Relational Model Theory is not in its infancy but definitely does not have the maturity and depth of the graph theory has.  </li>
 </ul>
-<h2 id="Graphlab-Powergraph">Graphlab Powergraph<a class="anchor-link" href="#Graphlab-Powergraph">&#182;</a></h2><p>Graphlab Powergraph is scalable, computation efficient graph processing framework. It builds on Graphlab(early version).  Although I talked about Graph databases earlier, this is not graph database but rather scalable and efficient graph processing library.<br>
-(What I like about company and framework is that they are purely research-based(they have two papers and two frameworks; Graphlab and GraphChi). People like it and they commercialized it. You have your business right there.)<br>
+<h2 id="Graphlab-Powergraph">Graphlab Powergraph<a class="anchor-link" href="#Graphlab-Powergraph">¶</a></h2><p>Graphlab Powergraph is scalable, computation efficient graph processing framework. It builds on Graphlab(early version).  Although I talked about Graph databases earlier, this is not graph database but rather scalable and efficient graph processing library.<br />
+(What I like about company and framework is that they are purely research-based(they have two papers and two frameworks; Graphlab and GraphChi). People like it and they commercialized it. You have your business right there.)<br />
 <a href="http://kowshik.github.io/JPregel/pregel_paper.pdf">Early work from Google Pregel</a> presents a message passing algorithm along with parent steps where parent steps can be run in parallel without interfering each other. By doing so, graph gets broken down to a number of steps that can be run in parallel which improves the computation time. Graphlab Powergraph shows that they are faster and more scalable than Pregel both theoretically and empirically.</p>
 <p><a href="http://www.select.cs.cmu.edu/publications/paperdir/osdi2012-gonzalez-low-gu-bickson-guestrin.pdf">Original paper</a> is as follows:</p>
-<h3 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#182;</a></h3><p>Natural graphs are derived from natural phenomenon and from various websites across world wide web. There is a need for scalable and efficient computation in natural graphs. Due to <strong>power-law degree distribution</strong> of natural graphs, graphs do not have balanced cuts. Traditional graph-partitioning algorithms are unsuccessful in natural graphs.</p>
-<h3 id="Method">Method<a class="anchor-link" href="#Method">&#182;</a></h3><p>They introduce an algorithm Powergraph which builds on top of Graphlab algorithm they introduced earlier. The algorithm has different components but let's look at first to the state of art before this paper.</p>
-<h4 id="Graph-Parallel-Abstraction">Graph-Parallel Abstraction<a class="anchor-link" href="#Graph-Parallel-Abstraction">&#182;</a></h4><ul>
+<h3 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">¶</a></h3><p>Natural graphs are derived from natural phenomenon and from various websites across world wide web. There is a need for scalable and efficient computation in natural graphs. Due to <strong>power-law degree distribution</strong> of natural graphs, graphs do not have balanced cuts. Traditional graph-partitioning algorithms are unsuccessful in natural graphs.</p>
+<h3 id="Method">Method<a class="anchor-link" href="#Method">¶</a></h3><p>They introduce an algorithm Powergraph which builds on top of Graphlab algorithm they introduced earlier. The algorithm has different components but let's look at first to the state of art before this paper.</p>
+<h4 id="Graph-Parallel-Abstraction">Graph-Parallel Abstraction<a class="anchor-link" href="#Graph-Parallel-Abstraction">¶</a></h4><ul>
 <li>Constrains interaction along edges.</li>
 <li>Use messages and share states.</li>
 <li>Parallel: multiple-vertex programs run simultaneously.</li>
 </ul>
-<h4 id="High-degree-vertices-is-hard(Surprise!)">High-degree vertices is hard(Surprise!)<a class="anchor-link" href="#High-degree-vertices-is-hard(Surprise!)">&#182;</a></h4><ul>
+<h4 id="High-degree-vertices-is-hard(Surprise!)">High-degree vertices is hard(Surprise!)<a class="anchor-link" href="#High-degree-vertices-is-hard(Surprise!)">¶</a></h4><ul>
 <li>Sequentially process edges.(Very Naive!)</li>
 <li>Synchronous and mutliple messages(Pregel)</li>
 <li>Asynchronous and partitioning(Graphlab) =&gt; requires locking.</li>
 </ul>
-<h4 id="Downside">Downside<a class="anchor-link" href="#Downside">&#182;</a></h4><ul>
+<h4 id="Downside">Downside<a class="anchor-link" href="#Downside">¶</a></h4><ul>
 <li>In Pregel case, communication overhead. Needs to send the same message to different vertices(read machines)!</li>
 <li>Graphlab creates ghost vertices in order to handle this issue but that creates a large amount of network traffic.</li>
 </ul>
-<h4 id="What-do-we-do?">What do we do?<a class="anchor-link" href="#What-do-we-do?">&#182;</a></h4><ul>
+<h4 id="What-do-we-do?">What do we do?<a class="anchor-link" href="#What-do-we-do?">¶</a></h4><ul>
 <li><p>Graph partitioning</p>
 <ul>
 <li>Minimize communication</li>
@@ -1077,17 +1076,17 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <li><p>Pregel and Graphlab both use random partitioning on natural graphs. However, this results in low quality partitioning. High degree vertices still create problems for communication overhead. Let's introduce new algorithm: <strong>Powergraph</strong>.</p>
 </li>
 </ul>
-<h3 id="Powergraph">Powergraph<a class="anchor-link" href="#Powergraph">&#182;</a></h3><ul>
+<h3 id="Powergraph">Powergraph<a class="anchor-link" href="#Powergraph">¶</a></h3><ul>
 <li>More computation to data. Moving data and especially "big" data is costly operation and especially if you do not want to store the end result but only do computation on top of it. Even if you are doing ETL, you should always carry the computation to the data in order to scale better.</li>
 <li>Parallelize high-degree vertices with the method that intoduce GAS(Gather, Apply, Scatter). </li>
 <li>Partitioning vertex in order to effectively distribute large power-law graphs(natural graphs).</li>
 </ul>
-<h4 id="GAS-decomposed">GAS decomposed<a class="anchor-link" href="#GAS-decomposed">&#182;</a></h4><ul>
+<h4 id="GAS-decomposed">GAS decomposed<a class="anchor-link" href="#GAS-decomposed">¶</a></h4><ul>
 <li>Gather: Accumulate information about neighborhood.</li>
 <li>Apply: Apply the accumulated value to center vertex.</li>
 <li>Scatter: Update adjacent vertices and edges, update edge data and activate neighbors.</li>
 </ul>
-<h4 id="Communitcation-minimized">Communitcation minimized<a class="anchor-link" href="#Communitcation-minimized">&#182;</a></h4><ul>
+<h4 id="Communitcation-minimized">Communitcation minimized<a class="anchor-link" href="#Communitcation-minimized">¶</a></h4><ul>
 <li>Percolation theory suggests that power law graphs have good vertex cuts: For any edge-cut, we can directly construct a vertex-cut which requires strictly less communication and storage.</li>
 </ul>
 <p>In order to do so:</p>
@@ -1095,20 +1094,19 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <li>Evenly assign edges to machines. Minimize machines spanned by each vertex.</li>
 <li>Assign each edge as it is loaded. Touch each edge only once.</li>
 </ul>
-<h4 id="Three-Distributed-Approaches">Three Distributed Approaches<a class="anchor-link" href="#Three-Distributed-Approaches">&#182;</a></h4><h5 id="Random-Edge-Placement">Random Edge Placement<a class="anchor-link" href="#Random-Edge-Placement">&#182;</a></h5><ul>
+<h4 id="Three-Distributed-Approaches">Three Distributed Approaches<a class="anchor-link" href="#Three-Distributed-Approaches">¶</a></h4><h5 id="Random-Edge-Placement">Random Edge Placement<a class="anchor-link" href="#Random-Edge-Placement">¶</a></h5><ul>
 <li>Place edges on machines which already have the vertices in that edge.</li>
 <li>De-randomization: greedily minimizes the expected number of machines spanned.</li>
 </ul>
-<h5 id="Coordinated-Greedy-Edge-Placement">Coordinated Greedy Edge Placement<a class="anchor-link" href="#Coordinated-Greedy-Edge-Placement">&#182;</a></h5><ul>
+<h5 id="Coordinated-Greedy-Edge-Placement">Coordinated Greedy Edge Placement<a class="anchor-link" href="#Coordinated-Greedy-Edge-Placement">¶</a></h5><ul>
 <li>Requires coordination to place each edge</li>
 <li>Slower but it yields higher quality cuts.</li>
 </ul>
-<h5 id="Oblivious-Greedy-Edge-Placement">Oblivious Greedy Edge Placement<a class="anchor-link" href="#Oblivious-Greedy-Edge-Placement">&#182;</a></h5><ul>
+<h5 id="Oblivious-Greedy-Edge-Placement">Oblivious Greedy Edge Placement<a class="anchor-link" href="#Oblivious-Greedy-Edge-Placement">¶</a></h5><ul>
 <li>Approximately greed objective without coordination.</li>
 <li>Faster but it yields lower quality cuts.</li>
 </ul>
 <p>The paper talks about performance evaluation and gives promising comparison of Graphlab with other graph databases. It also implements a number of algorithms; Singular Value Decomposition, Non-Negative Matrix Factorization, Stochastic Gradient Descent, Pagerank, Triangle Counting, graph coloring and Latent Dirichlet Allocation.</p>
-
 </div>
 </div>
 </div>
@@ -1118,23 +1116,22 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>They recently released a Python wrapper on top of it called GraphLab Create. In the following section, I will be mainly using that.</p>
-<h3 id="Why-Graphlab-Create?">Why Graphlab Create?<a class="anchor-link" href="#Why-Graphlab-Create?">&#182;</a></h3><ul>
+<h3 id="Why-Graphlab-Create?">Why Graphlab Create?<a class="anchor-link" href="#Why-Graphlab-Create?">¶</a></h3><ul>
 <li>Easy to setup, easy to learn, easy to use. If you know Pandas and Python in general, you are good to go at least for Graplab Create. </li>
 <li>Source code of the Graphlab Powergraph is open source, not graphlab create, though.</li>
 <li>Data is not stored in memory but harddisk. Therefore, you could process large datasets with a moderate RAM.</li>
 <li>Model is to be planned to be stored in the harddisk as well in the future(right now it is stored in memory, though.)</li>
 <li>Documentation coverage seems to be OK.</li>
 </ul>
-<h3 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">&#182;</a></h3><ul>
+<h3 id="Disadvantages">Disadvantages<a class="anchor-link" href="#Disadvantages">¶</a></h3><ul>
 <li>Python wrapper is not feature rich. It lacks analytics and clustering algorithms that the original package has.</li>
 <li>SFrames do not have all of the functionalities of dataframes. I was expecting that they will build on top of dataframes. Even if they introduce new functionalities, some of them are not there. As you you could use dataframes for algorithms, this is not a huge disadvantage. It would be great to enjoy dataframes in harddisk, though.</li>
 </ul>
-<h3 id="SFrame">SFrame<a class="anchor-link" href="#SFrame">&#182;</a></h3><ul>
+<h3 id="SFrame">SFrame<a class="anchor-link" href="#SFrame">¶</a></h3><ul>
 <li>SFrame is the basic data structure that Graphlab uses under the hood. If you are familiar with Pandas, what dataframe to Pandas is what SFrame to Graphlab.</li>
 <li>Its columns SArray's are immutable whereas SFrame is mutable. SArray's are also stored in harddisk to allow large scale computation. </li>
 <li>Methods of SFrame are generally similar to Pandas dataframe but does not support some of the capabilities of dataframe, e.g groupby operation.</li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -1143,16 +1140,15 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dataset">Dataset<a class="anchor-link" href="#Dataset">&#182;</a></h2><p>The data that I will use is from earlier work that I did some time ago. In order to understand, see the posts <a href="http://bugra.github.io/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/">1</a>, <a href="http://bugra.github.io/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/">2</a>, <a href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/">3</a> and <a href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/">4</a>. Do come back, though.</p>
-
+<h2 id="Dataset">Dataset<a class="anchor-link" href="#Dataset">¶</a></h2><p>The data that I will use is from earlier work that I did some time ago. In order to understand, see the posts <a href="http://bugra.github.io/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/">1</a>, <a href="http://bugra.github.io/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/">2</a>, <a href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/">3</a> and <a href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/">4</a>. Do come back, though.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
@@ -1165,283 +1161,253 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <span class="kn">import</span> <span class="nn">scipy</span>
 
 <span class="c1"># I can haz large graphs ?</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;out&#39;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;out&#39;</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.labelsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'xtick.labelsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'ytick.labelsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'xtick.direction'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'out'</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'ytick.direction'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'out'</span>
 
-<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;movies.csv&#39;</span><span class="p">)</span>
+<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="s1">'movies.csv'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="prompt input_prompt">In [81]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="prompt input_prompt">In [82]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="o">.</span><span class="n">num_rows</span><span class="p">(),</span> <span class="n">sf</span><span class="o">.</span><span class="n">num_cols</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(100042, 34)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="prompt input_prompt">In [83]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(100042, 34)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In [84]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>rating</th>
-      <th>runtime</th>
-      <th>votes</th>
-      <th>genres</th>
-      <th>outline</th>
-      <th>director</th>
-      <th>actors</th>
-      <th>certificate</th>
-      <th>Action</th>
-      <th>Adult</th>
-      <th>Adventure</th>
-      <th>Animation</th>
-      <th>Biography</th>
-      <th>Comedy</th>
-      <th>Crime</th>
-      <th>Drama</th>
-      <th>Family</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td> 0</td>
-      <td> The Shawshank Redemption</td>
-      <td> 1994</td>
-      <td> 9.3</td>
-      <td> 142</td>
-      <td> 1157455</td>
-      <td>                                 [Crime, Drama]</td>
-      <td> Two imprisoned men bond over a number of years...</td>
-      <td>    Frank Darabont</td>
-      <td>         [Tim Robbins, Morgan Freeman, Bob Gunton]</td>
-      <td>     R</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td>  True</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td> 1</td>
-      <td>          The Dark Knight</td>
-      <td> 2008</td>
-      <td> 9.0</td>
-      <td> 152</td>
-      <td> 1125214</td>
-      <td>               [Action, Crime, Drama, Thriller]</td>
-      <td> When Batman, Gordon and Harvey Dent launch an ...</td>
-      <td> Christopher Nolan</td>
-      <td>     [Christian Bale, Heath Ledger, Aaron Eckhart]</td>
-      <td> PG_13</td>
-      <td>  True</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td>  True</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td> 2</td>
-      <td>                Inception</td>
-      <td> 2010</td>
-      <td> 8.8</td>
-      <td> 148</td>
-      <td>  920345</td>
-      <td> [Action, Adventure, Mystery, Sci-Fi, Thriller]</td>
-      <td> A skilled extractor is offered a chance to reg...</td>
-      <td> Christopher Nolan</td>
-      <td> [Leonardo DiCaprio, Joseph Gordon-Levitt, Elle...</td>
-      <td> PG_13</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>  True</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td> 3</td>
-      <td>             Pulp Fiction</td>
-      <td> 1994</td>
-      <td> 9.0</td>
-      <td> 154</td>
-      <td>  893719</td>
-      <td>                       [Crime, Drama, Thriller]</td>
-      <td> The lives of two mob hit men, a boxer, a gangs...</td>
-      <td> Quentin Tarantino</td>
-      <td>   [John Travolta, Uma Thurman, Samuel L. Jackson]</td>
-      <td>     R</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td>  True</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td> 4</td>
-      <td>               Fight Club</td>
-      <td> 1999</td>
-      <td> 8.9</td>
-      <td> 139</td>
-      <td>  881325</td>
-      <td>                                        [Drama]</td>
-      <td> An insomniac office worker looking for a way t...</td>
-      <td>     David Fincher</td>
-      <td>  [Brad Pitt, Edward Norton, Helena Bonham Carter]</td>
-      <td>     R</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td> False</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>...</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>rating</th>
+<th>runtime</th>
+<th>votes</th>
+<th>genres</th>
+<th>outline</th>
+<th>director</th>
+<th>actors</th>
+<th>certificate</th>
+<th>Action</th>
+<th>Adult</th>
+<th>Adventure</th>
+<th>Animation</th>
+<th>Biography</th>
+<th>Comedy</th>
+<th>Crime</th>
+<th>Drama</th>
+<th>Family</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> 0</td>
+<td> The Shawshank Redemption</td>
+<td> 1994</td>
+<td> 9.3</td>
+<td> 142</td>
+<td> 1157455</td>
+<td>                                 [Crime, Drama]</td>
+<td> Two imprisoned men bond over a number of years...</td>
+<td>    Frank Darabont</td>
+<td>         [Tim Robbins, Morgan Freeman, Bob Gunton]</td>
+<td>     R</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td>  True</td>
+<td>  True</td>
+<td> False</td>
+<td>...</td>
+</tr>
+<tr>
+<th>1</th>
+<td> 1</td>
+<td>          The Dark Knight</td>
+<td> 2008</td>
+<td> 9.0</td>
+<td> 152</td>
+<td> 1125214</td>
+<td>               [Action, Crime, Drama, Thriller]</td>
+<td> When Batman, Gordon and Harvey Dent launch an ...</td>
+<td> Christopher Nolan</td>
+<td>     [Christian Bale, Heath Ledger, Aaron Eckhart]</td>
+<td> PG_13</td>
+<td>  True</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td>  True</td>
+<td>  True</td>
+<td> False</td>
+<td>...</td>
+</tr>
+<tr>
+<th>2</th>
+<td> 2</td>
+<td>                Inception</td>
+<td> 2010</td>
+<td> 8.8</td>
+<td> 148</td>
+<td>  920345</td>
+<td> [Action, Adventure, Mystery, Sci-Fi, Thriller]</td>
+<td> A skilled extractor is offered a chance to reg...</td>
+<td> Christopher Nolan</td>
+<td> [Leonardo DiCaprio, Joseph Gordon-Levitt, Elle...</td>
+<td> PG_13</td>
+<td>  True</td>
+<td> False</td>
+<td>  True</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td>...</td>
+</tr>
+<tr>
+<th>3</th>
+<td> 3</td>
+<td>             Pulp Fiction</td>
+<td> 1994</td>
+<td> 9.0</td>
+<td> 154</td>
+<td>  893719</td>
+<td>                       [Crime, Drama, Thriller]</td>
+<td> The lives of two mob hit men, a boxer, a gangs...</td>
+<td> Quentin Tarantino</td>
+<td>   [John Travolta, Uma Thurman, Samuel L. Jackson]</td>
+<td>     R</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td>  True</td>
+<td>  True</td>
+<td> False</td>
+<td>...</td>
+</tr>
+<tr>
+<th>4</th>
+<td> 4</td>
+<td>               Fight Club</td>
+<td> 1999</td>
+<td> 8.9</td>
+<td> 139</td>
+<td>  881325</td>
+<td>                                        [Drama]</td>
+<td> An insomniac office worker looking for a way t...</td>
+<td>     David Fincher</td>
+<td>  [Brad Pitt, Edward Norton, Helena Bonham Carter]</td>
+<td>     R</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td> False</td>
+<td>  True</td>
+<td> False</td>
+<td>...</td>
+</tr>
+</tbody>
 </table>
 <p>5 rows × 34 columns</p>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="prompt input_prompt">In [85]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">sf</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">sf</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">make_integer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">''</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1449,35 +1415,29 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
             <span class="k">return</span> <span class="n">x</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-<span class="n">sf</span><span class="p">[</span><span class="s1">&#39;runtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;runtime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_integer</span><span class="p">)</span>
+<span class="n">sf</span><span class="p">[</span><span class="s1">'runtime'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'runtime'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_integer</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<div class="prompt input_prompt">In [86]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Rating: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variance of Rating: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard deviation of Rating: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Minimum rating: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum rating: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of non-zero entries: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nnz</span><span class="p">()))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Mean Rating: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Variance of Rating: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Standard deviation of Rating: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Minimum rating: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Maximum rating: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Number of non-zero entries: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span><span class="o">.</span><span class="n">nnz</span><span class="p">()))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Mean Rating: 6.05980388237
@@ -1489,23 +1449,19 @@ Number of non-zero entries: 100042
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="prompt input_prompt">In [87]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">first_part</span><span class="p">,</span> <span class="n">second_part</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1513,7 +1469,6 @@ Number of non-zero entries: 100042
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Divide the SFrame 4 by 1. Nice utility function by the way!</p>
-
 </div>
 </div>
 </div>
@@ -1522,97 +1477,78 @@ Number of non-zero entries: 100042
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Exploratory-Graph-Analysis">Exploratory Graph Analysis<a class="anchor-link" href="#Exploratory-Graph-Analysis">&#182;</a></h2>
+<h2 id="Exploratory-Graph-Analysis">Exploratory Graph Analysis<a class="anchor-link" href="#Exploratory-Graph-Analysis">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/perf.csv&#39;</span><span class="p">,</span> <span class="n">column_type_hints</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/perf.csv'</span><span class="p">,</span> <span class="n">column_type_hints</span><span class="o">=</span><span class="p">{</span><span class="s1">'year'</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">'weight'</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;actor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;actor_name&#39;</span><span class="p">]</span> 
-<span class="k">del</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;actor_name&#39;</span><span class="p">]</span>
-<span class="n">sf</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;film_name&#39;</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">sf</span><span class="p">[</span><span class="s1">&#39;film_name&#39;</span><span class="p">]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sf</span><span class="p">[</span><span class="s1">'actor'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'actor_name'</span><span class="p">]</span> 
+<span class="k">del</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'actor_name'</span><span class="p">]</span>
+<span class="n">sf</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'film_name'</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">sf</span><span class="p">[</span><span class="s1">'film_name'</span><span class="p">]</span>
 
-<span class="n">actors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;actor&#39;</span><span class="p">])</span>
-<span class="n">films</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+<span class="n">actors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'actor'</span><span class="p">])</span>
+<span class="n">films</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">'title'</span><span class="p">])</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">sf</span><span class="p">,</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">&#39;actor&#39;</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">sf</span><span class="p">,</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">&#39;actor&#39;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">sf</span><span class="p">,</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">'actor'</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">'title'</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">sf</span><span class="p">,</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">'title'</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">'actor'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;num_edges&#39;: 312730, &#39;num_vertices&#39;: 97723}</pre>
-</div>
-
-</div>
-
+<pre>{'num_edges': 312730, 'num_vertices': 97723}</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In [47]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dark_knights</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;The Dark Knight&#39;</span><span class="p">,</span> <span class="s1">&#39;The Dark Knight Rises&#39;</span><span class="p">,]</span> 
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dark_knights</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'The Dark Knight'</span><span class="p">,</span> <span class="s1">'The Dark Knight Rises'</span><span class="p">,]</span> 
 <span class="n">top_grass_graph</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="n">top_grass_graph</span> <span class="o">=</span> <span class="n">top_grass_graph</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_edges</span><span class="p">(</span><span class="n">dst_ids</span><span class="o">=</span><span class="n">dark_knights</span><span class="p">),</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">&#39;__src_id&#39;</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">&#39;__dst_id&#39;</span><span class="p">)</span>
-<span class="n">top_grass_graph</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">vlabel</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">highlight</span><span class="o">=</span><span class="n">dark_knights</span><span class="p">)</span>
+<span class="n">top_grass_graph</span> <span class="o">=</span> <span class="n">top_grass_graph</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_edges</span><span class="p">(</span><span class="n">dst_ids</span><span class="o">=</span><span class="n">dark_knights</span><span class="p">),</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">'__src_id'</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">'__dst_id'</span><span class="p">)</span>
+<span class="n">top_grass_graph</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">vlabel</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">highlight</span><span class="o">=</span><span class="n">dark_knights</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8VfX9P/DXOXdk7wUJWYQRUBEQBBQQB7jQrxMHs/qz
@@ -3856,40 +3792,31 @@ AQAAAABJj3AMAAAAAEh6hGMAAAAAQNIjHAMAAAAAkh7hGAAAAACQ9AjHAAAAAICkRzgGAAAAACQ9
 wjEAAAAAIOkRjgEAAAAASY9wDAAAAABIeoRjAAAAAEDSIxwDAAAAAJIe4RgAAAAAkPQIxwAAAACA
 pEc4BgAAAAAkPcIxAAAAACDpEY4BAAAAAEmPcAwAAAAASHqEYwAAAABA0vv/2OYFx7Tpkx4AAAAA
 SUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_graph_actor</span><span class="p">(</span><span class="n">actor_name</span><span class="p">):</span>
     <span class="n">movies</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_edges</span><span class="p">(</span><span class="n">src_ids</span><span class="o">=</span><span class="p">[</span><span class="n">actor_name</span><span class="p">])</span>
     <span class="n">graph_</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-    <span class="n">graph_</span> <span class="o">=</span> <span class="n">graph_</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">&#39;__src_id&#39;</span><span class="p">,</span>
-                              <span class="n">dst_field</span><span class="o">=</span><span class="s1">&#39;__dst_id&#39;</span><span class="p">)</span>
-    <span class="n">graph_</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">vlabel</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">elabel</span><span class="o">=</span><span class="s1">&#39;character&#39;</span><span class="p">,</span> <span class="n">highlight</span><span class="o">=</span><span class="p">[</span><span class="n">actor_name</span><span class="p">])</span>
-<span class="n">plot_graph_actor</span><span class="p">(</span><span class="s1">&#39;Morgan Freeman&#39;</span><span class="p">)</span>
+    <span class="n">graph_</span> <span class="o">=</span> <span class="n">graph_</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span> <span class="n">src_field</span><span class="o">=</span><span class="s1">'__src_id'</span><span class="p">,</span>
+                              <span class="n">dst_field</span><span class="o">=</span><span class="s1">'__dst_id'</span><span class="p">)</span>
+    <span class="n">graph_</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">vlabel</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">elabel</span><span class="o">=</span><span class="s1">'character'</span><span class="p">,</span> <span class="n">highlight</span><span class="o">=</span><span class="p">[</span><span class="n">actor_name</span><span class="p">])</span>
+<span class="n">plot_graph_actor</span><span class="p">(</span><span class="s1">'Morgan Freeman'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8FPX5B/DP7JVkc4ccJOQikHCIcimKyKG1ar2KWvGm
@@ -6174,14 +6101,11 @@ AAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjH
 AAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzC
 MQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADzv
 /wNGdbQ6jhQ8qAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6189,29 +6113,22 @@ MQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADzv
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Morgan Freeman has quite a number of movies. Edges are the character names as you might imagine.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_graph_actor</span><span class="p">(</span><span class="s1">&#39;Christian Bale&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_graph_actor</span><span class="p">(</span><span class="s1">'Christian Bale'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8XFX9//H3ncxM9jR72qRJ27ShaZIWClj2xYVFvqAI
@@ -7558,14 +7475,11 @@ gHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHji
 GAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAA
 gHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHjiGAAAgHji
 GAAAgHjiGAAAgHjiGAAAgHi/APDPKivFH2DsAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7573,29 +7487,22 @@ GAAAgHjiGAAAgHjiGAAAgHi/APDPKivFH2DsAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Who is the Batman?</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In [61]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_grap_actor</span><span class="p">(</span><span class="s1">&#39;Kate Winslet&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_grap_actor</span><span class="p">(</span><span class="s1">'Kate Winslet'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VPW9//H3mS0bWckGSVjCFrYAgttPsVq7KGqtS63W
@@ -8879,14 +8786,11 @@ AAAAABD3CMcAAAAAgLhHOAYAAAAAxD3CMQAAAAAg7hGOAQAAAABxj3AMAACA/7/9OhAAAAAAEORv
 PchlEcCeHAMAALAnxwAAAOzJMQAAAHtyDAAAwJ4cAwAAsCfHAAAA7MkxAAAAe3IMAADAnhwDAACw
 J8cAAADsyTEAAAB7cgwAAMCeHAMAALAnxwAAAOzJMQAAAHtyDAAAwJ4cAwAAsCfHAAAA7MkxAAAA
 ewFuKAmjYYPoNAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8894,37 +8798,30 @@ ewFuKAmjYYPoNAAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We could also display the movies that the actors/actresses played</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In [67]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_costar_movies</span><span class="p">(</span><span class="n">actor_name</span><span class="p">):</span>
     <span class="n">movies</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_edges</span><span class="p">(</span><span class="n">src_ids</span><span class="o">=</span><span class="p">[</span><span class="n">actor_name</span><span class="p">])</span>
     <span class="n">costar_graph</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">[</span><span class="s1">&#39;__dst_id&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">[</span><span class="s1">'__dst_id'</span><span class="p">]:</span>
         <span class="n">costar_graph</span> <span class="o">=</span> <span class="n">costar_graph</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_edges</span><span class="p">(</span><span class="n">src_ids</span><span class="o">=</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">dst_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
-                                  <span class="n">src_field</span><span class="o">=</span><span class="s1">&#39;__src_id&#39;</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">&#39;__dst_id&#39;</span><span class="p">)</span>
-    <span class="n">costar_graph</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">highlight</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">movies</span><span class="p">[</span><span class="s1">&#39;__dst_id&#39;</span><span class="p">]))</span>
+                                  <span class="n">src_field</span><span class="o">=</span><span class="s1">'__src_id'</span><span class="p">,</span> <span class="n">dst_field</span><span class="o">=</span><span class="s1">'__dst_id'</span><span class="p">)</span>
+    <span class="n">costar_graph</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">highlight</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">movies</span><span class="p">[</span><span class="s1">'__dst_id'</span><span class="p">]))</span>
     
-<span class="n">plot_costar_movies</span><span class="p">(</span><span class="s1">&#39;Morgan Freeman&#39;</span><span class="p">)</span>
+<span class="n">plot_costar_movies</span><span class="p">(</span><span class="s1">'Morgan Freeman'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3WmQJOd93/nv8zyZWVVdfU333DcwwAADgABIAjwlkZRI
@@ -13712,34 +13609,25 @@ hWMRERERERHpewrHIiIiIiIi0vcUjkVERERERKTvKRyLiIiIiIhI31M4FhERERERkb6ncCwiIiIi
 IiJ9T+FYRERERERE+p7CsYiIiIiIiPQ9hWMRERERERHpewrHIiIiIiIi0vcUjkVERERERKTvKRyL
 iIiIiIhI31M4FhERERERkb6ncCwiIiIiIiJ9T+FYRERERERE+t7/B23lj5s64HyBAAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In [68]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_costar_movies</span><span class="p">(</span><span class="s1">&#39;Kate Winslet&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_costar_movies</span><span class="p">(</span><span class="s1">'Kate Winslet'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl0XNl9H/jvvW+pHSjsxMIFAEGQBMBmsxctrda+WLLj
@@ -16954,34 +16842,25 @@ k2MAAAD25BgAAIA9OQYAAGBPjgEAANiTYwAAAPbkGAAAgD05BgAAYE+OAQAA2JNjAAAA9uQYAACA
 PTkGAABgT44BAADYk2MAAAD25BgAAIA9OQYAAGBPjgEAANiTYwAAAPbkGAAAgD05BgAAYE+OAQAA
 2JNjAAAA9uQYAACAPTkGAABgT44BAADYk2MAAAD25BgAAIA9OQYAAGBPjgEAANiTYwAAAPbkGAAA
 gD05BgAAYE+OAQAA2Asz+5pwD+IU8AAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In [69]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_costar_movies</span><span class="p">(</span><span class="s1">&#39;Christian Bale&#39;</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_costar_movies</span><span class="p">(</span><span class="s1">'Christian Bale'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8cAAALPCAYAAABPK7KDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt0nPd93/n377nNDO4EQIAkQIJ3iqTuF1uSL5FkxU7S
@@ -20502,14 +20381,11 @@ RESk5Skci4iIiIiISMtTOBYREREREZGWp3AsIiIiIiIiLU/hWERERERERFqewrGIiIiIiIi0PIVj
 ERERERERaXkKxyIiIiIiItLyFI5FRERERESk5Skci4iIiIiISMtTOBYREREREZGWp3AsIiIiIiIi
 LU/hWERERERERFqewrGIiIiIiIi0PIVjERERERERaXkKxyIiIiIiItLyFI5FRERERESk5Skci4iI
 iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -20517,7 +20393,6 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Are not graphs beautiful? Another reason why we want to use them whenever possible.</p>
-
 </div>
 </div>
 </div>
@@ -20526,8 +20401,7 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h2><p>I will build a recommender system with Graphlab for movies. Although its Python binding is limited in some areas, recommender system is not among them. Stay tuned.</p>
-
+<h2 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h2><p>I will build a recommender system with Graphlab for movies. Although its Python binding is limited in some areas, recommender system is not among them. Stay tuned.</p>
 </div>
 </div>
 </div>
@@ -20536,7 +20410,7 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Partial-List-of-Graph-Databases">Partial List of Graph Databases<a class="anchor-link" href="#Partial-List-of-Graph-Databases">&#182;</a></h2><ul>
+<h2 id="Partial-List-of-Graph-Databases">Partial List of Graph Databases<a class="anchor-link" href="#Partial-List-of-Graph-Databases">¶</a></h2><ul>
 <li><a href="https://github.com/GraphChi">GraphCHI(CMU)</a> - <a href="http://select.cs.cmu.edu/publications/paperdir/osdi2012-kyrola-blelloch-guestrin.pdf">Original Paper</a></li>
 <li><a href="http://graphlab.com/">Graphlab(formerly CMU)</a></li>
 <li><a href="http://www.kobrix.com/hgdb.jsp">HypergraphDB</a></li>
@@ -20553,10 +20427,9 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 <li><a href="http://research.microsoft.com/en-us/projects/trinity/">Trinity(Microsoft)</a></li>
 </ul>
 <p>I know some of them have horrible names but do not forget the predominant player in sql is MySQL.</p>
-<h2 id="Free-Ebook">Free Ebook<a class="anchor-link" href="#Free-Ebook">&#182;</a></h2><ul>
+<h2 id="Free-Ebook">Free Ebook<a class="anchor-link" href="#Free-Ebook">¶</a></h2><ul>
 <li><a href="http://www.graphdatabases.com/">Graph Databases(focuses on Neo4j)</a></li>
 </ul>
-
 </div>
 </div>
 </div>

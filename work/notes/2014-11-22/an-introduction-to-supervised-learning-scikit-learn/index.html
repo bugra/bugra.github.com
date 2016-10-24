@@ -1016,13 +1016,12 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Supervised-Learning">Supervised Learning<a class="anchor-link" href="#Supervised-Learning">&#182;</a></h1>
+<h1 id="Supervised-Learning">Supervised Learning<a class="anchor-link" href="#Supervised-Learning">¶</a></h1>
 </div>
 </div>
 </div>
@@ -1032,7 +1031,6 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Supervised Learning is the most commonly referred/mentioned/researched/published subfield in the machine learning. Unsurprisingly, all of the predictive algorithms fall in to this category. Its premise is quite simple, when you provide a labeled dataset to the algorithm(training set), it will predict unseen dataset's (test set) output variables, whether be it a discrete label(classification) or a continuous value(regression). The learning function(regressor or classifier) will first <code>fit</code> to the training set and then try to <code>predict</code> the dataset that it has never seen, which Scikit-Learn follows these two steps literally. More on this later. First, what is the problem that we are trying to solve?</p>
-
 </div>
 </div>
 </div>
@@ -1041,7 +1039,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Classification">Classification<a class="anchor-link" href="#Classification">&#182;</a></h2>
+<h2 id="Classification">Classification<a class="anchor-link" href="#Classification">¶</a></h2>
 </div>
 </div>
 </div>
@@ -1050,7 +1048,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Dataset">Dataset<a class="anchor-link" href="#Dataset">&#182;</a></h4>
+<h4 id="Dataset">Dataset<a class="anchor-link" href="#Dataset">¶</a></h4>
 </div>
 </div>
 </div>
@@ -1061,7 +1059,6 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dataset is from a telecom service provider where they have the service usage(international plan, voicemail plan, usage in daytime, usage in evenings and nights and so on) and basic demographic information(state and area code) of the user. For labels, I have a single data point whether the customer is churned out or not. 
 Dataset is from a competititon that CrowdAnalytics did I believe and the original contest text is given in below.</p>
-
 </div>
 </div>
 </div>
@@ -1070,7 +1067,7 @@ Dataset is from a competititon that CrowdAnalytics did I believe and the origina
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Original-Dataset-Explanation">Original Dataset Explanation<a class="anchor-link" href="#Original-Dataset-Explanation">&#182;</a></h4><blockquote><p>Churn (loss of customers to competition) is a problem for telecom companies because it is more expensive to acquire a new customer than to keep your existing one from leaving. This contest is about enabling churn reduction using analytics.</p>
+<h4 id="Original-Dataset-Explanation">Original Dataset Explanation<a class="anchor-link" href="#Original-Dataset-Explanation">¶</a></h4><blockquote><p>Churn (loss of customers to competition) is a problem for telecom companies because it is more expensive to acquire a new customer than to keep your existing one from leaving. This contest is about enabling churn reduction using analytics.</p>
 <p>The Business Pain:</p>
 <p>Most telecom companies suffer from voluntary churn. Churn rate has strong impact on the life time value of the customer because it affects the length of service and the future revenue of the company. For example if a company has 25% churn rate then the average customer lifetime is 4 years; similarly a company with a churn rate of 50%, has an average customer lifetime of 2 years. It is estimated that 75 percent of the 17 to 20 million subscribers signing up with a new wireless carrier every year are coming from another wireless provider, which means they are churners. Telecom companies spend hundreds of dollars to acquire a new customer and when that customer leaves, the company not only loses the future revenue from that customer but also the resources spend to acquire that customer. Churn erodes profitability.</p>
 <p>Steps that have been adopted by telecom companies so far:</p>
@@ -1097,7 +1094,6 @@ total international calls made
 total international charge
 number customer service calls made</p>
 </blockquote>
-
 </div>
 </div>
 </div>
@@ -1106,7 +1102,7 @@ number customer service calls made</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-Formulation">Problem Formulation<a class="anchor-link" href="#Problem-Formulation">&#182;</a></h4>
+<h4 id="Problem-Formulation">Problem Formulation<a class="anchor-link" href="#Problem-Formulation">¶</a></h4>
 </div>
 </div>
 </div>
@@ -1116,7 +1112,6 @@ number customer service calls made</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Customer Churn: losing/attrition of the customers from the company. Especially, the industries that the user acquisition is costly, it is crucially important for one company to reduce and ideally make the customer churn to 0 to sustain their recurring revenue. If you consider customer retention is always cheaper than customer acquisition and generally depends on the data of the user(usage of the service or product), it poses a great/exciting/hard problem for machine learning.</p>
-
 </div>
 </div>
 </div>
@@ -1125,7 +1120,7 @@ number customer service calls made</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation-of-Walkthrough">Explanation of Walkthrough<a class="anchor-link" href="#Explanation-of-Walkthrough">&#182;</a></h4>
+<h4 id="Explanation-of-Walkthrough">Explanation of Walkthrough<a class="anchor-link" href="#Explanation-of-Walkthrough">¶</a></h4>
 </div>
 </div>
 </div>
@@ -1136,7 +1131,6 @@ number customer service calls made</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this section, I will first walk through a classification example where I try to predict if a customer churns or not based on a variety of attributes that she has. Customer churn prevention allows companies to react preemptively to the customer and then try to provide a better experience to her. This has two advantages to the company; product gets better with the feedback that company received from the customer and as customer continues to use the product, company would not lose the customer. Customer Relation Management(CRM) tools that has the user experience and history of the user may provide a profile for the user.</p>
 <p>In order to do so, I will first do preprocessing on the attirbutes as most of the attributes vary a lot both intra-class and inter-class changes. Then, I will try to compare different classifiers. Since the dataset has an unbalancad classes(not churned users are 6 times of churned users), it provides also a nice case for different metrics usage as well and why classification accuracy may not be a good metric to optimize in this case.</p>
-
 </div>
 </div>
 </div>
@@ -1145,7 +1139,7 @@ number customer service calls made</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Binary-Classification">Binary Classification<a class="anchor-link" href="#Binary-Classification">&#182;</a></h4>
+<h4 id="Binary-Classification">Binary Classification<a class="anchor-link" href="#Binary-Classification">¶</a></h4>
 </div>
 </div>
 </div>
@@ -1155,15 +1149,14 @@ number customer service calls made</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This labeling schema is arguably the most common classification schema which is called binary classification as I have only two classes to predict(churn or not). Even some of the multi-class classification problems could be expressed as a binary classification schema(one vs other classes). Therefore, it is a powerful/basic classification schema that you would use approximately 83%(put some random number &gt; 50) of your machine learning problems.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline 
 
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
@@ -1183,280 +1176,256 @@ number customer service calls made</p>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">metrics</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">preprocessing</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span> <span class="c1"># Good looking plots</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># Display any number of columns</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span> <span class="c1"># Good looking plots</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_columns'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># Display any number of columns</span>
 
-<span class="n">_DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
-<span class="n">_CHURN_DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;churn.csv&#39;</span><span class="p">)</span>
+<span class="n">_DATA_DIR</span> <span class="o">=</span> <span class="s1">'data'</span>
+<span class="n">_CHURN_DATA_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_DIR</span><span class="p">,</span> <span class="s1">'churn.csv'</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">_CHURN_DATA_PATH</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account Length</th>
-      <th>Area Code</th>
-      <th>Phone</th>
-      <th>Int'l Plan</th>
-      <th>VMail Plan</th>
-      <th>VMail Message</th>
-      <th>Day Mins</th>
-      <th>Day Calls</th>
-      <th>Day Charge</th>
-      <th>Eve Mins</th>
-      <th>Eve Calls</th>
-      <th>Eve Charge</th>
-      <th>Night Mins</th>
-      <th>Night Calls</th>
-      <th>Night Charge</th>
-      <th>Intl Mins</th>
-      <th>Intl Calls</th>
-      <th>Intl Charge</th>
-      <th>CustServ Calls</th>
-      <th>Churn?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td> KS</td>
-      <td> 128</td>
-      <td> 415</td>
-      <td> 382-4657</td>
-      <td>  no</td>
-      <td> yes</td>
-      <td> 25</td>
-      <td> 265.1</td>
-      <td> 110</td>
-      <td> 45.07</td>
-      <td> 197.4</td>
-      <td>  99</td>
-      <td> 16.78</td>
-      <td> 244.7</td>
-      <td>  91</td>
-      <td> 11.01</td>
-      <td> 10.0</td>
-      <td> 3</td>
-      <td> 2.70</td>
-      <td> 1</td>
-      <td> False.</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td> OH</td>
-      <td> 107</td>
-      <td> 415</td>
-      <td> 371-7191</td>
-      <td>  no</td>
-      <td> yes</td>
-      <td> 26</td>
-      <td> 161.6</td>
-      <td> 123</td>
-      <td> 27.47</td>
-      <td> 195.5</td>
-      <td> 103</td>
-      <td> 16.62</td>
-      <td> 254.4</td>
-      <td> 103</td>
-      <td> 11.45</td>
-      <td> 13.7</td>
-      <td> 3</td>
-      <td> 3.70</td>
-      <td> 1</td>
-      <td> False.</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td> NJ</td>
-      <td> 137</td>
-      <td> 415</td>
-      <td> 358-1921</td>
-      <td>  no</td>
-      <td>  no</td>
-      <td>  0</td>
-      <td> 243.4</td>
-      <td> 114</td>
-      <td> 41.38</td>
-      <td> 121.2</td>
-      <td> 110</td>
-      <td> 10.30</td>
-      <td> 162.6</td>
-      <td> 104</td>
-      <td>  7.32</td>
-      <td> 12.2</td>
-      <td> 5</td>
-      <td> 3.29</td>
-      <td> 0</td>
-      <td> False.</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td> OH</td>
-      <td>  84</td>
-      <td> 408</td>
-      <td> 375-9999</td>
-      <td> yes</td>
-      <td>  no</td>
-      <td>  0</td>
-      <td> 299.4</td>
-      <td>  71</td>
-      <td> 50.90</td>
-      <td>  61.9</td>
-      <td>  88</td>
-      <td>  5.26</td>
-      <td> 196.9</td>
-      <td>  89</td>
-      <td>  8.86</td>
-      <td>  6.6</td>
-      <td> 7</td>
-      <td> 1.78</td>
-      <td> 2</td>
-      <td> False.</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td> OK</td>
-      <td>  75</td>
-      <td> 415</td>
-      <td> 330-6626</td>
-      <td> yes</td>
-      <td>  no</td>
-      <td>  0</td>
-      <td> 166.7</td>
-      <td> 113</td>
-      <td> 28.34</td>
-      <td> 148.3</td>
-      <td> 122</td>
-      <td> 12.61</td>
-      <td> 186.9</td>
-      <td> 121</td>
-      <td>  8.41</td>
-      <td> 10.1</td>
-      <td> 3</td>
-      <td> 2.73</td>
-      <td> 3</td>
-      <td> False.</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>State</th>
+<th>Account Length</th>
+<th>Area Code</th>
+<th>Phone</th>
+<th>Int'l Plan</th>
+<th>VMail Plan</th>
+<th>VMail Message</th>
+<th>Day Mins</th>
+<th>Day Calls</th>
+<th>Day Charge</th>
+<th>Eve Mins</th>
+<th>Eve Calls</th>
+<th>Eve Charge</th>
+<th>Night Mins</th>
+<th>Night Calls</th>
+<th>Night Charge</th>
+<th>Intl Mins</th>
+<th>Intl Calls</th>
+<th>Intl Charge</th>
+<th>CustServ Calls</th>
+<th>Churn?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> KS</td>
+<td> 128</td>
+<td> 415</td>
+<td> 382-4657</td>
+<td>  no</td>
+<td> yes</td>
+<td> 25</td>
+<td> 265.1</td>
+<td> 110</td>
+<td> 45.07</td>
+<td> 197.4</td>
+<td>  99</td>
+<td> 16.78</td>
+<td> 244.7</td>
+<td>  91</td>
+<td> 11.01</td>
+<td> 10.0</td>
+<td> 3</td>
+<td> 2.70</td>
+<td> 1</td>
+<td> False.</td>
+</tr>
+<tr>
+<th>1</th>
+<td> OH</td>
+<td> 107</td>
+<td> 415</td>
+<td> 371-7191</td>
+<td>  no</td>
+<td> yes</td>
+<td> 26</td>
+<td> 161.6</td>
+<td> 123</td>
+<td> 27.47</td>
+<td> 195.5</td>
+<td> 103</td>
+<td> 16.62</td>
+<td> 254.4</td>
+<td> 103</td>
+<td> 11.45</td>
+<td> 13.7</td>
+<td> 3</td>
+<td> 3.70</td>
+<td> 1</td>
+<td> False.</td>
+</tr>
+<tr>
+<th>2</th>
+<td> NJ</td>
+<td> 137</td>
+<td> 415</td>
+<td> 358-1921</td>
+<td>  no</td>
+<td>  no</td>
+<td>  0</td>
+<td> 243.4</td>
+<td> 114</td>
+<td> 41.38</td>
+<td> 121.2</td>
+<td> 110</td>
+<td> 10.30</td>
+<td> 162.6</td>
+<td> 104</td>
+<td>  7.32</td>
+<td> 12.2</td>
+<td> 5</td>
+<td> 3.29</td>
+<td> 0</td>
+<td> False.</td>
+</tr>
+<tr>
+<th>3</th>
+<td> OH</td>
+<td>  84</td>
+<td> 408</td>
+<td> 375-9999</td>
+<td> yes</td>
+<td>  no</td>
+<td>  0</td>
+<td> 299.4</td>
+<td>  71</td>
+<td> 50.90</td>
+<td>  61.9</td>
+<td>  88</td>
+<td>  5.26</td>
+<td> 196.9</td>
+<td>  89</td>
+<td>  8.86</td>
+<td>  6.6</td>
+<td> 7</td>
+<td> 1.78</td>
+<td> 2</td>
+<td> False.</td>
+</tr>
+<tr>
+<th>4</th>
+<td> OK</td>
+<td>  75</td>
+<td> 415</td>
+<td> 330-6626</td>
+<td> yes</td>
+<td>  no</td>
+<td>  0</td>
+<td> 166.7</td>
+<td> 113</td>
+<td> 28.34</td>
+<td> 148.3</td>
+<td> 122</td>
+<td> 12.61</td>
+<td> 186.9</td>
+<td> 121</td>
+<td>  8.41</td>
+<td> 10.1</td>
+<td> 3</td>
+<td> 2.73</td>
+<td> 3</td>
+<td> False.</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Discreet value integer encoder</span>
 <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">LabelEncoder</span><span class="p">()</span>
 
 <span class="c1"># Get the Labels as integers</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Churn?&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;True.&#39;</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Churn'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Churn?'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'True.'</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Churn'</span><span class="p">]</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
 
 <span class="c1"># State is string and we want discre integer values</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;State&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'State'</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'State'</span><span class="p">])</span>
 
 <span class="c1"># Drop the redundant columns from dataframe</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Area Code&#39;</span><span class="p">,</span><span class="s1">&#39;Phone&#39;</span><span class="p">,</span><span class="s1">&#39;Churn?&#39;</span><span class="p">,</span> <span class="s1">&#39;Churn&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Area Code'</span><span class="p">,</span><span class="s1">'Phone'</span><span class="p">,</span><span class="s1">'Churn?'</span><span class="p">,</span> <span class="s1">'Churn'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Get the features as integers similar to what we did for labels(targets)</span>
-<span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Int&#39;l Plan&quot;</span><span class="p">,</span><span class="s2">&quot;VMail Plan&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Int&#39;l Plan&quot;</span><span class="p">,</span><span class="s2">&quot;VMail Plan&quot;</span><span class="p">]]</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span>
+<span class="n">df</span><span class="p">[[</span><span class="s2">"Int'l Plan"</span><span class="p">,</span><span class="s2">"VMail Plan"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"Int'l Plan"</span><span class="p">,</span><span class="s2">"VMail Plan"</span><span class="p">]]</span> <span class="o">==</span> <span class="s1">'yes'</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are </span><span class="si">{}</span><span class="s1"> instances for churn class and </span><span class="si">{}</span><span class="s1"> instances for not-churn classes.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'There are </span><span class="si">{}</span><span class="s1"> instances for churn class and </span><span class="si">{}</span><span class="s1"> instances for not-churn classes.'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 483 instances for churn class and 2850 instances for not-churn classes.
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ratio of churn class over all instances: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Ratio of churn class over all instances: </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Ratio of churn class over all instances: 0.14
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1464,170 +1433,161 @@ number customer service calls made</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kind of unbalanced data, do not you think? I will try to handle this unbalance in the cross validation.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>State</th>
-      <th>Account Length</th>
-      <th>Int'l Plan</th>
-      <th>VMail Plan</th>
-      <th>VMail Message</th>
-      <th>Day Mins</th>
-      <th>Day Calls</th>
-      <th>Day Charge</th>
-      <th>Eve Mins</th>
-      <th>Eve Calls</th>
-      <th>Eve Charge</th>
-      <th>Night Mins</th>
-      <th>Night Calls</th>
-      <th>Night Charge</th>
-      <th>Intl Mins</th>
-      <th>Intl Calls</th>
-      <th>Intl Charge</th>
-      <th>CustServ Calls</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td> 16</td>
-      <td> 128</td>
-      <td> False</td>
-      <td>  True</td>
-      <td> 25</td>
-      <td> 265.1</td>
-      <td> 110</td>
-      <td> 45.07</td>
-      <td> 197.4</td>
-      <td>  99</td>
-      <td> 16.78</td>
-      <td> 244.7</td>
-      <td>  91</td>
-      <td> 11.01</td>
-      <td> 10.0</td>
-      <td> 3</td>
-      <td> 2.70</td>
-      <td> 1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td> 35</td>
-      <td> 107</td>
-      <td> False</td>
-      <td>  True</td>
-      <td> 26</td>
-      <td> 161.6</td>
-      <td> 123</td>
-      <td> 27.47</td>
-      <td> 195.5</td>
-      <td> 103</td>
-      <td> 16.62</td>
-      <td> 254.4</td>
-      <td> 103</td>
-      <td> 11.45</td>
-      <td> 13.7</td>
-      <td> 3</td>
-      <td> 3.70</td>
-      <td> 1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td> 31</td>
-      <td> 137</td>
-      <td> False</td>
-      <td> False</td>
-      <td>  0</td>
-      <td> 243.4</td>
-      <td> 114</td>
-      <td> 41.38</td>
-      <td> 121.2</td>
-      <td> 110</td>
-      <td> 10.30</td>
-      <td> 162.6</td>
-      <td> 104</td>
-      <td>  7.32</td>
-      <td> 12.2</td>
-      <td> 5</td>
-      <td> 3.29</td>
-      <td> 0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td> 35</td>
-      <td>  84</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>  0</td>
-      <td> 299.4</td>
-      <td>  71</td>
-      <td> 50.90</td>
-      <td>  61.9</td>
-      <td>  88</td>
-      <td>  5.26</td>
-      <td> 196.9</td>
-      <td>  89</td>
-      <td>  8.86</td>
-      <td>  6.6</td>
-      <td> 7</td>
-      <td> 1.78</td>
-      <td> 2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td> 36</td>
-      <td>  75</td>
-      <td>  True</td>
-      <td> False</td>
-      <td>  0</td>
-      <td> 166.7</td>
-      <td> 113</td>
-      <td> 28.34</td>
-      <td> 148.3</td>
-      <td> 122</td>
-      <td> 12.61</td>
-      <td> 186.9</td>
-      <td> 121</td>
-      <td>  8.41</td>
-      <td> 10.1</td>
-      <td> 3</td>
-      <td> 2.73</td>
-      <td> 3</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>State</th>
+<th>Account Length</th>
+<th>Int'l Plan</th>
+<th>VMail Plan</th>
+<th>VMail Message</th>
+<th>Day Mins</th>
+<th>Day Calls</th>
+<th>Day Charge</th>
+<th>Eve Mins</th>
+<th>Eve Calls</th>
+<th>Eve Charge</th>
+<th>Night Mins</th>
+<th>Night Calls</th>
+<th>Night Charge</th>
+<th>Intl Mins</th>
+<th>Intl Calls</th>
+<th>Intl Charge</th>
+<th>CustServ Calls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> 16</td>
+<td> 128</td>
+<td> False</td>
+<td>  True</td>
+<td> 25</td>
+<td> 265.1</td>
+<td> 110</td>
+<td> 45.07</td>
+<td> 197.4</td>
+<td>  99</td>
+<td> 16.78</td>
+<td> 244.7</td>
+<td>  91</td>
+<td> 11.01</td>
+<td> 10.0</td>
+<td> 3</td>
+<td> 2.70</td>
+<td> 1</td>
+</tr>
+<tr>
+<th>1</th>
+<td> 35</td>
+<td> 107</td>
+<td> False</td>
+<td>  True</td>
+<td> 26</td>
+<td> 161.6</td>
+<td> 123</td>
+<td> 27.47</td>
+<td> 195.5</td>
+<td> 103</td>
+<td> 16.62</td>
+<td> 254.4</td>
+<td> 103</td>
+<td> 11.45</td>
+<td> 13.7</td>
+<td> 3</td>
+<td> 3.70</td>
+<td> 1</td>
+</tr>
+<tr>
+<th>2</th>
+<td> 31</td>
+<td> 137</td>
+<td> False</td>
+<td> False</td>
+<td>  0</td>
+<td> 243.4</td>
+<td> 114</td>
+<td> 41.38</td>
+<td> 121.2</td>
+<td> 110</td>
+<td> 10.30</td>
+<td> 162.6</td>
+<td> 104</td>
+<td>  7.32</td>
+<td> 12.2</td>
+<td> 5</td>
+<td> 3.29</td>
+<td> 0</td>
+</tr>
+<tr>
+<th>3</th>
+<td> 35</td>
+<td>  84</td>
+<td>  True</td>
+<td> False</td>
+<td>  0</td>
+<td> 299.4</td>
+<td>  71</td>
+<td> 50.90</td>
+<td>  61.9</td>
+<td>  88</td>
+<td>  5.26</td>
+<td> 196.9</td>
+<td>  89</td>
+<td>  8.86</td>
+<td>  6.6</td>
+<td> 7</td>
+<td> 1.78</td>
+<td> 2</td>
+</tr>
+<tr>
+<th>4</th>
+<td> 36</td>
+<td>  75</td>
+<td>  True</td>
+<td> False</td>
+<td>  0</td>
+<td> 166.7</td>
+<td> 113</td>
+<td> 28.34</td>
+<td> 148.3</td>
+<td> 122</td>
+<td> 12.61</td>
+<td> 186.9</td>
+<td> 121</td>
+<td>  8.41</td>
+<td> 10.1</td>
+<td> 3</td>
+<td> 2.73</td>
+<td> 3</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1636,42 +1596,33 @@ number customer service calls made</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After preprocessing, dataframe is ready to be represented as matrix that is amenable to Scikit Learn. I already separated the labels, so I would just convert the dataframe into a numpy matrix. Why I did not handle True and False some may ask. 
 It turns out that booleans <code>False</code> and <code>True</code> are actually subclasses of integers in Python. If you try to do <code>False + True</code> in a Python REPL, you would get 1. That is because <code>True</code> is represented as 1 and <code>False</code> is represented as 0. Numpy uses this boolean information to convert the booleans into matrix. I just need to coerce <code>astype(np.float)</code> when I convert the pandas dataframe to numpy matrix, which I will do exactly as next step.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[  16.  ,  128.  ,    0.  , ...,    3.  ,    2.7 ,    1.  ],
        [  35.  ,  107.  ,    0.  , ...,    3.  ,    3.7 ,    1.  ],
@@ -1681,41 +1632,29 @@ It turns out that booleans <code>False</code> and <code>True</code> are actually
        [   6.  ,  184.  ,    1.  , ...,   10.  ,    1.35,    2.  ],
        [  42.  ,   74.  ,    0.  , ...,    4.  ,    3.7 ,    0.  ]])</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(3333, 18)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1723,7 +1662,6 @@ It turns out that booleans <code>False</code> and <code>True</code> are actually
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I have 3333 instances and has 18 dimension feature vectors for each instances.</p>
-
 </div>
 </div>
 </div>
@@ -1734,43 +1672,34 @@ It turns out that booleans <code>False</code> and <code>True</code> are actually
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since the features have quite different value ranges and some of them are discrete and some of them take continuous values, I 
 need to scale them first. Removing mean and dividing the standard deviation of features respectively. Generally, this is one of the most commonly used preprocessing step.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[-0.6786493 ,  0.67648946, -0.32758048, ..., -0.60119509,
         -0.0856905 , -0.42793202],
@@ -1786,20 +1715,7 @@ need to scale them first. Removing mean and dividing the standard deviation of f
        [ 1.07541867, -0.67974475, -0.32758048, ..., -0.19483061,
          1.2411686 , -1.1882185 ]])</pre>
 </div>
-
 </div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>After preprocessed <code>X</code>, I could be sure that all of the features are in in more or less in the same range. However, one may think twice if the features are not nearly uniformed distribution(for example if a variable is categorical), you may do a different preprocessing as preprocessing makes the categorical variables like continuous variables.</p>
-
 </div>
 </div>
 </div>
@@ -1808,44 +1724,45 @@ need to scale them first. Removing mean and dividing the standard deviation of f
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Cross-Validation">Cross Validation<a class="anchor-link" href="#Cross-Validation">&#182;</a></h3>
+<p>After preprocessed <code>X</code>, I could be sure that all of the features are in in more or less in the same range. However, one may think twice if the features are not nearly uniformed distribution(for example if a variable is categorical), you may do a different preprocessing as preprocessing makes the categorical variables like continuous variables.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cross-Validation">Cross Validation<a class="anchor-link" href="#Cross-Validation">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cv_url</span> <span class="o">=</span> <span class="s1">&#39;http://i.imgur.com/N9HZktu.png&#39;</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cv_url</span> <span class="o">=</span> <span class="s1">'http://i.imgur.com/N9HZktu.png'</span>
 <span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">cv_url</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <img src="http://i.imgur.com/N9HZktu.png" />
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clf_class</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_folds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">stratified_k_fold</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">n_folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">)</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1857,11 +1774,9 @@ need to scale them first. Removing mean and dividing the standard deviation of f
         <span class="n">y_pred</span><span class="p">[</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">y_pred</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1869,31 +1784,26 @@ need to scale them first. Removing mean and dividing the standard deviation of f
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I am using Stratified K Fold because there the classes are unbalanced. I do not want any folds to have only 1 particular class or even 1 class dominating the other one as it may create a bias in that particular fold. Stratification makes sure that the percentage of samples for each class is similar across folds(if not same). If you do not have an unbalanced problem, <code>KFold</code> would work fine.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Passive Aggressive Classifier: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient Boosting Classifier:  </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Support vector machine(SVM):   </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Classifier:      </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K Nearest Neighbor Classifier: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression:           </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Passive Aggressive Classifier: </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Gradient Boosting Classifier:  </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Support vector machine(SVM):   </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Random Forest Classifier:      </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'K Nearest Neighbor Classifier: </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Logistic Regression:           </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Passive Aggressive Classifier: 0.82
@@ -1905,10 +1815,8 @@ Logistic Regression:           0.86
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1916,36 +1824,29 @@ Logistic Regression:           0.86
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Scores seem very good, but if I predicted all of the labels 0, what would I get as accuracy rate? Let's see.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dump Classifier: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])))</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Dump Classifier: </span><span class="si">{:.2f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Dump Classifier: 0.86
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1953,7 +1854,6 @@ Logistic Regression:           0.86
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is because again unbalanced dataset problem. Since one class is 6 times of other class. I could get fairly accurate prediction if I predict the common class. What I need to look at as a metric if the classifier is doing well is to see the errors over the classes. Confusion matrices give a perfect way to see the distribution, which I will exactly use as a next step.</p>
-
 </div>
 </div>
 </div>
@@ -1962,7 +1862,7 @@ Logistic Regression:           0.86
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Confusion-Matrices">Confusion Matrices<a class="anchor-link" href="#Confusion-Matrices">&#182;</a></h3>
+<h3 id="Confusion-Matrices">Confusion Matrices<a class="anchor-link" href="#Confusion-Matrices">¶</a></h3>
 </div>
 </div>
 </div>
@@ -1973,7 +1873,6 @@ Logistic Regression:           0.86
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you have an unbalanced dataset problem or if you care accuracy of one class over other(maybe false-positives are not so bad for you but you definitely do not want any false negatives), then you could display the class accuracies in confusion matrices.
 Very common example of class preference of one to another is in medical applications. If you are trying to predict if a patient has cancer, you could get away with some false positives(patients that do not have cancer but are told to have cancers). However, you <strong>never ever</strong> want to tell a patient that has cancer that she does not have cancer(false negative). In this type of problems, not only you should be accurate but also you cannot be wrong in ne of the squares in the confusion matrix.</p>
-
 </div>
 </div>
 </div>
@@ -1985,7 +1884,6 @@ Very common example of class preference of one to another is in medical applicat
 <blockquote><p>Human problems cannot be solved by minimizing least squares error.</p>
 </blockquote>
 <p>Drew Conway</p>
-
 </div>
 </div>
 </div>
@@ -1995,7 +1893,6 @@ Very common example of class preference of one to another is in medical applicat
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Luckily, scikit learn provides a 2-D matrix for the confusion matrix under metrics submodule, which I will use to build confusion matrices for visualization(heatmap).</p>
-
 </div>
 </div>
 </div>
@@ -2006,7 +1903,6 @@ Very common example of class preference of one to another is in medical applicat
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>If you are missing one tool in your machine learning workflow, search for if Scikit-Learn has an implementation. Chances are, it has.</p>
 </blockquote>
-
 </div>
 </div>
 </div>
@@ -2016,15 +1912,14 @@ Very common example of class preference of one to another is in medical applicat
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>However, the heatmap in matplotlib implementation does not allow to print the matrix on top of the heatmap with default options. Heatmap is good in order to get a sense of where the classifier is not doing well, but not so good if you get numbers(you need to print out the confusion matrix separately). In order to combine both heatmap and also the numbers, I will use <code>seaborn</code>(an excellent statistical visualization library for Python) where it provides even advanced formatting for the numbers.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pass_agg_conf_matrix</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))</span>
 <span class="n">grad_ens_conf_matrix</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))</span>
 <span class="n">decision_conf_matrix</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">))</span>
@@ -2037,75 +1932,67 @@ Very common example of class preference of one to another is in medical applicat
 
 <span class="n">conf_matrix</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="mi">1</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">pass_agg_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Passive Aggressive&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">pass_agg_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Passive Aggressive'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">2</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">grad_ens_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Gradient Boosting&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">grad_ens_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Gradient Boosting'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">3</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">decision_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Decision Tree&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">decision_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Decision Tree'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">4</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">ridge_clf_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Ridge&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">ridge_clf_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Ridge'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">5</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">svm_svc_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Support Vector Machine&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">svm_svc_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Support Vector Machine'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">6</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">random_forest_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">random_forest_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Random Forest'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">7</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">k_neighbors_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;K Nearest Neighbors&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">k_neighbors_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'K Nearest Neighbors'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">8</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">logistic_reg_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">logistic_reg_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Logistic Regression'</span><span class="p">,</span>
                    <span class="p">},</span>
                 <span class="mi">9</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;matrix&#39;</span><span class="p">:</span> <span class="n">dumb_conf_matrix</span><span class="p">,</span>
-                    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Dumb&#39;</span><span class="p">,</span>
+                    <span class="s1">'matrix'</span><span class="p">:</span> <span class="n">dumb_conf_matrix</span><span class="p">,</span>
+                    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Dumb'</span><span class="p">,</span>
                    <span class="p">},</span>
 <span class="p">}</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fix</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix of Various Classifiers&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Confusion Matrix of Various Classifiers'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">conf_matrix</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">matrix</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s1">&#39;matrix&#39;</span><span class="p">]</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s1">'matrix'</span><span class="p">]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">ii</span><span class="p">)</span> <span class="c1"># starts from 1</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s1">''</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAEAAAMwCAYAAABRAnmeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xdc1WX/x/HXAdwoqGk40duVMzVT3BMyxZHmyJGFExVN
@@ -3206,14 +3093,11 @@ Qw1q06YNycnJAGzcuJHQ0FCTeyQiUrEoh0VEzKMMFrEeL7M7YHVdunRh9erVDBgwAIDx48eb3CMp
 bTabzewuiMgFKIfdmzJYxLUpg92fctj92LKysrTSg4iIiIiIiEgFoOkAIiIiIiIiIhWEigAiIiIi
 IiIiFYSKACIiIiIiIiIVhIoAIiIiIiIiIhWEigAiIiIiIiIiFYSKACIiIiIiIiIVhIoAIiIiIiIi
 IhWEigAiIiIiIiIiFcT/A8Obg/mj91HxAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3221,7 +3105,6 @@ IhWEigAiIiIiIiIiFcT/A8Obg/mj91HxAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Seaborn is kind of neat, huh? Gradient Boosting is indeed quite good.</p>
-
 </div>
 </div>
 </div>
@@ -3230,7 +3113,7 @@ IhWEigAiIiIiIiIiFcT/A8Obg/mj91HxAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Accuracy-vs.-Precision-vs.-Recall-vs.-F1-Score">Accuracy vs. Precision vs. Recall vs. F1 Score<a class="anchor-link" href="#Accuracy-vs.-Precision-vs.-Recall-vs.-F1-Score">&#182;</a></h3><p>Accuracy, precision and recall are defined as follows respectively:
+<h3 id="Accuracy-vs.-Precision-vs.-Recall-vs.-F1-Score">Accuracy vs. Precision vs. Recall vs. F1 Score<a class="anchor-link" href="#Accuracy-vs.-Precision-vs.-Recall-vs.-F1-Score">¶</a></h3><p>Accuracy, precision and recall are defined as follows respectively:
 $$ accuracy = \frac{\mbox{true positives + true negatives}}{\mbox{true positives + true negatives + false positives + false negatives}} $$</p>
 $$ precision = \frac{\mbox{true positives}}{\mbox{true positives + false positives}} $$$$ recall = \frac{\mbox{true positives}}{\mbox{true positives + false negatives}} $$
 </div>
@@ -3244,7 +3127,6 @@ $$ precision = \frac{\mbox{true positives}}{\mbox{true positives + false positiv
 <p>Gradient Boosting Classifier not only is quite accurate for 0 class(not churning class) but also fairly accurate for churn class(class=1)).</p>
 <p>Generally, for unbalanced datasets, $f_1$ score could also give a fairly accurate estimation of how well the classifier is doing considering both classes as it is the harmonic mean of precision and recall.
 $$ f_1 = 2 \cdot \frac{pr \cdot rc}{pr + rc} $$</p>
-
 </div>
 </div>
 </div>
@@ -3254,32 +3136,27 @@ $$ f_1 = 2 \cdot \frac{pr \cdot rc}{pr + rc} $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we want to measure not just class distributions, but also a more abstract measures(like precision, recall or $f_1$ score), we could get those measures by using <code>classification_report</code> function under the metrics submodule.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Passive Aggressive Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient Boosting Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Support vector machine(SVM):</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K Nearest Neighbor Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dump Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])));</span> <span class="c1"># ignore the warning as they are all 0</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Passive Aggressive Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Gradient Boosting Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Support vector machine(SVM):</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Random Forest Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'K Nearest Neighbor Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Logistic Regression:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dump Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])));</span> <span class="c1"># ignore the warning as they are all 0</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Passive Aggressive Classifier:
@@ -3348,10 +3225,8 @@ avg / total       0.73      0.86      0.79      3333
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3361,49 +3236,39 @@ avg / total       0.73      0.86      0.79      3333
 <p>Scikit-Learn provides a lot of <a href="http://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics">metrics</a> for your own evaluation. You could also build your own $f_{beta}$ score if you want to weight precision more than recall or vice versa by using <code>fbeta_score</code> function under <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.fbeta_score.html">metrics</a> in Scikit Learn.</p>
 <p>Search engines and generally information retrieval care more about precision than recall. A user could visit only so many webpages but when she visits first and second pages, she needs to see relevant/accurate results based on her query. Recall may not be very important for those cases as she is limited by time and recall may not be that important for the search results she
 sees.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gbc</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">()</span>
 <span class="n">gbc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>GradientBoostingClassifier(init=None, learning_rate=0.1, loss=&#39;deviance&#39;,
+<pre>GradientBoostingClassifier(init=None, learning_rate=0.1, loss='deviance',
               max_depth=3, max_features=None, max_leaf_nodes=None,
               min_samples_leaf=1, min_samples_split=2, n_estimators=100,
               random_state=None, subsample=1.0, verbose=0,
               warm_start=False)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get Feature Importance from the classifier</span>
 <span class="n">feature_importance</span> <span class="o">=</span> <span class="n">gbc</span><span class="o">.</span><span class="n">feature_importances_</span>
 <span class="c1"># Normalize The Features</span>
@@ -3411,24 +3276,18 @@ sees.</p>
 <span class="n">sorted_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">)</span>
 <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sorted_idx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="o">.</span><span class="mi">5</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">feature_importance</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#7A68A6&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">feature_importance</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#7A68A6'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())[</span><span class="n">sorted_idx</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Relative Importance&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Variable Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Relative Importance'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Variable Importance'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABEwAAAMHCAYAAAAjOcKbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmUVeWZL+DfoYpiKKYqICgaJYo4tNgkUdDbzolyMwmt
@@ -3941,90 +3800,72 @@ aKYzFhQUUFpayvXr11mwYAFFRUUEBwezf/9+Dh48aL70NSMj4493EhERkZkZLpfr1/pREREREZlR
 TEwM7e3t//YxREREZBapJUdEREREREREZBpVmIiIiIiIiIiITKMKExERERERERGRaRSYiIiIiIiI
 iIhMo8BERERERERERGQaBSYiIiIiIiIiItMoMBERERERERERmUaBiYiIiIiIiIjINP8DwhlMhB3x
 VZoAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Polynomial-Features">Polynomial Features<a class="anchor-link" href="#Polynomial-Features">&#182;</a></h3>
+<h3 id="Polynomial-Features">Polynomial Features<a class="anchor-link" href="#Polynomial-Features">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="n">polynomial_features</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">PolynomialFeatures</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>(3333, 190)</pre>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Passive Aggressive Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient Boosting Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Support vector machine(SVM):</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K Nearest Neighbor Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dump Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])));</span> <span class="c1"># ignore the warning as they are all 0</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Passive Aggressive Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Gradient Boosting Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Support vector machine(SVM):</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Random Forest Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'K Nearest Neighbor Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Logistic Regression:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dump Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])));</span> <span class="c1"># ignore the warning as they are all 0</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Passive Aggressive Classifier:
@@ -4093,17 +3934,15 @@ avg / total       0.73      0.86      0.79      3333
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Scaled-and-Polynomial-Features">Scaled and Polynomial Features<a class="anchor-link" href="#Scaled-and-Polynomial-Features">&#182;</a></h3>
+<h3 id="Scaled-and-Polynomial-Features">Scaled and Polynomial Features<a class="anchor-link" href="#Scaled-and-Polynomial-Features">¶</a></h3>
 </div>
 </div>
 </div>
@@ -4113,49 +3952,42 @@ avg / total       0.73      0.86      0.79      3333
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you think, when some of the features come together, they could form a much more powerful feature, or just by getting the square of the feature would be powerful feature, then Scikit-Learn has something that quite fits to your needs. Let's aasume I have <code>[x, y]</code> feature vector and I am interested in  <code>[1, x, y, x^2, xy, y^2]</code>, in the preprocessing step, I could use <code>PolynomialFeatures</code> of Scikit-Learn to build that feature matrix. If I just want to only get the interaction features(not <code>x^2</code>, then it is enough to pass <code>interaction_only=True</code> and <code>include_bias=False</code>. If you want to get higher order Polynomial features(say nth degree), pass <code>degree=n</code> optional parameter to Polynomial Features.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">polynomial_features</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">PolynomialFeatures</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Passive Aggressive Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient Boosting Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Support vector machine(SVM):</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Random Forest Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K Nearest Neighbor Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Logistic Regression:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dump Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])));</span> <span class="c1"># ignore the warning as they are all 0</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Passive Aggressive Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">PassiveAggressiveClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Gradient Boosting Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Support vector machine(SVM):</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Random Forest Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'K Nearest Neighbor Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Logistic Regression:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">stratified_cv</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dump Classifier:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])));</span> <span class="c1"># ignore the warning as they are all 0</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Passive Aggressive Classifier:
@@ -4224,17 +4056,15 @@ avg / total       0.73      0.86      0.79      3333
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Regression">Regression<a class="anchor-link" href="#Regression">&#182;</a></h2>
+<h2 id="Regression">Regression<a class="anchor-link" href="#Regression">¶</a></h2>
 </div>
 </div>
 </div>
@@ -4244,111 +4074,92 @@ avg / total       0.73      0.86      0.79      3333
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Regresion refers learning how to relate the input variables to output variables. This is true for classification as well with only one difference that the regression would deal with continuous output variables where classification produces discrete output variables. One can use a regressor to output discrete variables as well using basic thresholding although it is not common.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets.california_housing</span> <span class="k">import</span> <span class="n">fetch_california_housing</span>
 
 <span class="n">california_housing</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">california_housing</span><span class="o">.</span><span class="n">fetch_california_housing</span><span class="p">()</span>
-<span class="n">california_housing_data</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
-<span class="n">california_housing_labels</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="c1"># &#39;target&#39; variables</span>
-<span class="n">california_housing_feature_names</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]</span>
+<span class="n">california_housing_data</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span>
+<span class="n">california_housing_labels</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span><span class="c1"># 'target' variables</span>
+<span class="n">california_housing_feature_names</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">[</span><span class="s1">'feature_names'</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">california_housing_feature_names</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;MedInc&#39;,
- &#39;HouseAge&#39;,
- &#39;AveRooms&#39;,
- &#39;AveBedrms&#39;,
- &#39;Population&#39;,
- &#39;AveOccup&#39;,
- &#39;Latitude&#39;,
- &#39;Longitude&#39;]</pre>
-</div>
-
-</div>
-
+<pre>['MedInc',
+ 'HouseAge',
+ 'AveRooms',
+ 'AveBedrms',
+ 'Population',
+ 'AveOccup',
+ 'Latitude',
+ 'Longitude']</pre>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Cross-Validation">Cross-Validation<a class="anchor-link" href="#Cross-Validation">&#182;</a></h3><ul>
+<h3 id="Cross-Validation">Cross-Validation<a class="anchor-link" href="#Cross-Validation">¶</a></h3><ul>
 <li>Split the data 80/20 rule, test_size parameter determines the ratio of test data in the whole dataset</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">cross_validation</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">california_housing_data</span><span class="p">,</span>
                                                     <span class="n">california_housing_labels</span><span class="p">,</span>
                                                     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training/Test Ratio: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Training/Test Ratio: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(16512, 8)
@@ -4357,10 +4168,8 @@ Training/Test Ratio: 4
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4368,7 +4177,6 @@ Training/Test Ratio: 4
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So far so good!</p>
-
 </div>
 </div>
 </div>
@@ -4377,43 +4185,41 @@ Training/Test Ratio: 4
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Regression-model-parameters">Regression model parameters<a class="anchor-link" href="#Regression-model-parameters">&#182;</a></h3>
+<h3 id="Regression-model-parameters">Regression model parameters<a class="anchor-link" href="#Regression-model-parameters">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-              <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> 
-              <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> 
-              <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-              <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> 
-              <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="s1">&#39;ls&#39;</span>
+              <span class="s1">'n_estimators'</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> 
+              <span class="s1">'max_depth'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> 
+              <span class="s1">'min_samples_split'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="s1">'learning_rate'</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> 
+              <span class="s1">'loss'</span><span class="p">:</span> <span class="s1">'ls'</span>
              <span class="p">}</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="We-will-use-an-ensemble-model-to-predict-housing-price">We will use an ensemble model to predict housing price<a class="anchor-link" href="#We-will-use-an-ensemble-model-to-predict-housing-price">&#182;</a></h3>
+<h3 id="We-will-use-an-ensemble-model-to-predict-housing-price">We will use an ensemble model to predict housing price<a class="anchor-link" href="#We-will-use-an-ensemble-model-to-predict-housing-price">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">ensemble</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">metrics</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
@@ -4421,66 +4227,54 @@ Training/Test Ratio: 4
 <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">mse</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Square Error: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Mean Square Error: </span><span class="si">{:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Mean Square Error: 0.295
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### This may take some time, but it will worth it I promise</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-              <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> 
-              <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> 
-              <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">,</span> 
-              <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="s1">&#39;huber&#39;</span>
+              <span class="s1">'n_estimators'</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> 
+              <span class="s1">'max_depth'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> 
+              <span class="s1">'learning_rate'</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">,</span> 
+              <span class="s1">'loss'</span><span class="p">:</span> <span class="s1">'huber'</span>
              <span class="p">}</span>
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
 
 <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">mse</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Mean Squared Error: </span><span class="si">{:.3f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Mean Squared Error: 0.194
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4488,35 +4282,28 @@ Training/Test Ratio: 4
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Yep, this is much better. But instead of setting the parameters like this and then look at the mean squared error, maybe I should use another way to optimize the parameters based on mean squared eror. I will see how to do that in the next section; GridSearch to optimize the parameters.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;predictions&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;actual values&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'predictions'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'#348ABD'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'actual values'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="n">y_test</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">predictions</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAQAAALrCAYAAABppVWCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XuYJHddL/539f0699mdvTA7s9l7dllNQjQEjTEqRhDx
@@ -8879,48 +8666,39 @@ W1sbvvvd78Lv9/MeO9gzzzyDv/3tbznv2QcffBDPPPMMn+UqIXePv/GNb+C5557js1xFFhcX8cQT
 T2Bubg6JRAL33HMPNmzYwPdyFZG7x2vWrOF7uUrt378fDz/8MARBcNRzbEpAgIiIiIiIiIichQv9
 iYiIiIiIiGoQAwJERERERERENYgBASIiIiIiIqIaxIAAERERERERUQ1iQICIiIiIiIioBjEgQERE
 RERERFSDGBAgIiIiIiIiqkEMCBARERERERHVoP8PvBFFq7n0L0cAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_score</span> <span class="o">=</span> <span class="p">[</span><span class="n">classifier</span><span class="o">.</span><span class="n">loss_</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="k">for</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">classifier</span><span class="o">.</span><span class="n">staged_decision_function</span><span class="p">(</span><span class="n">X_test</span><span class="p">)]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Deviance&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">classifier</span><span class="o">.</span><span class="n">train_score_</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Set Deviance&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test Set Deviance&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Overfit Point&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="n">test_score</span><span class="p">[</span><span class="mi">600</span><span class="p">]),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">420</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc&quot;</span><span class="p">),</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Deviance'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">'n_estimators'</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">classifier</span><span class="o">.</span><span class="n">train_score_</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'#348ABD'</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">'Training Set Deviance'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">'n_estimators'</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">'Test Set Deviance'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">'Overfit Point'</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="n">test_score</span><span class="p">[</span><span class="mi">600</span><span class="p">]),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">420</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">"-&gt;"</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">"arc"</span><span class="p">),</span>
             <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Boosting Iterations&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Deviance&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Boosting Iterations'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Deviance'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABCYAAAMHCAYAAADl/FYiAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XuA13Wd7/HX7/ebGUBARUPLVOgYaieSXM3FW+HJk908
@@ -9466,14 +9244,11 @@ tm3vTDv8+P7+/v52YebNzY1eXl7UbDYVx7EqlYpqtZoWi8XOt+r1usIw1GAwkOM4qlarWiwWOjw8
 +bxKpZKWy6VarZbu7++TjgUAAP5RTEwAAIA/qlgsKggCxXGsVCrFbgYAAPAlJiYAAAAAAEBiWH4J
 AAAAAAASQzEBAAAAAAASQzEBAAAAAAASQzEBAAAAAAASQzEBAAAAAAASQzEBAAAAAAAS8wpsf84+
 ZU5G9QAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -9481,15 +9256,14 @@ ZU5G9QAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The point that red line(test) is equal to blue line(training) is our sweet spot. We want to minimize the training error but also do not overfit. Test error stays same after 600-700 boosting iterations even if training error decreases up to 3000. Training error decreases because we are overfitting after 700 boosting iterations. That is also obvious that test error slightly increasee after 700. In general, both classification and also regression, in order to prevent overfitting, one not only looks at the success rate of the classifier/regressor in the training data but also in the test data as well.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get Feature Importance from the classifier</span>
 <span class="n">feature_importance</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">feature_importances_</span>
 <span class="c1"># Normalize The Features</span>
@@ -9497,24 +9271,18 @@ ZU5G9QAAAABJRU5ErkJggg==
 <span class="n">sorted_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">)</span>
 <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sorted_idx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="o">.</span><span class="mi">5</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">feature_importance</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#7A68A6&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">feature_importance</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#7A68A6'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">california_housing_feature_names</span><span class="p">)[</span><span class="n">sorted_idx</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Relative Importance&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Variable Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Relative Importance'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Variable Importance'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDoAAAMHCAYAAADYbjdEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xuc1nWd///nNTMMp1EOgq4iOFQasWrYeshbuqW7HlYL
@@ -9846,14 +9614,11 @@ lquuuiqtW7fOrFmzWm6g2rFjx5ZLTP6vP/mTP8nkyZMzb9689OnTJ6effno6deqUoUOHtlxms6sZ
 v/nNb2bWrFn50Y9+lKqqqkybNi09e/bMuHHjcvHFF7fcjPTcc8/90PcEAOxaqa6u7v37NQEACmjI
 kCF57LHHyj0GAPAJcukKAAAAUBh2dAAAAACFYUcHAAAAUBhCBwAAAFAYQgcAAABQGEIHAAAAUBhC
 BwAAAFAYQgcAAABQGP8DykI8X1UM3AsAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -9861,7 +9626,6 @@ BwAAAFAYQgcAAABQGP8DykI8X1UM3AsAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In here I am plotting the relative importances of the features as RF could estimate which feature could play more important role than other features. This part generally is done in explaratory data analysis part but it is nice to have at least some idea on how classifier treats the features as well.</p>
-
 </div>
 </div>
 </div>
@@ -9871,43 +9635,35 @@ BwAAAFAYQgcAAABQGP8DykI8X1UM3AsAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Classifiers both in terms of their architecture but also capabilities differ. If you do not know beforehand which feature is important to predict the outcome of the particular class, you may want to choose a classifier which has both feature selection capability(which could score the features based on how useful it is or minimizing least squared error like RandomForest does in this case). Some of the classifiers support class weighting(if one class is more important than the other one) through <code>class_weight</code> parameter (e.g.: Suppor Vector Classifier, SVC). When you want to choose a classifier, apart from its merits, these out of the box capabilities could also influence your thinking and make your decision about which classifier is best.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MedInc&#39;</span><span class="p">,</span> <span class="s1">&#39;AveOccup&#39;</span><span class="p">,</span> <span class="s1">&#39;HouseAge&#39;</span><span class="p">,</span> <span class="s1">&#39;AveRooms&#39;</span><span class="p">,</span>
-            <span class="p">(</span><span class="s1">&#39;AveOccup&#39;</span><span class="p">,</span> <span class="s1">&#39;HouseAge&#39;</span><span class="p">)]</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'MedInc'</span><span class="p">,</span> <span class="s1">'AveOccup'</span><span class="p">,</span> <span class="s1">'HouseAge'</span><span class="p">,</span> <span class="s1">'AveRooms'</span><span class="p">,</span>
+            <span class="p">(</span><span class="s1">'AveOccup'</span><span class="p">,</span> <span class="s1">'HouseAge'</span><span class="p">)]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">partial_dependence</span><span class="o">.</span><span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> 
                                                               <span class="n">feature_names</span><span class="o">=</span><span class="n">california_housing_feature_names</span><span class="p">,</span> 
                                                               <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/bugra/anaconda/lib/python2.7/site-packages/matplotlib/text.py:52: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
-  if rotation in (&#39;horizontal&#39;, None):
+  if rotation in ('horizontal', None):
 /Users/bugra/anaconda/lib/python2.7/site-packages/matplotlib/text.py:54: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
-  elif rotation == &#39;vertical&#39;:
+  elif rotation == 'vertical':
 </pre>
 </div>
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAkAAAIICAYAAAAMi7ceAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8FHX+x/HXlvROEtJJCL1XkV4EEUSKWPCwng2x6+nZ
@@ -10946,14 +10702,11 @@ jenSpQt2u50JEybQq1cvgoKCGDduHAADBw7kxRdfpEqVKvzud78r8UhBamoqK1euJCwsjDFjxvh7
 F4mIiAhgstlsv32rVURERKQUde3alXnz5lG5cmWjo4iIiFxX9LiBiIiIBJz/7VUmIiIipUM9CURE
 REREREQEUE8CERERERERETlLRQIRERERERERAVQkEBEREREREZGzVCQQEREREREREUBFAhERERER
 ERE5S0UCEREREREREQHg/wMi/XCGFeVlEAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -10961,7 +10714,6 @@ ERE5S0UCEREREREREQHg/wMi/XCGFeVlEAAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this part, one could also look at the partial dependence plots to see which feature influence more and also how tdoe they disribute across different feature categories.</p>
-
 </div>
 </div>
 </div>
@@ -10976,7 +10728,6 @@ ERE5S0UCEREREREREQHg/wMi/XCGFeVlEAAAAABJRU5ErkJggg==
 <li>Are features scaled? If not, can scaling help? Why?</li>
 <li>What type of scaling would be useful to preprocess the targer variable(price of house)? Why?</li>
 </ul>
-
 </div>
 </div>
 </div>

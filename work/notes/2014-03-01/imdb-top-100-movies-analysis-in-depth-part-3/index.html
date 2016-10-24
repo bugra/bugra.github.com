@@ -1016,16 +1016,14 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered">
+</style><html><body><div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This post is third in the series. See the <a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/">first</a> and <a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/">second</a> one.</p>
-<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2><p>IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.</p>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">¶</a></h2><p>IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.</p>
 <p>Freebase provides actors' and actresses' age and height information when the movie is released. The total character number is 450669 but the characters that have complete information is only 45264. That being said, the ratio gets higher when we look at the height and age. I took this information and looked at the age, height distribution of the actresses and actors as well as the number of movies whose main characters is actresses and actors across the years.</p>
-
 </div>
 </div>
 </div>
@@ -1034,29 +1032,23 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gender-Distribution-for-Movies">Gender Distribution for Movies<a class="anchor-link" href="#Gender-Distribution-for-Movies">&#182;</a></h3>
+<h3 id="Gender-Distribution-for-Movies">Gender Distribution for Movies<a class="anchor-link" href="#Gender-Distribution-for-Movies">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="prompt input_prompt">In [89]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl0VEXexvGnmxBkMYgLyigmIMoiCSTsYIBgCDCMigyy
@@ -1206,14 +1198,11 @@ VfPmzXXw4EEtWrRIW7Zs0bhx47R//37VqlVLM2fOVLt27QJ4FgAKoisYCKCNGzcW29ewYUPl5ubq
 gQce0KpsqstoAAAAZ0lEQVRVq1SnTh0999xz2r17tySpefPmSktLq+yiAignghUIQh6PR+eff746
 dOig8PBwNWnSRK+99lqgiwWgHOgKBgDAIQYvAQDgEMEKAIBDBCsAAA4RrAAAOESwAgDgEMEKAIBD
 /w8acbWvaJlGfwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1221,29 +1210,22 @@ dOig8PBwNWnSRK+99lqgiwWgHOgKBgDAIQYvAQDgEMEKAIBDBCsAAA4RrAAAOESwAgDgEMEKAIBD
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Apparently, there are a lot of actresses or actors that have age of 25 and 50! As one can imagine, the age distribution looks like quite like a Gaussian distribution. Let's fit a Gaussian Kernel to smooth the distribution in order to remove the outliers(25 and 50).</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In [90]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlcVOXiBvDnzDDs+w4ugIAsAoq74r6XueZW3UptcSm1
@@ -1540,14 +1522,11 @@ GO3atcOPP/6IOXPmQKFQICYmBhUVFdiwYQOysrIwc+ZMlJWVwcnJCcuWLUOXLl1kfBVEdCkeCiaS
 UXp6+hW3BQYGQqPR4J///Cd++eUXuLq64o033kBhYSEAICYmBtu3b2/pqER0nVisRBZIkiT4+vqi
 W7ducHR0REREBD788EO5YxHRdeChYCIiIjPi4CUiIiIzYrESERGZEYuViIjIjFisREREZsRiJSIi
 MiMWKxERkRn9P0a6Suy1psfBAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1555,29 +1534,22 @@ MiMWKxERkRn9P0a6Suy1psfBAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is much better, we do not have outliers, kernel looks quite smooth and its peak is around 30 and the biggest jump occurs at the age of 17 to 18. But let's look at the gender specific distribution to see who are these outliers.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<div class="prompt input_prompt">In [91]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfMAAAFtCAYAAAATY4N4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X18VNWdP/DPfZgJSWAGtIipWBUDBgrBABJNAukoQlhR
@@ -1925,14 +1897,11 @@ e3s7lixZgrt372L//v2Qy+UICgpCV1cXKioq0NLSgszMTHz+/BlTpkzBuXPnEBYW5sS9ICJ7vMxO
 5GGeP3/+y8/mz58Ps9mMI0eO4P79+5g2bRrOnDmDtrY2AEBQUBDq6ur+6qkS0SixmBMRAEAmk2H2
 7NkIDw+HSqXC4sWLceHCBWdPi4hGgZfZiYiI3BxvgCMiInJzLOZERERujsWciIjIzbGYExERuTkW
 cyIiIjfHYk5EROTm/g+YrVclyFk1SAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1940,29 +1909,22 @@ cyIiIjfHYk5EROTm/g+YrVclyFk1SAAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>25 should be a magic number, both actresses and actors have peaked at 25, there is something wrong about the peaks in actors, though. If you remove those outliers, both of these distribution two different Gaussian distribution and as we did before, we could fit a Gaussian kernel to smooth the distributions a little bit.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<div class="prompt input_prompt">In [92]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGXax/HvOVPSgRAgoUNCCyUQmnRFRJCigCIgCvbG
@@ -2409,14 +2371,11 @@ SkpYvHgxWVlZjB07luLiYmw2G1OnTqVjx47V+F0IIc4kU8FCVKPt27f/6LHExEScTifPPPMM69ev
 Jzw8nNdff528vDwAUlNTWbVq1aVuqhDiAkmwCnEZ0jSNuLg4OnXqhNVqpWnTprz33nvV3SwhxAWQ
 qWAhhBAiiGTxkhBCCBFEEqxCCCFEEEmwCiGEEEEkwSqEEEIEkQSrEEIIEUQSrEIIIUQQ/R93SH5Z
 ZCjndwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2424,29 +2383,22 @@ ZCjndwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is much nicer. Actors at late 30's played a lot of movies comparing different ages whereas women who are in their early 20's enjoy playing as much. Note that, the distribution does not reveal the absolute number of counts for the movies. As we see later, the number of movies whose main character is an actor is almos twice as the movies whose main character is an actress. Also, note that the distribution is much more widespread in actors whereas the actresses distribution is quite skewed. We could take the difference of kernels to see the difference better.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In [93]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VNX9P/D3vTOTjRAChLAGCAkkLAmEkIRdFmUVEUWr
@@ -2752,14 +2704,11 @@ yZIlkGUZUVFRKC8vx6pVq5CZmYnFixejrKwMvr6+eO211xAfH2/gd0FEF+KpYCIDpaWlXfax0NBQ
 VFVV4YknnsD27dsREBCAl156CYWFhQCAqKgobNq0Se9WiaiVGKxEJiRJErp06YKEhAT4+PggPDwc
 b731ltFtEVEr8FQwERGRC3HyEhERkQsxWImIiFyIwUpERORCDFYiIiIXYrASERG5EIOViIjIhf4/
 0Ia+R6XjSjgAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2767,29 +2716,22 @@ b731ltFtEVEr8FQwERGRC3HyEhERkQsxWImIiFyIwUpERORCDFYiIiIXYrASERG5EIOViIjIhf4/
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this one, the ratio of actresses to total number of actresses comparing to actors before 32 is larger whereas actors enjoy after 32 to late 70's take role in movies comparing to actresses. After late 70's, I guess we could only say that women live longer than men.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In [94]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcVHX+P/DXnBkGBoRRczW7miKRKYooKIPWaApuqOlK
@@ -3086,14 +3028,11 @@ YmNjkZqaipEjR3qs8/rrr2PhwoWIiYnB7t27ERwcrCyvWa/7/3FxcSgoKMB///d/45ZbblHmkweq
 hg1Yt24d1q9f7/P68+bNw6hRo3Drrbc2qR0ffvgh8vPz8cILLzSpHiK6iOe4ifzQNddcgzFjxiAg
 IABdu3bFP/7xjwatP3/+fMyYMaNJiVuWZaxevRpvvvlmo+sgotrY4yYiItIQnuMmIiLSECZuIiIi
 DWHiJiIi0hAmbiIiIg1h4iYiItIQJm4iIiIN+f+2/71dtKpZvwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3101,29 +3040,22 @@ DWHiJiIi0hAmbiIiIg1h4iYiItIQJm4iIiIN+f+2/71dtKpZvwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Actors unsurprisingly taller than actresses and surprisingly height distribution is not Gaussian, which is quite interesting.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In [95]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFkCAYAAADmPNjoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlgnHWd+PH388xMJvfkaK7eRxrKVZCjhaSoEaW41KOs
@@ -3591,14 +3523,11 @@ NnXqVNq3b09mZia9e/dm0qRJDBo0qNo6b7/9NjNmzKBHjx5s3rwZp9NZdf+5j115uU+fPnzxxRf8
 nOMWot5JTU1lxIgRWK1WkpOTeeONNy75sZ555hkmTJhwWYXbNE3efPNNFi9efMmPIYQ4S35xCyGE
 EFFEznELIYQQUUQKtxBCCBFFpHALIYQQUUQKtxBCCBFFpHALIYQQUeT/Aew54l9ewDCrAAAAAElF
 TkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3606,29 +3535,22 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The kernels are not good either as expected.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In [98]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGX2wPHvnZpAGiUEAkiASAmBEEIQDAmdhEWUYkFx
@@ -4130,14 +4052,11 @@ lnLkyBF+8YtfMGfOHD744ANM0wRAjbIpSutQLW5FUfB6vfz1r3/lscceo6amhri4OF5++WUSEhJY
 uHAhw4YNo1u3btx0000Eg0GqqqoQQjTY+lBRlMtDTU5TFEVRlHZEdZUriqIoSjuiAreiKIqitCMq
 cCuKoihKO6ICt6IoiqK0IypwK4qiKEo7ogK3oiiKorQjKnAriqIoSjuiAreiKIqitCP/H3h9qpUL
 ej0UAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4145,29 +4064,22 @@ ej0UAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The total number of movies whose main characters are actors is almost twice high as movies whose main characters are actresses. Although the ratio is more or less same, the absolute difference is getting larger over the years. Note that if movies have more than one main characters, all of them counted as main characters for the movies.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In [105]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmgAAAH8CAYAAABl8FOBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvWmwZddZ3/1ba+3xDHfoSa32+PqV39eWI6GWDJKtUKYd
@@ -7574,14 +7486,11 @@ vZiDBgB/mTFjhi5cuKCGhgZJUnl5uR577DG1t7erpaVFq1evVn5+vvbs2aM///xTksQsEQD/C9xB
 A4C/hIeH66OPPlJpaakuXbqk2NhYvf/++5o4caKWL1+u5ORkTZ06VQUFBfJ6verp6ZHD4ZDD4bB6
 6ACuMiwSAAAAsBkecQIAANgMBQ0AAMBmKGgAAAA2Q0EDAACwGQoaAACAzVDQAAAAbIaCBgAAYDMU
 NAAAAJv5P3C7+u6eo5cNAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7589,29 +7498,22 @@ NAAAAJv5P3C7+u6eo5cNAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The revenues for the movies over the years are clearly getting better. We could also see a lot of movies that generate close to one billion dollars .</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In [106]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFkCAYAAAAnu5JEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmAE+Xdx7+TZLPJbnazJ7AXLLfcl3jCIuLFsQgIiigK
@@ -8275,14 +8177,11 @@ aGtrw8WLF/H8889j0aJF2L59OwwGAwCAZQIZjMEP8+wZDAaPQqHAZ599hscffxy9vb2IiYnBRx99
 hLi4ONx///2YOHEikpKSsHTpUmg0GqjVanAcJxg9ymAwBh+sQI/BYDAYjCCHhfEZDAaDwQhymLFn
 MBgMBiPIYcaewWAwGIwghxl7BoPBYDCCHGbsGQwGg8EIcpixZzAYDAYjyGHGnsFgMBiMIOf/A0Pg
 tmmL2F71AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8290,29 +8189,22 @@ tmmL2F71AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The median revenue is quite conservative whereas mean revenue of the movies is getting larger and larger over the years as a result of quite successful movies in terms of revenue have been directed in recent years as seen in the previous scatter plot.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In [107]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAFuCAYAAABtFwohAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4VFX6x7/TUkgXAiIgoCAQghAIPQQCUmQVQcAOgoJt
@@ -8968,14 +8860,11 @@ L16M1atXIxgMAgAoC0gQfQOd4AmCMIwsy3jxxRdxzz33oKurC263G7///e9RVlaG2267DRMnTkR1
 dTW+9KUvwefzoaOjA4yxmHGaBEHkByqyIwiCIIgShEL0BEEQBFGCkIMnCIIgiBKEHDxBEARBlCDk
 4AmCIAiiBCEHTxAEQRAlCDl4giAIgihByMETBEEQRAlCDp4gCIIgSpD/H1ojLhZwdUkgAAAAAElF
 TkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8983,29 +8872,22 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The standard deviation is also getting larger over the years.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In [109]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFyCAYAAADyNHPCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmQZVV9+D93f/vrfZmFYWAQBIYdURFhVMByiQouqCWK
@@ -11068,14 +10950,11 @@ Q4fQ09MDAGhra8Pjjz+OG2+8EevWrcPBgwfxq1/9atb9Te7ze9/7Hn73u9/hkksuQSqVyi8vtt/Z
 trN161b873//w/XXX190DIkoRxJz3esjIlt44oknsHbtWnzuc5+rdFeIqEox2BMREdU43sYnIiKq
 cQz2RERENY7BnoiIqMYx2BMREdU4BnsiIqIax2BPRERU4xjsiYiIatz/A8bZlnv9ctNaAAAAAElF
 TkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -11083,29 +10962,22 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Votes and revenue are quite correlated unsuprisingly.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">In [121]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAFyCAYAAAADPyhPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmQZVdd+D/n7m9/r/fumclMJiuBJERAExD4BdFIUYAi
@@ -13003,14 +12875,11 @@ zfB4PFizZg1Wr159Trn8K9ovfelLuPbaa7Flyxbs2LED//73v3HNNdfANE3cfPPNWL9+PYD0iPHW
 W2+9teB+J6p7/vYn2tf4MmvXrsXzzz+Pr3zlK1MeRyIChJzOz2YimhW//e1v0dnZiRtvvNHuqhDR
 HMWATkREVAV4D52IiKgKMKATERFVAQZ0IiKiKsCATkREVAUY0ImIiKoAAzoREVEVYEAnIiKqAv8P
 MW9XLQ2eqvkAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13018,29 +12887,22 @@ MW9XLQ2eqvkAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rating and revenue's correlation is not as strong as revenue and votes. However, one thing to note is that if the rating is higher than 5, there is almost a rectangle between (5, 8) in rating and $\$1$ M, $\$200$M which looks like almost a two dimensional uniform distribution.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
+<div class="prompt input_prompt">In [111]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAGFCAYAAAD94YR2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VHX2+PH3nZJGkiGFEsCETugJvYUuobsgKKiggLGh
@@ -13717,14 +13579,11 @@ G9HR0Rw9epT169eTl5fHggULOHLkSJMuk1K3Q48QlAKmTZvGq6++Snx8PF27dmX48OEsXrwYCDyX
 m3PxlLoleoSgFDB16lS6dOnCkiVLAHj55Zd57rnn6Nu3L36/n5deeon+/ftTXl5OZWUl06ZNY+nS
 pezfv5+0tDT8fj+jR49m2rRpuFwuJk+eTN++fbHZbMyfP7/RU66UClXa/bVSSilATxkppZSqp4Gg
 lFIK0EBQSilVTwNBKaUUoIGglFKqngaCUkopQANBKaVUvf8PKPOPeNMPfJkAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13732,29 +13591,22 @@ lFIK0EBQSilVTwNBKaUUoIGglFKqngaCUkopQANBKaVUvf8PKPOPeNMPfJkAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If we fit a linear fit on votes and revenue per decade, we would get the above graph. Recent decades have higher correlation of revenue and votes comparing to older decades.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">In [126]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAGFCAYAAAAIHw/GAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8FGX++N8zO9uS3WwKLYUEQgkIhBYkIQiiKKKIJwqi
@@ -14908,14 +14760,11 @@ bDZ3SiY9NWPGDHbs2MHFixdRSvHUU08FEoYQ4SBnEkJc1T5v0G7OnDlMnTqV0tJSCgoKGDt2LCNG
 jAjs6dFxrqHr/UcffZSCggI+//zzwOPBju/6+hkZGbz88svMnDkTwzCYMGECL7744q0KWYhfJaXC
 hRBChCTDTUIIIUKSJCGEECIkSRJCCCFCkiQhhBAiJEkSQgghQpIkIYQQIiRJEkIIIUL6f50mKxBn
 mMu1AAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -14923,7 +14772,6 @@ mMu1AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It is hard to make any conclusion around runtime and revenue graph.</p>
-
 </div>
 </div>
 </div>
@@ -14932,27 +14780,22 @@ mMu1AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Movies-that-generated-highest-revenues">Movies that generated highest revenues<a class="anchor-link" href="#Movies-that-generated-highest-revenues">&#182;</a></h2><p>I listed movies that generate more than $ 600 M worldwide gross revenue.</p>
-
+<h2 id="Movies-that-generated-highest-revenues">Movies that generated highest revenues<a class="anchor-link" href="#Movies-that-generated-highest-revenues">¶</a></h2><p>I listed movies that generate more than $ 600 M worldwide gross revenue.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In [114]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/bugra/anaconda/lib/python2.7/site-packages/pandas/core/config.py:570: DeprecationWarning: height has been deprecated.
@@ -14964,489 +14807,483 @@ mMu1AAAAAElFTkSuQmCC
 </pre>
 </div>
 </div>
-
 <div class="output_area"><div class="prompt output_prompt">Out[114]:</div>
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>year</th>
-      <th>votes</th>
-      <th>runtime_x</th>
-      <th>revenue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>13   </th>
-      <td>                                            Avatar</td>
-      <td> 2009</td>
-      <td>  650065</td>
-      <td> 162</td>
-      <td> 2782275172</td>
-    </tr>
-    <tr>
-      <th>40   </th>
-      <td>                                           Titanic</td>
-      <td> 1997</td>
-      <td>  552651</td>
-      <td> 194</td>
-      <td> 2185372302</td>
-    </tr>
-    <tr>
-      <th>401  </th>
-      <td>                    Transformers: Dark of the Moon</td>
-      <td> 2011</td>
-      <td>  235772</td>
-      <td> 154</td>
-      <td> 1123746996</td>
-    </tr>
-    <tr>
-      <th>6    </th>
-      <td>     The Lord of the Rings: The Return of the King</td>
-      <td> 2003</td>
-      <td>  828522</td>
-      <td> 201</td>
-      <td> 1119929521</td>
-    </tr>
-    <tr>
-      <th>11   </th>
-      <td>                             The Dark Knight Rises</td>
-      <td> 2012</td>
-      <td>  741543</td>
-      <td> 165</td>
-      <td> 1078008948</td>
-    </tr>
-    <tr>
-      <th>126  </th>
-      <td>                                       Toy Story 3</td>
-      <td> 2010</td>
-      <td>  348502</td>
-      <td> 103</td>
-      <td> 1063171911</td>
-    </tr>
-    <tr>
-      <th>347  </th>
-      <td>       Pirates of the Caribbean: On Stranger Tides</td>
-      <td> 2011</td>
-      <td>  253863</td>
-      <td> 136</td>
-      <td> 1043871802</td>
-    </tr>
-    <tr>
-      <th>518  </th>
-      <td>                               Alice in Wonderland</td>
-      <td> 2010</td>
-      <td>  224651</td>
-      <td> 108</td>
-      <td> 1024299904</td>
-    </tr>
-    <tr>
-      <th>1    </th>
-      <td>                                   The Dark Knight</td>
-      <td> 2008</td>
-      <td> 1125214</td>
-      <td> 152</td>
-      <td> 1004558444</td>
-    </tr>
-    <tr>
-      <th>97   </th>
-      <td>                                     The Lion King</td>
-      <td> 1994</td>
-      <td>  397397</td>
-      <td>  89</td>
-      <td>  951583777</td>
-    </tr>
-    <tr>
-      <th>346  </th>
-      <td>         Harry Potter and the Order of the Phoenix</td>
-      <td> 2007</td>
-      <td>  256564</td>
-      <td> 138</td>
-      <td>  939885929</td>
-    </tr>
-    <tr>
-      <th>511  </th>
-      <td>            Harry Potter and the Half-Blood Prince</td>
-      <td> 2009</td>
-      <td>  225700</td>
-      <td> 153</td>
-      <td>  934416487</td>
-    </tr>
-    <tr>
-      <th>10   </th>
-      <td>             The Lord of the Rings: The Two Towers</td>
-      <td> 2002</td>
-      <td>  745191</td>
-      <td> 179</td>
-      <td>  926047111</td>
-    </tr>
-    <tr>
-      <th>78   </th>
-      <td>                                      Finding Nemo</td>
-      <td> 2003</td>
-      <td>  441598</td>
-      <td> 100</td>
-      <td>  921111197</td>
-    </tr>
-    <tr>
-      <th>589  </th>
-      <td>                                           Shrek 2</td>
-      <td> 2004</td>
-      <td>  222822</td>
-      <td>  93</td>
-      <td>  919838758</td>
-    </tr>
-    <tr>
-      <th>117  </th>
-      <td>                                     Jurassic Park</td>
-      <td> 1993</td>
-      <td>  368791</td>
-      <td> 127</td>
-      <td>  914691118</td>
-    </tr>
-    <tr>
-      <th>297  </th>
-      <td>               Harry Potter and the Goblet of Fire</td>
-      <td> 2005</td>
-      <td>  278378</td>
-      <td> 157</td>
-      <td>  896911078</td>
-    </tr>
-    <tr>
-      <th>343  </th>
-      <td>                                      Spider-Man 3</td>
-      <td> 2007</td>
-      <td>  258922</td>
-      <td> 139</td>
-      <td>  890871626</td>
-    </tr>
-    <tr>
-      <th>1717 </th>
-      <td>                    Ice Age: Dawn of the Dinosaurs</td>
-      <td> 2009</td>
-      <td>  110923</td>
-      <td>  94</td>
-      <td>  886686817</td>
-    </tr>
-    <tr>
-      <th>290  </th>
-      <td>           Harry Potter and the Chamber of Secrets</td>
-      <td> 2002</td>
-      <td>  281240</td>
-      <td> 161</td>
-      <td>  878979634</td>
-    </tr>
-    <tr>
-      <th>5    </th>
-      <td> The Lord of the Rings: The Fellowship of the Ring</td>
-      <td> 2001</td>
-      <td>  855325</td>
-      <td> 178</td>
-      <td>  871530324</td>
-    </tr>
-    <tr>
-      <th>2052 </th>
-      <td>                        Ice Age: Continental Drift</td>
-      <td> 2012</td>
-      <td>   93462</td>
-      <td>  88</td>
-      <td>  867291788</td>
-    </tr>
-    <tr>
-      <th>405  </th>
-      <td>               Transformers: Revenge of the Fallen</td>
-      <td> 2009</td>
-      <td>  235270</td>
-      <td> 150</td>
-      <td>  836303693</td>
-    </tr>
-    <tr>
-      <th>2    </th>
-      <td>                                         Inception</td>
-      <td> 2010</td>
-      <td>  920345</td>
-      <td> 148</td>
-      <td>  825532764</td>
-    </tr>
-    <tr>
-      <th>101  </th>
-      <td>                                        Spider-Man</td>
-      <td> 2002</td>
-      <td>  381851</td>
-      <td> 121</td>
-      <td>  821708551</td>
-    </tr>
-    <tr>
-      <th>207  </th>
-      <td>                                  Independence Day</td>
-      <td> 1996</td>
-      <td>  322696</td>
-      <td> 145</td>
-      <td>  817400891</td>
-    </tr>
-    <tr>
-      <th>1206 </th>
-      <td>                                   Shrek the Third</td>
-      <td> 2007</td>
-      <td>  151183</td>
-      <td>  93</td>
-      <td>  798958162</td>
-    </tr>
-    <tr>
-      <th>307  </th>
-      <td>          Harry Potter and the Prisoner of Azkaban</td>
-      <td> 2004</td>
-      <td>  273828</td>
-      <td> 142</td>
-      <td>  796688549</td>
-    </tr>
-    <tr>
-      <th>614  </th>
-      <td>                        E.T. the Extra-Terrestrial</td>
-      <td> 1982</td>
-      <td>  215698</td>
-      <td> 115</td>
-      <td>  792910554</td>
-    </tr>
-    <tr>
-      <th>359  </th>
-      <td> Indiana Jones and the Kingdom of the Crystal S...</td>
-      <td> 2008</td>
-      <td>  251788</td>
-      <td> 122</td>
-      <td>  786636033</td>
-    </tr>
-    <tr>
-      <th>311  </th>
-      <td>                                      Spider-Man 2</td>
-      <td> 2004</td>
-      <td>  270884</td>
-      <td> 127</td>
-      <td>  783766341</td>
-    </tr>
-    <tr>
-      <th>711  </th>
-      <td>                                              2012</td>
-      <td> 2009</td>
-      <td>  208295</td>
-      <td> 158</td>
-      <td>  769679473</td>
-    </tr>
-    <tr>
-      <th>489  </th>
-      <td>                                 The Da Vinci Code</td>
-      <td> 2006</td>
-      <td>  233755</td>
-      <td> 149</td>
-      <td>  758239851</td>
-    </tr>
-    <tr>
-      <th>1995 </th>
-      <td>                               Shrek Forever After</td>
-      <td> 2010</td>
-      <td>   97772</td>
-      <td>  93</td>
-      <td>  752600867</td>
-    </tr>
-    <tr>
-      <th>280  </th>
-      <td>                            The Amazing Spider-Man</td>
-      <td> 2012</td>
-      <td>  289873</td>
-      <td> 136</td>
-      <td>  752216557</td>
-    </tr>
-    <tr>
-      <th>195  </th>
-      <td>                               The Matrix Reloaded</td>
-      <td> 2003</td>
-      <td>  328390</td>
-      <td> 138</td>
-      <td>  742128461</td>
-    </tr>
-    <tr>
-      <th>87   </th>
-      <td>                                                Up</td>
-      <td> 2009</td>
-      <td>  415780</td>
-      <td>  96</td>
-      <td>  731342744</td>
-    </tr>
-    <tr>
-      <th>99   </th>
-      <td>                                      Transformers</td>
-      <td> 2007</td>
-      <td>  391983</td>
-      <td> 144</td>
-      <td>  709709780</td>
-    </tr>
-    <tr>
-      <th>1284 </th>
-      <td>         The Twilight Saga: Breaking Dawn - Part 1</td>
-      <td> 2011</td>
-      <td>  140406</td>
-      <td> 117</td>
-      <td>  705058657</td>
-    </tr>
-    <tr>
-      <th>56012</th>
-      <td>                                           Eclipse</td>
-      <td> 1994</td>
-      <td>     158</td>
-      <td>  95</td>
-      <td>  698491347</td>
-    </tr>
-    <tr>
-      <th>73   </th>
-      <td>                                  The Hunger Games</td>
-      <td> 2012</td>
-      <td>  462642</td>
-      <td> 142</td>
-      <td>  686533290</td>
-    </tr>
-    <tr>
-      <th>9    </th>
-      <td>                                      Forrest Gump</td>
-      <td> 1994</td>
-      <td>  780099</td>
-      <td> 142</td>
-      <td>  677387716</td>
-    </tr>
-    <tr>
-      <th>57   </th>
-      <td>                                   The Sixth Sense</td>
-      <td> 1999</td>
-      <td>  508059</td>
-      <td> 107</td>
-      <td>  672806292</td>
-    </tr>
-    <tr>
-      <th>1390 </th>
-      <td>                             Ice Age: The Meltdown</td>
-      <td> 2006</td>
-      <td>  129198</td>
-      <td>  91</td>
-      <td>  655388158</td>
-    </tr>
-    <tr>
-      <th>37   </th>
-      <td> Pirates of the Caribbean: The Curse of the Bla...</td>
-      <td> 2003</td>
-      <td>  561949</td>
-      <td> 143</td>
-      <td>  654264015</td>
-    </tr>
-    <tr>
-      <th>720  </th>
-      <td>                                     Kung Fu Panda</td>
-      <td> 2008</td>
-      <td>  206422</td>
-      <td>  90</td>
-      <td>  631744560</td>
-    </tr>
-    <tr>
-      <th>183  </th>
-      <td>                                   The Incredibles</td>
-      <td> 2004</td>
-      <td>  332844</td>
-      <td> 115</td>
-      <td>  631442092</td>
-    </tr>
-    <tr>
-      <th>801  </th>
-      <td>                                         Fast Five</td>
-      <td> 2011</td>
-      <td>  200568</td>
-      <td> 130</td>
-      <td>  626100000</td>
-    </tr>
-    <tr>
-      <th>503  </th>
-      <td>                                           Hancock</td>
-      <td> 2008</td>
-      <td>  228501</td>
-      <td>  92</td>
-      <td>  624386746</td>
-    </tr>
-    <tr>
-      <th>880  </th>
-      <td>                                    Men in Black 3</td>
-      <td> 2012</td>
-      <td>  187247</td>
-      <td> 106</td>
-      <td>  624026776</td>
-    </tr>
-    <tr>
-      <th>194  </th>
-      <td>                                        Iron Man 2</td>
-      <td> 2010</td>
-      <td>  329240</td>
-      <td> 124</td>
-      <td>  623933331</td>
-    </tr>
-    <tr>
-      <th>171  </th>
-      <td>                                       Ratatouille</td>
-      <td> 2007</td>
-      <td>  336359</td>
-      <td> 111</td>
-      <td>  623722818</td>
-    </tr>
-    <tr>
-      <th>904  </th>
-      <td>                     The Lost World: Jurassic Park</td>
-      <td> 1997</td>
-      <td>  184609</td>
-      <td> 129</td>
-      <td>  618638999</td>
-    </tr>
-    <tr>
-      <th>1215 </th>
-      <td>                         The Passion of the Christ</td>
-      <td> 2004</td>
-      <td>  149932</td>
-      <td> 127</td>
-      <td>  611899420</td>
-    </tr>
-    <tr>
-      <th>1839 </th>
-      <td>                                        Mamma Mia!</td>
-      <td> 2008</td>
-      <td>  104405</td>
-      <td> 108</td>
-      <td>  609841637</td>
-    </tr>
-    <tr>
-      <th>2024 </th>
-      <td>                       Madagascar: Escape 2 Africa</td>
-      <td> 2008</td>
-      <td>   94291</td>
-      <td>  89</td>
-      <td>  602308178</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>title</th>
+<th>year</th>
+<th>votes</th>
+<th>runtime_x</th>
+<th>revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>13   </th>
+<td>                                            Avatar</td>
+<td> 2009</td>
+<td>  650065</td>
+<td> 162</td>
+<td> 2782275172</td>
+</tr>
+<tr>
+<th>40   </th>
+<td>                                           Titanic</td>
+<td> 1997</td>
+<td>  552651</td>
+<td> 194</td>
+<td> 2185372302</td>
+</tr>
+<tr>
+<th>401  </th>
+<td>                    Transformers: Dark of the Moon</td>
+<td> 2011</td>
+<td>  235772</td>
+<td> 154</td>
+<td> 1123746996</td>
+</tr>
+<tr>
+<th>6    </th>
+<td>     The Lord of the Rings: The Return of the King</td>
+<td> 2003</td>
+<td>  828522</td>
+<td> 201</td>
+<td> 1119929521</td>
+</tr>
+<tr>
+<th>11   </th>
+<td>                             The Dark Knight Rises</td>
+<td> 2012</td>
+<td>  741543</td>
+<td> 165</td>
+<td> 1078008948</td>
+</tr>
+<tr>
+<th>126  </th>
+<td>                                       Toy Story 3</td>
+<td> 2010</td>
+<td>  348502</td>
+<td> 103</td>
+<td> 1063171911</td>
+</tr>
+<tr>
+<th>347  </th>
+<td>       Pirates of the Caribbean: On Stranger Tides</td>
+<td> 2011</td>
+<td>  253863</td>
+<td> 136</td>
+<td> 1043871802</td>
+</tr>
+<tr>
+<th>518  </th>
+<td>                               Alice in Wonderland</td>
+<td> 2010</td>
+<td>  224651</td>
+<td> 108</td>
+<td> 1024299904</td>
+</tr>
+<tr>
+<th>1    </th>
+<td>                                   The Dark Knight</td>
+<td> 2008</td>
+<td> 1125214</td>
+<td> 152</td>
+<td> 1004558444</td>
+</tr>
+<tr>
+<th>97   </th>
+<td>                                     The Lion King</td>
+<td> 1994</td>
+<td>  397397</td>
+<td>  89</td>
+<td>  951583777</td>
+</tr>
+<tr>
+<th>346  </th>
+<td>         Harry Potter and the Order of the Phoenix</td>
+<td> 2007</td>
+<td>  256564</td>
+<td> 138</td>
+<td>  939885929</td>
+</tr>
+<tr>
+<th>511  </th>
+<td>            Harry Potter and the Half-Blood Prince</td>
+<td> 2009</td>
+<td>  225700</td>
+<td> 153</td>
+<td>  934416487</td>
+</tr>
+<tr>
+<th>10   </th>
+<td>             The Lord of the Rings: The Two Towers</td>
+<td> 2002</td>
+<td>  745191</td>
+<td> 179</td>
+<td>  926047111</td>
+</tr>
+<tr>
+<th>78   </th>
+<td>                                      Finding Nemo</td>
+<td> 2003</td>
+<td>  441598</td>
+<td> 100</td>
+<td>  921111197</td>
+</tr>
+<tr>
+<th>589  </th>
+<td>                                           Shrek 2</td>
+<td> 2004</td>
+<td>  222822</td>
+<td>  93</td>
+<td>  919838758</td>
+</tr>
+<tr>
+<th>117  </th>
+<td>                                     Jurassic Park</td>
+<td> 1993</td>
+<td>  368791</td>
+<td> 127</td>
+<td>  914691118</td>
+</tr>
+<tr>
+<th>297  </th>
+<td>               Harry Potter and the Goblet of Fire</td>
+<td> 2005</td>
+<td>  278378</td>
+<td> 157</td>
+<td>  896911078</td>
+</tr>
+<tr>
+<th>343  </th>
+<td>                                      Spider-Man 3</td>
+<td> 2007</td>
+<td>  258922</td>
+<td> 139</td>
+<td>  890871626</td>
+</tr>
+<tr>
+<th>1717 </th>
+<td>                    Ice Age: Dawn of the Dinosaurs</td>
+<td> 2009</td>
+<td>  110923</td>
+<td>  94</td>
+<td>  886686817</td>
+</tr>
+<tr>
+<th>290  </th>
+<td>           Harry Potter and the Chamber of Secrets</td>
+<td> 2002</td>
+<td>  281240</td>
+<td> 161</td>
+<td>  878979634</td>
+</tr>
+<tr>
+<th>5    </th>
+<td> The Lord of the Rings: The Fellowship of the Ring</td>
+<td> 2001</td>
+<td>  855325</td>
+<td> 178</td>
+<td>  871530324</td>
+</tr>
+<tr>
+<th>2052 </th>
+<td>                        Ice Age: Continental Drift</td>
+<td> 2012</td>
+<td>   93462</td>
+<td>  88</td>
+<td>  867291788</td>
+</tr>
+<tr>
+<th>405  </th>
+<td>               Transformers: Revenge of the Fallen</td>
+<td> 2009</td>
+<td>  235270</td>
+<td> 150</td>
+<td>  836303693</td>
+</tr>
+<tr>
+<th>2    </th>
+<td>                                         Inception</td>
+<td> 2010</td>
+<td>  920345</td>
+<td> 148</td>
+<td>  825532764</td>
+</tr>
+<tr>
+<th>101  </th>
+<td>                                        Spider-Man</td>
+<td> 2002</td>
+<td>  381851</td>
+<td> 121</td>
+<td>  821708551</td>
+</tr>
+<tr>
+<th>207  </th>
+<td>                                  Independence Day</td>
+<td> 1996</td>
+<td>  322696</td>
+<td> 145</td>
+<td>  817400891</td>
+</tr>
+<tr>
+<th>1206 </th>
+<td>                                   Shrek the Third</td>
+<td> 2007</td>
+<td>  151183</td>
+<td>  93</td>
+<td>  798958162</td>
+</tr>
+<tr>
+<th>307  </th>
+<td>          Harry Potter and the Prisoner of Azkaban</td>
+<td> 2004</td>
+<td>  273828</td>
+<td> 142</td>
+<td>  796688549</td>
+</tr>
+<tr>
+<th>614  </th>
+<td>                        E.T. the Extra-Terrestrial</td>
+<td> 1982</td>
+<td>  215698</td>
+<td> 115</td>
+<td>  792910554</td>
+</tr>
+<tr>
+<th>359  </th>
+<td> Indiana Jones and the Kingdom of the Crystal S...</td>
+<td> 2008</td>
+<td>  251788</td>
+<td> 122</td>
+<td>  786636033</td>
+</tr>
+<tr>
+<th>311  </th>
+<td>                                      Spider-Man 2</td>
+<td> 2004</td>
+<td>  270884</td>
+<td> 127</td>
+<td>  783766341</td>
+</tr>
+<tr>
+<th>711  </th>
+<td>                                              2012</td>
+<td> 2009</td>
+<td>  208295</td>
+<td> 158</td>
+<td>  769679473</td>
+</tr>
+<tr>
+<th>489  </th>
+<td>                                 The Da Vinci Code</td>
+<td> 2006</td>
+<td>  233755</td>
+<td> 149</td>
+<td>  758239851</td>
+</tr>
+<tr>
+<th>1995 </th>
+<td>                               Shrek Forever After</td>
+<td> 2010</td>
+<td>   97772</td>
+<td>  93</td>
+<td>  752600867</td>
+</tr>
+<tr>
+<th>280  </th>
+<td>                            The Amazing Spider-Man</td>
+<td> 2012</td>
+<td>  289873</td>
+<td> 136</td>
+<td>  752216557</td>
+</tr>
+<tr>
+<th>195  </th>
+<td>                               The Matrix Reloaded</td>
+<td> 2003</td>
+<td>  328390</td>
+<td> 138</td>
+<td>  742128461</td>
+</tr>
+<tr>
+<th>87   </th>
+<td>                                                Up</td>
+<td> 2009</td>
+<td>  415780</td>
+<td>  96</td>
+<td>  731342744</td>
+</tr>
+<tr>
+<th>99   </th>
+<td>                                      Transformers</td>
+<td> 2007</td>
+<td>  391983</td>
+<td> 144</td>
+<td>  709709780</td>
+</tr>
+<tr>
+<th>1284 </th>
+<td>         The Twilight Saga: Breaking Dawn - Part 1</td>
+<td> 2011</td>
+<td>  140406</td>
+<td> 117</td>
+<td>  705058657</td>
+</tr>
+<tr>
+<th>56012</th>
+<td>                                           Eclipse</td>
+<td> 1994</td>
+<td>     158</td>
+<td>  95</td>
+<td>  698491347</td>
+</tr>
+<tr>
+<th>73   </th>
+<td>                                  The Hunger Games</td>
+<td> 2012</td>
+<td>  462642</td>
+<td> 142</td>
+<td>  686533290</td>
+</tr>
+<tr>
+<th>9    </th>
+<td>                                      Forrest Gump</td>
+<td> 1994</td>
+<td>  780099</td>
+<td> 142</td>
+<td>  677387716</td>
+</tr>
+<tr>
+<th>57   </th>
+<td>                                   The Sixth Sense</td>
+<td> 1999</td>
+<td>  508059</td>
+<td> 107</td>
+<td>  672806292</td>
+</tr>
+<tr>
+<th>1390 </th>
+<td>                             Ice Age: The Meltdown</td>
+<td> 2006</td>
+<td>  129198</td>
+<td>  91</td>
+<td>  655388158</td>
+</tr>
+<tr>
+<th>37   </th>
+<td> Pirates of the Caribbean: The Curse of the Bla...</td>
+<td> 2003</td>
+<td>  561949</td>
+<td> 143</td>
+<td>  654264015</td>
+</tr>
+<tr>
+<th>720  </th>
+<td>                                     Kung Fu Panda</td>
+<td> 2008</td>
+<td>  206422</td>
+<td>  90</td>
+<td>  631744560</td>
+</tr>
+<tr>
+<th>183  </th>
+<td>                                   The Incredibles</td>
+<td> 2004</td>
+<td>  332844</td>
+<td> 115</td>
+<td>  631442092</td>
+</tr>
+<tr>
+<th>801  </th>
+<td>                                         Fast Five</td>
+<td> 2011</td>
+<td>  200568</td>
+<td> 130</td>
+<td>  626100000</td>
+</tr>
+<tr>
+<th>503  </th>
+<td>                                           Hancock</td>
+<td> 2008</td>
+<td>  228501</td>
+<td>  92</td>
+<td>  624386746</td>
+</tr>
+<tr>
+<th>880  </th>
+<td>                                    Men in Black 3</td>
+<td> 2012</td>
+<td>  187247</td>
+<td> 106</td>
+<td>  624026776</td>
+</tr>
+<tr>
+<th>194  </th>
+<td>                                        Iron Man 2</td>
+<td> 2010</td>
+<td>  329240</td>
+<td> 124</td>
+<td>  623933331</td>
+</tr>
+<tr>
+<th>171  </th>
+<td>                                       Ratatouille</td>
+<td> 2007</td>
+<td>  336359</td>
+<td> 111</td>
+<td>  623722818</td>
+</tr>
+<tr>
+<th>904  </th>
+<td>                     The Lost World: Jurassic Park</td>
+<td> 1997</td>
+<td>  184609</td>
+<td> 129</td>
+<td>  618638999</td>
+</tr>
+<tr>
+<th>1215 </th>
+<td>                         The Passion of the Christ</td>
+<td> 2004</td>
+<td>  149932</td>
+<td> 127</td>
+<td>  611899420</td>
+</tr>
+<tr>
+<th>1839 </th>
+<td>                                        Mamma Mia!</td>
+<td> 2008</td>
+<td>  104405</td>
+<td> 108</td>
+<td>  609841637</td>
+</tr>
+<tr>
+<th>2024 </th>
+<td>                       Madagascar: Escape 2 Africa</td>
+<td> 2008</td>
+<td>   94291</td>
+<td>  89</td>
+<td>  602308178</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
-
-</div>
-
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h3><p>This post will be the last post in this series for some time. If I could aggregate some more information from different sources, I will look at different aspects of movies. However, I do not have that data, at least yet. Stay tuned, though.</p>
-
+<h3 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h3><p>This post will be the last post in this series for some time. If I could aggregate some more information from different sources, I will look at different aspects of movies. However, I do not have that data, at least yet. Stay tuned, though.</p>
 </div>
 </div>
 </div>

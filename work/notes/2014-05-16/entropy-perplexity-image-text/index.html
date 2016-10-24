@@ -1016,26 +1016,19 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing code_cell rendered">
+</style><html><body><div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="prompt input_prompt">In [139]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAv4AAAL4CAYAAAADPPOkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlwG+d5P/DvLm6C902KIilREhUdthSPj8SxHdVxErdx
@@ -3781,21 +3774,18 @@ fffh0KFD8uPpdBqvvvoqTp06JT9WVVWFqakp+djj8aCqqmpD6yUiovXFVh8iojwkSRIeeOABtLS0
 wAsvvIDt27fLS3Y+/vjj+OIXv4ijR4/KF/VmtLS04Gtf+xpaWlqg1+vx9NNPy60+RESUHzSSJElK
 F0FEREREROuLrT5ERERERCrA4E9EREREpAIM/kREREREKsDgT0RERESkAgz+REREREQqwOBPRERE
 RKQCDP5ERERERCrw/wEwhH2HHs8KzAAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Entropy">Entropy<a class="anchor-link" href="#Entropy">&#182;</a></h2>
+<h2 id="Entropy">Entropy<a class="anchor-link" href="#Entropy">¶</a></h2>
 </div>
 </div>
 </div>
@@ -3815,15 +3805,14 @@ $$ D^1 = exp(-\displaystyle\sum_{i=1}^R p_i\ln p_i) $$</p>
 $$ H = -\displaystyle\sum_{i=1}^R p_i\ln p_i $$<p>where they mentioned Shannon Entropy index in the remaining article. Apparently, information theory gets itself into ecology quite successfully.</p>
 <p>Entropy measures uncertainty in the outcome of a stochastic process. The more uncertainty the data has, the more entropy it has. Similarly, the reverse also holds true. Very simple example, a fair coin has the maximum entropy that it could possible has 1 for <code>log2</code> base(maximum uncertainty). The coin has two faces has min entropy(0) as we already know the outcome of the flipping coin.</p>
 <p>In this post, I will look at the entropy, perplexity concepts on text and image. What are they useful and how we can use it, all in Python as you could tell from the Ipython notebook.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In [104]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
@@ -3834,36 +3823,32 @@ $$ H = -\displaystyle\sum_{i=1}^R p_i\ln p_i $$<p>where they mentioned Shannon E
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">ndimage</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In [97]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;When diversity indices are used in ecology, the types of interest are usually species, but they can also be other categories, such as genera, families, functional types or haplotypes. The entities of interest are usually individual plants or animals, and the measure of abundance can be, for example, number of individuals, biomass or coverage. In demography, the entities of interest can be people, and the types of interest various demographic groups. In information science, the entities can be characters and the types the different letters of the alphabet. The most commonly used diversity indices are simple transformations of the effective number of types (also known as &#39;true diversity&#39;), but each diversity index can also be interpreted in its own right as a measure corresponding to some real phenomenon (but a different one for each diversity index)&quot;</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">"When diversity indices are used in ecology, the types of interest are usually species, but they can also be other categories, such as genera, families, functional types or haplotypes. The entities of interest are usually individual plants or animals, and the measure of abundance can be, for example, number of individuals, biomass or coverage. In demography, the entities of interest can be people, and the types of interest various demographic groups. In information science, the entities can be characters and the types the different letters of the alphabet. The most commonly used diversity indices are simple transformations of the effective number of types (also known as 'true diversity'), but each diversity index can also be interpreted in its own right as a measure corresponding to some real phenomenon (but a different one for each diversity index)"</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span><span class="s2">""</span><span class="p">),</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
 <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="n">wordset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="prompt input_prompt">In [100]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">freq</span><span class="o">=</span><span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">words</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">}</span>
 
-<span class="nb">print</span> <span class="s2">&quot;Word </span><span class="se">\t\t</span><span class="s2"> Count </span><span class="se">\t</span><span class="s2"> Self Information&quot;</span>
+<span class="nb">print</span> <span class="s2">"Word </span><span class="se">\t\t</span><span class="s2"> Count </span><span class="se">\t</span><span class="s2"> Self Information"</span>
 <span class="n">word_count_information</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">entropy</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
@@ -3876,20 +3861,16 @@ $$ H = -\displaystyle\sum_{i=1}^R p_i\ln p_i $$<p>where they mentioned Shannon E
 
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">sorted_word_count_information</span><span class="p">:</span>
     <span class="c1"># Very inelegant way of formatting</span>
-    <span class="n">separation</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">7</span> <span class="k">else</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">:</span> <span class="n">separation</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">separation</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
-<span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Entropy of complete text: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">entropy</span><span class="p">)</span>
+    <span class="n">separation</span> <span class="o">=</span> <span class="s1">'</span><span class="se">\t\t</span><span class="s1">'</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">7</span> <span class="k">else</span> <span class="s1">'</span><span class="se">\t</span><span class="s1">'</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">:</span> <span class="n">separation</span> <span class="o">=</span> <span class="s1">''</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2">"</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">separation</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="n">ii</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+<span class="nb">print</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">Entropy of complete text: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">entropy</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Word 		 Count 	 Self Information
@@ -3972,10 +3953,8 @@ Entropy of complete text: 5.80785595201
 </pre>
 </div>
 </div>
-
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3983,52 +3962,47 @@ Entropy of complete text: 5.80785595201
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The words that are frequent contributes least amount of information where the least frequent ones are the largest contributor to the information. This is expected as the ones that are rare, most uncertain, has the highest entropy where the frequent ones "the", "a", "an" are the least uncertain.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[144]:</div>
+<div class="prompt input_prompt">In [144]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_entropy</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Uses log2 as base</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">""" Uses log2 as base</span>
+<span class="sd">    """</span>
     <span class="n">probabability_distribution</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="n">signal</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">signal</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">signal</span><span class="p">))]</span>
     <span class="n">entropy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">pp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">pp</span><span class="p">)</span> <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">probabability_distribution</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">entropy</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_url</span> <span class="o">=</span> <span class="s1">&#39;http://i.imgur.com/8vuLtqi.png&#39;</span> <span class="c1"># Lena Image</span>
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_url</span> <span class="o">=</span> <span class="s1">'http://i.imgur.com/8vuLtqi.png'</span> <span class="c1"># Lena Image</span>
 <span class="n">fd</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span>
 <span class="n">image_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="n">img_color</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_file</span><span class="p">)</span>
-<span class="n">img_grey</span> <span class="o">=</span> <span class="n">img_color</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">img_grey</span> <span class="o">=</span> <span class="n">img_color</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'L'</span><span class="p">)</span>
 <span class="n">img_color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_color</span><span class="p">)</span>
 <span class="n">img_grey</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_grey</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_entropy_of_image</span><span class="p">(</span><span class="n">img_grey</span><span class="p">,</span> <span class="n">neighborhood</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">dim0</span><span class="p">,</span> <span class="n">dim1</span> <span class="o">=</span> <span class="n">img_grey</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">entropy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img_grey</span><span class="p">)</span>
@@ -4044,46 +4018,37 @@ Entropy of complete text: 5.80785595201
 <span class="c1"># Get the entropy of the image</span>
 <span class="n">img_entropy</span> <span class="o">=</span> <span class="n">get_entropy_of_image</span><span class="p">(</span><span class="n">img_grey</span><span class="p">)</span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="On-Image">On Image<a class="anchor-link" href="#On-Image">&#182;</a></h3><p>If we want to look at the entropy on image, we could also compute the entropy for windows to measure the evenness or uncertainties. By looking at the definition, one could predict the areas that have a lot of variance would result in a higher entropy and the areas that have lower variance would result in lower entropy.<br>
+<h3 id="On-Image">On Image<a class="anchor-link" href="#On-Image">¶</a></h3><p>If we want to look at the entropy on image, we could also compute the entropy for windows to measure the evenness or uncertainties. By looking at the definition, one could predict the areas that have a lot of variance would result in a higher entropy and the areas that have lower variance would result in lower entropy.<br />
 For image, we would use the <em>Lena</em> image to look at its entropy.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_color</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqsAAAKrCAYAAADWG8TxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvU2yJDvOJXYA0j1uvldVX7f1tDegzWgLmmioZWgDWoKm
@@ -17189,38 +17154,29 @@ oTc1xNbOyn6N3QvJvUXWyU8//YSnp6ff/eNNNtlkk0022WSTTTb5/5APHz7gxx9/fPPzPzRWN9lk
 k0022WSTTTbZ5N8pf5Ao22STTTbZZJNNNtlkk3+vbMbqJptssskmm2yyySZ/WdmM1U022WSTTTbZ
 ZJNN/rKyGaubbLLJJptssskmm/xlZTNWN9lkk0022WSTTTb5y8r/ATHmmJb/bf0BAAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_grey</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqsAAAKrCAYAAADWG8TxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvetyIzmSpg2SkkiKkjKrD3NzMxc5NzKXMX2yqu6uTJEi
@@ -23920,40 +23876,31 @@ VdW//uu/zh3bc9/u2327b/ftvt23+3bf7tv/H21nZ6f+4R/+4aPPPwlW79t9u2/37b7dt/t23+7b
 fft/2Rbnj+/bfbtv9+2+3bf7dt/u2337f9zuwep9u2/37b7dt/t23+7bffs/2+7B6n27b/ftvt23
 +3bf7tt9+z/b7sHqfbtv9+2+3bf7dt/u2337P9vuwep9u2/37b7dt/t23+7bffs/2/4/qQTgRdmk
 s98AAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="prompt input_prompt">In [87]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_entropy</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Purples</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Entropy in </span><span class="si">{}</span><span class="s1">x</span><span class="si">{}</span><span class="s1"> neighbourhood&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Entropy in </span><span class="si">{}</span><span class="s1">x</span><span class="si">{}</span><span class="s1"> neighbourhood'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnsAAAK2CAYAAAA2Qlr9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXeUZGWZ/783Vc7VVZ17enIGGQF3ERElGFBYFAURBBR2
@@ -26822,14 +26769,11 @@ hBBC7p1JAqxF+r1//Md/jL/7u7/Dn/7pn+InP/kJQqEQksnk0J+hYI8QQgghZEF897vfxeeff450
 Oo2NjQ388Ic/hK7rAIAf/OAH+MM//EP8+Mc/xu7uLrxeL/7xH/9x5GMy+/rGLyGEEEIIWRp0QIMQ
 QgghZIlRsEcIIYQQssQo2COEEEIIWWIU7BFCCCGELDEK9gghhBBClhgFe4QQQgghS4yCPUIIIYSQ
 JUbBHiGEEELIEvv/AYFvAtdNif/DAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -26837,31 +26781,28 @@ JUbBHiGEEELIEvv/AYFvAtdNif/DAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The areas that have high variance have the highest entropy whereas the low variance areas has small entropy as expected. If we get the highest frequency components of the image which also correspond to high variance, we would get similar image. In order to do so, we first create a Gaussian(lowpass) filter and then subtract the response of the filter to get the highest frequency components.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">In [123]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 10 x 10 neighbor</span>
 <span class="n">lowpass</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">img_grey</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="c1"># Subtracting the lowpass, we get the highpass</span>
 <span class="n">highpass</span> <span class="o">=</span> <span class="n">img_grey</span> <span class="o">-</span> <span class="n">lowpass</span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In [124]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">highpass</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Purples</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
@@ -26869,18 +26810,12 @@ JUbBHiGEEELIEvv/AYFvAtdNif/DAAAAAElFTkSuQmCC
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAn4AAAKxCAYAAADNbqEBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXd8VFX+//88d2bSe0IaISRAqIEQeu8gHQUbqFjAtoqF
@@ -38241,35 +38176,31 @@ K621/sEeTQghhBBC/H/LZDJ069aNxYsX065dO/r06cPTTz9Njx49fpDHl4yfEEIIIcRPhOM4TJ06
 lYEDB+K6LqNGjfrBgj6QjJ8QQgghRN6QxR1CCCGEEHlCAj8hhBBCiDwhgZ8QQgghRJ6QwE8IIYQQ
 Ik9I4CeEEEIIkSck8BNCCCGEyBMS+AkhhBBC5AkJ/IQQQggh8sT/A3LNjUPuxhL4AAAAAElFTkSu
 QmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Perplexity-Definition">Perplexity Definition<a class="anchor-link" href="#Perplexity-Definition">&#182;</a></h2><p>Perplexity is a measure for the uncertainty of a random process and also closely related to entropy. It could be used to predict the sample given a probability distribution, in which is exploited in the language modeling as well.</p>
+<h2 id="Perplexity-Definition">Perplexity Definition<a class="anchor-link" href="#Perplexity-Definition">¶</a></h2><p>Perplexity is a measure for the uncertainty of a random process and also closely related to entropy. It could be used to predict the sample given a probability distribution, in which is exploited in the language modeling as well.</p>
 <p>More formally, perplexity of a probability model could be defined as follows:
 $$ exp(-\displaystyle\sum_{i=1}^R p_i\ln p_i) $$</p>
 <p>Yep, this is same exact thing with Diversity Index. As I said, information theory is big in ecology.</p>
 <p>Low-perplexity probability models or distributions are easy to compress as they have low entropy and could be represented by lower bits than the ones that are high-perplexity probability models.</p>
 <p>Perplexity is quite useful for language models as a language model puts different probabilities to a sequence of words. This is quite useful for predicting the next word for a given number of words</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[146]:</div>
+<div class="prompt input_prompt">In [146]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_perplexity</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="c1"># Use the defined entropy</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">get_entropy</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">))</span>
@@ -38289,37 +38220,29 @@ $$ exp(-\displaystyle\sum_{i=1}^R p_i\ln p_i) $$</p>
 <span class="c1"># Get the entropy of the image</span>
 <span class="n">img_perplexity</span> <span class="o">=</span> <span class="n">get_perplexity_of_image</span><span class="p">(</span><span class="n">img_grey</span><span class="p">)</span> 
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[148]:</div>
+<div class="prompt input_prompt">In [148]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_perplexity</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Purples</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Perplexity in </span><span class="si">{}</span><span class="s1">x</span><span class="si">{}</span><span class="s1"> neighbourhood&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Perplexity in </span><span class="si">{}</span><span class="s1">x</span><span class="si">{}</span><span class="s1"> neighbourhood'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">neighborhood</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAngAAAKxCAYAAADAcNFGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfXm4HUWZ/lvV3We99+YSf4ZFQBAEFNFMZJNNHCaoMCo6
@@ -44357,14 +44280,11 @@ MijgEUIIIYSsDCZZEEIIIeRZsuIcC1rwCCGEEELWBgU8QgghhJCVQQGPEEIIIWRlUMAjhBBCCFkZ
 TLIghBBCyLPErDjLghY8QgghhJCVQQGPEEIIIWRlUMAjhBBCCFkZFPAIIYQQQlYGkywIIYQQ8iz5
 r1//5+c9BNT1pyOKGe+9/1SOTAghhBBCPhfooiWEEEIIWRkU8AghhBBCVgYFPEIIIYSQlUEBjxBC
 CCFkZVDAI4QQQghZGf8Lx3yqfufEQ9IAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -44372,7 +44292,6 @@ CCFkZVDAI4QQQghZGf8Lx3yqfufEQ9IAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It behaves like a nice edge detector for the image. Also, the similarity between entropy and perplexity is quite obvious on the image as well as we build the perplexity on top of entropy, nothing unexpected, though.</p>
-
 </div>
 </div>
 </div>
@@ -44381,8 +44300,7 @@ CCFkZVDAI4QQQghZGf8Lx3yqfufEQ9IAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h2><p>I will leave into the perplexity on text into another post, as it is quite important for language models especially on the probabilistic language models.</p>
-
+<h2 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h2><p>I will leave into the perplexity on text into another post, as it is quite important for language models especially on the probabilistic language models.</p>
 </div>
 </div>
 </div>

@@ -1016,43 +1016,38 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing code_cell rendered">
+</style><html><body><div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[291]:</div>
+<div class="prompt input_prompt">In [291]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">COLOR_PALETTE</span> <span class="o">=</span> <span class="p">[</span>    
-               <span class="s2">&quot;#348ABD&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;#A60628&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;#7A68A6&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;#467821&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;#CF4457&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;#188487&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;#E24A33&quot;</span>
+               <span class="s2">"#348ABD"</span><span class="p">,</span>
+               <span class="s2">"#A60628"</span><span class="p">,</span>
+               <span class="s2">"#7A68A6"</span><span class="p">,</span>
+               <span class="s2">"#467821"</span><span class="p">,</span>
+               <span class="s2">"#CF4457"</span><span class="p">,</span>
+               <span class="s2">"#188487"</span><span class="p">,</span>
+               <span class="s2">"#E24A33"</span>
               <span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[292]:</div>
+<div class="prompt input_prompt">In [292]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">random</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1061,7 +1056,6 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Before outlier detection, let's first look at the filtering in frequency domain using FFT. I gave a brief introduction to FFT in <a href="http://bugra.github.io/work/notes/2012-09-15/Spectral-Leakage/">here</a>.  By doing so, if we have a fairly regular signal(maybe similar to periodic), we could easily remove the noise(or in a sense outliers as they are not similar to the original signal). In order to do so, I will use FFT(Fast Fourier Transform) to reject specific frequency band(known as band-pass filtering) to get the original signal. The difference between using a Moving Average or FIR filter with this approach is that the original signal is preserved  whereas Moving Average Filter smooths the signal. So, we are cherry-picking the signal which is coherent and reject the others(noise and outliers) in the frequency domain.
 I will use a simple sinusoid signal and put some gaussian noise. Gaussian and white noise are not the same thing, though.</p>
-
 </div>
 </div>
 </div>
@@ -1070,15 +1064,15 @@ I will use a simple sinusoid signal and put some gaussian noise. Gaussian and wh
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Filtering-Noise-via-FFT-from-Periodic-Signals">Filtering Noise via FFT from Periodic Signals<a class="anchor-link" href="#Filtering-Noise-via-FFT-from-Periodic-Signals">&#182;</a></h3>
+<h3 id="Filtering-Noise-via-FFT-from-Periodic-Signals">Filtering Noise via FFT from Periodic Signals<a class="anchor-link" href="#Filtering-Noise-via-FFT-from-Periodic-Signals">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[332]:</div>
+<div class="prompt input_prompt">In [332]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Signal Parameters</span>
 <span class="n">number_of_samples</span>  <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">frequency_of_signal</span>  <span class="o">=</span> <span class="mi">5</span>  
@@ -1093,33 +1087,25 @@ I will use a simple sinusoid signal and put some gaussian noise. Gaussian and wh
 <span class="n">noise</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)]</span>
 <span class="n">signal_with_noise</span> <span class="o">=</span> <span class="p">[</span><span class="n">ii</span> <span class="o">+</span> <span class="n">jj</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">noise</span><span class="p">)]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[333]:</div>
+<div class="prompt input_prompt">In [333]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Original Signal'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtIAAAF7CAYAAAD/kWwRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXmYZGV5//09p9au6r2nu6d7ehaGGWYYGDbZGRBFJWCC
@@ -1711,14 +1697,11 @@ vr4eJ0+eBADs3bsXnZ2d2LZtG+kih1m5ciX279+PYDAIxhj27t2Ljo4O0gUBIH1/orq6GoWFhThw
 b36jSAeHDh1iq1evZi0tLezrX//6kt9LF7IQBEEQBEEQhAIMv5CFIAiCIAiCIMwIOdIEQRAEQRAE
 oQBypAmCIAiCIAhCAeRIEwRBEARBEIQCyJEmCIIgCIIgCAWQI00QBEEQBEEQCiBHmiAIgiAIgiAU
 QI40QRAEQRAEQSjg/wPoJx9LFr7K2gAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1726,31 +1709,24 @@ QI40QRAEQRAEQSjg/wPoJx9LFr7K2gAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Clean, nice a sinusoidal signal. Let's look at the signal with noise.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[334]:</div>
+<div class="prompt input_prompt">In [334]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal_with_noise</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Signal with Noise&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Signal with Noise'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAAF7CAYAAADPHX0wAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmYVMW5/7/dwwyboICC+waioCigEYPjnmgSY268Gr3m
@@ -2892,14 +2868,11 @@ qq2treqUKVPU5557LoOtJ0Hwm9/8JpHFgnZBtm/frs6ZM0edPn26etVVV6lHjhyhXRD1vvvuUzs6
 OtSuri519erV6tDQEO0iB7nhhhvU+vp6taCgQG1qalIfeughV3bw6quvql1dXWpra6t6++23W56X
 hUIIIYQQQggR8LVQCCGEEEIIIVGDDjIhhBBCCCECdJAJIYQQQggRoINMCCGEEEKIAB1kQgghhBBC
 BOggE0IIIYQQIkAHmRBCCCGEEAE6yIQQQgghhAj8f0Y5gAn0URCsAAAAAElFTkSuQmCC
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2908,15 +2881,14 @@ BOggE0IIIYQQIkAHmRBCCCGEEAE6yIQQQgghhAj8f0Y5gAn0URCsAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Looks so messy!
 One can also increase the sigma or mu of Gaussian noise as FFT does not necessarily care about the amplitude or the variance of the signal but the frequency of the signal. So, as long as the signal has a specific frequency range which is somehow different than the original signal. Then, it can be filtered out quite effectively using FFT.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[335]:</div>
+<div class="prompt input_prompt">In [335]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fft_of_signal_with_noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">signal_with_noise</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fft_of_signal_with_noise</span><span class="p">),</span><span class="n">sample_time</span><span class="p">)</span>
 
@@ -2929,11 +2901,9 @@ One can also increase the sigma or mu of Gaussian noise as FFT does not necessar
 <span class="n">F_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">([</span><span class="n">bandpass_filter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">freq</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">freq</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fft_of_signal_with_noise</span><span class="p">,</span> <span class="n">f</span><span class="p">)]);</span>
 <span class="n">filtered_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">F_filtered</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2941,31 +2911,24 @@ One can also increase the sigma or mu of Gaussian noise as FFT does not necessar
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We create our bandpass filter in order to accept a specific frequency range and reject others. Then, after rejecting frequencies, we reconsruct our signal using Inverse Fast Fourier Transform(IFFT). That is pretty much it.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[336]:</div>
+<div class="prompt input_prompt">In [336]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fft_of_signal_with_noise</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Frequency response of Signal with noise&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fft_of_signal_with_noise</span><span class="p">),</span> <span class="s1">'o'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Frequency response of Signal with noise'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAssAAAF7CAYAAAAkKsYzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXlYFFfW/79NNyAKKKAsCi5IjEvQqOi44IqOSZwsbzLz
@@ -3846,14 +3809,11 @@ Y8YMmzFjhr388suhr5GdexoaGmzy5MmWn59vW7du9Xo4GMaRI0csIyPDiouLQ/Nu//79duXKFZs/
 f74VFBRYWVmZXb16NfQzkeYivHP48OFQNwyyc8cPP/xgJSUlNn36dHvuueesq6srbvllmFGECgAA
 AAwn4d0wAAAAAFexWAYAAAAiYLEMAAAARMBiGQAAAIiAxTIAAAAQAYtlAAAAIAIWywAAAEAELJYB
 AACACP4fq4t4ayPoT1sAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3861,48 +3821,41 @@ AACACP4fq4t4ayPoT1sAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This plot shows two important things. First, FFT of the signal is symmetric. Why is that? Because any <strong>real</strong> signal has <strong>symmetric</strong> frequency response. Converse is also true. Any <strong>symmetric</strong> signal should have <strong>real</strong> frequency response. Second, frequency response of the original signal at 5 Hz, which are quite high(amplitude-wise). What about other frequency responses? They are all frequency responses of noise. Generally speaking, noise behaves like this in frequency domain just like that. All around scattered frequency components, not coherent, not consistent, just noise.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[337]:</div>
+<div class="prompt input_prompt">In [337]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_time</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Original Signal'</span><span class="p">);</span>
  
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_time</span><span class="p">,</span> <span class="n">signal_with_noise</span><span class="p">,</span> <span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Signal with Noise&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Signal with Noise'</span><span class="p">);</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_time</span><span class="p">,</span> <span class="n">filtered_signal</span><span class="p">,</span> <span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Filtered Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Filtered Signal'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="n">amplitude</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">]);</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F_filtered</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F_filtered</span><span class="p">),</span> <span class="s1">'o'</span><span class="p">);</span>
 <span class="c1"># Frequency response will be symmetric, no need to get the negative component</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Frequency Spectrum of Filtered Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Frequency Spectrum of Filtered Signal'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">]);</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency(Hz)&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'frequency(Hz)'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA74AAAOwCAYAAAAZdKhxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4XFedN/Dvnd5HvTdLsi0XudtS3ENCigMhtCTAmwWy
@@ -6435,14 +6388,11 @@ xx/1/vvv6+uvv77t13nsscc0fvx49enT57aPBQDA7WLGFwCACmTWrFnq1KlTkRfAiomJUUxMzB15
 nS+//PKOHAcAgDuBxhcAgHJS0n18y0NoaKgsFouWLFni0jwAAChvLHUGAAAAAJgaF7cCAAAAAJga
 jS8AAAAAwNRofAEAAAAApkbjCwAAAAAwNRpfAAAAAICp0fgCAAAAAEzt/wM7VrqydwU6TAAAAABJ
 RU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6450,7 +6400,6 @@ RU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Filtered signal and original signal looks alike to me. If we also investigate the frequency response of the filtered signal, we could actually observe that it has one frequency response which happens to be at 5 Hz which is also the original signal. Since we are only bandpass filtering the signal, we preserved the frequency of the original signal in the sense that we did not change or smooth while removing the noise.</p>
-
 </div>
 </div>
 </div>
@@ -6467,7 +6416,6 @@ RU5ErkJggg==
 </ol>
 <p>However, if our signal is band-limited signal and has different frequency response from the outliers and noise, band-pass filtering of a signal is an important tool to eliminate outliers or noise.</p>
 <p>FFT is a powerful tool for signal processing but also has a disadvantage. It removes the time information of the signal completely when we take FFT of the signal. Therefore, if the outlier or noise has similar frequency responses but can be discriminated from their behavior across time.  Then, FFT approach would not work.</p>
-
 </div>
 </div>
 </div>
@@ -6476,15 +6424,15 @@ RU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Signal-Definitions">Signal Definitions<a class="anchor-link" href="#Signal-Definitions">&#182;</a></h3>
+<h3 id="Signal-Definitions">Signal Definitions<a class="anchor-link" href="#Signal-Definitions">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[448]:</div>
+<div class="prompt input_prompt">In [448]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -6494,11 +6442,9 @@ RU5ErkJggg==
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mf">10.</span><span class="p">):</span>
     <span class="n">y_with_outlier</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">-.</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6506,32 +6452,25 @@ RU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's construct our original signal in the form of a damped signal. It varies first, then stabilizes. This signal may not be your average signal but it shows change over time. Definitely not periodic. The change itself also changes over time. First, the function increases and desreases drastically and then the change slows down.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[449]:</div>
+<div class="prompt input_prompt">In [449]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original (Smooth) Signal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Original (Smooth) Signal'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAswAAAF7CAYAAADG9t1KAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VNX5B/DvuXfWJBASQhKSsAdIwiJQVkFEKCKgtFWK
@@ -6878,37 +6817,28 @@ UHZ2NrlwuMOHD6u7u1u3b99WTU2NXn/9dZ04cYJcONzg4KAePHggSXr48KG+/vprZWRkTDsXtj+H
 duTIEa1du5ZsOFh7e7tKS0vl9/vl9/tVUlKi999//6kHasF5mpub9fHHH6uuro5cONzt27e1ZcsW
 SdLY2JiKi4u1b9++aefC9oUZAAAACGe2H1wCAAAAhDMWZgAAACAIFmYAAAAgCBZmAAAAIAgWZgAA
 ACAIFmYAAAAgCBZmAAAAIAgWZgAAACCI/wOcy49skToVggAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[482]:</div>
+<div class="prompt input_prompt">In [482]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_with_outlier</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Signal with Outliers&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Signal with Outliers'</span><span class="p">);</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAswAAAF7CAYAAADG9t1KAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VNX9//HXvXdmsgFhTYAQCPuiyKIsShAUl0K/Uqv9
@@ -7276,14 +7206,11 @@ O3Xp0iX5/X69/vrrWrFihZ599ln19vYqLy9PH374oR588EGnS8UE6urq0hNPPKGSkpLE12U7duxQ
 WVkZ2fCwaDSq9evXa2RkRCMjI6qrq9OWLVt0+fJlcgFJUmdnp/bs2aO2tjZy4XFnz57VypUrJd26
 id54c+F4wwwAAAC4meMblwAAAABuRsMMAAAAWKBhBgAAACzQMAMAAAAWaJgBAAAACzTMAAAAgAUa
 ZgAAAMACDTMAAABg4f8BmVHa0cDNJ2wAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7291,7 +7218,6 @@ ZgAAAMACDTMAAABg4f8BmVHa0cDNJ2wAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nice, we get a signal with outliers. Very good start. Note that, we add the noise to the signal's original value as it is likely to have the outlier values close to the original signal value.</p>
-
 </div>
 </div>
 </div>
@@ -7300,22 +7226,21 @@ ZgAAAMACDTMAAABg4f8BmVHa0cDNJ2wAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Median-Filtering-Approach">Median Filtering Approach<a class="anchor-link" href="#Median-Filtering-Approach">&#182;</a></h2><p>Using a moving average(read as mean filtering) does not work for outliers because outlier introduces a drastic change in the mean of the signal. If you try to smooth the signal, then you end up with a signal that you wish you did not filter the signal in the first place.
+<h2 id="Median-Filtering-Approach">Median Filtering Approach<a class="anchor-link" href="#Median-Filtering-Approach">¶</a></h2><p>Using a moving average(read as mean filtering) does not work for outliers because outlier introduces a drastic change in the mean of the signal. If you try to smooth the signal, then you end up with a signal that you wish you did not filter the signal in the first place.
 Then, median filtering comes to rescue. It is robust to noise and <strong>outliers</strong>. What more do we want?</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[451]:</div>
+<div class="prompt input_prompt">In [451]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_median_filtered</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">"""</span>
 <span class="sd">    signal: is numpy array-like</span>
 <span class="sd">    returns: signal, numpy array </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">difference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">signal</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
     <span class="n">median_difference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">median_difference</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">difference</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">median_difference</span><span class="p">)</span>
@@ -7323,17 +7248,15 @@ Then, median filtering comes to rescue. It is robust to noise and <strong>outlie
     <span class="n">signal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">signal</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[453]:</div>
+<div class="prompt input_prompt">In [453]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">window_size</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">outlier_s</span> <span class="o">=</span> <span class="n">y_with_outlier</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -7346,34 +7269,24 @@ Then, median filtering comes to rescue. It is robust to noise and <strong>outlie
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">median_filtered_signal</span><span class="p">)),</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Median Filtered Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Median Filtered Signal'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Original Signal'</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt output_prompt">Out[453]:</div>
-
-
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.text.Text at 0x11a6ece10&gt;</pre>
 </div>
-
 </div>
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAs8AAAF7CAYAAAAtwWZJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8FHX+x/HXzO6mhxZICCSASAlgpCgg0g4VFTix11P5
@@ -7956,14 +7869,11 @@ y0lEQVTusGHD3N27d8e6qRIj8+bNcy+66CLXdV3FhbhffPGF27t3b7d79+7upZde6ubn5ysuxH3k
 kUfczp07u127dnV/+tOfuiUlJYqLWmjMmDFu8+bN3WAw6Kanp7t//etfvzcOHnzwQbdt27Zuhw4d
 3Dlz5vzg8bVIioiIiIjIEYr5IikiIiIiIicLJc8iIiIiIkdIybOIiIiIyBFS8iwiIiIicoSUPIuI
 iIiIHCElzyIiIiIiR0jJs4iIiIjIEVLyLCIiIiJyhP4f9QIERhzz1cgAAAAASUVORK5CYII=
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7971,7 +7881,6 @@ iIiIHCElzyIiIiIiR0jJs4iIiIjIEVLyLCIiIiJyhP4f9QIERhzz1cgAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Without affecting the original signal, we removed all of the outliers, yet introduce new ones. That is the shortcoming of the method, since change is a lot in a small interval(around peaks), this method introduces medians even if there is no outliers. The unwanted signal is closer to original signal, so there is still improvement. Further, this is easy to prevent with another heuristics. We will only look at the signal that behaves regularly or using a sliding window to have a more robust approach. But this example is important to show how a non-linear filter is able to reject all of the outliers without doing anything very complicated. This has due to mainly two reasons. First one is that $l_1$ norm. Instead of using $l_2$, we use $l_1$ as this norm does not change too much when an outlier gets introduced to the signal whereas $l_2$ norm(since it takes the square of the distance) outliers have much more profound effect. We are preventing using $l_1$ norm. Second one is that we are filtering <em>adaptively</em>. Instead of using a mean filter, and average all of the numbers, we only look at the candidates that could be outliers. First, we get convinced those points are outlier, then we attempt to remove them. This makes it hard to reject the regular signal. What about disadvantages? First and foremost, it is nonlinear filtering. There is no going back. You cannot get the original signal that you begin with. Further, we are also applying a threshold which makes it even harder. There are two important parameters, threshold and sliding window which requires some parameter tuning. But generally outliers are quite either signal specific or application specific. Therefore, this may not be a disadvantage.</p>
-
 </div>
 </div>
 </div>
@@ -7980,17 +7889,16 @@ iIiIHCElzyIiIiIiR0jJs4iIiIjIEVLyLCIiIiJyhP4f9QIERhzz1cgAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="FFT(Fast-Fourier-Transform)-Approach">FFT(Fast Fourier Transform) Approach<a class="anchor-link" href="#FFT(Fast-Fourier-Transform)-Approach">&#182;</a></h2><p>So, we filter the noise with FFT. What about outliers? We could do it that as well. FFT to rule them all.<br>
+<h2 id="FFT(Fast-Fourier-Transform)-Approach">FFT(Fast Fourier Transform) Approach<a class="anchor-link" href="#FFT(Fast-Fourier-Transform)-Approach">¶</a></h2><p>So, we filter the noise with FFT. What about outliers? We could do it that as well. FFT to rule them all.<br />
 The procedure is coarsely like this: we look at the frequency response of the signal and observe if there is any high frequency component beyond some threshold. If there is, we return the outlier position.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[480]:</div>
+<div class="prompt input_prompt">In [480]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">detect_outlier_position_by_fft</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">threshold_freq</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">frequency_amplitude</span><span class="o">=.</span><span class="mi">01</span><span class="p">):</span>
     <span class="n">fft_of_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
     <span class="n">outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
@@ -8007,34 +7915,26 @@ The procedure is coarsely like this: we look at the frequency response of the si
         <span class="n">outlier_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ii</span> <span class="o">+</span> <span class="n">outlier_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">outlier_positions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">outlier_positions</span><span class="p">))</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[481]:</div>
+<div class="prompt input_prompt">In [481]:</div>
 <div class="inner_cell">
-    <div class="input_area">
+<div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y_with_outlier</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">y_with_outlier</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">outlier_positions</span><span class="p">,</span> <span class="n">y_with_outlier</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">outlier_positions</span><span class="p">)],</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outliers&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">y_with_outlier</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">y_with_outlier</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Original Signal'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">outlier_positions</span><span class="p">,</span> <span class="n">y_with_outlier</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">outlier_positions</span><span class="p">)],</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Outliers'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
-
 </div>
 </div>
 </div>
-
 <div class="output_wrapper">
 <div class="output">
-
-
 <div class="output_area"><div class="prompt"></div>
-
-
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAs8AAAFwCAYAAABHBpaKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VPXd///nbJlM9j1kX0gIAcKiCC5xRVRQcK1rW6tS
@@ -8413,14 +8313,11 @@ kJubG/B4PIEffvjB+qjD3rFjxwJlZWWBQCBA/xj69NNPA0VFRYGpU6cGFi9eHLh8+TL9Y2T79u2B
 goKCwJQpUwKPP/54oLu7m/ZRtHz58sDEiRMDSUlJAafTGdizZ8+AvZl5IuvP/V999dWIzpy8SAoA
 AAAQoiHz2zYAAACAoY7hGQAAAAgRwzMAAAAQIoZnAAAAIEQMzwAAAECIGJ4BAACAEDE8AwAAACFi
 eAYAAABC9D9yLucjRY23KwAAAABJRU5ErkJggg==
-">
-</div>
-
-</div>
-
+" />
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8428,7 +8325,6 @@ eAYAAABC9D9yLucjRY23KwAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not bad huh? Actually, we captured all of the outliers!  Yet, we have again some parameters to tune(frequency amplitude, frequency threshold, and sliding window size). Well, outlier is ill-defined. Therefore, I think one should expect tweaking parameters to get <em>their</em> outliers.</p>
-
 </div>
 </div>
 </div>
@@ -8437,8 +8333,7 @@ eAYAAABC9D9yLucjRY23KwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Do-you-know-any-other-methods?">Do you know any other methods?<a class="anchor-link" href="#Do-you-know-any-other-methods?">&#182;</a></h3><p>When I was presented this particular problem last week, these two methods that came to my mind immmediately. What about you? Do you know any other methods that are more effective, scale better, or Bayesian? Please, leave a comment.</p>
-
+<h3 id="Do-you-know-any-other-methods?">Do you know any other methods?<a class="anchor-link" href="#Do-you-know-any-other-methods?">¶</a></h3><p>When I was presented this particular problem last week, these two methods that came to my mind immmediately. What about you? Do you know any other methods that are more effective, scale better, or Bayesian? Please, leave a comment.</p>
 </div>
 </div>
 </div>
