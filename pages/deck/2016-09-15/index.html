@@ -104,16 +104,17 @@
 1. Compatible People Query [Postgres -> User, Ethnicity, EthnicityPreference, Religion, ReligionPreference]
 2. Produce Eligible People List by removing people that are in Bloom Filter passed by Relationship Service.
     - Filter out all of you friends [Fetched from Facebook, but queried from Redis]
-3. Write `player` and his/her demography information to `Demography` table if s/he does not have enough potentials.
-4. Get `VW` Scores for save probability and reverse save probabilities.
-5. Compute the conversation rate of people(player and eligible people)
-6. Subsample a crop for 100 people.[`crop rotation`]
-7. Count total number of skips for eligible people
-8. Get all of the predictions from `VW`.
-9. Compute the prediction score by multiply
-10. Prioritize based on distance
-11. Prioritize based on degree of friends
-12. Write the predictions into Prediction table[Dynamodb]
+3. Count total number of skips for eligible people
+4. Write `player` and his/her demography information to `Demography` table if s/he does not have enough potentials.
+5. Get `VW` Scores for save probability and reverse save probabilities.
+6. Compute the conversation rate of people(player and eligible people)
+7. Subsample a crop for 100 people.[`crop rotation`]
+8. Count total number of skips for eligible people
+9. Get all of the predictions from `VW`.
+10. Compute the prediction score by multiply
+11. Prioritize based on distance
+12. Prioritize based on degree of friends
+13. Write the predictions into Prediction table[Dynamodb]
 </section>
 
 
@@ -122,6 +123,14 @@
 1. Fetch facebook friends from Facebook and insert them into Redis.
 2. Insert user record into the `user` table in Postgresql.
 3. Insert `ethnicity`, `religion`, `ethnicity_preference` and `religion_preference` to each table.
+</section>
+
+
+<section data-markdown data-background="#c92940">
+#### `DELETE /user`
+1. Soft-delete => which makes the person ineligible for recommendations for other people.
+2. Hard-delete => which removes all of the records that are related to the user. Most of the tables in Postgres has a foreign-key to `user` table, so it is
+ sufficient to remove the user record in `user` table and that deletion is going to propagate to other tables(`CASCADE` in `sql`).
 </section>
 
 
