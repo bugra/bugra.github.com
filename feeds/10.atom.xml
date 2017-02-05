@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/10.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-02-10T00:00:00+00:00</updated><entry><title>K-Means, Sparse Coding, Dictionary Learning and All That</title><link href="http://bugra.github.io/work/notes/2015-02-10/k-means-sparse-coding-dictionary-learning-and-all-that/" rel="alternate"></link><published>2015-02-10T00:00:00+00:00</published><updated>2015-02-10T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-02-10:work/notes/2015-02-10/k-means-sparse-coding-dictionary-learning-and-all-that/</id><summary type="html">&lt;h2&gt;Feature Learning&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz - 10</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/10.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-02-10T00:00:00+00:00</updated><entry><title>K-Means, Sparse Coding, Dictionary Learning and All That</title><link href="http://bugra.github.io/work/notes/2015-02-10/k-means-sparse-coding-dictionary-learning-and-all-that/" rel="alternate"></link><published>2015-02-10T00:00:00+00:00</published><updated>2015-02-10T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-02-10:/work/notes/2015-02-10/k-means-sparse-coding-dictionary-learning-and-all-that/</id><summary type="html">&lt;h2&gt;Feature Learning&lt;/h2&gt;
+&lt;p&gt;Feature learning especially from images is a fundamental step in a classification
+pipeline as the raw pixels create both huge feature vectors per image
+and are not necessarily good to represent the image in an efficient way 
+for image classification problems.&lt;/p&gt;
+&lt;h2&gt;Unsupervised Feature Learning&lt;/h2&gt;
+&lt;p&gt;Computer vision community came …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Feature Learning&lt;/h2&gt;
 &lt;p&gt;Feature learning especially from images is a fundamental step in a classification
 pipeline as the raw pixels create both huge feature vectors per image
 and are not necessarily good to represent the image in an efficient way 
@@ -61,14 +67,14 @@ for the K-Means without whitening is the patches end up low-frequency and color
 dominant whereas the whitened patches are more like edge-like filters.&lt;/p&gt;
 &lt;h6&gt;Patch Length = 8&lt;/h6&gt;
 &lt;p&gt;Whitened filters:
-![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_8_100.png ‘K-Means Filters with Stride=8’)&lt;/p&gt;
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_8_100.png" title="‘K-Means Filters with Stride=8’"&gt;&lt;/p&gt;
 &lt;p&gt;Not-whitened filters:
-![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_8_unnormalized_100.png ‘K-Means Filters - Unnormalized with Stride=8’)&lt;/p&gt;
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_8_unnormalized_100.png" title="‘K-Means Filters - Unnormalized with Stride=8’"&gt;&lt;/p&gt;
 &lt;h6&gt;Patch Length = 4&lt;/h6&gt;
 &lt;p&gt;Whitened filters:
-![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_4_100.png ‘K-Means Filters with Stride=4’)&lt;/p&gt;
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_4_100.png" title="‘K-Means Filters with Stride=4’"&gt;&lt;/p&gt;
 &lt;p&gt;Not-whitened filters:
-![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_4_unnormalized_100.png ‘K-Means Filters with Stride=4’)&lt;/p&gt;
+&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_4_unnormalized_100.png" title="‘K-Means Filters with Stride=4’"&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Generally people use some whitening for various reasons; for K-Means, it makes
 easier to converge also filters-learned are more edge-like rather than pure colors
@@ -151,6 +157,6 @@ Some of the filters learn only colors similar to some of the filters in K-Means
 that are somehow similar to each other after selecting 20 of them by hand. Some of 
 even if after whitening, which was somehow disappointing. &lt;/p&gt;
 &lt;h4&gt;Whitened Filters&lt;/h4&gt;
-&lt;p&gt;![Whitened Filters](/images/work/notes/2015/2/10/dictionary_learning_stride_8_256.png ‘Dictionary Learning Whitened Filters’)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Whitened Filters" src="/images/work/notes/2015/2/10/dictionary_learning_stride_8_256.png" title="‘Dictionary Learning Whitened Filters’"&gt;&lt;/p&gt;
 &lt;h4&gt;Unwhitened Filters&lt;/h4&gt;
-&lt;p&gt;![Unwhitened Filters](/images/work/notes/2015/2/10/dictionary_learning_stride_8_256_unnormalized.png ‘Dictionary Learning Unwhitened Filters’)&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;&lt;img alt="Unwhitened Filters" src="/images/work/notes/2015/2/10/dictionary_learning_stride_8_256_unnormalized.png" title="‘Dictionary Learning Unwhitened Filters’"&gt;&lt;/p&gt;</content></entry></feed>

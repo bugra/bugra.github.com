@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/23.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2016-10-23T00:00:00+00:00</updated><entry><title>DynamoDB Learnings</title><link href="http://bugra.github.io/work/notes/2016-10-23/dynamodb-learnings/" rel="alternate"></link><published>2016-10-23T00:00:00+00:00</published><updated>2016-10-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2016-10-23:work/notes/2016-10-23/dynamodb-learnings/</id><summary type="html">&lt;p&gt;At &lt;a href="https://hinge.co/"&gt;Hinge&lt;/a&gt;, we have been using Dynamodb in production for more than 8 months and we just relaunched &lt;a href="https://techcrunch.com/2016/10/11/the-new-hinge-focused-exclusively-on-real-relationships-now-costs-7month/"&gt;two weeks ago&lt;/a&gt; with full capacity. I want to share couple of learnings and why it made sense for us to store ratings in DynamoDB since I own the rating processing in the application. 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz - 23</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/23.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2016-10-23T00:00:00+00:00</updated><entry><title>DynamoDB Learnings</title><link href="http://bugra.github.io/work/notes/2016-10-23/dynamodb-learnings/" rel="alternate"></link><published>2016-10-23T00:00:00+00:00</published><updated>2016-10-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2016-10-23:/work/notes/2016-10-23/dynamodb-learnings/</id><summary type="html">&lt;p&gt;At &lt;a href="https://hinge.co/"&gt;Hinge&lt;/a&gt;, we have been using Dynamodb in production for more than 8 months and we just relaunched &lt;a href="https://techcrunch.com/2016/10/11/the-new-hinge-focused-exclusively-on-real-relationships-now-costs-7month/"&gt;two weeks ago&lt;/a&gt; with full capacity. I want to share couple of learnings and why it made sense for us to store ratings in DynamoDB since I own the rating processing in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At &lt;a href="https://hinge.co/"&gt;Hinge&lt;/a&gt;, we have been using Dynamodb in production for more than 8 months and we just relaunched &lt;a href="https://techcrunch.com/2016/10/11/the-new-hinge-focused-exclusively-on-real-relationships-now-costs-7month/"&gt;two weeks ago&lt;/a&gt; with full capacity. I want to share couple of learnings and why it made sense for us to store ratings in DynamoDB since I own the rating processing in the application. 
 We are processing millions of ratings per day, upto so far, DynamoDB is holding pretty good so far. They are also crucial for our recommender to get smarter, so care is very much needed for ratings.&lt;/p&gt;
 &lt;h3&gt;DynamoDB&lt;/h3&gt;
 &lt;p&gt;It is a NoSQL database which is very similar to other NoSQL databases like Mongo, or other key-value storages like SimpleDB, but it is also different in various ways. These differences
@@ -76,32 +76,34 @@ Another thing we want to store is the action itself of course which we call &lt;
 &lt;p&gt;Reads that are done against &lt;code&gt;player_id&lt;/code&gt;-&lt;code&gt;subject_id&lt;/code&gt; are very fast as well as the writes. This was very important as we are processing very large volume of rating activity per day and even shaving 100 milliseconds would benefit the whole system. We do rating resolution every time when we process a rating which is like a FSM in order to figure out what the next state should be between people. We are doing an extra read in this operation since we are not double-inserting them into the database when we write the pair into the database.  &lt;/p&gt;
 &lt;h5&gt;Load Testing&lt;/h5&gt;
 &lt;p&gt;We of course did a load testing since we knew this database is going to get large very quickly and we did not want to have the similar problem in the early version of Hinge. What we did is that we sampled a bunch of ratings and filled a DynamoDB with 1.2 billion records and see what the performance of those queries would look like with that size.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Timing Against 1.2 Billion Records" src="/images/work/notes/2016/10/23/timing-dynamodb-violinplot.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Timing Against 1.2 Billion Records" src="/images/work/notes/2016/10/23/timing-dynamodb-violinplot.png"&gt;&lt;/p&gt;
 &lt;p&gt;Timings in &lt;code&gt;millisecond&lt;/code&gt; in the above graph and &lt;code&gt;write_record&lt;/code&gt; signifies a single write timing, &lt;code&gt;query_player_subject&lt;/code&gt; is read operation for &lt;code&gt;player_id&lt;/code&gt;-&lt;code&gt;subject_id&lt;/code&gt; and finally &lt;code&gt;get_subject_id_list&lt;/code&gt; is the list of subjects that player has rated.  &lt;/p&gt;
 &lt;p&gt;The timings were pretty great as you can see from the above graph. On average reading &lt;code&gt;player_id-subject_id&lt;/code&gt; which is the busiest lookup operation takes around 9 milliseconds and write was also in the similar timing range(8-9 milliseconds). The construction of bloom filter takes more than 15 milliseconds on average for that volume, but not even close to 20 milliseconds.&lt;/p&gt;
 &lt;p&gt;One thing is that, the timings have pretty long tail and I cut around 200 milliseconds. &lt;/p&gt;
 &lt;h4&gt;Possible Improvements&lt;/h4&gt;
 &lt;p&gt;If we were to store the both parties' actions into a single rating record, that would be better in terms of number of queries are done against to the database, but I am not sure how much we would lose efficiency in terms of payload size. Right now we have connection object which is kind of two ratings merged into a single object. Also the bloated(already) &lt;code&gt;state&lt;/code&gt; enum would become more complex since the states need to encode 3 or 4 actions.(it encodes at most 2 actions right now). We can combine all of what happened into a single record, that would be much efficient and better in terms of query performance. However, I am not sure if that solution would be cleaner and better than what we have right now.  &lt;/p&gt;
 &lt;h4&gt;Performance in the Wild&lt;/h4&gt;
-&lt;p&gt;It has been two weeks DynamoDB in the production since global relaunch. I have of course graphs(CloudWatch, albeit)&lt;br /&gt;
+&lt;p&gt;It has been two weeks DynamoDB in the production since global relaunch. I have of course graphs(CloudWatch, albeit)&lt;br&gt;
 Especially, in the launch day, we knew that it was going to be crazy because of the PR and push. So, we overprovisioned pretty much everything in terms of infrastructure. DynamoDB was no exception.&lt;/p&gt;
 &lt;h5&gt;Read Capacity&lt;/h5&gt;
-&lt;p&gt;Except the first day, the graph looks pretty much cylical and periodic which is expected. We downscaled since we are not using much of our provisioned throughput after some time.&lt;br /&gt;
-&lt;img alt="Read Capacity Provisioned and Consumed" src="/images/work/notes/2016/10/23/read-capacity-dynamodb.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Except the first day, the graph looks pretty much cylical and periodic which is expected. We downscaled since we are not using much of our provisioned throughput after some time.&lt;br&gt;
+&lt;img alt="Read Capacity Provisioned and Consumed" src="/images/work/notes/2016/10/23/read-capacity-dynamodb.png"&gt;&lt;/p&gt;
 &lt;h5&gt;Write Capacity&lt;/h5&gt;
 &lt;p&gt;Write capacity follows read capacity similarly. Especially with user activity, both reads and writes are increasing and that is being reflected consumed throughput. 
-&lt;img alt="Write Capacity Provisioned and Consumed" src="/images/work/notes/2016/10/23/write-capacity-dynamodb.png" /&gt;&lt;/p&gt;
+&lt;img alt="Write Capacity Provisioned and Consumed" src="/images/work/notes/2016/10/23/write-capacity-dynamodb.png"&gt;&lt;/p&gt;
 &lt;p&gt;So, what about the performance? At this point, we have many million ratings and large volume of ratings happening in every second. &lt;/p&gt;
 &lt;h5&gt;Read Latency&lt;/h5&gt;
 &lt;p&gt;Except the first day(the activity bursted on that day), DynamoDB provides single digit millisecond consistently. What is amazing is that its performance does not degrade over time because of how they partition and do the request routing for a single query. We do not experience less than 4 millisecond timings from the application, though. We experience 8-9 milliseconds from the application.
-&lt;img alt="Read Latency" src="/images/work/notes/2016/10/23/read-latency-dynamodb.png" /&gt;&lt;/p&gt;
+&lt;img alt="Read Latency" src="/images/work/notes/2016/10/23/read-latency-dynamodb.png"&gt;&lt;/p&gt;
 &lt;h5&gt;Write Latency&lt;/h5&gt;
-&lt;p&gt;Writes are more stable than reads even around the first day.&lt;br /&gt;
-&lt;img alt="Write Latency" src="/images/work/notes/2016/10/23/write-latency-dynamodb.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Writes are more stable than reads even around the first day.&lt;br&gt;
+&lt;img alt="Write Latency" src="/images/work/notes/2016/10/23/write-latency-dynamodb.png"&gt;&lt;/p&gt;
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;In software engineering, you can make technical decisions based on a number of factor things: how much you know about it(I do not know anything about DynamoDB, we should not choose it), how bad your bias is around it(MongoDB is terrible, everything about that db is just terrible), how much you understand(I do not know any SQL, so we should go with NoSQL, better yet, MongoDB), how easy it would be to implement(SQLAlchemy already provides a connection to Posgresql, let's go with that one), how much code do you need to remove(I already wrote a wrapper around DB A, we should not go with DB B), how much you are interested in that area(DB is not my area, let's implement some solution and move on) and so forth. All of the decision factors yield a suboptimal solution for the problem you have because your decision around that decision does not necessarily address the &lt;strong&gt;problem&lt;/strong&gt; at the moment, but rather your interpretation of what the problem is.  &lt;/p&gt;
 &lt;p&gt;Looking back, I think this is one of the things that I am extremely proud and will remember at my time at Hinge, not because the technology was cool(which kind of is), but we did our due diligence around the technology. We examined our needs, we knew what we needed from the database, we did load testing and scalability testing before dedicating ourselves fully. All of our ducks were in a row, when I start implementation on this one, we have not had any slight concern around the database capability since everything was so well-planned and therefore predictable. We kept an open mind since we did not want to experience putting out fire on the database when you have large amount of load. I am not saying we did not have any biases, I think we had a huge bias which made us choosing DynamoDB; where we really did not want to host and manage the database ourselves. At least, we acknowledged it and we knew about it. It did not get lost in translation. &lt;/p&gt;
-&lt;p&gt;When &lt;strong&gt;Mise en place&lt;/strong&gt; is in action, the only thing is needed crafting and implementing the solution is itself, which is the easiest part. &lt;/p&gt;</summary></entry><entry><title>On Machine Learning</title><link href="http://bugra.github.io/work/notes/2014-08-23/on-machine-learning/" rel="alternate"></link><published>2014-08-23T00:00:00+00:00</published><updated>2014-08-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-08-23:work/notes/2014-08-23/on-machine-learning/</id><summary type="html">&lt;p&gt;&lt;img alt="Sparse Colorful Filters" src="http://i.imgur.com/xmkGeNc.png" title="Colorful Sparse Filters" /&gt;&lt;/p&gt;
+&lt;p&gt;When &lt;strong&gt;Mise en place&lt;/strong&gt; is in action, the only thing is needed crafting and implementing the solution is itself, which is the easiest part. &lt;/p&gt;</content></entry><entry><title>On Machine Learning</title><link href="http://bugra.github.io/work/notes/2014-08-23/on-machine-learning/" rel="alternate"></link><published>2014-08-23T00:00:00+00:00</published><updated>2014-08-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-08-23:/work/notes/2014-08-23/on-machine-learning/</id><summary type="html">&lt;p&gt;&lt;img alt="Sparse Colorful Filters" src="http://i.imgur.com/xmkGeNc.png" title="Colorful Sparse Filters"&gt;&lt;/p&gt;
+&lt;p&gt;Recently, I wrote &lt;a href="https://www.cbinsights.com/blog/human-resources-news-classification-machine-learning"&gt;how we do classification at CB Insights&lt;/a&gt;.
+The post outlines some of the things that I have been thinking about how to apply machine learning for a given problem along with the process that we adopted for the classification problem at CB Insights, but also gave me …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Sparse Colorful Filters" src="http://i.imgur.com/xmkGeNc.png" title="Colorful Sparse Filters"&gt;&lt;/p&gt;
 &lt;p&gt;Recently, I wrote &lt;a href="https://www.cbinsights.com/blog/human-resources-news-classification-machine-learning"&gt;how we do classification at CB Insights&lt;/a&gt;.
 The post outlines some of the things that I have been thinking about how to apply machine learning for a given problem along with the process that we adopted for the classification problem at CB Insights, but also gave me a good opportunity
 to reflect even further about the machine learning process; shortcomings of papers, books and even traditional education system when it comes to teach the machine learning.  &lt;/p&gt;
@@ -165,7 +167,7 @@ bad to explain separate sections but not necessarily tell the whole story of wha
 &lt;blockquote&gt;
 &lt;p&gt;Data does replace heuristics, hard-coded rules, assumptions and beliefs. Machine learning only enables data to do that. &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="Sparse Grayscale Filters" src="http://i.imgur.com/7hoflR2.gif" title="Sparse Filters" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Sparse Grayscale Filters" src="http://i.imgur.com/7hoflR2.gif" title="Sparse Filters"&gt;&lt;/p&gt;
 &lt;h3&gt;Learning is not &lt;strong&gt;only&lt;/strong&gt; learning&lt;/h3&gt;
 &lt;p&gt;Learning has three important components. First one is representation of input, second one is representation of the classifier and third one is evaluation. Although first one and second are closely related, I will separate them into different sections.&lt;/p&gt;
 &lt;p&gt;Representation of input is to transform the input into a vector or some amenable form to be useful for learning. Bag of Words(BoW) or Term Frequency Inverse Document Frequency(TF-IDF) for text, pixel values or engineered features(SIFT, SURF) for images to give couple of examples. As most of the raw data found in the wild is not amenable learning, this step is crucial. In computer vision domain, even the pixel values are found to be not very good or discriminative, so computer vision researchers come up with higher level representations for the images.&lt;/p&gt;
@@ -212,7 +214,13 @@ needs to be strong(noise free or should have very minimal noise ideally) and als
 &lt;p&gt;I said noise-free training samples in the beginning of this section, but for some of algorithms(especially the ones that tend to overfit, some amount of noise may actually improve the classification accuracy due to the reasons that I explained above). &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;What is next?&lt;/h4&gt;
-&lt;p&gt;Classifiers. &lt;/p&gt;</summary></entry><entry><title>Simple Bayesian Network via Monte Carlo Markov Chain</title><link href="http://bugra.github.io/work/notes/2014-05-23/simple-bayesian-network-via-monte-carlo-markov-chain-mcmc-pymc/" rel="alternate"></link><published>2014-05-23T00:00:00+00:00</published><updated>2014-05-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-05-23:work/notes/2014-05-23/simple-bayesian-network-via-monte-carlo-markov-chain-mcmc-pymc/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;Classifiers. &lt;/p&gt;</content></entry><entry><title>Simple Bayesian Network via Monte Carlo Markov Chain</title><link href="http://bugra.github.io/work/notes/2014-05-23/simple-bayesian-network-via-monte-carlo-markov-chain-mcmc-pymc/" rel="alternate"></link><published>2014-05-23T00:00:00+00:00</published><updated>2014-05-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-05-23:/work/notes/2014-05-23/simple-bayesian-network-via-monte-carlo-markov-chain-mcmc-pymc/</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;After I put some material to the blog around Monte Carlo Markov Chain, I get some emails which ask how to do apply MCMC in Bayesian Networks. To keep DRY and KISS principles in mind, here is my attempt to explain the one of the most simple Bayesian Network via MCMC using PyMC, Sprinkler.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1133,8 +1141,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -1145,9 +1155,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
 &lt;style type="text/css"&gt;
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1185,19 +1197,21 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-&lt;/style&gt;&lt;html&gt;&lt;body&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;After I put some material to the blog around Monte Carlo Markov Chain, I get some emails which ask how to do apply MCMC in Bayesian Networks. To keep DRY and KISS principles in mind, here is my attempt to explain the one of the most simple Bayesian Network via MCMC using PyMC, Sprinkler.&lt;/p&gt;
-&lt;h2 id="Bayesian-Networks"&gt;Bayesian Networks&lt;a class="anchor-link" href="#Bayesian-Networks"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Bayesian Networks also known as Belief Networks are a particular subset of probabilistic graphical models(Directed Acyclic Graph). Graphical models are useful in a number of ways as they combine graph theory, machine learning and statistics. They provide a good representation to model the probabilistic structures between random variables.  Nodes represent random variables where the edges represent probabilistic dependency, namely conditional probability between two variables(given parent variable, the probability of child variable). The edges are important as they are directed and they show a direct relation between two random variables which makes it easy to both reason about the network structure and also provides a reasonably simple way to compute the joint probabilities between two random variables if we know the prior probability of the parent variable. The structure also implicitly suggests that the two variables that are nondescendents of each other are independent. Therefore, the influence of one variable is limited to its descendents. Similarly if the node(random variable) does not have any connection to parent nodes, then its edge proabability is called &lt;strong&gt;unconditional&lt;/strong&gt; as it does not have any influence from other variables whereas other edges that are &lt;em&gt;influenced&lt;/em&gt; called &lt;strong&gt;conditional&lt;/strong&gt; as you might guess.&lt;/p&gt;
+&lt;h2 id="Bayesian-Networks"&gt;Bayesian Networks&lt;a class="anchor-link" href="#Bayesian-Networks"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Bayesian Networks also known as Belief Networks are a particular subset of probabilistic graphical models(Directed Acyclic Graph). Graphical models are useful in a number of ways as they combine graph theory, machine learning and statistics. They provide a good representation to model the probabilistic structures between random variables.  Nodes represent random variables where the edges represent probabilistic dependency, namely conditional probability between two variables(given parent variable, the probability of child variable). The edges are important as they are directed and they show a direct relation between two random variables which makes it easy to both reason about the network structure and also provides a reasonably simple way to compute the joint probabilities between two random variables if we know the prior probability of the parent variable. The structure also implicitly suggests that the two variables that are nondescendents of each other are independent. Therefore, the influence of one variable is limited to its descendents. Similarly if the node(random variable) does not have any connection to parent nodes, then its edge proabability is called &lt;strong&gt;unconditional&lt;/strong&gt; as it does not have any influence from other variables whereas other edges that are &lt;em&gt;influenced&lt;/em&gt; called &lt;strong&gt;conditional&lt;/strong&gt; as you might guess.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;Note that the conditionality does not necessarily suggest a causal ralationship between two random variables. For Bayesian NEtwork to be a causal network, the relations between two random variables need to be explicitly causal in order to infer any causal structure in the network.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id="Formal-Definition"&gt;Formal Definition&lt;a class="anchor-link" href="#Formal-Definition"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A Bayesian Network $N$ is a Directed Acyclic Graph which defines a Joint Probability Distribution over random variables.&lt;/p&gt;
+&lt;h3 id="Formal-Definition"&gt;Formal Definition&lt;a class="anchor-link" href="#Formal-Definition"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A Bayesian Network $N$ is a Directed Acyclic Graph which defines a Joint Probability Distribution over random variables.&lt;/p&gt;
 $$N = \langle N, \Theta \rangle$$&lt;p&gt;
 where $N$ represents the graph which is defined over $X_1, X_2, \ldots,  X_K$ random variables, then Joint Probability Distribution could be written as in the following:&lt;/p&gt;
 $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$&lt;p&gt;where $\theta_{X_i|\pi_i} = P_N(X_i|\pi_i) $&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1207,25 +1221,28 @@ $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$&lt;p&gt;wh
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Let's look at what does it look like to implement in PyMC.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [1]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; inline
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [2]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;daft&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pymc&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
@@ -1234,19 +1251,24 @@ $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$&lt;p&gt;wh
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ggplot&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 
-&lt;span class="n"&gt;COLORS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"#348ABD"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"#A60628"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"#7A68A6"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;COLORS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#348ABD&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;#A60628&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;#7A68A6&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;Couldn't import dot_parser, loading of dot files will not be possible.
+&lt;pre&gt;Couldn&amp;#39;t import dot_parser, loading of dot files will not be possible.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stderr output_text"&gt;
 &lt;pre&gt;/Users/bugra/anaconda/lib/python2.7/site-packages/pytz/__init__.py:29: UserWarning: Module argparse was already imported from /Users/bugra/anaconda/python.app/Contents/lib/python2.7/argparse.pyc, but /Users/bugra/anaconda/lib/python2.7/site-packages is being added to sys.path
@@ -1254,46 +1276,60 @@ $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$&lt;p&gt;wh
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [3]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; inline
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [4]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pgm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PGM&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'r'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'rain'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aspect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'s'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'sprinkler'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aspect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'w'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'grass wet'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aspect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;observed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'r'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'s'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'r'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'w'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'s'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'w'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aspect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aspect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;daft&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;grass wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;aspect&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;observed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_edge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;pgm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="c1"&gt;#pgm.figure.savefig("sprinkler.png", dpi=500)&lt;/span&gt;
+&lt;span class="c1"&gt;#pgm.figure.savefig(&amp;quot;sprinkler.png&amp;quot;, dpi=500)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
+
+
 &lt;div class="output_text output_subarea output_execute_result"&gt;
 &lt;pre&gt;&amp;lt;matplotlib.axes.Axes at 0x10b6f8c90&amp;gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgwAAADxCAYAAACnFe/hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VIW9//HPZBKSkJCFQMlSISFBiIGwZkGsoCDYUoNW
@@ -1460,11 +1496,14 @@ LgIDAACwi8AAAADsIjAAAAC7CAwAAMAuAgMAALCLwAAAAOwiMAAAALsIDAAAwC4CAwAAsIvAAAAA
 wC4CAwAAsIvAAAAA7CIwAAAAuwgMAADALgIDAACwi8AAAADsIjAAAAC7CAwAAMAuAgMAALCLwAAA
 AOwiMAAAALsIDAAAwC4CAwAAsIvAAAAA7CIwAAAAuwgMAADALgIDAACwi8AAAADsIjAAAAC7CAwA
 AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1472,6 +1511,7 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In this graph, &lt;strong&gt;Rain&lt;/strong&gt; is the unconditional variable as it does not have any parent variable. &lt;strong&gt;Sprinkler&lt;/strong&gt; is the conditioanal variable as it is influenced by &lt;strong&gt;Rain&lt;/strong&gt;. &lt;strong&gt;Grass Wet&lt;/strong&gt; is the observed variable. If you are doing anything with graphical models, draw the graphical model in either a piece of paper or use tikz/daft to draw as above. It makes much easy to reason and to see the relations. There is a reason why people prefer graphical models representation instead of raw equations.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1480,30 +1520,38 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Models"&gt;Models&lt;a class="anchor-link" href="#Models"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Models"&gt;Models&lt;a class="anchor-link" href="#Models"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [5]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.display&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;
-&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'http://upload.wikimedia.org/wikipedia/commons/0/0e/SimpleBayesNet.svg'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://upload.wikimedia.org/wikipedia/commons/0/0e/SimpleBayesNet.svg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;img src="http://upload.wikimedia.org/wikipedia/commons/0/0e/SimpleBayesNet.svg" /&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1511,33 +1559,36 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Default values are taken from the example provided in the above. (Taken from &lt;a href="http://en.wikipedia.org/wiki/Bayesian_network#Example"&gt;Wikipedia&lt;/a&gt;)&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [21]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[21]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Initialization&lt;/span&gt;
 &lt;span class="n"&gt;observed_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="n"&gt;rain&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'rain'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;observed_values&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="n"&gt;rain&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;observed_values&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
-&lt;span class="n"&gt;p_sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Lambda&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'p_sprinkler'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;p_sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Lambda&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;p_sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-&lt;span class="c1"&gt;# "Real" sprinkler varible&lt;/span&gt;
-&lt;span class="n"&gt;sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'sprinkler'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;observed_values&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;Real&amp;quot; sprinkler varible&lt;/span&gt;
+&lt;span class="n"&gt;sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ones&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;observed_values&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
-&lt;span class="n"&gt;p_grass_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Lambda&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'p_grass_wet'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; 
+&lt;span class="n"&gt;p_grass_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Lambda&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;p_grass_wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; 
                                                                                          &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;span class="n"&gt;grass_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'grass_wet'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_grass_wet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;observed_values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;observed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;grass_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;grass_wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_grass_wet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;observed_values&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;observed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;grass_wet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_grass_wet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_sprinkler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;rain&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1545,6 +1596,7 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In &lt;code&gt;p_sprinkler&lt;/code&gt;, &lt;code&gt;np.where&lt;/code&gt; checks the rain and if &lt;code&gt;True&lt;/code&gt;, then puts small probability otherwise put &lt;strong&gt;.4&lt;/strong&gt; taken from the graphical model retrieved from wikipedia. The reason why we wrap into the Lambda function, because we want to trace this variable in the model in the inference and PyMC does not allow a non-pymc variable to put into the model, so we need to wrap the variable into a PyMC variable using &lt;code&gt;Lambda&lt;/code&gt; in the PyMC. This is also &lt;em&gt;true&lt;/em&gt; for &lt;code&gt;p_grass_wet&lt;/code&gt; as well.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1553,66 +1605,78 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Inference"&gt;Inference&lt;a class="anchor-link" href="#Inference"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Inference"&gt;Inference&lt;a class="anchor-link" href="#Inference"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [52]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[52]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mcmc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MCMC&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt; [-----------------100%-----------------] 10000 of 10000 complete in 4.9 sec&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [53]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[53]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;trace_r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'rain'&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
-&lt;span class="n"&gt;trace_p_sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'p_sprinkler'&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
-&lt;span class="n"&gt;trace_sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'sprinkler'&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
-&lt;span class="n"&gt;trace_p_grass_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'p_grass_wet'&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;trace_r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;rain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
+&lt;span class="n"&gt;trace_p_sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;p_sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
+&lt;span class="n"&gt;trace_sprinkler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
+&lt;span class="n"&gt;trace_p_grass_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;trace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;p_grass_wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[:]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Convergence-Diagnostics"&gt;Convergence Diagnostics&lt;a class="anchor-link" href="#Convergence-Diagnostics"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Convergence-Diagnostics"&gt;Convergence Diagnostics&lt;a class="anchor-link" href="#Convergence-Diagnostics"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [54]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[54]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Matplot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Plotting p_grass_wet_0
@@ -1622,7 +1686,10 @@ Plotting rain_0
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAk8AAAFwCAYAAAChA5+LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtclHX6//HXcIgUBfEEclBUQCBRQYTspIaoWLpqaR42
@@ -2096,10 +2163,14 @@ rL/XqxdeeEG88MILQgghVq9eLQIDAx2vBzNnzvRq/JKSEhEXFycSExPF7NmzRVVVlVfjX0vpyZMr
 TZsm4uPjxeuvv+7V+IcPHxZRUVEiOjpaZGdnO9796m3cJJOIiIhoGDy+SSYRERGRlnDyRERERDQM
 nDwRERERDQMnT0RERETDwMkTERER0TBw8kREREQ0DJw8EREREQ0DJ09EREREw/D/VS95fRBGyDcA
 AAAASUVORK5CYII=
-" /&gt;
+"&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAFwCAYAAAB6uDWpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X1clFX+//HXIGTe4j0oQ2GBAkmKGlhpaYgChrutZaKr
@@ -2522,10 +2593,14 @@ sEA5HA4DKx/fWNurl156Sb300ku+dR577DGVmpqqsrOz1QcffGBUqQEFyrJp0yYVExPj27bdeeed
 RpY7Li3PyZBHHnlEvf766+EuUTMtWZ555hnfNmH37t1GlRpQoCwXLlxQ999/v8rOzlZZWVnq8OHD
 RpY7rtHbsf3790/6Pc8ThBIREREFSchPEEpEREQ0VbCxIiIiIgoSNlZEREREQcLGioiIiChI2FgR
 ERERBQkbKyIiIqIgYWNFREREFCRsrIiIiIiC5P8AveSQ5pnAwAYAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAl8AAAFwCAYAAACGrR5jAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtclHXe//HXAJNn8ZCCzOCighwKFUTooHcHFMWUstI8
@@ -2979,10 +3054,14 @@ I0Pl5uaq/fv3K6WUOnHihMrLy1N5eXlq3Lhxlq6ht8tw5swZ5fF41N13363uuecelZaWpi5cuNDn
 sXbVt/McrFixQiUlJYWv+VOmTLnlsXbVt/McVFZWqnHjxqkJEyaoadOmqcbGRlvPQV/17TwH17t+
 8NXXsX3hTVaJiIiIbCR6k1UiIiKigYaDLyIiIiIbcfBFREREZCMOvoiIiIhsxMEXERERkY04+CIi
 IiKyEQdfRERERDbi4IuIiIjIRv8Pk4CjzPs0SZ8AAAAASUVORK5CYII=
-" /&gt;
+"&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAFwCAYAAAB6uDWpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X9clHW+///HKOSqJeAvCIbCAgUMf2VQm/3En7i6tpWp
@@ -3361,26 +3440,35 @@ PXr0SK6oDjnqsnHjRvLx8bGNbdOmTZMzrl0ij8kv69evp9LSUndHFCbS5eDBg7YxITc3V66oDjnq
 0tzcTEuWLKHIyEjS6XRUXFwsZ1y7fh/H8vLy/vic5wVCGWOMMcYk0u8LhDLGGGOM/S14YsUYY4wx
 JhGeWDHGGGOMSYQnVowxxhhjEuGJFWOMMcaYRHhixRhjjDEmEZ5YMcYYY4xJhCdWjDHGGGMS+S92
 ai5Q1p8ykQAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [58]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[58]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;geweke&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geweke&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mcmc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;pymc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Matplot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geweke_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geweke&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEGCAYAAACAd+UpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtYlHXaB/DvDAcRCFAv8QSkoagoAYri246ndclQSV31
@@ -3544,10 +3632,14 @@ bGzy5HZsm+atS8d+/fXXePPNN1FeXo6kpCR0794dzz77LKqqqjB27Nha+8bGxlrve+SRRzBr1iy0
 bdsWCQkJtfYbOnQonnrqKZSUlKBt27aIiorCSy+9hICAAOs+c+fOxe9+9zsA1U9CN2/edMtlbUl/
 uHYNEZEb40yeiMiNsckTEbkxNnkiIjfGJk9E5MbY5ImI3BibPBGRG2OTJyJyY/8PR3XjSbKkwp4A
 AAAASUVORK5CYII=
-" /&gt;
+"&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEGCAYAAACAd+UpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtclHXaP/DPDEdBxUMKCbgogXhAIDHTMCNDUkQzfa2n
@@ -3711,10 +3803,14 @@ ePAgMjMzm3xfI+PHjV97eXndto3I0tjkyeEYN82fLh176tQpvPXWW6isrERcXBzuuusurFy5ErW1
 tZg8eXKTfSMiIgzbfve73yEpKQk9evRAdHR0k/3GjBmD5cuXo7y8HD169EBoaCheeukleHt7G/Z5
 4okn8Nvf/hZAwz9CVVVVDrmsLWkP164hInJgnMkTETkwNnkiIgfGJk9E5MDY5ImIHBibPBGRA2OT
 JyJyYGzyREQO7P8DRRaEWFIZEvMAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAEGCAYAAABvtY4XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X9UVHX+P/DnnWEQQYQwRfkxR0JEhRFR1C0n0wysFLX0
@@ -3868,10 +3964,14 @@ mcjJycGePXvqPe+Wusu3Pvb19W3wGJGzscGTrtRtmL+9/OvRo0fx4YcfoqysDImJiejRowfmzJmD
 qqoqjB07tt62cXFxtsdmzJiB559/HkFBQUhISKi33X333Ye//OUvKC0tRVBQEHr27Il33nkHfn5+
 tm2mTZuGF198EUDtL6Dy8nJdXpqWtIfXoiEi0inO4ImIdIoNnohIp9jgiYh0ig2eiEin2OCJiHSK
 DZ6ISKfY4ImIdOr/A7XoJDdbH17uAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAEGCAYAAABvtY4XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtUVPXaB/DvngFFrl5SUJGlB8ErAYFhhaUpeBTxkrpS
@@ -4033,11 +4133,14 @@ NsxLl389ePAg3nrrLdTU1CAuLg4DBw7Es88+i/r6ekyZMqXZvuHh4db77rvvPvz1r39F9+7dER0d
 3Wy/G264Af/6179QWVmJ7t27IzQ0FC+++CK8vLys+/zjH//A3//+dwCNP4AuXLhgyKVpSX+4Fg0R
 kUFxBk9EZFBs8EREBsUGT0RkUGzwREQGxQZPRGRQbPBERAbFBk9EZFD/D2UQgN9JbctvAAAAAElF
 TkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4045,85 +4148,94 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;For a MCMC procedure, Geweke Z-Scores should be between 2 standard deviation and all of the samples are between 2 standard deviation that suggests it is converged.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [59]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[59]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-              &lt;span class="s1"&gt;'Rain'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
-              &lt;span class="s1"&gt;'Sprinkler'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_sprinkler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
-              &lt;span class="s1"&gt;'Sprinkler Probability'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_p_sprinkler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()],&lt;/span&gt;
-              &lt;span class="s1"&gt;'Grass Wet'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_p_grass_wet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()],&lt;/span&gt;
+              &lt;span class="s1"&gt;&amp;#39;Rain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+              &lt;span class="s1"&gt;&amp;#39;Sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_sprinkler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt;
+              &lt;span class="s1"&gt;&amp;#39;Sprinkler Probability&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_p_sprinkler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()],&lt;/span&gt;
+              &lt;span class="s1"&gt;&amp;#39;Grass Wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ii&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ii&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;trace_p_grass_wet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tolist&lt;/span&gt;&lt;span class="p"&gt;()],&lt;/span&gt;
               &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[59]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;Grass Wet&lt;/th&gt;
-&lt;th&gt;Rain&lt;/th&gt;
-&lt;th&gt;Sprinkler&lt;/th&gt;
-&lt;th&gt;Sprinkler Probability&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;0&lt;/th&gt;
-&lt;td&gt; 0.8&lt;/td&gt;
-&lt;td&gt; 1&lt;/td&gt;
-&lt;td&gt; 0&lt;/td&gt;
-&lt;td&gt; 0.01&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1&lt;/th&gt;
-&lt;td&gt; 0.2&lt;/td&gt;
-&lt;td&gt; 0&lt;/td&gt;
-&lt;td&gt; 0&lt;/td&gt;
-&lt;td&gt; 0.40&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;2&lt;/th&gt;
-&lt;td&gt; 0.9&lt;/td&gt;
-&lt;td&gt; 0&lt;/td&gt;
-&lt;td&gt; 1&lt;/td&gt;
-&lt;td&gt; 0.40&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;3&lt;/th&gt;
-&lt;td&gt; 0.9&lt;/td&gt;
-&lt;td&gt; 0&lt;/td&gt;
-&lt;td&gt; 1&lt;/td&gt;
-&lt;td&gt; 0.40&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;4&lt;/th&gt;
-&lt;td&gt; 0.9&lt;/td&gt;
-&lt;td&gt; 0&lt;/td&gt;
-&lt;td&gt; 1&lt;/td&gt;
-&lt;td&gt; 0.40&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Grass Wet&lt;/th&gt;
+      &lt;th&gt;Rain&lt;/th&gt;
+      &lt;th&gt;Sprinkler&lt;/th&gt;
+      &lt;th&gt;Sprinkler Probability&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt; 0.8&lt;/td&gt;
+      &lt;td&gt; 1&lt;/td&gt;
+      &lt;td&gt; 0&lt;/td&gt;
+      &lt;td&gt; 0.01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt; 0.2&lt;/td&gt;
+      &lt;td&gt; 0&lt;/td&gt;
+      &lt;td&gt; 0&lt;/td&gt;
+      &lt;td&gt; 0.40&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt; 0.9&lt;/td&gt;
+      &lt;td&gt; 0&lt;/td&gt;
+      &lt;td&gt; 1&lt;/td&gt;
+      &lt;td&gt; 0.40&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt; 0.9&lt;/td&gt;
+      &lt;td&gt; 0&lt;/td&gt;
+      &lt;td&gt; 1&lt;/td&gt;
+      &lt;td&gt; 0.40&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt; 0.9&lt;/td&gt;
+      &lt;td&gt; 0&lt;/td&gt;
+      &lt;td&gt; 1&lt;/td&gt;
+      &lt;td&gt; 0.40&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;5 rows × 4 columns&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4131,30 +4243,37 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Given grass is wet, what is the probability that it was rained?&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [82]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[82]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p_rain_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Rain'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Grass Wet'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Grass Wet'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p_rain_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Rain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Grass Wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Grass Wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p_rain_wet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;0.345809971208
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4162,6 +4281,7 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Compare this number on the &lt;a href="http://en.wikipedia.org/wiki/Bayesian_network#Example"&gt;wikipedia page&lt;/a&gt; where we try to compute $ P(R|W) = \frac{P(R,W)}{P(W)}$ from the simulations, instead of joint probabilities.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4171,30 +4291,37 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Given grass is wet, what is the probability that sprinkler was opened?&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [71]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[71]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p_sprinkler_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Sprinkler'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Grass Wet'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p_sprinkler_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Grass Wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p_sprinkler_wet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;0.658887710259
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4202,41 +4329,49 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;So, everything is perfect? Not really, if we look at the cases where sprinkler did not work and it did not rain, then grass cannot be wet. However, when we look at the probability of that, it is not zero(albeit quite small).&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [80]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[80]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p_not_sprinkler_rain_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Sprinkler'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Rain'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Grass Wet'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;p_not_sprinkler_rain_wet&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sprinkler&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Rain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Grass Wet&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p_not_sprinkler_rain_wet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;0.212304894681
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Takeaways"&gt;Takeaways&lt;a class="anchor-link" href="#Takeaways"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Takeaways"&gt;Takeaways&lt;a class="anchor-link" href="#Takeaways"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Graphical models make much easy to reason about this type of networks, where you do not have to figure out the conditional probabilities. From the graph, it is immediate.&lt;/li&gt;
 &lt;li&gt;You could marginalize out the nodes when you take into their "influence" over other variables. You could get very small networks by marginalizing out the variables that you know the dependency(read conditional probability )&lt;/li&gt;
 &lt;li&gt;If you have new evidence, you could create a new branch and update that part. Inference does not have to update all of the variables as the random variables that are independent would not change but only the new evidence's descendents. &lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4267,7 +4402,14 @@ TkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 2</title><link href="http://bugra.github.io/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/" rel="alternate"></link><published>2014-02-23T00:00:00+00:00</published><updated>2014-02-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-23:work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</content></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 2</title><link href="http://bugra.github.io/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/" rel="alternate"></link><published>2014-02-23T00:00:00+00:00</published><updated>2014-02-23T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-23:/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Data"&gt;Data&lt;a class="anchor-link" href="#Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Data is from IMDB and includes top 100042 popularly voted movies. This post is second in series, see the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first post&lt;/a&gt;.  I had some great feedback from &lt;a href="https://news.ycombinator.com/item?id=7249717"&gt;HN&lt;/a&gt; and decided to deal with more on categories of movies.
+In this one, I will first look at number of movies per category over time and rating of the categories. Second, I will compare popularly voted directors with other directors, give best directors for popularly voted categories. At the end, I will look at the correlation of the categories and do PCA on the movies. As in the first post, I will let the data speak for itself rather than explaining every single graph.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -5188,8 +5330,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -5200,9 +5344,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
 &lt;style type="text/css"&gt;
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -5240,13 +5386,15 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-&lt;/style&gt;&lt;html&gt;&lt;body&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Data"&gt;Data&lt;a class="anchor-link" href="#Data"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Data is from IMDB and includes top 100042 popularly voted movies. This post is second in series, see the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first post&lt;/a&gt;.  I had some great feedback from &lt;a href="https://news.ycombinator.com/item?id=7249717"&gt;HN&lt;/a&gt; and decided to deal with more on categories of movies.
+&lt;h3 id="Data"&gt;Data&lt;a class="anchor-link" href="#Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Data is from IMDB and includes top 100042 popularly voted movies. This post is second in series, see the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first post&lt;/a&gt;.  I had some great feedback from &lt;a href="https://news.ycombinator.com/item?id=7249717"&gt;HN&lt;/a&gt; and decided to deal with more on categories of movies.
 In this one, I will first look at number of movies per category over time and rating of the categories. Second, I will compare popularly voted directors with other directors, give best directors for popularly voted categories. At the end, I will look at the correlation of the categories and do PCA on the movies. As in the first post, I will let the data speak for itself rather than explaining every single graph.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5255,7 +5403,7 @@ In this one, I will first look at number of movies per category over time and ra
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Are-old-movies-better-than-the-contemporary-ones-?"&gt;Are old movies better than the contemporary ones ?&lt;a class="anchor-link" href="#Are-old-movies-better-than-the-contemporary-ones-?"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Are-old-movies-better-than-the-contemporary-ones-?"&gt;Are old movies better than the contemporary ones ?&lt;a class="anchor-link" href="#Are-old-movies-better-than-the-contemporary-ones-?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5264,23 +5412,29 @@ In this one, I will first look at number of movies per category over time and ra
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h4 id="Mean-Score-of-Ratings-over-Year"&gt;Mean Score of Ratings over Year&lt;a class="anchor-link" href="#Mean-Score-of-Ratings-over-Year"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="Mean-Score-of-Ratings-over-Year"&gt;Mean Score of Ratings over Year&lt;a class="anchor-link" href="#Mean-Score-of-Ratings-over-Year"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [201]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[201]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfAAAAFkCAYAAADfW2mzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VPW9P/D37JNlMlkmCSEhhGwkgRiBELawBFDQQETc
@@ -5569,11 +5723,14 @@ mTMH999/v2cbarUaACCTyfDxxx9j165d+Oc//4kpU6Zg165dyMvLG/rGiCIIz4ETRbiCggJ0dnZi
 RUU4efJkUHohiiTcAyeKcCqVCv/3f/+HVatWoaenB1qtFhs3bkRCQgIeffRRjBkzBqmpqbj99tth
 s9lgsVggkUg80yuWlJRgypQpGDt2LKKjozF+/HjccsstQe6KKPzxHDgREZEI8RA6ERGRCDHAiYiI
 RIgBTkREJEIMcCIiIhFigBMREYkQA5yIiEiEGOBEREQi9P8Bwq0f/m452t8AAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -5581,6 +5738,7 @@ RIgBTkREJEIMcCIiIhFigBMREYkQA5yIiEiEGOBEREQi9P8Bwq0f/m452t8AAAAASUVORK5CYII=
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In the first post, we observed that the movies that are old consistently rated higher than the contemporary ones. When we look at the mean rating of movies per year(ignoring the count), we could observe this much more clearly. But, wait a second, maybe there are a lot of outliers which manipulate the rating to lower end for the movies that are released in 90's and 00's.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5589,23 +5747,29 @@ RIgBTkREJEIMcCIiIhFigBMREYkQA5yIiEiEGOBEREQi9P8Bwq0f/m452t8AAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h4 id="Median-Score-of-Ratings-over-Year"&gt;Median Score of Ratings over Year&lt;a class="anchor-link" href="#Median-Score-of-Ratings-over-Year"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="Median-Score-of-Ratings-over-Year"&gt;Median Score of Ratings over Year&lt;a class="anchor-link" href="#Median-Score-of-Ratings-over-Year"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [202]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[202]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfAAAAFkCAYAAADfW2mzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl81IWd//HXHMlMziHJhIDcV+QKyClgAFEqKErxrl2r
@@ -5886,11 +6050,14 @@ nnqKv/mbv6GxsZHdu3fz0EMPsXDhQv7yl78QiUQA+PoLdp999hlz585lzpw5rFixgrFjx7Jr1y4A
 LS0tWCyW2GkVJ06cyMyZMxk/fjzp6elMnjyZK6+8EoD169ezZMmSZMYTOe/pPXAROedmz57NK6+8
 gtvtTvYoIuctvYQuIufUSy+9xI033qjyFkkwHYGLiIiYkI7ARURETEgFLiIiYkIqcBERERNSgYuI
 iJiQClxERMSE/j9teGDdKa1GZwAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -5898,6 +6065,7 @@ iJiQClxERMSE/j9teGDdKa1GZwAAAABJRU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Nope, still they are low. Although not as low as the mean rating, they are still low. Yet, they are getting better although not as high as old movies. However, this is too coarse as there are a number of different categories and we are counting over all of the categories and then get the median rating of the movies. Maybe, some of the categories are quite different than the all movies.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5906,8 +6074,9 @@ iJiQClxERMSE/j9teGDdKa1GZwAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Categories-over-Time"&gt;Categories over Time&lt;a class="anchor-link" href="#Categories-over-Time"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In this section, I separated the 23 categories into 4 different sections(6,6,6,5) based on the count of the categories. My aim is to first look at the count of the categories and then track the median rating for the categories to get a better understanding of how movies per category gets rated in IMDB. I give the total count of the categories in the first post.&lt;br /&gt;
+&lt;h2 id="Categories-over-Time"&gt;Categories over Time&lt;a class="anchor-link" href="#Categories-over-Time"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In this section, I separated the 23 categories into 4 different sections(6,6,6,5) based on the count of the categories. My aim is to first look at the count of the categories and then track the median rating for the categories to get a better understanding of how movies per category gets rated in IMDB. I give the total count of the categories in the first post.&lt;br&gt;
 Movies given in the following four sections are sorted by the total number of movies. The graphs are also sorted by the count of categories. The largest category for each section would be in the bottom.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5916,7 +6085,7 @@ Movies given in the following four sections are sorted by the total number of mo
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="First-Section"&gt;First Section&lt;a class="anchor-link" href="#First-Section"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="First-Section"&gt;First Section&lt;a class="anchor-link" href="#First-Section"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Drama&lt;/li&gt;
 &lt;li&gt;Comedy&lt;/li&gt;
 &lt;li&gt;Action&lt;/li&gt;
@@ -5924,22 +6093,29 @@ Movies given in the following four sections are sorted by the total number of mo
 &lt;li&gt;Crime&lt;/li&gt;
 &lt;li&gt;Thriller&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [204]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[204]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAH9CAYAAADRUVCQAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt8VNW99/HvJEyuZMLVYKuACHgLIloQDQn1AgYiAoI+
@@ -6350,25 +6526,34 @@ zBhkZmYCAOrr68FfbDIMw0iHj1wzDMNolB49eqBXr15ITk4GAGzZsgWzZs3CypUr0aZNG+zcuRPA
 lF4dhmGYFgGfFsIwDKNBdu3aBW9vb6SmpnJjzTAM8x/CR64ZhmEYhmEYRib4yDXDMAzDMAzDyAQ3
 1wzDMAzDMAwjE9xcMwzDMAzDMIxMcHPNMAzDMAzDMDLBzTXDMAzDMAzDyAQ31wzDMAzDMAwjE/8D
 0/mBYO/Z44EAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [205]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[205]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAAHwCAYAAACYMcj+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8XGW9+PHPmX3LTPZJmjRJ030vlJadshQKLdAFvcrl
@@ -8032,18 +8217,21 @@ MkTDhg3TkiVLJEmrV6/WU089pZUrVyo8PFxr166V5L3oMTc3VwMHDlReXp7GjBmjU6dOybIsWZYV
 xFcAAH0fPdoA0AuVlZVpxowZOnjwoEJDQ4O9HADADdA6AgC9zDvvvKMJEyZoxYoVhGwA+BbjjDYA
 AABgA85oAwAAADYgaAMAAAA2IGgDAAAANiBoAwAAADYgaAMAAAA2IGgDAAAANvg/fyIprHCjq50A
 AAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Second-Section"&gt;Second Section&lt;a class="anchor-link" href="#Second-Section"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Second-Section"&gt;Second Section&lt;a class="anchor-link" href="#Second-Section"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Horror&lt;/li&gt;
 &lt;li&gt;Adventure&lt;/li&gt;
 &lt;li&gt;Family&lt;/li&gt;
@@ -8051,22 +8239,29 @@ AAAASUVORK5CYII=
 &lt;li&gt;Fantasy&lt;/li&gt;
 &lt;li&gt;Mystery&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [206]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[206]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtYAAAH9CAYAAAA+kzuuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt4FOXd//HP5gRJyIZwKGhb4MEoKlFEAdGQICoUjChH
@@ -8490,25 +8685,34 @@ AODEiRNISEgAABQWFmLTpk2YP38+ioqKAAA9PT3gNzMZhmHkw1esGYZh3JAJEyZg0qRJyMrKAgC8
 DMO4Id9++y0SEhJw5swZDBs2TO3VYRiGGRLwrSAMwzBuxptvvomgoCDk5ORwU80wDPMjwlesGYZh
 GIZhGEYB+Io1wzAMwzAMwygAN9YMwzAMwzAMowDcWDMMwzAMwzCMAnBjzTAMwzAMwzAKwI01wzAM
 wzAMwygAN9YMwzAMwzAMowD/B0fT/iLfXdMPAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [207]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[207]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtoAAAHwCAYAAACYMcj+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8XHW9//HXObPv2ZOm+0JbaIGugliWAgJCVTYVRUEF
@@ -10551,18 +10755,21 @@ ySefxF133YV3330XAKBpGvgLTSIifbGiTUTUTw0dOhSFhYVYvnw5AGDDhg146KGHsHbtWlgsFmza
 tAlA5KLHiooKDBo0CJWVlRg3bhxOnz4NSZIgSVIvPgMiopsbe7SJiPqpCxcuYNasWfjss89gMpl6
 +3SIiKgdto4QEfVDf/3rX1FWVoY1a9YwySYi6qNY0SYiIiIi0gEr2kREREREOmCiTURERESkAyba
 REREREQ6YKJNRERERKQDJtpERERERDpgok1EREREpIP/D8QT45WLC7jHAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Third-Section"&gt;Third Section&lt;a class="anchor-link" href="#Third-Section"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Third-Section"&gt;Third Section&lt;a class="anchor-link" href="#Third-Section"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Musical&lt;/li&gt;
 &lt;li&gt;War&lt;/li&gt;
 &lt;li&gt;History&lt;/li&gt;
@@ -10570,22 +10777,29 @@ REREREQ6YKJNRERERKQDJtpERERERDpgok1EREREpIP/D8QT45WLC7jHAAAAAElFTkSuQmCC
 &lt;li&gt;Western&lt;/li&gt;
 &lt;li&gt;Biography&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [208]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[208]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtIAAAH9CAYAAAA3eJvUAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VNX9//H3JEwkhCREQKQqWgxaIQJB9iVhKcgiyupS
@@ -11006,25 +11220,34 @@ AwYMwKBBg5Ceng4AePfdd7Fo0SKsXbsW3bp1w65duwBce1NhZGQkvLy8EBUVhbvuugtnz56FTqeD
 TqdTcQQMwzDahO+RZhiG0Ti///47YmNjcfLkSdx8881q7w7DMIzTwLd2MAzDaJjdu3fDz88PmZmZ
 3EQzDMP8x/AVaYZhGIZhGIZRAF+RZhiGYRiGYRgFcCPNMAzDMAzDMArgRpphGIZhGIZhFMCNNMMw
 DMMwDMMogBtphmEYhmEYhlEAN9IMwzAMwzAMo4D/A4Eh0/HPIadQAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [209]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[209]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtEAAAHwCAYAAABg0TMJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VNX5wPHvnclMMjPJTJLJvgJJCBCQRVwA2XHfQFRs
@@ -12727,40 +12950,50 @@ JNm2LX7ICACFRSYaAErQpEmTdPbZZ2vp0qWSpGeeeUa33367Vq5cqXA4rNWrV0tKXCCcP3++zjjj
 DC1YsEDnnXee3n//fRmGIcMwivgZAIC/URMNACVo3759uuKKK/TWW28pGAwWezkAgFNQzgEAJWbN
 mjWaNWuWVqxYQQANACWKTDQAAACQJTLRAAAAQJYIogEAAIAsEUQDAAAAWSKIBgAAALJEEA0AAABk
 iSAaAAAAyNL/B+zoAp4d8egHAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Fourth-Section"&gt;Fourth Section&lt;a class="anchor-link" href="#Fourth-Section"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id="Fourth-Section"&gt;Fourth Section&lt;a class="anchor-link" href="#Fourth-Section"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Music&lt;/li&gt;
 &lt;li&gt;Sport&lt;/li&gt;
 &lt;li&gt;Film-Noir&lt;/li&gt;
 &lt;li&gt;Adult&lt;/li&gt;
 &lt;li&gt;News&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [210]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[210]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtEAAAH9CAYAAADcTyDXAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8VFX+//H3RAKJaQSIENeCiIgkASHSIaELAaUINnYR
@@ -13100,25 +13333,34 @@ RNbid6KJiCxWWVmJxsZGZGdnIzs7G5s3b0ZLSwsA4Pnz5ygpKQEA+P1+XLp0CeXl5QgEAgCAaDQK
 b8fw8DBcLhdcLpfBGRAR2YnfiSYisti3b99QUlKC9+/fIyUlxfSvQ0TkGPw6BxGRpZ48eQK32436
 +npuoImI/s94JZqIiIiISBOvRBMRERERaeImmoiIiIhIEzfRRERERESauIkmIiIiItLETTQRERER
 kSZuoomIiIiINP0XY227JJkyvs4AAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [211]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[211]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtEAAAHwCAYAAABg0TMJAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4XAW5P/DvmTWzZ1+bpE2TNGnTNd1XaEuRTaAu4EWt
@@ -13887,19 +14129,23 @@ dujqq6/WNddco/LycklSZWWlZs+erUWLFikYDGrt2rWSWi4gLCoq0hVXXKHi4mINGDBAP/74ozwe
 jzwej4vPAAA6NmaiAaAd+vXXXzV69Gh988038vv9bi8HANAK4xwA0M6sW7dOeXl5WrhwIQEaANop
 OtEAAACARXSiAQAAAIsI0QAAAIBFhGgAAADAIkI0AAAAYBEhGgAAALCIEA0AAABY9D8S3+VRufnl
 ZQAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Directors"&gt;Directors&lt;a class="anchor-link" href="#Directors"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In this section, I will look at the directors whose movies median rating is larger than 7 and median vote is larger than 200000. Although the thresholds are arbitrary, it gives good directors if not best. Surprisingly, some of the directors that I thought good are not on the list if they do not satisfy these requirements. For an example, Woody Allen is not on the list as his median vote is about ~24000 even though his median rating is above 7. I did not look at the number of movies, maybe I should but if the movie quality is good and watched(read this one voted), director should make to the list. Ben Affleck is such a director among others.&lt;br /&gt;
+&lt;h2 id="Directors"&gt;Directors&lt;a class="anchor-link" href="#Directors"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In this section, I will look at the directors whose movies median rating is larger than 7 and median vote is larger than 200000. Although the thresholds are arbitrary, it gives good directors if not best. Surprisingly, some of the directors that I thought good are not on the list if they do not satisfy these requirements. For an example, Woody Allen is not on the list as his median vote is about ~24000 even though his median rating is above 7. I did not look at the number of movies, maybe I should but if the movie quality is good and watched(read this one voted), director should make to the list. Ben Affleck is such a director among others.&lt;br&gt;
 In the distribution graphs, turquoise is the mean distribution over all of the directors and purple is the director's distribution given on the subplot.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -13908,23 +14154,29 @@ In the distribution graphs, turquoise is the mean distribution over all of the d
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Rating-of-Directors"&gt;Rating of Directors&lt;a class="anchor-link" href="#Rating-of-Directors"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Rating-of-Directors"&gt;Rating of Directors&lt;a class="anchor-link" href="#Rating-of-Directors"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [213]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[213]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABHgAAAMfCAYAAACtpGAvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8TOf+B/DPZJJIbI3aSpEgtWQfSYhYY4vYt6KooOrS
@@ -15579,11 +15831,14 @@ OBo8AAAAAAAAEUeDBwAAAAAAIOJo8AAAAAAAAEQcDR4AAAAAAICIo8EDAAAAAAAQcTR4AAAAAAAA
 Io4GDwAAAAAAQMTR4AEAAAAAAIg4GjwAAAAAAAARR4MHAAAAAAAg4mjwAAAAAAAARBwNHgAAAAAA
 gIijwQMAAAAAABBxNHgAAAAAAAAijgYPAAAAAABAxNHgAQAAAAAAiDgaPAAAAAAAABFHgwcAAAAA
 ACDiaPAAAAAAAABEHA0eAAAAAACAiPt/T+ycsUKxU90AAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -15591,6 +15846,7 @@ ACDiaPAAAAAAAABEHA0eAAAAAACAiPt/T+ycsUKxU90AAAAASUVORK5CYII=
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Christopher Nolan is consistently higher in his all of movies. Surprisingly, Ben Affleck is on the list. Median rating tolerates one bad movie where the movie is Swept Away for Guy Ritchie has a movie rated below 4.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -15599,23 +15855,29 @@ ACDiaPAAAAAAAABEHA0eAAAAAACAiPt/T+ycsUKxU90AAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Number-of-Movies-over-Year"&gt;Number of Movies over Year&lt;a class="anchor-link" href="#Number-of-Movies-over-Year"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Number-of-Movies-over-Year"&gt;Number of Movies over Year&lt;a class="anchor-link" href="#Number-of-Movies-over-Year"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [214]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[214]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABIEAAAMbCAYAAADabIVqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdUFFcbB+Df7NKWKk0sqNgbajR2UTAa+xeNGjVYsERj
@@ -18050,11 +18312,14 @@ jDGmApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYY
 YyrASSDGGGOMMcYYY4wxFeAkEGOMMcYYY4wxxpgKcBKIMcYYY4wxxhhjTAU4CcQYY4wxxhhjjDGm
 ApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYYYyrw
 /wFRefBwwFOmgQAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -18062,6 +18327,7 @@ ApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYYYyrw
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Generally, directors produce the movies for a decade or two. Steven Spielberg, Tim Burton, George Lucas and James Cameron are the biggest exceptions.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -18070,23 +18336,29 @@ ApwEYowxxhhjjDHGGFMBTgIxxhhjjDHGGGOMqQAngRhjjDHGGGOMMcZUgJNAjDHGGGOMMcYYYyrw
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Runtime-of-Movies"&gt;Runtime of Movies&lt;a class="anchor-link" href="#Runtime-of-Movies"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Runtime-of-Movies"&gt;Runtime of Movies&lt;a class="anchor-link" href="#Runtime-of-Movies"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [215]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[215]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABMQAAAMaCAYAAABpo5orAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FNX7NvB7No10UimhhBIIXXoLJAgCAl8QpAuEIooI
@@ -20332,11 +20604,14 @@ AAAAgKwoiAEAAACQFQUxAAAAALKiIAYAAABAVhTEAAAAAMiKghgAAAAAWVEQAwAAACArCmIAAAAA
 ZEVBDAAAAICsKIgBAAAAkBUFMQAAAACyoiAGAAAAQFYUxAAAAADIioIYAAAAAFlREAMAAAAgKwpi
 AAAAAGRFQQwAAACArCiIAQAAAJAVBTEAAAAAsqIgBgAAAEBWFMQAAAAAyIqCGAAAAABZURADAAAA
 ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -20344,6 +20619,7 @@ ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Frank Darabont likes to direct long movies whereas Quentin Tarantion is the only director who covers a wide range from 60 minutes to 170 minutes. General observation is the runtime of the given directors are longer than the average runtime of the movies.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -20352,7 +20628,8 @@ ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="List-of-Directors"&gt;List of Directors&lt;a class="anchor-link" href="#List-of-Directors"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;What about directors for specific category? In this section, I will give director tables for the categories that have the highest number of movies. If you do not get bored looking at a bunch of tables, skip to the end to see the correlation and eigenvectors of movies at the end of the post.&lt;/p&gt;
+&lt;h2 id="List-of-Directors"&gt;List of Directors&lt;a class="anchor-link" href="#List-of-Directors"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;What about directors for specific category? In this section, I will give director tables for the categories that have the highest number of movies. If you do not get bored looking at a bunch of tables, skip to the end to see the correlation and eigenvectors of movies at the end of the post.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -20361,1133 +20638,1221 @@ ICsKYgAAAABk5b+g8Qu3YDC7BwAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Highly-Voted-Directors"&gt;Highly Voted Directors&lt;a class="anchor-link" href="#Highly-Voted-Directors"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Directors whose vote for all of the movies is higher than 200000. (It is biased towards the directors who has more movies)&lt;/p&gt;
+&lt;h3 id="Highly-Voted-Directors"&gt;Highly Voted Directors&lt;a class="anchor-link" href="#Highly-Voted-Directors"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Directors whose vote for all of the movies is higher than 200000. (It is biased towards the directors who has more movies)&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [216]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[216]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[216]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Andrew Stanton&lt;/th&gt;
-&lt;td&gt; 2008.0&lt;/td&gt;
-&lt;td&gt; 8.20&lt;/td&gt;
-&lt;td&gt; 441598.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Andy Wachowski&lt;/th&gt;
-&lt;td&gt; 2003.0&lt;/td&gt;
-&lt;td&gt; 7.20&lt;/td&gt;
-&lt;td&gt; 284176.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Ben Affleck&lt;/th&gt;
-&lt;td&gt; 2010.0&lt;/td&gt;
-&lt;td&gt; 7.70&lt;/td&gt;
-&lt;td&gt; 218875.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Brad Bird&lt;/th&gt;
-&lt;td&gt; 2005.5&lt;/td&gt;
-&lt;td&gt; 7.95&lt;/td&gt;
-&lt;td&gt; 297197.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Christopher Nolan&lt;/th&gt;
-&lt;td&gt; 2005.5&lt;/td&gt;
-&lt;td&gt; 8.55&lt;/td&gt;
-&lt;td&gt; 621646.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Darren Aronofsky&lt;/th&gt;
-&lt;td&gt; 2006.0&lt;/td&gt;
-&lt;td&gt; 8.00&lt;/td&gt;
-&lt;td&gt; 215504.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;David Fincher&lt;/th&gt;
-&lt;td&gt; 2002.0&lt;/td&gt;
-&lt;td&gt; 7.80&lt;/td&gt;
-&lt;td&gt; 240169.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;David Silverman&lt;/th&gt;
-&lt;td&gt; 2007.0&lt;/td&gt;
-&lt;td&gt; 7.40&lt;/td&gt;
-&lt;td&gt; 203239.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;David Yates&lt;/th&gt;
-&lt;td&gt; 2009.0&lt;/td&gt;
-&lt;td&gt; 7.40&lt;/td&gt;
-&lt;td&gt; 230345.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Duncan Jones&lt;/th&gt;
-&lt;td&gt; 2010.0&lt;/td&gt;
-&lt;td&gt; 7.75&lt;/td&gt;
-&lt;td&gt; 223877.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Eric Bress&lt;/th&gt;
-&lt;td&gt; 2004.0&lt;/td&gt;
-&lt;td&gt; 7.70&lt;/td&gt;
-&lt;td&gt; 265886.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Frank Darabont&lt;/th&gt;
-&lt;td&gt; 2000.0&lt;/td&gt;
-&lt;td&gt; 7.85&lt;/td&gt;
-&lt;td&gt; 327959.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Frank Miller&lt;/th&gt;
-&lt;td&gt; 2006.5&lt;/td&gt;
-&lt;td&gt; 6.50&lt;/td&gt;
-&lt;td&gt; 265593.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;George Lucas&lt;/th&gt;
-&lt;td&gt; 1988.0&lt;/td&gt;
-&lt;td&gt; 7.15&lt;/td&gt;
-&lt;td&gt; 338221.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Guy Ritchie&lt;/th&gt;
-&lt;td&gt; 2005.0&lt;/td&gt;
-&lt;td&gt; 7.50&lt;/td&gt;
-&lt;td&gt; 234892.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;J.J. Abrams&lt;/th&gt;
-&lt;td&gt; 2010.0&lt;/td&gt;
-&lt;td&gt; 7.50&lt;/td&gt;
-&lt;td&gt; 240840.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;James Cameron&lt;/th&gt;
-&lt;td&gt; 1990.0&lt;/td&gt;
-&lt;td&gt; 7.85&lt;/td&gt;
-&lt;td&gt; 377029.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Joseph Kosinski&lt;/th&gt;
-&lt;td&gt; 2011.5&lt;/td&gt;
-&lt;td&gt; 6.95&lt;/td&gt;
-&lt;td&gt; 218585.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Lee Unkrich&lt;/th&gt;
-&lt;td&gt; 2010.0&lt;/td&gt;
-&lt;td&gt; 8.50&lt;/td&gt;
-&lt;td&gt; 348502.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Marc Webb&lt;/th&gt;
-&lt;td&gt; 2010.5&lt;/td&gt;
-&lt;td&gt; 7.50&lt;/td&gt;
-&lt;td&gt; 279448.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Matthew Vaughn&lt;/th&gt;
-&lt;td&gt; 2008.5&lt;/td&gt;
-&lt;td&gt; 7.80&lt;/td&gt;
-&lt;td&gt; 246075.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Michael Bay&lt;/th&gt;
-&lt;td&gt; 2004.0&lt;/td&gt;
-&lt;td&gt; 6.55&lt;/td&gt;
-&lt;td&gt; 213725.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Neill Blomkamp&lt;/th&gt;
-&lt;td&gt; 2011.0&lt;/td&gt;
-&lt;td&gt; 7.35&lt;/td&gt;
-&lt;td&gt; 296052.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Pete Docter&lt;/th&gt;
-&lt;td&gt; 2005.0&lt;/td&gt;
-&lt;td&gt; 8.20&lt;/td&gt;
-&lt;td&gt; 390384.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Peter Farrelly&lt;/th&gt;
-&lt;td&gt; 1994.0&lt;/td&gt;
-&lt;td&gt; 7.30&lt;/td&gt;
-&lt;td&gt; 212771.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Quentin Tarantino&lt;/th&gt;
-&lt;td&gt; 2003.0&lt;/td&gt;
-&lt;td&gt; 8.20&lt;/td&gt;
-&lt;td&gt; 446671.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Roger Allers&lt;/th&gt;
-&lt;td&gt; 2000.0&lt;/td&gt;
-&lt;td&gt; 7.35&lt;/td&gt;
-&lt;td&gt; 222764.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Seth MacFarlane&lt;/th&gt;
-&lt;td&gt; 2012.0&lt;/td&gt;
-&lt;td&gt; 7.10&lt;/td&gt;
-&lt;td&gt; 317497.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Shane Black&lt;/th&gt;
-&lt;td&gt; 2009.0&lt;/td&gt;
-&lt;td&gt; 7.55&lt;/td&gt;
-&lt;td&gt; 239256.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Zack Snyder&lt;/th&gt;
-&lt;td&gt; 2009.5&lt;/td&gt;
-&lt;td&gt; 7.40&lt;/td&gt;
-&lt;td&gt; 225854.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Andrew Stanton&lt;/th&gt;
+      &lt;td&gt; 2008.0&lt;/td&gt;
+      &lt;td&gt; 8.20&lt;/td&gt;
+      &lt;td&gt; 441598.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Andy Wachowski&lt;/th&gt;
+      &lt;td&gt; 2003.0&lt;/td&gt;
+      &lt;td&gt; 7.20&lt;/td&gt;
+      &lt;td&gt; 284176.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ben Affleck&lt;/th&gt;
+      &lt;td&gt; 2010.0&lt;/td&gt;
+      &lt;td&gt; 7.70&lt;/td&gt;
+      &lt;td&gt; 218875.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Brad Bird&lt;/th&gt;
+      &lt;td&gt; 2005.5&lt;/td&gt;
+      &lt;td&gt; 7.95&lt;/td&gt;
+      &lt;td&gt; 297197.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Christopher Nolan&lt;/th&gt;
+      &lt;td&gt; 2005.5&lt;/td&gt;
+      &lt;td&gt; 8.55&lt;/td&gt;
+      &lt;td&gt; 621646.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Darren Aronofsky&lt;/th&gt;
+      &lt;td&gt; 2006.0&lt;/td&gt;
+      &lt;td&gt; 8.00&lt;/td&gt;
+      &lt;td&gt; 215504.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;David Fincher&lt;/th&gt;
+      &lt;td&gt; 2002.0&lt;/td&gt;
+      &lt;td&gt; 7.80&lt;/td&gt;
+      &lt;td&gt; 240169.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;David Silverman&lt;/th&gt;
+      &lt;td&gt; 2007.0&lt;/td&gt;
+      &lt;td&gt; 7.40&lt;/td&gt;
+      &lt;td&gt; 203239.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;David Yates&lt;/th&gt;
+      &lt;td&gt; 2009.0&lt;/td&gt;
+      &lt;td&gt; 7.40&lt;/td&gt;
+      &lt;td&gt; 230345.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Duncan Jones&lt;/th&gt;
+      &lt;td&gt; 2010.0&lt;/td&gt;
+      &lt;td&gt; 7.75&lt;/td&gt;
+      &lt;td&gt; 223877.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Eric Bress&lt;/th&gt;
+      &lt;td&gt; 2004.0&lt;/td&gt;
+      &lt;td&gt; 7.70&lt;/td&gt;
+      &lt;td&gt; 265886.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Frank Darabont&lt;/th&gt;
+      &lt;td&gt; 2000.0&lt;/td&gt;
+      &lt;td&gt; 7.85&lt;/td&gt;
+      &lt;td&gt; 327959.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Frank Miller&lt;/th&gt;
+      &lt;td&gt; 2006.5&lt;/td&gt;
+      &lt;td&gt; 6.50&lt;/td&gt;
+      &lt;td&gt; 265593.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;George Lucas&lt;/th&gt;
+      &lt;td&gt; 1988.0&lt;/td&gt;
+      &lt;td&gt; 7.15&lt;/td&gt;
+      &lt;td&gt; 338221.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Guy Ritchie&lt;/th&gt;
+      &lt;td&gt; 2005.0&lt;/td&gt;
+      &lt;td&gt; 7.50&lt;/td&gt;
+      &lt;td&gt; 234892.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;J.J. Abrams&lt;/th&gt;
+      &lt;td&gt; 2010.0&lt;/td&gt;
+      &lt;td&gt; 7.50&lt;/td&gt;
+      &lt;td&gt; 240840.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;James Cameron&lt;/th&gt;
+      &lt;td&gt; 1990.0&lt;/td&gt;
+      &lt;td&gt; 7.85&lt;/td&gt;
+      &lt;td&gt; 377029.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Joseph Kosinski&lt;/th&gt;
+      &lt;td&gt; 2011.5&lt;/td&gt;
+      &lt;td&gt; 6.95&lt;/td&gt;
+      &lt;td&gt; 218585.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lee Unkrich&lt;/th&gt;
+      &lt;td&gt; 2010.0&lt;/td&gt;
+      &lt;td&gt; 8.50&lt;/td&gt;
+      &lt;td&gt; 348502.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Marc Webb&lt;/th&gt;
+      &lt;td&gt; 2010.5&lt;/td&gt;
+      &lt;td&gt; 7.50&lt;/td&gt;
+      &lt;td&gt; 279448.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Matthew Vaughn&lt;/th&gt;
+      &lt;td&gt; 2008.5&lt;/td&gt;
+      &lt;td&gt; 7.80&lt;/td&gt;
+      &lt;td&gt; 246075.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Michael Bay&lt;/th&gt;
+      &lt;td&gt; 2004.0&lt;/td&gt;
+      &lt;td&gt; 6.55&lt;/td&gt;
+      &lt;td&gt; 213725.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Neill Blomkamp&lt;/th&gt;
+      &lt;td&gt; 2011.0&lt;/td&gt;
+      &lt;td&gt; 7.35&lt;/td&gt;
+      &lt;td&gt; 296052.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Pete Docter&lt;/th&gt;
+      &lt;td&gt; 2005.0&lt;/td&gt;
+      &lt;td&gt; 8.20&lt;/td&gt;
+      &lt;td&gt; 390384.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Peter Farrelly&lt;/th&gt;
+      &lt;td&gt; 1994.0&lt;/td&gt;
+      &lt;td&gt; 7.30&lt;/td&gt;
+      &lt;td&gt; 212771.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Quentin Tarantino&lt;/th&gt;
+      &lt;td&gt; 2003.0&lt;/td&gt;
+      &lt;td&gt; 8.20&lt;/td&gt;
+      &lt;td&gt; 446671.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Roger Allers&lt;/th&gt;
+      &lt;td&gt; 2000.0&lt;/td&gt;
+      &lt;td&gt; 7.35&lt;/td&gt;
+      &lt;td&gt; 222764.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Seth MacFarlane&lt;/th&gt;
+      &lt;td&gt; 2012.0&lt;/td&gt;
+      &lt;td&gt; 7.10&lt;/td&gt;
+      &lt;td&gt; 317497.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Shane Black&lt;/th&gt;
+      &lt;td&gt; 2009.0&lt;/td&gt;
+      &lt;td&gt; 7.55&lt;/td&gt;
+      &lt;td&gt; 239256.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Zack Snyder&lt;/th&gt;
+      &lt;td&gt; 2009.5&lt;/td&gt;
+      &lt;td&gt; 7.40&lt;/td&gt;
+      &lt;td&gt; 225854.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Highly-Voted-and-Rated-Directors"&gt;Highly Voted and Rated Directors&lt;a class="anchor-link" href="#Highly-Voted-and-Rated-Directors"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Directors whose sum vote is higher than 200000 and rating is higher than 8. (Best of Best)&lt;/p&gt;
+&lt;h3 id="Highly-Voted-and-Rated-Directors"&gt;Highly Voted and Rated Directors&lt;a class="anchor-link" href="#Highly-Voted-and-Rated-Directors"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Directors whose sum vote is higher than 200000 and rating is higher than 8. (Best of Best)&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [217]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[217]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[217]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Andrew Stanton&lt;/th&gt;
-&lt;td&gt; 2008.0&lt;/td&gt;
-&lt;td&gt; 8.20&lt;/td&gt;
-&lt;td&gt; 441598.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Christopher Nolan&lt;/th&gt;
-&lt;td&gt; 2005.5&lt;/td&gt;
-&lt;td&gt; 8.55&lt;/td&gt;
-&lt;td&gt; 621646.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Lee Unkrich&lt;/th&gt;
-&lt;td&gt; 2010.0&lt;/td&gt;
-&lt;td&gt; 8.50&lt;/td&gt;
-&lt;td&gt; 348502.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Pete Docter&lt;/th&gt;
-&lt;td&gt; 2005.0&lt;/td&gt;
-&lt;td&gt; 8.20&lt;/td&gt;
-&lt;td&gt; 390384.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Quentin Tarantino&lt;/th&gt;
-&lt;td&gt; 2003.0&lt;/td&gt;
-&lt;td&gt; 8.20&lt;/td&gt;
-&lt;td&gt; 446671.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Andrew Stanton&lt;/th&gt;
+      &lt;td&gt; 2008.0&lt;/td&gt;
+      &lt;td&gt; 8.20&lt;/td&gt;
+      &lt;td&gt; 441598.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Christopher Nolan&lt;/th&gt;
+      &lt;td&gt; 2005.5&lt;/td&gt;
+      &lt;td&gt; 8.55&lt;/td&gt;
+      &lt;td&gt; 621646.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lee Unkrich&lt;/th&gt;
+      &lt;td&gt; 2010.0&lt;/td&gt;
+      &lt;td&gt; 8.50&lt;/td&gt;
+      &lt;td&gt; 348502.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Pete Docter&lt;/th&gt;
+      &lt;td&gt; 2005.0&lt;/td&gt;
+      &lt;td&gt; 8.20&lt;/td&gt;
+      &lt;td&gt; 390384.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Quentin Tarantino&lt;/th&gt;
+      &lt;td&gt; 2003.0&lt;/td&gt;
+      &lt;td&gt; 8.20&lt;/td&gt;
+      &lt;td&gt; 446671.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Overrated-Directors"&gt;Overrated Directors&lt;a class="anchor-link" href="#Overrated-Directors"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Overrated-Directors"&gt;Overrated Directors&lt;a class="anchor-link" href="#Overrated-Directors"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [218]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[218]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[218]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Aaron Seltzer&lt;/th&gt;
-&lt;td&gt; 2006&lt;/td&gt;
-&lt;td&gt; 2.70&lt;/td&gt;
-&lt;td&gt; 44496.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Bo Welch&lt;/th&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt; 3.70&lt;/td&gt;
-&lt;td&gt; 28442.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Harold P. Warren&lt;/th&gt;
-&lt;td&gt; 1966&lt;/td&gt;
-&lt;td&gt; 1.90&lt;/td&gt;
-&lt;td&gt; 28410.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Jason Friedberg&lt;/th&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt; 2.60&lt;/td&gt;
-&lt;td&gt; 62441.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Joe Alves&lt;/th&gt;
-&lt;td&gt; 1983&lt;/td&gt;
-&lt;td&gt; 3.50&lt;/td&gt;
-&lt;td&gt; 22236.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Lawrence Guterman&lt;/th&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt; 3.65&lt;/td&gt;
-&lt;td&gt; 33697.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Marco Schnabel&lt;/th&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt; 3.80&lt;/td&gt;
-&lt;td&gt; 37049.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Aaron Seltzer&lt;/th&gt;
+      &lt;td&gt; 2006&lt;/td&gt;
+      &lt;td&gt; 2.70&lt;/td&gt;
+      &lt;td&gt; 44496.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Bo Welch&lt;/th&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt; 3.70&lt;/td&gt;
+      &lt;td&gt; 28442.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Harold P. Warren&lt;/th&gt;
+      &lt;td&gt; 1966&lt;/td&gt;
+      &lt;td&gt; 1.90&lt;/td&gt;
+      &lt;td&gt; 28410.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jason Friedberg&lt;/th&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt; 2.60&lt;/td&gt;
+      &lt;td&gt; 62441.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Joe Alves&lt;/th&gt;
+      &lt;td&gt; 1983&lt;/td&gt;
+      &lt;td&gt; 3.50&lt;/td&gt;
+      &lt;td&gt; 22236.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lawrence Guterman&lt;/th&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt; 3.65&lt;/td&gt;
+      &lt;td&gt; 33697.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Marco Schnabel&lt;/th&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt; 3.80&lt;/td&gt;
+      &lt;td&gt; 37049.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Comedy-Category"&gt;Directors in Comedy Category&lt;a class="anchor-link" href="#Directors-in-Comedy-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Comedy-Category"&gt;Directors in Comedy Category&lt;a class="anchor-link" href="#Directors-in-Comedy-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [220]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[220]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[220]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Barry Levinson&lt;/th&gt;
-&lt;td&gt; 1994.0&lt;/td&gt;
-&lt;td&gt; 6.60&lt;/td&gt;
-&lt;td&gt; 22288.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Billy Wilder&lt;/th&gt;
-&lt;td&gt; 1960.0&lt;/td&gt;
-&lt;td&gt; 7.40&lt;/td&gt;
-&lt;td&gt;  9975.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Dennis Dugan&lt;/th&gt;
-&lt;td&gt; 2004.5&lt;/td&gt;
-&lt;td&gt; 5.75&lt;/td&gt;
-&lt;td&gt; 51076.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Garry Marshall&lt;/th&gt;
-&lt;td&gt; 1996.0&lt;/td&gt;
-&lt;td&gt; 5.90&lt;/td&gt;
-&lt;td&gt; 18070.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Harold Ramis&lt;/th&gt;
-&lt;td&gt; 1996.0&lt;/td&gt;
-&lt;td&gt; 5.90&lt;/td&gt;
-&lt;td&gt; 56095.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Ivan Reitman&lt;/th&gt;
-&lt;td&gt; 1989.5&lt;/td&gt;
-&lt;td&gt; 5.90&lt;/td&gt;
-&lt;td&gt; 44069.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;John Landis&lt;/th&gt;
-&lt;td&gt; 1986.0&lt;/td&gt;
-&lt;td&gt; 6.30&lt;/td&gt;
-&lt;td&gt; 20268.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Mike Nichols&lt;/th&gt;
-&lt;td&gt; 1989.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt; 12781.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Rob Reiner&lt;/th&gt;
-&lt;td&gt; 1994.5&lt;/td&gt;
-&lt;td&gt; 7.20&lt;/td&gt;
-&lt;td&gt; 37438.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Woody Allen&lt;/th&gt;
-&lt;td&gt; 1991.5&lt;/td&gt;
-&lt;td&gt; 7.25&lt;/td&gt;
-&lt;td&gt; 24462.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Barry Levinson&lt;/th&gt;
+      &lt;td&gt; 1994.0&lt;/td&gt;
+      &lt;td&gt; 6.60&lt;/td&gt;
+      &lt;td&gt; 22288.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Billy Wilder&lt;/th&gt;
+      &lt;td&gt; 1960.0&lt;/td&gt;
+      &lt;td&gt; 7.40&lt;/td&gt;
+      &lt;td&gt;  9975.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Dennis Dugan&lt;/th&gt;
+      &lt;td&gt; 2004.5&lt;/td&gt;
+      &lt;td&gt; 5.75&lt;/td&gt;
+      &lt;td&gt; 51076.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Garry Marshall&lt;/th&gt;
+      &lt;td&gt; 1996.0&lt;/td&gt;
+      &lt;td&gt; 5.90&lt;/td&gt;
+      &lt;td&gt; 18070.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Harold Ramis&lt;/th&gt;
+      &lt;td&gt; 1996.0&lt;/td&gt;
+      &lt;td&gt; 5.90&lt;/td&gt;
+      &lt;td&gt; 56095.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ivan Reitman&lt;/th&gt;
+      &lt;td&gt; 1989.5&lt;/td&gt;
+      &lt;td&gt; 5.90&lt;/td&gt;
+      &lt;td&gt; 44069.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;John Landis&lt;/th&gt;
+      &lt;td&gt; 1986.0&lt;/td&gt;
+      &lt;td&gt; 6.30&lt;/td&gt;
+      &lt;td&gt; 20268.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Mike Nichols&lt;/th&gt;
+      &lt;td&gt; 1989.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt; 12781.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Rob Reiner&lt;/th&gt;
+      &lt;td&gt; 1994.5&lt;/td&gt;
+      &lt;td&gt; 7.20&lt;/td&gt;
+      &lt;td&gt; 37438.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Woody Allen&lt;/th&gt;
+      &lt;td&gt; 1991.5&lt;/td&gt;
+      &lt;td&gt; 7.25&lt;/td&gt;
+      &lt;td&gt; 24462.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Drama-Category"&gt;Directors in Drama Category&lt;a class="anchor-link" href="#Directors-in-Drama-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Drama-Category"&gt;Directors in Drama Category&lt;a class="anchor-link" href="#Directors-in-Drama-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [221]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[221]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[221]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Akira Kurosawa&lt;/th&gt;
-&lt;td&gt; 1961.0&lt;/td&gt;
-&lt;td&gt; 8.10&lt;/td&gt;
-&lt;td&gt;  14382.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Ang Lee&lt;/th&gt;
-&lt;td&gt; 1999.5&lt;/td&gt;
-&lt;td&gt; 7.65&lt;/td&gt;
-&lt;td&gt;  33296.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Barry Levinson&lt;/th&gt;
-&lt;td&gt; 1994.0&lt;/td&gt;
-&lt;td&gt; 6.60&lt;/td&gt;
-&lt;td&gt;  22288.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Brian De Palma&lt;/th&gt;
-&lt;td&gt; 1983.0&lt;/td&gt;
-&lt;td&gt; 6.20&lt;/td&gt;
-&lt;td&gt;  10157.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Clint Eastwood&lt;/th&gt;
-&lt;td&gt; 1992.5&lt;/td&gt;
-&lt;td&gt; 6.90&lt;/td&gt;
-&lt;td&gt;  29193.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Francis Ford Coppola&lt;/th&gt;
-&lt;td&gt; 1983.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;  10281.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Gus Van Sant&lt;/th&gt;
-&lt;td&gt; 2000.0&lt;/td&gt;
-&lt;td&gt; 6.80&lt;/td&gt;
-&lt;td&gt;  22004.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Joel Schumacher&lt;/th&gt;
-&lt;td&gt; 1997.0&lt;/td&gt;
-&lt;td&gt; 6.40&lt;/td&gt;
-&lt;td&gt;  34449.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;John Woo&lt;/th&gt;
-&lt;td&gt; 1986.0&lt;/td&gt;
-&lt;td&gt; 6.20&lt;/td&gt;
-&lt;td&gt;    815.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Jonathan Demme&lt;/th&gt;
-&lt;td&gt; 1987.0&lt;/td&gt;
-&lt;td&gt; 6.60&lt;/td&gt;
-&lt;td&gt;   2966.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Lasse HallstrÃ¶m&lt;/th&gt;
-&lt;td&gt; 1999.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;  13101.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Martin Scorsese&lt;/th&gt;
-&lt;td&gt; 1990.0&lt;/td&gt;
-&lt;td&gt; 7.50&lt;/td&gt;
-&lt;td&gt;  53493.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Mike Newell&lt;/th&gt;
-&lt;td&gt; 1994.0&lt;/td&gt;
-&lt;td&gt; 6.60&lt;/td&gt;
-&lt;td&gt;   4233.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Mike Nichols&lt;/th&gt;
-&lt;td&gt; 1989.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;  12781.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Milos Forman&lt;/th&gt;
-&lt;td&gt; 1980.0&lt;/td&gt;
-&lt;td&gt; 7.45&lt;/td&gt;
-&lt;td&gt;   6898.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Oliver Stone&lt;/th&gt;
-&lt;td&gt; 1993.0&lt;/td&gt;
-&lt;td&gt; 6.80&lt;/td&gt;
-&lt;td&gt;  58419.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Paul Verhoeven&lt;/th&gt;
-&lt;td&gt; 1975.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;   1461.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Peter Weir&lt;/th&gt;
-&lt;td&gt; 1985.5&lt;/td&gt;
-&lt;td&gt; 7.25&lt;/td&gt;
-&lt;td&gt;  18885.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Phillip Noyce&lt;/th&gt;
-&lt;td&gt; 1993.5&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;  19316.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Richard Linklater&lt;/th&gt;
-&lt;td&gt; 2002.0&lt;/td&gt;
-&lt;td&gt; 7.10&lt;/td&gt;
-&lt;td&gt;  24084.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Ridley Scott&lt;/th&gt;
-&lt;td&gt; 2000.0&lt;/td&gt;
-&lt;td&gt; 7.10&lt;/td&gt;
-&lt;td&gt;  88218.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Rob Reiner&lt;/th&gt;
-&lt;td&gt; 1994.5&lt;/td&gt;
-&lt;td&gt; 7.20&lt;/td&gt;
-&lt;td&gt;  37438.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Roger Donaldson&lt;/th&gt;
-&lt;td&gt; 1992.0&lt;/td&gt;
-&lt;td&gt; 6.60&lt;/td&gt;
-&lt;td&gt;  21028.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Roman Polanski&lt;/th&gt;
-&lt;td&gt; 1982.5&lt;/td&gt;
-&lt;td&gt; 7.30&lt;/td&gt;
-&lt;td&gt;  20157.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Ron Howard&lt;/th&gt;
-&lt;td&gt; 1995.5&lt;/td&gt;
-&lt;td&gt; 6.55&lt;/td&gt;
-&lt;td&gt;  45696.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Sidney Lumet&lt;/th&gt;
-&lt;td&gt; 1975.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;   3160.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Spike Lee&lt;/th&gt;
-&lt;td&gt; 1996.0&lt;/td&gt;
-&lt;td&gt; 6.50&lt;/td&gt;
-&lt;td&gt;   7737.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Steven Soderbergh&lt;/th&gt;
-&lt;td&gt; 2003.0&lt;/td&gt;
-&lt;td&gt; 6.95&lt;/td&gt;
-&lt;td&gt;  31193.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Steven Spielberg&lt;/th&gt;
-&lt;td&gt; 1993.0&lt;/td&gt;
-&lt;td&gt; 7.55&lt;/td&gt;
-&lt;td&gt; 186191.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Wolfgang Petersen&lt;/th&gt;
-&lt;td&gt; 1991.0&lt;/td&gt;
-&lt;td&gt; 6.90&lt;/td&gt;
-&lt;td&gt;  68807.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Woody Allen&lt;/th&gt;
-&lt;td&gt; 1991.5&lt;/td&gt;
-&lt;td&gt; 7.25&lt;/td&gt;
-&lt;td&gt;  24462.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Akira Kurosawa&lt;/th&gt;
+      &lt;td&gt; 1961.0&lt;/td&gt;
+      &lt;td&gt; 8.10&lt;/td&gt;
+      &lt;td&gt;  14382.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ang Lee&lt;/th&gt;
+      &lt;td&gt; 1999.5&lt;/td&gt;
+      &lt;td&gt; 7.65&lt;/td&gt;
+      &lt;td&gt;  33296.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Barry Levinson&lt;/th&gt;
+      &lt;td&gt; 1994.0&lt;/td&gt;
+      &lt;td&gt; 6.60&lt;/td&gt;
+      &lt;td&gt;  22288.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Brian De Palma&lt;/th&gt;
+      &lt;td&gt; 1983.0&lt;/td&gt;
+      &lt;td&gt; 6.20&lt;/td&gt;
+      &lt;td&gt;  10157.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Clint Eastwood&lt;/th&gt;
+      &lt;td&gt; 1992.5&lt;/td&gt;
+      &lt;td&gt; 6.90&lt;/td&gt;
+      &lt;td&gt;  29193.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Francis Ford Coppola&lt;/th&gt;
+      &lt;td&gt; 1983.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;  10281.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Gus Van Sant&lt;/th&gt;
+      &lt;td&gt; 2000.0&lt;/td&gt;
+      &lt;td&gt; 6.80&lt;/td&gt;
+      &lt;td&gt;  22004.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Joel Schumacher&lt;/th&gt;
+      &lt;td&gt; 1997.0&lt;/td&gt;
+      &lt;td&gt; 6.40&lt;/td&gt;
+      &lt;td&gt;  34449.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;John Woo&lt;/th&gt;
+      &lt;td&gt; 1986.0&lt;/td&gt;
+      &lt;td&gt; 6.20&lt;/td&gt;
+      &lt;td&gt;    815.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Jonathan Demme&lt;/th&gt;
+      &lt;td&gt; 1987.0&lt;/td&gt;
+      &lt;td&gt; 6.60&lt;/td&gt;
+      &lt;td&gt;   2966.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lasse HallstrÃ¶m&lt;/th&gt;
+      &lt;td&gt; 1999.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;  13101.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Martin Scorsese&lt;/th&gt;
+      &lt;td&gt; 1990.0&lt;/td&gt;
+      &lt;td&gt; 7.50&lt;/td&gt;
+      &lt;td&gt;  53493.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Mike Newell&lt;/th&gt;
+      &lt;td&gt; 1994.0&lt;/td&gt;
+      &lt;td&gt; 6.60&lt;/td&gt;
+      &lt;td&gt;   4233.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Mike Nichols&lt;/th&gt;
+      &lt;td&gt; 1989.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;  12781.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Milos Forman&lt;/th&gt;
+      &lt;td&gt; 1980.0&lt;/td&gt;
+      &lt;td&gt; 7.45&lt;/td&gt;
+      &lt;td&gt;   6898.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Oliver Stone&lt;/th&gt;
+      &lt;td&gt; 1993.0&lt;/td&gt;
+      &lt;td&gt; 6.80&lt;/td&gt;
+      &lt;td&gt;  58419.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Paul Verhoeven&lt;/th&gt;
+      &lt;td&gt; 1975.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;   1461.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Peter Weir&lt;/th&gt;
+      &lt;td&gt; 1985.5&lt;/td&gt;
+      &lt;td&gt; 7.25&lt;/td&gt;
+      &lt;td&gt;  18885.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Phillip Noyce&lt;/th&gt;
+      &lt;td&gt; 1993.5&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;  19316.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Richard Linklater&lt;/th&gt;
+      &lt;td&gt; 2002.0&lt;/td&gt;
+      &lt;td&gt; 7.10&lt;/td&gt;
+      &lt;td&gt;  24084.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ridley Scott&lt;/th&gt;
+      &lt;td&gt; 2000.0&lt;/td&gt;
+      &lt;td&gt; 7.10&lt;/td&gt;
+      &lt;td&gt;  88218.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Rob Reiner&lt;/th&gt;
+      &lt;td&gt; 1994.5&lt;/td&gt;
+      &lt;td&gt; 7.20&lt;/td&gt;
+      &lt;td&gt;  37438.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Roger Donaldson&lt;/th&gt;
+      &lt;td&gt; 1992.0&lt;/td&gt;
+      &lt;td&gt; 6.60&lt;/td&gt;
+      &lt;td&gt;  21028.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Roman Polanski&lt;/th&gt;
+      &lt;td&gt; 1982.5&lt;/td&gt;
+      &lt;td&gt; 7.30&lt;/td&gt;
+      &lt;td&gt;  20157.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ron Howard&lt;/th&gt;
+      &lt;td&gt; 1995.5&lt;/td&gt;
+      &lt;td&gt; 6.55&lt;/td&gt;
+      &lt;td&gt;  45696.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Sidney Lumet&lt;/th&gt;
+      &lt;td&gt; 1975.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;   3160.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Spike Lee&lt;/th&gt;
+      &lt;td&gt; 1996.0&lt;/td&gt;
+      &lt;td&gt; 6.50&lt;/td&gt;
+      &lt;td&gt;   7737.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Steven Soderbergh&lt;/th&gt;
+      &lt;td&gt; 2003.0&lt;/td&gt;
+      &lt;td&gt; 6.95&lt;/td&gt;
+      &lt;td&gt;  31193.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Steven Spielberg&lt;/th&gt;
+      &lt;td&gt; 1993.0&lt;/td&gt;
+      &lt;td&gt; 7.55&lt;/td&gt;
+      &lt;td&gt; 186191.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Wolfgang Petersen&lt;/th&gt;
+      &lt;td&gt; 1991.0&lt;/td&gt;
+      &lt;td&gt; 6.90&lt;/td&gt;
+      &lt;td&gt;  68807.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Woody Allen&lt;/th&gt;
+      &lt;td&gt; 1991.5&lt;/td&gt;
+      &lt;td&gt; 7.25&lt;/td&gt;
+      &lt;td&gt;  24462.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Romance-Category"&gt;Directors in Romance Category&lt;a class="anchor-link" href="#Directors-in-Romance-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Romance-Category"&gt;Directors in Romance Category&lt;a class="anchor-link" href="#Directors-in-Romance-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [222]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[222]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[222]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Billy Wilder&lt;/th&gt;
-&lt;td&gt; 1960.0&lt;/td&gt;
-&lt;td&gt; 7.40&lt;/td&gt;
-&lt;td&gt;  9975.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Garry Marshall&lt;/th&gt;
-&lt;td&gt; 1996.0&lt;/td&gt;
-&lt;td&gt; 5.90&lt;/td&gt;
-&lt;td&gt; 18070.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Lasse HallstrÃ¶m&lt;/th&gt;
-&lt;td&gt; 1999.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt; 13101.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Woody Allen&lt;/th&gt;
-&lt;td&gt; 1991.5&lt;/td&gt;
-&lt;td&gt; 7.25&lt;/td&gt;
-&lt;td&gt; 24462.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Billy Wilder&lt;/th&gt;
+      &lt;td&gt; 1960.0&lt;/td&gt;
+      &lt;td&gt; 7.40&lt;/td&gt;
+      &lt;td&gt;  9975.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Garry Marshall&lt;/th&gt;
+      &lt;td&gt; 1996.0&lt;/td&gt;
+      &lt;td&gt; 5.90&lt;/td&gt;
+      &lt;td&gt; 18070.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Lasse HallstrÃ¶m&lt;/th&gt;
+      &lt;td&gt; 1999.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt; 13101.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Woody Allen&lt;/th&gt;
+      &lt;td&gt; 1991.5&lt;/td&gt;
+      &lt;td&gt; 7.25&lt;/td&gt;
+      &lt;td&gt; 24462.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Thriller-Category"&gt;Directors in Thriller Category&lt;a class="anchor-link" href="#Directors-in-Thriller-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Thriller-Category"&gt;Directors in Thriller Category&lt;a class="anchor-link" href="#Directors-in-Thriller-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [223]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[223]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[223]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Alfred Hitchcock&lt;/th&gt;
-&lt;td&gt; 1957.0&lt;/td&gt;
-&lt;td&gt; 7.50&lt;/td&gt;
-&lt;td&gt; 29298.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Brian De Palma&lt;/th&gt;
-&lt;td&gt; 1983.0&lt;/td&gt;
-&lt;td&gt; 6.20&lt;/td&gt;
-&lt;td&gt; 10157.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Clint Eastwood&lt;/th&gt;
-&lt;td&gt; 1992.5&lt;/td&gt;
-&lt;td&gt; 6.90&lt;/td&gt;
-&lt;td&gt; 29193.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Joel Schumacher&lt;/th&gt;
-&lt;td&gt; 1997.0&lt;/td&gt;
-&lt;td&gt; 6.40&lt;/td&gt;
-&lt;td&gt; 34449.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;John Woo&lt;/th&gt;
-&lt;td&gt; 1986.0&lt;/td&gt;
-&lt;td&gt; 6.20&lt;/td&gt;
-&lt;td&gt;   815.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Renny Harlin&lt;/th&gt;
-&lt;td&gt; 1999.0&lt;/td&gt;
-&lt;td&gt; 5.60&lt;/td&gt;
-&lt;td&gt; 26739.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Sidney Lumet&lt;/th&gt;
-&lt;td&gt; 1975.0&lt;/td&gt;
-&lt;td&gt; 6.70&lt;/td&gt;
-&lt;td&gt;  3160.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Steven Soderbergh&lt;/th&gt;
-&lt;td&gt; 2003.0&lt;/td&gt;
-&lt;td&gt; 6.95&lt;/td&gt;
-&lt;td&gt; 31193.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Tony Scott&lt;/th&gt;
-&lt;td&gt; 1995.0&lt;/td&gt;
-&lt;td&gt; 6.80&lt;/td&gt;
-&lt;td&gt; 64974.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Alfred Hitchcock&lt;/th&gt;
+      &lt;td&gt; 1957.0&lt;/td&gt;
+      &lt;td&gt; 7.50&lt;/td&gt;
+      &lt;td&gt; 29298.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Brian De Palma&lt;/th&gt;
+      &lt;td&gt; 1983.0&lt;/td&gt;
+      &lt;td&gt; 6.20&lt;/td&gt;
+      &lt;td&gt; 10157.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Clint Eastwood&lt;/th&gt;
+      &lt;td&gt; 1992.5&lt;/td&gt;
+      &lt;td&gt; 6.90&lt;/td&gt;
+      &lt;td&gt; 29193.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Joel Schumacher&lt;/th&gt;
+      &lt;td&gt; 1997.0&lt;/td&gt;
+      &lt;td&gt; 6.40&lt;/td&gt;
+      &lt;td&gt; 34449.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;John Woo&lt;/th&gt;
+      &lt;td&gt; 1986.0&lt;/td&gt;
+      &lt;td&gt; 6.20&lt;/td&gt;
+      &lt;td&gt;   815.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Renny Harlin&lt;/th&gt;
+      &lt;td&gt; 1999.0&lt;/td&gt;
+      &lt;td&gt; 5.60&lt;/td&gt;
+      &lt;td&gt; 26739.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Sidney Lumet&lt;/th&gt;
+      &lt;td&gt; 1975.0&lt;/td&gt;
+      &lt;td&gt; 6.70&lt;/td&gt;
+      &lt;td&gt;  3160.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Steven Soderbergh&lt;/th&gt;
+      &lt;td&gt; 2003.0&lt;/td&gt;
+      &lt;td&gt; 6.95&lt;/td&gt;
+      &lt;td&gt; 31193.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tony Scott&lt;/th&gt;
+      &lt;td&gt; 1995.0&lt;/td&gt;
+      &lt;td&gt; 6.80&lt;/td&gt;
+      &lt;td&gt; 64974.0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Action-Category"&gt;Directors in Action Category&lt;a class="anchor-link" href="#Directors-in-Action-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Action-Category"&gt;Directors in Action Category&lt;a class="anchor-link" href="#Directors-in-Action-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [224]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[224]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[224]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;John Woo&lt;/th&gt;
-&lt;td&gt; 1986&lt;/td&gt;
-&lt;td&gt; 6.2&lt;/td&gt;
-&lt;td&gt;   815&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Renny Harlin&lt;/th&gt;
-&lt;td&gt; 1999&lt;/td&gt;
-&lt;td&gt; 5.6&lt;/td&gt;
-&lt;td&gt; 26739&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Robert Rodriguez&lt;/th&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt; 6.1&lt;/td&gt;
-&lt;td&gt; 52205&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Roland Emmerich&lt;/th&gt;
-&lt;td&gt; 1996&lt;/td&gt;
-&lt;td&gt; 5.8&lt;/td&gt;
-&lt;td&gt; 86714&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Tony Scott&lt;/th&gt;
-&lt;td&gt; 1995&lt;/td&gt;
-&lt;td&gt; 6.8&lt;/td&gt;
-&lt;td&gt; 64974&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;John Woo&lt;/th&gt;
+      &lt;td&gt; 1986&lt;/td&gt;
+      &lt;td&gt; 6.2&lt;/td&gt;
+      &lt;td&gt;   815&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Renny Harlin&lt;/th&gt;
+      &lt;td&gt; 1999&lt;/td&gt;
+      &lt;td&gt; 5.6&lt;/td&gt;
+      &lt;td&gt; 26739&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Robert Rodriguez&lt;/th&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt; 6.1&lt;/td&gt;
+      &lt;td&gt; 52205&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Roland Emmerich&lt;/th&gt;
+      &lt;td&gt; 1996&lt;/td&gt;
+      &lt;td&gt; 5.8&lt;/td&gt;
+      &lt;td&gt; 86714&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tony Scott&lt;/th&gt;
+      &lt;td&gt; 1995&lt;/td&gt;
+      &lt;td&gt; 6.8&lt;/td&gt;
+      &lt;td&gt; 64974&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Crime-Category"&gt;Directors in Crime Category&lt;a class="anchor-link" href="#Directors-in-Crime-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Crime-Category"&gt;Directors in Crime Category&lt;a class="anchor-link" href="#Directors-in-Crime-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [225]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[225]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[225]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;Brian De Palma&lt;/th&gt;
-&lt;td&gt; 1983&lt;/td&gt;
-&lt;td&gt; 6.2&lt;/td&gt;
-&lt;td&gt; 10157&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Sidney Lumet&lt;/th&gt;
-&lt;td&gt; 1975&lt;/td&gt;
-&lt;td&gt; 6.7&lt;/td&gt;
-&lt;td&gt;  3160&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Brian De Palma&lt;/th&gt;
+      &lt;td&gt; 1983&lt;/td&gt;
+      &lt;td&gt; 6.2&lt;/td&gt;
+      &lt;td&gt; 10157&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Sidney Lumet&lt;/th&gt;
+      &lt;td&gt; 1975&lt;/td&gt;
+      &lt;td&gt; 6.7&lt;/td&gt;
+      &lt;td&gt;  3160&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Directors-in-Horror-Category"&gt;Directors in Horror Category&lt;a class="anchor-link" href="#Directors-in-Horror-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Directors-in-Horror-Category"&gt;Directors in Horror Category&lt;a class="anchor-link" href="#Directors-in-Horror-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [226]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[226]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[226]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;rating&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;director&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;John Carpenter&lt;/th&gt;
-&lt;td&gt; 1986.5&lt;/td&gt;
-&lt;td&gt; 6.75&lt;/td&gt;
-&lt;td&gt; 35121&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Wes Craven&lt;/th&gt;
-&lt;td&gt; 1991.0&lt;/td&gt;
-&lt;td&gt; 6.00&lt;/td&gt;
-&lt;td&gt; 17465&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;rating&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;director&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;John Carpenter&lt;/th&gt;
+      &lt;td&gt; 1986.5&lt;/td&gt;
+      &lt;td&gt; 6.75&lt;/td&gt;
+      &lt;td&gt; 35121&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Wes Craven&lt;/th&gt;
+      &lt;td&gt; 1991.0&lt;/td&gt;
+      &lt;td&gt; 6.00&lt;/td&gt;
+      &lt;td&gt; 17465&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Correlation-Matrix-for-Categories"&gt;Correlation Matrix for Categories&lt;a class="anchor-link" href="#Correlation-Matrix-for-Categories"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="Correlation-Matrix-for-Categories"&gt;Correlation Matrix for Categories&lt;a class="anchor-link" href="#Correlation-Matrix-for-Categories"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [230]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[230]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlEAAAIBCAYAAABp8uopAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VNX9//HXnUkmCYQkIGvCFvYAgiBLSEhCWIMCXxEV
@@ -22113,11 +22478,14 @@ Xc6l0j9ITk4O9BKINIcbRAok3s4LMRsbG5icnMTi4iJsNhsaGhqQnp4e6GUREUnS398PQRBgMBhg
 tVoxPDyM5eXlQC+LQgSLqBB1d3cHQRAwNTXF6eREFPS4QaRAYBFFRESawQ0i/SQWUUREREQSMPqX
 iIiISAIWUUREREQSsIgiIiIikoBFFBEREZEELKKIiIiIJGARRURERCTBf80eDVcTOmrGAAAAAElF
 TkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -22130,6 +22498,7 @@ TkSuQmCC
 &lt;li&gt;Thriller is quite correlated with Crime and Mystery. &lt;/li&gt;
 &lt;li&gt;Drama does not go along with Comedy and Horror. &lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -22138,23 +22507,30 @@ TkSuQmCC
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="PCA"&gt;PCA&lt;a class="anchor-link" href="#PCA"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Correlation matrices are all good but what if we want to build category vectors to be able to represent the movies that we have in our dataset, possibly with a small number of vectors. &lt;a href="http://en.wikipedia.org/wiki/Principal_component_analysis"&gt;Principal Component Analysis&lt;/a&gt; is such method that captures the maximum variance in a small number of eigenvectors by Singular Value Decomposition. I also wrote an introduction to PCA, and one of its application in computer vision called &lt;a href="(/work/notes/2013-07-27/PCA-EigenFace-And-All-That/"&gt;EigenFace&lt;/a&gt;), source code linked to the at the end of post.&lt;/p&gt;
+&lt;h2 id="PCA"&gt;PCA&lt;a class="anchor-link" href="#PCA"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Correlation matrices are all good but what if we want to build category vectors to be able to represent the movies that we have in our dataset, possibly with a small number of vectors. &lt;a href="http://en.wikipedia.org/wiki/Principal_component_analysis"&gt;Principal Component Analysis&lt;/a&gt; is such method that captures the maximum variance in a small number of eigenvectors by Singular Value Decomposition. I also wrote an introduction to PCA, and one of its application in computer vision called &lt;a href="(/work/notes/2013-07-27/PCA-EigenFace-And-All-That/"&gt;EigenFace&lt;/a&gt;), source code linked to the at the end of post.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [232]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[232]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfcAAAFgCAYAAACmFjDcAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlYVPXiBvD3zAwIigyCmKAZKimbIuCujQKpmKm40M3M
@@ -22386,11 +22762,14 @@ GxuLNm3aGD9n9erVmDx5Mj744AN07twZjo6OZmeMjIxETEwM5s+fDwDo0qULunTpAl9fX7i7u2P0
 IqnhLV+JqE787W9/Q3R0NFq2bIkNGzbgu+++w/r1620di6hB4pE7EdWJNm3aYMCAAbCzs4Orqyu+
 /vprW0ciarB45E5ERCQznFBHREQkMyx3IiIimWG5ExERyQzLnYiISGZY7kRERDLDciciIpKZ/wdt
 bhwLM7ubpAAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -22399,22 +22778,29 @@ bhwLM7ubpAAAAABJRU5ErkJggg==
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;blockquote&gt;&lt;p&gt;Only 19 eigenvector captures more than 99% of the variance in our movies dataset.&lt;/p&gt;
 &lt;/blockquote&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [233]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[233]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAw0AAAKsCAYAAACu1lEfAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xlcjen7B/DPU5KKdknJMmPft5JKSmOplCWVKIXJ8CVp
@@ -23820,11 +24206,14 @@ AAA2sRAaAAAATod10PYh0wAAAADAJoIGAAAAADYRNAAAAACwiaABAAAAgE0shAYAAIDTMbES2i5k
 GgAAAADYRNAAAAAAwCaCBgAAAAA2ETQAAAAAsImF0AAAAHA6rdu0atHxvb29W3R8exE0AAAAwKlY
 LJaWnsJjh/IkAAAAADYRNAAAAACwiaABAAAAgE0EDQAAAABsImgAAAAAYNP/A21UXSXuQTO/AAAA
 AElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -23835,6 +24224,7 @@ AElFTkSuQmCC
 category in the movie dataset. Second eigenvector is similar to thriller, horror and action movies. Since Drama itself is correlated
 with other movies, there is no single eigenvector which has strong component in Drama but rather the category is distributed among
 eigenvectors except first and second eigenvectors. More importantly, movies are very similar to each other in terms of categories that are on IMDB. By only keeping 19 eigenvector, I am able to capture more than 99% of the variance(consider we have 100042 movies).&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -23843,10 +24233,11 @@ eigenvectors except first and second eigenvectors. More importantly, movies are 
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I will look at the actors and actresses similarly to directors, also do some regression analysis on rating, votes and categories as well as directors and actors. It would be pretty interesting to see if some of the directors prefer working with specific actors and actresses.
+&lt;h3 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I will look at the actors and actresses similarly to directors, also do some regression analysis on rating, votes and categories as well as directors and actors. It would be pretty interesting to see if some of the directors prefer working with specific actors and actresses.
 Stay tuned for the next week.&lt;/p&gt;
-&lt;h3 id="What-did-not-work?"&gt;What did not work?&lt;a class="anchor-link" href="#What-did-not-work?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The outlines turned out to be not informative since they are one or two sentences at most. Furher, most of the movies on IMDB do not have an explanation of the movie but rather an excerpt from its plot. Most of the clusters become family-related and turned out to be pretty useless.&lt;/p&gt;
-&lt;h3 id="What-is-the-plan?"&gt;What is the plan?&lt;a class="anchor-link" href="#What-is-the-plan?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I  started combining budget information of the movies but got so far around ~2000, ~98042 to go. Apart from impossibiliy to combine all of the movies, I think this would be a quite important variable in terms of both rating and votes.&lt;/p&gt;
+&lt;h3 id="What-did-not-work?"&gt;What did not work?&lt;a class="anchor-link" href="#What-did-not-work?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The outlines turned out to be not informative since they are one or two sentences at most. Furher, most of the movies on IMDB do not have an explanation of the movie but rather an excerpt from its plot. Most of the clusters become family-related and turned out to be pretty useless.&lt;/p&gt;
+&lt;h3 id="What-is-the-plan?"&gt;What is the plan?&lt;a class="anchor-link" href="#What-is-the-plan?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I  started combining budget information of the movies but got so far around ~2000, ~98042 to go. Apart from impossibiliy to combine all of the movies, I think this would be a quite important variable in terms of both rating and votes.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -23877,4 +24268,4 @@ Stay tuned for the next week.&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry></feed>
+</content></entry></feed>

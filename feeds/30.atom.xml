@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/30.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-01-30T00:00:00+00:00</updated><entry><title>Unreasonable Effectiveness of Metadata</title><link href="http://bugra.github.io/work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/" rel="alternate"></link><published>2014-01-30T00:00:00+00:00</published><updated>2014-01-30T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-01-30:work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/</id><summary type="html">&lt;h2&gt;Metadata&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz - 30</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/30.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-01-30T00:00:00+00:00</updated><entry><title>Unreasonable Effectiveness of Metadata</title><link href="http://bugra.github.io/work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/" rel="alternate"></link><published>2014-01-30T00:00:00+00:00</published><updated>2014-01-30T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-01-30:/work/notes/2014-01-30/unreasonable-effectiveness-of-metadata/</id><summary type="html">&lt;h2&gt;Metadata&lt;/h2&gt;
+&lt;p&gt;Metadata could be translated as data about data if we want to translate
+'mot à mot'. Generally, it defines what the data is about 
+and gives some descriptive information around that. Still quite 
+abstract huh? If the content of email is data, then sender,
+receiver, date and time could …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Metadata&lt;/h2&gt;
 &lt;p&gt;Metadata could be translated as data about data if we want to translate
 'mot à mot'. Generally, it defines what the data is about 
 and gives some descriptive information around that. Still quite 
 abstract huh? If the content of email is data, then sender,
 receiver, date and time could be considered as metadata. 
 Metadata could be quite important when data is not available or
-unobservable due to various reasons. &lt;br /&gt;
+unobservable due to various reasons. &lt;br&gt;
 One of the reasons why they could be collected quite freely and 
 and abundant is because apparently it does not have to go through 
 the same &lt;a href="http://www.slate.com/articles/news_and_politics/war_stories/2014/01/obama_s_nsa_reforms_the_president_s_proposals_for_metadata_and_the_fisa.html"&gt;privacy concerns&lt;/a&gt; unlike data goes.
@@ -19,7 +24,7 @@ it does not reveal anything about data itself. Contrarily, it may expose a lot o
 interesting patterns and even not just about data.&lt;/p&gt;
 &lt;h2&gt;Gmail Outage&lt;/h2&gt;
 &lt;p&gt;Last week Gmail had an &lt;a href="http://googleblog.blogspot.in/2014/01/todays-outage-for-several-google.html"&gt;outage&lt;/a&gt; and users could not use their Gmail
-accounts for almost one hour. &lt;br /&gt;
+accounts for almost one hour. &lt;br&gt;
 Consider this scenario, we cannot observe the outage of Gmail(after all 
 it just prompts an error, temporary error 502), but we have all of the 
 metadata of users who use Gmail. It would be quite easy to infer that
@@ -48,7 +53,7 @@ other days this is due to the federal holidays.
 But I must say most of the received emails are from project management
 web app that we were using. When I looked at my received emails, I see
 mostly notifications rather than "emails". 
-&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_day_bar_plot.png" title="Received Email By Day" /&gt;&lt;/p&gt;
+&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_day_bar_plot.png" title="Received Email By Day"&gt;&lt;/p&gt;
 &lt;p&gt;What do we infer from the above graph? For some reason, we have less
 number of emails in Wednesday. Could it be we were working less in
 Wednesday? Actually, yes. We used to have company meetings in Wednesday.
@@ -69,12 +74,12 @@ we get similar number of emails for each day.&lt;/p&gt;
 &lt;p&gt;The following graph actually explains what type of email activity shows
 a distributed and a team which has quite different timezones(USA,
 Europe, Israel). 
-&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_hour_histogram.png" title="Received Email By Hour" /&gt;&lt;/p&gt;
+&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_hour_histogram.png" title="Received Email By Hour"&gt;&lt;/p&gt;
 &lt;h3&gt;Emails Per Hour Over Time&lt;/h3&gt;
 &lt;p&gt;There is a "inactive" time zone which corresponds to between 3 am and 6 am EST.
 However, as different people have are in different time zones, generally
 the inbox email flow seems to be continuous except inactive time zone. 
-&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_hour_month_scatter_plot.png" title="Received Email By Hour Scatter Plot" /&gt;&lt;/p&gt;
+&lt;img alt="Received Email By Day" src="/images/work/notes/2014/1/27/received_email_by_hour_month_scatter_plot.png" title="Received Email By Hour Scatter Plot"&gt;&lt;/p&gt;
 &lt;p&gt;As I have mentioned, the emails are mostly project updates,
 notifications and lastly and in a small percentage emails. What is more
 interesting is actually &lt;strong&gt;sent&lt;/strong&gt; folder as it will reveal my email and 
@@ -90,7 +95,7 @@ trying to understand the task and try to figure out what is actually
 needed. This process brings a lot of questions and leads to high number 
 of emails and communication. And, yes I was answering emails on Sunday 
 time to time. 
-&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_day_bar_plot.png" title="Sent Email By Day" /&gt;&lt;/p&gt;
+&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_day_bar_plot.png" title="Sent Email By Day"&gt;&lt;/p&gt;
 &lt;h3&gt;Emails Per Hour&lt;/h3&gt;
 &lt;p&gt;The following graph actually explains a lot of my daily activity. Can
 you see when I have lunch? Or when I commute to work or when I leave
@@ -106,13 +111,13 @@ are actually could be inferred quite accurately from my gmail usage. And,
 do not forget we did not yet go through my emails but only metada, 
 timestamps of emails. Yet, even this much of data reveals a lot of my 
 daily activity.
-&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_hour_histogram.png" title="Sent Email By Hour" /&gt;&lt;/p&gt;
+&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_hour_histogram.png" title="Sent Email By Hour"&gt;&lt;/p&gt;
 &lt;h3&gt;Emails Per Hour Over Time&lt;/h3&gt;
 &lt;p&gt;From the following graph, could you see when I took vacation or switched to
 another job so that my daily activity becomes almost zero? Could you
 also see the activity in my transition and how it gets moved to
-non-working hours (mostly).&lt;br /&gt;
-&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_hour_month_scatter_plot.png" title="Sent Email By Hour Scatter Plot" /&gt;&lt;/p&gt;
+non-working hours (mostly).&lt;br&gt;
+&lt;img alt="Sent Email By Day" src="/images/work/notes/2014/1/27/sent_email_by_hour_month_scatter_plot.png" title="Sent Email By Hour Scatter Plot"&gt;&lt;/p&gt;
 &lt;p&gt;What is more is of course whom I contacted, what tasks or projects that
 I worked, what type of emails I received and sent. However, even without context,
 even without using &lt;em&gt;actual&lt;/em&gt; data, I could go this far. With recent acquisition of 
@@ -124,4 +129,4 @@ also physical activities which it is fundamental to complete
 what we will do next. In order to do that, Google needs abundant data
 which it already has and machine learning algorithms that are effective
 for unlabeled and large amounts of data, which it acqui-hires top-notch
-researchers &lt;a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton"&gt;Geoffrey Hinton&lt;/a&gt;, &lt;a href="http://www.technologyreview.com/news/524026/is-google-cornering-the-market-on-deep-learning/"&gt;DeepMind&lt;/a&gt; in order to enable just that.&lt;/p&gt;</summary></entry></feed>
+researchers &lt;a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton"&gt;Geoffrey Hinton&lt;/a&gt;, &lt;a href="http://www.technologyreview.com/news/524026/is-google-cornering-the-market-on-deep-learning/"&gt;DeepMind&lt;/a&gt; in order to enable just that.&lt;/p&gt;</content></entry></feed>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/9.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-09T00:00:00+00:00</updated><entry><title>Learning Lua as a Python Developer</title><link href="http://bugra.github.io/work/notes/2015-05-09/learning-lua-as-a-python-developer/" rel="alternate"></link><published>2015-05-09T00:00:00+00:00</published><updated>2015-05-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-09:work/notes/2015-05-09/learning-lua-as-a-python-developer/</id><summary type="html">&lt;p&gt;This tutorial is not the millionth tutorial that walks you through 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz - 9</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/9.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-05-09T00:00:00+00:00</updated><entry><title>Learning Lua as a Python Developer</title><link href="http://bugra.github.io/work/notes/2015-05-09/learning-lua-as-a-python-developer/" rel="alternate"></link><published>2015-05-09T00:00:00+00:00</published><updated>2015-05-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-05-09:/work/notes/2015-05-09/learning-lua-as-a-python-developer/</id><summary type="html">&lt;p&gt;This tutorial is not the millionth tutorial that walks you through 
+basic concepts of Lua language. First there are quite excellent 
+&lt;a href="http://tylerneylon.com/a/learn-lua/"&gt;tutorials&lt;/a&gt;
+that actually aims to do exactly that. This post would be to tell a tutorial on Lua
+from a Pythonista, comparing Lua features with various Python features and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This tutorial is not the millionth tutorial that walks you through 
 basic concepts of Lua language. First there are quite excellent 
 &lt;a href="http://tylerneylon.com/a/learn-lua/"&gt;tutorials&lt;/a&gt;
 that actually aims to do exactly that. This post would be to tell a tutorial on Lua
@@ -83,7 +87,7 @@ though.&lt;/p&gt;
 &lt;p&gt;If you have a function, you could put all of the parameters into a list and then
 &lt;code&gt;unpack&lt;/code&gt; them in Lua where in Python you would use &lt;code&gt;*&lt;/code&gt; prefix to the list to unpack.&lt;/p&gt;
 &lt;p&gt;In Lua, the following&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unpack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -110,23 +114,23 @@ Python uses whitespace for function definition, control flows and so on.&lt;/p&g
 &lt;h3&gt;Functions&lt;/h3&gt;
 &lt;p&gt;Function definitions are somehow similar to Javascript dropping &lt;code&gt;{}&lt;/code&gt; in favor of 
 &lt;code&gt;end&lt;/code&gt; keyword.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt;
+        &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="kr"&gt;else&lt;/span&gt;
+        &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;end&lt;/span&gt;
+&lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;factorial&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;factorial&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="kr"&gt;then&lt;/span&gt;
+        &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="kr"&gt;else&lt;/span&gt;
+        &lt;span class="kr"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;factorial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="kr"&gt;end&lt;/span&gt;
+&lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -156,16 +160,16 @@ doing OOP, similar to Javascript’s prototype based style, but even that requir
 somehow different syntax to call the object. Of course, there is no object by the
 way. It is a table which you could call functions from it. You could add almost
 any behavior on tables via “metatables” though. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;object&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;function&lt;/span&gt; &lt;span class="nc"&gt;object&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;is nothing but a syntactic sugar for the following for example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
                 &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
-              &lt;span class="k"&gt;end&lt;/span&gt;
+              &lt;span class="kr"&gt;end&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -181,7 +185,12 @@ if you access a non-existent key to the table, it simply returns &lt;code&gt;nil
 be less explicit error or exception but rather nil checking for those statements 
 if the key actually exists in the first place in the table.&lt;/p&gt;
 &lt;h3&gt;Lua does proper tail recursion&lt;/h3&gt;
-&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</summary></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><published>2014-07-09T00:00:00+00:00</published><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;![Big Data vs me](http://i.imgur.com/dJ5nhHd.jpg Me, When I see “big data” phrase)
+&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</content></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><published>2014-07-09T00:00:00+00:00</published><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase"&gt;
+My humble contribution to &lt;a href="http://bigdatapix.tumblr.com/"&gt;ridiculous images on big data&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This post is about &lt;a href="https://github.com/Netflix/PigPen"&gt;PigPen&lt;/a&gt;, a library that Netflix
+open sourced in the beginning of this year. Yet, in order to introduce the library, 
+I covered some background namely Hadoop, Pig and Clojure which PigPen builds on top of 
+those. If …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase"&gt;
 My humble contribution to &lt;a href="http://bigdatapix.tumblr.com/"&gt;ridiculous images on big data&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post is about &lt;a href="https://github.com/Netflix/PigPen"&gt;PigPen&lt;/a&gt;, a library that Netflix
 open sourced in the beginning of this year. Yet, in order to introduce the library, 
@@ -434,7 +443,7 @@ methods in a readable fashion. Scalding (Scala implementation of Cascading) also
 provides a very similar syntax and feeling, if you are familiar, check that out as
 well.&lt;/p&gt;
 &lt;h1&gt;PigPen&lt;/h1&gt;
-&lt;p&gt;![PigPen](http://i.imgur.com/mhil2yS.png PigPen Logo)
+&lt;p&gt;&lt;img alt="PigPen" src="http://i.imgur.com/mhil2yS.png" title="PigPen Logo"&gt;
 PigPen combines the Clojure awesomeness namely functional programming, Lisp and JVM 
 on top of Pig. This is quite awesome for a number of reasons:&lt;/p&gt;
 &lt;ol&gt;
@@ -503,7 +512,13 @@ Reuse in this example should be obvious, and all of the logic is in the process
 that could change independently from the i/o. Orthogonality is increased. You 
 could further abstract input and output if you want. This could be done in Pig at 
 some level using Macros to be fair. But not this clean and not this 
-straightforward. This is pure beauty.&lt;/p&gt;</summary></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 4</title><link href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/" rel="alternate"></link><published>2014-03-09T00:00:00+00:00</published><updated>2014-03-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-09:work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+straightforward. This is pure beauty.&lt;/p&gt;</content></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 4</title><link href="http://bugra.github.io/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/" rel="alternate"></link><published>2014-03-09T00:00:00+00:00</published><updated>2014-03-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-09:/work/notes/2014-03-09/imdb-top-100-movies-analysis-in-depth-part-4/</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This post is fourth in the series. See the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first&lt;/a&gt;, &lt;a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;second&lt;/a&gt; and &lt;a href="/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/"&gt;third&lt;/a&gt; one. I explained the data sources in the third post. In this post, I will look at age and height distribution of the actresses and actors over time, and revenue of the movies per category. This is the last post for this series, I promise.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1424,8 +1439,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -1436,9 +1453,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
 &lt;style type="text/css"&gt;
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1476,12 +1495,14 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-&lt;/style&gt;&lt;html&gt;&lt;body&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;This post is fourth in the series. See the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first&lt;/a&gt;, &lt;a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;second&lt;/a&gt; and &lt;a href="/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/"&gt;third&lt;/a&gt; one. I explained the data sources in the third post. In this post, I will look at age and height distribution of the actresses and actors over time, and revenue of the movies per category. This is the last post for this series, I promise.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1490,23 +1511,29 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Mean-Ages-over-Years"&gt;Mean Ages over Years&lt;a class="anchor-link" href="#Mean-Ages-over-Years"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Mean-Ages-over-Years"&gt;Mean Ages over Years&lt;a class="anchor-link" href="#Mean-Ages-over-Years"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [10]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe0AAAFkCAYAAAANC2PrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdgU2Xbxq+TdNK9N9BJS0tbVsvGsqFsQVEcDBVRUcaL
@@ -2086,11 +2113,14 @@ tBRpaWkAgPXr1+PRRx9FWVkZrl+/jjfeeAPJycnYu3cv6uvrAQB0V40Q66CRNiEOTiKRYNu2bViw
 YAFqamoglUqxceNG+Pr6YtasWejbty8CAwNx//33o7a2FlVVVWAYRmdbQkJIx6BENEIIIUQgaHqc
 EEIIEQgK2oQQQohAUNAmhBBCBIKCNiGEECIQFLQJIYQQgaCgTQghhAgEBW1CCCFEIP5g4+TCAAAA
 BUlEQVQf8lon7n4PUcoAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -2098,6 +2128,7 @@ BUlEQVQf8lon7n4PUcoAAAAASUVORK5CYII=
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The age difference in the early movies may be due to selection bias as it is quite high. After 1970, even if the ages change over time, more or less it is stable. As the number of actors is higher than the number of actresses, the average is close to the age of actors.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2106,23 +2137,29 @@ BUlEQVQf8lon7n4PUcoAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Median-Ages-over-Years"&gt;Median Ages over Years&lt;a class="anchor-link" href="#Median-Ages-over-Years"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Median-Ages-over-Years"&gt;Median Ages over Years&lt;a class="anchor-link" href="#Median-Ages-over-Years"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [11]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe0AAAFkCAYAAAANC2PrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdgVFX6/p+ZSSa990ZISA+dBBAhCAFCEUHEXVfcVezo
@@ -2658,11 +2695,14 @@ d9xxBx577DHxNUJDQ70ydqJAxjltogA3ZMgQ3Lp1C7t37wYALFu2DLNmzUJVVRXOnz+PV199FdOm
 TcOmTZvQ2toKAOCsGpF38EybKMCp1WqsXbsW8+bNQ1NTE2JiYvDxxx8jLi4Oc+bMwbBhw5CSkoIH
 H3wQWq0WDQ0NUCgUJm0JicgzuBCNiIhIJnh5nIiISCaYtImIiGSCSZuIiEgmmLSJiIhkgkmbiIhI
 Jpi0iYiIZIJJm4iISCb+P1Xmulao/EJ6AAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -2670,22 +2710,29 @@ Jpi0iYiIZIJJm4iISCb+P1Xmulao/EJ6AAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Actor age distribution still dominates for average age distribution, but now we could see the age distribution much better. Median age for actresses do not go up higher than 32(max) whereas the smallest median age of actors is 32 for all of the years!&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [12]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd4AAAFtCAYAAACpwAsYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmYVNWBN/7vXWrrrt6ABppFBQGVrQUbFNAmLRFEY0RF
@@ -3022,11 +3069,14 @@ fv1KLBYDIBqNcuDAAUZHRxkaGuLkyZO0tLTQ29vLr1+/ANAsk0hu6IxXJA+4XC5u3rzJsWPH+P79
 O0uWLOHq1assXbqU9vZ2amtrKS8vZ+fOnWQyGSYmJnA4HNMegSYi1tDNVSIiIhbSpWYRERELqfCK
 iIhYSIVXRETEQiq8IiIiFlLhFRERsZAKr4iIiIVUeEVERCykwisiImKhvwAikUHoyK5QGwAAAABJ
 RU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -3034,22 +3084,29 @@ RU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Standard deviation grows over time which supports the selection bias in early years.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [14]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[14]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd4AAAFtCAYAAACpwAsYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt8XGWBN/DfOWfumWRyadKmLW1TaYFaKcUCllfajWgB
@@ -3401,25 +3458,34 @@ MBjIyMggLS2NjIwMVq5c6fkfoaGhfdJ2IQKZzPEK4QcSEhJob2+ntrYWgJKSElatWkVHRwctLS3s
 3r2b7OxsKioq+Pr1KwAyyyRE35AzXiH8gFar5eLFi2zZsoWPHz8SFRXF6dOniYmJIS8vj6SkJIYN
 G8aiRYtwu910dXWh0Wh+egWaEMI35OYqIYQQwofkUrMQQgjhQ1J4hRBCCB+SwiuEEEL4kBReIYQQ
 woek8AohhBA+JIVXCCGE8CEpvEIIIYQPSeEVQgghfOhfl+MDlvtWUnwAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [15]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[15]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe0AAAFkCAYAAAANC2PrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl81PWBP/7X55o7mZxAIHhQwYtDEbCyNkitKPWAttTd
@@ -3766,11 +3832,14 @@ mWlOW8Tkampq+Pz5M9FoFIBIJMLevXsZHR1lcHCQY8eO0dLSQk9PDz9+/ABAs2oic0Nn2iImZ7Va
 uX79OocPH+bLly8sWLCAy5cvs3DhQtra2qitraW8vJxt27aRTqeZnJzEYrFMWYZQRP4b+iGaiIiI
 QejyuIiIiEGoaYuIiBiEmraIiIhBqGmLiIgYhJq2iIiIQahpi4iIGISatoiIiEH8BjSh27TKBmog
 AAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -3778,6 +3847,7 @@ AAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;One thing is clear from these graphs is that, older actresses/actors play more and more movies over the years. The age change in actors are more drastic than actresses. Considering ages, we saw the distribution of the ages of actresses and actors differ a lot in the third post. Over the time, the difference between actors and actresses increase which support the age distribution in the third post.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3786,23 +3856,29 @@ AAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Mean-Height"&gt;Mean Height&lt;a class="anchor-link" href="#Mean-Height"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Mean-Height"&gt;Mean Height&lt;a class="anchor-link" href="#Mean-Height"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [18]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[18]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfIAAAFkCAYAAADbrrmOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4FMUbx797d+m9NwIhhBISCL0XAWlSg+APBJEiKChF
@@ -4328,34 +4404,43 @@ Xo/c3FwAQHx8PO644w4kJSXhjjvuwMiRI6VzeHt7N0rZidwZn5ETkYmoqChcunQJO3fuBAAsXboU
 Dz/8MC5fvozs7Gy8/vrrGDBgAH766SdUV1cDAPiUjqhxsEZORCa8vLzw9ddfY9KkSSgrK4NWq8Vn
 n32G4OBgjB07Fp06dUJYWBjuu+8+lJeXo6SkBIIgGC3hSESOwc5uRERECsamdSIiIgVjIiciIlIw
 JnIiIiIFYyInIiJSMCZyIiIiBWMiJyIiUjAmciIiIgX7f7MwFg1i+440AAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Median-Height"&gt;Median Height&lt;a class="anchor-link" href="#Median-Height"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Median-Height"&gt;Median Height&lt;a class="anchor-link" href="#Median-Height"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [19]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[19]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfIAAAFkCAYAAADbrrmOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4FFX3x7+zu0k2vRfSCRAIBAgQmiIQBEQRBBRfUFQQ
@@ -4893,11 +4978,14 @@ ORIPP/yw3EZQUFCrHDuRL+M9ciKy0KtXL9y4cQP79u0DALz33nt45JFHcPPmTZw/fx4vv/wyxo4d
 i+3bt6OmpgYAwLt0RK2DPXIisqBWq/Hvf/8bs2fPRkVFBbRaLVavXo02bdpgxowZ6NOnD6Kjo3Hv
 vfeisrISZWVlkCTJ7BGORNQyONiNiIhIwXhpnYiISMGYyImIiBSMiZyIiEjBmMiJiIgUjImciIhI
 wZjIiYiIFIyJnIiISMH+D9bHiK6QF/hsAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4905,6 +4993,7 @@ wZjIiYiIFIyJnIiISMH+D9bHiK6QF/hsAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;More taller actresses play more movies over time, but as far as actors are concerned, they seem to getting shorter even though the change in the height is low(1-2 inches over 70 years).&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4913,25 +5002,32 @@ wZjIiYiIFIyJnIiISMH+D9bHiK6QF/hsAAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="&amp;lt;-$400M-Revenue-Movies-per-Category"&gt;&amp;lt; $400M Revenue Movies per Category&lt;a class="anchor-link" href="#&amp;lt;-$400M-Revenue-Movies-per-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;&lt;p&gt;In the following graphs, purple is the each category revenue distribution of the movies and turquoise is the average revenue distribution for all of the movies.&lt;/p&gt;
+&lt;h3 id="&amp;lt;-$400M-Revenue-Movies-per-Category"&gt;&amp;lt; $400M Revenue Movies per Category&lt;a class="anchor-link" href="#&amp;lt;-$400M-Revenue-Movies-per-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;&lt;p&gt;In the following graphs, purple is the each category revenue distribution of the movies and turquoise is the average revenue distribution for all of the movies.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;In this one, we will look at the revenue distribution of movies whose revenue is smaller than 400 M per category. In the next one, we will look at those whose revenue is bigger than 400 M.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [76]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[76]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABHgAAANYCAYAAAC/+Vr7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VFX+x/HPzCSTXkiA0Ak90qtIlS6gCIK9YEFUXJVV
@@ -6021,11 +6117,14 @@ M3iqqeza2DLDhw9H37598dtvv+G+++5Dnz59YDQaMXLkSMycORMA0KpVK/j7+6Nfv37m173//vt4
 454cEeOeHBHjnhwR456ImhqFqCi1TEREREREREREdoOXaBERERERERER2TkmeIiIiIiIiIiI7BwT
 PEREREREREREdo4JHiIiIiIiIiIiO8cEDxERERERERGRnWOCh4iIiIiIiIjIzjHBQ0RERERERERk
 5/4fRchdTOXnecUAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -6039,6 +6138,7 @@ PEREREREREREdo4JHiIiIiIiIiIiO8cEDxERERERERGRnWOCh4iIiIiIiIjIzjHBQ0RERERERERk
 &lt;li&gt;Animation as we will see in the second graph better has the best middle-low revenue distribution for all the categories.&lt;/li&gt;
 &lt;li&gt;Family has generally the higher revenue for all of the categories except very low revenue range, which is somehow surprising.&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6047,23 +6147,29 @@ PEREREREREREdo4JHiIiIiIiIiIiO8cEDxERERERERGRnWOCh4iIiIiIiIjIzjHBQ0RERERERERk
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="&amp;gt;-$400M-Revenue-Movies-per-Category"&gt;&amp;gt; $400M Revenue Movies per Category&lt;a class="anchor-link" href="#&amp;gt;-$400M-Revenue-Movies-per-Category"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="&amp;gt;-$400M-Revenue-Movies-per-Category"&gt;&amp;gt; $400M Revenue Movies per Category&lt;a class="anchor-link" href="#&amp;gt;-$400M-Revenue-Movies-per-Category"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [91]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[91]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABHgAAANYCAYAAAC/+Vr7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8FHX+x/H37CYhkNBLUDqEIkgHlaqIIqIogv3u1JND
@@ -7192,11 +7298,14 @@ mqqxY8cG1vvTn/6k73//+xoyZIiMMXrttdeUlJQky7IqlSFJU6ZM0QsvvKB+/frp7LPP1nnnnSdJ
 uuKKK7Rhw4aw5QL1idhHS0TcoyUi7tESEfcAmgvLhEspAwAAAAAAwDG4RQsAAAAAAMDhSPAAAAAA
 AAA4HAkeAAAAAAAAhyPBAwAAAAAA4HAkeAAAAAAAAByOBA8AAAAAAIDDkeABAAAAAABwuP8Hq6Xg
 AFmLo4MAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -7208,6 +7317,7 @@ AFmLo4MAAAAASUVORK5CYII=
 &lt;li&gt;Family, Adventure, Fantasy are the good ones in high revenue range.&lt;/li&gt;
 &lt;li&gt;Most of the categories are non-existent in the high revenue areas which is somehow expected.&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7216,7 +7326,8 @@ AFmLo4MAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This is about it. Unlesss I pull different data for the movies, this post is likely to be the last post in this series.&lt;/p&gt;
+&lt;h3 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This is about it. Unlesss I pull different data for the movies, this post is likely to be the last post in this series.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -7247,7 +7358,13 @@ AFmLo4MAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>Pig Not So Foreign Language Paper Notes</title><link href="http://bugra.github.io/work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/" rel="alternate"></link><published>2014-02-09T00:00:00+00:00</published><updated>2014-02-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-09:work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/</id><summary type="html">&lt;p&gt;These are notes that I took from the &lt;a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf"&gt;paper&lt;/a&gt;, where the authors
+</content></entry><entry><title>Pig Not So Foreign Language Paper Notes</title><link href="http://bugra.github.io/work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/" rel="alternate"></link><published>2014-02-09T00:00:00+00:00</published><updated>2014-02-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-09:/work/notes/2014-02-09/pig-not-so-foreign-language-paper-notes/</id><summary type="html">&lt;p&gt;These are notes that I took from the &lt;a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf"&gt;paper&lt;/a&gt;, where the authors
+explain the design principles and some theoretical aspects of Pig the
+programming language. I gave a basic overview in &lt;a href="/work/notes/2014-02-08/pig-advantages-and-disadvantages/"&gt;Pig Advantages and
+Disadvantages&lt;/a&gt;. &lt;/p&gt;
+&lt;h2&gt;Before Pig&lt;/h2&gt;
+&lt;p&gt;Before Pig and Hadoop, there was mighty Map-Reduce paradigm for
+parallellization and data …&lt;/p&gt;</summary><content type="html">&lt;p&gt;These are notes that I took from the &lt;a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf"&gt;paper&lt;/a&gt;, where the authors
 explain the design principles and some theoretical aspects of Pig the
 programming language. I gave a basic overview in &lt;a href="/work/notes/2014-02-08/pig-advantages-and-disadvantages/"&gt;Pig Advantages and
 Disadvantages&lt;/a&gt;. &lt;/p&gt;
@@ -7351,4 +7468,4 @@ processing before Pig as follows:&lt;/p&gt;
 &lt;li&gt;A nested data model allows programmers to easily write a rich set of user-defined functions.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;UDFs&lt;/h3&gt;
-&lt;p&gt;All aspects of processing in Pig Latin can be customized through User Defined Functions.&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;All aspects of processing in Pig Latin can be customized through User Defined Functions.&lt;/p&gt;</content></entry></feed>

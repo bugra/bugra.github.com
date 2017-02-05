@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/28.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-03-28T00:00:00+00:00</updated><entry><title>8th NYAS Machine Learning Symposium 2014</title><link href="http://bugra.github.io/work/notes/2014-03-28/nyas-machine-learning-symposium-2014/" rel="alternate"></link><published>2014-03-28T00:00:00+00:00</published><updated>2014-03-28T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-28:work/notes/2014-03-28/nyas-machine-learning-symposium-2014/</id><summary type="html">&lt;p&gt;I attended to &lt;a href="http://www.nyas.org/Events/Detail.aspx?cid=2cc3521e-408a-460e-b159-e774734bcbea"&gt;NYAS 8th Machine Learning Symposium&lt;/a&gt; and here are the notes
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz - 28</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/28.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2014-03-28T00:00:00+00:00</updated><entry><title>8th NYAS Machine Learning Symposium 2014</title><link href="http://bugra.github.io/work/notes/2014-03-28/nyas-machine-learning-symposium-2014/" rel="alternate"></link><published>2014-03-28T00:00:00+00:00</published><updated>2014-03-28T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-28:/work/notes/2014-03-28/nyas-machine-learning-symposium-2014/</id><summary type="html">&lt;p&gt;I attended to &lt;a href="http://www.nyas.org/Events/Detail.aspx?cid=2cc3521e-408a-460e-b159-e774734bcbea"&gt;NYAS 8th Machine Learning Symposium&lt;/a&gt; and here are the notes
 that I took from the event. It may contain errors and mistakes. If you
-find any, please let me  know.&lt;br /&gt;
+find any, please let me  know.&lt;br&gt;
+On personal view, it was worse than the previous machine learning
+symposium(7th) in both posters and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I attended to &lt;a href="http://www.nyas.org/Events/Detail.aspx?cid=2cc3521e-408a-460e-b159-e774734bcbea"&gt;NYAS 8th Machine Learning Symposium&lt;/a&gt; and here are the notes
+that I took from the event. It may contain errors and mistakes. If you
+find any, please let me  know.&lt;br&gt;
 On personal view, it was worse than the previous machine learning
 symposium(7th) in both posters and also talks. Last year, the posters and
 talks were much more interesting to me. That being said, I could not
-visit all of the posters so take my word with a grain of salt.  &lt;br /&gt;
+visit all of the posters so take my word with a grain of salt.  &lt;br&gt;
 The &lt;a href="http://www.nyas.org/asset.axd?id=defb6b86-f7ad-4a8d-af2a-3a5ef979c143&amp;amp;t=635314462602300000"&gt;abstracts in pdf&lt;/a&gt; in here. &lt;/p&gt;
 &lt;h2&gt;Machine Learning for Powers of Good&lt;/h2&gt;
 &lt;p&gt;by &lt;a href="http://www.rayidghani.com/"&gt;Rayid Ghani&lt;/a&gt;&lt;/p&gt;
@@ -194,4 +198,4 @@ point is seen only once.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Sorry about other spotlight talks, I am sure they were as interesting as
-the ones above but I was only able to take notes and follow this much. &lt;/p&gt;</summary></entry></feed>
+the ones above but I was only able to take notes and follow this much. &lt;/p&gt;</content></entry></feed>

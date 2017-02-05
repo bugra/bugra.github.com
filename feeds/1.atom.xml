@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/1.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-03-01T00:00:00+00:00</updated><entry><title>Personalization Palooza Notes</title><link href="http://bugra.github.io/work/notes/2015-03-01/personalization-palooza-notes/" rel="alternate"></link><published>2015-03-01T00:00:00+00:00</published><updated>2015-03-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-03-01:work/notes/2015-03-01/personalization-palooza-notes/</id><summary type="html">&lt;p&gt;&lt;a href="http://www.axial.net/"&gt;We&lt;/a&gt; attended &lt;a href="https://www.eventbrite.com/e/personalizationpalooza-tickets-15005357428"&gt;Personalization Palooza&lt;/a&gt; last week. It was a lot of fun.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bugra Akyildiz - 1</title><link href="http://bugra.github.io/" rel="alternate"></link><link href="http://bugra.github.io/feeds/1.atom.xml" rel="self"></link><id>http://bugra.github.io/</id><updated>2015-03-01T00:00:00+00:00</updated><entry><title>Personalization Palooza Notes</title><link href="http://bugra.github.io/work/notes/2015-03-01/personalization-palooza-notes/" rel="alternate"></link><published>2015-03-01T00:00:00+00:00</published><updated>2015-03-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2015-03-01:/work/notes/2015-03-01/personalization-palooza-notes/</id><summary type="html">&lt;p&gt;&lt;a href="http://www.axial.net/"&gt;We&lt;/a&gt; attended &lt;a href="https://www.eventbrite.com/e/personalizationpalooza-tickets-15005357428"&gt;Personalization Palooza&lt;/a&gt; last week. It was a lot of fun.&lt;/p&gt;
+&lt;p&gt;If you are still giggling, just ignore the name of the event for a second. Just look at the speaker list. (I know name makes hard to take the event seriously, but it was serious.) Another bummer was …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.axial.net/"&gt;We&lt;/a&gt; attended &lt;a href="https://www.eventbrite.com/e/personalizationpalooza-tickets-15005357428"&gt;Personalization Palooza&lt;/a&gt; last week. It was a lot of fun.&lt;/p&gt;
 &lt;p&gt;If you are still giggling, just ignore the name of the event for a second. Just look at the speaker list. (I know name makes hard to take the event seriously, but it was serious.) Another bummer was that event was not personalized(you kind of expect some sort of personalization from a personalization mini-conference, no?). Doug and I attended to the “same” event.(some may argue our preferences are similar, though)&lt;/p&gt;
 &lt;h3&gt;First Session&lt;/h3&gt;
 &lt;h4&gt;Alexander Tuzhilin&lt;/h4&gt;
@@ -10,7 +11,7 @@ Up to this point, we did not even get to the user bias when they evaluated the m
 &lt;h4&gt;Alejandro Jaimes&lt;/h4&gt;
 &lt;p&gt;&lt;a href="http://www.alexjaimes.com/"&gt;Alejandro Jaimes&lt;/a&gt; talked more about product aspect of the recommender systems.&lt;/p&gt;
 &lt;h5&gt;Product&lt;/h5&gt;
-&lt;p&gt;&lt;img alt="Yahoo Product" src="/images/work/notes/2015/3/1/yahoo-product.jpg" /&gt;
+&lt;p&gt;&lt;img alt="Yahoo Product" src="/images/work/notes/2015/3/1/yahoo-product.jpg"&gt;
 They begin with:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Design &lt;/li&gt;
@@ -40,7 +41,14 @@ His example was mortgage ads. Just because he is buying a home and getting a mor
 &lt;li&gt;Content recommenders generally point to a specific problem: there are too many news/data sources but the time is limited. By curating the news or summarizing your news, startups in this session enable people to use their finite amount of time more efficiently on the seemingly infinite number of news/sources. Some solve this problem by filtering, some do by summarizing. We will see who will win.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Third Session&lt;/h3&gt;
-&lt;p&gt;There was no presentation in this one and I did not really listen to the panel. In my defense, Joseph Urban Theater made a spectacular job in their architecture and interior design and we had to catch at a meeting at work. However, Chris Wiggins said a phrase that I took with me: “people, ideas and things”. I am planning to write a blog post on it. Also, Gary Kazantsev mentioned interesting nlp projects that they are doing at Bloomberg.&lt;/p&gt;</summary></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 3</title><link href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/" rel="alternate"></link><published>2014-03-01T00:00:00+00:00</published><updated>2014-03-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-01:work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/</id><summary type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;There was no presentation in this one and I did not really listen to the panel. In my defense, Joseph Urban Theater made a spectacular job in their architecture and interior design and we had to catch at a meeting at work. However, Chris Wiggins said a phrase that I took with me: “people, ideas and things”. I am planning to write a blog post on it. Also, Gary Kazantsev mentioned interesting nlp projects that they are doing at Bloomberg.&lt;/p&gt;</content></entry><entry><title>IMDB Top 100K Movies Analysis in Depth Part 3</title><link href="http://bugra.github.io/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/" rel="alternate"></link><published>2014-03-01T00:00:00+00:00</published><updated>2014-03-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-03-01:/work/notes/2014-03-01/imdb-top-100-movies-analysis-in-depth-part-3/</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;This post is third in the series. See the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first&lt;/a&gt; and &lt;a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;second&lt;/a&gt; one.&lt;/p&gt;
+&lt;h2 id="Data"&gt;Data&lt;a class="anchor-link" href="#Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -961,8 +969,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -973,9 +983,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
 &lt;style type="text/css"&gt;
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1013,14 +1025,16 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-&lt;/style&gt;&lt;html&gt;&lt;body&gt;&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;This post is third in the series. See the &lt;a href="/work/notes/2014-02-15/imdb-top-100K-movies-analysis-in-depth-part-1/"&gt;first&lt;/a&gt; and &lt;a href="/work/notes/2014-02-23/imdb-top-100-movies-analysis-in-depth-part-2/"&gt;second&lt;/a&gt; one.&lt;/p&gt;
-&lt;h2 id="Data"&gt;Data&lt;a class="anchor-link" href="#Data"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.&lt;/p&gt;
+&lt;h2 id="Data"&gt;Data&lt;a class="anchor-link" href="#Data"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;IMDB does not provide box revenue for all of the movies so I pulled this information from different sources; freebase and wikipedia to name a few. Generally, the conflicts(movie name and movie year) is resolved by using the information IMDB provides as it is more reliable. If this information is not available or missing, I used wikipedia information to resolve the conflicts. For the box revenue, freebase provides only domestic gross revenue for the movie(strictly in USA) ,so it is not very useful as I wanted to observe worldwide gross revenue. For this, I depend on wikipedia, imdb, blogs and some other websites which periodically publishes worldwide gross revenue of movies. However, the data unlike previous weeks may occassionally contain incorrect values as the sources are scattered and not very reliable. That being said, it is generally hard to validate the box revenue information on a timely basis as movies may also generate money through different channels. I take max revenue values when such a conflict occurs. My hope is that the max revenue would be the most updated revenue for the selected movie. By combining different sources, I could only get 6672 movies' worldwide gross revenue. 95% movies in this list are in the most popularly voted 12000 movies in IMDB. Therefore, the distribution graphs of revenue are biased towards to the ones that have high number of votes in IMDB.&lt;/p&gt;
 &lt;p&gt;Freebase provides actors' and actresses' age and height information when the movie is released. The total character number is 450669 but the characters that have complete information is only 45264. That being said, the ratio gets higher when we look at the height and age. I took this information and looked at the age, height distribution of the actresses and actors as well as the number of movies whose main characters is actresses and actors across the years.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1029,23 +1043,29 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Gender-Distribution-for-Movies"&gt;Gender Distribution for Movies&lt;a class="anchor-link" href="#Gender-Distribution-for-Movies"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="Gender-Distribution-for-Movies"&gt;Gender Distribution for Movies&lt;a class="anchor-link" href="#Gender-Distribution-for-Movies"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [89]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[89]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl0VEXexvGnmxBkMYgLyigmIMoiCSTsYIBgCDCMigyy
@@ -1195,11 +1215,14 @@ VfPmzXXw4EEtWrRIW7Zs0bhx47R//37VqlVLM2fOVLt27QJ4FgAKoisYCKCNGzcW29ewYUPl5ubq
 gQce0KpsqstoAAAAZ0lEQVRVq1SnTh0999xz2r17tySpefPmSktLq+yiAignghUIQh6PR+eff746
 dOig8PBwNWnSRK+99lqgiwWgHOgKBgDAIQYvAQDgEMEKAIBDBCsAAA4RrAAAOESwAgDgEMEKAIBD
 /w8acbWvaJlGfwAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1207,22 +1230,29 @@ dOig8PBwNWnSRK+99lqgiwWgHOgKBgDAIQYvAQDgEMEKAIBDBCsAAA4RrAAAOESwAgDgEMEKAIBD
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Apparently, there are a lot of actresses or actors that have age of 25 and 50! As one can imagine, the age distribution looks like quite like a Gaussian distribution. Let's fit a Gaussian Kernel to smooth the distribution in order to remove the outliers(25 and 50).&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [90]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[90]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlcVOXiBvDnzDDs+w4ugIAsAoq74r6XueZW3UptcSm1
@@ -1519,11 +1549,14 @@ GO3atcOPP/6IOXPmQKFQICYmBhUVFdiwYQOysrIwc+ZMlJWVwcnJCcuWLUOXLl1kfBVEdCkeCiaS
 UXp6+hW3BQYGQqPR4J///Cd++eUXuLq64o033kBhYSEAICYmBtu3b2/pqER0nVisRBZIkiT4+vqi
 W7ducHR0REREBD788EO5YxHRdeChYCIiIjPi4CUiIiIzYrESERGZEYuViIjIjFisREREZsRiJSIi
 MiMWKxERkRn9P0a6Suy1psfBAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1531,22 +1564,29 @@ MiMWKxERkRn9P0a6Suy1psfBAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;This is much better, we do not have outliers, kernel looks quite smooth and its peak is around 30 and the biggest jump occurs at the age of 17 to 18. But let's look at the gender specific distribution to see who are these outliers.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [91]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[91]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfMAAAFtCAYAAAATY4N4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X18VNWdP/DPfZgJSWAGtIipWBUDBgrBABJNAukoQlhR
@@ -1894,11 +1934,14 @@ e3s7lixZgrt372L//v2Qy+UICgpCV1cXKioq0NLSgszMTHz+/BlTpkzBuXPnEBYW5sS9ICJ7vMxO
 5GGeP3/+y8/mz58Ps9mMI0eO4P79+5g2bRrOnDmDtrY2AEBQUBDq6ur+6qkS0SixmBMRAEAmk2H2
 7NkIDw+HSqXC4sWLceHCBWdPi4hGgZfZiYiI3BxvgCMiInJzLOZERERujsWciIjIzbGYExERuTkW
 cyIiIjfHYk5EROTm/g+YrVclyFk1SAAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -1906,22 +1949,29 @@ cyIiIjfHYk5EROTm/g+YrVclyFk1SAAAAABJRU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;25 should be a magic number, both actresses and actors have peaked at 25, there is something wrong about the peaks in actors, though. If you remove those outliers, both of these distribution two different Gaussian distribution and as we did before, we could fit a Gaussian kernel to smooth the distributions a little bit.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [92]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[92]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGXax/HvOVPSgRAgoUNCCyUQmnRFRJCigCIgCvbG
@@ -2368,11 +2418,14 @@ SkpYvHgxWVlZjB07luLiYmw2G1OnTqVjx47V+F0IIc4kU8FCVKPt27f/6LHExEScTifPPPMM69ev
 Jzw8nNdff528vDwAUlNTWbVq1aVuqhDiAkmwCnEZ0jSNuLg4OnXqhNVqpWnTprz33nvV3SwhxAWQ
 qWAhhBAiiGTxkhBCCBFEEqxCCCFEEEmwCiGEEEEkwSqEEEIEkQSrEEIIEUQSrEIIIUQQ/R93SH5Z
 ZCjndwAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -2380,22 +2433,29 @@ ZCjndwAAAABJRU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;This is much nicer. Actors at late 30's played a lot of movies comparing different ages whereas women who are in their early 20's enjoy playing as much. Note that, the distribution does not reveal the absolute number of counts for the movies. As we see later, the number of movies whose main character is an actor is almos twice as the movies whose main character is an actress. Also, note that the distribution is much more widespread in actors whereas the actresses distribution is quite skewed. We could take the difference of kernels to see the difference better.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [93]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[93]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdYAAAFtCAYAAAC6F0vsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VNX9P/D3vTOTjRAChLAGCAkkLAmEkIRdFmUVEUWr
@@ -2701,11 +2761,14 @@ yZIlkGUZUVFRKC8vx6pVq5CZmYnFixejrKwMvr6+eO211xAfH2/gd0FEF+KpYCIDpaWlXfax0NBQ
 VFVV4YknnsD27dsREBCAl156CYWFhQCAqKgobNq0Se9WiaiVGKxEJiRJErp06YKEhAT4+PggPDwc
 b731ltFtEVEr8FQwERGRC3HyEhERkQsxWImIiFyIwUpERORCDFYiIiIXYrASERG5EIOViIjIhf4/
 0Ia+R6XjSjgAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -2713,22 +2776,29 @@ b731ltFtEVEr8FQwERGRC3HyEhERkQsxWImIiFyIwUpERORCDFYiIiIXYrASERG5EIOViIjIhf4/
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In this one, the ratio of actresses to total number of actresses comparing to actors before 32 is larger whereas actors enjoy after 32 to late 70's take role in movies comparing to actresses. After late 70's, I guess we could only say that women live longer than men.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [94]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[94]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcVHX+P/DXnBkGBoRRczW7miKRKYooKIPWaApuqOlK
@@ -3025,11 +3095,14 @@ YmNjkZqaipEjR3qs8/rrr2PhwoWIiYnB7t27ERwcrCyvWa/7/3FxcSgoKMB///d/45ZbblHmkweq
 hg1Yt24d1q9f7/P68+bNw6hRo3Drrbc2qR0ffvgh8vPz8cILLzSpHiK6iOe4ifzQNddcgzFjxiAg
 IABdu3bFP/7xjwatP3/+fMyYMaNJiVuWZaxevRpvvvlmo+sgotrY4yYiItIQnuMmIiLSECZuIiIi
 DWHiJiIi0hAmbiIiIg1h4iYiItIQJm4iIiIN+f+2/71dtKpZvwAAAABJRU5ErkJggg==
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -3037,22 +3110,29 @@ DWHiJiIi0hAmbiIiIg1h4iYiItIQJm4iIiIN+f+2/71dtKpZvwAAAABJRU5ErkJggg==
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Actors unsurprisingly taller than actresses and surprisingly height distribution is not Gaussian, which is quite interesting.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [95]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[95]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFkCAYAAADmPNjoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlgnHWd+PH388xMJvfkaK7eRxrKVZCjhaSoEaW41KOs
@@ -3520,11 +3600,14 @@ NnXqVNq3b09mZia9e/dm0qRJDBo0qNo6b7/9NjNmzKBHjx5s3rwZp9NZdf+5j115uU+fPnzxxRf8
 nOMWot5JTU1lxIgRWK1WkpOTeeONNy75sZ555hkmTJhwWYXbNE3efPNNFi9efMmPIYQ4S35xCyGE
 EFFEznELIYQQUUQKtxBCCBFFpHALIYQQUUQKtxBCCBFFpHALIYQQUeT/Aew54l9ewDCrAAAAAElF
 TkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -3532,22 +3615,29 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The kernels are not good either as expected.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [98]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[98]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAe4AAAFtCAYAAADBM4kgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGX2wPHvnZpAGiUEAkiASAmBEEIQDAmdhEWUYkFx
@@ -4049,11 +4139,14 @@ lnLkyBF+8YtfMGfOHD744ANM0wRAjbIpSutQLW5FUfB6vfz1r3/lscceo6amhri4OF5++WUSEhJY
 uHAhw4YNo1u3btx0000Eg0GqqqoQQjTY+lBRlMtDTU5TFEVRlHZEdZUriqIoSjuiAreiKIqitCMq
 cCuKoihKO6ICt6IoiqK0IypwK4qiKEo7ogK3oiiKorQjKnAriqIoSjuiAreiKIqitCP/H3h9qpUL
 ej0UAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4061,22 +4154,29 @@ ej0UAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The total number of movies whose main characters are actors is almost twice high as movies whose main characters are actresses. Although the ratio is more or less same, the absolute difference is getting larger over the years. Note that if movies have more than one main characters, all of them counted as main characters for the movies.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [105]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[105]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmgAAAH8CAYAAABl8FOBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvWmwZddZ3/1ba+3xDHfoSa32+PqV39eWI6GWDJKtUKYd
@@ -7483,11 +7583,14 @@ vZiDBgB/mTFjhi5cuKCGhgZJUnl5uR577DG1t7erpaVFq1evVn5+vvbs2aM///xTksQsEQD/C9xB
 A4C/hIeH66OPPlJpaakuXbqk2NhYvf/++5o4caKWL1+u5ORkTZ06VQUFBfJ6verp6ZHD4ZDD4bB6
 6ACuMiwSAAAAsBkecQIAANgMBQ0AAMBmKGgAAAA2Q0EDAACwGQoaAACAzVDQAAAAbIaCBgAAYDMU
 NAAAAJv5P3C7+u6eo5cNAAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -7495,22 +7598,29 @@ NAAAAJv5P3C7+u6eo5cNAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The revenues for the movies over the years are clearly getting better. We could also see a lot of movies that generate close to one billion dollars .&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [106]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[106]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFkCAYAAAAnu5JEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmAE+Xdx7+TZLPJbnazJ7AXLLfcl3jCIuLFsQgIiigK
@@ -8174,11 +8284,14 @@ aGtrw8WLF/H8889j0aJF2L59OwwGAwCAZQIZjMEP8+wZDAaPQqHAZ599hscffxy9vb2IiYnBRx99
 hLi4ONx///2YOHEikpKSsHTpUmg0GqjVanAcJxg9ymAwBh+sQI/BYDAYjCCHhfEZDAaDwQhymLFn
 MBgMBiPIYcaewWAwGIwghxl7BoPBYDCCHGbsGQwGg8EIcpixZzAYDAYjyGHGnsFgMBiMIOf/A0Pg
 tmmL2F71AAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -8186,22 +8299,29 @@ tmmL2F71AAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The median revenue is quite conservative whereas mean revenue of the movies is getting larger and larger over the years as a result of quite successful movies in terms of revenue have been directed in recent years as seen in the previous scatter plot.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [107]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[107]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAFuCAYAAABtFwohAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4VFX6x7/TUkgXAiIgoCAQghAIPQQCUmQVQcAOgoJt
@@ -8857,11 +8977,14 @@ L16M1atXIxgMAgAoC0gQfQOd4AmCMIwsy3jxxRdxzz33oKurC263G7///e9RVlaG2267DRMnTkR1
 dTW+9KUvwefzoaOjA4yxmHGaBEHkByqyIwiCIIgShEL0BEEQBFGCkIMnCIIgiBKEHDxBEARBlCDk
 4AmCIAiiBCEHTxAEQRAlCDl4giAIgihByMETBEEQRAlCDp4gCIIgSpD/H1ojLhZwdUkgAAAAAElF
 TkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -8869,22 +8992,29 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;The standard deviation is also getting larger over the years.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [109]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[109]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfsAAAFyCAYAAADyNHPCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmQZVV9+D93f/vrfZmFYWAQBIYdURFhVMByiQouqCWK
@@ -10947,11 +11077,14 @@ Q4fQ09MDAGhra8Pjjz+OG2+8EevWrcPBgwfxq1/9atb9Te7ze9/7Hn73u9/hkksuQSqVyi8vtt/Z
 trN161b873//w/XXX190DIkoRxJz3esjIlt44oknsHbtWnzuc5+rdFeIqEox2BMREdU43sYnIiKq
 cQz2RERENY7BnoiIqMYx2BMREdU4BnsiIqIax2BPRERU4xjsiYiIatz/A8bZlnv9ctNaAAAAAElF
 TkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -10959,22 +11092,29 @@ TkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Votes and revenue are quite correlated unsuprisingly.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [121]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[121]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAFyCAYAAAADPyhPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmQZVdd+D/n7m9/r/fumclMJiuBJERAExD4BdFIUYAi
@@ -12872,11 +13012,14 @@ zfB4PFizZg1Wr159Trn8K9ovfelLuPbaa7Flyxbs2LED//73v3HNNdfANE3cfPPNWL9+PYD0iPHW
 W2+9teB+J6p7/vYn2tf4MmvXrsXzzz+Pr3zlK1MeRyIChJzOz2YimhW//e1v0dnZiRtvvNHuqhDR
 HMWATkREVAV4D52IiKgKMKATERFVAQZ0IiKiKsCATkREVAUY0ImIiKoAAzoREVEVYEAnIiKqAv8P
 MW9XLQ2eqvkAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -12884,22 +13027,29 @@ MW9XLQ2eqvkAAAAASUVORK5CYII=
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Rating and revenue's correlation is not as strong as revenue and votes. However, one thing to note is that if the rating is higher than 5, there is almost a rectangle between (5, 8) in rating and $\$1$ M, $\$200$M which looks like almost a two dimensional uniform distribution.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [111]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[111]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAGFCAYAAAD94YR2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VHX2+PH3nZJGkiGFEsCETugJvYUuobsgKKiggLGh
@@ -13576,11 +13726,14 @@ G9HR0Rw9epT169eTl5fHggULOHLkSJMuk1K3Q48QlAKmTZvGq6++Snx8PF27dmX48OEsXrwYCDyX
 m3PxlLoleoSgFDB16lS6dOnCkiVLAHj55Zd57rnn6Nu3L36/n5deeon+/ftTXl5OZWUl06ZNY+nS
 pezfv5+0tDT8fj+jR49m2rRpuFwuJk+eTN++fbHZbMyfP7/RU66UClXa/bVSSilATxkppZSqp4Gg
 lFIK0EBQSilVTwNBKaUUoIGglFKqngaCUkopQANBKaVUvf8PKPOPeNMPfJkAAAAASUVORK5CYII=
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -13588,22 +13741,29 @@ lFIK0EBQSilVTwNBKaUUoIGglFKqngaCUkopQANBKaVUvf8PKPOPeNMPfJkAAAAASUVORK5CYII=
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;If we fit a linear fit on votes and revenue per decade, we would get the above graph. Recent decades have higher correlation of revenue and votes comparing to older decades.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [126]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[126]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
 &lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAGFCAYAAAAIHw/GAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd8FGX++N8zO9uS3WwKLYUEQgkIhBYkIQiiKKKIJwqi
@@ -14757,11 +14917,14 @@ bDZ3SiY9NWPGDHbs2MHFixdRSvHUU08FEoYQ4SBnEkJc1T5v0G7OnDlMnTqV0tJSCgoKGDt2LCNG
 jAjs6dFxrqHr/UcffZSCggI+//zzwOPBju/6+hkZGbz88svMnDkTwzCYMGECL7744q0KWYhfJaXC
 hRBChCTDTUIIIUKSJCGEECIkSRJCCCFCkiQhhBAiJEkSQgghQpIkIYQQIiRJEkIIIUL6f50mKxBn
 mMu1AAAAAElFTkSuQmCC
-" /&gt;
+"&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -14769,6 +14932,7 @@ mMu1AAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;It is hard to make any conclusion around runtime and revenue graph.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -14777,22 +14941,27 @@ mMu1AAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Movies-that-generated-highest-revenues"&gt;Movies that generated highest revenues&lt;a class="anchor-link" href="#Movies-that-generated-highest-revenues"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I listed movies that generate more than $ 600 M worldwide gross revenue.&lt;/p&gt;
+&lt;h2 id="Movies-that-generated-highest-revenues"&gt;Movies that generated highest revenues&lt;a class="anchor-link" href="#Movies-that-generated-highest-revenues"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I listed movies that generate more than $ 600 M worldwide gross revenue.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [114]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[114]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_wrapper"&gt;
 &lt;div class="output"&gt;
+
+
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stderr output_text"&gt;
 &lt;pre&gt;/Users/bugra/anaconda/lib/python2.7/site-packages/pandas/core/config.py:570: DeprecationWarning: height has been deprecated.
@@ -14804,483 +14973,489 @@ mMu1AAAAAElFTkSuQmCC
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[114]:&lt;/div&gt;
+
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;title&lt;/th&gt;
-&lt;th&gt;year&lt;/th&gt;
-&lt;th&gt;votes&lt;/th&gt;
-&lt;th&gt;runtime_x&lt;/th&gt;
-&lt;th&gt;revenue&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;13   &lt;/th&gt;
-&lt;td&gt;                                            Avatar&lt;/td&gt;
-&lt;td&gt; 2009&lt;/td&gt;
-&lt;td&gt;  650065&lt;/td&gt;
-&lt;td&gt; 162&lt;/td&gt;
-&lt;td&gt; 2782275172&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;40   &lt;/th&gt;
-&lt;td&gt;                                           Titanic&lt;/td&gt;
-&lt;td&gt; 1997&lt;/td&gt;
-&lt;td&gt;  552651&lt;/td&gt;
-&lt;td&gt; 194&lt;/td&gt;
-&lt;td&gt; 2185372302&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;401  &lt;/th&gt;
-&lt;td&gt;                    Transformers: Dark of the Moon&lt;/td&gt;
-&lt;td&gt; 2011&lt;/td&gt;
-&lt;td&gt;  235772&lt;/td&gt;
-&lt;td&gt; 154&lt;/td&gt;
-&lt;td&gt; 1123746996&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;6    &lt;/th&gt;
-&lt;td&gt;     The Lord of the Rings: The Return of the King&lt;/td&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt;  828522&lt;/td&gt;
-&lt;td&gt; 201&lt;/td&gt;
-&lt;td&gt; 1119929521&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;11   &lt;/th&gt;
-&lt;td&gt;                             The Dark Knight Rises&lt;/td&gt;
-&lt;td&gt; 2012&lt;/td&gt;
-&lt;td&gt;  741543&lt;/td&gt;
-&lt;td&gt; 165&lt;/td&gt;
-&lt;td&gt; 1078008948&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;126  &lt;/th&gt;
-&lt;td&gt;                                       Toy Story 3&lt;/td&gt;
-&lt;td&gt; 2010&lt;/td&gt;
-&lt;td&gt;  348502&lt;/td&gt;
-&lt;td&gt; 103&lt;/td&gt;
-&lt;td&gt; 1063171911&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;347  &lt;/th&gt;
-&lt;td&gt;       Pirates of the Caribbean: On Stranger Tides&lt;/td&gt;
-&lt;td&gt; 2011&lt;/td&gt;
-&lt;td&gt;  253863&lt;/td&gt;
-&lt;td&gt; 136&lt;/td&gt;
-&lt;td&gt; 1043871802&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;518  &lt;/th&gt;
-&lt;td&gt;                               Alice in Wonderland&lt;/td&gt;
-&lt;td&gt; 2010&lt;/td&gt;
-&lt;td&gt;  224651&lt;/td&gt;
-&lt;td&gt; 108&lt;/td&gt;
-&lt;td&gt; 1024299904&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1    &lt;/th&gt;
-&lt;td&gt;                                   The Dark Knight&lt;/td&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt; 1125214&lt;/td&gt;
-&lt;td&gt; 152&lt;/td&gt;
-&lt;td&gt; 1004558444&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;97   &lt;/th&gt;
-&lt;td&gt;                                     The Lion King&lt;/td&gt;
-&lt;td&gt; 1994&lt;/td&gt;
-&lt;td&gt;  397397&lt;/td&gt;
-&lt;td&gt;  89&lt;/td&gt;
-&lt;td&gt;  951583777&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;346  &lt;/th&gt;
-&lt;td&gt;         Harry Potter and the Order of the Phoenix&lt;/td&gt;
-&lt;td&gt; 2007&lt;/td&gt;
-&lt;td&gt;  256564&lt;/td&gt;
-&lt;td&gt; 138&lt;/td&gt;
-&lt;td&gt;  939885929&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;511  &lt;/th&gt;
-&lt;td&gt;            Harry Potter and the Half-Blood Prince&lt;/td&gt;
-&lt;td&gt; 2009&lt;/td&gt;
-&lt;td&gt;  225700&lt;/td&gt;
-&lt;td&gt; 153&lt;/td&gt;
-&lt;td&gt;  934416487&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;10   &lt;/th&gt;
-&lt;td&gt;             The Lord of the Rings: The Two Towers&lt;/td&gt;
-&lt;td&gt; 2002&lt;/td&gt;
-&lt;td&gt;  745191&lt;/td&gt;
-&lt;td&gt; 179&lt;/td&gt;
-&lt;td&gt;  926047111&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;78   &lt;/th&gt;
-&lt;td&gt;                                      Finding Nemo&lt;/td&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt;  441598&lt;/td&gt;
-&lt;td&gt; 100&lt;/td&gt;
-&lt;td&gt;  921111197&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;589  &lt;/th&gt;
-&lt;td&gt;                                           Shrek 2&lt;/td&gt;
-&lt;td&gt; 2004&lt;/td&gt;
-&lt;td&gt;  222822&lt;/td&gt;
-&lt;td&gt;  93&lt;/td&gt;
-&lt;td&gt;  919838758&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;117  &lt;/th&gt;
-&lt;td&gt;                                     Jurassic Park&lt;/td&gt;
-&lt;td&gt; 1993&lt;/td&gt;
-&lt;td&gt;  368791&lt;/td&gt;
-&lt;td&gt; 127&lt;/td&gt;
-&lt;td&gt;  914691118&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;297  &lt;/th&gt;
-&lt;td&gt;               Harry Potter and the Goblet of Fire&lt;/td&gt;
-&lt;td&gt; 2005&lt;/td&gt;
-&lt;td&gt;  278378&lt;/td&gt;
-&lt;td&gt; 157&lt;/td&gt;
-&lt;td&gt;  896911078&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;343  &lt;/th&gt;
-&lt;td&gt;                                      Spider-Man 3&lt;/td&gt;
-&lt;td&gt; 2007&lt;/td&gt;
-&lt;td&gt;  258922&lt;/td&gt;
-&lt;td&gt; 139&lt;/td&gt;
-&lt;td&gt;  890871626&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1717 &lt;/th&gt;
-&lt;td&gt;                    Ice Age: Dawn of the Dinosaurs&lt;/td&gt;
-&lt;td&gt; 2009&lt;/td&gt;
-&lt;td&gt;  110923&lt;/td&gt;
-&lt;td&gt;  94&lt;/td&gt;
-&lt;td&gt;  886686817&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;290  &lt;/th&gt;
-&lt;td&gt;           Harry Potter and the Chamber of Secrets&lt;/td&gt;
-&lt;td&gt; 2002&lt;/td&gt;
-&lt;td&gt;  281240&lt;/td&gt;
-&lt;td&gt; 161&lt;/td&gt;
-&lt;td&gt;  878979634&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;5    &lt;/th&gt;
-&lt;td&gt; The Lord of the Rings: The Fellowship of the Ring&lt;/td&gt;
-&lt;td&gt; 2001&lt;/td&gt;
-&lt;td&gt;  855325&lt;/td&gt;
-&lt;td&gt; 178&lt;/td&gt;
-&lt;td&gt;  871530324&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;2052 &lt;/th&gt;
-&lt;td&gt;                        Ice Age: Continental Drift&lt;/td&gt;
-&lt;td&gt; 2012&lt;/td&gt;
-&lt;td&gt;   93462&lt;/td&gt;
-&lt;td&gt;  88&lt;/td&gt;
-&lt;td&gt;  867291788&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;405  &lt;/th&gt;
-&lt;td&gt;               Transformers: Revenge of the Fallen&lt;/td&gt;
-&lt;td&gt; 2009&lt;/td&gt;
-&lt;td&gt;  235270&lt;/td&gt;
-&lt;td&gt; 150&lt;/td&gt;
-&lt;td&gt;  836303693&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;2    &lt;/th&gt;
-&lt;td&gt;                                         Inception&lt;/td&gt;
-&lt;td&gt; 2010&lt;/td&gt;
-&lt;td&gt;  920345&lt;/td&gt;
-&lt;td&gt; 148&lt;/td&gt;
-&lt;td&gt;  825532764&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;101  &lt;/th&gt;
-&lt;td&gt;                                        Spider-Man&lt;/td&gt;
-&lt;td&gt; 2002&lt;/td&gt;
-&lt;td&gt;  381851&lt;/td&gt;
-&lt;td&gt; 121&lt;/td&gt;
-&lt;td&gt;  821708551&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;207  &lt;/th&gt;
-&lt;td&gt;                                  Independence Day&lt;/td&gt;
-&lt;td&gt; 1996&lt;/td&gt;
-&lt;td&gt;  322696&lt;/td&gt;
-&lt;td&gt; 145&lt;/td&gt;
-&lt;td&gt;  817400891&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1206 &lt;/th&gt;
-&lt;td&gt;                                   Shrek the Third&lt;/td&gt;
-&lt;td&gt; 2007&lt;/td&gt;
-&lt;td&gt;  151183&lt;/td&gt;
-&lt;td&gt;  93&lt;/td&gt;
-&lt;td&gt;  798958162&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;307  &lt;/th&gt;
-&lt;td&gt;          Harry Potter and the Prisoner of Azkaban&lt;/td&gt;
-&lt;td&gt; 2004&lt;/td&gt;
-&lt;td&gt;  273828&lt;/td&gt;
-&lt;td&gt; 142&lt;/td&gt;
-&lt;td&gt;  796688549&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;614  &lt;/th&gt;
-&lt;td&gt;                        E.T. the Extra-Terrestrial&lt;/td&gt;
-&lt;td&gt; 1982&lt;/td&gt;
-&lt;td&gt;  215698&lt;/td&gt;
-&lt;td&gt; 115&lt;/td&gt;
-&lt;td&gt;  792910554&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;359  &lt;/th&gt;
-&lt;td&gt; Indiana Jones and the Kingdom of the Crystal S...&lt;/td&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt;  251788&lt;/td&gt;
-&lt;td&gt; 122&lt;/td&gt;
-&lt;td&gt;  786636033&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;311  &lt;/th&gt;
-&lt;td&gt;                                      Spider-Man 2&lt;/td&gt;
-&lt;td&gt; 2004&lt;/td&gt;
-&lt;td&gt;  270884&lt;/td&gt;
-&lt;td&gt; 127&lt;/td&gt;
-&lt;td&gt;  783766341&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;711  &lt;/th&gt;
-&lt;td&gt;                                              2012&lt;/td&gt;
-&lt;td&gt; 2009&lt;/td&gt;
-&lt;td&gt;  208295&lt;/td&gt;
-&lt;td&gt; 158&lt;/td&gt;
-&lt;td&gt;  769679473&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;489  &lt;/th&gt;
-&lt;td&gt;                                 The Da Vinci Code&lt;/td&gt;
-&lt;td&gt; 2006&lt;/td&gt;
-&lt;td&gt;  233755&lt;/td&gt;
-&lt;td&gt; 149&lt;/td&gt;
-&lt;td&gt;  758239851&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1995 &lt;/th&gt;
-&lt;td&gt;                               Shrek Forever After&lt;/td&gt;
-&lt;td&gt; 2010&lt;/td&gt;
-&lt;td&gt;   97772&lt;/td&gt;
-&lt;td&gt;  93&lt;/td&gt;
-&lt;td&gt;  752600867&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;280  &lt;/th&gt;
-&lt;td&gt;                            The Amazing Spider-Man&lt;/td&gt;
-&lt;td&gt; 2012&lt;/td&gt;
-&lt;td&gt;  289873&lt;/td&gt;
-&lt;td&gt; 136&lt;/td&gt;
-&lt;td&gt;  752216557&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;195  &lt;/th&gt;
-&lt;td&gt;                               The Matrix Reloaded&lt;/td&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt;  328390&lt;/td&gt;
-&lt;td&gt; 138&lt;/td&gt;
-&lt;td&gt;  742128461&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;87   &lt;/th&gt;
-&lt;td&gt;                                                Up&lt;/td&gt;
-&lt;td&gt; 2009&lt;/td&gt;
-&lt;td&gt;  415780&lt;/td&gt;
-&lt;td&gt;  96&lt;/td&gt;
-&lt;td&gt;  731342744&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;99   &lt;/th&gt;
-&lt;td&gt;                                      Transformers&lt;/td&gt;
-&lt;td&gt; 2007&lt;/td&gt;
-&lt;td&gt;  391983&lt;/td&gt;
-&lt;td&gt; 144&lt;/td&gt;
-&lt;td&gt;  709709780&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1284 &lt;/th&gt;
-&lt;td&gt;         The Twilight Saga: Breaking Dawn - Part 1&lt;/td&gt;
-&lt;td&gt; 2011&lt;/td&gt;
-&lt;td&gt;  140406&lt;/td&gt;
-&lt;td&gt; 117&lt;/td&gt;
-&lt;td&gt;  705058657&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;56012&lt;/th&gt;
-&lt;td&gt;                                           Eclipse&lt;/td&gt;
-&lt;td&gt; 1994&lt;/td&gt;
-&lt;td&gt;     158&lt;/td&gt;
-&lt;td&gt;  95&lt;/td&gt;
-&lt;td&gt;  698491347&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;73   &lt;/th&gt;
-&lt;td&gt;                                  The Hunger Games&lt;/td&gt;
-&lt;td&gt; 2012&lt;/td&gt;
-&lt;td&gt;  462642&lt;/td&gt;
-&lt;td&gt; 142&lt;/td&gt;
-&lt;td&gt;  686533290&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;9    &lt;/th&gt;
-&lt;td&gt;                                      Forrest Gump&lt;/td&gt;
-&lt;td&gt; 1994&lt;/td&gt;
-&lt;td&gt;  780099&lt;/td&gt;
-&lt;td&gt; 142&lt;/td&gt;
-&lt;td&gt;  677387716&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;57   &lt;/th&gt;
-&lt;td&gt;                                   The Sixth Sense&lt;/td&gt;
-&lt;td&gt; 1999&lt;/td&gt;
-&lt;td&gt;  508059&lt;/td&gt;
-&lt;td&gt; 107&lt;/td&gt;
-&lt;td&gt;  672806292&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1390 &lt;/th&gt;
-&lt;td&gt;                             Ice Age: The Meltdown&lt;/td&gt;
-&lt;td&gt; 2006&lt;/td&gt;
-&lt;td&gt;  129198&lt;/td&gt;
-&lt;td&gt;  91&lt;/td&gt;
-&lt;td&gt;  655388158&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;37   &lt;/th&gt;
-&lt;td&gt; Pirates of the Caribbean: The Curse of the Bla...&lt;/td&gt;
-&lt;td&gt; 2003&lt;/td&gt;
-&lt;td&gt;  561949&lt;/td&gt;
-&lt;td&gt; 143&lt;/td&gt;
-&lt;td&gt;  654264015&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;720  &lt;/th&gt;
-&lt;td&gt;                                     Kung Fu Panda&lt;/td&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt;  206422&lt;/td&gt;
-&lt;td&gt;  90&lt;/td&gt;
-&lt;td&gt;  631744560&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;183  &lt;/th&gt;
-&lt;td&gt;                                   The Incredibles&lt;/td&gt;
-&lt;td&gt; 2004&lt;/td&gt;
-&lt;td&gt;  332844&lt;/td&gt;
-&lt;td&gt; 115&lt;/td&gt;
-&lt;td&gt;  631442092&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;801  &lt;/th&gt;
-&lt;td&gt;                                         Fast Five&lt;/td&gt;
-&lt;td&gt; 2011&lt;/td&gt;
-&lt;td&gt;  200568&lt;/td&gt;
-&lt;td&gt; 130&lt;/td&gt;
-&lt;td&gt;  626100000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;503  &lt;/th&gt;
-&lt;td&gt;                                           Hancock&lt;/td&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt;  228501&lt;/td&gt;
-&lt;td&gt;  92&lt;/td&gt;
-&lt;td&gt;  624386746&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;880  &lt;/th&gt;
-&lt;td&gt;                                    Men in Black 3&lt;/td&gt;
-&lt;td&gt; 2012&lt;/td&gt;
-&lt;td&gt;  187247&lt;/td&gt;
-&lt;td&gt; 106&lt;/td&gt;
-&lt;td&gt;  624026776&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;194  &lt;/th&gt;
-&lt;td&gt;                                        Iron Man 2&lt;/td&gt;
-&lt;td&gt; 2010&lt;/td&gt;
-&lt;td&gt;  329240&lt;/td&gt;
-&lt;td&gt; 124&lt;/td&gt;
-&lt;td&gt;  623933331&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;171  &lt;/th&gt;
-&lt;td&gt;                                       Ratatouille&lt;/td&gt;
-&lt;td&gt; 2007&lt;/td&gt;
-&lt;td&gt;  336359&lt;/td&gt;
-&lt;td&gt; 111&lt;/td&gt;
-&lt;td&gt;  623722818&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;904  &lt;/th&gt;
-&lt;td&gt;                     The Lost World: Jurassic Park&lt;/td&gt;
-&lt;td&gt; 1997&lt;/td&gt;
-&lt;td&gt;  184609&lt;/td&gt;
-&lt;td&gt; 129&lt;/td&gt;
-&lt;td&gt;  618638999&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1215 &lt;/th&gt;
-&lt;td&gt;                         The Passion of the Christ&lt;/td&gt;
-&lt;td&gt; 2004&lt;/td&gt;
-&lt;td&gt;  149932&lt;/td&gt;
-&lt;td&gt; 127&lt;/td&gt;
-&lt;td&gt;  611899420&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1839 &lt;/th&gt;
-&lt;td&gt;                                        Mamma Mia!&lt;/td&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt;  104405&lt;/td&gt;
-&lt;td&gt; 108&lt;/td&gt;
-&lt;td&gt;  609841637&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;2024 &lt;/th&gt;
-&lt;td&gt;                       Madagascar: Escape 2 Africa&lt;/td&gt;
-&lt;td&gt; 2008&lt;/td&gt;
-&lt;td&gt;   94291&lt;/td&gt;
-&lt;td&gt;  89&lt;/td&gt;
-&lt;td&gt;  602308178&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;title&lt;/th&gt;
+      &lt;th&gt;year&lt;/th&gt;
+      &lt;th&gt;votes&lt;/th&gt;
+      &lt;th&gt;runtime_x&lt;/th&gt;
+      &lt;th&gt;revenue&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;13   &lt;/th&gt;
+      &lt;td&gt;                                            Avatar&lt;/td&gt;
+      &lt;td&gt; 2009&lt;/td&gt;
+      &lt;td&gt;  650065&lt;/td&gt;
+      &lt;td&gt; 162&lt;/td&gt;
+      &lt;td&gt; 2782275172&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;40   &lt;/th&gt;
+      &lt;td&gt;                                           Titanic&lt;/td&gt;
+      &lt;td&gt; 1997&lt;/td&gt;
+      &lt;td&gt;  552651&lt;/td&gt;
+      &lt;td&gt; 194&lt;/td&gt;
+      &lt;td&gt; 2185372302&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;401  &lt;/th&gt;
+      &lt;td&gt;                    Transformers: Dark of the Moon&lt;/td&gt;
+      &lt;td&gt; 2011&lt;/td&gt;
+      &lt;td&gt;  235772&lt;/td&gt;
+      &lt;td&gt; 154&lt;/td&gt;
+      &lt;td&gt; 1123746996&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6    &lt;/th&gt;
+      &lt;td&gt;     The Lord of the Rings: The Return of the King&lt;/td&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt;  828522&lt;/td&gt;
+      &lt;td&gt; 201&lt;/td&gt;
+      &lt;td&gt; 1119929521&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;11   &lt;/th&gt;
+      &lt;td&gt;                             The Dark Knight Rises&lt;/td&gt;
+      &lt;td&gt; 2012&lt;/td&gt;
+      &lt;td&gt;  741543&lt;/td&gt;
+      &lt;td&gt; 165&lt;/td&gt;
+      &lt;td&gt; 1078008948&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;126  &lt;/th&gt;
+      &lt;td&gt;                                       Toy Story 3&lt;/td&gt;
+      &lt;td&gt; 2010&lt;/td&gt;
+      &lt;td&gt;  348502&lt;/td&gt;
+      &lt;td&gt; 103&lt;/td&gt;
+      &lt;td&gt; 1063171911&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;347  &lt;/th&gt;
+      &lt;td&gt;       Pirates of the Caribbean: On Stranger Tides&lt;/td&gt;
+      &lt;td&gt; 2011&lt;/td&gt;
+      &lt;td&gt;  253863&lt;/td&gt;
+      &lt;td&gt; 136&lt;/td&gt;
+      &lt;td&gt; 1043871802&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;518  &lt;/th&gt;
+      &lt;td&gt;                               Alice in Wonderland&lt;/td&gt;
+      &lt;td&gt; 2010&lt;/td&gt;
+      &lt;td&gt;  224651&lt;/td&gt;
+      &lt;td&gt; 108&lt;/td&gt;
+      &lt;td&gt; 1024299904&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1    &lt;/th&gt;
+      &lt;td&gt;                                   The Dark Knight&lt;/td&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt; 1125214&lt;/td&gt;
+      &lt;td&gt; 152&lt;/td&gt;
+      &lt;td&gt; 1004558444&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;97   &lt;/th&gt;
+      &lt;td&gt;                                     The Lion King&lt;/td&gt;
+      &lt;td&gt; 1994&lt;/td&gt;
+      &lt;td&gt;  397397&lt;/td&gt;
+      &lt;td&gt;  89&lt;/td&gt;
+      &lt;td&gt;  951583777&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;346  &lt;/th&gt;
+      &lt;td&gt;         Harry Potter and the Order of the Phoenix&lt;/td&gt;
+      &lt;td&gt; 2007&lt;/td&gt;
+      &lt;td&gt;  256564&lt;/td&gt;
+      &lt;td&gt; 138&lt;/td&gt;
+      &lt;td&gt;  939885929&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;511  &lt;/th&gt;
+      &lt;td&gt;            Harry Potter and the Half-Blood Prince&lt;/td&gt;
+      &lt;td&gt; 2009&lt;/td&gt;
+      &lt;td&gt;  225700&lt;/td&gt;
+      &lt;td&gt; 153&lt;/td&gt;
+      &lt;td&gt;  934416487&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;10   &lt;/th&gt;
+      &lt;td&gt;             The Lord of the Rings: The Two Towers&lt;/td&gt;
+      &lt;td&gt; 2002&lt;/td&gt;
+      &lt;td&gt;  745191&lt;/td&gt;
+      &lt;td&gt; 179&lt;/td&gt;
+      &lt;td&gt;  926047111&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;78   &lt;/th&gt;
+      &lt;td&gt;                                      Finding Nemo&lt;/td&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt;  441598&lt;/td&gt;
+      &lt;td&gt; 100&lt;/td&gt;
+      &lt;td&gt;  921111197&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;589  &lt;/th&gt;
+      &lt;td&gt;                                           Shrek 2&lt;/td&gt;
+      &lt;td&gt; 2004&lt;/td&gt;
+      &lt;td&gt;  222822&lt;/td&gt;
+      &lt;td&gt;  93&lt;/td&gt;
+      &lt;td&gt;  919838758&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;117  &lt;/th&gt;
+      &lt;td&gt;                                     Jurassic Park&lt;/td&gt;
+      &lt;td&gt; 1993&lt;/td&gt;
+      &lt;td&gt;  368791&lt;/td&gt;
+      &lt;td&gt; 127&lt;/td&gt;
+      &lt;td&gt;  914691118&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;297  &lt;/th&gt;
+      &lt;td&gt;               Harry Potter and the Goblet of Fire&lt;/td&gt;
+      &lt;td&gt; 2005&lt;/td&gt;
+      &lt;td&gt;  278378&lt;/td&gt;
+      &lt;td&gt; 157&lt;/td&gt;
+      &lt;td&gt;  896911078&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;343  &lt;/th&gt;
+      &lt;td&gt;                                      Spider-Man 3&lt;/td&gt;
+      &lt;td&gt; 2007&lt;/td&gt;
+      &lt;td&gt;  258922&lt;/td&gt;
+      &lt;td&gt; 139&lt;/td&gt;
+      &lt;td&gt;  890871626&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1717 &lt;/th&gt;
+      &lt;td&gt;                    Ice Age: Dawn of the Dinosaurs&lt;/td&gt;
+      &lt;td&gt; 2009&lt;/td&gt;
+      &lt;td&gt;  110923&lt;/td&gt;
+      &lt;td&gt;  94&lt;/td&gt;
+      &lt;td&gt;  886686817&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;290  &lt;/th&gt;
+      &lt;td&gt;           Harry Potter and the Chamber of Secrets&lt;/td&gt;
+      &lt;td&gt; 2002&lt;/td&gt;
+      &lt;td&gt;  281240&lt;/td&gt;
+      &lt;td&gt; 161&lt;/td&gt;
+      &lt;td&gt;  878979634&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5    &lt;/th&gt;
+      &lt;td&gt; The Lord of the Rings: The Fellowship of the Ring&lt;/td&gt;
+      &lt;td&gt; 2001&lt;/td&gt;
+      &lt;td&gt;  855325&lt;/td&gt;
+      &lt;td&gt; 178&lt;/td&gt;
+      &lt;td&gt;  871530324&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2052 &lt;/th&gt;
+      &lt;td&gt;                        Ice Age: Continental Drift&lt;/td&gt;
+      &lt;td&gt; 2012&lt;/td&gt;
+      &lt;td&gt;   93462&lt;/td&gt;
+      &lt;td&gt;  88&lt;/td&gt;
+      &lt;td&gt;  867291788&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;405  &lt;/th&gt;
+      &lt;td&gt;               Transformers: Revenge of the Fallen&lt;/td&gt;
+      &lt;td&gt; 2009&lt;/td&gt;
+      &lt;td&gt;  235270&lt;/td&gt;
+      &lt;td&gt; 150&lt;/td&gt;
+      &lt;td&gt;  836303693&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2    &lt;/th&gt;
+      &lt;td&gt;                                         Inception&lt;/td&gt;
+      &lt;td&gt; 2010&lt;/td&gt;
+      &lt;td&gt;  920345&lt;/td&gt;
+      &lt;td&gt; 148&lt;/td&gt;
+      &lt;td&gt;  825532764&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;101  &lt;/th&gt;
+      &lt;td&gt;                                        Spider-Man&lt;/td&gt;
+      &lt;td&gt; 2002&lt;/td&gt;
+      &lt;td&gt;  381851&lt;/td&gt;
+      &lt;td&gt; 121&lt;/td&gt;
+      &lt;td&gt;  821708551&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;207  &lt;/th&gt;
+      &lt;td&gt;                                  Independence Day&lt;/td&gt;
+      &lt;td&gt; 1996&lt;/td&gt;
+      &lt;td&gt;  322696&lt;/td&gt;
+      &lt;td&gt; 145&lt;/td&gt;
+      &lt;td&gt;  817400891&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1206 &lt;/th&gt;
+      &lt;td&gt;                                   Shrek the Third&lt;/td&gt;
+      &lt;td&gt; 2007&lt;/td&gt;
+      &lt;td&gt;  151183&lt;/td&gt;
+      &lt;td&gt;  93&lt;/td&gt;
+      &lt;td&gt;  798958162&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;307  &lt;/th&gt;
+      &lt;td&gt;          Harry Potter and the Prisoner of Azkaban&lt;/td&gt;
+      &lt;td&gt; 2004&lt;/td&gt;
+      &lt;td&gt;  273828&lt;/td&gt;
+      &lt;td&gt; 142&lt;/td&gt;
+      &lt;td&gt;  796688549&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;614  &lt;/th&gt;
+      &lt;td&gt;                        E.T. the Extra-Terrestrial&lt;/td&gt;
+      &lt;td&gt; 1982&lt;/td&gt;
+      &lt;td&gt;  215698&lt;/td&gt;
+      &lt;td&gt; 115&lt;/td&gt;
+      &lt;td&gt;  792910554&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;359  &lt;/th&gt;
+      &lt;td&gt; Indiana Jones and the Kingdom of the Crystal S...&lt;/td&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt;  251788&lt;/td&gt;
+      &lt;td&gt; 122&lt;/td&gt;
+      &lt;td&gt;  786636033&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;311  &lt;/th&gt;
+      &lt;td&gt;                                      Spider-Man 2&lt;/td&gt;
+      &lt;td&gt; 2004&lt;/td&gt;
+      &lt;td&gt;  270884&lt;/td&gt;
+      &lt;td&gt; 127&lt;/td&gt;
+      &lt;td&gt;  783766341&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;711  &lt;/th&gt;
+      &lt;td&gt;                                              2012&lt;/td&gt;
+      &lt;td&gt; 2009&lt;/td&gt;
+      &lt;td&gt;  208295&lt;/td&gt;
+      &lt;td&gt; 158&lt;/td&gt;
+      &lt;td&gt;  769679473&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;489  &lt;/th&gt;
+      &lt;td&gt;                                 The Da Vinci Code&lt;/td&gt;
+      &lt;td&gt; 2006&lt;/td&gt;
+      &lt;td&gt;  233755&lt;/td&gt;
+      &lt;td&gt; 149&lt;/td&gt;
+      &lt;td&gt;  758239851&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1995 &lt;/th&gt;
+      &lt;td&gt;                               Shrek Forever After&lt;/td&gt;
+      &lt;td&gt; 2010&lt;/td&gt;
+      &lt;td&gt;   97772&lt;/td&gt;
+      &lt;td&gt;  93&lt;/td&gt;
+      &lt;td&gt;  752600867&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;280  &lt;/th&gt;
+      &lt;td&gt;                            The Amazing Spider-Man&lt;/td&gt;
+      &lt;td&gt; 2012&lt;/td&gt;
+      &lt;td&gt;  289873&lt;/td&gt;
+      &lt;td&gt; 136&lt;/td&gt;
+      &lt;td&gt;  752216557&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;195  &lt;/th&gt;
+      &lt;td&gt;                               The Matrix Reloaded&lt;/td&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt;  328390&lt;/td&gt;
+      &lt;td&gt; 138&lt;/td&gt;
+      &lt;td&gt;  742128461&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;87   &lt;/th&gt;
+      &lt;td&gt;                                                Up&lt;/td&gt;
+      &lt;td&gt; 2009&lt;/td&gt;
+      &lt;td&gt;  415780&lt;/td&gt;
+      &lt;td&gt;  96&lt;/td&gt;
+      &lt;td&gt;  731342744&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;99   &lt;/th&gt;
+      &lt;td&gt;                                      Transformers&lt;/td&gt;
+      &lt;td&gt; 2007&lt;/td&gt;
+      &lt;td&gt;  391983&lt;/td&gt;
+      &lt;td&gt; 144&lt;/td&gt;
+      &lt;td&gt;  709709780&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1284 &lt;/th&gt;
+      &lt;td&gt;         The Twilight Saga: Breaking Dawn - Part 1&lt;/td&gt;
+      &lt;td&gt; 2011&lt;/td&gt;
+      &lt;td&gt;  140406&lt;/td&gt;
+      &lt;td&gt; 117&lt;/td&gt;
+      &lt;td&gt;  705058657&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;56012&lt;/th&gt;
+      &lt;td&gt;                                           Eclipse&lt;/td&gt;
+      &lt;td&gt; 1994&lt;/td&gt;
+      &lt;td&gt;     158&lt;/td&gt;
+      &lt;td&gt;  95&lt;/td&gt;
+      &lt;td&gt;  698491347&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;73   &lt;/th&gt;
+      &lt;td&gt;                                  The Hunger Games&lt;/td&gt;
+      &lt;td&gt; 2012&lt;/td&gt;
+      &lt;td&gt;  462642&lt;/td&gt;
+      &lt;td&gt; 142&lt;/td&gt;
+      &lt;td&gt;  686533290&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9    &lt;/th&gt;
+      &lt;td&gt;                                      Forrest Gump&lt;/td&gt;
+      &lt;td&gt; 1994&lt;/td&gt;
+      &lt;td&gt;  780099&lt;/td&gt;
+      &lt;td&gt; 142&lt;/td&gt;
+      &lt;td&gt;  677387716&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;57   &lt;/th&gt;
+      &lt;td&gt;                                   The Sixth Sense&lt;/td&gt;
+      &lt;td&gt; 1999&lt;/td&gt;
+      &lt;td&gt;  508059&lt;/td&gt;
+      &lt;td&gt; 107&lt;/td&gt;
+      &lt;td&gt;  672806292&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1390 &lt;/th&gt;
+      &lt;td&gt;                             Ice Age: The Meltdown&lt;/td&gt;
+      &lt;td&gt; 2006&lt;/td&gt;
+      &lt;td&gt;  129198&lt;/td&gt;
+      &lt;td&gt;  91&lt;/td&gt;
+      &lt;td&gt;  655388158&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;37   &lt;/th&gt;
+      &lt;td&gt; Pirates of the Caribbean: The Curse of the Bla...&lt;/td&gt;
+      &lt;td&gt; 2003&lt;/td&gt;
+      &lt;td&gt;  561949&lt;/td&gt;
+      &lt;td&gt; 143&lt;/td&gt;
+      &lt;td&gt;  654264015&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;720  &lt;/th&gt;
+      &lt;td&gt;                                     Kung Fu Panda&lt;/td&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt;  206422&lt;/td&gt;
+      &lt;td&gt;  90&lt;/td&gt;
+      &lt;td&gt;  631744560&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;183  &lt;/th&gt;
+      &lt;td&gt;                                   The Incredibles&lt;/td&gt;
+      &lt;td&gt; 2004&lt;/td&gt;
+      &lt;td&gt;  332844&lt;/td&gt;
+      &lt;td&gt; 115&lt;/td&gt;
+      &lt;td&gt;  631442092&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;801  &lt;/th&gt;
+      &lt;td&gt;                                         Fast Five&lt;/td&gt;
+      &lt;td&gt; 2011&lt;/td&gt;
+      &lt;td&gt;  200568&lt;/td&gt;
+      &lt;td&gt; 130&lt;/td&gt;
+      &lt;td&gt;  626100000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;503  &lt;/th&gt;
+      &lt;td&gt;                                           Hancock&lt;/td&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt;  228501&lt;/td&gt;
+      &lt;td&gt;  92&lt;/td&gt;
+      &lt;td&gt;  624386746&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;880  &lt;/th&gt;
+      &lt;td&gt;                                    Men in Black 3&lt;/td&gt;
+      &lt;td&gt; 2012&lt;/td&gt;
+      &lt;td&gt;  187247&lt;/td&gt;
+      &lt;td&gt; 106&lt;/td&gt;
+      &lt;td&gt;  624026776&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;194  &lt;/th&gt;
+      &lt;td&gt;                                        Iron Man 2&lt;/td&gt;
+      &lt;td&gt; 2010&lt;/td&gt;
+      &lt;td&gt;  329240&lt;/td&gt;
+      &lt;td&gt; 124&lt;/td&gt;
+      &lt;td&gt;  623933331&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;171  &lt;/th&gt;
+      &lt;td&gt;                                       Ratatouille&lt;/td&gt;
+      &lt;td&gt; 2007&lt;/td&gt;
+      &lt;td&gt;  336359&lt;/td&gt;
+      &lt;td&gt; 111&lt;/td&gt;
+      &lt;td&gt;  623722818&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;904  &lt;/th&gt;
+      &lt;td&gt;                     The Lost World: Jurassic Park&lt;/td&gt;
+      &lt;td&gt; 1997&lt;/td&gt;
+      &lt;td&gt;  184609&lt;/td&gt;
+      &lt;td&gt; 129&lt;/td&gt;
+      &lt;td&gt;  618638999&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1215 &lt;/th&gt;
+      &lt;td&gt;                         The Passion of the Christ&lt;/td&gt;
+      &lt;td&gt; 2004&lt;/td&gt;
+      &lt;td&gt;  149932&lt;/td&gt;
+      &lt;td&gt; 127&lt;/td&gt;
+      &lt;td&gt;  611899420&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1839 &lt;/th&gt;
+      &lt;td&gt;                                        Mamma Mia!&lt;/td&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt;  104405&lt;/td&gt;
+      &lt;td&gt; 108&lt;/td&gt;
+      &lt;td&gt;  609841637&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2024 &lt;/th&gt;
+      &lt;td&gt;                       Madagascar: Escape 2 Africa&lt;/td&gt;
+      &lt;td&gt; 2008&lt;/td&gt;
+      &lt;td&gt;   94291&lt;/td&gt;
+      &lt;td&gt;  89&lt;/td&gt;
+      &lt;td&gt;  602308178&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;¶&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This post will be the last post in this series for some time. If I could aggregate some more information from different sources, I will look at different aspects of movies. However, I do not have that data, at least yet. Stay tuned, though.&lt;/p&gt;
+&lt;h3 id="What-is-next?"&gt;What is next?&lt;a class="anchor-link" href="#What-is-next?"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This post will be the last post in this series for some time. If I could aggregate some more information from different sources, I will look at different aspects of movies. However, I do not have that data, at least yet. Stay tuned, though.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -15311,7 +15486,13 @@ mMu1AAAAAElFTkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary></entry><entry><title>Cultural Data Project Part 1</title><link href="http://bugra.github.io/work/notes/2014-02-01/cultural-data-project-part-1/" rel="alternate"></link><published>2014-02-01T00:00:00+00:00</published><updated>2014-02-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-01:work/notes/2014-02-01/cultural-data-project-part-1/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+</content></entry><entry><title>Cultural Data Project Part 1</title><link href="http://bugra.github.io/work/notes/2014-02-01/cultural-data-project-part-1/" rel="alternate"></link><published>2014-02-01T00:00:00+00:00</published><updated>2014-02-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-02-01:/work/notes/2014-02-01/cultural-data-project-part-1/</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Data is from &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better
+understanding, I seggregated the data by organization type. There are
+total 48 different organization types. Data follows &lt;a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf"&gt;data profile&lt;/a&gt; structure
+and I grouped organizations into 6 different subsections;
+employment statistics, their activities, pricing, website activity,
+attendance and …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Data is from &lt;a href="http://www.culturaldata.org/"&gt;Cultural Data Project&lt;/a&gt;. In order to get a better
 understanding, I seggregated the data by organization type. There are
 total 48 different organization types. Data follows &lt;a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf"&gt;data profile&lt;/a&gt; structure
@@ -15321,7 +15502,7 @@ attendance and finally number of contributors. Before looking at the
 distribution of the above metrics, let's look at when organizations are
 founded. The first cultural organization dates go back to 1636 according
 to data and youngest one seems to be 2012.
-&lt;img alt="Foundation Year of Organizations" src="/images/work/notes/2014/2/1/year_founded.png" title="Foundation Year" /&gt;
+&lt;img alt="Foundation Year of Organizations" src="/images/work/notes/2014/2/1/year_founded.png" title="Foundation Year"&gt;
 Mean year is approximately 1975 and median year is 1984. The width of
 the plot shows the number of organizations that are founded in a year
 shown in the y axis. Most of the organizations are founded between 1950
@@ -15342,80 +15523,80 @@ outliers.&lt;/p&gt;
 Above&lt;/em&gt; should change &lt;em&gt;None of anything else&lt;/em&gt;.&lt;/p&gt;
 &lt;h2&gt;Employment&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Employment Mean grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_mean.png" title="Employment Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Employment Mean grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_mean.png" title="Employment Mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Employment Median grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_median.png" title="Employment Median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Employment Median grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_median.png" title="Employment Median grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Employment Sum grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_sum.png" title="Employment Sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Employment Sum grouped by Institution" src="/images/work/notes/2014/2/1/employmen_groupby_institution_type_sum.png" title="Employment Sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h2&gt;Activity&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Activity Types Mean grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_mean.png" title="Activity Types Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Activity Types Mean grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_mean.png" title="Activity Types Mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Activity Types Median grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_median.png" title="Activity Types Median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Activity Types Median grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_median.png" title="Activity Types Median grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Activity Types Sum grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Activity Types Sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Activity Types Sum grouped by Institution" src="/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Activity Types Sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h2&gt;Pricing&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Pricing Mean grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_mean.png" title="Pricing Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pricing Mean grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_mean.png" title="Pricing Mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Pricing Median grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_median.png" title="Pricing Median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pricing Median grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_median.png" title="Pricing Median grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Pricing Sum grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_sum.png" title="Pricing sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Pricing Sum grouped by Institution" src="/images/work/notes/2014/2/1/pricing_groupby_institution_type_sum.png" title="Pricing sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h2&gt;Web Activity&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Activity Mean grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_mean.png" title="Web Activity Mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Website Activity Mean grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_mean.png" title="Web Activity Mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Activity Median grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_median.png" title="Web Activity sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Website Activity Median grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_median.png" title="Web Activity sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Activity Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_sum.png" title="Web Activity sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Website Activity Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_activity_groupby_institution_type_sum.png" title="Web Activity sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h2&gt;Web Income&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Income mean grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_mean.png" title="Web Income mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Website Income mean grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_mean.png" title="Web Income mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Income Median grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_median.png" title="Web Income median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Website Income Median grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_median.png" title="Web Income median grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Website Income Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_sum.png" title="Web Income sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Website Income Sum grouped by Institution" src="/images/work/notes/2014/2/1/web_income_groupby_institution_type_sum.png" title="Web Income sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h2&gt;Attendance&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Attendance Mean grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_mean.png" title="Attendance mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Attendance Mean grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_mean.png" title="Attendance mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Attendance Median grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_median.png" title="Attendance median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Attendance Median grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_median.png" title="Attendance median grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Attendance Sum grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_sum.png" title="Attendance sum grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Attendance Sum grouped by Institution" src="/images/work/notes/2014/2/1/attendance_groupby_institution_type_sum.png" title="Attendance sum grouped by Institution"&gt;&lt;/p&gt;
 &lt;h2&gt;Number of Contributors&lt;/h2&gt;
 &lt;h3&gt;Mean&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Contributor Mean grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_mean.png" title="Contributor mean grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Contributor Mean grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_mean.png" title="Contributor mean grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Median&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Contributor Median grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_median.png" title="Contributor median grouped by Institution" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Contributor Median grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_median.png" title="Contributor median grouped by Institution"&gt;&lt;/p&gt;
 &lt;h3&gt;Sum&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Contributor Sum grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_sum.png" title="Contributor sum grouped by Institution" /&gt;&lt;/p&gt;</summary></entry><entry><title>Phase Detection in Digital Signals</title><link href="http://bugra.github.io/work/notes/2012-09-01/Phase-Detection/" rel="alternate"></link><published>2012-09-01T00:00:00+00:00</published><updated>2012-09-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-09-01:work/notes/2012-09-01/Phase-Detection/</id><summary type="html">&lt;p&gt;Phase Detection is an important concept in radar signals. It could be used to determine the time delay between radar signals and this time delay could be used to infer the distance of the object from the radar, which is the main aim of the radar. Even if it is assumed that transmitted signal and received signal should be same, there occurs to be noise.
+&lt;p&gt;&lt;img alt="Contributor Sum grouped by Institution" src="/images/work/notes/2014/2/1/contributor_groupby_institution_type_sum.png" title="Contributor sum grouped by Institution"&gt;&lt;/p&gt;</content></entry><entry><title>Phase Detection in Digital Signals</title><link href="http://bugra.github.io/work/notes/2012-09-01/Phase-Detection/" rel="alternate"></link><published>2012-09-01T00:00:00+00:00</published><updated>2012-09-01T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2012-09-01:/work/notes/2012-09-01/Phase-Detection/</id><summary type="html">&lt;p&gt;Phase Detection is an important concept in radar signals. It could be used to determine the time delay between radar signals and this time delay could be used to infer the distance of the object from the radar, which is the main aim of the radar. Even if it is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Phase Detection is an important concept in radar signals. It could be used to determine the time delay between radar signals and this time delay could be used to infer the distance of the object from the radar, which is the main aim of the radar. Even if it is assumed that transmitted signal and received signal should be same, there occurs to be noise.
 I was assigned to implement phase detection for FPGA's for my internship in Summer 2010 as they are used for radar signal processing. They can do complex and real-time processing, are cheaper than computers, portable, low power consumers.
 However, I did not go into implementation directly. I need a simulation which would yield promising results. Then, I could implement in VHDL. I chose Matlab and implemented three different methods. (This would decrease to two in VHDL).
 I will compare these methods as well, but it cannot be deduced that some method &lt;em&gt;always&lt;/em&gt; or even usually perform better than some other method based on the results provided. There are a numerous reasons, but I will just mention few of them. Firstly, this is just a &lt;strong&gt;simulation&lt;/strong&gt; after all. Secondly, the simulation takes into consideration only one of the signal is noisy(received), which may not hold true in general. Moreover, there are constant parameters which may favor some method over other ones.
 Before giving details of the methods, I am urged to mention an important concept that two methods use, Schmitt Trigger.&lt;/p&gt;
 &lt;h3&gt;Schmitt Trigger&lt;/h3&gt;
 &lt;p&gt;Schmitt Trigger is a comparator with two different threshold values. When the signal goes over &lt;strong&gt;High Threshold&lt;/strong&gt;, it yields 1(HIGH). It remains 1 until signal goes below &lt;strong&gt;Low Threshold&lt;/strong&gt;, it yields 0. It remains 0, until signal goes over ...  as it could be seen the figure below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger"&gt;&lt;/p&gt;
 &lt;p&gt;In analog implementation of Schmitt Trigger, there is a feedback mechanism which uses hysteresis to adjust its threshold values. In this implementation, they are constant. Schmitt Trigger is used to prevent noise when analogous signal is transformed into a digital(binary) one. It prevents oscillation in the binary signal which is convenient and makes the binary signal robust to noise. Consider the figure below, A is a basic comparator. B is a Schmitt Trigger. Any fluctuation in the border of A resultss in oscillation in the digital signal. This is the general case for noisy signals. However, fluctuations in border B does not change digital signal since digital signal needs to wait for &lt;em&gt;high threshold&lt;/em&gt; value or &lt;em&gt;low threshold&lt;/em&gt; value to change.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger"&gt;&lt;/p&gt;
 &lt;p&gt;It is important to note that if noise level is higher than the difference of two thresholds, schmitt trigger does not provide robustness to noise. It is still better than a basic comparator, though. Therefore, noise level should be taken into consideration when setting up the threshold values.&lt;/p&gt;
 &lt;h2&gt;PulseLag Method&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals"&gt;&lt;/p&gt;
 &lt;p&gt;In this method, we multiply both signals $ f_c $ with another sinusoid, but a lower frequency $ f_{down} $  Then, low-pass filter this signal in order to get low frequency part.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals"&gt;&lt;/p&gt;
 &lt;p&gt;After filtering the signal, we put it into Schmitt Trigger. Then, we get their difference which also gives time delay.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals"&gt;&lt;/p&gt;
 &lt;p&gt;We need the ratio of the (number of times first signal is 1 and second signal is 0) over the total time. Then, we need to divide this ratio to $ f_c $ to find time delay.
 I apply 0.5 nanosecond delay in the signal and it will be constant for the other methods as well, for noiseless case method measures  4.5714e-10. For noise coefficient = 0.1, method measures  5.1429e-10. For noise coefficient = 0.2, method measures  8.0000e-10, which is not even close.
 Even if noiseless and when noise is small, this method performs well, for noisy cases, it is not robust to noise.&lt;/p&gt;
 &lt;h2&gt;Multiplication Method&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals" /&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals"&gt;
 If we multiply two signals with each other, we have a high pass term and a phase term if they have both the same frequency.(noiseless case)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal" /&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal"&gt;
 If we get inverse sin or cosine of the multiplied signal&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png" title=" Inverse of Filtered Multiplied Signal" /&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png" title=" Inverse of Filtered Multiplied Signal"&gt;
 and take mean of the signal(after some heuristics), divide by $2 * \pi * f_c$, then we get a time delay.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal"&gt;&lt;/p&gt;
 &lt;p&gt;For noiseless case method measures 4.9639e-10 which is quite close. For noise coefficient = 0.1, method measures  4.6909e-10. For noise coefficient = 0.2, method measures 5.8330e-10, which is quite close for such a high noise.&lt;/p&gt;
 &lt;h2&gt;FFT-Based Method&lt;/h2&gt;
 &lt;p&gt;FFT can be written in a Discrete Fourier Transform:
@@ -15426,15 +15607,15 @@ $$ x[n-D] \leftrightarrow e^{\frac{-j2 \pi k D}{N}}X[k] $$
 It is important to note, in the magnitude response, the phase $e^{\frac{-j2 \pi k D}{N}}$ will be one. Therefore, it will not affect the magnitude response.
 Since we send periodic signals, the maximum of frequency response will occur at the dominant frequency which is the period of the signal. As the magnitude response will be same, we could just take the phase response of the same index in FFT to find the phase information between the signals.
 Original and delayed signal(0.5e-9) signals are given below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal"&gt;&lt;/p&gt;
 &lt;p&gt;Magnitude response of the signals are given below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals"&gt;&lt;/p&gt;
 &lt;p&gt;Phase response of the signals:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT"&gt;&lt;/p&gt;
 &lt;p&gt;When we take the phases of the both signals and subtract, we get the phase difference. Time delay is only the ratio of phase difference over $ 2 * pi * fc $.
 For noiseless case method measures 4.9656e-10 which is quite close. For noise coefficient = 0.1, method measures  5.1161e-10. For noise coefficient = 0.2, method measures 3.9221e-10, which is not very close.&lt;/p&gt;
 &lt;h3&gt;Result&lt;/h3&gt;
 &lt;p&gt;For noiseless case, all of the methods perform quite well. For medium noise(n = 0.1), FFT-Based and PulseLag method; for high noise, Multiplication method performs better.&lt;/p&gt;
 &lt;h3&gt;Code&lt;/h3&gt;
 &lt;p&gt;All of the code and images used in this note is available in the &lt;a href="https://github.com/bugra/Phase-Detection" title="Phase-Detection-Matlab"&gt;here&lt;/a&gt;.
-Moreover, implementation of Multiplication and FFT-Based method in VHDL is also available in &lt;a href="https://github.com/bugra/Phase-Detection-VHDL" title="Phase-Detection-VHDL"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary></entry></feed>
+Moreover, implementation of Multiplication and FFT-Based method in VHDL is also available in &lt;a href="https://github.com/bugra/Phase-Detection-VHDL" title="Phase-Detection-VHDL"&gt;here&lt;/a&gt;.&lt;/p&gt;</content></entry></feed>
