@@ -92,7 +92,7 @@ consider following three sentences:</p>
 </ol>
 <p>Ignoring the punctuation and uppercase, we have the following corpus for
 these three sentences:
-['am', 'become', 'i', 'who'] <br />
+['am', 'become', 'i', 'who'] <br>
 (note that the words are sorted by alphabetical order) Quite a large corpus!
 Then the bag of words representation for the sentences are the
 following:</p>
@@ -169,7 +169,7 @@ symmetric; which is nice and quite popular measure of two probability
 distributions. Formally it is defined for $p$ and $q$ distributions as
 such:
 $$ D_{JS}(p|q) = D_{JS}(q|p) = \frac{1}{2} D_{KL}(p|r) + \frac{1}{2} D_{KL}(q|r) $$
-where $r = \frac{1}{2} (p+q)$.<br />
+where $r = \frac{1}{2} (p+q)$.<br>
 Instead of going through getting K-L divergence of individual
 distribution, J-S does this using a mixture distribution of $r$. Quite
 smart, huh? By doing so, it ensures that it is symmetric and nice measure for probability distribution differences.  </p>
@@ -203,9 +203,9 @@ $$ Loss_{x_1, \ldots, x_n} = (\displaystyle\sum_{i\neq j=1, \ldots, N} (D_{i,j} 
 <p>After we apply MDS to our J-S divergence matrix, we get $x$-$y$ pair of
 coordinates of each document and it looks like the following(for a
 selected documents):
-<img alt="J-S Matrix of Documents with MDS" src="/images/work/notes/2014/3/16/documents_mds.png" title="Document Visualization on J-S Divergence Matrix and MultiDimensional Scaling" />
-<a href="/images/work/notes/2014/3/16/documents_mds.png">Original Image(Larger version)</a><br />
-Data is from Yelp's reviews of restaurantts and first three sentences are negative and mention about how disappointing their experience was with restaurant. The rest of them are generally positive and even if their experience may include some negativity, their overall experience is quite positive.<br />
+<img alt="J-S Matrix of Documents with MDS" src="/images/work/notes/2014/3/16/documents_mds.png" title="Document Visualization on J-S Divergence Matrix and MultiDimensional Scaling">
+<a href="/images/work/notes/2014/3/16/documents_mds.png">Original Image(Larger version)</a><br>
+Data is from Yelp's reviews of restaurantts and first three sentences are negative and mention about how disappointing their experience was with restaurant. The rest of them are generally positive and even if their experience may include some negativity, their overall experience is quite positive.<br>
 As you could see from the scatter plot, the grouping of these two
 different class are somehow separate even though the documents are quite
 short and overall corpus is only 8 sentences.  </p>

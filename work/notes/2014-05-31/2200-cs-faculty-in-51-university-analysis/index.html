@@ -964,8 +964,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -976,9 +978,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1016,7 +1020,8 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><html><body><div class="cell border-box-sizing text_cell rendered">
+</style>
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -1025,108 +1030,117 @@ h6:hover .anchor-link {
 <p>I made an interactive <a href="http://bugra.github.io/pages/vis/2014-05-31/cs-professors-rank-university-join-year/">visualization</a>, if you want to explore the dataset without thinking about the temporal domain too much, play with it.</p>
 <p>I am mainly interested how things vary over time in this post, but the categories(subfields as well as the number of universities) are hard to put into a single graph, so I separated into different sections. Even I divided the number of universities based on the number of professorship.</p>
 <p>Let's dive in right a way.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Name</th>
-<th>University</th>
-<th>JoinYear</th>
-<th>Rank</th>
-<th>Subfield</th>
-<th>Bachelors</th>
-<th>Masters</th>
-<th>Doctorate</th>
-<th>PostDoc</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td> Assaf J. Kfoury</td>
-<td> Boston University</td>
-<td>  NaN</td>
-<td>      Full</td>
-<td>     Programming Languages</td>
-<td>      Massachusetts Institute of Technology - USA</td>
-<td>       Massachusetts Institute of Technology - USA</td>
-<td>       Massachusetts Institute of Technology - USA</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>1</th>
-<td>  Azer Bestavros</td>
-<td> Boston University</td>
-<td> 1991</td>
-<td>      Full</td>
-<td> Networks &amp; Communications</td>
-<td>                    Alexandria University - Egypt</td>
-<td>                     Alexandria University - Egypt</td>
-<td>                          Harvard University - USA</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>2</th>
-<td>  Evimaria Terzi</td>
-<td> Boston University</td>
-<td> 2009</td>
-<td> Assistant</td>
-<td>               Data Mining</td>
-<td>    Aristotle University of Thessaloniki - Greece</td>
-<td>                           Purdue University - USA</td>
-<td>                  University of Helsinki - Finland</td>
-<td> Helsinki Institute for Information Technology ...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>  George Kollios</td>
-<td> Boston University</td>
-<td> 2000</td>
-<td>      Full</td>
-<td>                 Databases</td>
-<td> National Technical University of Athens - Greece</td>
-<td> Polytechnic University - Brooklyn - New York -...</td>
-<td> Polytechnic University - Brooklyn - New York -...</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>4</th>
-<td>      Hongwei Xi</td>
-<td> Boston University</td>
-<td> 2001</td>
-<td> Associate</td>
-<td>     Programming Languages</td>
-<td>                       Nanjing University - China</td>
-<td>                        Nanjing University - China</td>
-<td>                  Carnegie Mellon University - USA</td>
-<td>                                               NaN</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>University</th>
+      <th>JoinYear</th>
+      <th>Rank</th>
+      <th>Subfield</th>
+      <th>Bachelors</th>
+      <th>Masters</th>
+      <th>Doctorate</th>
+      <th>PostDoc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> Assaf J. Kfoury</td>
+      <td> Boston University</td>
+      <td>  NaN</td>
+      <td>      Full</td>
+      <td>     Programming Languages</td>
+      <td>      Massachusetts Institute of Technology - USA</td>
+      <td>       Massachusetts Institute of Technology - USA</td>
+      <td>       Massachusetts Institute of Technology - USA</td>
+      <td>                                               NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>  Azer Bestavros</td>
+      <td> Boston University</td>
+      <td> 1991</td>
+      <td>      Full</td>
+      <td> Networks &amp; Communications</td>
+      <td>                    Alexandria University - Egypt</td>
+      <td>                     Alexandria University - Egypt</td>
+      <td>                          Harvard University - USA</td>
+      <td>                                               NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>  Evimaria Terzi</td>
+      <td> Boston University</td>
+      <td> 2009</td>
+      <td> Assistant</td>
+      <td>               Data Mining</td>
+      <td>    Aristotle University of Thessaloniki - Greece</td>
+      <td>                           Purdue University - USA</td>
+      <td>                  University of Helsinki - Finland</td>
+      <td> Helsinki Institute for Information Technology ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>  George Kollios</td>
+      <td> Boston University</td>
+      <td> 2000</td>
+      <td>      Full</td>
+      <td>                 Databases</td>
+      <td> National Technical University of Athens - Greece</td>
+      <td> Polytechnic University - Brooklyn - New York -...</td>
+      <td> Polytechnic University - Brooklyn - New York -...</td>
+      <td>                                               NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>      Hongwei Xi</td>
+      <td> Boston University</td>
+      <td> 2001</td>
+      <td> Associate</td>
+      <td>     Programming Languages</td>
+      <td>                       Nanjing University - China</td>
+      <td>                        Nanjing University - China</td>
+      <td>                  Carnegie Mellon University - USA</td>
+      <td>                                               NaN</td>
+    </tr>
+  </tbody>
 </table>
 <p>5 rows × 9 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1135,29 +1149,37 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The data looks like as above, we have the faculty name, join year, rank in the university, Bachelors, Masters, Doctorate, PostDoc universities. 
 Generally, <code>JoinYear</code>, <code>Rank</code>, <code>Subfield</code> are more complete and the universitites in the <code>Bachelors</code>, <code>Masters</code> and <code>Doctorate</code> are less complete. The most sparse is the <code>PostDoc</code> field.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>stat_bin: binwidth defaulted to range/30.
-    Use 'binwidth = x' to adjust this.
+    Use &#39;binwidth = x&#39; to adjust this.
 </pre>
 </div>
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApcAAAHzCAYAAAB14TZAAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3WtwW/Wd//GPpCMURResJM7NAWcTp04IITHuTknrTfBC
@@ -1389,16 +1411,23 @@ kcTzHVk8e1t1dbWeeOIJffvb39acOXO0YsUKPfPMM5LOnEL/67/+a61fv14LFy5Ua2urampqxnw+
 AHAbjz2R/zQHAJeprq7W9773PdXV1RV7FACY1jhyCWDae++99/Tb3/5WVVVVxR4FAKY9yiWAae3v
 /u7v9NWvflX/8i//wpXYADAJOC0OAAAAYzhyCQAAAGMolwAAADCGcgkAAABjKJcAAAAwhnIJAAAA
 Y/4fNdxycFeeTkkAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (278616465)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1406,22 +1435,29 @@ Y/4fNdxycFeeTkkAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This graph can be explained in two ways. First the data collection may favor the recent, new hires as they may have more likely to have updated information, webpages and so on. Consider a professor's web existence who joined to the university at 1970 vs an assistant professor who just joined to a university. When we look at the average in 80's and 90's we would see a consistent line whereas when we come to 2000's, we see a quite drastic jump. As <a href="http://online.wsj.com/news/articles/SB10001424053111903480904576512250915629460">software is eating world</a>, this would signal from 2000 to become such fields. What about future? Most of the projections regarding CS seems promising for field and signals even <a href="http://logos.cs.uic.edu/recruit/csstatistics.htm">more growth</a>.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApEAAAHzCAYAAAB4/0YHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xt0lOWBx/Hf3HKfaQYJt0RxQ0KQi1xSi2mzwdhiRVxK
@@ -1691,16 +1727,23 @@ qKuuukr33HOPIpFIkmcPAGOLEgkABh599FG99957am5ult1u1+TJkxWJRPTMM8+ooaHB6L5cLpe2
 bNmiQCCg++67b9gFFADGA0okABiYPHmy1q9frx/96Ef67ne/q7KyMk2bNk0NDQ0qLy+PX2+w74Ec
 7HshXS6XXnzxRZ09e1YPPPAARRLAhGGL8owFAAAAQxyJBAAAgDFKJAAAAIxRIgEAAGCMEgkAAABj
 lEgAAAAYo0QCAADAGCUSAAAAxiiRAAAAMPa/nxPyhRMtkbIAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (275289897)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1708,6 +1751,7 @@ lEgAAAAYo0QCAADAGCUSAAAAxiiRAAAAMPa/nxPyhRMtkbIAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Full rank professors are a lot as expected. Apart from the age distribution of the professors, full suggests tenure and it is the longest period of the faculty's academic career. Moreover, assistant period is limited for 6-7 years, if the professor cannot get the tenure, s/he may move to another university or to industry.</p>
+
 </div>
 </div>
 </div>
@@ -1716,351 +1760,366 @@ lEgAAAAYo0QCAADAGCUSAAAAxiiRAAAAMPa/nxPyhRMtkbIAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Top-10-Fields-by-Hiring-Number">Top 10 Fields by Hiring Number<a class="anchor-link" href="#Top-10-Fields-by-Hiring-Number">¶</a></h2><p>I think the most problematic part of this dataset is the taxonomy of the fields in computer science. That being said, it is still surprising to see the <strong>Algorithms &amp; Theory </strong> is the largest field by far. It is almost same with the sum of second (<strong>Network &amp; Communications</strong>) and third (<strong>Hardware &amp; Architecture</strong>)  largest fields.</p>
+<h2 id="Top-10-Fields-by-Hiring-Number">Top 10 Fields by Hiring Number<a class="anchor-link" href="#Top-10-Fields-by-Hiring-Number">&#182;</a></h2><p>I think the most problematic part of this dataset is the taxonomy of the fields in computer science. That being said, it is still surprising to see the <strong>Algorithms &amp; Theory </strong> is the largest field by far. It is almost same with the sum of second (<strong>Network &amp; Communications</strong>) and third (<strong>Hardware &amp; Architecture</strong>)  largest fields.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Name</th>
-<th>University</th>
-<th>JoinYear</th>
-<th>Rank</th>
-<th>Subfield</th>
-<th>Bachelors</th>
-<th>Masters</th>
-<th>Doctorate</th>
-<th>PostDoc</th>
-</tr>
-<tr>
-<th>Subfield</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>Algorithms &amp; Theory</th>
-<td> 293</td>
-<td> 293</td>
-<td> 232</td>
-<td> 293</td>
-<td> 293</td>
-<td> 223</td>
-<td> 169</td>
-<td> 293</td>
-<td> 78</td>
-</tr>
-<tr>
-<th>Networks &amp; Communications</th>
-<td> 163</td>
-<td> 163</td>
-<td> 135</td>
-<td> 163</td>
-<td> 163</td>
-<td> 140</td>
-<td> 127</td>
-<td> 163</td>
-<td> 20</td>
-</tr>
-<tr>
-<th>Hardware &amp; Architecture</th>
-<td> 150</td>
-<td> 150</td>
-<td> 119</td>
-<td> 150</td>
-<td> 150</td>
-<td> 118</td>
-<td>  99</td>
-<td> 150</td>
-<td> 12</td>
-</tr>
-<tr>
-<th>Artificial Intelligence</th>
-<td> 147</td>
-<td> 147</td>
-<td> 119</td>
-<td> 147</td>
-<td> 147</td>
-<td> 121</td>
-<td> 100</td>
-<td> 147</td>
-<td> 30</td>
-</tr>
-<tr>
-<th>Bioinformatics &amp; Computational Biology</th>
-<td> 131</td>
-<td> 131</td>
-<td> 105</td>
-<td> 131</td>
-<td> 131</td>
-<td> 103</td>
-<td>  73</td>
-<td> 131</td>
-<td> 39</td>
-</tr>
-<tr>
-<th>Human-Computer Interaction</th>
-<td> 127</td>
-<td> 127</td>
-<td> 103</td>
-<td> 127</td>
-<td> 127</td>
-<td> 105</td>
-<td>  80</td>
-<td> 125</td>
-<td> 14</td>
-</tr>
-<tr>
-<th>Security &amp; Privacy</th>
-<td> 121</td>
-<td> 121</td>
-<td> 101</td>
-<td> 121</td>
-<td> 121</td>
-<td> 106</td>
-<td>  89</td>
-<td> 120</td>
-<td> 22</td>
-</tr>
-<tr>
-<th>Graphics</th>
-<td> 113</td>
-<td> 113</td>
-<td>  84</td>
-<td> 113</td>
-<td> 113</td>
-<td>  92</td>
-<td>  82</td>
-<td> 113</td>
-<td> 17</td>
-</tr>
-<tr>
-<th>Programming Languages</th>
-<td>  99</td>
-<td>  99</td>
-<td>  77</td>
-<td>  99</td>
-<td>  99</td>
-<td>  77</td>
-<td>  65</td>
-<td>  98</td>
-<td> 11</td>
-</tr>
-<tr>
-<th>Machine Learning &amp; Pattern Recognition</th>
-<td>  95</td>
-<td>  95</td>
-<td>  79</td>
-<td>  95</td>
-<td>  95</td>
-<td>  73</td>
-<td>  63</td>
-<td>  95</td>
-<td> 29</td>
-</tr>
-<tr>
-<th>Distributed &amp; Parallel Computing</th>
-<td>  93</td>
-<td>  93</td>
-<td>  73</td>
-<td>  93</td>
-<td>  93</td>
-<td>  75</td>
-<td>  61</td>
-<td>  93</td>
-<td> 13</td>
-</tr>
-<tr>
-<th>Scientific Computing</th>
-<td>  90</td>
-<td>  90</td>
-<td>  64</td>
-<td>  90</td>
-<td>  90</td>
-<td>  68</td>
-<td>  58</td>
-<td>  90</td>
-<td> 14</td>
-</tr>
-<tr>
-<th>Computer Vision</th>
-<td>  90</td>
-<td>  90</td>
-<td>  72</td>
-<td>  90</td>
-<td>  90</td>
-<td>  71</td>
-<td>  59</td>
-<td>  90</td>
-<td> 21</td>
-</tr>
-<tr>
-<th>Software Engineering</th>
-<td>  83</td>
-<td>  83</td>
-<td>  64</td>
-<td>  83</td>
-<td>  83</td>
-<td>  65</td>
-<td>  51</td>
-<td>  83</td>
-<td>  9</td>
-</tr>
-<tr>
-<th>Databases</th>
-<td>  77</td>
-<td>  77</td>
-<td>  66</td>
-<td>  77</td>
-<td>  77</td>
-<td>  59</td>
-<td>  54</td>
-<td>  76</td>
-<td>  7</td>
-</tr>
-<tr>
-<th>Operating Systems</th>
-<td>  72</td>
-<td>  72</td>
-<td>  53</td>
-<td>  72</td>
-<td>  72</td>
-<td>  63</td>
-<td>  53</td>
-<td>  71</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>Natural Language &amp; Speech</th>
-<td>  51</td>
-<td>  51</td>
-<td>  41</td>
-<td>  51</td>
-<td>  51</td>
-<td>  42</td>
-<td>  32</td>
-<td>  51</td>
-<td> 16</td>
-</tr>
-<tr>
-<th>Computer Education</th>
-<td>  49</td>
-<td>  49</td>
-<td>  36</td>
-<td>  49</td>
-<td>  49</td>
-<td>  40</td>
-<td>  29</td>
-<td>  48</td>
-<td> 10</td>
-</tr>
-<tr>
-<th>Real-Time &amp; Embedded Systems</th>
-<td>  32</td>
-<td>  32</td>
-<td>  27</td>
-<td>  32</td>
-<td>  32</td>
-<td>  31</td>
-<td>  26</td>
-<td>  32</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>Data Mining</th>
-<td>  31</td>
-<td>  31</td>
-<td>  26</td>
-<td>  31</td>
-<td>  31</td>
-<td>  24</td>
-<td>  20</td>
-<td>  31</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>Multimedia</th>
-<td>  15</td>
-<td>  15</td>
-<td>  11</td>
-<td>  15</td>
-<td>  15</td>
-<td>  10</td>
-<td>  12</td>
-<td>  14</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Information Retrieval</th>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>World Wide Web</th>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   3</td>
-<td>   5</td>
-<td>  0</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>University</th>
+      <th>JoinYear</th>
+      <th>Rank</th>
+      <th>Subfield</th>
+      <th>Bachelors</th>
+      <th>Masters</th>
+      <th>Doctorate</th>
+      <th>PostDoc</th>
+    </tr>
+    <tr>
+      <th>Subfield</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Algorithms &amp; Theory</th>
+      <td> 293</td>
+      <td> 293</td>
+      <td> 232</td>
+      <td> 293</td>
+      <td> 293</td>
+      <td> 223</td>
+      <td> 169</td>
+      <td> 293</td>
+      <td> 78</td>
+    </tr>
+    <tr>
+      <th>Networks &amp; Communications</th>
+      <td> 163</td>
+      <td> 163</td>
+      <td> 135</td>
+      <td> 163</td>
+      <td> 163</td>
+      <td> 140</td>
+      <td> 127</td>
+      <td> 163</td>
+      <td> 20</td>
+    </tr>
+    <tr>
+      <th>Hardware &amp; Architecture</th>
+      <td> 150</td>
+      <td> 150</td>
+      <td> 119</td>
+      <td> 150</td>
+      <td> 150</td>
+      <td> 118</td>
+      <td>  99</td>
+      <td> 150</td>
+      <td> 12</td>
+    </tr>
+    <tr>
+      <th>Artificial Intelligence</th>
+      <td> 147</td>
+      <td> 147</td>
+      <td> 119</td>
+      <td> 147</td>
+      <td> 147</td>
+      <td> 121</td>
+      <td> 100</td>
+      <td> 147</td>
+      <td> 30</td>
+    </tr>
+    <tr>
+      <th>Bioinformatics &amp; Computational Biology</th>
+      <td> 131</td>
+      <td> 131</td>
+      <td> 105</td>
+      <td> 131</td>
+      <td> 131</td>
+      <td> 103</td>
+      <td>  73</td>
+      <td> 131</td>
+      <td> 39</td>
+    </tr>
+    <tr>
+      <th>Human-Computer Interaction</th>
+      <td> 127</td>
+      <td> 127</td>
+      <td> 103</td>
+      <td> 127</td>
+      <td> 127</td>
+      <td> 105</td>
+      <td>  80</td>
+      <td> 125</td>
+      <td> 14</td>
+    </tr>
+    <tr>
+      <th>Security &amp; Privacy</th>
+      <td> 121</td>
+      <td> 121</td>
+      <td> 101</td>
+      <td> 121</td>
+      <td> 121</td>
+      <td> 106</td>
+      <td>  89</td>
+      <td> 120</td>
+      <td> 22</td>
+    </tr>
+    <tr>
+      <th>Graphics</th>
+      <td> 113</td>
+      <td> 113</td>
+      <td>  84</td>
+      <td> 113</td>
+      <td> 113</td>
+      <td>  92</td>
+      <td>  82</td>
+      <td> 113</td>
+      <td> 17</td>
+    </tr>
+    <tr>
+      <th>Programming Languages</th>
+      <td>  99</td>
+      <td>  99</td>
+      <td>  77</td>
+      <td>  99</td>
+      <td>  99</td>
+      <td>  77</td>
+      <td>  65</td>
+      <td>  98</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <th>Machine Learning &amp; Pattern Recognition</th>
+      <td>  95</td>
+      <td>  95</td>
+      <td>  79</td>
+      <td>  95</td>
+      <td>  95</td>
+      <td>  73</td>
+      <td>  63</td>
+      <td>  95</td>
+      <td> 29</td>
+    </tr>
+    <tr>
+      <th>Distributed &amp; Parallel Computing</th>
+      <td>  93</td>
+      <td>  93</td>
+      <td>  73</td>
+      <td>  93</td>
+      <td>  93</td>
+      <td>  75</td>
+      <td>  61</td>
+      <td>  93</td>
+      <td> 13</td>
+    </tr>
+    <tr>
+      <th>Scientific Computing</th>
+      <td>  90</td>
+      <td>  90</td>
+      <td>  64</td>
+      <td>  90</td>
+      <td>  90</td>
+      <td>  68</td>
+      <td>  58</td>
+      <td>  90</td>
+      <td> 14</td>
+    </tr>
+    <tr>
+      <th>Computer Vision</th>
+      <td>  90</td>
+      <td>  90</td>
+      <td>  72</td>
+      <td>  90</td>
+      <td>  90</td>
+      <td>  71</td>
+      <td>  59</td>
+      <td>  90</td>
+      <td> 21</td>
+    </tr>
+    <tr>
+      <th>Software Engineering</th>
+      <td>  83</td>
+      <td>  83</td>
+      <td>  64</td>
+      <td>  83</td>
+      <td>  83</td>
+      <td>  65</td>
+      <td>  51</td>
+      <td>  83</td>
+      <td>  9</td>
+    </tr>
+    <tr>
+      <th>Databases</th>
+      <td>  77</td>
+      <td>  77</td>
+      <td>  66</td>
+      <td>  77</td>
+      <td>  77</td>
+      <td>  59</td>
+      <td>  54</td>
+      <td>  76</td>
+      <td>  7</td>
+    </tr>
+    <tr>
+      <th>Operating Systems</th>
+      <td>  72</td>
+      <td>  72</td>
+      <td>  53</td>
+      <td>  72</td>
+      <td>  72</td>
+      <td>  63</td>
+      <td>  53</td>
+      <td>  71</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>Natural Language &amp; Speech</th>
+      <td>  51</td>
+      <td>  51</td>
+      <td>  41</td>
+      <td>  51</td>
+      <td>  51</td>
+      <td>  42</td>
+      <td>  32</td>
+      <td>  51</td>
+      <td> 16</td>
+    </tr>
+    <tr>
+      <th>Computer Education</th>
+      <td>  49</td>
+      <td>  49</td>
+      <td>  36</td>
+      <td>  49</td>
+      <td>  49</td>
+      <td>  40</td>
+      <td>  29</td>
+      <td>  48</td>
+      <td> 10</td>
+    </tr>
+    <tr>
+      <th>Real-Time &amp; Embedded Systems</th>
+      <td>  32</td>
+      <td>  32</td>
+      <td>  27</td>
+      <td>  32</td>
+      <td>  32</td>
+      <td>  31</td>
+      <td>  26</td>
+      <td>  32</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>Data Mining</th>
+      <td>  31</td>
+      <td>  31</td>
+      <td>  26</td>
+      <td>  31</td>
+      <td>  31</td>
+      <td>  24</td>
+      <td>  20</td>
+      <td>  31</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>Multimedia</th>
+      <td>  15</td>
+      <td>  15</td>
+      <td>  11</td>
+      <td>  15</td>
+      <td>  15</td>
+      <td>  10</td>
+      <td>  12</td>
+      <td>  14</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Information Retrieval</th>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>World Wide Web</th>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   3</td>
+      <td>   5</td>
+      <td>  0</td>
+    </tr>
+  </tbody>
 </table>
 <p>23 rows × 9 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzwAAAJkCAYAAADUXCTAAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdcVuX/P/DXfbNkczOVraKgKYKJiQNxgNvQkpTAkWnO
@@ -3194,16 +3253,23 @@ EVfagI+p6zrr9frb25zfns9nFotF9vt9mqZJr9fLfD7P30Pnqqr+5XEBgAKZ8AAfUVVVVqtVTqdT
 2rbN6/XK4/HI9XrN7XZL13Xpui7j8ThfX1+5XC5p2/Z/HxsAKIzgAT5mNpvleDxms9lkOp2mruts
 t9u83+/0+/3sdrssl8sMh8McDoc0TfNtvQkPAPBTPi0AAACKZcIDAAAUS/AAAADFEjwAAECxBA8A
 AFAswQMAABRL8AAAAMUSPAAAQLEEDwAAUCzBAwAAFOsXtZ5TDARy/VMAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (278625041)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3211,22 +3277,29 @@ AFAswQMAABRL8AAAAMUSPAAAQLEEDwAAUCzBAwAAFOsXtZ5TDARy/VMAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Algorithms &amp; Theory are consistently higher for most of the years where Human Computer Interaction gets popular in the recent years. Once upon a time, Hardware &amp; Architecture used to be popular. Another field that gained traction is Machine Learning &amp; Pattern Recognition.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwsAAAKgCAYAAADUCuEjAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtcjvfjP/DXfZd0TkknOiDuhBIZIdJkzGEyrUYly+y3
@@ -4287,16 +4360,23 @@ uwF46KGHeM973kNzczONjY08+OCD9Pf3j83LcRwVCiIiIkcgDUMSkbdt1qxZXHbZZTX3IuxTLBa5
 s2bxne98B9/3SaVSXHvttXzqU5+iqamJ2267jQsuuKBmel1ZEBEROTLpBmcREREREQmkKwsiIiIi
 IhJIxYKIiIiIiARSsSAiIiIiIoFULIiIiIiISCAVCyIiIiIiEkjFgoiIiIiIBFKxICIiIiIigVQs
 iIiIiIhIIBULIiIiIiIS6P8HwErNFvpOzaYAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (278625717)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4304,6 +4384,7 @@ iIiIiIhIIBULIiIiIiIS6P8HwErNFvpOzaYAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In here Software Engineering is consistently high, Computer Vision and Distributed &amp; Parellel computing gained traction in the recent years.</p>
+
 </div>
 </div>
 </div>
@@ -4312,195 +4393,209 @@ iIiIiIhIIBULIiIiIiIS6P8HwErNFvpOzaYAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="What-ranks-in-professorship-increases-over-time?">What ranks in professorship increases over time?<a class="anchor-link" href="#What-ranks-in-professorship-increases-over-time?">¶</a></h3>
+<h3 id="What-ranks-in-professorship-increases-over-time?">What ranks in professorship increases over time?<a class="anchor-link" href="#What-ranks-in-professorship-increases-over-time?">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Name</th>
-<th>University</th>
-<th>JoinYear</th>
-<th>Rank</th>
-<th>Subfield</th>
-<th>Bachelors</th>
-<th>Masters</th>
-<th>Doctorate</th>
-<th>PostDoc</th>
-</tr>
-<tr>
-<th>Rank</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>Full</th>
-<td> 1209</td>
-<td> 1209</td>
-<td> 931</td>
-<td> 1209</td>
-<td> 1209</td>
-<td> 947</td>
-<td> 797</td>
-<td> 1205</td>
-<td> 127</td>
-</tr>
-<tr>
-<th>Associate</th>
-<td>  543</td>
-<td>  543</td>
-<td> 409</td>
-<td>  543</td>
-<td>  543</td>
-<td> 441</td>
-<td> 367</td>
-<td>  541</td>
-<td>  88</td>
-</tr>
-<tr>
-<th>Assistant</th>
-<td>  355</td>
-<td>  355</td>
-<td> 339</td>
-<td>  355</td>
-<td>  355</td>
-<td> 304</td>
-<td> 227</td>
-<td>  355</td>
-<td> 160</td>
-</tr>
-<tr>
-<th>Adjunct</th>
-<td>    8</td>
-<td>    8</td>
-<td>   4</td>
-<td>    8</td>
-<td>    8</td>
-<td>   8</td>
-<td>   7</td>
-<td>    8</td>
-<td>   2</td>
-</tr>
-<tr>
-<th>Research</th>
-<td>    6</td>
-<td>    6</td>
-<td>   4</td>
-<td>    6</td>
-<td>    6</td>
-<td>   6</td>
-<td>   3</td>
-<td>    5</td>
-<td>   1</td>
-</tr>
-<tr>
-<th>Practice</th>
-<td>    5</td>
-<td>    5</td>
-<td>   5</td>
-<td>    5</td>
-<td>    5</td>
-<td>   4</td>
-<td>   4</td>
-<td>    4</td>
-<td>   0</td>
-</tr>
-<tr>
-<th>Affiliate</th>
-<td>    4</td>
-<td>    4</td>
-<td>   3</td>
-<td>    4</td>
-<td>    4</td>
-<td>   3</td>
-<td>   3</td>
-<td>    4</td>
-<td>   0</td>
-</tr>
-<tr>
-<th>Teaching</th>
-<td>    1</td>
-<td>    1</td>
-<td>   0</td>
-<td>    1</td>
-<td>    1</td>
-<td>   1</td>
-<td>   1</td>
-<td>    1</td>
-<td>   0</td>
-</tr>
-<tr>
-<th>Lecturer</th>
-<td>    1</td>
-<td>    1</td>
-<td>   1</td>
-<td>    1</td>
-<td>    1</td>
-<td>   1</td>
-<td>   1</td>
-<td>    1</td>
-<td>   0</td>
-</tr>
-<tr>
-<th>Clinical</th>
-<td>    1</td>
-<td>    1</td>
-<td>   1</td>
-<td>    1</td>
-<td>    1</td>
-<td>   1</td>
-<td>   1</td>
-<td>    1</td>
-<td>   0</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>University</th>
+      <th>JoinYear</th>
+      <th>Rank</th>
+      <th>Subfield</th>
+      <th>Bachelors</th>
+      <th>Masters</th>
+      <th>Doctorate</th>
+      <th>PostDoc</th>
+    </tr>
+    <tr>
+      <th>Rank</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Full</th>
+      <td> 1209</td>
+      <td> 1209</td>
+      <td> 931</td>
+      <td> 1209</td>
+      <td> 1209</td>
+      <td> 947</td>
+      <td> 797</td>
+      <td> 1205</td>
+      <td> 127</td>
+    </tr>
+    <tr>
+      <th>Associate</th>
+      <td>  543</td>
+      <td>  543</td>
+      <td> 409</td>
+      <td>  543</td>
+      <td>  543</td>
+      <td> 441</td>
+      <td> 367</td>
+      <td>  541</td>
+      <td>  88</td>
+    </tr>
+    <tr>
+      <th>Assistant</th>
+      <td>  355</td>
+      <td>  355</td>
+      <td> 339</td>
+      <td>  355</td>
+      <td>  355</td>
+      <td> 304</td>
+      <td> 227</td>
+      <td>  355</td>
+      <td> 160</td>
+    </tr>
+    <tr>
+      <th>Adjunct</th>
+      <td>    8</td>
+      <td>    8</td>
+      <td>   4</td>
+      <td>    8</td>
+      <td>    8</td>
+      <td>   8</td>
+      <td>   7</td>
+      <td>    8</td>
+      <td>   2</td>
+    </tr>
+    <tr>
+      <th>Research</th>
+      <td>    6</td>
+      <td>    6</td>
+      <td>   4</td>
+      <td>    6</td>
+      <td>    6</td>
+      <td>   6</td>
+      <td>   3</td>
+      <td>    5</td>
+      <td>   1</td>
+    </tr>
+    <tr>
+      <th>Practice</th>
+      <td>    5</td>
+      <td>    5</td>
+      <td>   5</td>
+      <td>    5</td>
+      <td>    5</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>    4</td>
+      <td>   0</td>
+    </tr>
+    <tr>
+      <th>Affiliate</th>
+      <td>    4</td>
+      <td>    4</td>
+      <td>   3</td>
+      <td>    4</td>
+      <td>    4</td>
+      <td>   3</td>
+      <td>   3</td>
+      <td>    4</td>
+      <td>   0</td>
+    </tr>
+    <tr>
+      <th>Teaching</th>
+      <td>    1</td>
+      <td>    1</td>
+      <td>   0</td>
+      <td>    1</td>
+      <td>    1</td>
+      <td>   1</td>
+      <td>   1</td>
+      <td>    1</td>
+      <td>   0</td>
+    </tr>
+    <tr>
+      <th>Lecturer</th>
+      <td>    1</td>
+      <td>    1</td>
+      <td>   1</td>
+      <td>    1</td>
+      <td>    1</td>
+      <td>   1</td>
+      <td>   1</td>
+      <td>    1</td>
+      <td>   0</td>
+    </tr>
+    <tr>
+      <th>Clinical</th>
+      <td>    1</td>
+      <td>    1</td>
+      <td>   1</td>
+      <td>    1</td>
+      <td>    1</td>
+      <td>   1</td>
+      <td>   1</td>
+      <td>    1</td>
+      <td>   0</td>
+    </tr>
+  </tbody>
 </table>
 <p>10 rows × 9 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAo0AAAJQCAYAAADrDV68AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8TPf+P/DXzCQZSSarbFQiIkxEViKqEntI1d7GUltb
@@ -5216,16 +5311,23 @@ ayu33XZbzrWKx6VSKdauXcvGjRtZs2YNjuNwyy23MP7kiGVZ53K4IiLTmo40isiUsCyLdevW8ZOf
 uecempubaW1t5Tvf+Q7GGCKRCA888ABf/OIXqa+v50c/+hFr1qzJaa8jjSIi544mwoiIiIhIQTrS
 KCIiIiIFqWgUERERkYJUNIqIiIhIQSoaRURERKQgFY0iIiIiUpCKRhEREREpSEWjiIiIiBSkolFE
 REREClLRKCIiIiIF/X8cveowqwGXNQAAAABJRU5ErkJggg==
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (279356157)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -5233,792 +5335,801 @@ REREClLRKCIiIiIF/X8cveowqwGXNQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you look at the full time professsors in recent years, you would see the transfers of academics between universities which is somehow low than I expected. Interesting thing is that sum of full rank professors and associate professors seem to be constant as if you could see the transition of associate to full rank.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Name</th>
-<th>University</th>
-<th>JoinYear</th>
-<th>Rank</th>
-<th>Subfield</th>
-<th>Bachelors</th>
-<th>Masters</th>
-<th>Doctorate</th>
-<th>PostDoc</th>
-</tr>
-<tr>
-<th>Doctorate</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>Massachusetts Institute of Technology - USA</th>
-<td> 251</td>
-<td> 251</td>
-<td> 198</td>
-<td> 251</td>
-<td> 251</td>
-<td> 218</td>
-<td> 186</td>
-<td> 251</td>
-<td> 52</td>
-</tr>
-<tr>
-<th>University of California - Berkeley - USA</th>
-<td> 179</td>
-<td> 179</td>
-<td> 153</td>
-<td> 179</td>
-<td> 179</td>
-<td> 155</td>
-<td> 110</td>
-<td> 179</td>
-<td> 33</td>
-</tr>
-<tr>
-<th>Stanford University - USA</th>
-<td> 148</td>
-<td> 148</td>
-<td> 120</td>
-<td> 148</td>
-<td> 148</td>
-<td> 121</td>
-<td>  78</td>
-<td> 148</td>
-<td> 17</td>
-</tr>
-<tr>
-<th>Carnegie Mellon University - USA</th>
-<td> 121</td>
-<td> 121</td>
-<td> 100</td>
-<td> 121</td>
-<td> 121</td>
-<td> 109</td>
-<td>  77</td>
-<td> 121</td>
-<td> 18</td>
-</tr>
-<tr>
-<th>University of Illinois at Urbana-Champaign - USA</th>
-<td>  79</td>
-<td>  79</td>
-<td>  57</td>
-<td>  79</td>
-<td>  79</td>
-<td>  60</td>
-<td>  53</td>
-<td>  79</td>
-<td>  8</td>
-</tr>
-<tr>
-<th>Princeton University - USA</th>
-<td>  68</td>
-<td>  68</td>
-<td>  53</td>
-<td>  68</td>
-<td>  68</td>
-<td>  57</td>
-<td>  40</td>
-<td>  68</td>
-<td> 19</td>
-</tr>
-<tr>
-<th>Cornell University - USA</th>
-<td>  65</td>
-<td>  65</td>
-<td>  55</td>
-<td>  65</td>
-<td>  65</td>
-<td>  54</td>
-<td>  37</td>
-<td>  65</td>
-<td>  9</td>
-</tr>
-<tr>
-<th>University of Washington - USA</th>
-<td>  61</td>
-<td>  61</td>
-<td>  52</td>
-<td>  61</td>
-<td>  61</td>
-<td>  49</td>
-<td>  40</td>
-<td>  61</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>Georgia Institute of Technology - USA</th>
-<td>  53</td>
-<td>  53</td>
-<td>  42</td>
-<td>  53</td>
-<td>  53</td>
-<td>  50</td>
-<td>  42</td>
-<td>  53</td>
-<td>  9</td>
-</tr>
-<tr>
-<th>Harvard University - USA</th>
-<td>  49</td>
-<td>  49</td>
-<td>  37</td>
-<td>  49</td>
-<td>  49</td>
-<td>  41</td>
-<td>  32</td>
-<td>  49</td>
-<td> 11</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td>  48</td>
-<td>  48</td>
-<td>  41</td>
-<td>  48</td>
-<td>  48</td>
-<td>  37</td>
-<td>  31</td>
-<td>  48</td>
-<td>  8</td>
-</tr>
-<tr>
-<th>University of Wisconsin - Madison - USA</th>
-<td>  43</td>
-<td>  43</td>
-<td>  31</td>
-<td>  43</td>
-<td>  43</td>
-<td>  29</td>
-<td>  25</td>
-<td>  43</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>University of Pennsylvania - USA</th>
-<td>  41</td>
-<td>  41</td>
-<td>  31</td>
-<td>  41</td>
-<td>  41</td>
-<td>  34</td>
-<td>  30</td>
-<td>  41</td>
-<td>  8</td>
-</tr>
-<tr>
-<th>University of California - Los Angeles - USA</th>
-<td>  34</td>
-<td>  34</td>
-<td>  29</td>
-<td>  34</td>
-<td>  34</td>
-<td>  29</td>
-<td>  28</td>
-<td>  34</td>
-<td>  8</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td>  34</td>
-<td>  34</td>
-<td>  25</td>
-<td>  34</td>
-<td>  34</td>
-<td>  28</td>
-<td>  22</td>
-<td>  34</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td>  33</td>
-<td>  33</td>
-<td>  28</td>
-<td>  33</td>
-<td>  33</td>
-<td>  25</td>
-<td>  23</td>
-<td>  33</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>California Institute of Technology - USA</th>
-<td>  32</td>
-<td>  32</td>
-<td>  20</td>
-<td>  32</td>
-<td>  32</td>
-<td>  27</td>
-<td>  23</td>
-<td>  32</td>
-<td> 11</td>
-</tr>
-<tr>
-<th>Columbia University - USA</th>
-<td>  30</td>
-<td>  30</td>
-<td>  28</td>
-<td>  30</td>
-<td>  30</td>
-<td>  23</td>
-<td>  21</td>
-<td>  30</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>Purdue University - USA</th>
-<td>  26</td>
-<td>  26</td>
-<td>  15</td>
-<td>  26</td>
-<td>  26</td>
-<td>  20</td>
-<td>  20</td>
-<td>  26</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>University of North Carolina - Chapel Hill - USA</th>
-<td>  25</td>
-<td>  25</td>
-<td>  18</td>
-<td>  25</td>
-<td>  25</td>
-<td>  19</td>
-<td>  15</td>
-<td>  25</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>Yale University - USA</th>
-<td>  25</td>
-<td>  25</td>
-<td>  18</td>
-<td>  25</td>
-<td>  25</td>
-<td>  21</td>
-<td>  17</td>
-<td>  25</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>University of Southern California - USA</th>
-<td>  25</td>
-<td>  25</td>
-<td>  22</td>
-<td>  25</td>
-<td>  25</td>
-<td>  20</td>
-<td>  19</td>
-<td>  25</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>University of Massachusetts - Amherst - USA</th>
-<td>  24</td>
-<td>  24</td>
-<td>  17</td>
-<td>  24</td>
-<td>  24</td>
-<td>  20</td>
-<td>  18</td>
-<td>  24</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>University of Toronto - Canada</th>
-<td>  24</td>
-<td>  24</td>
-<td>  20</td>
-<td>  24</td>
-<td>  24</td>
-<td>  19</td>
-<td>  18</td>
-<td>  24</td>
-<td>  8</td>
-</tr>
-<tr>
-<th>University of California - San Diego - USA</th>
-<td>  22</td>
-<td>  22</td>
-<td>  19</td>
-<td>  22</td>
-<td>  22</td>
-<td>  16</td>
-<td>  15</td>
-<td>  22</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>Brown University - USA</th>
-<td>  22</td>
-<td>  22</td>
-<td>  17</td>
-<td>  22</td>
-<td>  22</td>
-<td>  20</td>
-<td>  19</td>
-<td>  22</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>State University of New York - Stony Brook - USA</th>
-<td>  20</td>
-<td>  20</td>
-<td>  18</td>
-<td>  20</td>
-<td>  20</td>
-<td>  14</td>
-<td>  15</td>
-<td>  20</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Pennsylvania State University - USA</th>
-<td>  20</td>
-<td>  20</td>
-<td>  15</td>
-<td>  20</td>
-<td>  20</td>
-<td>  15</td>
-<td>  13</td>
-<td>  20</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>New York University - USA</th>
-<td>  20</td>
-<td>  20</td>
-<td>  18</td>
-<td>  20</td>
-<td>  20</td>
-<td>  16</td>
-<td>  15</td>
-<td>  20</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>University of Minnesota - Twin Cities - USA</th>
-<td>  19</td>
-<td>  19</td>
-<td>  14</td>
-<td>  19</td>
-<td>  19</td>
-<td>  12</td>
-<td>  11</td>
-<td>  19</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Rice University - USA</th>
-<td>  19</td>
-<td>  19</td>
-<td>  15</td>
-<td>  19</td>
-<td>  19</td>
-<td>  15</td>
-<td>  12</td>
-<td>  19</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>University of Utah - USA</th>
-<td>  17</td>
-<td>  17</td>
-<td>  15</td>
-<td>  17</td>
-<td>  17</td>
-<td>  16</td>
-<td>  11</td>
-<td>  17</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>University of Rochester - USA</th>
-<td>  16</td>
-<td>  16</td>
-<td>  13</td>
-<td>  16</td>
-<td>  16</td>
-<td>  14</td>
-<td>  13</td>
-<td>  16</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>Ohio State University - USA</th>
-<td>  16</td>
-<td>  16</td>
-<td>  12</td>
-<td>  16</td>
-<td>  16</td>
-<td>  13</td>
-<td>  12</td>
-<td>  16</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Virginia - USA</th>
-<td>  15</td>
-<td>  15</td>
-<td>  14</td>
-<td>  15</td>
-<td>  15</td>
-<td>  14</td>
-<td>  15</td>
-<td>  15</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>University of California - Irvine - USA</th>
-<td>  14</td>
-<td>  14</td>
-<td>   7</td>
-<td>  14</td>
-<td>  14</td>
-<td>  11</td>
-<td>   9</td>
-<td>  14</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>University of Chicago - USA</th>
-<td>  14</td>
-<td>  14</td>
-<td>  13</td>
-<td>  14</td>
-<td>  14</td>
-<td>   9</td>
-<td>   8</td>
-<td>  14</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>Hebrew University of Jerusalem - Israel</th>
-<td>  13</td>
-<td>  13</td>
-<td>  10</td>
-<td>  13</td>
-<td>  13</td>
-<td>   8</td>
-<td>   7</td>
-<td>  13</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>University of Colorado Boulder - USA</th>
-<td>  12</td>
-<td>  12</td>
-<td>   8</td>
-<td>  12</td>
-<td>  12</td>
-<td>  11</td>
-<td>   7</td>
-<td>  12</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Duke University - USA</th>
-<td>  12</td>
-<td>  12</td>
-<td>  10</td>
-<td>  12</td>
-<td>  12</td>
-<td>  10</td>
-<td>   7</td>
-<td>  12</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>Johns Hopkins University - USA</th>
-<td>  12</td>
-<td>  12</td>
-<td>   7</td>
-<td>  12</td>
-<td>  12</td>
-<td>  11</td>
-<td>  10</td>
-<td>  12</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>Rutgers - State University of New Jersey - New Brunswick - USA</th>
-<td>  10</td>
-<td>  10</td>
-<td>   9</td>
-<td>  10</td>
-<td>  10</td>
-<td>   8</td>
-<td>   5</td>
-<td>  10</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>University of California - Santa Barbara - USA</th>
-<td>   9</td>
-<td>   9</td>
-<td>   8</td>
-<td>   9</td>
-<td>   9</td>
-<td>   9</td>
-<td>   6</td>
-<td>   9</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>North Carolina State University - USA</th>
-<td>   8</td>
-<td>   8</td>
-<td>   3</td>
-<td>   8</td>
-<td>   8</td>
-<td>   7</td>
-<td>   6</td>
-<td>   8</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>University of Pittsburgh - USA</th>
-<td>   8</td>
-<td>   8</td>
-<td>   6</td>
-<td>   8</td>
-<td>   8</td>
-<td>   6</td>
-<td>   6</td>
-<td>   8</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Weizmann Institute of Science - Israel</th>
-<td>   8</td>
-<td>   8</td>
-<td>   6</td>
-<td>   8</td>
-<td>   8</td>
-<td>   3</td>
-<td>   4</td>
-<td>   8</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Edinburgh - United Kingdom</th>
-<td>   7</td>
-<td>   7</td>
-<td>   6</td>
-<td>   7</td>
-<td>   7</td>
-<td>   6</td>
-<td>   4</td>
-<td>   7</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>University of Arizona - USA</th>
-<td>   7</td>
-<td>   7</td>
-<td>   5</td>
-<td>   7</td>
-<td>   7</td>
-<td>   5</td>
-<td>   5</td>
-<td>   7</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Northwestern University - USA</th>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   6</td>
-<td>   6</td>
-<td>   7</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>Washington University - St. Louis - USA</th>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   7</td>
-<td>   6</td>
-<td>   7</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>University of Oxford - United Kingdom</th>
-<td>   6</td>
-<td>   6</td>
-<td>   3</td>
-<td>   6</td>
-<td>   6</td>
-<td>   4</td>
-<td>   4</td>
-<td>   6</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>Tel Aviv University - Israel</th>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   4</td>
-<td>   3</td>
-<td>   6</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Swiss Federal Institute of Technology (ETH) - Switzerland</th>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   1</td>
-<td>   3</td>
-<td>   6</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>University of Waterloo - Ontario - Canada</th>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>   6</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Syracuse University - USA</th>
-<td>   6</td>
-<td>   6</td>
-<td>   3</td>
-<td>   6</td>
-<td>   6</td>
-<td>   4</td>
-<td>   5</td>
-<td>   6</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>University of California - Davis - USA</th>
-<td>   5</td>
-<td>   5</td>
-<td>   5</td>
-<td>   5</td>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   5</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>University of California - Santa Cruz - USA</th>
-<td>   5</td>
-<td>   5</td>
-<td>   3</td>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   4</td>
-<td>   5</td>
-<td>  0</td>
-</tr>
-<tr>
-<th>University of Cambridge - United Kingdom</th>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   4</td>
-<td>   5</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Iowa - USA</th>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   5</td>
-<td>   5</td>
-<td>   4</td>
-<td>   4</td>
-<td>   5</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>University of British Columbia - Canada</th>
-<td>   4</td>
-<td>   4</td>
-<td>   4</td>
-<td>   4</td>
-<td>   4</td>
-<td>   4</td>
-<td>   4</td>
-<td>   4</td>
-<td>  1</td>
-</tr>
-<tr>
-<th></th>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>University</th>
+      <th>JoinYear</th>
+      <th>Rank</th>
+      <th>Subfield</th>
+      <th>Bachelors</th>
+      <th>Masters</th>
+      <th>Doctorate</th>
+      <th>PostDoc</th>
+    </tr>
+    <tr>
+      <th>Doctorate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Massachusetts Institute of Technology - USA</th>
+      <td> 251</td>
+      <td> 251</td>
+      <td> 198</td>
+      <td> 251</td>
+      <td> 251</td>
+      <td> 218</td>
+      <td> 186</td>
+      <td> 251</td>
+      <td> 52</td>
+    </tr>
+    <tr>
+      <th>University of California - Berkeley - USA</th>
+      <td> 179</td>
+      <td> 179</td>
+      <td> 153</td>
+      <td> 179</td>
+      <td> 179</td>
+      <td> 155</td>
+      <td> 110</td>
+      <td> 179</td>
+      <td> 33</td>
+    </tr>
+    <tr>
+      <th>Stanford University - USA</th>
+      <td> 148</td>
+      <td> 148</td>
+      <td> 120</td>
+      <td> 148</td>
+      <td> 148</td>
+      <td> 121</td>
+      <td>  78</td>
+      <td> 148</td>
+      <td> 17</td>
+    </tr>
+    <tr>
+      <th>Carnegie Mellon University - USA</th>
+      <td> 121</td>
+      <td> 121</td>
+      <td> 100</td>
+      <td> 121</td>
+      <td> 121</td>
+      <td> 109</td>
+      <td>  77</td>
+      <td> 121</td>
+      <td> 18</td>
+    </tr>
+    <tr>
+      <th>University of Illinois at Urbana-Champaign - USA</th>
+      <td>  79</td>
+      <td>  79</td>
+      <td>  57</td>
+      <td>  79</td>
+      <td>  79</td>
+      <td>  60</td>
+      <td>  53</td>
+      <td>  79</td>
+      <td>  8</td>
+    </tr>
+    <tr>
+      <th>Princeton University - USA</th>
+      <td>  68</td>
+      <td>  68</td>
+      <td>  53</td>
+      <td>  68</td>
+      <td>  68</td>
+      <td>  57</td>
+      <td>  40</td>
+      <td>  68</td>
+      <td> 19</td>
+    </tr>
+    <tr>
+      <th>Cornell University - USA</th>
+      <td>  65</td>
+      <td>  65</td>
+      <td>  55</td>
+      <td>  65</td>
+      <td>  65</td>
+      <td>  54</td>
+      <td>  37</td>
+      <td>  65</td>
+      <td>  9</td>
+    </tr>
+    <tr>
+      <th>University of Washington - USA</th>
+      <td>  61</td>
+      <td>  61</td>
+      <td>  52</td>
+      <td>  61</td>
+      <td>  61</td>
+      <td>  49</td>
+      <td>  40</td>
+      <td>  61</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>Georgia Institute of Technology - USA</th>
+      <td>  53</td>
+      <td>  53</td>
+      <td>  42</td>
+      <td>  53</td>
+      <td>  53</td>
+      <td>  50</td>
+      <td>  42</td>
+      <td>  53</td>
+      <td>  9</td>
+    </tr>
+    <tr>
+      <th>Harvard University - USA</th>
+      <td>  49</td>
+      <td>  49</td>
+      <td>  37</td>
+      <td>  49</td>
+      <td>  49</td>
+      <td>  41</td>
+      <td>  32</td>
+      <td>  49</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td>  48</td>
+      <td>  48</td>
+      <td>  41</td>
+      <td>  48</td>
+      <td>  48</td>
+      <td>  37</td>
+      <td>  31</td>
+      <td>  48</td>
+      <td>  8</td>
+    </tr>
+    <tr>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td>  43</td>
+      <td>  43</td>
+      <td>  31</td>
+      <td>  43</td>
+      <td>  43</td>
+      <td>  29</td>
+      <td>  25</td>
+      <td>  43</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>University of Pennsylvania - USA</th>
+      <td>  41</td>
+      <td>  41</td>
+      <td>  31</td>
+      <td>  41</td>
+      <td>  41</td>
+      <td>  34</td>
+      <td>  30</td>
+      <td>  41</td>
+      <td>  8</td>
+    </tr>
+    <tr>
+      <th>University of California - Los Angeles - USA</th>
+      <td>  34</td>
+      <td>  34</td>
+      <td>  29</td>
+      <td>  34</td>
+      <td>  34</td>
+      <td>  29</td>
+      <td>  28</td>
+      <td>  34</td>
+      <td>  8</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td>  34</td>
+      <td>  34</td>
+      <td>  25</td>
+      <td>  34</td>
+      <td>  34</td>
+      <td>  28</td>
+      <td>  22</td>
+      <td>  34</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td>  33</td>
+      <td>  33</td>
+      <td>  28</td>
+      <td>  33</td>
+      <td>  33</td>
+      <td>  25</td>
+      <td>  23</td>
+      <td>  33</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>California Institute of Technology - USA</th>
+      <td>  32</td>
+      <td>  32</td>
+      <td>  20</td>
+      <td>  32</td>
+      <td>  32</td>
+      <td>  27</td>
+      <td>  23</td>
+      <td>  32</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <th>Columbia University - USA</th>
+      <td>  30</td>
+      <td>  30</td>
+      <td>  28</td>
+      <td>  30</td>
+      <td>  30</td>
+      <td>  23</td>
+      <td>  21</td>
+      <td>  30</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>Purdue University - USA</th>
+      <td>  26</td>
+      <td>  26</td>
+      <td>  15</td>
+      <td>  26</td>
+      <td>  26</td>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  26</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>University of North Carolina - Chapel Hill - USA</th>
+      <td>  25</td>
+      <td>  25</td>
+      <td>  18</td>
+      <td>  25</td>
+      <td>  25</td>
+      <td>  19</td>
+      <td>  15</td>
+      <td>  25</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>Yale University - USA</th>
+      <td>  25</td>
+      <td>  25</td>
+      <td>  18</td>
+      <td>  25</td>
+      <td>  25</td>
+      <td>  21</td>
+      <td>  17</td>
+      <td>  25</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>University of Southern California - USA</th>
+      <td>  25</td>
+      <td>  25</td>
+      <td>  22</td>
+      <td>  25</td>
+      <td>  25</td>
+      <td>  20</td>
+      <td>  19</td>
+      <td>  25</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>University of Massachusetts - Amherst - USA</th>
+      <td>  24</td>
+      <td>  24</td>
+      <td>  17</td>
+      <td>  24</td>
+      <td>  24</td>
+      <td>  20</td>
+      <td>  18</td>
+      <td>  24</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>University of Toronto - Canada</th>
+      <td>  24</td>
+      <td>  24</td>
+      <td>  20</td>
+      <td>  24</td>
+      <td>  24</td>
+      <td>  19</td>
+      <td>  18</td>
+      <td>  24</td>
+      <td>  8</td>
+    </tr>
+    <tr>
+      <th>University of California - San Diego - USA</th>
+      <td>  22</td>
+      <td>  22</td>
+      <td>  19</td>
+      <td>  22</td>
+      <td>  22</td>
+      <td>  16</td>
+      <td>  15</td>
+      <td>  22</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>Brown University - USA</th>
+      <td>  22</td>
+      <td>  22</td>
+      <td>  17</td>
+      <td>  22</td>
+      <td>  22</td>
+      <td>  20</td>
+      <td>  19</td>
+      <td>  22</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>State University of New York - Stony Brook - USA</th>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  18</td>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  14</td>
+      <td>  15</td>
+      <td>  20</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania State University - USA</th>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  15</td>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  15</td>
+      <td>  13</td>
+      <td>  20</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>New York University - USA</th>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  18</td>
+      <td>  20</td>
+      <td>  20</td>
+      <td>  16</td>
+      <td>  15</td>
+      <td>  20</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>University of Minnesota - Twin Cities - USA</th>
+      <td>  19</td>
+      <td>  19</td>
+      <td>  14</td>
+      <td>  19</td>
+      <td>  19</td>
+      <td>  12</td>
+      <td>  11</td>
+      <td>  19</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Rice University - USA</th>
+      <td>  19</td>
+      <td>  19</td>
+      <td>  15</td>
+      <td>  19</td>
+      <td>  19</td>
+      <td>  15</td>
+      <td>  12</td>
+      <td>  19</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>University of Utah - USA</th>
+      <td>  17</td>
+      <td>  17</td>
+      <td>  15</td>
+      <td>  17</td>
+      <td>  17</td>
+      <td>  16</td>
+      <td>  11</td>
+      <td>  17</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>University of Rochester - USA</th>
+      <td>  16</td>
+      <td>  16</td>
+      <td>  13</td>
+      <td>  16</td>
+      <td>  16</td>
+      <td>  14</td>
+      <td>  13</td>
+      <td>  16</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>Ohio State University - USA</th>
+      <td>  16</td>
+      <td>  16</td>
+      <td>  12</td>
+      <td>  16</td>
+      <td>  16</td>
+      <td>  13</td>
+      <td>  12</td>
+      <td>  16</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Virginia - USA</th>
+      <td>  15</td>
+      <td>  15</td>
+      <td>  14</td>
+      <td>  15</td>
+      <td>  15</td>
+      <td>  14</td>
+      <td>  15</td>
+      <td>  15</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>University of California - Irvine - USA</th>
+      <td>  14</td>
+      <td>  14</td>
+      <td>   7</td>
+      <td>  14</td>
+      <td>  14</td>
+      <td>  11</td>
+      <td>   9</td>
+      <td>  14</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>University of Chicago - USA</th>
+      <td>  14</td>
+      <td>  14</td>
+      <td>  13</td>
+      <td>  14</td>
+      <td>  14</td>
+      <td>   9</td>
+      <td>   8</td>
+      <td>  14</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>Hebrew University of Jerusalem - Israel</th>
+      <td>  13</td>
+      <td>  13</td>
+      <td>  10</td>
+      <td>  13</td>
+      <td>  13</td>
+      <td>   8</td>
+      <td>   7</td>
+      <td>  13</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>University of Colorado Boulder - USA</th>
+      <td>  12</td>
+      <td>  12</td>
+      <td>   8</td>
+      <td>  12</td>
+      <td>  12</td>
+      <td>  11</td>
+      <td>   7</td>
+      <td>  12</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Duke University - USA</th>
+      <td>  12</td>
+      <td>  12</td>
+      <td>  10</td>
+      <td>  12</td>
+      <td>  12</td>
+      <td>  10</td>
+      <td>   7</td>
+      <td>  12</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>Johns Hopkins University - USA</th>
+      <td>  12</td>
+      <td>  12</td>
+      <td>   7</td>
+      <td>  12</td>
+      <td>  12</td>
+      <td>  11</td>
+      <td>  10</td>
+      <td>  12</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>Rutgers - State University of New Jersey - New Brunswick - USA</th>
+      <td>  10</td>
+      <td>  10</td>
+      <td>   9</td>
+      <td>  10</td>
+      <td>  10</td>
+      <td>   8</td>
+      <td>   5</td>
+      <td>  10</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>University of California - Santa Barbara - USA</th>
+      <td>   9</td>
+      <td>   9</td>
+      <td>   8</td>
+      <td>   9</td>
+      <td>   9</td>
+      <td>   9</td>
+      <td>   6</td>
+      <td>   9</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>North Carolina State University - USA</th>
+      <td>   8</td>
+      <td>   8</td>
+      <td>   3</td>
+      <td>   8</td>
+      <td>   8</td>
+      <td>   7</td>
+      <td>   6</td>
+      <td>   8</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>University of Pittsburgh - USA</th>
+      <td>   8</td>
+      <td>   8</td>
+      <td>   6</td>
+      <td>   8</td>
+      <td>   8</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   8</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Weizmann Institute of Science - Israel</th>
+      <td>   8</td>
+      <td>   8</td>
+      <td>   6</td>
+      <td>   8</td>
+      <td>   8</td>
+      <td>   3</td>
+      <td>   4</td>
+      <td>   8</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Edinburgh - United Kingdom</th>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   6</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   6</td>
+      <td>   4</td>
+      <td>   7</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>University of Arizona - USA</th>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   5</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   7</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Northwestern University - USA</th>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   7</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>Washington University - St. Louis - USA</th>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   7</td>
+      <td>   6</td>
+      <td>   7</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>University of Oxford - United Kingdom</th>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   3</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   6</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>Tel Aviv University - Israel</th>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   4</td>
+      <td>   3</td>
+      <td>   6</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Swiss Federal Institute of Technology (ETH) - Switzerland</th>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   1</td>
+      <td>   3</td>
+      <td>   6</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>University of Waterloo - Ontario - Canada</th>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Syracuse University - USA</th>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   3</td>
+      <td>   6</td>
+      <td>   6</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>   6</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>University of California - Davis - USA</th>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>University of California - Santa Cruz - USA</th>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   3</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>  0</td>
+    </tr>
+    <tr>
+      <th>University of Cambridge - United Kingdom</th>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Iowa - USA</th>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>   5</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   5</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>University of British Columbia - Canada</th>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>   4</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
 </table>
 <p>207 rows × 9 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6026,22 +6137,29 @@ REREClLRKCIiIiIF/X8cveowqwGXNQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>MIT is the largest university, but it seems only a number of university graduates could secure academic jobs in the market. Top 4 universities are responsible for 33% faculty in the universities and the distribution has a long tail.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA3AAAAJkCAYAAABQ2sPuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcTun/P/DXfbeotKdSEtnupiFlLSbKNo2pkKmEFstk
@@ -7246,16 +7364,23 @@ q2OubbttYGBA1dXVqq2tVVVVlex2u1auXKnhkwIsyxrPcgEAACY8RuAA3BOWZWnVqlX69a9/rT17
 ys/PV3FxsX784x/LGCO3263169fr+eefV05Ojt5++21VVVXFbM8IHAAAQCxuYgIAAAAACYIROAAA
 AABIEDRwAAAAAJAgaOAAAAAAIEHQwAEAAABAgqCBAwAAAIAEQQMHAAAAAAmCBg4AAAAAEgQNHAAA
 AAAkCBo4AAAAAEgQ/w9W9X5RXA+cCQAAAABJRU5ErkJggg==
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (278592569)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7263,900 +7388,915 @@ AAAkCBo4AAAAAEgQ/w9W9X5RXA+cCQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>MIT and Berkeley is consistently high over time and Stanford are relatively new, but still very high comparing to other universities. CMU exceeds sometimes Berkeley in the recent years in the number of graduates.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th></th>
-<th>Name</th>
-<th>University</th>
-<th>Rank</th>
-<th>Subfield</th>
-<th>Bachelors</th>
-<th>Masters</th>
-<th>PostDoc</th>
-<th>doctorate_count</th>
-<th>Year</th>
-<th>Doctorate</th>
-</tr>
-<tr>
-<th>JoinYear</th>
-<th>Doctorate</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>1960</th>
-<th>University of Texas - Austin - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1960</td>
-<td>               University of Texas - Austin - USA</td>
-</tr>
-<tr>
-<th>1965</th>
-<th>University of Pennsylvania - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1965</td>
-<td>                 University of Pennsylvania - USA</td>
-</tr>
-<tr>
-<th>1966</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1966</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>1968</th>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1968</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th>1970</th>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1970</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th>1971</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1971</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>1973</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1973</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<th rowspan="2" valign="top">1975</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1975</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1975</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th rowspan="3" valign="top">1976</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1976</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 1</td>
-<td> 0</td>
-<td> 2</td>
-<td> 1976</td>
-<td>               University of Texas - Austin - USA</td>
-</tr>
-<tr>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1976</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th>1977</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 0</td>
-<td> 2</td>
-<td> 1977</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th rowspan="3" valign="top">1978</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1978</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1978</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1978</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th rowspan="2" valign="top">1979</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1979</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1979</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>1980</th>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1980</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th>1981</th>
-<th>University of Maryland - College Park - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1981</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th rowspan="5" valign="top">1982</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1982</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<th>Purdue University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1982</td>
-<td>                          Purdue University - USA</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td> 3</td>
-<td> 3</td>
-<td> 3</td>
-<td> 3</td>
-<td> 2</td>
-<td> 3</td>
-<td> 0</td>
-<td> 3</td>
-<td> 1982</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of Pennsylvania - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1982</td>
-<td>                 University of Pennsylvania - USA</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1982</td>
-<td>               University of Texas - Austin - USA</td>
-</tr>
-<tr>
-<th rowspan="3" valign="top">1983</th>
-<th>California Institute of Technology - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1983</td>
-<td>         California Institute of Technology - USA</td>
-</tr>
-<tr>
-<th>Purdue University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1983</td>
-<td>                          Purdue University - USA</td>
-</tr>
-<tr>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1983</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th rowspan="6" valign="top">1984</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1984</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<th>Purdue University - USA</th>
-<td> 3</td>
-<td> 3</td>
-<td> 3</td>
-<td> 3</td>
-<td> 3</td>
-<td> 2</td>
-<td> 0</td>
-<td> 3</td>
-<td> 1984</td>
-<td>                          Purdue University - USA</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1984</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1984</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th>University of North Carolina - Chapel Hill - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1984</td>
-<td> University of North Carolina - Chapel Hill - USA</td>
-</tr>
-<tr>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1984</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th>1985</th>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1985</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th>1986</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1986</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<th rowspan="4" valign="top">1987</th>
-<th>Purdue University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1987</td>
-<td>                          Purdue University - USA</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 1</td>
-<td> 0</td>
-<td> 2</td>
-<td> 1987</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of North Carolina - Chapel Hill - USA</th>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 0</td>
-<td> 2</td>
-<td> 1987</td>
-<td> University of North Carolina - Chapel Hill - USA</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 2</td>
-<td> 1987</td>
-<td>               University of Texas - Austin - USA</td>
-</tr>
-<tr>
-<th rowspan="2" valign="top">1988</th>
-<th>California Institute of Technology - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1988</td>
-<td>         California Institute of Technology - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1988</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th rowspan="3" valign="top">1989</th>
-<th>University of Maryland - College Park - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1989</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1989</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1989</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th rowspan="2" valign="top">1990</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1990</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1990</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th rowspan="4" valign="top">1991</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1991</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1991</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1991</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th>University of North Carolina - Chapel Hill - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1991</td>
-<td> University of North Carolina - Chapel Hill - USA</td>
-</tr>
-<tr>
-<th rowspan="2" valign="top">1992</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1992</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>University of Michigan - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1992</td>
-<td>                     University of Michigan - USA</td>
-</tr>
-<tr>
-<th rowspan="3" valign="top">1993</th>
-<th>University of California - Los Angeles - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1993</td>
-<td>     University of California - Los Angeles - USA</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1993</td>
-<td>      University of Maryland - College Park - USA</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 2</td>
-<td> 1</td>
-<td> 0</td>
-<td> 2</td>
-<td> 1993</td>
-<td>               University of Texas - Austin - USA</td>
-</tr>
-<tr>
-<th rowspan="3" valign="top">1994</th>
-<th>Purdue University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1994</td>
-<td>                          Purdue University - USA</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1994</td>
-<td>               University of Texas - Austin - USA</td>
-</tr>
-<tr>
-<th>University of Wisconsin - Madison - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1994</td>
-<td>          University of Wisconsin - Madison - USA</td>
-</tr>
-<tr>
-<th>1995</th>
-<th>Columbia University - USA</th>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 1</td>
-<td> 0</td>
-<td> 1</td>
-<td> 1995</td>
-<td>                        Columbia University - USA</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Name</th>
+      <th>University</th>
+      <th>Rank</th>
+      <th>Subfield</th>
+      <th>Bachelors</th>
+      <th>Masters</th>
+      <th>PostDoc</th>
+      <th>doctorate_count</th>
+      <th>Year</th>
+      <th>Doctorate</th>
+    </tr>
+    <tr>
+      <th>JoinYear</th>
+      <th>Doctorate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1960</th>
+      <th>University of Texas - Austin - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1960</td>
+      <td>               University of Texas - Austin - USA</td>
+    </tr>
+    <tr>
+      <th>1965</th>
+      <th>University of Pennsylvania - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1965</td>
+      <td>                 University of Pennsylvania - USA</td>
+    </tr>
+    <tr>
+      <th>1966</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1966</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>1968</th>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1968</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1970</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th>1971</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1971</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>1973</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1973</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1975</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1975</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1975</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">1976</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1976</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td> 1976</td>
+      <td>               University of Texas - Austin - USA</td>
+    </tr>
+    <tr>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1976</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th>1977</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td> 1977</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">1978</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1978</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1978</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1978</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1979</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1979</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1979</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1980</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th>1981</th>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1981</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">1982</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1982</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <th>Purdue University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1982</td>
+      <td>                          Purdue University - USA</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 2</td>
+      <td> 3</td>
+      <td> 0</td>
+      <td> 3</td>
+      <td> 1982</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of Pennsylvania - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1982</td>
+      <td>                 University of Pennsylvania - USA</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1982</td>
+      <td>               University of Texas - Austin - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">1983</th>
+      <th>California Institute of Technology - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1983</td>
+      <td>         California Institute of Technology - USA</td>
+    </tr>
+    <tr>
+      <th>Purdue University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1983</td>
+      <td>                          Purdue University - USA</td>
+    </tr>
+    <tr>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1983</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="6" valign="top">1984</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1984</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <th>Purdue University - USA</th>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 3</td>
+      <td> 2</td>
+      <td> 0</td>
+      <td> 3</td>
+      <td> 1984</td>
+      <td>                          Purdue University - USA</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1984</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1984</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th>University of North Carolina - Chapel Hill - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1984</td>
+      <td> University of North Carolina - Chapel Hill - USA</td>
+    </tr>
+    <tr>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1984</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th>1985</th>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1985</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th>1986</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1986</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">1987</th>
+      <th>Purdue University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1987</td>
+      <td>                          Purdue University - USA</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td> 1987</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of North Carolina - Chapel Hill - USA</th>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td> 1987</td>
+      <td> University of North Carolina - Chapel Hill - USA</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td> 1987</td>
+      <td>               University of Texas - Austin - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1988</th>
+      <th>California Institute of Technology - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1988</td>
+      <td>         California Institute of Technology - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1988</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">1989</th>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1989</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1989</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1989</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1990</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1990</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1990</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">1991</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1991</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1991</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1991</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th>University of North Carolina - Chapel Hill - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1991</td>
+      <td> University of North Carolina - Chapel Hill - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1992</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1992</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>University of Michigan - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1992</td>
+      <td>                     University of Michigan - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">1993</th>
+      <th>University of California - Los Angeles - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1993</td>
+      <td>     University of California - Los Angeles - USA</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1993</td>
+      <td>      University of Maryland - College Park - USA</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 2</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 2</td>
+      <td> 1993</td>
+      <td>               University of Texas - Austin - USA</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">1994</th>
+      <th>Purdue University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1994</td>
+      <td>                          Purdue University - USA</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1994</td>
+      <td>               University of Texas - Austin - USA</td>
+    </tr>
+    <tr>
+      <th>University of Wisconsin - Madison - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1994</td>
+      <td>          University of Wisconsin - Madison - USA</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <th>Columbia University - USA</th>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 1995</td>
+      <td>                        Columbia University - USA</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
 </table>
 <p>172 rows × 10 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA2gAAAJkCAYAAABkowLyAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdYFFf7N/DvLkV6VVBExAoPsYCiIkZFBYJKsQRQEwR7
@@ -9218,800 +9358,815 @@ iRMn6pZbbin6bNlJ/f39WrJkiZYuXarFixfL4/Hohhtu0MA3+Q3DGM7pAgAADDveQQMwLAzD0M03
 1mrVqlW68847NWbMGE2cOFH/9m//JsdxFIlEdM899+jzn/+8Kisr9dhjj2nx4sVFx/MOGgAAGO3Y
 JAQAAAAAXIJ30AAAAADAJShoAAAAAOASFDQAAAAAcAkKGgAAAAC4BAUNAAAAAFyCggYAAAAALkFB
 AwAAAACXoKABAAAAgEtQ0AAAAADAJf4//HqgjH93gSoAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (278593601)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Name</th>
-<th>University</th>
-<th>JoinYear</th>
-<th>Rank</th>
-<th>Subfield</th>
-<th>Bachelors</th>
-<th>Masters</th>
-<th>Doctorate</th>
-<th>PostDoc</th>
-</tr>
-<tr>
-<th>PostDoc</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>Massachusetts Institute of Technology - USA</th>
-<td> 36</td>
-<td> 36</td>
-<td> 25</td>
-<td> 36</td>
-<td> 36</td>
-<td> 29</td>
-<td> 26</td>
-<td> 36</td>
-<td> 36</td>
-</tr>
-<tr>
-<th>University of California - Berkeley - USA</th>
-<td> 24</td>
-<td> 24</td>
-<td> 24</td>
-<td> 24</td>
-<td> 24</td>
-<td> 20</td>
-<td> 18</td>
-<td> 24</td>
-<td> 24</td>
-</tr>
-<tr>
-<th>Princeton University - USA</th>
-<td> 24</td>
-<td> 24</td>
-<td> 20</td>
-<td> 24</td>
-<td> 24</td>
-<td> 18</td>
-<td> 14</td>
-<td> 24</td>
-<td> 24</td>
-</tr>
-<tr>
-<th>Stanford University - USA</th>
-<td> 22</td>
-<td> 22</td>
-<td> 20</td>
-<td> 22</td>
-<td> 22</td>
-<td> 18</td>
-<td>  9</td>
-<td> 22</td>
-<td> 22</td>
-</tr>
-<tr>
-<th>Carnegie Mellon University - USA</th>
-<td> 16</td>
-<td> 16</td>
-<td> 15</td>
-<td> 16</td>
-<td> 16</td>
-<td> 16</td>
-<td>  9</td>
-<td> 16</td>
-<td> 16</td>
-</tr>
-<tr>
-<th>Microsoft Research - USA</th>
-<td> 16</td>
-<td> 16</td>
-<td> 16</td>
-<td> 16</td>
-<td> 16</td>
-<td> 14</td>
-<td>  6</td>
-<td> 16</td>
-<td> 16</td>
-</tr>
-<tr>
-<th>Harvard University - USA</th>
-<td> 16</td>
-<td> 16</td>
-<td> 14</td>
-<td> 16</td>
-<td> 16</td>
-<td> 14</td>
-<td> 10</td>
-<td> 16</td>
-<td> 16</td>
-</tr>
-<tr>
-<th>University of Washington - USA</th>
-<td> 13</td>
-<td> 13</td>
-<td> 11</td>
-<td> 13</td>
-<td> 13</td>
-<td>  9</td>
-<td>  9</td>
-<td> 13</td>
-<td> 13</td>
-</tr>
-<tr>
-<th>University of Pennsylvania - USA</th>
-<td> 10</td>
-<td> 10</td>
-<td>  9</td>
-<td> 10</td>
-<td> 10</td>
-<td>  9</td>
-<td>  7</td>
-<td> 10</td>
-<td> 10</td>
-</tr>
-<tr>
-<th>IBM Thomas J. Watson Research Center - USA</th>
-<td>  7</td>
-<td>  7</td>
-<td>  7</td>
-<td>  7</td>
-<td>  7</td>
-<td>  6</td>
-<td>  6</td>
-<td>  7</td>
-<td>  7</td>
-</tr>
-<tr>
-<th>University of Illinois at Urbana-Champaign - USA</th>
-<td>  7</td>
-<td>  7</td>
-<td>  6</td>
-<td>  7</td>
-<td>  7</td>
-<td>  6</td>
-<td>  6</td>
-<td>  7</td>
-<td>  7</td>
-</tr>
-<tr>
-<th>University of Southern California - USA</th>
-<td>  7</td>
-<td>  7</td>
-<td>  6</td>
-<td>  7</td>
-<td>  7</td>
-<td>  6</td>
-<td>  5</td>
-<td>  7</td>
-<td>  7</td>
-</tr>
-<tr>
-<th>Cornell University - USA</th>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  5</td>
-<td>  3</td>
-<td>  6</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>University of California - San Diego - USA</th>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  4</td>
-<td>  6</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>California Institute of Technology - USA</th>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  6</td>
-<td>  4</td>
-<td>  6</td>
-<td>  6</td>
-</tr>
-<tr>
-<th>Bell Laboratories - USA</th>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  4</td>
-<td>  3</td>
-<td>  5</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>Georgia Institute of Technology - USA</th>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-<td>  5</td>
-</tr>
-<tr>
-<th>University of Colorado Boulder - USA</th>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  2</td>
-<td>  4</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>University of Massachusetts - Amherst - USA</th>
-<td>  4</td>
-<td>  4</td>
-<td>  3</td>
-<td>  4</td>
-<td>  4</td>
-<td>  3</td>
-<td>  3</td>
-<td>  4</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>University of Maryland - College Park - USA</th>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  3</td>
-<td>  4</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>Columbia University - USA</th>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  2</td>
-<td>  2</td>
-<td>  4</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>University of California - Los Angeles - USA</th>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  3</td>
-<td>  2</td>
-<td>  4</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>University of Utah - USA</th>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  4</td>
-<td>  3</td>
-<td>  4</td>
-<td>  4</td>
-</tr>
-<tr>
-<th>Duke University - USA</th>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>University of California - Santa Barbara - USA</th>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  1</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>Weizmann Institute of Science - Israel</th>
-<td>  3</td>
-<td>  3</td>
-<td>  1</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  1</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>University of Chicago - USA</th>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  1</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>IBM Research - Zurich - Switzerland</th>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>Johns Hopkins University - USA</th>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>University of Oxford - United Kingdom</th>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-<td>  3</td>
-<td>  2</td>
-<td>  3</td>
-<td>  3</td>
-</tr>
-<tr>
-<th>Hebrew University of Jerusalem - Israel</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  0</td>
-<td>  0</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Technion-Israel Institute of Technology - Israel</th>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Harvard Medical School</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Lawrence Livermore National Laboratory - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Google - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Ohio State University - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Los Alamos National Laboratory - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  0</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University College London - United Kingdom</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Yale University - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of California - San Francisco - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Edinburgh - United Kingdom</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Texas - Austin - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Toronto - Canada</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Brown University - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Virginia - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Grenoble - France</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of Cambridge - United Kingdom</th>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>University of California - Santa Cruz - USA</th>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-<td>  1</td>
-<td>  2</td>
-<td>  2</td>
-<td>  2</td>
-</tr>
-<tr>
-<th>Kyoto University - Japan</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  0</td>
-<td>  0</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Lawrence Berkeley National Laboratory - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>INRIA - Rocquencourt - France</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  0</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Broad Institute of MIT &amp; Harvard University - USA - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Iowa State University - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  0</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Bell Laboratories &amp; Microsoft Research - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  0</td>
-<td>  0</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>International Computer Science Institute - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Intel - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Institute of Science and Technology - Austria</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  0</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Institute for Advanced Study - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>Facebook - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th>ICSI (International Computer Science Institute - USA) Center for Internet Research - USA</th>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-<td>  1</td>
-</tr>
-<tr>
-<th></th>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>University</th>
+      <th>JoinYear</th>
+      <th>Rank</th>
+      <th>Subfield</th>
+      <th>Bachelors</th>
+      <th>Masters</th>
+      <th>Doctorate</th>
+      <th>PostDoc</th>
+    </tr>
+    <tr>
+      <th>PostDoc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Massachusetts Institute of Technology - USA</th>
+      <td> 36</td>
+      <td> 36</td>
+      <td> 25</td>
+      <td> 36</td>
+      <td> 36</td>
+      <td> 29</td>
+      <td> 26</td>
+      <td> 36</td>
+      <td> 36</td>
+    </tr>
+    <tr>
+      <th>University of California - Berkeley - USA</th>
+      <td> 24</td>
+      <td> 24</td>
+      <td> 24</td>
+      <td> 24</td>
+      <td> 24</td>
+      <td> 20</td>
+      <td> 18</td>
+      <td> 24</td>
+      <td> 24</td>
+    </tr>
+    <tr>
+      <th>Princeton University - USA</th>
+      <td> 24</td>
+      <td> 24</td>
+      <td> 20</td>
+      <td> 24</td>
+      <td> 24</td>
+      <td> 18</td>
+      <td> 14</td>
+      <td> 24</td>
+      <td> 24</td>
+    </tr>
+    <tr>
+      <th>Stanford University - USA</th>
+      <td> 22</td>
+      <td> 22</td>
+      <td> 20</td>
+      <td> 22</td>
+      <td> 22</td>
+      <td> 18</td>
+      <td>  9</td>
+      <td> 22</td>
+      <td> 22</td>
+    </tr>
+    <tr>
+      <th>Carnegie Mellon University - USA</th>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 15</td>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 16</td>
+      <td>  9</td>
+      <td> 16</td>
+      <td> 16</td>
+    </tr>
+    <tr>
+      <th>Microsoft Research - USA</th>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 14</td>
+      <td>  6</td>
+      <td> 16</td>
+      <td> 16</td>
+    </tr>
+    <tr>
+      <th>Harvard University - USA</th>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 14</td>
+      <td> 16</td>
+      <td> 16</td>
+      <td> 14</td>
+      <td> 10</td>
+      <td> 16</td>
+      <td> 16</td>
+    </tr>
+    <tr>
+      <th>University of Washington - USA</th>
+      <td> 13</td>
+      <td> 13</td>
+      <td> 11</td>
+      <td> 13</td>
+      <td> 13</td>
+      <td>  9</td>
+      <td>  9</td>
+      <td> 13</td>
+      <td> 13</td>
+    </tr>
+    <tr>
+      <th>University of Pennsylvania - USA</th>
+      <td> 10</td>
+      <td> 10</td>
+      <td>  9</td>
+      <td> 10</td>
+      <td> 10</td>
+      <td>  9</td>
+      <td>  7</td>
+      <td> 10</td>
+      <td> 10</td>
+    </tr>
+    <tr>
+      <th>IBM Thomas J. Watson Research Center - USA</th>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  7</td>
+      <td>  7</td>
+    </tr>
+    <tr>
+      <th>University of Illinois at Urbana-Champaign - USA</th>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  6</td>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  7</td>
+      <td>  7</td>
+    </tr>
+    <tr>
+      <th>University of Southern California - USA</th>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  6</td>
+      <td>  7</td>
+      <td>  7</td>
+      <td>  6</td>
+      <td>  5</td>
+      <td>  7</td>
+      <td>  7</td>
+    </tr>
+    <tr>
+      <th>Cornell University - USA</th>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  5</td>
+      <td>  3</td>
+      <td>  6</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>University of California - San Diego - USA</th>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  4</td>
+      <td>  6</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>California Institute of Technology - USA</th>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  6</td>
+      <td>  4</td>
+      <td>  6</td>
+      <td>  6</td>
+    </tr>
+    <tr>
+      <th>Bell Laboratories - USA</th>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  4</td>
+      <td>  3</td>
+      <td>  5</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>Georgia Institute of Technology - USA</th>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+      <td>  5</td>
+    </tr>
+    <tr>
+      <th>University of Colorado Boulder - USA</th>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  2</td>
+      <td>  4</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>University of Massachusetts - Amherst - USA</th>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  3</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  4</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>University of Maryland - College Park - USA</th>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  3</td>
+      <td>  4</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>Columbia University - USA</th>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  4</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>University of California - Los Angeles - USA</th>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  4</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>University of Utah - USA</th>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  4</td>
+      <td>  3</td>
+      <td>  4</td>
+      <td>  4</td>
+    </tr>
+    <tr>
+      <th>Duke University - USA</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>University of California - Santa Barbara - USA</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>Weizmann Institute of Science - Israel</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  1</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  1</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>University of Chicago - USA</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>IBM Research - Zurich - Switzerland</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>Johns Hopkins University - USA</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>University of Oxford - United Kingdom</th>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  3</td>
+      <td>  2</td>
+      <td>  3</td>
+      <td>  3</td>
+    </tr>
+    <tr>
+      <th>Hebrew University of Jerusalem - Israel</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  0</td>
+      <td>  0</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Technion-Israel Institute of Technology - Israel</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Harvard Medical School</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Lawrence Livermore National Laboratory - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Google - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Ohio State University - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Los Alamos National Laboratory - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  0</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University College London - United Kingdom</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Yale University - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of California - San Francisco - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Edinburgh - United Kingdom</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Texas - Austin - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Toronto - Canada</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Brown University - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Virginia - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Grenoble - France</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of Cambridge - United Kingdom</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>University of California - Santa Cruz - USA</th>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  1</td>
+      <td>  2</td>
+      <td>  2</td>
+      <td>  2</td>
+    </tr>
+    <tr>
+      <th>Kyoto University - Japan</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  0</td>
+      <td>  0</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Lawrence Berkeley National Laboratory - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>INRIA - Rocquencourt - France</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  0</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Broad Institute of MIT &amp; Harvard University - USA - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Iowa State University - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  0</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Bell Laboratories &amp; Microsoft Research - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  0</td>
+      <td>  0</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>International Computer Science Institute - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Intel - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Institute of Science and Technology - Austria</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  0</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Institute for Advanced Study - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>Facebook - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th>ICSI (International Computer Science Institute - USA) Center for Internet Research - USA</th>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+      <td>  1</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
 </table>
 <p>119 rows × 9 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -10019,22 +10174,29 @@ AwAAAACXoKABAAAAgEtQ0AAAAADAJf4//HqgjH93gSoAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>MIT also leads in this one as well. For postdocs, some faculty also choose industry(Microsoft, IBM, Bell Labs).</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAJkCAYAAAAMUIDKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcTfn/B/DXve2lPaWkhcxNki2SpLINKrKmtI0ZO1/b
@@ -10999,16 +11161,23 @@ f/qTDhw4oEwmo3g8rkOHDqm7u1vJZFLJZFI1NTVyOBzav3+/Dhw4UOxpAwAAfCEoWACuWVNTk/bt
 26fHH39cdXV1am5u1k9+8hMZYxQMBrVjxw5961vfUlVVlX73u99p48aNk7bnHSwAAPBlwUUuAAAA
 AMAmvIMFAAAAADahYAEAAACATShYAAAAAGATChYAAAAA2ISCBQAAAAA2oWABAAAAgE0oWAAAAABg
 EwoWAAAAANiEggUAAAAANvk/evk3EzH589UAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;ggplot: (278072573)&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -11016,6 +11185,7 @@ EwoWAAAAANiEggUAAAAANvk/evk3EzH589UAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Berkeley is the best in recent years when we look at the numbers over time.</p>
+
 </div>
 </div>
 </div>
@@ -11024,7 +11194,8 @@ EwoWAAAAANiEggUAAAAANvk/evk3EzH589UAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">¶</a></h2><p>Do not forget to check out the interactive <a href="http://bugra.github.io/pages/vis/2014-05-31/cs-professors-rank-university-join-year/">visualization</a></p>
+<h2 id="What-is-next?">What is next?<a class="anchor-link" href="#What-is-next?">&#182;</a></h2><p>Do not forget to check out the interactive <a href="http://bugra.github.io/pages/vis/2014-05-31/cs-professors-rank-university-join-year/">visualization</a></p>
+
 </div>
 </div>
 </div>

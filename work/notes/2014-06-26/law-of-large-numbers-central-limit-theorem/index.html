@@ -964,8 +964,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -976,9 +978,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1016,15 +1020,17 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><html><body><div class="cell border-box-sizing text_cell rendered">
+</style>
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If one has to provide a list the important/useful theorems in probability theory, she needs to mention Law of Large Numbers and Central Limit Theorem. However, if you ask me two theorems that are most under appreciated, I would also count these two in that list as well. Most of the textbooks give probability axioms in their first chapters to provide a common ground to build probability sense, yet they will wait for quite later chapters to introduce these two very useful theorems.</p>
 <p>Central Limit Theorem(CLT) of those is one of the most astonishing theorem which has both applications in both statistics, information theory and signal processing, it is a little counterintuitive albeit. This does not decrease its value and contribution, though. Understanding CLT is quite crucial to know the reason why Gaussian distribution is so ubiquitous in signal processing and a number of fields.</p>
-<p>Contrarily, Law of Large Numbers seems easier to understand and reason about.<br />
+<p>Contrarily, Law of Large Numbers seems easier to understand and reason about.<br>
 In this post, I will introduce LLN and CLT, and provide experiment results to show that CLT actually holds true for a number of different distributions using numpy built-in distributions.</p>
+
 </div>
 </div>
 </div>
@@ -1033,7 +1039,7 @@ In this post, I will introduce LLN and CLT, and provide experiment results to sh
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Law-of-Large-Numbers">Law of Large Numbers<a class="anchor-link" href="#Law-of-Large-Numbers">¶</a></h2>
+<h2 id="Law-of-Large-Numbers">Law of Large Numbers<a class="anchor-link" href="#Law-of-Large-Numbers">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -1052,6 +1058,7 @@ $$ \lim_{n \rightarrow \infty} P(\lvert \overline{X_n} - \mu \rvert \le \epsilon
 <p>Intuitively, this makes perfect sense. When I flip a fair coin, the mean of flip coins(1 and 0's) will be closers to 0.5 as the number of trials increase. For a small number of trials, the observations may not support the expectation value.(For edge case, when the observation is 1, the difference is actually the largest.) Whole frequentist approaches and even the definition or to reason about probability of some event has connections to law of large numbers. When one has a coin and want to represent the physical events of getting heads or tails in random variables, she actually does not know if 10 heads will happen out of 20 trials. What she knows is that for a large number of trials, the getting head and tails will be equal to each other or at least very close for a fair coin.</p>
 <blockquote><p>In a nutshell, average of independent (many) samples will converge to the mean of the underlying distribution that the observations are sampled from.</p>
 </blockquote>
+
 </div>
 </div>
 </div>
@@ -1061,14 +1068,15 @@ $$ \lim_{n \rightarrow \infty} P(\lvert \overline{X_n} - \mu \rvert \le \epsilon
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In order to show LLN holds true, one could shows average of the samples vs the size of samples. As the size of samples increase, the average will converge to the mean of  distribution. For a poisson variable, the mean of distribution vs average of samples could be seen in the next graph.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
@@ -1077,45 +1085,53 @@ $$ \lim_{n \rightarrow \infty} P(\lvert \overline{X_n} - \mu \rvert \le \epsilon
 
 <span class="c1"># Pretty colors</span>
 <span class="n">COLOR_PALETTE</span> <span class="o">=</span> <span class="p">[</span>    
-               <span class="s2">"#348ABD"</span><span class="p">,</span>
-               <span class="s2">"#A60628"</span><span class="p">,</span>
-               <span class="s2">"#7A68A6"</span><span class="p">,</span>
-               <span class="s2">"#467821"</span><span class="p">,</span>
-               <span class="s2">"#CF4457"</span><span class="p">,</span>
-               <span class="s2">"#188487"</span><span class="p">,</span>
-               <span class="s2">"#E24A33"</span>
+               <span class="s2">&quot;#348ABD&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;#A60628&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;#7A68A6&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;#467821&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;#CF4457&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;#188487&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;#E24A33&quot;</span>
               <span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_average_of_observations_vs_mean</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">mean_</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-    <span class="n">trial_template</span> <span class="o">=</span> <span class="s1">'Trial: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span>
+    <span class="n">trial_template</span> <span class="o">=</span> <span class="s1">&#39;Trial: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">COLOR_PALETTE</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">samples</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">mean_</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
         <span class="n">average</span> <span class="o">=</span> <span class="p">[</span><span class="n">samples</span><span class="p">[:</span><span class="n">jj</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">average</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">trial_template</span><span class="p">(</span><span class="n">ii</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
     
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Mean of Samples vs Sample Size'</span><span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Mean of Samples'</span><span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Sample Size'</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mean of Samples vs Sample Size&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean of Samples&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Size&#39;</span><span class="p">);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 <span class="n">plot_average_of_observations_vs_mean</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAusAAALcCAYAAABehv4oAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VPX5x/3PTDYSEkgyQICQQEBIwi5IIMiiRUBApAgu
@@ -1827,11 +1843,14 @@ nvVV/R97Dj/8uX/961+1Z88edenSJXxFmBtuuEGS9Oyzz6qiokJdu3ZVSkqKxo4de8LZDQA0ZCHz
 Uy+2CwBwVlFRkTp06KAjR46oUSNelwGAMxX/BgcAAAAcRVkHAE/92IQGAOA+ZjAAAACAo3hlHQAA
 AHAUZR0AAABwFGUdAAAAcBRlHQAAAHAUZR0AAABwFGUdAAAAcNT/B41pXBj1pfdUAAAAAElFTkSu
 QmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1839,22 +1858,29 @@ QmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the above graph, we could see that the mean of samples are quite different than the true <em>mean</em> for small number of samples. As sample size grows, the average of the samples will converge to the mean of the sampling distirbution which is 10. This holds true for other probability distributions as well.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_average_of_observations_vs_mean</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">chisquare</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAusAAALcCAYAAABehv4oAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4FHW69vG7OuksZE8TAoQEAkISFkXRCIgwDgICKiKo
@@ -2677,11 +2703,14 @@ lStXfu79BYBEQ7EOAIMkPT1da9as0YwZM5SWlqbTTjtNkyZNiq7S8tOf/lRr165VZmamLr74Yl12
 PNbFdgEAtlVbW6vRo0crGAzK4WBeBgC+qHgHBwAAAGyKYh0AEtRntdAAAOyPNhgAAADApphZBwAA
 AGyKYh0AAACwKYp1AAAAwKYo1gEAAACbolgHAAAAbIpiHQAAALCp/w9aKf5s4pm9DQAAAABJRU5E
 rkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2689,6 +2718,7 @@ rkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That looks great, our intuition seems to be correct for both <strong>poisson</strong> and <strong>chisquare</strong> random variables. Let's look at CLT</p>
+
 </div>
 </div>
 </div>
@@ -2697,7 +2727,7 @@ rkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Central-Limit-Theorem">Central Limit Theorem<a class="anchor-link" href="#Central-Limit-Theorem">¶</a></h3>
+<h3 id="Central-Limit-Theorem">Central Limit Theorem<a class="anchor-link" href="#Central-Limit-Theorem">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -2710,6 +2740,7 @@ rkJggg==
 $$ \frac{\sqrt{n}}{\sigma}(\overline{X_n} - \mu ) \rightarrow \mathcal{N}(0, 1) $$<p>
 as $$ n \rightarrow \infty $$</p>
 <p>As sample size goes to infinity, the sample mean distribution will converge to a normal distribution. The convergence of distribution concept is quite important as it is not a single metric unlike mean convergence but</p>
+
 </div>
 </div>
 </div>
@@ -2720,6 +2751,7 @@ as $$ n \rightarrow \infty $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>The distribution of means of many trials will be Gaussian, even if distributions of each trial are not Gaussian.</p>
 </blockquote>
+
 </div>
 </div>
 </div>
@@ -2735,9 +2767,10 @@ as $$ n \rightarrow \infty $$</p>
 <li>Even if the population does not look like anything Gaussian, the sampling distribution of means will approximate a Gaussian.(Hard to believe, the sampling distribution of mean will be Gaussian for a large enough sample size.</li>
 <li>When you add more means of observations, the similarity between the mean sampling distribution with a Gaussian distribution will only increase. As the sampling size will goes to infinity, the distribution becomes a Gaussian distribution(the error term goes to zero).</li>
 </ol>
-<h4 id="Noise-vs.-Gaussian-Noise">Noise vs. Gaussian Noise<a class="anchor-link" href="#Noise-vs.-Gaussian-Noise">¶</a></h4><p>CLT is also the main reason why noise is generally assumed to be Gaussian noise. This is because, if the process that we are dealing with has  random variables that are sampled from different distribution and if these random variables carry different noises on top of their signals, then as number of observations will increase, the error(sum of all the random variables' noise) start to look like Gaussian. Even though we have no idea how many random variables are in the observed signal, which sampling distributions they are coming from, Gaussian noise assumption is quite good due to CLT. This is one of the main reason why Gaussian distribution is so ubiquituous in the signal processing for modeling the noise.</p>
+<h4 id="Noise-vs.-Gaussian-Noise">Noise vs. Gaussian Noise<a class="anchor-link" href="#Noise-vs.-Gaussian-Noise">&#182;</a></h4><p>CLT is also the main reason why noise is generally assumed to be Gaussian noise. This is because, if the process that we are dealing with has  random variables that are sampled from different distribution and if these random variables carry different noises on top of their signals, then as number of observations will increase, the error(sum of all the random variables' noise) start to look like Gaussian. Even though we have no idea how many random variables are in the observed signal, which sampling distributions they are coming from, Gaussian noise assumption is quite good due to CLT. This is one of the main reason why Gaussian distribution is so ubiquituous in the signal processing for modeling the noise.</p>
 <blockquote><p>When you subtract mean and dividing by standard deviation of your data points, if your data happens to be Gaussian as well, then what you will end up is the right term on the above equation for CLT.</p>
 </blockquote>
+
 </div>
 </div>
 </div>
@@ -2747,63 +2780,72 @@ as $$ n \rightarrow \infty $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If I want to look at different distribution and how one may fit a gaussian distribution, I will see that as the number of samples grow, the distributions will start to look like a Gaussian distribution. The theorem however astonishing holds true for a large number of samples.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gumbel</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gumbel</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="n">k</span><span class="p">])[:,:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">weibull</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">weibull</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">k</span><span class="p">])[:,:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">poisson</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="n">k</span><span class="p">])[:,:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">pareto</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="n">k</span><span class="p">])[:,:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)):</span>
-    <span class="sd">""" Plot the sampling distribution and fit a gaussian on top </span>
+    <span class="sd">&quot;&quot;&quot; Plot the sampling distribution and fit a gaussian on top </span>
 <span class="sd">    of the distribution to see if CLT holds true</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">samples</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bins</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span> <span class="p">(</span><span class="n">bins</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span> <span class="p">(</span><span class="n">bins</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="n">COLOR_PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">);</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Pareto-Distribution-Experiments">Pareto Distribution Experiments<a class="anchor-link" href="#Pareto-Distribution-Experiments">¶</a></h3>
+<h3 id="Pareto-Distribution-Experiments">Pareto Distribution Experiments<a class="anchor-link" href="#Pareto-Distribution-Experiments">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">pareto</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsMAAALLCAYAAAAc348vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XuU3/Vd7/vXb26ZyWQykysJ5MKdAKUUKC2lFG21F0oL
@@ -3030,29 +3072,38 @@ N92U2267LW95y1syf/78qscDmNWsDAPMcGvWrEmSbN++PR0dHenq6sq73vWuiqcCmBvsGQaY4TZs
 2JD77rsvN9xwQy6++OIkyfXXX1/xVABzg5VhgBnua1/7Wvbu3ZuVK1dmcHAw1157bY477riqxwKY
 E+wZBgCgWLZJAABQLDEMAECxxDAAAMUSwwAAFEsMAwBQLDEMAECxxDAAAMUSwwAAFOv/B749Qzkd
 UxLLAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">pareto</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsMAAALMCAYAAAAB2r+XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmYnGd9JupfVfW+qVut1ZblTbZlG+MNAyEGwuJAAthA
@@ -3325,29 +3376,38 @@ e8zMzMSGDRvi2muvjbvuuiu+/e1vx2tf+9ro6urKOh5AQ7MyDFDn1q9fHxERe/bsid7e3ujv7483
 v/nNGafi/2/Xjm0AhIEgCF4bFr24ZSeIwF04ow8SQsoA8TMVfLh6HfAPNsMAH3eeZ9ZaOY4jvfck
 yb7vL18F8A8+wwAfN+fMdV1preW+74wxsm3b22cB/ILNMAAAZZlJAABQlhgGAKAsMQwAQFliGACA
 ssQwAABliWEAAMoSwwAAlCWGAQAoSwwDAFDWA6OsjC210IbdAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">pareto</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsMAAALLCAYAAAAc348vAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XuUpHdZL/pvVd97pnvuyUySSSDkMgkJIYSAhogKB28g
@@ -3620,29 +3680,38 @@ NIouAoDj27FjR2ZnZ3PRRRflmmuuyWc+85ncdtttec1rXpPh4eGiywPoaDrDAG3u/PPPT5I888wz
 GRkZydq1a/OGN7yh4KoAuoOZYYA29+CDD+aee+7JJz7xibz61a9Oknz84x8vuCqA7qAzDNDmPvnJ
 T+bQoUPZsmVLpqen89GPfjTnnntu0WUBdAUzwwAAlJYxif+/3ToQAAAAABDkbz3IRREAAFsyDADA
 lgwDALAlwwAAbMkwAABbMgwAwJYMAwCwJcMAAGwFgS7iCndmfG8AAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">pareto</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsMAAALMCAYAAAAB2r+XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3WuQnHd9L/hfd8/9PhpdbUu2ZVmWL8KxTWIgtjk2gYRA
@@ -3898,37 +3967,46 @@ FovFpEMAsLRjx47F9PR07Nu3L2677bb42te+Fvfff3/cc8890dbWlnQ8gLpmMgywye3ZsyciIk6f
 Ph2dnZ3R09MTb37zmxNOBXBpcGYYYJN74okn4tFHH40vfvGLcdddd0VExBe+8IWEUwFcGkyGATa5
 L3/5yzEyMhK7du2KycnJ+OxnPxuXX3550rEALgnODAMAkFqOSQAAkFrKMAAAqaUMAwCQWsowAACp
 pQwDAJBayjAAAKmlDAMAkFrKMAAAqaUMAwCQWv8/Ki+JGeFGpasAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Poisson-Distribution-Experiments">Poisson Distribution Experiments<a class="anchor-link" href="#Poisson-Distribution-Experiments">¶</a></h2>
+<h2 id="Poisson-Distribution-Experiments">Poisson Distribution Experiments<a class="anchor-link" href="#Poisson-Distribution-Experiments">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">poisson</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALLCAYAAADkP3TYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XmU5XV95//Xrb2rupZe6IXeaPZFdkFUwLglmhiU+BvU
@@ -4150,28 +4228,37 @@ DWDOqdXr9XrVQwBwYE888URGRkZy7LHH5uyzz85Xv/rV3HDDDXnNa16T9vb2qscDmHOcQQaY4dau
 XZsk2b59ezo7O9PT05M3velNFU8FMHdZgwwww91///2588478y//8i+58MILkyRf+MIXKp4KYO5y
 BhlghrvuuuuyZ8+erFy5MkNDQ7nqqquyatWqqscCmLOsQQYAgIIlFgAAUBDIAABQEMgAAFAQyAAA
 UBDIAABQEMgAAFAQyAAAUBDIAABQ+P8BRkXiWcJ3q1QAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">poisson</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALMCAYAAAD5OkRgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl05Xd92P3PvbrapZFmpNm9zHhfsI2xhyXYBEJIaBY7
@@ -4435,28 +4522,37 @@ p9MsFoucTqdcLpc0TZN+v197HkDnuCADfLnJZJIkeTweGQwGGQ6HWa1WlVcBdJcfZIAvd7vdcr1e
 s9/vs1wukyS73a7yKoDuckEG+HLH4zHP5zOj0Siv1yubzSbj8bj2LIDO8oMMAAAFLxYAAFAQyAAA
 UBDIAABQEMgAAFAQyAAAUBDIAABQEMgAAFAQyAAAUBDIAABQ+AAxrAPn6sWY4AAAAABJRU5ErkJg
 gg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">poisson</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALLCAYAAADkP3TYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xm0pXV5J/pnT2eeah4okEJlUgQENANq1NakYwKyTJsY
@@ -4730,28 +4826,37 @@ Wq28pwF8nG+v1+uV9wgAfu9yucTz+Yxmsxndbje2220cj8fo9/tRLBbzngfwcXxBBnhz9Xo9IiKu
 12uUSqUol8sxGAxyXgXwudwgA7y58/kcp9MpVqtVZFkWERFfX185rwL4XL4gA7y5zWYT9/s9qtVq
 PB6PWCwWUavV8p4F8LHcIAMAQMKJBQAAJAQyAAAkBDIAACQEMgAAJAQyAAAkBDIAACQEMgAAJAQy
 AAAkfgBjolERCnq87QAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">poisson</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALLCAYAAADkP3TYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XuQnHd5J/qnu+c+GmmkkXXBkiwZY/mKMcbAEtsJELJQ
@@ -5013,28 +5118,37 @@ XHLJJWmXBtB0MqVSqZR2EQCc3f79+2N6ejouuuiiuOaaa+Luu++O++67L97whjdET09P2uUBNB0d
 ZIA6t23btoiIOHr0aPT19UV/f3+89a1vTbkqgOZlBhmgzu3evTseeeSR+NrXvhY33HBDRER89atf
 TbkqgOalgwxQ5+666644ffp0bN68OSYnJ+NLX/pSnH/++WmXBdC0zCADAECCEQsAAEgQkAEAIEFA
 BgCABAEZAAASBGQAAEgQkAEAIEFABgCABAEZAAAS/n9iLEkPthkMDAAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">poisson</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALLCAYAAADkP3TYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XmQZHd1J/qTmbV0VXX1qupdUrfUtBaEFoSAMVoQu20s
@@ -5297,37 +5411,46 @@ AKgjIAMAQB0BGQAA6gjIAABQR0AGAIA6AjIAANQRkAEAoE5X6gIAeG5f+cpXolQqxd133x0veMEL
 +uuvj4iIr371q4mrAuhcOsgAOXfHHXfE8PBwrF27NsbHx+OLX/xirF+/PnVZAB3LDDIAANQxYgEA
 AHUEZAAAqCMgAwBAHQEZAADqCMgAAFBHQAYAgDoCMgAA1BGQAQCgzv8PVtAwadAdBnwAAAAASUVO
 RK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Gumbel-Distribution">Gumbel Distribution<a class="anchor-link" href="#Gumbel-Distribution">¶</a></h2>
+<h2 id="Gumbel-Distribution">Gumbel Distribution<a class="anchor-link" href="#Gumbel-Distribution">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">gumbel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALMCAYAAAD5OkRgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4nGed5vv7fatKtUlV2i3v+xrbiZM4hMRZSKAJBGIC
@@ -5686,11 +5809,14 @@ o0PRaFSLFi3SqlWrdODAAbW2tuq2225TQUGB1eUBQNZhBRkAbO6aa66RJJ0/f14+n0+lpaW66667
 LK4KALIXPcgAYHMffPCB3n33Xf3kJz/R+vXrJUmvvPKKxVUBQPZiBRkAbO7VV1/V8PCw6urqFA6H
 tWvXLtXX11tdFgBkLXqQAQAAgHFosQAAAADGISADAAAA4xCQAQAAgHEIyAAAAMA4BGQAAABgHAIy
 AAAAMA4BGQAAABiHgAwAAACMQ0AGAAAAxvl/xUeHn823BAoAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -5698,26 +5824,33 @@ AAAAMA4BGQAAABiHgAwAAACMQ0AGAAAAxvl/xUeHn823BAoAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Only 1 sample, we would not get much luck in terms of how much the distribution looks like a Gaussian distribution, but the graph is important to show where we started from.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">gumbel</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALMCAYAAAD5OkRgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtwXOd95vnnnL53A90NNADewDvFiySHIinKkkxJtuSx
@@ -6089,29 +6222,38 @@ L1+u7du369FHH9XSpUutLg0Aco5hmqZpdREAgLGdPn1a8XhcixYt0ooVK7Rz50698cYbuuGGG+Tz
 WpL04osvWlwVAOQuOsgAkOV27NihcDis6upqDQ0NacuWLZo3b57VZQFAzmINMgAAADACSywAAACA
 EQjIAAAAwAgEZAAAAGAEAjIAAAAwAgEZAAAAGIGADAAAAIxAQAYAAABGICADAAAAIxCQAQAAgBH+
 H2YZffouzhxiAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">gumbel</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALLCAYAAADkP3TYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtwXOd95vnnnL53A+jGheANAEmR4kVSTEsyLdmR7die
@@ -6464,11 +6606,14 @@ wCQEZAAAAGASAjIAAAAwicvuBgAAX27v3r1yOp06dOiQmpqa1NLSoieffFKrVq2yuzUAyDqGZVmW
 oUpKSnTHHXfY3BUAZC/mIANAmjt+/LiOHj2qN954Q5s2bZIkvf766zZ3BQDZixFkAEhz+/bt0+jo
 qGpraxWJRLRnzx7V1dXZ3RYAZC3mIAMAAACTMMUCAAAAmISADAAAAExCQAYAAAAmISADAAAAkxCQ
 AQAAgEkIyAAAAMAkBGQAAABgEgIyAAAAMMn/Ax48+1f+QNQGAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6476,26 +6621,33 @@ AQAAgEkIyAAAAMAkBGQAAABgEgIyAAAAMMn/Ax48+1f+QNQGAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By the time we get to 20 samples, the distribution is almost impossible to distinguish from a Guassian.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">gumbel</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALMCAYAAAD5OkRgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmQ5vddH/j38zzdT9/H3CONTsuWZWNbtrHAAR8EQuJd
@@ -6824,29 +6976,38 @@ AKS5JUuWSJIGBgaUn5+voqIivfTSSzZ3BQALFzPIAJDmLl26pPPnz+vrr7/WunXrJElfffWVzV0B
 wMLFFWQASHPHjh2T3+9XeXm5QqGQDh8+rMrKSrvbAoAFixlkAAAAIAkjFgAAAEASAjIAAACQhIAM
 AAAAJCEgAwAAAEkIyAAAAEASAjIAAACQhIAMAAAAJCEgAwAAAEkIyAAAAECS/wW2TmyrQQKhngAA
 AABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">gumbel</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALLCAYAAADkP3TYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmU5fdZHvjn3lu31q6ld0mWZK22LNsI2RYGI9sxDjlO
@@ -7157,29 +7318,38 @@ TLvbA4CkwwgyACS4JUuWSJL6+/uVlZWl3Nxcvf766zZ3BQDJiznIAJDgrl27psuXL+vMmTNat26d
 JOn06dM2dwUAyYsRZABIcM3NzRodHZXP51MgEFBDQ4MKCgrsbgsAkhZzkAEAAIAITLEAAAAAIhCQ
 AQAAgAgEZAAAACACARkAAACIQEAGAAAAIhCQAQAAgAgEZAAAACACARkAAACI8B9u+wUL9/6T9gAA
 AABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 <span class="n">plot_and_fit_gaussian_distribution</span><span class="p">(</span><span class="n">gumbel</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">r'$p(x)$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAsgAAALMCAYAAAD5OkRgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmUpXd5H/jnvUvtVb1UL2okNVpbEiAJsdgYK8Y2i0nM
@@ -7469,11 +7639,14 @@ Q0EGAAAAbCjIAAAAgE2u6QAAgP8XDAaVk5OjSCSi6upqbW9va3x8XJWVlaajAcCPY728vLyYDgEA
 cCoA+LmYQQaADHdycqLDw0Ntbm6qoaFBkrSxsWE4FQD8XNxBBoAMFwqFdHt7K6fTqYeHB62urqqs
 rMx0LAD4sZhBBgAAAGwYsQAAAABsKMgAAACADQUZAAAAsKEgAwAAADYUZAAAAMCGggwAAADYUJAB
 AAAAGwoyAAAAYENBBgAAAGx+AZqJG0sZxfSXAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -7481,6 +7654,7 @@ AAAAGwoyAAAAYENBBgAAAGx+AZqJG0sZxfSXAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As the sample size increases, the mean distribution will eventually look like a Gaussian distribution.</p>
+
 </div>
 </div>
 </div>
@@ -7489,13 +7663,14 @@ AAAAGwoyAAAAYENBBgAAAGx+AZqJG0sZxfSXAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">¶</a></h2><ul>
+<h2 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">&#182;</a></h2><ul>
 <li>The Law of Large Numbers and Central Limit Theorem are under-appreciated in statistics, both are nice, CLT is also quite powerful.</li>
 <li>Number of heads in coin flips(histogram) after a large nuber of flips look like a Gaussian distribution due to CLT. Note that the coin does not have to be fair.</li>
 <li>If Gaussian distribution is so popular and ubiquitous across different fields; statistics, machine learning, information theory and signal processing that is partially due to CLT.</li>
 <li>CLT says that with a large sample size, sample mean will start to look like population mean. Sampling distribution of mean will be Gaussian distribution. </li>
 </ul>
-<h3 id="Let&#x27;s-talk-about-LLN-and-CLT">Let's talk about LLN and CLT<a class="anchor-link" href="#Let&#x27;s-talk-about-LLN-and-CLT">¶</a></h3><p>Do you know any other applications of LLN and CLT? No, just want to talk about how awesome CLT is? Please, leave a comment.</p>
+<h3 id="Let's-talk-about-LLN-and-CLT">Let's talk about LLN and CLT<a class="anchor-link" href="#Let's-talk-about-LLN-and-CLT">&#182;</a></h3><p>Do you know any other applications of LLN and CLT? No, just want to talk about how awesome CLT is? Please, leave a comment.</p>
+
 </div>
 </div>
 </div>

@@ -964,8 +964,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -976,9 +978,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1016,15 +1020,17 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><html><body><div class="cell border-box-sizing text_cell rendered">
+</style>
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Trend-Estimation">Trend Estimation<a class="anchor-link" href="#Trend-Estimation">¶</a></h2><p>Trend estimation in a very broad sense could be defined as a family of methods to be able to detect and predict tendencies and regularities in time series signals. It is generallly highly dependent on the problem domain and application. Therefore, it begs different approaches for every other problem rather than a single solution that works across different domains.</p>
-<h3 id="Why-do-we-do-it?">Why do we do it?<a class="anchor-link" href="#Why-do-we-do-it?">¶</a></h3><p>It is very useful when the raw signal is very volatile and not necessarily useful for processing. What do I mean by that? If you want to compute slope of a noisy signal, derivative of the function will amplify the noise where it attenuates the useful signal. For this type of problem, it would be much better to preprocess the signal first(either a low-pass filter or some other preprocessing step) and then compute the slope on top of "smoothed" signal. We could of course use trend estimation to compute the trend first and then compute the slope on top of the trend, which will provide more accurate results.</p>
-<h3 id="Tell-me-more">Tell me more<a class="anchor-link" href="#Tell-me-more">¶</a></h3><p>What else? If you have a noisy signal that actually has the definition of volatility inside of it, then you would have hard time to communicate how the signal actually behaves in the long term to other people. When you compute a trend which is right and up, people would understand it is trending or has a certain amount of traction over time.</p>
+<h2 id="Trend-Estimation">Trend Estimation<a class="anchor-link" href="#Trend-Estimation">&#182;</a></h2><p>Trend estimation in a very broad sense could be defined as a family of methods to be able to detect and predict tendencies and regularities in time series signals. It is generallly highly dependent on the problem domain and application. Therefore, it begs different approaches for every other problem rather than a single solution that works across different domains.</p>
+<h3 id="Why-do-we-do-it?">Why do we do it?<a class="anchor-link" href="#Why-do-we-do-it?">&#182;</a></h3><p>It is very useful when the raw signal is very volatile and not necessarily useful for processing. What do I mean by that? If you want to compute slope of a noisy signal, derivative of the function will amplify the noise where it attenuates the useful signal. For this type of problem, it would be much better to preprocess the signal first(either a low-pass filter or some other preprocessing step) and then compute the slope on top of "smoothed" signal. We could of course use trend estimation to compute the trend first and then compute the slope on top of the trend, which will provide more accurate results.</p>
+<h3 id="Tell-me-more">Tell me more<a class="anchor-link" href="#Tell-me-more">&#182;</a></h3><p>What else? If you have a noisy signal that actually has the definition of volatility inside of it, then you would have hard time to communicate how the signal actually behaves in the long term to other people. When you compute a trend which is right and up, people would understand it is trending or has a certain amount of traction over time.</p>
 <p>So, trend estimation is useful, but how are we going to do that?</p>
+
 </div>
 </div>
 </div>
@@ -1033,7 +1039,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Here-is-how-we-are-going-to-do-that">Here is how we are going to do that<a class="anchor-link" href="#Here-is-how-we-are-going-to-do-that">¶</a></h3><p>There are many ways on how one could do trend estimation in the time series data. Since it is very signal dependent and various ways, instead of choosing "one" algorithm over others, in this blog post, I will intrdocuce 6 different methods and try to summarize their properties/advantages. They are:</p>
+<h3 id="Here-is-how-we-are-going-to-do-that">Here is how we are going to do that<a class="anchor-link" href="#Here-is-how-we-are-going-to-do-that">&#182;</a></h3><p>There are many ways on how one could do trend estimation in the time series data. Since it is very signal dependent and various ways, instead of choosing "one" algorithm over others, in this blog post, I will intrdocuce 6 different methods and try to summarize their properties/advantages. They are:</p>
 <ul>
 <li>Moving average filtering</li>
 <li>Exponential Weighted Moving Average (EWMA)</li>
@@ -1042,6 +1048,7 @@ h6:hover .anchor-link {
 <li>Hodrick Prescott Filter</li>
 <li>$l_1$ trend filtering</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -1051,14 +1058,15 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's get started.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">from</span> <span class="nn">l1</span> <span class="kn">import</span> <span class="n">l1</span>
@@ -1070,54 +1078,56 @@ h6:hover .anchor-link {
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">ensemble</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 
-<span class="n">_DATA_DIR</span> <span class="o">=</span> <span class="s1">'data'</span>
-<span class="n">_FIG_DIR</span> <span class="o">=</span> <span class="s1">'figures'</span>
+<span class="n">_DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+<span class="n">_FIG_DIR</span> <span class="o">=</span> <span class="s1">&#39;figures&#39;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">)</span>
 
-<span class="n">_SNP_500_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_DIR</span><span class="p">,</span> <span class="s1">'snp500.csv'</span><span class="p">)</span>
+<span class="n">_SNP_500_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;snp500.csv&#39;</span><span class="p">)</span>
 <span class="n">_BEGINNING_DATE</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">## Matplotlib Variables</span>
 <span class="n">_FIG_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
-<span class="n">_FIG_FORMAT</span> <span class="o">=</span> <span class="s1">'png'</span>
+<span class="n">_FIG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span>
 <span class="n">_FIG_DPI</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">_FIG_LEGEND_LOCATION</span> <span class="o">=</span> <span class="mi">4</span>
 
-<span class="n">_ORIGINAL_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'Original Signal'</span>
-<span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'Mean Averaged Signal'</span>
-<span class="n">_MEDIAN_FILTERED_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'Median Filtered Signal'</span>
-<span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'Exponential Moving Averaged Signal'</span>
-<span class="n">_SNP_CYCLE_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'Cycle Signal'</span>
-<span class="n">_SNP_TREND_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'Trend'</span>
-<span class="n">_L1_TREND_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">'$l_1$ Trend'</span>
-<span class="n">_BAND_PASS_FILTER_LABEL</span> <span class="o">=</span> <span class="s1">'Band-pas filtered'</span>
+<span class="n">_ORIGINAL_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Original Signal&#39;</span>
+<span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Mean Averaged Signal&#39;</span>
+<span class="n">_MEDIAN_FILTERED_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Median Filtered Signal&#39;</span>
+<span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Exponential Moving Averaged Signal&#39;</span>
+<span class="n">_SNP_CYCLE_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Cycle Signal&#39;</span>
+<span class="n">_SNP_TREND_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Trend&#39;</span>
+<span class="n">_L1_TREND_SIGNAL_LABEL</span> <span class="o">=</span> <span class="s1">&#39;$l_1$ Trend&#39;</span>
+<span class="n">_BAND_PASS_FILTER_LABEL</span> <span class="o">=</span> <span class="s1">&#39;Band-pas filtered&#39;</span>
 
 
-<span class="n">_BUTTERWORTH_FILTER_TITLE</span> <span class="o">=</span> <span class="s1">'Butterworth filter frequency response'</span>
-<span class="n">_BUTTERWORTH_FILTER_XLABEL</span> <span class="o">=</span> <span class="s1">'Frequency [radians / second]'</span>
-<span class="n">_BUTTERWORTH_FILTER_YLABEL</span> <span class="o">=</span> <span class="s1">'Amplitude [dB]'</span>
+<span class="n">_BUTTERWORTH_FILTER_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Butterworth filter frequency response&#39;</span>
+<span class="n">_BUTTERWORTH_FILTER_XLABEL</span> <span class="o">=</span> <span class="s1">&#39;Frequency [radians / second]&#39;</span>
+<span class="n">_BUTTERWORTH_FILTER_YLABEL</span> <span class="o">=</span> <span class="s1">&#39;Amplitude [dB]&#39;</span>
 
-<span class="n">_MEAN_AVERAGE_SIGNAL_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">'Mean Average signal with window = {}'</span><span class="o">.</span><span class="n">format</span>
-<span class="n">_MEDIAN_FILTER_SIGNAL_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">'Median Filtered signal with window = {}'</span><span class="o">.</span><span class="n">format</span>
-<span class="n">_EXPONENTIAL_SMOOTHING_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">'Exponential Smoothed signal with span = {}'</span><span class="o">.</span><span class="n">format</span>
-<span class="n">_HODRICK_PRESSCOTT_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">'Trend and Cycle Signal with smoothing parameter: {}'</span><span class="o">.</span><span class="n">format</span>
-<span class="n">_L1_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">'$l_1$ Trend Signal with regularizer: {}'</span><span class="o">.</span><span class="n">format</span>
-<span class="n">_BAND_PASS_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">'Band-pass order: {}, low - high cutoff frequency: {} - {}'</span><span class="o">.</span><span class="n">format</span>
+<span class="n">_MEAN_AVERAGE_SIGNAL_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;Mean Average signal with window = {}&#39;</span><span class="o">.</span><span class="n">format</span>
+<span class="n">_MEDIAN_FILTER_SIGNAL_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;Median Filtered signal with window = {}&#39;</span><span class="o">.</span><span class="n">format</span>
+<span class="n">_EXPONENTIAL_SMOOTHING_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;Exponential Smoothed signal with span = {}&#39;</span><span class="o">.</span><span class="n">format</span>
+<span class="n">_HODRICK_PRESSCOTT_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;Trend and Cycle Signal with smoothing parameter: {}&#39;</span><span class="o">.</span><span class="n">format</span>
+<span class="n">_L1_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;$l_1$ Trend Signal with regularizer: {}&#39;</span><span class="o">.</span><span class="n">format</span>
+<span class="n">_BAND_PASS_TITLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;Band-pass order: {}, low - high cutoff frequency: {} - {}&#39;</span><span class="o">.</span><span class="n">format</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Data-Explanation">Data Explanation<a class="anchor-link" href="#Data-Explanation">¶</a></h3><ul>
+<h3 id="Data-Explanation">Data Explanation<a class="anchor-link" href="#Data-Explanation">&#182;</a></h3><ul>
 <li>The S&amp;P 500, or the Standard &amp; Poor's 500, is an American stock market index based on the market capitalizations of 500 large companies having common stock listed on the NYSE or NASDAQ. </li>
 <li>The S&amp;P 500 index components and their weightings are determined by S&amp;P Dow Jones Indices. </li>
 <li>It differs from other U.S. stock market indices, such as the Dow Jones Industrial Average or the Nasdaq Composite index, because of its diverse constituency and weighting methodology. </li>
@@ -1125,141 +1135,160 @@ h6:hover .anchor-link {
 <li>The National Bureau of Economic Research has classified common stocks as a leading indicator of <strong>business cycles</strong>.</li>
 </ul>
 <p>Reference: <a href="http://www.albany.edu/cer/bc/bc_essays.html">http://www.albany.edu/cer/bc/bc_essays.html</a></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">_file_format</span><span class="p">(</span><span class="n">string_</span><span class="p">):</span>
-    <span class="n">string_</span> <span class="o">=</span> <span class="n">string_</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'$'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
-    <span class="n">string_</span> <span class="o">+=</span> <span class="s1">'.'</span> <span class="o">+</span> <span class="n">_FIG_FORMAT</span>
+    <span class="n">string_</span> <span class="o">=</span> <span class="n">string_</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">string_</span> <span class="o">+=</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">_FIG_FORMAT</span>
     <span class="k">return</span> <span class="n">string_</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">_SNP_500_PATH</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="s1">'Date'</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">_SNP_500_PATH</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span> <span class="o">&gt;</span> <span class="n">_BEGINNING_DATE</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Date</th>
-<th>Open</th>
-<th>High</th>
-<th>Low</th>
-<th>Close</th>
-<th>Volume</th>
-<th>Adj Close</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>382</th>
-<td>2014-01-02</td>
-<td>1845.859985</td>
-<td>1845.859985</td>
-<td>1827.739990</td>
-<td>1831.979980</td>
-<td>3080600000</td>
-<td>1831.979980</td>
-</tr>
-<tr>
-<th>381</th>
-<td>2014-01-03</td>
-<td>1833.209961</td>
-<td>1838.239990</td>
-<td>1829.130005</td>
-<td>1831.369995</td>
-<td>2774270000</td>
-<td>1831.369995</td>
-</tr>
-<tr>
-<th>380</th>
-<td>2014-01-06</td>
-<td>1832.310059</td>
-<td>1837.160034</td>
-<td>1823.729980</td>
-<td>1826.770020</td>
-<td>3294850000</td>
-<td>1826.770020</td>
-</tr>
-<tr>
-<th>379</th>
-<td>2014-01-07</td>
-<td>1828.709961</td>
-<td>1840.099976</td>
-<td>1828.709961</td>
-<td>1837.880005</td>
-<td>3511750000</td>
-<td>1837.880005</td>
-</tr>
-<tr>
-<th>378</th>
-<td>2014-01-08</td>
-<td>1837.900024</td>
-<td>1840.020020</td>
-<td>1831.400024</td>
-<td>1837.489990</td>
-<td>3652140000</td>
-<td>1837.489990</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Adj Close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>382</th>
+      <td>2014-01-02</td>
+      <td>1845.859985</td>
+      <td>1845.859985</td>
+      <td>1827.739990</td>
+      <td>1831.979980</td>
+      <td>3080600000</td>
+      <td>1831.979980</td>
+    </tr>
+    <tr>
+      <th>381</th>
+      <td>2014-01-03</td>
+      <td>1833.209961</td>
+      <td>1838.239990</td>
+      <td>1829.130005</td>
+      <td>1831.369995</td>
+      <td>2774270000</td>
+      <td>1831.369995</td>
+    </tr>
+    <tr>
+      <th>380</th>
+      <td>2014-01-06</td>
+      <td>1832.310059</td>
+      <td>1837.160034</td>
+      <td>1823.729980</td>
+      <td>1826.770020</td>
+      <td>3294850000</td>
+      <td>1826.770020</td>
+    </tr>
+    <tr>
+      <th>379</th>
+      <td>2014-01-07</td>
+      <td>1828.709961</td>
+      <td>1840.099976</td>
+      <td>1828.709961</td>
+      <td>1837.880005</td>
+      <td>3511750000</td>
+      <td>1837.880005</td>
+    </tr>
+    <tr>
+      <th>378</th>
+      <td>2014-01-08</td>
+      <td>1837.900024</td>
+      <td>1840.020020</td>
+      <td>1831.400024</td>
+      <td>1837.489990</td>
+      <td>3652140000</td>
+      <td>1837.489990</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="s1">'SNP 500 Close Price between {} - 2015-07-11'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_BEGINNING_DATE</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;SNP 500 Close Price between {} - 2015-07-11&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_BEGINNING_DATE</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4U/X+B/D3SbonhbYUWsqSsgQFHCxBmSIKlx8gosh2
@@ -2522,11 +2551,14 @@ ihUrlJeXp6lTp+r6669P6ByoW89t27ZNv/71rzVgwABdeeWVEZNAJnI9MnPmTNntdj311FM6e/as
 gdSgvQIAkHZvv/12+K8MgUBAv//979XU1BT3Lw8AAADIHrRXAADS7tvf/rY2bNigpqYmGYahsWPH
 asmSJWmZjAsAAADmQXsFAAAAAABIC9orAAAAAABAWhA6AAAAAACAtCB0AAAAAAAAaUHoAAAAAAAA
 0oLQAQAAAAAApAWhAwAAAAAASIv/D3upf5ZHAlavAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2534,32 +2566,38 @@ asmSJWmZjAsAAADmQXsFAAAAAABIC9orAAAAAABAWhA6AAAAAACAtCB0AAAAAAAAaUHoAAAAAAAA
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What is the simplest possible trend estimation method? In signal processing, if someone says simplest, you'd just respond "moving average". No matter what follows simplest, it always is the simplest. Not necessarily is the best for anything, but provides a good nice baseline which would be very useful.</p>
-<h3 id="Moving-Average-Filtering">Moving Average Filtering<a class="anchor-link" href="#Moving-Average-Filtering">¶</a></h3><p>For a window size: $N$, the computation is pretty straightforward. Applying window on top of the original signal and average the signal for a given time window. Following formula assumes that $N$ being odd.</p>
+<h3 id="Moving-Average-Filtering">Moving Average Filtering<a class="anchor-link" href="#Moving-Average-Filtering">&#182;</a></h3><p>For a window size: $N$, the computation is pretty straightforward. Applying window on top of the original signal and average the signal for a given time window. Following formula assumes that $N$ being odd.</p>
 $$y(t) = \frac{\displaystyle\sum_{i=-\frac{N+1}{2}}^{\frac{N+1}{2}} x(t + i)}{w} $$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_MEAN_AVERAGE_SIGNAL_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FNX6B/DvbEl200hCQkkggTQCCEpvghRBFC8RCSIK
@@ -4298,33 +4336,42 @@ j1sF07DR2NiIt99+G7t37x7srhDR/2VlZUGhUIhzEA0GA5KSkhAVFYWpU6cOcu+IiIi6Y01J1Dc4
 vYKIiPpdSUmJ+CmD0WjEL7/8Aq1We9NPHoiIiIjIfnB6BRER9bsVK1YgMzMTWq0WgiDAz88PsbGx
 /XIzLiIiIiK6c3B6BRERERERERH1C06vICIiIiIiIqJ+wUEHIiIiIiIiIuoXHHQgIiIiIiIion7B
 QQciIiIiIiIi6hccdCAiIiIiIiKifsFBByIiIiIiIiLqF/8Dl69RQu/FXHQAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">21</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_MEAN_AVERAGE_SIGNAL_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGXaBvD7TMtMekIgDRIgJHRWuoAogmABiQjIIkVc
@@ -5995,33 +6042,42 @@ lbuO9H2yvYybUVZW1jFKBaPDKCkp0fz58/XnP/851F0B8C/PP/+80tLSnDmIVqtVS5Ys0ZQpU3TR
 RReFuHcAAHjiOyUQGKRXAACCbtu2bc6/MthsNn366aeqqKjw+pcHAAAAtB+kVwAAgu7222/XmjVr
 VFFRIcMw1LdvX82ePTsoxbgAAAAQPkivAAAAAAAAQUF6BQAAAAAACAqCDgAAAAAAICgIOgAAAAAA
 gKAg6AAAAAAAAIKCoAMAAAAAAAgKgg4AAAAAACAo/j/9ADU20spyewAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">61</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_MEAN_AVERAGE_SIGNAL_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4E3X+B/D35GiSnrQUWlpogV6AwnIpAqICgiIsyAKL
@@ -7569,24 +7625,28 @@ n3zyiW7cuCFHR0f179/f6mlRxK72NKbryT179ui7776To6OjfH199eabb9o8dLy+NLVrSnuOVWlN
 z60DAKAsrimBmsH0CgBArUtKSjL/ylBcXKy///3vys3NLfeXBwAAADQeTK8AANS6iRMnav369crN
 zZXBYFBwcLCmTZtWK4txAQAAoOFgegUAAAAAAKgVTK8AAAAAAAC1gqQDAAAAAACoFSQdAAAAAABA
 rSDpAAAAAAAAagVJBwAAAAAAUCtIOgAAAAAAgFrxfwHE1JkBZrQRjAAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Good-to-Know-for-Moving-Average">Good to Know for Moving Average<a class="anchor-link" href="#Good-to-Know-for-Moving-Average">¶</a></h4><ul>
+<h4 id="Good-to-Know-for-Moving-Average">Good to Know for Moving Average<a class="anchor-link" href="#Good-to-Know-for-Moving-Average">&#182;</a></h4><ul>
 <li>Linear</li>
 <li>Not really a trend estimation method, but provides baseline</li>
 <li>If the window size is small, it removes high volatility part in the signal</li>
 <li>If the window size is large, it exposes the long-term trend</li>
 <li>Not robust to outliers and abrupt changes for small and medium window sizes</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -7595,33 +7655,40 @@ rSDpAAAAAAAAagVJBwAAAAAAUCtIOgAAAAAAgFrxfwHE1JkBZrQRjAAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Median-Filter">Median Filter<a class="anchor-link" href="#Median-Filter">¶</a></h2><p>Median Filter is very similar to the moving average filter. It only differs from computation of median of a given window rather than computing a mean. This approach and the next approach are very similar in terms of computing observations in a given window. It computes the median rather than computing the average.</p>
+<h2 id="Median-Filter">Median Filter<a class="anchor-link" href="#Median-Filter">&#182;</a></h2><p>Median Filter is very similar to the moving average filter. It only differs from computation of median of a given window rather than computing a mean. This approach and the next approach are very similar in terms of computing observations in a given window. It computes the median rather than computing the average.</p>
 $$ y(t) = median( x[t-\frac{w}{2}, t+\frac{w}{2}])$$<p>where $w$ is the window size whose median will replace the original data point</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">median_filtered_signal</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_MEDIAN_FILTER_SIGNAL_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEAN_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FNX6B/DvbMumFxJIIwkJoQiIgNJFFASEKxjBwpVi
@@ -9184,34 +9251,43 @@ oKBpTBWMJiM3N1fPPvus/va3vzV2VQD82zvvvKPIyEjbGMSysjLNnj1bI0aM0PXXX9/ItQMAwBHX
 lIB7MLwCAFDv0tPTbb8ymM1mff311yoqKqrylwcAAABcPhheAQCodw8//LBWrFihoqIiGQwGtWvX
 TpMmTaqXybgAAADgORheAQAAAAAA6gXDKwAAAAAAQL0g6QAAAAAAAOoFSQcAAAAAAFAvSDoAAAAA
 AIB6QdIBAAAAAADUC5IOAAAAAACgXvw/nhE279uGFLwAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">21</span>
 <span class="n">median_filtered_signal</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_MEDIAN_FILTER_SIGNAL_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEDIAN_FILTERED_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEDIAN_FILTERED_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FOXaBvB7tiWbnhBCICEJCaErzUYRC1XwgAgWlGLB
@@ -10739,34 +10815,43 @@ WFZWpgULFiguLk49e/Zs4t4BAFAV15SAYzC9AgDQ4NLS0iy/MlRUVOif//ynioqKqv3lAQAAAM0H
 0ysAAA1u/Pjx2rBhg4qKimQwGBQWFqZp06Y1yGJcAAAAcB5MrwAAAAAAAA2C6RUAAAAAAKBBkHQA
 AAAAAAANgqQDAAAAAABoECQdAAAAAABAgyDpAAAAAAAAGgRJBwAAAAAA0CD+P0EISb9V8YwfAAAA
 AElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">window</span> <span class="o">=</span> <span class="mi">61</span>
 <span class="n">median_filtered_signal</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_MEDIAN_FILTER_SIGNAL_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEDIAN_FILTERED_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">median_filtered_signal</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_MEDIAN_FILTERED_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd0VHXaB/DvnT6pBBISSEhCQkJoSlkboqKgILwLRnAV
@@ -12298,23 +12383,27 @@ RERUHeeURMbB2yuIiMjk0tPTtb8yVFZW4vfff4dKparxlwciIiIiaj54ewUREZncpEmTsGnTJqhU
 KkgkEnh4eCA8PNwki3ERERERUdPB2yuIiIiIiIiIyCR4ewURERERERERmQSTDkRERERERERkEkw6
 EBEREREREZFJMOlARERERERERCbBpAMRERERERERmQSTDkRERERERERkEv8XkNafCPiKX2gAAAAA
 SUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Good-to-Know-for-Median-Filter">Good to Know for Median Filter<a class="anchor-link" href="#Good-to-Know-for-Median-Filter">¶</a></h4><ul>
+<h4 id="Good-to-Know-for-Median-Filter">Good to Know for Median Filter<a class="anchor-link" href="#Good-to-Know-for-Median-Filter">&#182;</a></h4><ul>
 <li>Nonlinear</li>
 <li>Very robust to noise</li>
 <li>If the window size is very large, it could <em>shadow</em> mid-term change</li>
 <li>Trend signal may not be smooth(actually rarely is in practice)</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -12323,45 +12412,52 @@ SUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Exponential-Weighted-Moving-Average-(EWMA)">Exponential Weighted Moving Average (EWMA)<a class="anchor-link" href="#Exponential-Weighted-Moving-Average-(EWMA)">¶</a></h2>$$ y_t = \frac{\displaystyle\sum_i^t w_i x_{t-i}}{\displaystyle\sum_i^t w_i} $$$$ w_i = \left\{
+<h2 id="Exponential-Weighted-Moving-Average-(EWMA)">Exponential Weighted Moving Average (EWMA)<a class="anchor-link" href="#Exponential-Weighted-Moving-Average-(EWMA)">&#182;</a></h2>$$ y_t = \frac{\displaystyle\sum_i^t w_i x_{t-i}}{\displaystyle\sum_i^t w_i} $$$$ w_i = \left\{
      \begin{array}{lr}
-       \alpha (1 - \alpha)^i &amp; i \lt t\\
-       (1 - \alpha)^i &amp; i = t
+       \alpha (1 - \alpha)^i & i \lt t\\
+       (1 - \alpha)^i & i = t
      \end{array}
    \right.
 $$$$ \alpha = \left\{
      \begin{array}{lr}
-       \frac{2}{s+1} &amp; \text{s=span}\\
-       \frac{1}{c+1} &amp; \text{c=center of mass}\\
-       (1 - e^{\frac{log 0.5}{h}}) &amp; \text{h = half life}
+       \frac{2}{s+1} & \text{s=span}\\
+       \frac{1}{c+1} & \text{c=center of mass}\\
+       (1 - e^{\frac{log 0.5}{h}}) & \text{h = half life}
      \end{array}
    \right.
 $$<p>One can think the exponential weights in terms of span and half life. Half life signifies when the weight becomes half of the max and span is how many days it spans when you get the average of signal with weights.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Exponential Weighted Moving Average</span>
 <span class="n">span</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_EXPONENTIAL_SMOOTHING_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">ewma</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">ewma</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FFXbBvB7tiS76QkJBAIJJIRQBKQKoQjSRSkCL6Ig
@@ -14129,34 +14225,43 @@ mDZtmqg6MDfLZWdn46uvvkLv3r3xyiuvmD0EUkx7ZNy4cVAoFNixYwfu3bsHhUKBkJAQ0cOimF3n
 g8FgwH//+19oNJpH/vJARERERN0Hh1cQEVGnmz9/PtLT06HRaCCTyeDr64tly5Z1ysO4iIiIiOjp
 weEVRERERERERNQpOLyCiIiIiIiIiDoFOx2IiIiIiIiIqFOw04GIiIiIiIiIOgU7HYiIiIiIiIio
 U7DTgYiIiIiIiIg6BTsdiIiIiIiIiKhT/C879I+G1LQcZQAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Exponential Weighted Moving Average</span>
 <span class="n">span</span> <span class="o">=</span> <span class="mi">21</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_EXPONENTIAL_SMOOTHING_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">ewma</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">ewma</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FFXbBvB7tiSbTiCBkEAChBAQAgKiVEXp8koREEEE
@@ -15886,34 +15991,43 @@ CCGEkJGopiRkbNDyCkIIIV7X3NzMf8rAcRx+/PFHWCyW637yQAghhBBC/ActryCEEOJ1a9euRUVF
 BSwWCxiGQXx8PPLz873yMC5CCCGEEHLroOUVhBBCCCGEEEII8QpaXkEIIYQQQgghhBCvoEkHQggh
 hBBCCCGEeAVNOhBCCCGEEEIIIcQraNKBEEIIIYQQQgghXkGTDoQQQgghhBBCCPEKmnQghBBCCCGE
 EEKIV/wPf27uiwnOxvoAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Exponential Weighted Moving Average</span>
 <span class="n">span</span> <span class="o">=</span> <span class="mi">61</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_EXPONENTIAL_SMOOTHING_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">ewma</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">ewma</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">span</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_EXPONENTIAL_SMOOTHED_AVERAGE_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8E3X6B/DP5GrSu9CW0kILLaUgFkQ8OFXklpVD4Ico
@@ -17562,18 +17676,21 @@ GFeNs2fPatq0aXrzzTfruykA/uP9999XRESEbQxiUVGRZs+erWHDhumGG26o59YBAOCI95SAezC8
 AgBQ57Zv3277lsFsNuvf//638vLyKvzmAQAAAA0HwysAAHXu0Ucf1YoVK5SXlyeDwaD27dtr0qRJ
 dTIZFwAAADwHwysAAAAAAECdYHgFAAAAAACoEyQdAAAAAABAnSDpAAAAAAAA6gRJBwAAAAAAUCdI
 OgAAAAAAgDpB0gEAAAAAANSJ/w83eIsaErlvYwAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Good-to-Know-for-EWMA">Good to Know for EWMA<a class="anchor-link" href="#Good-to-Know-for-EWMA">¶</a></h4><ul>
+<h4 id="Good-to-Know-for-EWMA">Good to Know for EWMA<a class="anchor-link" href="#Good-to-Know-for-EWMA">&#182;</a></h4><ul>
 <li>Linear</li>
 <li>Could provide a better estimate than a simple moving average because the weights
 are better distributed</li>
@@ -17581,6 +17698,7 @@ are better distributed</li>
 <li>Very flexible in terms of weights and puts more emphasis on the spatial window
 in the signal</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -17589,38 +17707,45 @@ in the signal</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Hodrick-Prescott-Filter">Hodrick-Prescott Filter<a class="anchor-link" href="#Hodrick-Prescott-Filter">¶</a></h2><p>There are various ways to do trend estimation methods, you could decompose the signal into two compoenent; one cycle part(which is short-term) and one trend part(which is medium-to-long term), which is what Hodrick-Prescott Filter tries to do.</p>
+<h2 id="Hodrick-Prescott-Filter">Hodrick-Prescott Filter<a class="anchor-link" href="#Hodrick-Prescott-Filter">&#182;</a></h2><p>There are various ways to do trend estimation methods, you could decompose the signal into two compoenent; one cycle part(which is short-term) and one trend part(which is medium-to-long term), which is what Hodrick-Prescott Filter tries to do.</p>
 <p>Hodrick Prescott filter is a bandpass filter where it tries to decompose the time-series signal into a trend $x_t$ (mid-term growth) and a cylical component(recurring and seasonal signal) $c_t$.</p>
 $$y_t = x_t + c_t$$<p>The loss function that it tries to minimize is the following:</p>
 $$\min_{\\{ x_{t}\\} }\sum_{t}^{T} c_{t}^{2}+\lambda\displaystyle\sum_{t=1}^{T}\left[\left(x_{t}- x_{t-1}\right)-\left(x_{t-1}-x_{t-2}\right)\right]^{2}$$<p>The first term is the square of difference of original signal and growth signal(cylical component) and $\lambda$ is the smoothing parameter.</p>
 <p>Based on the smoothing parameter, you could actually change what type of effects you may want to include or capture(if you want to capture some variation and volatility in short-term signal, then you may want to use a smaller smoothing parameter so that you have less smooth signal. If you want to also capture only a long term range signal, the smoothing parameter could be chosen arbitrarily large. However, in order to get some changes, we need to not to choose very large smoothing optimization parameter.</p>
 <p>I wrote this method in detail <a href="http://bugra.github.io/work/notes/2014-11-24/trend-estimation-via-hodrick-prescott-filter/">here</a>.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">lamb</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">snp_cycle</span><span class="p">,</span> <span class="n">snp_trend</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">hpfilter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">lamb</span><span class="o">=</span><span class="n">lamb</span><span class="p">)</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_HODRICK_PRESSCOTT_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_cycle</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_CYCLE_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_trend</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_TREND_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_cycle</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_CYCLE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_trend</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_TREND_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB4AAAMBCAYAAABIgXfzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FFXbBvB7tqVX0gNpkEJv0kKvoQep0hFQRED0RUB8
@@ -18749,35 +18874,44 @@ PD09aXd3V8fHx80eCgBJ6XRalmW5/YjValXJZFKxWExjY2NNHh0AAB9RTwI/h1YLAIDvrq6u3DsN
 juPo9vZWlUrlj3cfAAAA0FpotQAA+G55eVlnZ2eqVCoyDEODg4Pa3t72ZYMuAAAA/F9otQAAAAAA
 AL6h1QIAAAAAAPiGiQcAAAAAAOAbJh4AAAAAAIBvmHgAAAAAAAC+YeIBAAAAAAD4hokHAAAAAADg
 mzfP81ggGRVDIQAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">lamb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span>
 <span class="n">snp_cycle</span><span class="p">,</span> <span class="n">snp_trend</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">hpfilter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">lamb</span><span class="o">=</span><span class="n">lamb</span><span class="p">)</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_HODRICK_PRESSCOTT_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_cycle</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_CYCLE_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_trend</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_TREND_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_cycle</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_CYCLE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_trend</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_TREND_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB4AAAMBCAYAAABIgXfzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VFX+x/H3nUkmvQIhoYQAQsACCItCVBSVjoBKEakC
@@ -19956,35 +20090,44 @@ ACgvL4dcLufmI/b29qKgoABZWVmYO3fuBLeOEEIIGYrqSULGDk21IIQQ4nGNjY3cJw0OhwM//PAD
 LBbLLT99IIQQQgghvoWmWhBCCPG4devWoaysDBaLBQzDIDY2Frm5uR5ZoIsQQgghhNxeaKoFIYQQ
 QgghhBBCPIamWhBCCCGEEEIIIcRjaOCBEEIIIYQQQgghHkMDD4QQQgghhBBCCPEYGngghBBCCCGE
 EEKIx9DAAyGEEEIIIYQQQjyGBh4IIYQQQgghhBDiMf8C7s8/iXOdugkAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">lamb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e6</span><span class="p">)</span>
 <span class="n">snp_cycle</span><span class="p">,</span> <span class="n">snp_trend</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">hpfilter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="n">lamb</span><span class="o">=</span><span class="n">lamb</span><span class="p">)</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_HODRICK_PRESSCOTT_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">lamb</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_cycle</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_CYCLE_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_trend</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_TREND_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_cycle</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_CYCLE_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">snp_trend</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_SNP_TREND_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB4AAAMBCAYAAABIgXfzAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FFXbBvB7drObXiEhCZACkgRQqrTQa+igNOktiIiA
@@ -21179,18 +21322,21 @@ j+Tm5mIwGNi1axetra0YDAbmzp2reoqU5BZbQ6mmrKmpoa6uDoPBgMlk4rnnntN8G/lgGG71ZLzm
 3bt34/V60el0ZGZmUlpaGpMFuoQQQgghxLVFploIIYQQQgghhBAiZmSqhRBCCCGEEEIIIWJGBh6E
 EEIIIYQQQggRMzLwIIQQQgghhBBCiJiRgQchhBBCCCGEEELEjAw8CCGEEEIIIYQQImZk4EEIIYQQ
 QgghhBAx8z9SW5MJf6fOlQAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Good-to-Know-for-HP-Filter">Good to Know for HP Filter<a class="anchor-link" href="#Good-to-Know-for-HP-Filter">¶</a></h4><ul>
+<h4 id="Good-to-Know-for-HP-Filter">Good to Know for HP Filter<a class="anchor-link" href="#Good-to-Know-for-HP-Filter">&#182;</a></h4><ul>
 <li>Linear</li>
 <li>Decomposes the signal into two distinct components(trend and cycle)</li>
 <li>Cycle part =&gt; short term, season</li>
@@ -21200,6 +21346,7 @@ QgghhBAx8z9SW5MJf6fOlQAAAABJRU5ErkJggg==
 <li>Perfect for signals that show seasonality</li>
 <li>Yields good results when noise is normally distributed</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -21208,7 +21355,7 @@ QgghhBAx8z9SW5MJf6fOlQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="$l_1$-Trend-Filtering">$l_1$ Trend Filtering<a class="anchor-link" href="#$l_1$-Trend-Filtering">¶</a></h2><p>What if we want to optimize $l_1$ error instead of RMSE error in HP filter? $l_1$ trend filtering aims to solve that problem. Optimization function that it tries to optimize is in the following:</p>
+<h2 id="$l_1$-Trend-Filtering">$l_1$ Trend Filtering<a class="anchor-link" href="#$l_1$-Trend-Filtering">&#182;</a></h2><p>What if we want to optimize $l_1$ error instead of RMSE error in HP filter? $l_1$ trend filtering aims to solve that problem. Optimization function that it tries to optimize is in the following:</p>
 <ul>
 <li><p>Optimization function:
 $$ \frac{1}{2} \lVert x - y \rVert_2^2 + \lambda \lVert Dx \rVert_1$$
@@ -21218,30 +21365,37 @@ where  $x,y \in \mathbf{R}^n$, $\lambda \in \mathbf{R}_+^n$ and $D \in \mathbf{R
 </li>
 <li><a href="http://web.stanford.edu/~gorin/papers/l1_trend_filter.pdf">Paper</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">regularizer</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_L1_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">regularizer</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">regularizer</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_L1_TREND_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">regularizer</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_L1_TREND_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMDCAYAAADufm37AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8FHX6B/DPbMtuekIIIaGHIghKwEK1gKJgRTzboSge
@@ -22800,33 +22954,42 @@ pefJlhI3Q35+/qUxVTAuGWfOnNGjjz6qF154obmbAuBnb7zxhqKjo+1jEM1msx5//HGNHz9evXv3
 bubWAQBQHc+UgHswvAIA4HG7du2y/8pgsVj05ZdfqqioqMZfHgAAANByMLwCAOBx9957r1atWqWi
 oiIZDAZ16dJF06dP98hkXAAAAPAeDK8AAAAAAAAewfAKAAAAAADgESQdAAAAAACAR5B0AAAAAAAA
 HkHSAQAAAAAAeARJBwAAAAAA4BEkHQAAAAAAgEf8f/bLP7WmteMcAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">regularizer</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_L1_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">regularizer</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">regularizer</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_L1_TREND_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">regularizer</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_L1_TREND_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMDCAYAAADufm37AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VOXZP/DvmS0z2RNCdkhCWBRRAatsorIIAm6IirUK
@@ -24330,33 +24493,42 @@ fWwVjHajuLhYc+bM0V/+8pfW7gqA/+/1119XRESEbQ1iTU2NFi1apAkTJqh///6t3DsAABpiTAm4
 BssrAABul5OTY/uWoa6uTp9++qkqKioa/eYBAAAAbQfLKwAAbvfQQw9p7dq1qqiokMlkUnx8vGbM
 mOGWzbgAAADgOVheAQAAAAAA3ILlFQAAAAAAwC1IOgAAAAAAALcg6QAAAAAAANyCpAMAAAAAAHAL
 kg4AAAAAAMAtSDoAAAAAAAC3+H+5049JNXddigAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">regularizer</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_L1_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">regularizer</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">regularizer</span><span class="p">),</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_L1_TREND_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">regularizer</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_L1_TREND_SIGNAL_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMDCAYAAADufm37AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VPXZP/73ObNm3/dACGEHlWBVFqkoCIIWRbSoxbWl
@@ -25871,18 +26043,21 @@ SiPHqrb2NJ5sK3Ezmc3m9rFVMNqNoqIizZ8/X3/84x9buysA/s8bb7yhiIgI2xrEqqoqLV26VJMn
 T9aAAQNauXcAANTFmBJwDZZXAADcLjs72/YtQ01NjT777DOVlZXV+80DAAAA2g6WVwAA3O6RRx7R
 xo0bVVZWJpPJpLi4OM2ePdstm3EBAADAc7C8AgAAAAAAuAXLKwAAAAAAgFuQdAAAAAAAAG5B0gEA
 AAAAALgFSQcAAAAAAOAWJB0AAAAAAIBbkHQAAAAAAABu8b+yj+yPzeWTPAAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Good-to-Know-for-$l_1$-trend-filtering">Good to Know for $l_1$ trend filtering<a class="anchor-link" href="#Good-to-Know-for-$l_1$-trend-filtering">¶</a></h4><ul>
+<h4 id="Good-to-Know-for-$l_1$-trend-filtering">Good to Know for $l_1$ trend filtering<a class="anchor-link" href="#Good-to-Know-for-$l_1$-trend-filtering">&#182;</a></h4><ul>
 <li>Nonlinear</li>
 <li>Trend is piecewise linear, generally very smooth</li>
 <li>The kinks, or changes in slope of the estimated trend show abrupt events</li>
@@ -25890,6 +26065,7 @@ AAAAALgFSQcAAAAAAOAWJB0AAAAAAIBbkHQAAAAAAABu8b+yj+yPzeWTPAAAAABJRU5ErkJggg==
 <li>Computationally a little bit expensive.</li>
 <li>Yields good results when noise is exponentially distributed</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -25898,38 +26074,45 @@ AAAAALgFSQcAAAAAAOAWJB0AAAAAAIBbkHQAAAAAAABu8b+yj+yPzeWTPAAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Bandpass-Filtering">Bandpass Filtering<a class="anchor-link" href="#Bandpass-Filtering">¶</a></h2><p>Bandpass filters allow certain frequencies of the signal(between <code>low cutoff frequency</code> and <code>high cutoff frequency</code>) and attenuates the other frequencies. By doing so, one can prepare different bandpass filters to stop a particular band as well(called band-stop filter). If the signal is very volatile(high frequency) and you want to also remove the bias(low frequency), then bandpass filter provides a nice sweet spot to remove/attenuate low frequency and high frequency in the signal. If you consider Hodrick-Prescott filter as a band-pass filter, it extracts mid-term trend by removing very small changes(bias) and extracting short-term changes(cycle).</p>
+<h2 id="Bandpass-Filtering">Bandpass Filtering<a class="anchor-link" href="#Bandpass-Filtering">&#182;</a></h2><p>Bandpass filters allow certain frequencies of the signal(between <code>low cutoff frequency</code> and <code>high cutoff frequency</code>) and attenuates the other frequencies. By doing so, one can prepare different bandpass filters to stop a particular band as well(called band-stop filter). If the signal is very volatile(high frequency) and you want to also remove the bias(low frequency), then bandpass filter provides a nice sweet spot to remove/attenuate low frequency and high frequency in the signal. If you consider Hodrick-Prescott filter as a band-pass filter, it extracts mid-term trend by removing very small changes(bias) and extracting short-term changes(cycle).</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Filter Construction</span>
 <span class="n">filter_order</span>  <span class="o">=</span> <span class="mi">2</span>
 <span class="n">low_cutoff_frequency</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="n">high_cutoff_frequency</span> <span class="o">=</span> <span class="mf">0.15</span>
-<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="p">[</span><span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">'bandpass'</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">'ba'</span><span class="p">)</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="p">[</span><span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;ba&#39;</span><span class="p">)</span>
 <span class="n">bandpass_filtered</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_BAND_PASS_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">-</span><span class="n">bandpass_filtered</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_BAND_PASS_FILTER_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">-</span><span class="n">bandpass_filtered</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_BAND_PASS_FILTER_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4U/X+B/B30nQPWlpoS0vLKkNkX5AhoIBMARGQIQgy
@@ -27892,11 +28075,14 @@ wjWIFRUVWLRoEYKCgtC9e/dG7h0REVFNnFMS6QYvryAiIr1LTU0VvmWoqqrCuXPnIJfLa/3mgYiI
 iIiaD15eQUREejdlyhRs27YNcrkcIpEI7u7umDVrll424yIiIiKipoOXVxARERERERGRXvDyCiIi
 IiIiIiLSCyYdiIiIiIiIiEgvmHQgIiIiIiIiIr1g0oGIiIiIiIiI9IJJByIiIiIiIiLSCyYdiIiI
 iIiIiEgv/hcdDeAQxv6qgQAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -27904,30 +28090,37 @@ iIiIiEgv/hcdDeAQxv6qgQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>One could also visualize the frequency response of the filter in order to see how much it attenuates and amplifies certain frequencies.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">freqs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">h</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_TITLE</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_XLABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_YLABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'both'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high_cutoff_frequency</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high_cutoff_frequency</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDUAAAMcCAYAAABAdJ6RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4lGXe9vHznpbeIBAIEGoQVIooVVREhRWkqVgQXV11
@@ -28612,40 +28805,49 @@ xQpdc801nRZoSI2tMD788ENt3bpVM2bM6FA3GuBS+d3vfqd9+/bJ7/d3yvS6AIDYQagBAEA38cYb
 b6i0tFQjR47Ubbfd1qn7vvvuu+XxeCS1PS0t0NXuuuuu0PWZkJAQ4WoAAF2J7icAAAAAACAmMaUr
 AAAAAACISYQaAAAAAAAgJhFqAAAAAACAmESoAQAAAAAAYhKhBgAAAAAAiEmEGgAAAAAAICb9f1m2
 7VqCR12oAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Filter Construction</span>
 <span class="n">filter_order</span>  <span class="o">=</span> <span class="mi">2</span>
 <span class="n">low_cutoff_frequency</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="n">high_cutoff_frequency</span> <span class="o">=</span> <span class="mf">0.35</span>
-<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="p">[</span><span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">'bandpass'</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">'ba'</span><span class="p">)</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="p">[</span><span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;ba&#39;</span><span class="p">)</span>
 <span class="n">bandpass_filtered</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_BAND_PASS_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span> <span class="o">-</span> <span class="n">bandpass_filtered</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_BAND_PASS_FILTER_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span> <span class="o">-</span> <span class="n">bandpass_filtered</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_BAND_PASS_FILTER_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4U/X+B/B30nQPuqAtLS2rDJF9QYaAAoKAgBWQIQgy
@@ -30525,33 +30727,42 @@ PqU+x+p9tak/WVPiJpJKpbVjqWCqNTIyMrBgwQJs2LChuptCRP9nz549sLe3F+YgFhYWYtmyZfDz
 hAnYvXs3ZDIZRCIRXF1dMWfOHK0sxkVEREREnw5OryAiIiIiIiIireD0CiIiIiIiIiLSCg46EBER
 EREREZFWcNCBiIiIiIiIiLSCgw5EREREREREpBUcdCAiIiIiIiIireCgAxERERERERFpxf8C4Pcw
 k2gAj5EAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">freqs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">h</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_TITLE</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_XLABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_YLABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'both'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high_cutoff_frequency</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high_cutoff_frequency</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDUAAAMcCAYAAABAdJ6RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VGXe//HPmZpeICEhCZ0gqBRR6QiigtIUFdvCrq6u
@@ -31221,40 +31432,49 @@ n39ehmHoyiuv1H333af4+PhOv4bubgcAgL7JcDqdwY43AwCgf6mrq9PDDz+sJUuWXNbkj5FQVVWl
 hAm6/fbbu3Xf99xzjzwej6SOb0sL9La777471D4TEhIiXA0AoDcx/AQAAAAAAMQkbukKAAAAAABi
 EqEGAAAAAACISYQaAAAAAAAgJhFqAAAAAACAmESoAQAAAAAAYhKhBgAAAAAAiEn/HzU6IupuKvxT
 AAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Filter Construction</span>
 <span class="n">filter_order</span>  <span class="o">=</span> <span class="mi">2</span>
 <span class="n">low_cutoff_frequency</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="n">high_cutoff_frequency</span> <span class="o">=</span> <span class="mf">0.95</span>
-<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="p">[</span><span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">'bandpass'</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">'ba'</span><span class="p">)</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="p">[</span><span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;ba&#39;</span><span class="p">)</span>
 <span class="n">bandpass_filtered</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">_BAND_PASS_TITLE_TEMPLATE</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="n">low_cutoff_frequency</span><span class="p">,</span> <span class="n">high_cutoff_frequency</span><span class="p">)</span>
 <span class="n">fig_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_FIG_DIR</span><span class="p">,</span> <span class="n">_file_format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span> <span class="o">-</span> <span class="n">bandpass_filtered</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_BAND_PASS_FILTER_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_ORIGINAL_SIGNAL_LABEL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot_date</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Close</span> <span class="o">-</span> <span class="n">bandpass_filtered</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">_BAND_PASS_FILTER_LABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">_FIG_LEGEND_LOCATION</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_path</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">_FIG_FORMAT</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">_FIG_DPI</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABB0AAAMBCAYAAACjtszwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4U/X+B/B3RvegC9rS0rLKENmCDAEFBAEBKyBDlkwR
@@ -32883,33 +33103,42 @@ wT4UAP/x6quvKj093V6DaLFY9PDDD2vs2LE699xzg3x0AAC44jMl4BuUVwAA/G7Dhg32bxkaGhr0
 +eefq6Kiwu03DwAAAIgclFcAAPzu1ltv1eLFi1VRUSHDMNSrVy9NnjzZL824AAAAEDoorwAAAAAA
 AH5BeQUAAAAAAPALgg4AAAAAAMAvCDoAAAAAAAC/IOgAAAAAAAD8gqADAAAAAADwC4IOAAAAAADA
 L/4/qe1ol0wK2toAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sp_signal</span><span class="o">.</span><span class="n">freqs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">_FIG_SIZE</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">h</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_TITLE</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_XLABEL</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">_BUTTERWORTH_FILTER_YLABEL</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'both'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high_cutoff_frequency</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high_cutoff_frequency</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABD0AAAMcCAYAAABTo95lAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd8VFX+//H3nZpeaCH0FgSRYqGDIquwUkRUxAKWXZTF
@@ -33590,23 +33819,27 @@ AACgh/jyyy9lsVi0YsUKXXXVVe0WeEgNvTjee+89bdq0STNmzGjTMB2go/z2t7/V7t27FQwG2+Xx
 wQCA7oPQAwCAHuLll1/WqVOnNGrUKM2aNatd933HHXfI5/NJavmxu0Bnu+222xrbZ1JSUoyrAQB0
 Joa3AAAAAACAuMQjawEAAAAAQFwi9AAAAAAAAHGJ0AMAAAAAAMQlQg8AAAAAABCXCD0AAAAAAEBc
 IvQAAAAAAABx6f8Dxtr1MhteZVYAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Good-to-Know-for-Bandpass-Filtering">Good to Know for Bandpass Filtering<a class="anchor-link" href="#Good-to-Know-for-Bandpass-Filtering">¶</a></h4><ul>
+<h4 id="Good-to-Know-for-Bandpass-Filtering">Good to Know for Bandpass Filtering<a class="anchor-link" href="#Good-to-Know-for-Bandpass-Filtering">&#182;</a></h4><ul>
 <li>Allow certain frequencies of the signal(between <code>low cutoff frequency</code> and <code>high cutoff frequency</code>) and attenuates the other frequencies.</li>
 <li>This provides a flexible way to remove/attenuate low frequency(very long term) and high frequency(short-term) in the signal.</li>
 <li>Could prepare different filters to stop a particular band as well(called band-stop filter).</li>
 <li>Similar to Hodrick-Prescott Filter, it extracts mid-term trend by removing very small changes(bias) and extracting short-term changes(cycle).</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -33615,12 +33848,13 @@ IvQAAAAAAABx6f8Dxtr1MhteZVYAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h3><ul>
+<h3 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h3><ul>
 <li>If you want to decompose signal into two distinct components, HP Filter is probably one of the best method as long as the recurring cycles exist in the time-series signal.</li>
 <li>If the signal has a lot of noise, median filter or $l_1$ trend filter is much better comparing to other linear methods(EWMA or moving average filter).</li>
 <li>If you want to be able to change your filter based on frequency response of a filter, bandpass filter is the way to go. You could construct various bandstop filters for the frequency ranges that you really do not want to include in the processed signal.</li>
 <li>My ultimate suggestion, try a bunch of methods with various parameters, whatever works well for your loss function, stick to it.(Do not forget searching parameters by using grid search!)</li>
 </ul>
+
 </div>
 </div>
 </div>

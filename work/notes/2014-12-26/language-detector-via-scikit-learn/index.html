@@ -964,8 +964,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -976,9 +978,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1016,56 +1020,74 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><html><body><div class="cell border-box-sizing text_cell rendered">
+</style>
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Percentage of English language across all of the languages is decreasing and will likely to do so incoming years. All(nearly) of the tweets are written in English in 2006 whereas in 2013, only half of the tweets are written in English as Japanese, Spanish, Portuguese and other languages increase their share in the tweets. This will likely to continue if we look at the population(excluding China as they have their own networks), India, Russia, Brazil(portuguese) and Germany does not contribute with comparison to their population.(based on the assumption that the smartphones will be ubiquitous and most people who have internet access would have access to smartphones as well).</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'http://i.imgur.com/Kr5sfJ8.png'</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://i.imgur.com/Kr5sfJ8.png&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <img src="http://i.imgur.com/Kr5sfJ8.png" />
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'http://i.imgur.com/ZQ5yD96.png'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://i.imgur.com/ZQ5yD96.png&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <img src="http://i.imgur.com/ZQ5yD96.png" />
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1073,6 +1095,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Data is from Gnip.</p>
+
 </div>
 </div>
 </div>
@@ -1084,6 +1107,7 @@ h6:hover .anchor-link {
 <p>So, as developing economies will contribute more and more to the web(social media is just a specific example of this trend), languages, localization and machine translation will play more and more important role in the consumer-oriented companies. Especially, startups that try to "grow" and protect their market share, this already happened in the "sharing economy", most notably Airbnb and Uber.</p>
 <p>For support and a variety of tasks for the companies provide in a multilingual consumer environment, they need to first figure out the language that user complains about the product or the service. They need to translate the feature from English to the local language as well. From busine</p>
 <p>Also, language identification and detection is very fundamental for all of the natural language processing task. You need to know the language when you want to do basic stemming in the text.</p>
+
 </div>
 </div>
 </div>
@@ -1094,14 +1118,15 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Building language detection or identification is hard if you want to do keyword search in the text based on dictionaries in the language. There are numerous reasons for that: languages borrow word from each other, same word may mean two different meanings in two different languages. Spelling mistakes, using jargon and abbreviations(especially in Twitter) that do not exist in dictionary.</p>
 <p>Yet, with data and machine learning, I could build a relatively good language detector. As long as the data that I will apply the classifier on is more or less in the same lines of Wikipedia dataset, it should generalize well and should do a good job.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: latin-1 -*-</span>
 
@@ -1120,25 +1145,29 @@ h6:hover .anchor-link {
 <span class="c1"># Load module that will load the instances</span>
 <span class="kn">import</span> <span class="nn">load</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label_names</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">get_instances_from_directory</span><span class="p">(</span><span class="s1">'data/text'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label_names</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">get_instances_from_directory</span><span class="p">(</span><span class="s1">&#39;data/text&#39;</span><span class="p">)</span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span>
                                                                      <span class="n">y</span><span class="p">,</span>
                                                                      <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                                                                      <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1149,6 +1178,7 @@ h6:hover .anchor-link {
 <p>I chose Wikipedia because wiki articles for different languages share similar website format, so it is relatively easy to scrape data from the website no matter what the language is. The url construction is very simple, as long as you know the the prefix symbol for the language, you could append the word in url construction and that is about it.</p>
 <p>One problematic part in general is that you need to use an encoding method different than ASCII. If you are doing this task in Python 3, I think you are better off. But for this IPython notebook, I am using Python 2.7.9 and using latin-1 encoding.</p>
 <p>Let's look at some examples in the dataset:</p>
+
 </div>
 </div>
 </div>
@@ -1157,22 +1187,26 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ar">Ar<a class="anchor-link" href="#Ar">¶</a></h3>
+<h3 id="Ar">Ar<a class="anchor-link" href="#Ar">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>ويكيبيديا (تلفظ [wiːkiːbiːdijaː] وتلحن [wikipiːdia] ؛ تلفظ بالإنجليزية /ˌwɪkiˈpiːdi.ə/ ) هي مشروع موسوعة متعددة اللغات، مبنية على الويب ، ذات محتوى حر، تشغلها مؤسسة ويكيميديا ، التي هي منظمة غير ربحية . ويكيبيديا هي موسوعة يمكن لأي مستخدم تعديل وتحرير وإنشاء مقالات جديدة فيها.
@@ -1180,30 +1214,36 @@ h6:hover .anchor-link {
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="De">De<a class="anchor-link" href="#De">¶</a></h3>
+<h3 id="De">De<a class="anchor-link" href="#De">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">2000</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Am 28. Jänner 1756 – einen Tag nach seiner Geburt – wurde Mozart auf die Namen Joannes Chrysostomus Wolfgangus Theophilus getauft. Der erste und letzte der genannten Vornamen verweisen auf den Taufpaten Joannes Theophilus Pergmayr, Senator et Mercator Civicus , der mittlere Vorname Wolfgang auf Mozarts Großvater Wolfgang Nicolaus Pertl. Das griechische Theophilus („ Gottlieb “) hat Mozart später in seine französische Entsprechung Amadé bzw. (selten) latinisierend Amadeus übersetzt.
@@ -1211,30 +1251,36 @@ h6:hover .anchor-link {
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Cn">Cn<a class="anchor-link" href="#Cn">¶</a></h3>
+<h3 id="Cn">Cn<a class="anchor-link" href="#Cn">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1060</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>2011年，发射了首个试验型 空间站 天宫一号 ，并成功完成与后续发射的 神舟八号 飞船的对接，成为继 前苏联 及 美国 之后，第三个有能力独自发射 空间站 的国家。2012年，成功发射了 神舟九号 载人飞船，并首次将女航天员送上太空，完成了与 天宫一号 的自动，手动空间交会对接。又成功建立了 北斗卫星定位系统 ，其在民用及军用上均发挥了重要作用。
@@ -1242,30 +1288,36 @@ h6:hover .anchor-link {
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="En-(suprise!)">En (suprise!)<a class="anchor-link" href="#En-(suprise!)">¶</a></h3>
+<h3 id="En-(suprise!)">En (suprise!)<a class="anchor-link" href="#En-(suprise!)">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">3000</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>195,046 foreign nationals became British citizens in 2010, [ 348 ] compared to 54,902 in 1999. [ 348 ] [ 349 ] A record 241,192 people were granted permanent settlement rights in 2010, of whom 51 per cent were from Asia and 27 per cent from Africa. [ 350 ] 25.5 per cent of babies born in England and Wales in 2011 were born to mothers born outside the UK, according to official statistics released in 2012. [ 351 ]
@@ -1273,92 +1325,110 @@ h6:hover .anchor-link {
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Es">Es<a class="anchor-link" href="#Es">¶</a></h3>
+<h3 id="Es">Es<a class="anchor-link" href="#Es">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">4000</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>La intervención romana se produjo en la Segunda Guerra Púnica (218 a. C.), que inició una paulatina conquista romana de Hispania , no completada hasta casi doscientos años más tarde. La derrota cartaginesa permitió una relativamente rápida incorporación de las zonas este y sur, que eran las más ricas y con un nivel de desarrollo económico, social y cultural más compatible con la propia civilización romana. Mucho más dificultoso se demostró el sometimiento de los pueblos de la Meseta, más pobres ( guerras lusitanas y guerras celtíberas ), que exigió enfrentarse a planteamientos bélicos totalmente diferentes a la guerra clásica (la guerrilla liderada por Viriato —asesinado el 139 a. C.—, resistencias extremas como la de Numancia —vencida el 133 a. C.—). En el siglo siguiente, las provincias romanas de Hispania , convertidas en fuente de enriquecimiento de funcionarios y comerciantes romanos y de materias primas y mercenarios, estuvieron entre los principales escenarios de las guerras civiles romanas , con la presencia de Sertorio , Pompeyo y Julio César . La pacificación ( pax romana ) fue el propósito declarado de Augusto , que pretendió dejarla definitivamente asentada con el sometimiento de cántabros y astures (29—19 a. C.), aunque no se produjo su efectiva romanización. En el resto del territorio, la romanización de Hispania fue tan profunda como para que algunas familias hispanorromanas alcanzaran la dignidad imperial ( Trajano , Adriano y Teodosio ) y hubiera hispanos entre los más importantes intelectuales romanos (el filósofo Lucio Anneo Séneca , los poetas Lucano , Quintiliano o Marcial , el geógrafo Pomponio Mela o el agrónomo Columela ), si bien, como escribió Tito Livio en tiempos de Augusto, "aunque fue la primera provincia importante invadida por los romanos fue la última en ser dominada completamente y ha resistido hasta nuestra época", atribuyéndolo a la naturaleza del territorio y al carácter recalcitrante de sus habitantes. La asimilación del modo de vida romano, larga y costosa, ofreció una gran diversidad desde los grados avanzados en la Bética a la incompleta y superficial romanización del norte peninsular.
+<pre>La intervención romana se produjo en la Segunda Guerra Púnica (218 a. C.), que inició una paulatina conquista romana de Hispania , no completada hasta casi doscientos años más tarde. La derrota cartaginesa permitió una relativamente rápida incorporación de las zonas este y sur, que eran las más ricas y con un nivel de desarrollo económico, social y cultural más compatible con la propia civilización romana. Mucho más dificultoso se demostró el sometimiento de los pueblos de la Meseta, más pobres ( guerras lusitanas y guerras celtíberas ), que exigió enfrentarse a planteamientos bélicos totalmente diferentes a la guerra clásica (la guerrilla liderada por Viriato —asesinado el 139 a. C.—, resistencias extremas como la de Numancia —vencida el 133 a. C.—). En el siglo siguiente, las provincias romanas de Hispania , convertidas en fuente de enriquecimiento de funcionarios y comerciantes romanos y de materias primas y mercenarios, estuvieron entre los principales escenarios de las guerras civiles romanas , con la presencia de Sertorio , Pompeyo y Julio César . La pacificación ( pax romana ) fue el propósito declarado de Augusto , que pretendió dejarla definitivamente asentada con el sometimiento de cántabros y astures (29—19 a. C.), aunque no se produjo su efectiva romanización. En el resto del territorio, la romanización de Hispania fue tan profunda como para que algunas familias hispanorromanas alcanzaran la dignidad imperial ( Trajano , Adriano y Teodosio ) y hubiera hispanos entre los más importantes intelectuales romanos (el filósofo Lucio Anneo Séneca , los poetas Lucano , Quintiliano o Marcial , el geógrafo Pomponio Mela o el agrónomo Columela ), si bien, como escribió Tito Livio en tiempos de Augusto, &#34;aunque fue la primera provincia importante invadida por los romanos fue la última en ser dominada completamente y ha resistido hasta nuestra época&#34;, atribuyéndolo a la naturaleza del territorio y al carácter recalcitrante de sus habitantes. La asimilación del modo de vida romano, larga y costosa, ofreció una gran diversidad desde los grados avanzados en la Bética a la incompleta y superficial romanización del norte peninsular.
 
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Fr">Fr<a class="anchor-link" href="#Fr">¶</a></h3>
+<h3 id="Fr">Fr<a class="anchor-link" href="#Fr">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">6000</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Il est, par la suite, déchu par le Sénat le 3 avril et exilé à l’ île d’Elbe , selon le traité de Fontainebleau signé le 11 avril, conservant le titre d’Empereur [ 45 ] mais ne régnant que sur cette petite île. Son convoi de Fontainebleau jusqu'à la Méditerranée avant son embarquement pour l'île d'Elbe passe par des villages provençaux royalistes qui le conspuent, il risque d'être lynché à Orgon , ce qui l'oblige à se déguiser [ 46 ] .
+<pre>Il est, par la suite, déchu par le Sénat le 3 avril et exilé à l’ île d’Elbe , selon le traité de Fontainebleau signé le 11 avril, conservant le titre d’Empereur [ 45 ] mais ne régnant que sur cette petite île. Son convoi de Fontainebleau jusqu&#39;à la Méditerranée avant son embarquement pour l&#39;île d&#39;Elbe passe par des villages provençaux royalistes qui le conspuent, il risque d&#39;être lynché à Orgon , ce qui l&#39;oblige à se déguiser [ 46 ] .
 
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ru">Ru<a class="anchor-link" href="#Ru">¶</a></h3>
+<h3 id="Ru">Ru<a class="anchor-link" href="#Ru">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">8000</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Также насчитывается 7 изолированных и 9 неклассифицированных языков . К наиболее популярным исконно африканским языкам относятся языки банту ( суахили , конго ), фула .
@@ -1366,30 +1436,36 @@ h6:hover .anchor-link {
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tr">Tr<a class="anchor-link" href="#Tr">¶</a></h3>
+<h3 id="Tr">Tr<a class="anchor-link" href="#Tr">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Yerel çeşitlere ve bunların arasında karşılıklı alışveriş ve zenginleştirmeye dayalı olması dünyanın herhangi bir büyük mutfağı için olağandır. Ama aynı zamanda büyükşehir geleneğinin zarif tadı ile homojenize ve uyumludur. [129]
@@ -1397,21 +1473,23 @@ h6:hover .anchor-link {
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">feature_extraction</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-                             <span class="n">analyzer</span><span class="o">=</span><span class="s1">'char'</span><span class="p">,)</span>
+                             <span class="n">analyzer</span><span class="o">=</span><span class="s1">&#39;char&#39;</span><span class="p">,)</span>
 <span class="c1">#                             use_idf=False)</span>
 
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">'vectorizer'</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'clf'</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">())</span>
+    <span class="p">(</span><span class="s1">&#39;vectorizer&#39;</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LogisticRegression</span><span class="p">())</span>
 <span class="p">])</span>
 
 <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -1420,9 +1498,11 @@ h6:hover .anchor-link {
 
 <span class="n">cm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1432,6 +1512,7 @@ h6:hover .anchor-link {
 <p>I am using char analyzer which extract features on the "character" level rather than word level. This is important for many reasons, generally languages have various prefixes, suffixes and other small word parts that are specific to them. For suffixes, "-able", "-ness", "-s/tion", "-ist" are very common. For prefixes, "a-", "co-", "counter-", "ex-", "dis-", "mal-", "pre-", "under-", "up-", "re-" and "pro-". If I had used a word based tokenization and then use bag of words of tfidf, I would not be able to get these small language specific parts which are quite important for language detection.</p>
 <p>If I step back for a second; it would be overly optimistic to expect the training set would cover all of the words and their various forms in a langauge detection problem. More ofthen than not, the things that features depend on not the words themselves but the parts that are specific to the languages. Those parts would create sufficient enough discriminative features and would make the classifier much better. Character ngrams to pick up those parts would be perfect.</p>
 <p>Of course, you could try bag of words in the dataset and fail miserably. It is free to try, give it a shot!</p>
+
 </div>
 </div>
 </div>
@@ -1441,24 +1522,31 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Seaborn has this heatmap function which I am fond of for visualization of consusion matrices. Very neat.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Confusion Matrix for Languages'</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix for Languages&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAOoCAYAAADMDVWxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmcnWV5N/DfmcAECIQlKIigWMFHqrLYuiG7VqVqRS11
@@ -1810,11 +1898,14 @@ VR2cZFmSBzOxvMoLpnL+KcniqqqWZOIn/udmIgCso9cbb1Emenxlkrsysefq2CSXVlW1WSZ6/Kb2
 yhsY/5Tk4sl7eW4mlq+tfdT3uJ83zqN7/I9JnlZV1dWZWF781bquf9RifYNkfIPP7ttmbNjb85Jc
 neTOTDxPU87PM/Ha7UlxL7OJmNaHXAAAAJQ03ZcIAgAAFCNgAQAAFCJgAQAAFCJgAQAAFCJgAQAA
 FCJgAQAAFCJgAQAAFCJgAQAAFPL/AVx06S8rTrRjAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1822,6 +1913,7 @@ FCJgAQAAFCJgAQAAFCJgAQAAFPL/AVx06S8rTrRjAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pretty good. There are some confusion in the Spanish and English but other than that classification is quite successful.</p>
+
 </div>
 </div>
 </div>
@@ -1831,22 +1923,27 @@ FCJgAQAAFCJgAQAAFCJgAQAAFPL/AVx06S8rTrRjAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Colorbar and heatmapping does not make a lot of sense for the confusion matrix as the number of documents vary for each language, but it is a nice way to see how many documents confused and to which language. But so far, it is quite successful.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span>
                                     <span class="n">target_names</span><span class="o">=</span><span class="n">label_names</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>             precision    recall  f1-score   support
@@ -1865,8 +1962,10 @@ avg / total       0.98      0.98      0.98      1734
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1874,35 +1973,44 @@ avg / total       0.98      0.98      0.98      1734
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I could of couse look at the percentages of the documents as well to make the heatmap more meaningful as the metrics would be normalized to the percentages.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">percentage_matrix</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">cm</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">percentage_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s1">'.2f'</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Confusion Matrix for Languages(Percentages)'</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">percentage_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">label_names</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix for Languages(Percentages)&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAOoCAYAAADMDVWxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XecXWWdP/DPnRSSzCSAFF0JHTzyEwLougiiFBusSF9E
@@ -2368,11 +2476,14 @@ X75L01Pj3yZ5ND1rrg5LcnVRFEPTU+MD+q95K4zLknxlcV8enZ7pa53/8DP688vzjzW+OMnriqK4
 NT3Ti39RluXj/di+FUn3i/7Ub5vjxbU9L8mtSR5Oz+s01fl7ej67jYi+zACxUm9yAQAAUKWVfYog
 AABAZQQsAACAighYAAAAFRGwAAAAKiJgAQAAVETAAgAAqIiABQAAUBEBCwAAoCL/H+vfkrf0XLNS
 AAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2380,36 +2491,41 @@ AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since the pipeline has all of the vectorizer and also the classifier, I could feed raw text to the pipeline and get the prediction from the dataset.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text_blob</span> <span class="o">=</span> <span class="s2">""" Je ne dis pas ce que je faisais</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text_blob</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; Je ne dis pas ce que je faisais</span>
 <span class="s2">                Ich habe nich erzahlt was ich gemacht habe</span>
 <span class="s2">                Ne yaptığımı söylemedim</span>
 <span class="s2">                Yo no dije lo que hice</span>
 <span class="s2">                I did not say what I have done</span>
-<span class="s2">            """</span>
+<span class="s2">            &quot;&quot;&quot;</span>
 
 <span class="c1"># Predict the result on some short new sentences:</span>
 <span class="c1"># Ascii cannot encode the string, convert explicitly to unicode</span>
 <span class="c1"># Ignore the empty string</span>
-<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">unicode</span><span class="p">(</span><span class="n">ii</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">text_blob</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ii</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">]</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">unicode</span><span class="p">(</span><span class="n">ii</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">text_blob</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">ii</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
 <span class="c1"># I could pass raw data, as pipe has all of the parts, pretty neat!</span>
 <span class="n">predicted_languages</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">sentence</span><span class="p">,</span> <span class="n">lang</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">predicted_languages</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">u'</span><span class="si">{}</span><span class="s1"> ----&gt; </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">label_names</span><span class="p">[</span><span class="n">lang</span><span class="p">]))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> ----&gt; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">label_names</span><span class="p">[</span><span class="n">lang</span><span class="p">]))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Je ne dis pas ce que je faisais ----&gt; fr
@@ -2420,8 +2536,10 @@ I did not say what I have done ----&gt; en
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2429,6 +2547,7 @@ I did not say what I have done ----&gt; en
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not bad, huh? By the way, all of the sentences mean what the english sentence mean for the curious.(not sure about french, though)</p>
+
 </div>
 </div>
 </div>
@@ -2437,7 +2556,7 @@ I did not say what I have done ----&gt; en
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Some-questions-to-tinker-on">Some questions to tinker on<a class="anchor-link" href="#Some-questions-to-tinker-on">¶</a></h3><ul>
+<h3 id="Some-questions-to-tinker-on">Some questions to tinker on<a class="anchor-link" href="#Some-questions-to-tinker-on">&#182;</a></h3><ul>
 <li>Which languges are more likely to be confused, why?</li>
 <li>Do two languages are likely to be confused if they share the same alphabet? </li>
 <li>Some languages use a variant of latin alphabets, could you think of an extra feature that exploits specific letters?</li>
@@ -2445,6 +2564,7 @@ I did not say what I have done ----&gt; en
 <li>How do personal pronouns could be used to detect the language? For the languages personal pronouns are optional and information is carried via verb(like Spanish and Turkish), could this be a discriminative feature?</li>
 <li>Why do not editors recommend verb forms that agree with pronouns on the languages where verb is either agglutinated due to subject(like Turkish) or changes its form(like in Spanish)? I think this could be a killer feature for people who do not know the language very well. When I write "Yo decir", there should be a dropdown which suggests different verb forms for "decir" in a variety of tenses like "digo", "dijo" and so on.</li>
 </ul>
+
 </div>
 </div>
 </div>

@@ -50,27 +50,27 @@ I will compare these methods as well, but it cannot be deduced that some method 
 Before giving details of the methods, I am urged to mention an important concept that two methods use, Schmitt Trigger.</p>
 <h3>Schmitt Trigger</h3>
 <p>Schmitt Trigger is a comparator with two different threshold values. When the signal goes over <strong>High Threshold</strong>, it yields 1(HIGH). It remains 1 until signal goes below <strong>Low Threshold</strong>, it yields 0. It remains 0, until signal goes over ...  as it could be seen the figure below.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger"></p>
 <p>In analog implementation of Schmitt Trigger, there is a feedback mechanism which uses hysteresis to adjust its threshold values. In this implementation, they are constant. Schmitt Trigger is used to prevent noise when analogous signal is transformed into a digital(binary) one. It prevents oscillation in the binary signal which is convenient and makes the binary signal robust to noise. Consider the figure below, A is a basic comparator. B is a Schmitt Trigger. Any fluctuation in the border of A resultss in oscillation in the digital signal. This is the general case for noisy signals. However, fluctuations in border B does not change digital signal since digital signal needs to wait for <em>high threshold</em> value or <em>low threshold</em> value to change.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger"></p>
 <p>It is important to note that if noise level is higher than the difference of two thresholds, schmitt trigger does not provide robustness to noise. It is still better than a basic comparator, though. Therefore, noise level should be taken into consideration when setting up the threshold values.</p>
 <h2>PulseLag Method</h2>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals"></p>
 <p>In this method, we multiply both signals $ f_c $ with another sinusoid, but a lower frequency $ f_{down} $  Then, low-pass filter this signal in order to get low frequency part.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals"></p>
 <p>After filtering the signal, we put it into Schmitt Trigger. Then, we get their difference which also gives time delay.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals"></p>
 <p>We need the ratio of the (number of times first signal is 1 and second signal is 0) over the total time. Then, we need to divide this ratio to $ f_c $ to find time delay.
 I apply 0.5 nanosecond delay in the signal and it will be constant for the other methods as well, for noiseless case method measures  4.5714e-10. For noise coefficient = 0.1, method measures  5.1429e-10. For noise coefficient = 0.2, method measures  8.0000e-10, which is not even close.
 Even if noiseless and when noise is small, this method performs well, for noisy cases, it is not robust to noise.</p>
 <h2>Multiplication Method</h2>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals" />
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals">
 If we multiply two signals with each other, we have a high pass term and a phase term if they have both the same frequency.(noiseless case)</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal" />
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal">
 If we get inverse sin or cosine of the multiplied signal</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png" title=" Inverse of Filtered Multiplied Signal" />
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png" title=" Inverse of Filtered Multiplied Signal">
 and take mean of the signal(after some heuristics), divide by $2 * \pi * f_c$, then we get a time delay.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal"></p>
 <p>For noiseless case method measures 4.9639e-10 which is quite close. For noise coefficient = 0.1, method measures  4.6909e-10. For noise coefficient = 0.2, method measures 5.8330e-10, which is quite close for such a high noise.</p>
 <h2>FFT-Based Method</h2>
 <p>FFT can be written in a Discrete Fourier Transform:
@@ -81,11 +81,11 @@ $$ x[n-D] \leftrightarrow e^{\frac{-j2 \pi k D}{N}}X[k] $$
 It is important to note, in the magnitude response, the phase $e^{\frac{-j2 \pi k D}{N}}$ will be one. Therefore, it will not affect the magnitude response.
 Since we send periodic signals, the maximum of frequency response will occur at the dominant frequency which is the period of the signal. As the magnitude response will be same, we could just take the phase response of the same index in FFT to find the phase information between the signals.
 Original and delayed signal(0.5e-9) signals are given below.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal"></p>
 <p>Magnitude response of the signals are given below.</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals"></p>
 <p>Phase response of the signals:</p>
-<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT" /></p>
+<p><img alt="Alt text" src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT"></p>
 <p>When we take the phases of the both signals and subtract, we get the phase difference. Time delay is only the ratio of phase difference over $ 2 * pi * fc $.
 For noiseless case method measures 4.9656e-10 which is quite close. For noise coefficient = 0.1, method measures  5.1161e-10. For noise coefficient = 0.2, method measures 3.9221e-10, which is not very close.</p>
 <h3>Result</h3>

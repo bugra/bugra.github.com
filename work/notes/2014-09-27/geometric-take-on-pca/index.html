@@ -964,8 +964,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -976,9 +978,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1016,7 +1020,8 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><html><body><div class="cell border-box-sizing text_cell rendered">
+</style>
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -1029,6 +1034,7 @@ It could be used a variety of problems, though. To name a few; data preprocessin
 </blockquote>
 <p>I digress.</p>
 <p>Let's shed some light on the problems it could be useful for.</p>
+
 </div>
 </div>
 </div>
@@ -1045,6 +1051,7 @@ $$ C = \frac{1}{N}\displaystyle\sum_{i=1}^N (x_n - \mu) (x_n - \mu)^T $$
 and we want to find a $P$ matrix which will have principal components
 $$ C = P \Lambda P^T $$
 where $\Lambda$ is a diagonal matrix with elements $ {\lambda_1, \lambda_2, \ldots, \lambda_K} $ and $\lambda_1 \geq \lambda_2 \geq \ldots \geq \lambda_K $</p>
+
 </div>
 </div>
 </div>
@@ -1054,6 +1061,7 @@ where $\Lambda$ is a diagonal matrix with elements $ {\lambda_1, \lambda_2, \ldo
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This problem formulation and finding $P$ and $\Lambda$ could be solved by eigenvalue decomposition. This problem formulation is same an eigenvalue decomposition, $det (C - \lambda_1 I)p_1 =0 $ where $p_1$ is the eigenvector and $\lambda_1$ is the eigenvalue. Singular Value Decomposition is generally preferred method because then(? what a sentence ?)  the dimension number exceeds number of observations in the matrix $X$, the decomposition is easier than solving the covariance matrix. I will be using <code>svd</code> in numpy to compute the principal components in the toy signal as well.</p>
+
 </div>
 </div>
 </div>
@@ -1089,14 +1097,15 @@ $$</p>
 $$
 y' = x \sin \theta + y \cos \theta\
 $$<p>If we want to learn the rotation in the signal by just looking at the data(assuming the original signal has principal components in the $x$ any $y$ axises), we could do that using PCA. As PCA will try to "normalize" the data into the axises along with principal components, we could look at the angle difference between the normalized axises to measure the rotation. If we are interested in measuring the strangeth of each principal component, PCA will give the explained variance along the process as well.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="kn">import</span> <span class="nn">copy</span>
@@ -1105,19 +1114,19 @@ $$<p>If we want to learn the rotation in the signal by just looking at the data(
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mlp</span>
 
 <span class="c1"># Matplotlib kind of rocks!</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'fivethirtyeight'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 
 <span class="n">SEED_NUMBER</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">GLOBAL_FIGURE_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'#eeeeee'</span><span class="p">)</span>
-<span class="n">ANNOTATION_HA_PROPERTY</span> <span class="o">=</span> <span class="n">ANNOTATION_VA_PROPERTY</span> <span class="o">=</span> <span class="s1">'center'</span>
+<span class="n">GLOBAL_FIGURE_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#eeeeee&#39;</span><span class="p">)</span>
+<span class="n">ANNOTATION_HA_PROPERTY</span> <span class="o">=</span> <span class="n">ANNOTATION_VA_PROPERTY</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span>
 
 <span class="n">ORIGINAL_AXIS_ANNOTATION_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ha</span><span class="o">=</span><span class="n">ANNOTATION_HA_PROPERTY</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="n">ANNOTATION_VA_PROPERTY</span><span class="p">,</span>
-                                    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">'&lt;-&gt;'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+                                    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 
 <span class="n">ROTATED_AXIS_ANNOTATION_STYLING</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">ORIGINAL_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
-<span class="n">ROTATED_AXIS_ANNOTATION_STYLING</span><span class="p">[</span><span class="s1">'arrowprops'</span><span class="p">][</span><span class="s1">'color'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'#7A68A6'</span>
-<span class="n">ELLIPSE_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">'#348ABD'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">SCATTER_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'#188487'</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ROTATED_AXIS_ANNOTATION_STYLING</span><span class="p">[</span><span class="s1">&#39;arrowprops&#39;</span><span class="p">][</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;#7A68A6&#39;</span>
+<span class="n">ELLIPSE_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;#348ABD&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">SCATTER_STYLING</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#188487&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED_NUMBER</span><span class="p">)</span>
 <span class="n">radius</span> <span class="o">=</span> <span class="mf">0.8</span>
@@ -1132,28 +1141,36 @@ $$<p>If we want to learn the rotation in the signal by just looking at the data(
 <span class="n">sinus_rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
 <span class="n">cosinus_rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">signal_length</span><span class="p">,</span> <span class="n">n_dimension</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
 <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">GLOBAL_FIGURE_STYLING</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">SCATTER_STYLING</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Original Signal'</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/gAAALvCAYAAADRf24AAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VvWd//9XIHcWchsSEWLABApGMQFEEJcaRJ12EFHE
@@ -3267,11 +3284,14 @@ EPABAACgBAR8AAAAKAEBHwAAAEpAwAcAAIASEPABAACgBAR8AAAAKAEBHwAAAEpAwAcAAIASEPAB
 AACgBAR8AAAAKAEBHwAAAEpAwAcAAIASEPABAACgBAR8AAAAKAEBHwAAAEpAwAcAAIASEPABAACg
 BAR8AAAAKAEBHwAAAEpAwAcAAIASEPABAACgBAR8AAAAKAEBHwAAAErglmZ/uH79+iC3AwAAAOiB
 HnwAAAAoAQEfAAAASkDABwAAgBIQ8AEAAKAE/j8ZNyHiy8CUMwAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3280,14 +3300,15 @@ HnwAAAAoAQEfAAAASkDABwAAgBIQ8AEAAKAE/j8ZNyHiy8CUMwAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Original signal is normally distributed and if we get PCA of this Gaussian Signal without rotating it, we would get 0 and 90 degrees as 
 our principal components as it actually lies on x and y axises.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rotation_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cosinus_rotation</span><span class="p">,</span> <span class="o">-</span><span class="n">sinus_rotation</span><span class="p">],</span>
                             <span class="p">[</span><span class="n">sinus_rotation</span><span class="p">,</span> <span class="n">cosinus_rotation</span><span class="p">]])</span>
 <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rotation_matrix</span><span class="p">,</span> <span class="n">signal</span><span class="p">)</span>
@@ -3296,14 +3317,20 @@ our principal components as it actually lies on x and y axises.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">SCATTER_STYLING</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Rotated Signal'</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Rotated Signal&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/gAAALvCAYAAADRf24AAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X18VOWd//93ApkkZAiJFDBgAkJjNRHkRgtY0KpbWYsi
@@ -5120,28 +5147,31 @@ QMAHAAAAAKAAEPABAAAAACgABHwAAAAAAAoAAR8AAAAAgAJAwAcAAAAAoAAQ8AEAAAAAKAAEfAAA
 AAAACgABHwAAAACAAkDABwAAAACgABDwAQAAAAAoAAR8AAAAAAAKAAEfAAAAAIACQMAHAAAAAKAA
 EPABAAAAACgABHwAAAAAAAoAAR8AAAAAgAJAwAcAAAAAoACU+v1gdHR0Mo8DAAAAAACkgR58AAAA
 AAAKAAEfAAAAAIACQMAHAAAAAKAAEPABAAAAACgA/z98ra0UcHrkLAAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">GLOBAL_FIGURE_STYLING</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">r'$x$'</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">**</span><span class="n">ORIGINAL_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">r'$y$'</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius</span><span class="p">),</span> <span class="o">**</span><span class="n">ORIGINAL_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">**</span><span class="n">ORIGINAL_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius</span><span class="p">),</span> <span class="o">**</span><span class="n">ORIGINAL_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">r'$x^\prime$'</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">cosinus_rotation</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">sinus_rotation</span><span class="p">),</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x^\prime$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">cosinus_rotation</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">sinus_rotation</span><span class="p">),</span> 
                            <span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="n">cosinus_rotation</span><span class="p">,</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">sinus_rotation</span><span class="p">),</span>
                             <span class="o">**</span><span class="n">ROTATED_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">r'$y^\prime$'</span><span class="p">,</span> <span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="n">sinus_rotation</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">cosinus_rotation</span><span class="p">),</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y^\prime$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="n">sinus_rotation</span><span class="p">,</span> <span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">cosinus_rotation</span><span class="p">),</span> 
                            <span class="p">(</span><span class="o">-</span><span class="n">radius</span> <span class="o">*</span> <span class="n">sinus_rotation</span><span class="p">,</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">cosinus_rotation</span><span class="p">),</span>
                             <span class="o">**</span><span class="n">ROTATED_AXIS_ANNOTATION_STYLING</span><span class="p">)</span>
 
@@ -5150,12 +5180,18 @@ AAAKAAEfAAAAAIACQMAHAAAAAKAAEPABAAAAACgA/z98ra0UcHrkLAAAAABJRU5ErkJggg==
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="n">fig_dim</span><span class="p">,</span> <span class="n">fig_dim</span><span class="p">);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">fig_dim</span><span class="p">,</span> <span class="n">fig_dim</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/gAAALbCAYAAABOlCu7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt81PWd9/33JJlkkhlyAEMIkISDQUxIOImIBlRsdWtQ
@@ -6548,11 +6584,14 @@ gMAHAACAAIEPAAAAAQIfAAAAAgQ+AAAABAh8AAAACBD4AAAAECDwAQAAIEDgAwAAQIDABwAAgACB
 DwAAAAECHwAAAAIEPgAAAAQIfAAAAAgQ+AAAABAg8AEAACBA4AMAAECAwAcAAIAAgQ8AAAABAh8A
 AAACBD4AAAAECHwAAAAIEPgAAAAQIPABAAAgQOADAABAwMbPHiyXy8ucAwAAAPgD3uADAABAgMAH
 AACAAIEPAAAAAQIfAAAAAr4DIjweJYKFJsUAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -6560,14 +6599,15 @@ AACAAIEPAAAAAQIfAAAAAr4DIjweJYKFJsUAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$x^\prime$ and $y^\prime$ show where the first two principal components <strong>should</strong> lie. We want to learn these axises by applying and ideally retrieving the first two principal components from data.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="c1"># Mean subtraction</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -6580,34 +6620,42 @@ AACAAIEPAAAAAQIfAAAAAr4DIjweJYKFJsUAAAAASUVORK5CYII=
 <span class="n">first_eigenvalue_percentage</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">eigen_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">eigen_values</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">second_eigenvalue_percentage</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">eigen_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">eigen_values</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">GLOBAL_FIGURE_STYLING</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">signal_length</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> 
            <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">signal_length</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> 
            <span class="o">**</span><span class="n">SCATTER_STYLING</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">eigen_vectors</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">mu</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">axis</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">'data'</span><span class="p">,</span> 
-                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">'#A60628'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">10.0</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="n">mu</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">axis</span><span class="p">,</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> 
+                <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#A60628&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">10.0</span><span class="p">))</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'First Two EigenVectors'</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;First Two EigenVectors&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/gAAALvCAYAAADRf24AAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8lOW9///3hOwZQpAlBkxAMC6JQRYpguBeU0URQSgo
@@ -8495,11 +8543,14 @@ AgI+AAAAJCDgAwAAQAICPgAAACQg4AMAAEACAj4AAAAkIOADAABAAgI+AAAAJCDgAwAAQAICPgAA
 ACQg4AMAAEACAj4AAAAkIOADAABAAgI+AAAAJCDgAwAAQAICPgAAACQg4AMAAEACAj4AAAAkIOAD
 AABAAgI+AAAAJPDQg/5ie3t7musAAAAAxqCCDwAAAAkI+AAAAJCAgA8AAAAJCPgAAACQwP8BZZn2
 0tdLeOIAAAAASUVORK5CYII=
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8507,29 +8558,39 @@ AABAAgI+AAAAJPDQg/5ie3t7musAAAAAxqCCDwAAAAkI+AAAAJCAgA8AAAAJCPgAAACQwP8BZZn2
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Did we learn the rotation in the data after all?</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="mi">180</span> <span class="o">*</span> <span class="n">eigen_vectors</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[-40.452142  , -40.57623143],
        [-40.57623143,  40.452142  ]])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -8537,14 +8598,15 @@ AABAAgI+AAAAJPDQg/5ie3t7musAAAAAxqCCDwAAAAkI+AAAAJCAgA8AAAAJCPgAAACQwP8BZZn2
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It is pretty good I think considering we have also fair amount of noise.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">GLOBAL_FIGURE_STYLING</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">projected_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">signal_length</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> 
            <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">projected_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">signal_length</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> 
@@ -8553,14 +8615,20 @@ AABAAgI+AAAAJPDQg/5ie3t7musAAAAAxqCCDwAAAAkI+AAAAJCAgA8AAAAJCPgAAACQwP8BZZn2
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Projected Data'</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Projected Data&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/gAAALvCAYAAADRf24AAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmUVPWd//9XA723TSM0CMgyklbsZhURiOA2GlREidp8
@@ -10657,42 +10725,53 @@ QAUI+AAAAFABAj4AAABUgIAPAAAAFSDgAwAAQAUI+AAAAFABAj4AAABUgIAPAAAAFSDgAwAAQAUI
 AFABAj4AAABUgIAPAAAAFSDgAwAAQAUI+AAAAFABAj4AAABUgIAPAAAAFSDgAwAAQAUI+AAAAFAB
 Aj4AAABUgIAPAAAAFfCZtF98+umnRbYDAAAAGIERfAAAAKgAAR8AAAAqQMAHAACAChDwAQAAoAL+
 P52lT8LSkX9ZAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">projected_data</span> <span class="o">-</span> <span class="n">signal</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">GLOBAL_FIGURE_STYLING</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">'stepfilled'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Residuals'</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA/gAAALvCAYAAADRf24AAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XuQ3nV96PHP8+wl2dwvhhASLopYwqVWCz1FvABCA45B
@@ -10877,11 +10956,14 @@ HY7s8P8R+AAAMEof/9H2KET9cNxU594AzfKXP95R91KEJdNb4uLjptW9R8BguRJ/9WRP3df86tnz
 U+telrFgajEOm1b/AMv6nlIM1NkV04yv2ZaBcmweqP81O2pGMWa2j82BpIms0NXVtdc/xWLR0SAA
 AAAYjyp72eah4gEAACABgQ8AAAAJ7PMCir2d7gcAAADGJ2fwAQAAIAGBDwAAAAkIfAAAAEhA4AMA
 AEAC/w9PN68+pjOwugAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -10889,22 +10971,27 @@ AEAC/w9PN68+pjOwugAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This graph shows the residuls generally lie in the small-mid range. Since PCA could be considered as a minimization problem in the least square sense, total residual sum need to be minimum among all possible principal components. $l_2$ distance is good if you have noise-free or small noise. However, if you have a noisy signal or unscaled features as an input, $l_2$ fails quite badly. For those type of signals, if you still want to apply PCA, you may want to use <a href="http://web.stanford.edu/~hastie/Papers/spc_jcgs.pdf">Sparse PCA</a> which uses $l_1$ to find the principal components in the signal.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'The variance explained by first eigenvector: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_eigenvalue_percentage</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'The variance explained by first eigenvector: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">second_eigenvalue_percentage</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The variance explained by first eigenvector: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_eigenvalue_percentage</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The variance explained by first eigenvector: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">second_eigenvalue_percentage</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The variance explained by first eigenvector: 75.25
@@ -10912,8 +10999,10 @@ The variance explained by first eigenvector: 24.75
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -10921,6 +11010,7 @@ The variance explained by first eigenvector: 24.75
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Variances of our original Gaussian random variables are 0.3 and 0.1 respectively. The ratio of the eigenvalues reflect the variance of the eigenvectors capture in the main signal. The values of eigenvalues confirm the original variance values.</p>
+
 </div>
 </div>
 </div>
@@ -10929,16 +11019,17 @@ The variance explained by first eigenvector: 24.75
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="What-it-cannot-solve?">What it cannot solve?<a class="anchor-link" href="#What-it-cannot-solve?">¶</a></h3><ul>
+<h3 id="What-it-cannot-solve?">What it cannot solve?<a class="anchor-link" href="#What-it-cannot-solve?">&#182;</a></h3><ul>
 <li>If the data is not on a hyperplane and has a nonlinear structure in the observation space(like a manifold), PCA would not produce meaningful results.</li>
 <li>In those scenarios, one could adopt a kernel based PCA approach to exploit the structure of data.</li>
 <li>If the data has quite significant amount of noise which contributes to variance a lot, PCA result would explain "noise" rather than the original signal.</li>
 </ul>
-<h3 id="David-Mackay&#x27;s-Comment">David Mackay's Comment<a class="anchor-link" href="#David-Mackay&#x27;s-Comment">¶</a></h3><ul>
+<h3 id="David-Mackay's-Comment">David Mackay's Comment<a class="anchor-link" href="#David-Mackay's-Comment">&#182;</a></h3><ul>
 <li>Variable Units(refer to David Mackay's comment on his book). If you measure the same unit in cm instead of inch, you'd get different principal components. </li>
 <li>You need to adjust to scale of dimensions before applying PCA in order to make something useful.</li>
 <li>Criticism of MacKay is not about PCA criticim per se, but how it is used among practitioners as well. </li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -10947,7 +11038,8 @@ The variance explained by first eigenvector: 24.75
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="EigenFaces">EigenFaces<a class="anchor-link" href="#EigenFaces">¶</a></h3><p>I also wrote a piece on <a href="http://bugra.github.io/work/notes/2013-07-27/PCA-EigenFace-And-All-That/">PCA and EigenFace</a>  and released a library for <a href="https://github.com/bugra/EigenFace">eigenface</a> written in Python. It has sample application for Yale Face database and a bunch of util tools apart from , play with it!</p>
+<h3 id="EigenFaces">EigenFaces<a class="anchor-link" href="#EigenFaces">&#182;</a></h3><p>I also wrote a piece on <a href="http://bugra.github.io/work/notes/2013-07-27/PCA-EigenFace-And-All-That/">PCA and EigenFace</a>  and released a library for <a href="https://github.com/bugra/EigenFace">eigenface</a> written in Python. It has sample application for Yale Face database and a bunch of util tools apart from , play with it!</p>
+
 </div>
 </div>
 </div>

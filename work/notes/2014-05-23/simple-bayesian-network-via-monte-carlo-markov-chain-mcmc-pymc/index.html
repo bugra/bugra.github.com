@@ -964,8 +964,10 @@ h6:hover .anchor-link {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -976,9 +978,11 @@ h6:hover .anchor-link {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
 <style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
@@ -1016,19 +1020,21 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><html><body><div class="cell border-box-sizing text_cell rendered">
+</style>
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After I put some material to the blog around Monte Carlo Markov Chain, I get some emails which ask how to do apply MCMC in Bayesian Networks. To keep DRY and KISS principles in mind, here is my attempt to explain the one of the most simple Bayesian Network via MCMC using PyMC, Sprinkler.</p>
-<h2 id="Bayesian-Networks">Bayesian Networks<a class="anchor-link" href="#Bayesian-Networks">¶</a></h2><p>Bayesian Networks also known as Belief Networks are a particular subset of probabilistic graphical models(Directed Acyclic Graph). Graphical models are useful in a number of ways as they combine graph theory, machine learning and statistics. They provide a good representation to model the probabilistic structures between random variables.  Nodes represent random variables where the edges represent probabilistic dependency, namely conditional probability between two variables(given parent variable, the probability of child variable). The edges are important as they are directed and they show a direct relation between two random variables which makes it easy to both reason about the network structure and also provides a reasonably simple way to compute the joint probabilities between two random variables if we know the prior probability of the parent variable. The structure also implicitly suggests that the two variables that are nondescendents of each other are independent. Therefore, the influence of one variable is limited to its descendents. Similarly if the node(random variable) does not have any connection to parent nodes, then its edge proabability is called <strong>unconditional</strong> as it does not have any influence from other variables whereas other edges that are <em>influenced</em> called <strong>conditional</strong> as you might guess.</p>
+<h2 id="Bayesian-Networks">Bayesian Networks<a class="anchor-link" href="#Bayesian-Networks">&#182;</a></h2><p>Bayesian Networks also known as Belief Networks are a particular subset of probabilistic graphical models(Directed Acyclic Graph). Graphical models are useful in a number of ways as they combine graph theory, machine learning and statistics. They provide a good representation to model the probabilistic structures between random variables.  Nodes represent random variables where the edges represent probabilistic dependency, namely conditional probability between two variables(given parent variable, the probability of child variable). The edges are important as they are directed and they show a direct relation between two random variables which makes it easy to both reason about the network structure and also provides a reasonably simple way to compute the joint probabilities between two random variables if we know the prior probability of the parent variable. The structure also implicitly suggests that the two variables that are nondescendents of each other are independent. Therefore, the influence of one variable is limited to its descendents. Similarly if the node(random variable) does not have any connection to parent nodes, then its edge proabability is called <strong>unconditional</strong> as it does not have any influence from other variables whereas other edges that are <em>influenced</em> called <strong>conditional</strong> as you might guess.</p>
 <blockquote><p>Note that the conditionality does not necessarily suggest a causal ralationship between two random variables. For Bayesian NEtwork to be a causal network, the relations between two random variables need to be explicitly causal in order to infer any causal structure in the network.</p>
 </blockquote>
-<h3 id="Formal-Definition">Formal Definition<a class="anchor-link" href="#Formal-Definition">¶</a></h3><p>A Bayesian Network $N$ is a Directed Acyclic Graph which defines a Joint Probability Distribution over random variables.</p>
+<h3 id="Formal-Definition">Formal Definition<a class="anchor-link" href="#Formal-Definition">&#182;</a></h3><p>A Bayesian Network $N$ is a Directed Acyclic Graph which defines a Joint Probability Distribution over random variables.</p>
 $$N = \langle N, \Theta \rangle$$<p>
 where $N$ represents the graph which is defined over $X_1, X_2, \ldots,  X_K$ random variables, then Joint Probability Distribution could be written as in the following:</p>
 $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$<p>where $\theta_{X_i|\pi_i} = P_N(X_i|\pi_i) $</p>
+
 </div>
 </div>
 </div>
@@ -1038,25 +1044,28 @@ $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$<p>where $\
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's look at what does it look like to implement in PyMC.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">daft</span>
 <span class="kn">import</span> <span class="nn">pymc</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1065,19 +1074,24 @@ $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$<p>where $\
 <span class="kn">import</span> <span class="nn">ggplot</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">COLORS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#348ABD"</span><span class="p">,</span> <span class="s2">"#A60628"</span><span class="p">,</span> <span class="s2">"#7A68A6"</span><span class="p">]</span>
+<span class="n">COLORS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#348ABD&quot;</span><span class="p">,</span> <span class="s2">&quot;#A60628&quot;</span><span class="p">,</span> <span class="s2">&quot;#7A68A6&quot;</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Couldn't import dot_parser, loading of dot files will not be possible.
+<pre>Couldn&#39;t import dot_parser, loading of dot files will not be possible.
 </pre>
 </div>
 </div>
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/bugra/anaconda/lib/python2.7/site-packages/pytz/__init__.py:29: UserWarning: Module argparse was already imported from /Users/bugra/anaconda/python.app/Contents/lib/python2.7/argparse.pyc, but /Users/bugra/anaconda/lib/python2.7/site-packages is being added to sys.path
@@ -1085,46 +1099,60 @@ $$ P_N(X_1, X_2, \ldots, X_K)  = \prod_{i=1}^{K} \theta_{X_i|\pi_i}$$<p>where $\
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pgm</span> <span class="o">=</span> <span class="n">daft</span><span class="o">.</span><span class="n">PGM</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
-<span class="n">pgm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">daft</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'rain'</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">pgm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">daft</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s1">'s'</span><span class="p">,</span> <span class="s1">'sprinkler'</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">pgm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">daft</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s1">'w'</span><span class="p">,</span> <span class="s1">'grass wet'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">pgm</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">)</span>
-<span class="n">pgm</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">'r'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
-<span class="n">pgm</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">'s'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
+<span class="n">pgm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">daft</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;rain&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">pgm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">daft</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;sprinkler&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">pgm</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">daft</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;grass wet&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">pgm</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">pgm</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">pgm</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">pgm</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
-<span class="c1">#pgm.figure.savefig("sprinkler.png", dpi=500)</span>
+<span class="c1">#pgm.figure.savefig(&quot;sprinkler.png&quot;, dpi=500)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.axes.Axes at 0x10b6f8c90&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgwAAADxCAYAAACnFe/hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4VIW9//HPZBKSkJCFQMlSISFBiIGwZkGsoCDYUoNW
@@ -1291,11 +1319,14 @@ LgIDAACwi8AAAADsIjAAAAC7CAwAAMAuAgMAALCLwAAAAOwiMAAAALsIDAAAwC4CAwAAsIvAAAAA
 wC4CAwAAsIvAAAAA7CIwAAAAuwgMAADALgIDAACwi8AAAADsIjAAAAC7CAwAAMAuAgMAALCLwAAA
 AOwiMAAAALsIDAAAwC4CAwAAsIvAAAAA7CIwAAAAuwgMAADALgIDAACwi8AAAADsIjAAAAC7CAwA
 AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1303,6 +1334,7 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this graph, <strong>Rain</strong> is the unconditional variable as it does not have any parent variable. <strong>Sprinkler</strong> is the conditioanal variable as it is influenced by <strong>Rain</strong>. <strong>Grass Wet</strong> is the observed variable. If you are doing anything with graphical models, draw the graphical model in either a piece of paper or use tikz/daft to draw as above. It makes much easy to reason and to see the relations. There is a reason why people prefer graphical models representation instead of raw equations.</p>
+
 </div>
 </div>
 </div>
@@ -1311,30 +1343,38 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Models">Models<a class="anchor-link" href="#Models">¶</a></h2>
+<h2 id="Models">Models<a class="anchor-link" href="#Models">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'http://upload.wikimedia.org/wikipedia/commons/0/0e/SimpleBayesNet.svg'</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://upload.wikimedia.org/wikipedia/commons/0/0e/SimpleBayesNet.svg&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <img src="http://upload.wikimedia.org/wikipedia/commons/0/0e/SimpleBayesNet.svg" />
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1342,33 +1382,36 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Default values are taken from the example provided in the above. (Taken from <a href="http://en.wikipedia.org/wiki/Bayesian_network#Example">Wikipedia</a>)</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Initialization</span>
 <span class="n">observed_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">]</span>
 
-<span class="n">rain</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">'rain'</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observed_values</span><span class="p">)))</span>
+<span class="n">rain</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">&#39;rain&#39;</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observed_values</span><span class="p">)))</span>
 
-<span class="n">p_sprinkler</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Lambda</span><span class="p">(</span><span class="s1">'p_sprinkler'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">rain</span><span class="o">=</span><span class="n">rain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rain</span><span class="p">,</span> <span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">p_sprinkler</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Lambda</span><span class="p">(</span><span class="s1">&#39;p_sprinkler&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">rain</span><span class="o">=</span><span class="n">rain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rain</span><span class="p">,</span> <span class="o">.</span><span class="mi">01</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">))</span>
 
-<span class="c1"># "Real" sprinkler varible</span>
-<span class="n">sprinkler</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">'sprinkler'</span><span class="p">,</span> <span class="n">p_sprinkler</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observed_values</span><span class="p">)))</span>
+<span class="c1"># &quot;Real&quot; sprinkler varible</span>
+<span class="n">sprinkler</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">&#39;sprinkler&#39;</span><span class="p">,</span> <span class="n">p_sprinkler</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">observed_values</span><span class="p">)))</span>
 
-<span class="n">p_grass_wet</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Lambda</span><span class="p">(</span><span class="s1">'p_grass_wet'</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">sprinkler</span><span class="o">=</span><span class="n">sprinkler</span><span class="p">,</span> <span class="n">rain</span><span class="o">=</span><span class="n">rain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sprinkler</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rain</span><span class="p">,</span> <span class="o">.</span><span class="mi">99</span><span class="p">,</span> <span class="o">.</span><span class="mi">9</span><span class="p">),</span> 
+<span class="n">p_grass_wet</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Lambda</span><span class="p">(</span><span class="s1">&#39;p_grass_wet&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">sprinkler</span><span class="o">=</span><span class="n">sprinkler</span><span class="p">,</span> <span class="n">rain</span><span class="o">=</span><span class="n">rain</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sprinkler</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rain</span><span class="p">,</span> <span class="o">.</span><span class="mi">99</span><span class="p">,</span> <span class="o">.</span><span class="mi">9</span><span class="p">),</span> 
                                                                                          <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rain</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)))</span>
-<span class="n">grass_wet</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">'grass_wet'</span><span class="p">,</span> <span class="n">p_grass_wet</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">observed_values</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grass_wet</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">&#39;grass_wet&#39;</span><span class="p">,</span> <span class="n">p_grass_wet</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">observed_values</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">grass_wet</span><span class="p">,</span> <span class="n">p_grass_wet</span><span class="p">,</span> <span class="n">sprinkler</span><span class="p">,</span> <span class="n">p_sprinkler</span><span class="p">,</span> <span class="n">rain</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1376,6 +1419,7 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In <code>p_sprinkler</code>, <code>np.where</code> checks the rain and if <code>True</code>, then puts small probability otherwise put <strong>.4</strong> taken from the graphical model retrieved from wikipedia. The reason why we wrap into the Lambda function, because we want to trace this variable in the model in the inference and PyMC does not allow a non-pymc variable to put into the model, so we need to wrap the variable into a PyMC variable using <code>Lambda</code> in the PyMC. This is also <em>true</em> for <code>p_grass_wet</code> as well.</p>
+
 </div>
 </div>
 </div>
@@ -1384,66 +1428,78 @@ AMAuAgMAALCLwAAAAOwiMAAAALv+H0wpf6hVfcrkAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Inference">Inference<a class="anchor-link" href="#Inference">¶</a></h2>
+<h2 id="Inference">Inference<a class="anchor-link" href="#Inference">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mcmc</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 <span class="n">mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre> [-----------------100%-----------------] 10000 of 10000 complete in 4.9 sec</pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trace_r</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'rain'</span><span class="p">)[:]</span>
-<span class="n">trace_p_sprinkler</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'p_sprinkler'</span><span class="p">)[:]</span>
-<span class="n">trace_sprinkler</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'sprinkler'</span><span class="p">)[:]</span>
-<span class="n">trace_p_grass_wet</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">'p_grass_wet'</span><span class="p">)[:]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trace_r</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;rain&#39;</span><span class="p">)[:]</span>
+<span class="n">trace_p_sprinkler</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;p_sprinkler&#39;</span><span class="p">)[:]</span>
+<span class="n">trace_sprinkler</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;sprinkler&#39;</span><span class="p">)[:]</span>
+<span class="n">trace_p_grass_wet</span> <span class="o">=</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;p_grass_wet&#39;</span><span class="p">)[:]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Convergence-Diagnostics">Convergence Diagnostics<a class="anchor-link" href="#Convergence-Diagnostics">¶</a></h3>
+<h3 id="Convergence-Diagnostics">Convergence Diagnostics<a class="anchor-link" href="#Convergence-Diagnostics">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mcmc</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Plotting p_grass_wet_0
@@ -1453,7 +1509,10 @@ Plotting rain_0
 </pre>
 </div>
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAk8AAAFwCAYAAAChA5+LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtclHX6//HXcIgUBfEEclBUQCBRQYTspIaoWLpqaR42
@@ -1927,10 +1986,14 @@ rL/XqxdeeEG88MILQgghVq9eLQIDAx2vBzNnzvRq/JKSEhEXFycSExPF7NmzRVVVlVfjX0vpyZMr
 TZsm4uPjxeuvv+7V+IcPHxZRUVEiOjpaZGdnO9796m3cJJOIiIhoGDy+SSYRERGRlnDyRERERDQM
 nDwRERERDQMnT0RERETDwMkTERER0TBw8kREREQ0DJw8EREREQ0DJ09EREREw/D/VS95fRBGyDcA
 AAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAFwCAYAAAB6uDWpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X1clFX+//HXIGTe4j0oQ2GBAkmKGlhpaYgChrutZaKr
@@ -2353,10 +2416,14 @@ sEA5HA4DKx/fWNurl156Sb300ku+dR577DGVmpqqsrOz1QcffGBUqQEFyrJp0yYVExPj27bdeeed
 RpY7Li3PyZBHHnlEvf766+EuUTMtWZ555hnfNmH37t1GlRpQoCwXLlxQ999/v8rOzlZZWVnq8OHD
 RpY7rtHbsf3790/6Pc8ThBIREREFSchPEEpEREQ0VbCxIiIiIgoSNlZEREREQcLGioiIiChI2FgR
 ERERBQkbKyIiIqIgYWNFREREFCRsrIiIiIiC5P8AveSQ5pnAwAYAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAl8AAAFwCAYAAACGrR5jAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XtclHXe//HXAJNn8ZCCzOCighwKFUTooHcHFMWUstI8
@@ -2810,10 +2877,14 @@ I0Pl5uaq/fv3K6WUOnHihMrLy1N5eXlq3Lhxlq6ht8tw5swZ5fF41N13363uuecelZaWpi5cuNDn
 sXbVt/McrFixQiUlJYWv+VOmTLnlsXbVt/McVFZWqnHjxqkJEyaoadOmqcbGRlvPQV/17TwH17t+
 8NXXsX3hTVaJiIiIbCR6k1UiIiKigYaDLyIiIiIbcfBFREREZCMOvoiIiIhsxMEXERERkY04+CIi
 IiKyEQdfRERERDbi4IuIiIjIRv8Pk4CjzPs0SZ8AAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAFwCAYAAAB6uDWpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X9clHW+///HKOSqJeAvCIbCAgUMf2VQm/3En7i6tpWp
@@ -3192,26 +3263,35 @@ PXr0SK6oDjnqsnHjRvLx8bGNbdOmTZMzrl0ij8kv69evp9LSUndHFCbS5eDBg7YxITc3V66oDjnq
 0tzcTEuWLKHIyEjS6XRUXFwsZ1y7fh/H8vLy/vic5wVCGWOMMcYk0u8LhDLGGGOM/S14YsUYY4wx
 JhGeWDHGGGOMSYQnVowxxhhjEuGJFWOMMcaYRHhixRhjjDEmEZ5YMcYYY4xJhCdWjDHGGGMS+S92
 ai5Q1p8ykQAAAABJRU5ErkJggg==
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [58]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">geweke</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">geweke</span><span class="p">(</span><span class="n">mcmc</span><span class="p">)</span>
 <span class="n">pymc</span><span class="o">.</span><span class="n">Matplot</span><span class="o">.</span><span class="n">geweke_plot</span><span class="p">(</span><span class="n">geweke</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEGCAYAAACAd+UpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtYlHXaB/DvDAcRCFAv8QSkoagoAYri246ndclQSV31
@@ -3375,10 +3455,14 @@ bGzy5HZsm+atS8d+/fXXePPNN1FeXo6kpCR0794dzz77LKqqqjB27Nha+8bGxlrve+SRRzBr1iy0
 bdsWCQkJtfYbOnQonnrqKZSUlKBt27aIiorCSy+9hICAAOs+c+fOxe9+9zsA1U9CN2/edMtlbUl/
 uHYNEZEb40yeiMiNsckTEbkxNnkiIjfGJk9E5MbY5ImI3BibPBGRG2OTJyJyY/8PR3XjSbKkwp4A
 AAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEGCAYAAACAd+UpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtclHXaP/DPDEdBxUMKCbgogXhAIDHTMCNDUkQzfa2n
@@ -3542,10 +3626,14 @@ ePAgMjMzm3xfI+PHjV97eXndto3I0tjkyeEYN82fLh176tQpvPXWW6isrERcXBzuuusurFy5ErW1
 tZg8eXKTfSMiIgzbfve73yEpKQk9evRAdHR0k/3GjBmD5cuXo7y8HD169EBoaCheeukleHt7G/Z5
 4okn8Nvf/hZAwz9CVVVVDrmsLWkP164hInJgnMkTETkwNnkiIgfGJk9E5MDY5ImIHBibPBGRA2OT
 JyJyYGzyREQO7P8DRRaEWFIZEvMAAAAASUVORK5CYII=
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAEGCAYAAABvtY4XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X9UVHX+P/DnnWEQQYQwRfkxR0JEhRFR1C0n0wysFLX0
@@ -3699,10 +3787,14 @@ mcjJycGePXvqPe+Wusu3Pvb19W3wGJGzscGTrtRtmL+9/OvRo0fx4YcfoqysDImJiejRowfmzJmD
 qqoqjB07tt62cXFxtsdmzJiB559/HkFBQUhISKi33X333Ye//OUvKC0tRVBQEHr27Il33nkHfn5+
 tm2mTZuGF198EUDtL6Dy8nJdXpqWtIfXoiEi0inO4ImIdIoNnohIp9jgiYh0ig2eiEin2OCJiHSK
 DZ6ISKfY4ImIdOr/A7XoJDdbH17uAAAAAElFTkSuQmCC
-" />
+">
 </div>
+
 </div>
+
 <div class="output_area"><div class="prompt"></div>
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAEGCAYAAABvtY4XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtUVPXaB/DvngFFrl5SUJGlB8ErAYFhhaUpeBTxkrpS
@@ -3864,11 +3956,14 @@ NsxLl389ePAg3nrrLdTU1CAuLg4DBw7Es88+i/r6ekyZMqXZvuHh4db77rvvPvz1r39F9+7dER0d
 3Wy/G264Af/6179QWVmJ7t27IzQ0FC+++CK8vLys+/zjH//A3//+dwCNP4AuXLhgyKVpSX+4Fg0R
 kUFxBk9EZFBs8EREBsUGT0RkUGzwREQGxQZPRGRQbPBERAbFBk9EZFD/D2UQgN9JbctvAAAAAElF
 TkSuQmCC
-" />
+">
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3876,85 +3971,94 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For a MCMC procedure, Geweke Z-Scores should be between 2 standard deviation and all of the samples are between 2 standard deviation that suggests it is converged.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [59]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dictionary</span> <span class="o">=</span> <span class="p">{</span>
-              <span class="s1">'Rain'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_r</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="p">],</span>
-              <span class="s1">'Sprinkler'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_sprinkler</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="p">],</span>
-              <span class="s1">'Sprinkler Probability'</span><span class="p">:</span> <span class="p">[</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_p_sprinkler</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
-              <span class="s1">'Grass Wet'</span><span class="p">:</span> <span class="p">[</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_p_grass_wet</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
+              <span class="s1">&#39;Rain&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_r</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="p">],</span>
+              <span class="s1">&#39;Sprinkler&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_sprinkler</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="p">],</span>
+              <span class="s1">&#39;Sprinkler Probability&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_p_sprinkler</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
+              <span class="s1">&#39;Grass Wet&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">trace_p_grass_wet</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
               <span class="p">}</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Grass Wet</th>
-<th>Rain</th>
-<th>Sprinkler</th>
-<th>Sprinkler Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td> 0.8</td>
-<td> 1</td>
-<td> 0</td>
-<td> 0.01</td>
-</tr>
-<tr>
-<th>1</th>
-<td> 0.2</td>
-<td> 0</td>
-<td> 0</td>
-<td> 0.40</td>
-</tr>
-<tr>
-<th>2</th>
-<td> 0.9</td>
-<td> 0</td>
-<td> 1</td>
-<td> 0.40</td>
-</tr>
-<tr>
-<th>3</th>
-<td> 0.9</td>
-<td> 0</td>
-<td> 1</td>
-<td> 0.40</td>
-</tr>
-<tr>
-<th>4</th>
-<td> 0.9</td>
-<td> 0</td>
-<td> 1</td>
-<td> 0.40</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Grass Wet</th>
+      <th>Rain</th>
+      <th>Sprinkler</th>
+      <th>Sprinkler Probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 0.8</td>
+      <td> 1</td>
+      <td> 0</td>
+      <td> 0.01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 0.2</td>
+      <td> 0</td>
+      <td> 0</td>
+      <td> 0.40</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 0.9</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 0.40</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 0.9</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 0.40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 0.9</td>
+      <td> 0</td>
+      <td> 1</td>
+      <td> 0.40</td>
+    </tr>
+  </tbody>
 </table>
 <p>5 rows × 4 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3962,30 +4066,37 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Given grass is wet, what is the probability that it was rained?</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [82]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_rain_wet</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Rain'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Grass Wet'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Grass Wet'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_rain_wet</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rain&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Grass Wet&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Grass Wet&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">p_rain_wet</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0.345809971208
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3993,6 +4104,7 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Compare this number on the <a href="http://en.wikipedia.org/wiki/Bayesian_network#Example">wikipedia page</a> where we try to compute $ P(R|W) = \frac{P(R,W)}{P(W)}$ from the simulations, instead of joint probabilities.</p>
+
 </div>
 </div>
 </div>
@@ -4002,30 +4114,37 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Given grass is wet, what is the probability that sprinkler was opened?</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [71]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_sprinkler_wet</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Sprinkler'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Grass Wet'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_sprinkler_wet</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sprinkler&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Grass Wet&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">p_sprinkler_wet</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0.658887710259
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -4033,41 +4152,49 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So, everything is perfect? Not really, if we look at the cases where sprinkler did not work and it did not rain, then grass cannot be wet. However, when we look at the probability of that, it is not zero(albeit quite small).</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [80]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_not_sprinkler_rain_wet</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Sprinkler'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Rain'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Grass Wet'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_not_sprinkler_rain_wet</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sprinkler&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rain&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Grass Wet&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">p_not_sprinkler_rain_wet</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0.212304894681
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">¶</a></h3><ul>
+<h3 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">&#182;</a></h3><ul>
 <li>Graphical models make much easy to reason about this type of networks, where you do not have to figure out the conditional probabilities. From the graph, it is immediate.</li>
 <li>You could marginalize out the nodes when you take into their "influence" over other variables. You could get very small networks by marginalizing out the variables that you know the dependency(read conditional probability )</li>
 <li>If you have new evidence, you could create a new branch and update that part. Inference does not have to update all of the variables as the random variables that are independent would not change but only the new evidence's descendents. </li>
 </ul>
+
 </div>
 </div>
 </div>
