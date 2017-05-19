@@ -246,6 +246,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -266,11 +267,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1095,7 +1091,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;img src="http://i.imgur.com/Kr5sfJ8.png" /&gt;
@@ -1123,7 +1121,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;img src="http://i.imgur.com/ZQ5yD96.png" /&gt;
@@ -1253,7 +1253,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;ويكيبيديا (تلفظ [wiːkiːbiːdijaː] وتلحن [wikipiːdia] ؛ تلفظ بالإنجليزية /ˌwɪkiˈpiːdi.ə/ ) هي مشروع موسوعة متعددة اللغات، مبنية على الويب ، ذات محتوى حر، تشغلها مؤسسة ويكيميديا ، التي هي منظمة غير ربحية . ويكيبيديا هي موسوعة يمكن لأي مستخدم تعديل وتحرير وإنشاء مقالات جديدة فيها.
 
@@ -1290,7 +1292,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Am 28. Jänner 1756 – einen Tag nach seiner Geburt – wurde Mozart auf die Namen Joannes Chrysostomus Wolfgangus Theophilus getauft. Der erste und letzte der genannten Vornamen verweisen auf den Taufpaten Joannes Theophilus Pergmayr, Senator et Mercator Civicus , der mittlere Vorname Wolfgang auf Mozarts Großvater Wolfgang Nicolaus Pertl. Das griechische Theophilus („ Gottlieb “) hat Mozart später in seine französische Entsprechung Amadé bzw. (selten) latinisierend Amadeus übersetzt.
 
@@ -1327,7 +1331,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;2011年，发射了首个试验型 空间站 天宫一号 ，并成功完成与后续发射的 神舟八号 飞船的对接，成为继 前苏联 及 美国 之后，第三个有能力独自发射 空间站 的国家。2012年，成功发射了 神舟九号 载人飞船，并首次将女航天员送上太空，完成了与 天宫一号 的自动，手动空间交会对接。又成功建立了 北斗卫星定位系统 ，其在民用及军用上均发挥了重要作用。
 
@@ -1364,7 +1370,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;195,046 foreign nationals became British citizens in 2010, [ 348 ] compared to 54,902 in 1999. [ 348 ] [ 349 ] A record 241,192 people were granted permanent settlement rights in 2010, of whom 51 per cent were from Asia and 27 per cent from Africa. [ 350 ] 25.5 per cent of babies born in England and Wales in 2011 were born to mothers born outside the UK, according to official statistics released in 2012. [ 351 ]
 
@@ -1401,7 +1409,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;La intervención romana se produjo en la Segunda Guerra Púnica (218 a. C.), que inició una paulatina conquista romana de Hispania , no completada hasta casi doscientos años más tarde. La derrota cartaginesa permitió una relativamente rápida incorporación de las zonas este y sur, que eran las más ricas y con un nivel de desarrollo económico, social y cultural más compatible con la propia civilización romana. Mucho más dificultoso se demostró el sometimiento de los pueblos de la Meseta, más pobres ( guerras lusitanas y guerras celtíberas ), que exigió enfrentarse a planteamientos bélicos totalmente diferentes a la guerra clásica (la guerrilla liderada por Viriato —asesinado el 139 a. C.—, resistencias extremas como la de Numancia —vencida el 133 a. C.—). En el siglo siguiente, las provincias romanas de Hispania , convertidas en fuente de enriquecimiento de funcionarios y comerciantes romanos y de materias primas y mercenarios, estuvieron entre los principales escenarios de las guerras civiles romanas , con la presencia de Sertorio , Pompeyo y Julio César . La pacificación ( pax romana ) fue el propósito declarado de Augusto , que pretendió dejarla definitivamente asentada con el sometimiento de cántabros y astures (29—19 a. C.), aunque no se produjo su efectiva romanización. En el resto del territorio, la romanización de Hispania fue tan profunda como para que algunas familias hispanorromanas alcanzaran la dignidad imperial ( Trajano , Adriano y Teodosio ) y hubiera hispanos entre los más importantes intelectuales romanos (el filósofo Lucio Anneo Séneca , los poetas Lucano , Quintiliano o Marcial , el geógrafo Pomponio Mela o el agrónomo Columela ), si bien, como escribió Tito Livio en tiempos de Augusto, &amp;#34;aunque fue la primera provincia importante invadida por los romanos fue la última en ser dominada completamente y ha resistido hasta nuestra época&amp;#34;, atribuyéndolo a la naturaleza del territorio y al carácter recalcitrante de sus habitantes. La asimilación del modo de vida romano, larga y costosa, ofreció una gran diversidad desde los grados avanzados en la Bética a la incompleta y superficial romanización del norte peninsular.
 
@@ -1438,7 +1448,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Il est, par la suite, déchu par le Sénat le 3 avril et exilé à l’ île d’Elbe , selon le traité de Fontainebleau signé le 11 avril, conservant le titre d’Empereur [ 45 ] mais ne régnant que sur cette petite île. Son convoi de Fontainebleau jusqu&amp;#39;à la Méditerranée avant son embarquement pour l&amp;#39;île d&amp;#39;Elbe passe par des villages provençaux royalistes qui le conspuent, il risque d&amp;#39;être lynché à Orgon , ce qui l&amp;#39;oblige à se déguiser [ 46 ] .
 
@@ -1475,7 +1487,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Также насчитывается 7 изолированных и 9 неклассифицированных языков . К наиболее популярным исконно африканским языкам относятся языки банту ( суахили , конго ), фула .
 
@@ -1512,7 +1526,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Yerel çeşitlere ve bunların arasında karşılıklı alışveriş ve zenginleştirmeye dayalı olması dünyanın herhangi bir büyük mutfağı için olağandır. Ama aynı zamanda büyükşehir geleneğinin zarif tadı ile homojenize ve uyumludur. [129]
 
@@ -1590,7 +1606,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -1990,7 +2008,9 @@ FCJgAQAAFCJgAQAAFCJgAQAAFPL/AVx06S8rTrRjAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;             precision    recall  f1-score   support
 
@@ -2054,7 +2074,9 @@ avg / total       0.98      0.98      0.98      1734
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -2572,7 +2594,9 @@ AAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Je ne dis pas ce que je faisais ----&amp;gt; fr
 Ich habe nich erzahlt was ich gemacht habe ----&amp;gt; de
@@ -2614,6 +2638,9 @@ I did not say what I have done ----&amp;gt; en
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -2804,6 +2831,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -2824,11 +2852,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -3733,7 +3756,9 @@ $$ \lim_{n \rightarrow \infty} P(\lvert \overline{X_n} - \mu \rvert \le \epsilon
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -4482,7 +4507,9 @@ QmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -5447,7 +5474,9 @@ as $$ n \rightarrow \infty $$&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -5705,7 +5734,9 @@ UxLLAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -6009,7 +6040,9 @@ ssQwAABliWEAAMoSwwAAlCWGAQAoSwwDAFDWA6OsjC210IbdAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -6313,7 +6346,9 @@ lgwDALAlwwAAbMkwAABbMgwAwJYMAwCwJcMAAGwFgS7iCndmfG8AAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -6608,7 +6643,9 @@ pQwDAJBayjAAAKmlDAMAkFrKMAAAqaUMAwCQWv8/Ki+JGeFGpasAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -6860,7 +6897,9 @@ UBDIAABQEMgAAFAQyAAAUBDIAABQ+P8BRkXiWcJ3q1QAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -7154,7 +7193,9 @@ gg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -7458,7 +7499,9 @@ AAAkfgBjolERCnq87QAAAABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -7750,7 +7793,9 @@ BgCABAEZAAASBGQAAEgQkAEAIEFABgCABAEZAAAS/n9iLEkPthkMDAAAAABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -8052,7 +8097,9 @@ RK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -8452,7 +8499,9 @@ AAAAMA4BGQAAABiHgAwAAACMQ0AGAAAAxvl/xUeHn823BAoAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -8855,7 +8904,9 @@ H2YZffouzhxiAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -9249,7 +9300,9 @@ AQAAgEkIyAAAAMAkBGQAAABgEgIyAAAAMMn/Ax48+1f+QNQGAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -9609,7 +9662,9 @@ AABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -9951,7 +10006,9 @@ AABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -10278,6 +10335,9 @@ AAAAGwoyAAAAYENBBgAAAGx+AZqJG0sZxfSXAAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -10468,6 +10528,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -10488,11 +10549,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11322,7 +11378,9 @@ Although my main focus is the outliers, since I will be using a linear signal as
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;Couldn&amp;#39;t import dot_parser, loading of dot files will not be possible.
 &lt;/pre&gt;
@@ -11390,7 +11448,9 @@ Although my main focus is the outliers, since I will be using a linear signal as
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -11779,7 +11839,9 @@ QmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -12367,7 +12429,9 @@ I am interested in the outliers so I define our outlier model based on Gaussian 
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt; [-----------------100%-----------------] 100000 of 100000 complete in 143.8 sec&lt;/pre&gt;
 &lt;/div&gt;
@@ -12428,7 +12492,9 @@ I am interested in the outliers so I define our outlier model based on Gaussian 
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -13347,7 +13413,9 @@ SUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -13589,7 +13657,9 @@ ABRJCAMAUCQhDABAkf4/JDBwt4OuqoEAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -14072,6 +14142,9 @@ OAgGAABA0uEgGAAAAEnn/wNBsjuYCKEzHAAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

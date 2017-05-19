@@ -200,6 +200,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -220,11 +221,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1213,7 +1209,9 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[82]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1242,7 +1240,9 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[83]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1271,7 +1271,9 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[84]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -1482,7 +1484,9 @@ where the $V$ represents the vertices(nodes) of graph and $E$ represents the edg
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Mean Rating: 6.05980388237
 Variance of Rating: 1.6072088658
@@ -1582,7 +1586,9 @@ Number of non-zero entries: 100042
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[21]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1614,7 +1620,9 @@ Number of non-zero entries: 100042
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -3891,7 +3899,9 @@ SUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -6213,7 +6223,9 @@ MQAAAADA8wjHAAAAAADPIxwDAAAAADyPcAwAAAAA8DzCMQAAAADA8wjHAAAAAADPIxwDAAAAADzv
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -7597,7 +7609,9 @@ GAAAgHjiGAAAgHjiGAAAgHi/APDPKivFH2DsAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -8926,7 +8940,9 @@ ewFuKAmjYYPoNAAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -13741,7 +13757,9 @@ QmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -16983,7 +17001,9 @@ gD05BgAAYE+OAQAA2Asz+5pwD+IU8AAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -20564,6 +20584,9 @@ iIiISMtTOBYREREREZGW9/8Dop982Aho6NcAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
+ 
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

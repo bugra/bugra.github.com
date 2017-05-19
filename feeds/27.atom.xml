@@ -220,6 +220,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -240,11 +241,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1188,7 +1184,9 @@ $$&lt;p&gt;If we want to learn the rotation in the signal by just looking at the
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -3348,7 +3346,9 @@ our principal components as it actually lies on x and y axises.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -5209,7 +5209,9 @@ AAAKAAEfAAAAAIACQMAHAAAAAKAAEPABAAAAACgA/z98ra0UcHrkLAAAAABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -6673,7 +6675,9 @@ AACAAIEPAAAAAQIfAAAAAr4DIjweJYKFJsUAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -8598,7 +8602,9 @@ AABAAgI+AAAAJPDQg/5ie3t7musAAAAAxqCCDwAAAAkI+AAAAJCAgA8AAAAJCPgAAACQwP8BZZn2
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[31]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[31]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -8646,7 +8652,9 @@ AABAAgI+AAAAJPDQg/5ie3t7musAAAAAxqCCDwAAAAkI+AAAAJCAgA8AAAAJCPgAAACQwP8BZZn2
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -10789,7 +10797,9 @@ P52lT8LSkX9ZAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -11012,7 +11022,9 @@ AEAC/w9PN68+pjOwugAAAABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;The variance explained by first eigenvector: 75.25
 The variance explained by first eigenvector: 24.75
@@ -11063,6 +11075,9 @@ The variance explained by first eigenvector: 24.75
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

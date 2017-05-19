@@ -200,6 +200,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -220,11 +221,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1121,7 +1117,9 @@ I will use a simple sinusoid signal and put some gaussian noise. Gaussian and wh
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -1752,7 +1750,9 @@ QI40QRAEQRAEQSjg/wPoJx9LFr7K2gAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -2967,7 +2967,9 @@ One can also increase the sigma or mu of Gaussian noise as FFT does not necessar
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -3904,7 +3906,9 @@ AACACP4fq4t4ayPoT1sAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -6533,7 +6537,9 @@ RU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -6910,7 +6916,9 @@ ACAIFmYAAAAgCBZmAAAAIAgWZgAAACCI/wOcy49skToVggAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -7366,7 +7374,9 @@ Then, median filtering comes to rescue. It is robust to noise and <strong>outlie
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[453]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[453]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -7375,7 +7385,9 @@ Then, median filtering comes to rescue. It is robust to noise and <strong>outlie
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -8036,7 +8048,9 @@ The procedure is coarsely like this: we look at the frequency response of the si
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -8446,6 +8460,9 @@ eAYAAABC9D9yLucjRY23KwAAAABJRU5ErkJggg==
 </div>
 </div>
 </div>
+ 
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

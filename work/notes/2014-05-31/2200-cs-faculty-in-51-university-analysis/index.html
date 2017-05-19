@@ -200,6 +200,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -220,11 +221,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1050,7 +1046,9 @@ h6:hover .anchor-link {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -1169,7 +1167,9 @@ Generally, <code>JoinYear</code>, <code>Rank</code>, <code>Subfield</code> are m
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>stat_bin: binwidth defaulted to range/30.
     Use &#39;binwidth = x&#39; to adjust this.
@@ -1177,7 +1177,9 @@ Generally, <code>JoinYear</code>, <code>Rank</code>, <code>Subfield</code> are m
 </div>
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -1416,7 +1418,9 @@ Y/4fNdxycFeeTkkAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[31]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1455,7 +1459,9 @@ Y/4fNdxycFeeTkkAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -1732,7 +1738,9 @@ lEgAAAAYo0QCAADAGCUSAAAAxiiRAAAAMPa/nxPyhRMtkbIAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[32]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1781,7 +1789,9 @@ lEgAAAAYo0QCAADAGCUSAAAAxiiRAAAAMPa/nxPyhRMtkbIAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -2117,7 +2127,9 @@ lEgAAAAYo0QCAADAGCUSAAAAxiiRAAAAMPa/nxPyhRMtkbIAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -3258,7 +3270,9 @@ AFAswQMAABRL8AAAAMUSPAAAQLEEDwAAUCzBAwAAFOsXtZ5TDARy/VMAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -3297,7 +3311,9 @@ AFAswQMAABRL8AAAAMUSPAAAQLEEDwAAUCzBAwAAFOsXtZ5TDARy/VMAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -4365,7 +4381,9 @@ iIiIiIhIIBULIiIiIiIS6P8HwErNFvpOzaYAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[13]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -4413,7 +4431,9 @@ iIiIiIhIIBULIiIiIiIS6P8HwErNFvpOzaYAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[14]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -4593,7 +4613,9 @@ iIiIiIhIIBULIiIiIiIS6P8HwErNFvpOzaYAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -5316,7 +5338,9 @@ REREClLRKCIiIiIF/X8cveowqwGXNQAAAABJRU5ErkJggg==
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[16]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -5355,7 +5379,9 @@ REREClLRKCIiIiIF/X8cveowqwGXNQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[18]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -6157,7 +6183,9 @@ REREClLRKCIiIiIF/X8cveowqwGXNQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -7369,7 +7397,9 @@ AAAkCBo4AAAAAEgQ/w9W9X5RXA+cCQAAAABJRU5ErkJggg==
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[22]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -7408,7 +7438,9 @@ AAAkCBo4AAAAAEgQ/w9W9X5RXA+cCQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[24]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -8294,7 +8326,9 @@ AAAkCBo4AAAAAEgQ/w9W9X5RXA+cCQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -9363,7 +9397,9 @@ AwAAAACXoKABAAAAgEtQ0AAAAADAJf4//HqgjH93gSoAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[25]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -9392,7 +9428,9 @@ AwAAAACXoKABAAAAgEtQ0AAAAADAJf4//HqgjH93gSoAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[26]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -10194,7 +10232,9 @@ AwAAAACXoKABAAAAgEtQ0AAAAADAJf4//HqgjH93gSoAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -11166,7 +11206,9 @@ EwoWAAAAANiEggUAAAAANvk/evk3EzH589UAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[30]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11199,6 +11241,9 @@ EwoWAAAAANiEggUAAAAANvk/evk3EzH589UAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
+ 
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

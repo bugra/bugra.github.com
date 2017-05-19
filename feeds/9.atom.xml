@@ -185,12 +185,10 @@ if you access a non-existent key to the table, it simply returns &lt;code&gt;nil
 be less explicit error or exception but rather nil checking for those statements 
 if the key actually exists in the first place in the table.&lt;/p&gt;
 &lt;h3&gt;Lua does proper tail recursion&lt;/h3&gt;
-&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</content></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><published>2014-07-09T00:00:00+00:00</published><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase"&gt;
+&lt;p&gt;Lua does proper tail recursion where Python does not. &lt;/p&gt;</content></entry><entry><title>PigPen, Hadoop, Pig, Clojure and All That</title><link href="http://bugra.github.io/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/" rel="alternate"></link><published>2014-07-09T00:00:00+00:00</published><updated>2014-07-09T00:00:00+00:00</updated><author><name>Bugra Akyildiz</name></author><id>tag:bugra.github.io,2014-07-09:/work/notes/2014-07-09/pigpen-hadoop-pig-clojure-cascading/</id><summary type="html">&lt;p&gt;![Big Data vs me](http://i.imgur.com/dJ5nhHd.jpg Me, When I see “big data” phrase)
 My humble contribution to &lt;a href="http://bigdatapix.tumblr.com/"&gt;ridiculous images on big data&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post is about &lt;a href="https://github.com/Netflix/PigPen"&gt;PigPen&lt;/a&gt;, a library that Netflix
-open sourced in the beginning of this year. Yet, in order to introduce the library, 
-I covered some background namely Hadoop, Pig and Clojure which PigPen builds on top of 
-those. If …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Big Data vs me" src="http://i.imgur.com/dJ5nhHd.jpg" title="Me, When I see “big data” phrase"&gt;
+open sourced in the beginning of this year. Yet, in order to introduce the library …&lt;/p&gt;</summary><content type="html">&lt;p&gt;![Big Data vs me](http://i.imgur.com/dJ5nhHd.jpg Me, When I see “big data” phrase)
 My humble contribution to &lt;a href="http://bigdatapix.tumblr.com/"&gt;ridiculous images on big data&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This post is about &lt;a href="https://github.com/Netflix/PigPen"&gt;PigPen&lt;/a&gt;, a library that Netflix
 open sourced in the beginning of this year. Yet, in order to introduce the library, 
@@ -443,7 +441,7 @@ methods in a readable fashion. Scalding (Scala implementation of Cascading) also
 provides a very similar syntax and feeling, if you are familiar, check that out as
 well.&lt;/p&gt;
 &lt;h1&gt;PigPen&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="PigPen" src="http://i.imgur.com/mhil2yS.png" title="PigPen Logo"&gt;
+&lt;p&gt;![PigPen](http://i.imgur.com/mhil2yS.png PigPen Logo)
 PigPen combines the Clojure awesomeness namely functional programming, Lisp and JVM 
 on top of Pig. This is quite awesome for a number of reasons:&lt;/p&gt;
 &lt;ol&gt;
@@ -675,6 +673,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -695,11 +694,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1531,7 +1525,9 @@ h6:hover .anchor-link {
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -2157,7 +2153,9 @@ BUlEQVQf8lon7n4PUcoAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -2730,7 +2728,9 @@ Jpi0iYiIZIJJm4iISCb+P1Xmulao/EJ6AAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -3104,7 +3104,9 @@ RU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -3483,7 +3485,9 @@ woek8AohhBA+JIVXCCGE8CEpvEIIIYQPSeEVQgghfOhfl+MDlvtWUnwAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -3876,7 +3880,9 @@ AAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -4438,7 +4444,9 @@ JnIiIiIFYyInIiJSMCZyIiIiBWMiJyIiUjAmciIiIgX7f7MwFg1i+440AAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -5025,7 +5033,9 @@ wZjIiYiIFIyJnIiISMH+D9bHiK6QF/hsAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -6167,7 +6177,9 @@ PEREREREREREdo4JHiIiIiIiIiIiO8cEDxERERERERGRnWOCh4iIiIiIiIjIzjHBQ0RERERERERk
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -7331,6 +7343,9 @@ AFmLo4MAAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

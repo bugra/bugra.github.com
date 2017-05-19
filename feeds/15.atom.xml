@@ -164,6 +164,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -184,11 +185,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1037,7 +1033,9 @@ votes as a metric to order the movies is because, generally the information (tit
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea "&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -1404,7 +1402,9 @@ votes as a metric to order the movies is because, generally the information (tit
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea "&gt;
 &lt;table border="1" class="dataframe"&gt;
@@ -1771,7 +1771,9 @@ votes as a metric to order the movies is because, generally the information (tit
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[77]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[77]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -1780,7 +1782,9 @@ votes as a metric to order the movies is because, generally the information (tit
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -2188,7 +2192,9 @@ dKLYCIIgCE73P+K7eDgYFdGiAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[19]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[19]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -2197,7 +2203,9 @@ dKLYCIIgCE73P+K7eDgYFdGiAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -3749,7 +3757,9 @@ EiRIUIP/D5POR6F0ERkOAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -5020,7 +5030,9 @@ $C$ = the mean vote across the whole report (currently 6.90)&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -5029,7 +5041,9 @@ $C$ = the mean vote across the whole report (currently 6.90)&lt;/p&gt;
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -7029,7 +7043,9 @@ choosing contemporary movies.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -9110,7 +9126,9 @@ AABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[14]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[14]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -9119,7 +9137,9 @@ AABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -9432,7 +9452,9 @@ pFgIIYSokxQLIYQQdZJiIYQQok5SLIQQQtRJioUQQog6SbEQQghRJykWQggh6iTFQgghRJ3+P/WP
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -9441,7 +9463,9 @@ pFgIIYSokxQLIYQQdZJiIYQQok5SLIQQQtRJioUQQog6SbEQQghRJykWQggh6iTFQgghRJ3+P/WP
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -9741,7 +9765,9 @@ HElJSUbHEp2cdIUJIYRwKekKE0II4VJSWIQQQriUFBYhhBAuJYVFCCGES0lhEUII4VJSWIQQQrjU
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -9750,7 +9776,9 @@ HElJSUbHEp2cdIUJIYRwKekKE0II4VJSWIQQQriUFBYhhBAuJYVFCCGES0lhEUII4VJSWIQQQrjU
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -10040,7 +10068,9 @@ minutes.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -10471,7 +10501,9 @@ minutes.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[14]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[14]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -10823,7 +10855,9 @@ minutes.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[15]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -10951,7 +10985,9 @@ minutes.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -11345,7 +11381,9 @@ minutes.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[17]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[17]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -11431,7 +11469,9 @@ minutes.&lt;/p&gt;
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[160]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[160]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -11440,7 +11480,9 @@ minutes.&lt;/p&gt;
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -11738,7 +11780,9 @@ hBBRocJFCCFEVKhwEUIIEZX/BzQ8bLW4UzhAAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[159]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[159]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -11747,7 +11791,9 @@ hBBRocJFCCFEVKhwEUIIEZX/BzQ8bLW4UzhAAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -12059,7 +12105,9 @@ iMgksYEjIiKT9P9p3+MfpWW6LQAAAABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[84]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[84]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -12211,7 +12259,9 @@ iMgksYEjIiKT9P9p3+MfpWW6LQAAAABJRU5ErkJggg==
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -13191,7 +13241,9 @@ hA0sIiIiIiIihbCBRUREREREpJD/B4Cb681x+NnRAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -14509,7 +14561,9 @@ QgghhPATGWAJIYQQQgghhJ/IAEsIIYQQQggh/OT/B05b3Fteil4yAAAAAElFTkSuQmCC
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -15544,7 +15598,9 @@ and Film-Noir movies are quite close to each other in terms of runtime.&lt;/p&gt
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -16667,6 +16723,9 @@ AElFTkSuQmCC
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

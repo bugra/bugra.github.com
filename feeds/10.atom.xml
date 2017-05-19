@@ -67,14 +67,14 @@ for the K-Means without whitening is the patches end up low-frequency and color
 dominant whereas the whitened patches are more like edge-like filters.&lt;/p&gt;
 &lt;h6&gt;Patch Length = 8&lt;/h6&gt;
 &lt;p&gt;Whitened filters:
-&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_8_100.png" title="‘K-Means Filters with Stride=8’"&gt;&lt;/p&gt;
+![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_8_100.png ‘K-Means Filters with Stride=8’)&lt;/p&gt;
 &lt;p&gt;Not-whitened filters:
-&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_8_unnormalized_100.png" title="‘K-Means Filters - Unnormalized with Stride=8’"&gt;&lt;/p&gt;
+![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_8_unnormalized_100.png ‘K-Means Filters - Unnormalized with Stride=8’)&lt;/p&gt;
 &lt;h6&gt;Patch Length = 4&lt;/h6&gt;
 &lt;p&gt;Whitened filters:
-&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_4_100.png" title="‘K-Means Filters with Stride=4’"&gt;&lt;/p&gt;
+![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_4_100.png ‘K-Means Filters with Stride=4’)&lt;/p&gt;
 &lt;p&gt;Not-whitened filters:
-&lt;img alt="K-Means Filters" src="/images/work/notes/2015/2/10/kmeans_filters_stride_4_unnormalized_100.png" title="‘K-Means Filters with Stride=4’"&gt;&lt;/p&gt;
+![K-Means Filters](/images/work/notes/2015/2/10/kmeans_filters_stride_4_unnormalized_100.png ‘K-Means Filters with Stride=4’)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Generally people use some whitening for various reasons; for K-Means, it makes
 easier to converge also filters-learned are more edge-like rather than pure colors
@@ -157,6 +157,6 @@ Some of the filters learn only colors similar to some of the filters in K-Means
 that are somehow similar to each other after selecting 20 of them by hand. Some of 
 even if after whitening, which was somehow disappointing. &lt;/p&gt;
 &lt;h4&gt;Whitened Filters&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Whitened Filters" src="/images/work/notes/2015/2/10/dictionary_learning_stride_8_256.png" title="‘Dictionary Learning Whitened Filters’"&gt;&lt;/p&gt;
+&lt;p&gt;![Whitened Filters](/images/work/notes/2015/2/10/dictionary_learning_stride_8_256.png ‘Dictionary Learning Whitened Filters’)&lt;/p&gt;
 &lt;h4&gt;Unwhitened Filters&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="Unwhitened Filters" src="/images/work/notes/2015/2/10/dictionary_learning_stride_8_256_unnormalized.png" title="‘Dictionary Learning Unwhitened Filters’"&gt;&lt;/p&gt;</content></entry></feed>
+&lt;p&gt;![Unwhitened Filters](/images/work/notes/2015/2/10/dictionary_learning_stride_8_256_unnormalized.png ‘Dictionary Learning Unwhitened Filters’)&lt;/p&gt;</content></entry></feed>

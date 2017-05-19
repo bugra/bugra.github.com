@@ -197,6 +197,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -217,11 +218,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1186,7 +1182,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[2]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[2]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -1258,7 +1256,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -1336,7 +1336,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -1441,7 +1443,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -1538,7 +1542,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -1742,7 +1748,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
 
 &lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
@@ -1958,7 +1966,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -1993,7 +2003,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -2049,7 +2061,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
+
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
@@ -2147,7 +2161,9 @@ where $W_u \in \mathbb{R}^{nxn}$ and $W_u \in \mathbb{R}^{mxm}$ diagonal matrice
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;0th iteration is completed
 Error of rated movies: 15819.8521631
@@ -2176,7 +2192,9 @@ Error of rated movies: 15819.8521631
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -2397,7 +2415,9 @@ EWlYCkREpPn/BzrP/9pJ66MAAAAASUVORK5CYII=
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 
 
 &lt;div class="output_png output_subarea "&gt;
@@ -2729,7 +2749,9 @@ and our collaborative filter recommends &lt;a href="http://www.imdb.com/title/tt
 &lt;div class="output"&gt;
 
 
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_area"&gt;
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;User 1 liked Toy Story (1995), Jumanji (1995), Grumpier Old Men (1995), Waiting to Exhale (1995), Father of the Bride Part II (1995), Heat (1995), Sabrina (1995), Tom and Huck (1995), Sudden Death (1995), GoldenEye (1995), American President, The (1995), Dracula: Dead and Loving It (1995), Balto (1995), Nixon (1995), Cutthroat Island (1995), Casino (1995), Sense and Sensibility (1995), Four Rooms (1995), Ace Ventura: When Nature Calls (1995), Money Train (1995), Get Shorty (1995)
 
@@ -5495,6 +5517,9 @@ User 303 did not like
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+ 
+
+
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

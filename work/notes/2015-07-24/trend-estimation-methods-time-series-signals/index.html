@@ -200,6 +200,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -220,11 +221,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -1186,7 +1182,9 @@ h6:hover .anchor-link {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -1286,7 +1284,9 @@ h6:hover .anchor-link {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -2595,7 +2595,9 @@ $$y(t) = \frac{\displaystyle\sum_{i=-\frac{N+1}{2}}^{\frac{N+1}{2}} x(t + i)}{w}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -4369,7 +4371,9 @@ QQciIiIiIiIi6hccdCAiIiIiIiKifsFBByIiIiIiIiLqF/8Dl69RQu/FXHQAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -6075,7 +6079,9 @@ gKAg6AAAAAAAAIKCoAMAAAAAAAgKgg4AAAAAACAo/j/9ADU20spyewAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -7686,7 +7692,9 @@ $$ y(t) = median( x[t-\frac{w}{2}, t+\frac{w}{2}])$$<p>where $w$ is the window s
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -9285,7 +9293,9 @@ AIB6QdIBAAAAAADUC5IOAAAAAACgXvw/nhE279uGFLwAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -10849,7 +10859,9 @@ AElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -12455,7 +12467,9 @@ $$<p>One can think the exponential weights in terms of span and half life. Half 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -14259,7 +14273,9 @@ U7DTgYiIiIiIiIg6BTsdiIiIiIiIiKhT/C879I+G1LQcZQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -16025,7 +16041,9 @@ EEKIV/wPf27uiwnOxvoAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -17743,7 +17761,9 @@ $$\min_{\\{ x_{t}\\} }\sum_{t}^{T} c_{t}^{2}+\lambda\displaystyle\sum_{t=1}^{T}\
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -18909,7 +18929,9 @@ mzfP81ggGRVDIQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -20125,7 +20147,9 @@ EEKIx9DAAyGEEEIIIYQQQjyGBh4IIYQQQgghhBDiMf8C7s8/iXOdugkAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -21393,7 +21417,9 @@ where  $x,y \in \mathbf{R}^n$, $\lambda \in \mathbf{R}_+^n$ and $D \in \mathbf{R
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -22987,7 +23013,9 @@ HkHSAQAAAAAAeARJBwAAAAAA4BEkHQAAAAAAgEf8f/bLP7WmteMcAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -24526,7 +24554,9 @@ kg4AAAAAAMAtSDoAAAAAAAC3+H+5049JNXddigAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -26110,7 +26140,9 @@ AAAAALgFSQcAAAAAAOAWJB0AAAAAAIBbkHQAAAAAAABu8b+yj+yPzeWTPAAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -28118,7 +28150,9 @@ iIiIiEgv/hcdDeAQxv6qgQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -28845,7 +28879,9 @@ AAAAAACISYQaAAAAAAAgJhFqAAAAAACAmESoAQAAAAAAYhKhBgAAAAAAiEmEGgAAAAAAICb9f1m2
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -30760,7 +30796,9 @@ k2gAj5EAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -31472,7 +31510,9 @@ AAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -33136,7 +33176,9 @@ L/4/qe1ol0wK2toAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 
 
 <div class="output_png output_subarea ">
@@ -33858,6 +33900,9 @@ IvQAAAAAAABx6f8Dxtr1MhteZVYAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
+ 
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
