@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Visual Search in E-commerce</title>
+
+		<meta name="description" content="Visual Search In E-commerce">
+		<meta name="author" content="Buğra Akyıldız">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+        <style>
+            p {
+              width: 720px;
+            }
+
+            h1, h2, h3 {
+              font-weight: 300;
+              text-rendering: optimizeLegibility;
+            }
+
+            h1 {
+              font-size: 2.5em;
+            }
+
+            aside {
+              font-size: small;
+              position: absolute;
+              right: 0;
+              width: 180px;
+            }
+
+            aside p {
+              width: auto;
+            }
+
+            p.cite, p.caption {
+              color: #666;
+            }
+
+            p.caption {
+              text-align: center;
+              font-size: small;
+              font-style: italic;
+              width: auto;
+            }
+            rect { stroke: #000; fill: #fff; shape-rendering: crispEdges; }
+            rect.on { fill: #fc0; }
+            rect.off { fill: #0cf; }
+            path { stroke: #000; fill: none; }
+        </style>
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/night.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+		<!-- If the query includes 'print-pdf', include the PDF print sheet
+		<link rel="stylesheet" href="css/print/p.css">-->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section data-background="#4f0099">
+					<h2 style="line-height:1.5;"><strong>Visual Search</strong> <br /> in E-commerce</h2>
+
+				</section>
+                <section data-background="#360060">
+                    <h2> Bugra Akyildiz </h2>
+                    <article> <strong>Staff Software Engineer in Jet</strong></article>
+                    <br>
+                    <article></article>
+                    <br>
+                    <article>
+                        Visual Search
+                        <br>
+                        Recommendations
+                    </article>
+                    <br>
+                    <article> I like data powered products and machine learning </article>
+                    <br>
+                    <article> https://github.com/bugra/visual-search-2018 </article>
+                    <br>
+                    <article>bugra.akyildiz@jet.com</article> 
+                    <br>
+                    <article>@bugraa</article>   
+                
+                </section>
+                
+                <section data-background="#333333">
+                    <h1> Visual Search </h1>
+                </section>
+
+                <section data-background="#333333">
+                    <h2> Raison D'être </h2>
+                    <br>
+                    <article> Fashion, home and furniture where visual appeal is very important to customer, we believe the image of the product they are looking for could provide a richer information building the search query more than words. </article>
+                </section>
+                
+               <section data-background="#333333">
+                  <img alt="example snippet" src="assets/images/l-shaped-couch.jpg"/>
+                </section>
+                
+                <section data-background="#333333">
+                  <img alt="example snippet" src="assets/images/black-lace-long-sleeve-bodycon-dress.webp"/>
+                </section>
+                
+                <section data-background="#333333">
+                  <img alt="example snippet" src="assets/images/sphere-table-lamp.jpg"/>
+                </section>
+                
+                <section data-background="#333333">
+                  <img alt="example snippet" src="assets/images/hayneedle-homepage.png"/>
+                </section>
+                
+                <section data-background="#333333">
+                  <img alt="example snippet" src="assets/images/hayneedle-visual-search-homepage.png"/>
+                </section>
+                
+                
+                <section data-background="#333333">
+                    <h2> Raw Image? </h2>
+                </section>
+                
+             
+                <section data-background="#999999">
+                    <h3> Too much data  </h3>
+                    <br> 
+                    <h3> Redundant </h3>
+                    <br>
+                    <h3> Not robust to noise </h3>
+                    <br>
+                    <h3> Not robust to light exposure </h3>
+                </section>
+                
+                <section data-background="#999999">
+                    <h3> Not transformation variant </h3>
+                    <br>
+                    <h3> Not rotation variant </h3>
+                    <br>
+                    <h3> Not scale variant </h3>
+                    <br>
+                </section>
+                
+                <section data-background="#333333">
+                    <h2> Maybe not </h2>
+                </section>
+
+                <section data-background="#45a4ec">
+                    <h3><strong> Features </strong></h3>
+                </section>
+                
+                <section data-background="#3d5c96"> 
+                    <h2> Engineered Features </h2>
+                    <br>
+                    <img alt="example snippet" src="assets/images/sift_descriptors.png"/>
+                </section>
+
+
+                <section data-background="#45a4ec">
+                    <h2><strong> Representation </strong></h2>
+                    <h3><strong> What if </strong></h3>
+                    <br>
+                    <br>
+                    <article>  We <strong>represent</strong> the image into a feature vector </article>
+                    <br> 
+                    <article> It's A Bird... It's A Plane... It's <b style="text-decoration: line-through;"> Superman</b><b> Embedding </b> </article>
+                </section>
+
+                <section data-background="#c92940">
+                    <h2><strong>Embedding</strong></h2>
+                    <article><strong> A transformation of input data into a more useful representation — a list of real numbers, called a vector. </strong></article>
+                </section>
+                
+                <section data-background="#c92940">
+                    <h2> Indexing </h2>
+                    <h4> Tensorflow</h4>
+                    <h4> Embedding Generation on Product Images </h4>
+                    <h4> FAISS </h4>
+                    
+                    <h2> Query </h2>
+                    <h4> Tensorflow</h4>
+                    <h4> Embedding Generation of Query Image </h4>
+                    <h4> FAISS </h4>
+                </section>
+                
+                <section data-background="#c92940">
+                    <h2> Tensorflow </h2>
+                </section>
+                
+                <section data-background="#c92940">
+                    <h4> Lazy Evaluation </h4>
+                    <br>
+                    <h4> TF Model Serving </h4>
+                    <br>
+                    <h4> Available Production Ready Models </h4>
+                    <br>
+                    <h4> Community support </h4>
+                    <br>
+                    <h4> Open Source </h4>
+                    <br>
+                    <h4> Tensorboard! </h4>
+                    <br>
+                    <h4> Distributed training support </h4>
+                    <br>
+                    <h4> GPU support </h4>
+                    <br>
+                    <h4> Adoption </h4>
+                </section>
+                
+                <section data-background="#c92940">
+                    <h4> Debugging </h4>
+                    <br>
+                    <h4> Boilerplate Code </h4>
+                    <br>
+                    <h4> Interfaces are not obvious to figure out </h4>
+                    <br>
+                    <h4> Cluttered library </h4>
+                    <br>
+                    <h4> No Dynamic Graph Support </h4>
+                </section>    
+                
+                
+                <section data-background="#c92940">
+                    <h2> Off-Shelf Solutions </h2>
+                    <h4> Inception Model </h4>
+                    <h4> PNasNet Model </h4>
+                </section>
+                
+<section data-markdown data-background="#c92940">
+### PNasNet through TFHUB
+```python
+module = hub.Module("https://tfhub.dev/google/imagenet/pnasnet_large/classification/2")
+height, width = hub.get_expected_image_size(module)
+logits = module(images)  # Logits with shape [batch_size, num_classes].
+```
+</section>
+
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/basic_cnn_network_diagram.png"/>
+                </section>
+
+
+<section data-markdown data-background="#c92940">
+### Retraining
+```python
+layer_name = 'final_retrain_ops'
+with tf.name_scope(layer_name):
+  with tf.name_scope('weights'):
+    initial_value = tf.truncated_normal(
+          [bottleneck_tensor_size, class_count], stddev=0.001)
+    layer_weights = tf.Variable(initial_value, name='final_weights')
+    variable_summaries(layer_weights)
+
+  with tf.name_scope('biases'):
+    layer_biases = tf.Variable(tf.zeros([class_count]), name='final_biases')
+    variable_summaries(layer_biases)
+
+  with tf.name_scope('Wx_plus_b'):
+    logits = tf.matmul(bottleneck_input, layer_weights) + layer_biases
+    tf.summary.histogram('pre_activations', logits)
+```   
+</section>
+                
+                <section data-background="#c92940">
+                    <h2>Tensorflow Model Serving</h2>
+                </section>
+                
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/life-of-servable.svg"/>
+                </section>
+                
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/tensorflow_serving_another_example.png"/>
+                </section>
+
+
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/tensorflow_model_serving_architecture.png"/>
+                </section>
+                
+                <section data-background="#45a4ec">
+                    <h4>Facebook Artificial Intelligence Similarity Search</h4>
+                    <br>
+                    <h2>FAISS</h2>
+                </section>
+               
+               <section data-background="#45a4ec">
+                    <img alt="example snippet" src="assets/images/faiss-indexin.jpg"/>
+                </section>
+
+
+<section data-markdown data-background="#45a4ec">
+### FAISS (Indexing)
+```python
+import faiss                   # make faiss available
+index = faiss.IndexFlatL2(d)   # build the index, d=size of vectors 
+# here we assume xb contains a n-by-d numpy matrix of type float32
+index.add(xb)                  # add vectors to the index
+print index.ntotal
+```
+</section>
+
+<section data-markdown data-background="#45a4ec">
+### FAISS (Query)
+ ```python
+# xq is a n2-by-d matrix with query vectors
+k = 4                          # we want 4 similar vectors
+D, I = index.search(xq, k)     # actual search
+print I
+```
+</section>         
+             
+                <section data-background="#45a4ec">
+                    <img alt="example snippet" src="assets/images/faiss-indexin.jpg"/>
+                </section>                   
+              
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/api-architecture.png"/>
+                </section>
+                            
+
+
+<section data-markdown>
+### TEFA
+```python
+async def get_embeddings_from_raw_image_bytes(request):
+  data = await request.json()
+  image_bytes = data.get('image_bytes')
+  with timer('embedding_time_from_tensorflow_model_server', logger) as t:
+    embeddings, attributes = TF_MODEL_SERVING_CLIENT.get_embeddings_and_response(image_bytes)
+
+  return web.json_response({
+    'response': embeddings,
+    'attributes': attributes,
+  })
+```
+
+</section>              
+               
+                
+<section data-markdown>
+### VISA (VIsual Search Api)
+```python
+def search_by_embedding(self, search_embedding, limit=TOTAL_NUMBER_OF_RESULTS):
+  D, I = self.__index.search(search_embedding, limit)
+  similar_images = []
+  for ii in range(limit):
+    url_id = self.__url_ids[I[0][ii]]
+    similar_images.append({
+      'url': url_id[Fields.IMAGE_LINK],
+      'dist': float(D[0][ii]),
+      'item_id': url_id[Fields.PRODUCT_ID],
+      'pt': url_id[Fields.PRODUCT_TYPE],
+    })
+
+  return similar_images
+```
+
+</section>
+
+               
+               <section data-background="#c92940">
+                   <h2>Production Readiness</h2>
+               </section>
+               
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/catalog-parser-publish-events.png"/>
+                </section>
+                
+                <section data-background="#c92940">
+                    <h2>Indexers' Health</h2>
+                </section>
+                
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/hn_indexers_health.png"/>
+                </section>
+
+                <section data-background="#45a4ec">
+                    <h2>Tracing</h2>
+                </section>
+                
+                <section data-background="#45a4ec">
+                    <img alt="example snippet" src="assets/images/api_tracing.png"/>
+                </section>
+
+               <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/another_api_tracing.png"/>
+                </section>
+
+                <section data-background="#45a4ec">
+                    <h2>How does it look?</h2>
+                </section>
+
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/first_result.png"/>
+                </section>
+                
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/second_result.png"/>
+                </section>
+                
+                <section data-background="#c92940">
+                    <img alt="example snippet" src="assets/images/third_result.png"/>
+                </section>
+
+				<section data-background="#55acee">
+					<h2><strong>Links</strong></h2>
+                    <ul>
+                        <li><a href="https://www.tensorflow.org/hub/">Tensorflow Hub</a></li>
+                        <li><a href="https://github.com/facebookresearch/faiss"> FAISS </a></li>
+                        <li><a href="https://www.tensorflow.org/serving/"> Tensorflow Model Serving </a></li>
+                    </ul><br><br>
+				</section>
+
+				<section data-background="#55acee">
+					<h2><strong>Questions?</strong></h2>
+				</section>
+
+			</div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+        <script src="js/d3.min.js"></script>
+        <script src="js/bloomfilter.js"></script>
+        <script src="js/bloomVis.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+                math: {
+                    mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/math/math.js', async: true }, // Necessary for mathjax plugin
+
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
