@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Basic Math on How Bloom Filter Works &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Basic Math on How Bloom Filter Works" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2016/8/27/regularization/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Basic Math on How Bloom Filter Works" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2016/8/27/regularization/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Basic Math on How Bloom Filter Works</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">August 27, 2016 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2016/8/27/regularization/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>I gave an overview on <a href="https://bugra.github.io/work/notes/2016-06-05/a-gentle-introduction-to-bloom-filter/">bloom filter</a> in the previous blog post. But if I summarize the properties of bloom filter as a data structure;</p>
+<ul>
+<li>Fast inserts</li>
+<li>Fast lookups</li>
+<li>No false negatives -&gt; all of the items that are inserted return true for membership existence</li>
+<li>You could make the tradeoff space vs false positive rate. If you do not care about the false positive rate, you could gain quite a bit of space.</li>
+<li>However, one can only lookup if a key existence, it does not allow to do reverse lookups since hash collisions are possible.</li>
+<li>Various set intersection properties are available(<code>union</code>, <code>intersection</code>)</li>
+</ul>
+<p>We know that at this point that Bloom Filters are space efficient data structures which allow small false positive rate to be able to gain space from the items that are inserted into the Bloom Filter. As we increase the size of the Bloom Filter, we decrease the false positive rates as we reduce the hash collisions that occur for multiple items that are inserted in the Bloom Filter. Actually, as we increase the size of the bloom filter, we could approximate a vanilla hashmap. That means that we are actually not going to have hash collisions so that every item is mapped to a unique bit in the bloom filter.</p>
+<p>In this note, I am going to go a little deeper; to detail how the internals of the bloom filter works as well as tradeoff in a problem formulation.</p>
+<h3 id="formulation">Formulation</h3>
+<p>Bloom filter is nothing but array of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> bits. We have generally <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> hash functions to be able to insert multiple bits in the array for a given item.</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> bits: Array of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> bits</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> hash functions: $h_1, h_2, , h_k $</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mfrac><mi>n</mi><mi>s</mi></mfrac></mrow><annotation encoding="application/x-tex">b = \frac{n}{s}</annotation></semantics></math>: # of bits per object in dataset <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math></li>
+</ul>
+<p>We are using multiple hash functions because this makes full hash collisions less frequent and make the lookup more robust so that the false positive rate of the Bloom Filter would be very small. As you could imagine, multiple hash functions allow more than one collision per position in the bloom filter, but it may not report false positive rates as all of the hash value positions should return to 1 when there is going to be a false positive report.</p>
+<p>The reason why we define bits per object is because I am going to give the error formula in terms of the number of bits per object.</p>
+<h3 id="insertion">Insertion</h3>
+<p>The way we <code>insert</code> an element in the bloom filter is to just set the positions for the values of the hash functions <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>. The way we formulate this is the following:</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>: For <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">i=1, 2, \ldots, k</annotation></semantics></math>, set $A[h_i(x)] = 1 $</li>
+</ul>
+<p>For positions that are returned by the hash functions are going to be set to 1.</p>
+<h3 id="lookup">Lookup</h3>
+<p>Lookup is also very similar to inserts, we are going to check the positions for the value of the hash functions <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>. If every single bit in each position is set to 1, then we would say the item is “probably” there. - <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>: return True if and only if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">A[h_i(x)] = 1</annotation></semantics></math> for every <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">i = 1, 2, \ldots, k</annotation></semantics></math></p>
+<h3 id="error-rate">Error Rate</h3>
+<p>We could compute the false positive rate or error rate with the following formula. Note that as we increase the total hash functions, the error rate goes down as well as the we increase the bloom filter size since that would increase the total number of bits per object in dataset.</p>
+<ul>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mfrac><mrow><mo>−</mo><msup><mi>k</mi><mn>2</mn></msup></mrow><mi>b</mi></mfrac></msup></mrow><annotation encoding="application/x-tex">\le 1 - e^{\frac{-k^2}{b}}</annotation></semantics></math></li>
+</ul>
+<p>For a given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>, we could find the optimal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> by taking the derivative of the error rate with respect to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+<h3 id="how-to-set-k">How to set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>?</h3>
+<ul>
+<li>Taking derivative of error rate:</li>
+<li>$ k=b ln(2) $</li>
+</ul>
+<p>By doing so, for a given plausible <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>, we could compute the total number of hash functions(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>) very easily.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

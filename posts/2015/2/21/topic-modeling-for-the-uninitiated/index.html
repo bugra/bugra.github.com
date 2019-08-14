@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Topic Modeling for the Uninitiated &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Topic Modeling for the Uninitiated" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/2/21/topic-modeling-for-the-uninitiated/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic Modeling for the Uninitiated" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/2/21/topic-modeling-for-the-uninitiated/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Topic Modeling for the Uninitiated</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">February 21, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/2/21/topic-modeling-for-the-uninitiated/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="motivation">Motivation</h3>
+<p>As more and more data are stored digitally and people have better and improved tools for publishing, we are witnessing more and more text data has been collected and published in various mediums.(e-books, blogs, newspaper websites, magazines and mobile applications) So-called big data era not only enable people to collect more and more data through different forms but also provide a set of tools to analyze, infer various structures in the data and interpret that knowledge in various forms.</p>
+<p>Search became more and more important to find the needle in this haystack. Especially, if you need a very specific document, the only option you have is to depend on the search engine’s capabilities and hope for the best.</p>
+<p>Search is good, it brings the exact document that has the specific keyword and maybe the most relevant document based on your history. It may even go further and do a link analysis in a link network if it really want the bring best in the class. However, it comes to short when you want to read a collection of documents that are about “Iraq War” or it comes to short when you want to analyze the documents that are about “literature in Renaissance”. One of the reasons why they came short is because they build indices on top of documents not themes or topics. Iraq War or literature in Renaissance implicitly suggests a theme rather than keyword or phrase.</p>
+<p>In order to overcome this problem, topic models provide a nice way to explore a collection of documents that share a single common theme so-called “topic”.</p>
+<h3 id="definition">Definition</h3>
+<p>Probabilistic topic models aka Topic Models are probabilistic generative models which uncovers hidden thematic structures in large collection of documents.</p>
+<p>Its statistical nature does not need any information other than the text itself. It does not use metadata, labels or annotations to build up the topics from the text. One needs to define only the number of clusters(this is quite hard, albeit). There are various different inference algorithms that enables fast inference in the corpus and some of the them also work in an online fashion so that one does not have to load the data into the memory.</p>
+<p>As most of the unsupervised learning algorithms, since there is no definitive number of clusters, the topics in the corpus are quite hard to evaluate. One could define various metrics either inter-topic(distance between different topics) or intra-topic(topic coherence). However, it generally depends on manual inspection and humans to decide the exact number of clusters in the dataset. While increasing the number of topics in the dataset may provide more granular information in the dataset, it could divide a very coherent topic into two parts that may be very close to each other.</p>
+<p>Although Latent Dirichlet Allocation is one of the topic models, I somehow interchangeably used to mean topic model and vice versa.</p>
+<h4 id="word-distribution">Word Distribution</h4>
+<p>Since topic models treat corpus and documents as bag of words, occurrences rather than position of words play an important role. The probability distribution of a particular word not only changes the topic assignment of the topic assignment the document that it belongs to but also may change the word distribution in the topic as well.</p>
+<p>One thing to be noted before applying Topic Modeling is that you need to care a lot about word distribution in both corpus and also in the topics. Not only the words themselves affect the probability but also they will affect the co-occurrence probability. One word probability both plays a role in assignment of a topic for that particular word but also on other words that they are likely to occur.</p>
+<p>Due to that reason, one needs to remove very common words as they do not contribute the topic assignment and shadow the other words probabilities in the topics which results in incoherent topics. Similarly, if the word occurrences is very small in the corpus, those probabilities have very small probabilities and would likely to have small effect on the word distribution and word co-occurrences. They may not affect the topics as much as very common words, yet they may increase the convergence time in the Gibbs sampling. Due to that reason, one should also remove the very infrequent words in the corpus as well.</p>
+<h4 id="learning-topics">Learning Topics</h4>
+<p>Using Gibbs Sampling, one could learn the topics in the following way:</p>
+<ul>
+<li>We first assign a random topic to each word in the document</li>
+<li>For each word in the document
+<ul>
+<li>Compute the topic likelihood given document (1)</li>
+<li>Compute the word likelihood given a topic (2)</li>
+<li>Reassign the topic to the word which is a multiplicative of (1) and (2)</li>
+</ul></li>
+</ul>
+<p>Topic distribution is drawn from a Dirichlet Distribution so the Dirichlet in Latent Dirichlet Allocation. The hidden structure among words in topics is latent so the Latent in LDA.</p>
+<h4 id="experimentation">Experimentation</h4>
+<p>I generally run the topic models for a number of different clusters and determine the optimal number based on manual inspection. Although it is not easily quantified information, since the topics is plausible to a human being, it is easy to interpret. Especially, if you are doing exploratory analysis. This is also a good way to get a feeling in the dataset</p>
+<h4 id="assumptions">Assumptions</h4>
+<h5 id="first-one">First One</h5>
+<p>As most of statical models, topic models also do a lot of assumptions in order to build its inference on top of the observations. One of the assumptions that it makes, there is a structure on the words that compose a topic gives its power. This hidden structure that the inference of topic models uncover is quite intuitive to the humans. By looking at the word distributions, one could immediately grasp the topic.</p>
+<h5 id="second-one">Second One</h5>
+<p>Second assumption is that all of the documents is composed of multiple topics and different documents share the topics in a different proportions. This is very much like a mixture model where every observation has mixed membership among many classes(in topic modeling, they are topics). This membership could also be used document retrieval as we could compute the maximum likelihood of documents given a topic: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>max</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mo>*</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\max P(*|t_0)</annotation></semantics></math>. By doing so, one could build a topic search engine as the most relevant documents are brought for a particular topic search. If one want to go further, she could assign topic memberships on individual words as the topics are word distributions themselves.</p>
+<h4 id="lda-limitations">LDA Limitations</h4>
+<ul>
+<li>It does not use metadata or any related information about the documents.</li>
+<li>It does not allow correlation among topics and does not have a good way to model the correlations.</li>
+<li>You cannot incorporate temporal information(date of the publication) to measure the change occurring in the topic distribution.</li>
+<li>It assumes a bag of words model on top of words and phrases. You cannot use the word order information in the text.</li>
+</ul>
+<h5 id="lda-extensions">LDA Extensions</h5>
+<ul>
+<li>Nearly all of the limitations of LDA are addressed in different variants of LDA.</li>
+<li><a href="http://www.cs.columbia.edu/~blei/papers/BleiLafferty2006a.pdf">Dynamic Topic Models</a> use temporal information to detect changes in the topic frequency over time.</li>
+<li>There is <a href="https://www.cs.princeton.edu/~blei/papers/BleiLafferty2006.pdf">Correlated Topic Model</a> which allows correlation between different topics.</li>
+<li><a href="http://mimno.infosci.cornell.edu/info6150/readings/398.pdf">Author-Topic Models</a> allows you to incorporate various author related information into the topic models.</li>
+<li><a href="http://cs.nyu.edu/~dsontag/papers/AroraEtAl_icml13.pdf">Online Topic Models</a> allow you to infer the topics in an online manner without having to load the text data into the memory.</li>
+</ul>
+<h5 id="tools">Tools</h5>
+<ul>
+<li><a href="http://nlp.stanford.edu/software/tmt/tmt-0.4/">Stanford Topic Modeling Toolbox</a> is quite good and if you want to look at the end results in Excel, it has a bunch of nice helper functions to use. You could programmatically use Scala library as well.</li>
+<li><a href="http://mallet.cs.umass.edu/">Mallet</a> is somehow outdated, yet it is mature and has a bunch of nice evaluation methods and nice default parameters. It could be also used via terminal without using its Java interface as well.</li>
+<li><a href="http://factorie.cs.umass.edu/">Factorie</a> is not for topic modeling per se, it is much more comprehensive but has a suite of algorithms and implementation that could be used for topic modeling as well.</li>
+<li><a href="http://cran.r-project.org/web/packages/lda/">lda</a> is for people who like R and has a number of variants of LDA as well(correlated topic model is one of them).</li>
+<li>Also check out the <a href="http://www.cs.princeton.edu/~blei/topicmodeling.html">topic modeling page of David Blei</a>. He is the main author of highly cited <a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf">LDA paper</a> as well.</li>
+</ul>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Personalization Palooza Notes &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Personalization Palooza Notes" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/3/1/personalization-palooza-notes/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Personalization Palooza Notes" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/3/1/personalization-palooza-notes/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Personalization Palooza Notes</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">March 01, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/3/1/personalization-palooza-notes/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Last week, <a href="http://www.axial.net/">we</a> attended <a href="https://www.eventbrite.com/e/personalizationpalooza-tickets-15005357428">Personalization Palooza</a> last week. It was a lot of fun.</p>
+<p>If you are still giggling, just ignore the name of the event for a second. Just look at the speaker list. (I know name makes hard to take the event seriously, but it was serious.) Another bummer was that event was not personalized(you kind of expect some sort of personalization from a personalization mini-conference, no?). Doug and I attended to the “same” event.(some may argue our preferences are similar, though)</p>
+<h2 id="first-session">First Session</h2>
+<h3 id="alexander-tuzhilin">Alexander Tuzhilin</h3>
+<p><a href="http://pages.stern.nyu.edu/~atuzhili/">Alexander Tuzhilin</a> mentioned not well known user aspects of the recommender systems. Most of the products put some sort of metric to measure the success of recommender comparing to the baseline, but this measure may not be correct all the time. What does it mean if your user spends more time on the website, but the time spent causes only frustration(but engagement is up!)? What does it mean for a person to give a three star to a movie? The movie itself, internet connection(in the case of Netflix), the environment, size of the monitor, lightning and noise all contribute to this experience but user gives a rating to the movie in Netflix a three star. Up to this point, we did not even get to the user bias when they evaluated the movie.</p>
+<h4 id="data-collection">Data collection</h4>
+<p>Data collection process plays an important role in any type of machine learning but especially if you are collecting feedback from the user, you should be double careful. Not only humans are quite biased, they are prone to all of kinds of outer effects when they are asked to evaluate a thing.</p>
+<h3 id="alejandro-jaimes">Alejandro Jaimes</h3>
+<p><a href="http://www.alexjaimes.com/">Alejandro Jaimes</a> talked more about product aspect of the recommender systems.</p>
+<h4 id="product">Product</h4>
+<p><img src="/images/work/notes/2015/3/1/yahoo-product.jpg" alt="Yahoo Product" /> They begin with:</p>
+<ul>
+<li>Design</li>
+<li>Hypotheses</li>
+<li>Data</li>
+</ul>
+<p>around user. This is pretty good overview in the product development. You have your hypotheses or gut feelings and based on data from the user, you could refine your hypotheses and design. Those refinements of course bring changes in the data as well. By using this iterative process, ideally we want to converge to ideal state where there would be no change in iteration, a.k.a “perfect product”.</p>
+<p>He talked about how an horizontal design of a product may change how the user interacts with the website. Therefore, the data collection process and of course the recommendations may change due to that.</p>
+<p>This is an eye opening for me. I generally tend to look at the data and not the collection process. However, when users are presented two screens where one of them uses vertical scrolling and other one uses horizontal scrolling, the preferences could be different even if the screen has the same videos. Some of the users may click on different videos in different screens not because they prefer the movie per se, but it could be just more convenient for them to navigate in that particular way. This not only changes data collection process but also evaluation as well.</p>
+<h3 id="context-and-time-news">Context and Time =&gt; News</h3>
+<p>Time is a fundamental part of news. If newspapers need to act on the news, they need to be fast, otherwise they will quickly become irrelevant. Therefore, when one user clicks on some news does not necessarily mean, they will be interested in that news in 2 months later. In that sense, the news itself is quite ephemeral. Therefore, the recommender system needs to take the time component into account. Furthermore, he also mentioned even time of the day may play a role which type of content user is interested in. Some people prefer reading news in mornings, but maybe not so much in evenings.</p>
+<h3 id="tony-jebara">Tony Jebara</h3>
+<p><a href="http://www1.cs.columbia.edu/~jebara/">Tony Jebara</a> presented two different research areas he is pursuing. The first one is that in order to correspond to the privacy issues in the social networks, they are using a metric to remove some of the attributes for a particular user in order to achieve anoymity. He was presenting three different users “liberal”, “average” and “paranoid”. Paranoid tends to be the one that wants to keep his personal information to himself. Liberal does not really care what is private and what is not. Every single individual user has different opinions/concerns around his personal information, so they are proposing a metric where user could become anonymized based on that metric in different levels(personalized anonymity if you like) Second area is that they could learn a distance metric from the network based on what a group of users share. <a href="http://papers.nips.cc/paper/4392-learning-a-distance-metric-from-a-network">Paper</a> and its <a href="https://github.com/berty38/structure-preserving-metric-learning">code</a> is available.</p>
+<p>He also gave a good example in the panel when he was asked the following question: “What is most annoying thing in the internet in terms of recommender systems”? His example was mortgage ads. Just because he is buying a home and getting a mortgage does not necessarily mean he is still interested in other mortgages. He has already one. For goods and services like mortgage should be somehow treated differently than stuff you buy periodically like groceries.</p>
+<h3 id="beitao-li">Beitao Li</h3>
+<p>He talked about how they implemented A/B system as a plugin to whole system and how they could act immediately to the results that they are getting from A/B testing. It should be quite nice to be able to measure the effect of color change in some button in the website and act on it.</p>
+<h3 id="second-session">Second Session</h3>
+<p>This session was mostly about “content” which was not surprising as Sailthru built a business around personalization in marketing, Parsely provides analytics for publishers, Circa curates the most relevant news for you, Zergnet is kind of personalized Google News, GameChanger Media collects and published amateur sports and Agolo creates personalized summaries of news. All around content.</p>
+<h3 id="some-notes">Some Notes</h3>
+<ul>
+<li>Agolo uses tweets summarizing the articles. This is very nice approach. When people share some article, the quotes that they put in the tweets are generally either impressive sentences or summarizing sentence(like conclusion). This could be very hard to mine from the text but with crowdsourced approach, it could be quite doable.</li>
+<li>Generally, when people say recommender or personalization, they agreed on the analytics in the lowest level. This is in my experience is also quite true. In order to do something with data, you should at least be able to count, do analytics. On top of analytics, a recommender layer or a personalization layer could be built more efficiently; which is Parsely could actually provide as well.</li>
+<li>When GameChanger Media presented their numbers, my jaw dropped. It is amazing how many events that they collect and publishes. Go amateur sports!</li>
+<li>Personalization in marketing, like advertising depends on multiple data source integration. As they say: “Whole is greater than the sum of its parts”</li>
+<li>Content recommenders generally point to a specific problem: there are too many news/data sources but the time is limited. By curating the news or summarizing your news, startups in this session enable people to use their finite amount of time more efficiently on the seemingly infinite number of news/sources. Some solve this problem by filtering, some do by summarizing. We will see who will win.</li>
+</ul>
+<h3 id="third-session">Third Session</h3>
+<p>There was no presentation in this one and I did not really listen to the panel. In my defense, Joseph Urban Theater made a spectacular job in their architecture and interior design and we had to catch at a meeting at work. However, Chris Wiggins said a phrase that I took with me: “people, ideas and things”. I am planning to write a blog post on it. Also, Gary Kazantsev mentioned interesting nlp projects that they are doing at Bloomberg.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

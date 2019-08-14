@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/3/16/document-representation-with-bow-and-js-divergence-matrix/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/3/16/document-representation-with-bow-and-js-divergence-matrix/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Document Visualization with JS Divergence Matrix and Multi Dimensional Scaling</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">March 16, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/3/16/document-representation-with-bow-and-js-divergence-matrix/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="bag-of-words-bow">Bag of Words (BoW)</h3>
+<p>In text search and classification of text, word order contributes less to the search result or document classification unless it is part of a phrase. Therefore, it is a common practice to use the frequency of occurrence of words sacrificing the word order which is known as “bag of words”. In this document representation method, document is converted to vectors by simply counting number of occurrence of words. For example, the following two sentences would have the same vector representation: “I am who I become” and “I become who I am” as the frequency of occurrence of words are same even though the word order is different. The rationality behind of this document representation is that, the presence and count of words do matter more than the word sequence in a sentence for classification. In practice, this representation is “lingua franca” along with tf-idf representation.</p>
+<h3 id="corpus">Corpus</h3>
+<p>In BoW setup, corpus corresponds to the distinct number of words that covers all of the documents that we have in our dataset.</p>
+<h3 id="stop-words">Stop Words</h3>
+<p>Words that do not contribute to the distinctiveness of either class. They could occur quite a lot like (e.g. I, am, you, they) or occur infrequently. The ones that occur a lot may prevent the vectors to weight to the words that are distinct for particular class. The ones that occur infrequently prevents us to represent the documents efficiently and compactly as they make quite long corpus vectors. Therefore, for text classification, we want to remove both the words that occur infrequently and the words that occur a lot but do not contribute to the distinctiveness of either class. A very useful heuristics for these words are the most common (5% of the words that occur most) and the least common(5-10% of the words that occur least in the entire corpus). After removing these words, we would have a better corpus and hopefully better vector representation for the documents for each class. Note that, for a given dataset, due to nature of natural language, the distribution of a typical corpus follows long tail distribution. Therefore, even if the least common words would contribute to the distinctiveness of the classes, there may be trade-off where we gain some “information” incorporating the least common words and lose the compactness of vector representation.(This brings <strong>curse of dimensionality</strong> problem which we would try to resolve by bringing a dimensionality reduction method to the table.)</p>
+<p>After explanation of terms, let us give some concrete examples to explain how this actually works: consider following three sentences:</p>
+<ol type="1">
+<li>I am who I become</li>
+<li>I become who I am</li>
+<li>Who am I?</li>
+</ol>
+<p>Ignoring the punctuation and uppercase, we have the following corpus for these three sentences: [‘am’, ‘become’, ‘i’, ‘who’]<br />
+(note that the words are sorted by alphabetical order) Quite a large corpus! Then the bag of words representation for the sentences are the following:</p>
+<ol type="1">
+<li>[1, 1, 2, 1]</li>
+<li>[1, 1, 2, 1]</li>
+<li>[1, 0, 1, 1]</li>
+</ol>
+<p>As previously mentioned, the first and second sentences would result in the same bag of words representation even if the sentences are different. One thing to note is that since the corpus is unrealistically small, we did not stop any words but normally the contribution of auxiliarry verbs and subject pronouns is minimal, so it is common practice to remove them alltogether. The default keyword list generally includes these type of words independent from the domain for the documents.</p>
+<p>It is easy to see that all of the documents would have the length of the corpus where the word “distribution” of the sentences would differ if the sentences are different(ignoring word order). This is all good but as we have previously mentioned, this brings dimensionality problems and lose the vector representation’s efficiency and accuracy. This is due to the nature of bag of words representation, as all of the word frequency counts toward the vector, some of the not very informative words may overcome to the words that provides distinct character to the documents in a classification perspective. In order to prevent this, we may want to use a dimensionality reduction method. If the method preserves the relative distance of individual vectors in euclidean space, then we not only gain in terms of efficiency of the representation but also prevent curse of dimensionality and a better document representation! But taking a step back, how do measure the “distance” between two documents? Let’s revisit an information theory measure for comparison of two probability distribution, namely K-L Divergence.</p>
+<h3 id="kullback-leibler-divergence">Kullback-Leibler Divergence</h3>
+<p>K-L divergence is a measure of the difference of two probability distributions, which is a special case of Bregman Divergence. For formal definition, if we have <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> discrete probability distributions, then the k-l divergence of these two distributions is defined as such: <span class="math display">$$ D_{KL}(p|q) = \displaystyle\sum_i ln(\frac{p(i)}{q(i)}) \hspace{2 mm} p(i) $$</span> Needless to say, this measure is not symmetric and is defined only <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> sum to 1 for all possible <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math> values. Moreover, for a particular <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>, being <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q(i)=0</annotation></semantics></math> implies <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p(i)</annotation></semantics></math> to be <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> as well, otherwise the whole term would be undefined. Adopting this measure into our bag of words representation to measure sentence difference brings us two problems. First, we only have the counts of the words that occur in sentence, not the distribution. Second, as sentences are only a small part of corpus, there will be lots of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>’s in the vector representation(would be a sparse vector). In order to mitigate the first problem, we could divide the counts of words in the vector by the total sum of the word count. By doing so, we also make sure that we have two vectors whose values sum up to 1. But second one is the hard one, how do we fill the 0’s? Luckily, this problem also comes up with in different domains and we have a solution: <em>smoothing</em>. There are a number of smoothing algorithms, but the one that I used is Laplace Smoothing(also called Additive Smoothing) which I will explain in the next section.</p>
+<p>As mentioned before, this measure is not symmetric, but note that it is not related to bag of words representation per se, so we will provide another remedy for that after introducing the smoothing.</p>
+<h3 id="laplace-smoothing">Laplace Smoothing</h3>
+<p>Behind of smoothing the distributions is to remove the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>’s from the distribution by introducing small amount of factor so that they will not be <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math> but also they will not have a large share in overall distribution. By doing so, we would mitigate the implausibility of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>’s with very small cost. Formally Laplace Smoothing is applied to distribution <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> as such: <span class="math display">$$ \hat{p_i} = \frac{p_i + \alpha}{1 + \alpha N} \hspace{5 mm} (i=1, \ldots, N) $$</span> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> is the smoothing parameter and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> is the number of discrete terms in the distribution.<br />
+&gt; Note that without <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><msub><mi>p</mi><mi>i</mi></msub><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{p_i}</annotation></semantics></math> is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mi>i</mi></msub><annotation encoding="application/x-tex">p_i</annotation></semantics></math> as expected and &gt; adding <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> for every parameter would not change the sum of the &gt; distribution as in the denominator, we divide by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mi>α</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">1 + \alpha N</annotation></semantics></math>.</p>
+<p>Very well, we removed our <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>’s and have “smooth” distributions. However, what kind of measure is this K-L divergence if it is not symmetric? Think about it one second, difference between sentence A and sentence B would be different than difference between sentence B and sentence A. How ridiculuous is that! Luckily, we have a solution based on K-L divergence; Jensen Shannon Divergence which will be explained in the next section:</p>
+<h3 id="jensen-shannon-divergence">Jensen-Shannon Divergence</h3>
+<p>J-S Divergence builds itself on top of K-L divergence promising it is symmetric; which is nice and quite popular measure of two probability distributions. Formally it is defined for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>q</mi><annotation encoding="application/x-tex">q</annotation></semantics></math> distributions as such: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>J</mi><mi>S</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo stretchy="false" form="prefix">|</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>D</mi><mrow><mi>J</mi><mi>S</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="prefix">|</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>D</mi><mrow><mi>K</mi><mi>L</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo stretchy="false" form="prefix">|</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>D</mi><mrow><mi>K</mi><mi>L</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="prefix">|</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex"> D_{JS}(p|q) = D_{JS}(q|p) = \frac{1}{2} D_{KL}(p|r) + \frac{1}{2} D_{KL}(q|r) </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>+</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">r = \frac{1}{2} (p+q)</annotation></semantics></math>.<br />
+Instead of going through getting K-L divergence of individual distribution, J-S does this using a mixture distribution of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>. Quite smart, huh? By doing so, it ensures that it is symmetric and nice measure for probability distribution differences.</p>
+<h3 id="j-s-matrix">J-S Matrix</h3>
+<p>Say we have <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> documents and we constructed our J-S matrix using J-S Divergence for each pair of smoothed bag of words of documents. This would result in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>x</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">NxM</annotation></semantics></math> matrix where the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>M</mi><annotation encoding="application/x-tex">M</annotation></semantics></math> is the size of our corpus as every document is represented <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>x</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">1xM</annotation></semantics></math> vectors. This matrix representation would not solve our curse of dimensionality problem. So, let us introduce a dimensionality reduction method(among many others); Multidimensional Scaling.</p>
+<h3 id="multidimensional-scaling-mds">Multidimensional Scaling (MDS)</h3>
+<p>Over-simplified idea behind MDS is that if we could find an embedding which has a significantly lower dimension for high dimension space and preserve the distance between observation pairs, we do not lose much in relative sense since we are keeping the distance between the pairs. Further, we both reduce dimensionality quite a lot and preserve the relative distance to each other. This is somehow different than traditional dimensionality reduction methods where they they generally scale individual observations or all of the observations altogether. MDS seeks to fit a lower embedding for observation pairs. Since the J-S divergence deals with document pairs, J-S Divergence matrix could be considered as a dissimilarity matrix for the documents in that sense. Therefore, it is a perfect fit for MDS as MDS also tries to reduce the dimensionality of J-S measure between two documents. We want to find 2-dimension lower embedding in order to visualize the documents in a scatter plot but 1-dimension works as well as any number of dimension could be used for MDS. Formally, loss function of MDS is defined as following: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>o</mi><mi>s</mi><msub><mi>s</mi><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>n</mi></msub></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>N</mi></mrow></munder><mo stretchy="false" form="prefix">(</mo><msub><mi>D</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>−</mo><mo stretchy="false" form="prefix">∥</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">∥</mo><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><msup><mo stretchy="false" form="postfix">)</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></msup></mrow><annotation encoding="application/x-tex"> Loss_{x_1, \ldots, x_n} = (\displaystyle\sum_{i\neq j=1, \ldots, N} (D_{i,j} - \lVert x_i - x_j \rVert)^2)^{\frac{1}{2}}  </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math> is the dissimilarity matrix <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>x</mi><mi>k</mi></mrow><annotation encoding="application/x-tex">Nxk</annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> is the number of observations and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> is the dimension of the original space. We are not going to show how the minimization works, but for a lower embedding(say 2), the minimization function could be optimized through gradient descent.</p>
+<h3 id="result">Result</h3>
+<p>After we apply MDS to our J-S divergence matrix, we get <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> pair of coordinates of each document and it looks like the following(for a selected documents):</p>
+<figure>
+<img src="/static/images/work/notes/2014/3/16/documents_mds.png" title="Document Visualization on J-S Divergence Matrix and MultiDimensional Scaling" alt="" /><figcaption>Document Visualization on J-S Divergence Matrix and MultiDimensional Scaling</figcaption>
+</figure>
+<p>Data is from Yelp’s reviews of restaurantts and first three sentences are negative and mention about how disappointing their experience was with restaurant. The rest of them are generally positive and even if their experience may include some negativity, their overall experience is quite positive.<br />
+As you could see from the scatter plot, the grouping of these two different class are somehow separate even though the documents are quite short and overall corpus is only 8 sentences.</p>
+<h3 id="possible-improvement">Possible Improvement</h3>
+<p>We talked about stop words but curating stop words is manual and laborious work. Further, it generally evolves to be domain specific as you incorporate more and more stop words. Instead of using stopwords, one may choose feature selection methods to choose the words from either classification accuracy or some information theory measure from the training dataset. This not only eliminates the stop words curation step alltogether but also increase the efficiency and compactness of the bag of words representation. As a result of this, when some dimensionality reduction method is applied to the vectors, they would position themselves better.</p>
+<h3 id="what-is-next">What is next?</h3>
+<p>An interactive app that allows user to type text and then visualize every sentence in a scatter plot. I have a working version of this, but it needs some polishing.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>A Gentle Introduction to Bloom Filter &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="A Gentle Introduction to Bloom Filter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2016/6/5/a-gentle-introduction-to-bloom-filter/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Gentle Introduction to Bloom Filter" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2016/6/5/a-gentle-introduction-to-bloom-filter/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>A Gentle Introduction to Bloom Filter</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">June 05, 2016 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2016/6/5/a-gentle-introduction-to-bloom-filter/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Bloom filters are probabilistic space-efficient data structures. They are very similar to hashtables; they are used exclusively membership existence in a set. However, they have a very powerful property which allows to make trade-off between space and false-positive rate when it comes to membership existence. Since it can make a tradeoff between space and false positive rate, it is called probabilistic data structure.</p>
+<h3 id="space-efficiency">Space Efficiency</h3>
+<p>Let’s detail a little bit on the space-efficiency. If you want to store a long list of items in a set, you could do in various ways. You could store that in a hashmap and then check existence in the hashmap which would allow you to insert and query very efficiently. However, since you will be storing the items as they are, it will not be very space efficient.</p>
+<p>If we want to also be space efficient, we could <code>hash</code> the items before putting into a set. What else? We could use bit arrays to store hash of the items. What else, what else? Let’s also allow hash collision in the bit array. That is pretty much how Bloom Filters work, they are under the hood bit arrays which allow hash collisions; that produces false positives. Hash collisions exist in the Bloom Filters by design. Otherwise, they would not be compact.</p>
+<blockquote>
+<p>Whenever a list or set is used, and space efficiency is important and significant, Bloom filter should be considered.</p>
+</blockquote>
+<h3 id="bloom-filters-basics">Bloom Filters Basics</h3>
+<p>Bloom Filter is a bit array of <code>N</code> bits, where <code>N</code> is the size of the bit array. It has another parameter which is the number of hash functions, <code>k</code>. These hash functions are used to set bits in the bit array. When inserting an element <code>x</code> into the filter, the bits in the <code>k</code> indices <code>h1(x)</code>, <code>h2(x)</code>, …, <code>hk(x)</code> are set, where the bit positions are determined by the hash functions. Note that as we increase the number of hash functions, the false positive rate of this probability goes to zero. However, it takes more time to insert and lookup as well as the bloom filter fills up more quickly.</p>
+<p>In order to to membership existence in the Bloom Filter, we need to chekck if all of the bits are set; very similar to how we insert item into a bloom filter. If all of the bits are set, then it means that that item is <code>probably</code> in the bloom filter, where if anot all of the bits are set, then it means that the item is not in the Bloom Filter.</p>
+<h3 id="basic-python-implementation">Basic Python Implementation</h3>
+<p>If we want to implement a basic bloom filter, we could easily do so.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> bitarray <span class="im">import</span> bitarray</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># 3rd party</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> mmh3</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">class</span> BloomFilter(<span class="bu">set</span>):</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, size, hash_count):</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        <span class="bu">super</span>(BloomFilter, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="va">self</span>.bit_array <span class="op">=</span> bitarray(size)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="va">self</span>.bit_array.setall(<span class="dv">0</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a>        <span class="va">self</span>.size <span class="op">=</span> size</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="va">self</span>.hash_count <span class="op">=</span> hash_count</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>):</span>
+<span id="cb1-17"><a href="#cb1-17"></a>        <span class="cf">return</span> <span class="va">self</span>.size</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
+<span id="cb1-20"><a href="#cb1-20"></a>        <span class="cf">return</span> <span class="bu">iter</span>(<span class="va">self</span>.bit_array)</span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="kw">def</span> add(<span class="va">self</span>, item):</span>
+<span id="cb1-23"><a href="#cb1-23"></a>        <span class="cf">for</span> ii <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.hash_count):</span>
+<span id="cb1-24"><a href="#cb1-24"></a>            index <span class="op">=</span> mmh3.<span class="bu">hash</span>(item, ii) <span class="op">%</span> <span class="va">self</span>.size</span>
+<span id="cb1-25"><a href="#cb1-25"></a>            <span class="va">self</span>.bit_array[index] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a>    <span class="kw">def</span> <span class="fu">__contains__</span>(<span class="va">self</span>, item):</span>
+<span id="cb1-30"><a href="#cb1-30"></a>        out <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>        <span class="cf">for</span> ii <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.hash_count):</span>
+<span id="cb1-32"><a href="#cb1-32"></a>            index <span class="op">=</span> mmh3.<span class="bu">hash</span>(item, ii) <span class="op">%</span> <span class="va">self</span>.size</span>
+<span id="cb1-33"><a href="#cb1-33"></a>            <span class="cf">if</span> <span class="va">self</span>.bit_array[index] <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-34"><a href="#cb1-34"></a>                out <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a>        <span class="cf">return</span> out</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a></span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="kw">def</span> main():</span>
+<span id="cb1-40"><a href="#cb1-40"></a>    bloom <span class="op">=</span> BloomFilter(<span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    animals <span class="op">=</span> [<span class="st">&#39;dog&#39;</span>, <span class="st">&#39;cat&#39;</span>, <span class="st">&#39;giraffe&#39;</span>, <span class="st">&#39;fly&#39;</span>, <span class="st">&#39;mosquito&#39;</span>, <span class="st">&#39;horse&#39;</span>, <span class="st">&#39;eagle&#39;</span>,</span>
+<span id="cb1-42"><a href="#cb1-42"></a>               <span class="st">&#39;bird&#39;</span>, <span class="st">&#39;bison&#39;</span>, <span class="st">&#39;boar&#39;</span>, <span class="st">&#39;butterfly&#39;</span>, <span class="st">&#39;ant&#39;</span>, <span class="st">&#39;anaconda&#39;</span>, <span class="st">&#39;bear&#39;</span>,</span>
+<span id="cb1-43"><a href="#cb1-43"></a>               <span class="st">&#39;chicken&#39;</span>, <span class="st">&#39;dolphin&#39;</span>, <span class="st">&#39;donkey&#39;</span>, <span class="st">&#39;crow&#39;</span>, <span class="st">&#39;crocodile&#39;</span>]</span>
+<span id="cb1-44"><a href="#cb1-44"></a>    <span class="co"># First insertion of animals into the bloom filter</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>    <span class="cf">for</span> animal <span class="kw">in</span> animals:</span>
+<span id="cb1-46"><a href="#cb1-46"></a>        bloom.add(animal)</span>
+<span id="cb1-47"><a href="#cb1-47"></a></span>
+<span id="cb1-48"><a href="#cb1-48"></a>    <span class="co"># Membership existence for already inserted animals</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a>    <span class="co"># There should not be any false negatives</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>    <span class="cf">for</span> animal <span class="kw">in</span> animals:</span>
+<span id="cb1-51"><a href="#cb1-51"></a>        <span class="cf">if</span> animal <span class="kw">in</span> bloom:</span>
+<span id="cb1-52"><a href="#cb1-52"></a>            <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st"> is in bloom filter as expected&#39;</span>.<span class="bu">format</span>(animal))</span>
+<span id="cb1-53"><a href="#cb1-53"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-54"><a href="#cb1-54"></a>            <span class="bu">print</span>(<span class="st">&#39;Something is terribly went wrong for </span><span class="sc">{}</span><span class="st">&#39;</span>.<span class="bu">format</span>(animal))</span>
+<span id="cb1-55"><a href="#cb1-55"></a>            <span class="bu">print</span>(<span class="st">&#39;FALSE NEGATIVE!&#39;</span>)</span>
+<span id="cb1-56"><a href="#cb1-56"></a></span>
+<span id="cb1-57"><a href="#cb1-57"></a>    <span class="co"># Membership existence for not inserted animals</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a>    <span class="co"># There could be false positives</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>    other_animals <span class="op">=</span> [<span class="st">&#39;badger&#39;</span>, <span class="st">&#39;cow&#39;</span>, <span class="st">&#39;pig&#39;</span>, <span class="st">&#39;sheep&#39;</span>, <span class="st">&#39;bee&#39;</span>, <span class="st">&#39;wolf&#39;</span>, <span class="st">&#39;fox&#39;</span>,</span>
+<span id="cb1-60"><a href="#cb1-60"></a>                     <span class="st">&#39;whale&#39;</span>, <span class="st">&#39;shark&#39;</span>, <span class="st">&#39;fish&#39;</span>, <span class="st">&#39;turkey&#39;</span>, <span class="st">&#39;duck&#39;</span>, <span class="st">&#39;dove&#39;</span>,</span>
+<span id="cb1-61"><a href="#cb1-61"></a>                     <span class="st">&#39;deer&#39;</span>, <span class="st">&#39;elephant&#39;</span>, <span class="st">&#39;frog&#39;</span>, <span class="st">&#39;falcon&#39;</span>, <span class="st">&#39;goat&#39;</span>, <span class="st">&#39;gorilla&#39;</span>,</span>
+<span id="cb1-62"><a href="#cb1-62"></a>                     <span class="st">&#39;hawk&#39;</span> ]</span>
+<span id="cb1-63"><a href="#cb1-63"></a>    <span class="cf">for</span> other_animal <span class="kw">in</span> other_animals:</span>
+<span id="cb1-64"><a href="#cb1-64"></a>        <span class="cf">if</span> other_animal <span class="kw">in</span> bloom:</span>
+<span id="cb1-65"><a href="#cb1-65"></a>            <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st"> is not in the bloom, but a false positive&#39;</span>.<span class="bu">format</span>(other_animal))</span>
+<span id="cb1-66"><a href="#cb1-66"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-67"><a href="#cb1-67"></a>            <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{}</span><span class="st"> is not in the bloom filter as expected&#39;</span>.<span class="bu">format</span>(other_animal))</span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a></span>
+<span id="cb1-70"><a href="#cb1-70"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-71"><a href="#cb1-71"></a>    main()</span></code></pre></div>
+<p>Output is in the following:</p>
+<pre><code>dog is in bloom filter as expected
+cat is in bloom filter as expected
+giraffe is in bloom filter as expected
+fly is in bloom filter as expected
+mosquito is in bloom filter as expected
+horse is in bloom filter as expected
+eagle is in bloom filter as expected
+bird is in bloom filter as expected
+bison is in bloom filter as expected
+boar is in bloom filter as expected
+butterfly is in bloom filter as expected
+ant is in bloom filter as expected
+anaconda is in bloom filter as expected
+bear is in bloom filter as expected
+chicken is in bloom filter as expected
+dolphin is in bloom filter as expected
+donkey is in bloom filter as expected
+crow is in bloom filter as expected
+crocodile is in bloom filter as expected
+
+
+badger is not in the bloom filter as expected
+cow is not in the bloom filter as expected
+pig is not in the bloom filter as expected
+sheep is not in the bloom, but a false positive
+bee is not in the bloom filter as expected
+wolf is not in the bloom filter as expected
+fox is not in the bloom filter as expected
+whale is not in the bloom filter as expected
+shark is not in the bloom, but a false positive
+fish is not in the bloom, but a false positive
+turkey is not in the bloom filter as expected
+duck is not in the bloom filter as expected
+dove is not in the bloom filter as expected
+deer is not in the bloom filter as expected
+elephant is not in the bloom, but a false positive
+frog is not in the bloom filter as expected
+falcon is not in the bloom filter as expected
+goat is not in the bloom filter as expected
+gorilla is not in the bloom filter as expected
+hawk is not in the bloom filter as expected</code></pre>
+<p>As you could see the output from above, there are false positives, but there were not any false negatives as expected.</p>
+<p>Unlike this implementation of the Bloom Filter, most of the implementations that are available in various languages do not provide a hash function argument, though. This is because false-positive rate is more important than the hash function in terms of application and depending on the false positive rate, you could always adjust the number of hash functions that are going to be used. Generally, the <code>size</code> and <code>error_rate</code> which is actually the false positive rate of the Bloom Filter. If you decrease the <code>error_rate</code> when you initialize the bloom filter, they would adjust the number of hash functions under the hood.</p>
+<h3 id="false-positives">False Positives</h3>
+<p>While Bloom Filters can say “definitely not in” with confidence, they will also say <code>possibly in</code> for some number of items. Depending on the application, this could be a huge downside or it could be relatively okay. If it is okay to introduce false positives every now and then, you should definitely consider using Bloom Filters for membership existence for set operations.</p>
+<p>Also note that if you are decreasing the false positive rate arbitrarily, you would increase the number of hash functions which would add latency to both insertion and membership existence. One more thing in this section is that, if the hash functions are independent each other and distribute the input space pretty uniformly, then the theoretic false positive rate can be satisfied. Otherwise, the false positive rate of the bloom filter will be worse than the theoretic false positive rate as hash functions correlate each other and hash collisions would occur more often than desired.</p>
+<blockquote>
+<p>When using a Bloom filter, consider the potential effects of false positives.</p>
+</blockquote>
+<h3 id="deterministic">Deterministic</h3>
+<p>If you are using the same size and same number hash functions as well as the hash function, bloom filter is deterministic on which items it gives positive response and which items it gives negative response. For an item <code>x</code>, if it gives it is <code>probably in</code> to that particular item, it will give the same response as 5 minutes later, 1 hour later, 1 day later and 1 week later. I was a little surprised when I found this. It was “probabilistic” so the response of the bloom filter should be somehow random, right? Not really. It is probabilistic in the sense that you cannot know which item it will say it is <code>probably in</code>.</p>
+<blockquote>
+<p>Otherwise, when it says that it is <code>probably in</code>, it keeps saying the same thing.</p>
+</blockquote>
+<h3 id="disadvantages">Disadvantages</h3>
+<p>Not everything is so great about Bloom Filters.</p>
+<h3 id="the-size-of-the-bloom-filter">The size of the Bloom Filter</h3>
+<p>The size of the Bloom Filters need to be known a priori based on the number of items that you are going to insert. This is not so great if you do not know or cannot approximate the number of items. You could put an arbitrarily large size, but that would be a waste in terms of space which we are trying to optimize in the very first place and the reason why we adopt to choose Bloom Filter. This could be fixed to create a bloom filter dynamic to the list of items that you want to fit, but depending on the application, this may not be always possible. There is a variant called <a href="http://gsd.di.uminho.pt/members/cbm/ps/dbloom.pdf">Scalable Bloom Filter</a> which dynamically adjusts its size for different number of items. This could mitigate some of its shortcomings.</p>
+<h3 id="constructing-and-membership-existence-in-bloom-filter">Constructing and Membership Existence in Bloom Filter</h3>
+<p>While using the Bloom Filters, you not only accept false positive rates, but also you are willing to have a little bit overhead in terms of speed. Comparing to an hashmap, there is definitely an overhead in terms of hashing the items as well as constructing the bloom filter.</p>
+<h3 id="cannot-give-the-items-that-you-inserted">Cannot give the items that you inserted</h3>
+<p>Bloom Filter cannot produce a list of items that are inserted, you could only check if an item is in it, but never get the full item list because of hash collisions and hash functions. This is due to arguably the most significant advantage over other data structures; its space efficiency which comes with this disadvantage.</p>
+<h3 id="removing-an-element">Removing an element</h3>
+<p>Removing an element from the Bloom Filter is not possible, you cannot undo an insertion operation as hash results for different items can be indexed in the same position. If you want to do undo inserts, either you need to count the inserts for each index in the BloomFilter or you need to construct the BloomFilter from the start excluding a single item. Both methods involve an overhead and not straightforward. Depending on the application, one might want to try to reconstruct the bloom filter from the start instead of removing or deleting items from the Bloom Filter.</p>
+<h3 id="implementations-in-different-languages">Implementations in Different Languages</h3>
+<p>In production, you do not want to roll out your own bloom filter implementation. There are two reasons; one of them choosing and implementing good hash functions is crucially important to distribute the error rate for any number of inputs. Second of them, it needs to be battle-tested and should not be error prone both in terms of error rate and its size. There are open source implementations for every language, but the following for node.js and Python are pretty good in my experience:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/bloomfilter">Node</a></li>
+<li><a href="https://github.com/jaybaird/python-bloomfilter">Python</a></li>
+</ul>
+<p>There is also very fast implementation(10x faster than the above Python library both in terms of membership existence and adding the item into the bloom filter), <a href="https://axiak.github.io/pybloomfiltermmap/">pybloomfilter</a>, but this runs on Pypy and does not support Python 3.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

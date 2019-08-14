@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Machine Learning for Programming &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Machine Learning for Programming" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/4/26/machine-learning-for-programming/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Machine Learning for Programming" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/4/26/machine-learning-for-programming/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Machine Learning for Programming</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">April 26, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/4/26/machine-learning-for-programming/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><a href="http://norvig.com/">Peter Norvig</a> presented a great overview how programming could use more machine learning. He presented quite nice overview of what has been done in research and what could be possible. Generally, the presentation followed a question-answer style where he first presented the question and then try to give answer by providing additional context. I liked this format a lot. It is both easy to follow and also easy to build the solution step by step.</p>
+<h3 id="what-is-programming">What is programming?</h3>
+<ul>
+<li>Given a specification of a function f</li>
+<li>Implement f that meets the specification</li>
+</ul>
+<h3 id="what-is-machine-learning">What is Machine Learning?</h3>
+<ul>
+<li>Given some example (x, y) pairs</li>
+<li>Induce f such that y=f(x) for given pairs, and generalizes well for unseen x.</li>
+</ul>
+<h3 id="questions-answers">Questions &amp; Answers</h3>
+<p>Q: Can we learn functions from examples?<br />
+A: Yes, for many kinds of functions.</p>
+<p>Q: Can we learn parts of programs from examples?<br />
+A: Yes, machine learning is the ultimate agile programming.</p>
+<h3 id="program-induction">Program Induction</h3>
+<ul>
+<li>1980s: Logical Functional Languages</li>
+<li>2000s: Probabilistic search rather than logical</li>
+<li>2010s: Deep, LSTM: intermediate representations</li>
+<li>TOOWTDI languages</li>
+<li>Only one of “a+1” or “1+a” is allowed</li>
+<li>Stranger type systems</li>
+<li>Total functional programming: only allow recursion that probably terminates</li>
+<li>DSLs, such as regular expressions</li>
+</ul>
+<p>Q: Can we learn entire programs from examples?<br />
+A: Yes, for short programs; no, for complex programs</p>
+<h3 id="mini-lesson-in-ml">Mini Lesson in ML</h3>
+<ul>
+<li>Regression</li>
+<li>Gradient Descent</li>
+<li>Neural Networks</li>
+</ul>
+<h3 id="regression">Regression</h3>
+<ul>
+<li>Find a function, f, to minimize error on examples, and generalization (previously unseen) erro.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mi>m</mi><mi>i</mi><msub><mi>n</mi><mi>f</mi></msub><mi>L</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">f =min_f Loss(f)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>E</mi><mi>m</mi><mi>p</mi><mi>i</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>L</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mi>G</mi><mi>e</mi><mi>n</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>i</mi><mi>z</mi><mi>e</mi><mi>L</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Loss(f) = EmpiricalLoss(f) + GeneralizeLoss(f)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>m</mi><mi>p</mi><mi>i</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mo>∑</mo><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Empiricalloss(f) = \sum_i (y_i - f(x_i))^2</annotation></semantics></math></li>
+<li>Linear regression: calculate exact answers(Gauss)</li>
+</ul>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<ul>
+<li>For linear functions =&gt; minimization function is convex</li>
+<li>Non-linear functions =&gt; surface is more complicated</li>
+</ul>
+<h3 id="neural-network">Neural Network</h3>
+<ul>
+<li>Has nothing to do with Neural</li>
+<li>Sums + Products + Squashing Function (complicated function to optimize)</li>
+</ul>
+<p>Q: Can we learn complex non-traditional programs from examples?<br />
+A: Not yet, maybe someday.</p>
+<p>Q: Can we learn to optimize programs?<br />
+A: Yes, short parts.</p>
+<p>Q: Can we learn to efficiently execute declarative programs?<br />
+A: Maybe. So far, not done via learning. Need help with languages.</p>
+<h3 id="declarative-languages-for-aiml-applications">Declarative Languages for AI/ML Applications</h3>
+<ul>
+<li>DYNA(Jason Eisner)
+<ul>
+<li>Probabilistic Context Free Parser</li>
+<li>A single word is a phrase(given an appropriate grammar rule)</li>
+<li>phrase(X, I, J) += rewrite(X, W) * word(W, I, J)</li>
+</ul></li>
+<li>Probabilistic(Relational Languages: any variables can be input or output)</li>
+</ul>
+<p>Q: Can we learn an interpreter?<br />
+A: Partly, that is not the point.</p>
+<p>Q: Can we learn a user’s language?<br />
+A: Interesting idea, but so far done by hand.</p>
+<p>Q: Can we learn tutoring feedback from examples?<br />
+A: Yes! Works better as a human/machine partnership.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Mining a VC &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Mining a VC" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/1/17/mining-a-vc/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mining a VC" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/1/17/mining-a-vc/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Mining a VC</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">January 17, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/1/17/mining-a-vc/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Fred Wilson is one of the most popular VCs(rightly so) who is based in NY and he has a really great <a href="http://avc.com/">blog</a>, where he talks about pretty much anything with a focus on startups, venture capital and technology. No surprise here.</p>
+<p>His <a href="http://avc.com/2003/09/my_first_post/">first post</a> dates back to 23rd September 2003. He has been blogging for more than 11 years.</p>
+<h3 id="how-come">How come?</h3>
+<p>I have started at <a href="http://www.axial.net/">Axial</a> recently and doing topic modeling to improve our search and recommendations as well as to build some other features that are driven by documents and text.</p>
+<h3 id="what-gives">What gives?</h3>
+<p>To see some of the topics over time as his posts are somehow topical and could shed some light on hot industries as he also uses his blog as a reach tool for entrepreneurs. This of course follows their investments as well, if he is writing on a particular industry(bitcoin, mesh networks), chances are either they invested in some technology(bitcoin) or looking for companies(mesh networks) that they wanted to invest.</p>
+<h3 id="what-does-a-vc-write-anyway">What does a VC write anyway?</h3>
+<p>Mostly Venture Capital presumably, but also introduces his portfolio companies, tries to raise awareness of new and cool technologies(bitcoin) and talks about his professional and personal life. That being said, there is no quantitative measure which topics he focuses on and how much. By measuring the topic frequency and variation over time, you could get a sense of which topics are actually trending as well. Scroll for that a bit.</p>
+<h3 id="what-did-you-use">What did you use?</h3>
+<p>All of his blog posts from start(09, 2003) to 31st December 2014(including). He writes a post per day and occasionally he may repeat the some of his posts (e.g. when he is on vacation), but other than posts should be unique and mostly they are medium-long length articles which is great for topic modeling. Earlier posts have the same date and I filter out the posts so that every date would have only a single post as I do not want to give biases of dates that have more than 1 post. I also filtered out the documents that have no words in it(some of the posts have only images apparently, #tumblrstyle).</p>
+<h3 id="ok-got-it.-topics-but-what-are-they">Ok, got it. Topics, but what are they?</h3>
+<p>You could think of topics as specific word groups that are high likely to occur together. The algorithm(LDA) makes plausible and practical assumptions in text, and topics end up being logically plausible word groups that you could get the what the gist of those documents, it may seem like a keyword extraction tool, but not really.</p>
+<ol type="1">
+<li>Burn Rate: business cash year market bn money revenue financial flow company rate revenue markets stock income balance mm costs interest capital time years pay price post numbers asset</li>
+<li>Venture Capital: venture capital business companies investment money vc investors fund entrepreneur years company market invest firm portfolio investing good early firms funds year entrepreneur deals time partners investor</li>
+<li>Company - Team: company team product companies job people business work startup jobs portfolio building build management person hire culture engineering great make ceo talent customer organization startups employees founder process founders</li>
+<li>News: news times media read post jason york hes jeff internet story wall ny street tom world john piece interesting content good steve great jarvis david techmeme</li>
+<li>Search - Internet: google search yahoo data traffic internet number comscore web mm users audience top services page month microsoft service day googles visits results market blog past share chart year</li>
+<li>Family: gotham gal great kids day family originally uploaded josh back night today park morning photo nyc friends home fredwilson street place ride city jessica west fun year yesterday side</li>
+<li>Social Media: twitter facebook social people service howard friends foursquare tumblr media users lindzon myspace services mr web apps zynga app follow networking top profile network build game tweet</li>
+<li>Internet Regulation: internet patent government industry health rules innovation patents bill companies public care act policy net law issue fcc spectrum healthcare system technology broadband congress access cable startup issues reform</li>
+<li>Music: music radio itunes listen rhapsody ipod lastfm listening audio mp play sonos service digital internet services player song streaming system buy download podcast apple machine file free playlist home</li>
+<li>Ads - Business Models: ad advertising business online model free content media paid revenue service pay etsy money network sell market internet buy customers marketing run cost make networks company adsense tacoda</li>
+<li>Multimedia: video tv radio youtube game boxee watch content hd digital videos show play watching games shows big watched internet channel satellite today player netflix cable media jets night broadcast</li>
+<li>Email: email spam mail emails gmail inbox return send aol reply messaging service path problem reputation list spyware messages message address called delete bad sender account aim priority credit filter</li>
+<li>Politics: bush country obama hes president vote political kerry war iraq debate election world party america politics policy win today democrats plan government state american system clark republican campaign house</li>
+<li>Technology: web services open data internet world companies technology software market business build model network company built big system users platform service networks large important source information interesting post building</li>
+<li>Valuation: company stock price equity deal options financing mm sale investors employees employee option valuation transaction companies term debt common sell buyer public pay bridge founders round business preferred series</li>
+<li>Culture: book read reading books story seth art technology steven tom writing revolution published film society science life written early culture chapter words world write chris digital kindle inspired age</li>
+<li>Company - Management: board company ceo meeting business management meetings boards matt make entrepreneurs companies process vc ceos team work people important advice entrepreneur face members person good time plan investors</li>
+<li>NYC - Community: nyc school event students education year class community talk project tech program donors choose women public pm schools startup high kickstarter meetup projects week heres entrepreneurs code learning group</li>
+<li>Live Music - Event: record song great music songs love show called band week records rock favorite live listen top year night list heard podcast mp album bob put listening guitar played version</li>
+<li>Traveling: nyc europe trip valley city san silicon flight world wine paris country london travel york francisco place startup china area day ny boston visit wifi plane power back countries</li>
+<li>Comments: post blog comment posts avc disqus community read union square yesterday ventures day posted blogging week discussion tumblr link web talk great morning past today heres brad blogs</li>
+<li>Mobile Apps: mobile phone app android google iphone blackberry apple device web phones devices browser home ipad screen wifi windows data desktop experience voice ios laptop feature love nexus os</li>
+</ol>
+<p>If you quickly glance the words following the topics, you could immediately get a sense of <em>the topic</em>. The labels that precedes the words are the topic labels and I came up with. Some of the topics, they may not represent the topics very accurately but my hope is that they abstracted most of the content so that instead of writing 20-30 words all over the place, I could refer them via topic labels.</p>
+<h3 id="so-in-total-22-topics">So, in total 22 Topics?</h3>
+<p>I originally put wanted to have 24 topics based on visual inspection on different number of topics, 24 seemed to produce nice coherent topics. However, I need to further process the topics because of the reason explained below. Long story short, I removed two topics based on they are not high quality. If you want more details, read the following section, if you do not, skip it.</p>
+<h3 id="what-is-the-catchtell-me-as-if-i-am-5">What is the catch(tell me as if I am 5)?</h3>
+<p>If there are two problems(not automated sense, otherwise not problems really) in topic models; one of them is naming topics automatically and the other one is to determine the topic numbers to begin with. There are various measures to evaluate topic: coherence, corpus distance to evaluate the topic “quality”. I only took the topics that have high coherence and low corpus distances topics as valid topics. One could introduce extensive stop words to improve topics in general, but I choose to prune the invalid topics after I run. The following topic is the only one that gets pruned and you will understand why it is low coherence and have very small distance to corpus: time people good back make years thing work post things great day made long year past hard week big put find times world idea blog ago point end part</p>
+<p>and another topic similar to the above one get filtered out due to its has low coherence and similar to corpus.</p>
+<h3 id="which-topic-is-most-dominant">Which topic is most dominant?</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/topic-frequency.png" title="Topic Frequency Percentage" alt="" /><figcaption>Topic Frequency Percentage</figcaption>
+</figure>
+<p>Comments topic has also elements of community and his venture firm(USV) as well. So, it is not very surprising. As he invests in tech companies and most of the stuff about portfolio companies also fall in the technology(e.g. bitcoin), it is not surprising that the second common topic is technology.</p>
+<h3 id="most-representative-words-but-what-about-posts">Most Representative Words, but what about posts?</h3>
+<p>I could also get the most representative individual posts as every post is a mixture of various topics. However, this does not mean the following documents only have a single dominant topic. It may have two or more significant topics, but the one that is associated with is the most significant topic. Otherwise, <code>Burn Rate</code> topic is somehow related to <code>Valuation</code> topic as they have overlapping works and phrases. I could also get the documents that are focused individual posts that are all about one topic. Here are the most representative posts for each topic:</p>
+<ol type="1">
+<li>Burn Rate: <a href="http://avc.com/2011/12/burn-rate/">Burn Rate</a> (I know, it is amazing)</li>
+<li>Venture Capital: <a href="http://avc.com/2014/04/the-difference-between-large-funds-and-small-funds/">The Difference Between Small Funds and Large Funds</a></li>
+<li>Company Team: <a href="http://avc.com/2011/10/vp-engineering-vs-cto/">VP Engineering vs CTO</a></li>
+<li>News: <a href="http://avc.com/2005/01/exploding_tv_co-3/">Exploding TV</a></li>
+<li>Search - Internet: <a href="http://avc.com/2005/02/microsoft_searc/">Microsoft Search Continued</a></li>
+<li>Family: <a href="http://avc.com/2012/04/easter-sunday/">Easter Sunday</a></li>
+<li>Social Media: <a href="http://avc.com/2011/01/building-better-social-graphs/">Building Better Social Graphs</a></li>
+<li>Internet Regulation: <a href="http://avc.com/2013/03/the-shield-act/">The SHIELD Act</a></li>
+<li>Music: <a href="http://avc.com/2004/05/transatlanticis/">Transatlanticism</a></li>
+<li>Ads - Business Models: <a href="http://avc.com/2012/11/feature-friday-etsy-gift-cards/">Feature Friday: Etsy Gift Cards</a></li>
+<li>Multimedia: <a href="http://avc.com/2005/05/exploding_radio-4/">Exploding Radio (continued)</a></li>
+<li>Email: <a href="https://avc.com/2005/03/the_spam_crisis/">The Spam Crisis is Over</a></li>
+<li>Politics: <a href="http://avc.com/2003/11/jeff_jarvis_on_/">Jeff Jarvis on Clark</a></li>
+<li>Technology: <a href="http://avc.com/2004/01/data_integratio/">Data Integration</a></li>
+<li>Valuation: <a href="http://avc.com/2008/11/restricted-stoc/">Restricted Stock vs Options When We Are “Under Water”</a></li>
+<li>Culture: <a href="http://avc.com/2005/05/vc_cliche_of_th-9/">VC Cliche of the Week</a></li>
+<li>Company - Management: <a href="http://avc.com/2010/04/the-executive-session/">The Executive Session</a></li>
+<li>NYC Community: <a href="http://avc.com/2014/04/ship-st-josephs-a-summer-coding-program-in-nyc/">SHIP @ St Joseph’s – A Summer Coding Program In NYC</a></li>
+<li>Live Music: <a href="http://avc.com/2003/09/joss_stone-2/">Joss Stone</a></li>
+<li>Traveling: <a href="http://avc.com/2012/04/im-changing-languages/">Je change de langue</a></li>
+<li>Comments: <a href="http://avc.com/2012/11/mba-mondays-next-topics/">MBA Mondays: Next Topics</a></li>
+<li>Mobile Apps: <a href="http://avc.com/2012/06/feature-friday-mobile-data-usage-tracking/">Feature Friday: Mobile Data Usage Tracking</a></li>
+</ol>
+<h3 id="topic-changes-over-time">Topic Changes over Time</h3>
+<p>I could look at the topic distribution of the documents over time in order to measure if topics are trending or not. However, the trend for the topics are far more interesting as I am not necessarily interested in the topic proportions on a daily basis but rather medium term. Luckily, there are a lot of different ways to do trend estimation. I will use <a href="http://bit.ly/hp-filter">Hodrick-Presscott Filter</a> in order to get the medium range trend signal.</p>
+<h3 id="winner-topics">Winner Topics</h3>
+<p>Some of the topics are unsurprising winner like Internet Regulation and Mobile Apps but do you find any suprising/interesting topics?</p>
+<h3 id="internet-regulation">Internet Regulation</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/internet-regulation-topic-trend.png" title="Internet Regulation" alt="" /><figcaption>Internet Regulation</figcaption>
+</figure>
+<p>Net neurality hit some nerves right there.</p>
+<h3 id="mobile-apps">Mobile Apps</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/mobile-apps-topic-trend.png" title="Mobile Apps" alt="" /><figcaption>Mobile Apps</figcaption>
+</figure>
+<p>Mobile apps do not seem to even flatten in the near future.</p>
+<h3 id="nyc---community">NYC - Community</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/nyc-community-topic-trend.png" title="NYC Community" alt="" /><figcaption>NYC Community</figcaption>
+</figure>
+<p>Making money is good, but so is community.</p>
+<h3 id="technology">Technology</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/technology-topic-trend.png" title="Technology" alt="" /><figcaption>Technology</figcaption>
+</figure>
+<p>Even though he says he does not invest in technology but networks or the things that technology enables, apparently he cannot seems to write anything but technology.</p>
+<h3 id="comments">Comments</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/comments-topic-trend.png" title="Comments" alt="" /><figcaption>Comments</figcaption>
+</figure>
+<p>This topic is one of the most surprising topic, yes USV invested in Disqus, they care a lot about community, audience but it feels to me it shouldn’t be this much, but apparently comments topic is big.</p>
+<h3 id="loser-topics">Loser Topics</h3>
+<p>News, Email and Live Music are the obvious losers. Politics is big one as well.</p>
+<h3 id="email">Email</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/email-topic-trend.png" title="Email" alt="" /><figcaption>Email</figcaption>
+</figure>
+<h3 id="news">News</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/news-topic-trend.png" title="News" alt="" /><figcaption>News</figcaption>
+</figure>
+<h3 id="live-music">Live Music</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/live-music-topic-trend.png" title="Live Music" alt="" /><figcaption>Live Music</figcaption>
+</figure>
+<h3 id="music">Music</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/music-topic-trend.png" title="Music" alt="" /><figcaption>Music</figcaption>
+</figure>
+<h3 id="politics">Politics</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/politics-topic-trend.png" title="Politics" alt="" /><figcaption>Politics</figcaption>
+</figure>
+<hr />
+<p>Not so winner, but not so loser either topics</p>
+<h3 id="ads---business-models">Ads - Business Models</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/ads-business-models-topic-trend.png" title="Ads Business Models" alt="" /><figcaption>Ads Business Models</figcaption>
+</figure>
+<h3 id="burn-rate">Burn Rate</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/burn-rate-topic-trend.png" title="Burn Rate" alt="" /><figcaption>Burn Rate</figcaption>
+</figure>
+<h3 id="company-management">Company Management</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/company-management-topic-trend.png" title="Company Management" alt="" /><figcaption>Company Management</figcaption>
+</figure>
+<h3 id="company-team">Company Team</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/company-team-topic-trend.png" title="Company Team" alt="" /><figcaption>Company Team</figcaption>
+</figure>
+<h3 id="culture">Culture</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/culture-topic-trend.png" title="Culture" alt="" /><figcaption>Culture</figcaption>
+</figure>
+<h3 id="family">Family</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/family-topic-trend.png" title="Family" alt="" /><figcaption>Family</figcaption>
+</figure>
+<h3 id="multimedia">Multimedia</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/multimedia-topic-trend.png" title="Multimedia" alt="" /><figcaption>Multimedia</figcaption>
+</figure>
+<h3 id="search">Search</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/search-topic-trend.png" title="Search" alt="" /><figcaption>Search</figcaption>
+</figure>
+<h3 id="social-media">Social Media</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/social-media-topic-trend.png" title="Social Media" alt="" /><figcaption>Social Media</figcaption>
+</figure>
+<p>Note that USV invested in Tumblr at then end of 2008, they invested in Twitter, Foursquare in 2009.</p>
+<h3 id="traveling">Traveling</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/traveling-topic-trend.png" title="Traveling" alt="" /><figcaption>Traveling</figcaption>
+</figure>
+<h3 id="valuation">Valuation</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/valuation-topic-trend.png" title="Valuation" alt="" /><figcaption>Valuation</figcaption>
+</figure>
+<h3 id="venture-capital">Venture Capital</h3>
+<figure>
+<img src="/static/images/work/notes/2015/1/17/venture-capital-topic-trend.png" title="Venture Capital" alt="" /><figcaption>Venture Capital</figcaption>
+</figure>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

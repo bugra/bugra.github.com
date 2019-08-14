@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Cultural Data Project Part 1 &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Cultural Data Project Part 1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/2/1/cdp-part-1/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cultural Data Project Part 1" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/2/1/cdp-part-1/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Cultural Data Project Part 1</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">February 01, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/2/1/cdp-part-1/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="introduction">Introduction</h3>
+<p>Data is from <a href="http://www.culturaldata.org/">Cultural Data Project</a>. In order to get a better understanding, I seggregated the data by organization type. There are total 48 different organization types. Data follows <a href="http://www.culturaldata.org/wp-content/themes/cdp/pdf/CDP-BlankProfile.pdf">data profile</a> structure and I grouped organizations into 6 different subsections; employment statistics, their activities, pricing, website activity, attendance and finally number of contributors. Before looking at the distribution of the above metrics, let’s look at when organizations are founded. The first cultural organization dates go back to 1636 according to data and youngest one seems to be 2012.</p>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/year_founded.png" title="Foundation Year of Organizations" alt="" /><figcaption>Foundation Year of Organizations</figcaption>
+</figure>
+<p>Mean year is approximately 1975 and median year is 1984. The width of the plot shows the number of organizations that are founded in a year shown in the y axis. Most of the organizations are founded between 1950 and 2000 where around 2000, it reaches its peak. This could also be observed from the difference in median and mean year.</p>
+<p>Unless, it is stated otherwise, every subsection will give the mean, median and sum statistics of the variables. The reason why three graphs are provided is because some of the organizations are quite large in terms of revenue, human resources and other metrics. As you will see later, these companies’ metrics dominate other companies; sum and mean of those sections mostly reflect their statistics ignoring other organizations. Median provides a nice solution for this type of statistics as it is a metric which is quite robust to <strong>outliers</strong>. Mean and sum statistics are provided as they are also very useful to summarize the data when there are not outliers or small number of outliers.</p>
+<p>Organization types are sorted by alphabetical order so the <em>None of the Above</em> should change <em>None of anything else</em>.</p>
+<h3 id="employment">Employment</h3>
+<h4 id="mean">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/employmen_groupby_institution_type_mean.png" title="Employment Mean grouped by Institution" alt="" /><figcaption>Employment Mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/employmen_groupby_institution_type_median.png" title="Employment Median grouped by Institution" alt="" /><figcaption>Employment Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/employmen_groupby_institution_type_sum.png" title="Employment Sum grouped by Institution" alt="" /><figcaption>Employment Sum grouped by Institution</figcaption>
+</figure>
+<h3 id="activity">Activity</h3>
+<h4 id="mean-1">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/activity_groupby_institution_type_mean.png" title="Activity Types Mean grouped by Institution" alt="" /><figcaption>Activity Types Mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median-1">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/activity_groupby_institution_type_median.png" title="Activity Types Median grouped by Institution" alt="" /><figcaption>Activity Types Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum-1">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Activity Types Sum grouped by Institution" alt="" /><figcaption>Activity Types Sum grouped by Institution</figcaption>
+</figure>
+<h3 id="pricing">Pricing</h3>
+<h4 id="mean-2">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/activity_groupby_institution_type_sum.png" title="Pricing Mean grouped by Institution" alt="" /><figcaption>Pricing Mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median-2">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/pricing_groupby_institution_type_median.png" title="Pricing Median grouped by Institution" alt="" /><figcaption>Pricing Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum-2">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/pricing_groupby_institution_type_sum.png" title="Pricing Sum grouped by Institution" alt="" /><figcaption>Pricing Sum grouped by Institution</figcaption>
+</figure>
+<h3 id="web-activity">Web Activity</h3>
+<h4 id="mean-3">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/web_activity_groupby_institution_type_mean.png" title="Website Activity Mean grouped by Institution" alt="" /><figcaption>Website Activity Mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median-3">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/web_activity_groupby_institution_type_median.png" title="Website Activity Median grouped by Institution" alt="" /><figcaption>Website Activity Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum-3">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/web_activity_groupby_institution_type_sum.png" title="Website Activity Sum grouped by Institution" alt="" /><figcaption>Website Activity Sum grouped by Institution</figcaption>
+</figure>
+<h3 id="web-income">Web Income</h3>
+<h4 id="mean-4">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/web_income_groupby_institution_type_mean.png" title="Website Income mean grouped by Institution" alt="" /><figcaption>Website Income mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median-4">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/web_income_groupby_institution_type_median.png" title="Website Income Median grouped by Institution" alt="" /><figcaption>Website Income Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum-4">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/web_income_groupby_institution_type_sum.png" title="Website Income Sum grouped by Institution" alt="" /><figcaption>Website Income Sum grouped by Institution</figcaption>
+</figure>
+<h3 id="attendance">Attendance</h3>
+<h4 id="mean-5">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/attendance_groupby_institution_type_mean.png" title="Attendance Mean grouped by Institution" alt="" /><figcaption>Attendance Mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median-5">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/attendance_groupby_institution_type_median.png" title="Attendance Median grouped by Institution" alt="" /><figcaption>Attendance Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum-5">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/attendance_groupby_institution_type_sum.png" title="Attendance Sum grouped by Institution" alt="" /><figcaption>Attendance Sum grouped by Institution</figcaption>
+</figure>
+<h3 id="number-of-contributors">Number of Contributors</h3>
+<h4 id="mean-6">Mean</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/contributor_groupby_institution_type_mean.png" title="Contributor Mean grouped by Institution" alt="" /><figcaption>Contributor Mean grouped by Institution</figcaption>
+</figure>
+<h4 id="median-6">Median</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/contributor_groupby_institution_type_median.png" title="Contributor Median grouped by Institution" alt="" /><figcaption>Contributor Median grouped by Institution</figcaption>
+</figure>
+<h4 id="sum-6">Sum</h4>
+<figure>
+<img src="/static/images/work/notes/2014/2/1/contributor_groupby_institution_type_sum.png" title="Contributor Sum grouped by Institution" alt="" /><figcaption>Contributor Sum grouped by Institution</figcaption>
+</figure>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

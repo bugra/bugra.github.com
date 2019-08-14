@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>I wish I knew these things when I learned Python &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="I wish I knew these things when I learned Python" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/1/3/i-wish-i-knew-these-things-when-i-learned-python/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="I wish I knew these things when I learned Python" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/1/3/i-wish-i-knew-these-things-when-i-learned-python/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>I wish I knew these things when I learned Python</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">January 03, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/1/3/i-wish-i-knew-these-things-when-i-learned-python/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>I sometimes found myself asking myself how I cannot know simpler way of doing “this” thing in Python 3. When I seek solution, I of course find much more elegant, efficient and more bug-free code parts over time. In total(not just this post), the total sum of “those” things were far more than I expect/admit, but here is the first crop of features that was not obvious to me and learned later as I sought more efficient/simple/maintainable code.</p>
+<h3 id="dictionary-stuff">Dictionary Stuff</h3>
+<h4 id="dictionary-keys-and-items">Dictionary <code>keys()</code> and <code>items()</code></h4>
+<p>You could do various interesting operations in keys and items of dictionaries. They are set-like.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>aa <span class="op">=</span> {‘mike’: ‘male’, ‘kathy’: ‘female’, ‘steve’: ‘male’, ‘hillary’: ‘female’}</span>
+<span id="cb1-2"><a href="#cb1-2"></a>bb <span class="op">=</span> {‘mike’: ‘male’, ‘ben’: ‘male’, ‘hillary’: ‘female’}</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>aa.keys() <span class="op">&amp;</span> bb.keys() <span class="co"># {‘mike’, ‘hillary’} # these are set-like</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>aa.keys() <span class="op">-</span> bb.keys() <span class="co"># {‘kathy’, ‘steve’}</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># If you want to get the common key-value pairs in the two dictionaries</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>aa.items() <span class="op">&amp;</span> bb.items() <span class="co"># {(‘mike’, ‘male’), (‘hillary’, ‘female’)}</span></span></code></pre></div>
+<p>Pretty neat!</p>
+<h3 id="checking-existence-of-a-key-in-dictionary">Checking Existence of a key in dictionary</h3>
+<p>How many times you write the following code?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>dictionary <span class="op">=</span> {}</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">for</span> k, v <span class="kw">in</span> ls:</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="cf">if</span> <span class="kw">not</span> k <span class="kw">in</span> dictionary:</span>
+<span id="cb2-4"><a href="#cb2-4"></a>        dictionary[k] <span class="op">=</span> []</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    dictionary[k].append(v)</span></code></pre></div>
+<p>This is not so bad, but why do you need if statement every now and then?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb3-2"><a href="#cb3-2"></a>dictionary <span class="op">=</span> defaultdict(<span class="bu">list</span>) <span class="co"># defaults to list</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="cf">for</span> k, v <span class="kw">in</span> ls:</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    dictionary[k].append(v)</span></code></pre></div>
+<p>Much cleaner and there is not an if statement which unnecessarily obscures the code.</p>
+<h3 id="update-a-dictionary-with-another-dictionary">Update a dictionary with another dictionary</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
+<span id="cb4-2"><a href="#cb4-2"></a>a <span class="op">=</span> {‘x’: <span class="dv">1</span>, ‘y’:<span class="dv">2</span>, ‘z’:<span class="dv">3</span>}</span>
+<span id="cb4-3"><a href="#cb4-3"></a>b <span class="op">=</span> {‘y’: <span class="dv">5</span>, ‘s’: <span class="dv">10</span>, ‘x’: <span class="dv">3</span>, ‘z’: <span class="dv">6</span>}</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># Update a with b </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>c <span class="op">=</span> <span class="bu">dict</span>(chain(a.items(), b.items()))</span>
+<span id="cb4-7"><a href="#cb4-7"></a>c <span class="co"># {‘y’: 5, ‘s’: 10, ‘x’: 3, ‘z’: 6}</span></span></code></pre></div>
+<p>Well, this is good but not very concise and terse. Let’s see if we could do better:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>c <span class="op">=</span> a.copy()</span>
+<span id="cb5-2"><a href="#cb5-2"></a>c.update(b)</span></code></pre></div>
+<p>Much cleaner and readable!</p>
+<h3 id="getting-the-maximum-from-a-dictionary">Getting the maximum! from a dictionary</h3>
+<p>If you want to get the maximum value in a dictionary, it is straightforward:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>aa <span class="op">=</span> {k: <span class="bu">sum</span>(<span class="bu">range</span>(k)) <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)}</span>
+<span id="cb6-2"><a href="#cb6-2"></a>aa <span class="co"># {0: 0, 1: 0, 2: 1, 3: 3, 4: 6, 5: 10, 6: 15, 7: 21, 8: 28, 9: 36}</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="bu">max</span>(aa.values()) <span class="co">#36</span></span></code></pre></div>
+<p>which works, but what if you need the key, you need to do another lookup based on value. Instead, we could flatten the representation via <code>zip</code> and then return the key-value pair as in the following:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">max</span>(<span class="bu">zip</span>(aa.values(), aa.keys()))</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># (36, 9) =&gt; value, key pair</span></span></code></pre></div>
+<p>Similarly, if you want to traverse the dictionary by maximum value to minimum value you could do the following:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="bu">sorted</span>(<span class="bu">zip</span>(aa.values(), aa.keys()), reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># [(36, 9), (28, 8), (21, 7), (15, 6), (10, 5), (6, 4), (3, 3), (1, 2), (0, 1), (0, 0)]</span></span></code></pre></div>
+<h3 id="unpacking-arbitrary-number-of-items-in-a-list">Unpacking Arbitrary Number of Items in a List</h3>
+<p>We could capture arbitrary number of items into a list using <code>*</code> magic:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> compute_average_salary(person_salary):</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    person, <span class="op">*</span>salary <span class="op">=</span> person_salary</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="cf">return</span> person, (<span class="bu">sum</span>(salary) <span class="op">/</span> <span class="bu">float</span>(<span class="bu">len</span>(salary)))</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>person, average_salary <span class="op">=</span> compute_average_salary([“mike”, <span class="dv">40000</span>, <span class="dv">50000</span>, <span class="dv">60000</span>])</span>
+<span id="cb9-6"><a href="#cb9-6"></a>person <span class="co"># ‘mike’</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>average_salary <span class="co"># 50000.0</span></span></code></pre></div>
+<p>This was not very interesting, but what if I tell you you could do the following as well:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> compute_average_salary(person_salary_age):</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    person, <span class="op">*</span>salary, age <span class="op">=</span> person_salary_age</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="cf">return</span> person, (<span class="bu">sum</span>(salary) <span class="op">/</span> <span class="bu">float</span>(<span class="bu">len</span>(salary))), age</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a>person, average_salary, age <span class="op">=</span> compute_average_salary([“mike”, <span class="dv">40000</span>, <span class="dv">50000</span>, <span class="dv">60000</span>, <span class="dv">42</span>])</span>
+<span id="cb10-6"><a href="#cb10-6"></a>age <span class="co"># 42</span></span></code></pre></div>
+<p>This is pretty neat.</p>
+<p>When you think about a dictionary that has a string key and a list as value, instead of traversing a dictionary and then process the values in a sequential manner, one can use a flat representation(list inside of a list) like this:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Instead of doing this</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="cf">for</span> k, v <span class="kw">in</span> dictionary.items():</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    process(v)</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co"># we are separating head and the rest, and process the values</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># as a list similar to the above. head becomes the key value</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="cf">for</span> head, <span class="op">*</span>rest <span class="kw">in</span> ls:</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    process(rest)</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co"># if not very clear, consider the following example</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>aa <span class="op">=</span> {k: <span class="bu">list</span>(<span class="bu">range</span>(k)) <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)} <span class="co"># range returns an iterator</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>aa <span class="co"># {0: [], 1: [0], 2: [0, 1], 3: [0, 1, 2], 4: [0, 1, 2, 3]}</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="cf">for</span> k, v <span class="kw">in</span> aa.items():</span>
+<span id="cb11-14"><a href="#cb11-14"></a>    <span class="bu">sum</span>(v)</span>
+<span id="cb11-15"><a href="#cb11-15"></a></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="co">#0</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="co">#0</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a><span class="co">#1</span></span>
+<span id="cb11-19"><a href="#cb11-19"></a><span class="co">#3</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a><span class="co">#6</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a></span>
+<span id="cb11-22"><a href="#cb11-22"></a><span class="co"># Instead</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a>aa <span class="op">=</span> [[ii] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">range</span>(jj)) <span class="cf">for</span> ii, jj <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">range</span>(<span class="dv">5</span>))]</span>
+<span id="cb11-24"><a href="#cb11-24"></a><span class="cf">for</span> head, <span class="op">*</span>rest <span class="kw">in</span> aa:</span>
+<span id="cb11-25"><a href="#cb11-25"></a>    <span class="bu">print</span>(<span class="bu">sum</span>(rest))</span>
+<span id="cb11-26"><a href="#cb11-26"></a></span>
+<span id="cb11-27"><a href="#cb11-27"></a><span class="co">#0</span></span>
+<span id="cb11-28"><a href="#cb11-28"></a><span class="co">#0</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a><span class="co">#1</span></span>
+<span id="cb11-30"><a href="#cb11-30"></a><span class="co">#3</span></span>
+<span id="cb11-31"><a href="#cb11-31"></a><span class="co">#6</span></span></code></pre></div>
+<p>You could <em>unpack</em> the <code>list</code> into <code>head, *rest, tail</code> as well.</p>
+<h3 id="collections-gotta-love-counter"><code>collections</code> Gotta love Counter</h3>
+<p><code>collections</code> is one of my favorite standard library in Python. If you need any other data structures than the original default data structures in the Python, you should take a look at it.</p>
+<p>One of the essential part of my job on a daily basis is to count things. Mostly words but not necessarily always. One may be tempted to say, you could build a dictionary with words as keys and the number of occurrences as values, and I would agree with you if I did not know about it <code>Counter</code> in the <code>collections</code>(yes, the introduction blurb is because of Counter).</p>
+<p>Let’s say you read, Python programming language wikipedia page into a string and then convert into a list(by tokenizing, well sort of):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> re</span>
+<span id="cb12-2"><a href="#cb12-2"></a>word_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> k: k.lower().strip(), re.split(r’[<span class="op">;</span>,:(<span class="op">\</span>.<span class="op">\</span>s)]<span class="op">\</span>s<span class="op">*</span>’, python_string)))</span>
+<span id="cb12-3"><a href="#cb12-3"></a>word_list[:<span class="dv">10</span>] <span class="co"># [‘python’, ‘is’, ‘a’, ‘widely’, ‘used’, ‘general-purpose’, ‘high-level’, ‘programming’, ‘language’, ‘[17][18][19]’]</span></span></code></pre></div>
+<p>So far, so good. But if I want to count the words in this list:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict <span class="co"># again, collections!</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>dictionary <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="cf">for</span> word <span class="kw">in</span> word_list:</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    dictionary[word] <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+<p>This is not so bad, but if you have <code>Counter</code>, you would use your time in a more meaningful task.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb14-2"><a href="#cb14-2"></a>counter <span class="op">=</span> Counter(word_list)</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co"># Getting the most common 10 words</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>counter.most_common(<span class="dv">10</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>[(‘the’, <span class="dv">164</span>), (‘and’, <span class="dv">161</span>), (‘a’, <span class="dv">138</span>), (‘python’, <span class="dv">138</span>), </span>
+<span id="cb14-6"><a href="#cb14-6"></a>(‘of’, <span class="dv">131</span>), (‘is’, <span class="dv">102</span>), (‘to’, <span class="dv">91</span>), (‘in’, <span class="dv">88</span>), (‘’, <span class="dv">56</span>)]</span>
+<span id="cb14-7"><a href="#cb14-7"></a>counter.keys()[:<span class="dv">10</span>] <span class="co"># just like a dictionary</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>[‘’, ‘limited’, ‘all’, ‘code’, ‘managed’, ‘multi<span class="op">-</span>paradigm’, </span>
+<span id="cb14-9"><a href="#cb14-9"></a>‘exponentiation’, ‘fromosing’, ‘dynamic’]</span></code></pre></div>
+<p>This is pretty neat, but if we look at what available methods exist for counter:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="bu">dir</span>(counter)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>[‘__add__’, ‘__and__’, ‘__class__’, ‘__cmp__’, ‘__contains__’, ‘__delattr__’, ‘__delitem__’, ‘__dict__’, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>‘__doc__’, ‘__eq__’, ‘__format__’, ‘__ge__’, ‘__getattribute__’, ‘__getitem__’, ‘__gt__’, ‘__hash__’, </span>
+<span id="cb15-4"><a href="#cb15-4"></a>‘__init__’, ‘__iter__’, ‘__le__’, ‘__len__’, ‘__lt__’, ‘__missing__’, ‘__module__’, ‘__ne__’, ‘__new__’, </span>
+<span id="cb15-5"><a href="#cb15-5"></a>‘__or__’, ‘__reduce__’, ‘__reduce_ex__’, ‘__repr__’, ‘__setattr__’, ‘__setitem__’, ‘__sizeof__’, </span>
+<span id="cb15-6"><a href="#cb15-6"></a>‘__str__’, ‘__sub__’, ‘__subclasshook__’, ‘__weakref__’, ‘clear’, ‘copy’, ‘elements’, ‘fromkeys’, ‘get’, </span>
+<span id="cb15-7"><a href="#cb15-7"></a>‘has_key’, ‘items’, ‘iteritems’, ‘iterkeys’, ‘itervalues’, ‘keys’, ‘most_common’, ‘pop’, ‘popitem’, ‘setdefault’, </span>
+<span id="cb15-8"><a href="#cb15-8"></a>‘subtract’, ‘update’, ‘values’, ‘viewitems’, ‘viewkeys’, ‘viewvalues’]</span></code></pre></div>
+<p>Did you see <code>__add__</code> and <code>__sub__</code> methods? Yes, counters support <code>+</code> and <code>-</code> operations! So, if you have a lot of text and want to count words, you do not need Hadoop, you could parallelize a bunch of counters(map) and then sum them together(reduce). You have your mapreduce built on top of counter. You could thank me later.</p>
+<h3 id="flattening-nested-lists">Flattening Nested Lists</h3>
+<p><code>collections</code> has also <code>_chain</code> function which could be used to flatten nested lists:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> collections <span class="im">import</span> chain</span>
+<span id="cb16-2"><a href="#cb16-2"></a>ls <span class="op">=</span> [[kk] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">range</span>(kk)) <span class="cf">for</span> kk <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
+<span id="cb16-3"><a href="#cb16-3"></a>flattened_list <span class="op">=</span> <span class="bu">list</span>(collections._chain(<span class="op">*</span>ls))</span></code></pre></div>
+<h3 id="opening-two-files-simultaneously">Opening two files simultaneously</h3>
+<p>If you are processing one file(e.g. line by line) and write the processed line into another file, you may be tempted to write the following:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="cf">with</span> <span class="bu">open</span>(input_file_path) <span class="im">as</span> inputfile:</span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_file_path, ‘w’) <span class="im">as</span> outputfile:</span>
+<span id="cb17-3"><a href="#cb17-3"></a>        <span class="cf">for</span> line <span class="kw">in</span> inputfile:</span>
+<span id="cb17-4"><a href="#cb17-4"></a>            outputfile.write(process(line))</span></code></pre></div>
+<p>Except, you can open multiple files in the same line as in the following:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="cf">with</span> <span class="bu">open</span>(input_file_path) <span class="im">as</span> inputfile, <span class="bu">open</span>(output_file_path, ‘w’) <span class="im">as</span> outputfile:</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="cf">for</span> line <span class="kw">in</span> inputfile:</span>
+<span id="cb18-3"><a href="#cb18-3"></a>        outputfile.write(process(line))</span></code></pre></div>
+<p>This is much more neat.</p>
+<h3 id="finding-monday-from-a-date">Finding Monday from a Date</h3>
+<p>If you have a date and want to normalize(say to previous or next Monday), you could do the following:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> datetime</span>
+<span id="cb19-2"><a href="#cb19-2"></a>previous_monday <span class="op">=</span> some_date <span class="op">-</span> datetime.timedelta(days<span class="op">=</span>some_date.weekday())</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># Similarly, you could map to next monday as well</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>next_monday <span class="op">=</span> some_date <span class="op">+</span> date_time.timedelta(days<span class="op">=-</span>some_date.weekday(), weeks<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<p>And, that is about it.</p>
+<h3 id="handling-html">Handling HTML</h3>
+<p>If you scrape websites either for fun or profit, chances are that you face html tags time to time. In order to strip various html tags, you could do use <code>html.parser</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> html.parser <span class="im">import</span> HTMLParser</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">class</span> HTMLStrip(HTMLParser):</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb20-7"><a href="#cb20-7"></a>        <span class="va">self</span>.reset()</span>
+<span id="cb20-8"><a href="#cb20-8"></a>        <span class="va">self</span>.ls <span class="op">=</span> []</span>
+<span id="cb20-9"><a href="#cb20-9"></a></span>
+<span id="cb20-10"><a href="#cb20-10"></a>    <span class="kw">def</span> handle_data(<span class="va">self</span>, d):</span>
+<span id="cb20-11"><a href="#cb20-11"></a>        <span class="va">self</span>.ls.append(d)</span>
+<span id="cb20-12"><a href="#cb20-12"></a></span>
+<span id="cb20-13"><a href="#cb20-13"></a>    <span class="kw">def</span> get_data(<span class="va">self</span>):</span>
+<span id="cb20-14"><a href="#cb20-14"></a>        <span class="cf">return</span> ‘’.join(<span class="va">self</span>.ls)</span>
+<span id="cb20-15"><a href="#cb20-15"></a></span>
+<span id="cb20-16"><a href="#cb20-16"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>    <span class="kw">def</span> strip(snippet):</span>
+<span id="cb20-18"><a href="#cb20-18"></a>        html_strip <span class="op">=</span> HTMLStrip()</span>
+<span id="cb20-19"><a href="#cb20-19"></a>        html_strip.feed(snippet)</span>
+<span id="cb20-20"><a href="#cb20-20"></a>        clean_text <span class="op">=</span> html_strip.get_data()</span>
+<span id="cb20-21"><a href="#cb20-21"></a>        <span class="cf">return</span> clean_text</span>
+<span id="cb20-22"><a href="#cb20-22"></a></span>
+<span id="cb20-23"><a href="#cb20-23"></a>snippet <span class="op">=</span> HTMLStrip.strip(html_snippet)</span></code></pre></div>
+<p>If you only want to escape <code>html</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>escaped_snippet <span class="op">=</span> html.escape(html_snippet)</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="co"># Back to html snippets(this is new in Python 3.4)</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>html_snippet <span class="op">=</span> html.unescape(escaped_snippet)</span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="co"># and so forth ...</span></span></code></pre></div>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

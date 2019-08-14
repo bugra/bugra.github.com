@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Pig Not So Foreign Language Paper Notes &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Pig Not So Foreign Language Paper Notes" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/2/9/pig-not-so-foreign-language-paper-notes/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pig Not So Foreign Language Paper Notes" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/2/9/pig-not-so-foreign-language-paper-notes/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Pig Not So Foreign Language Paper Notes</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">February 09, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/2/9/pig-not-so-foreign-language-paper-notes/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>These are notes that I took from the <a href="http://infolab.stanford.edu/~usriv/papers/pig-latin.pdf">paper</a>, where the authors explain the design principles and some theoretical aspects of Pig the programming language. I gave a basic overview in <a href="/work/notes/2014-02-08/pig-advantages-and-disadvantages/">Pig Advantages and Disadvantages</a>.</p>
+<h3 id="before-pig">Before Pig</h3>
+<p>Before Pig and Hadoop, there was mighty Map-Reduce paradigm for parallellization and data processin. The overview of data processing before Pig as follows:</p>
+<h3 id="map-reduce-advantages">Map-Reduce Advantages</h3>
+<ol type="1">
+<li>Scale
+<ul>
+<li>Scalable due to simpler design</li>
+<li>Only parallelizable operations</li>
+<li>No transactions</li>
+</ul></li>
+<li>Runs on cheap commodity(cost) hardware</li>
+<li>Procedural control - a processing “pipe”</li>
+</ol>
+<h3 id="disadvantages">Disadvantages</h3>
+<ol type="1">
+<li>Extremely rigid data flow(Map-Reduce)</li>
+<li>Common operations must be coded by hand(Join, filter, projection, aggregation)</li>
+<li>Semantics are hidden inside map-reduce functions
+<ul>
+<li>Difficult to maintain, extend and optimize</li>
+</ul></li>
+</ol>
+<blockquote>
+<p>Need a high-level, general data-flow language.</p>
+</blockquote>
+<ul>
+<li>Automatic query optimization is hard.</li>
+<li>Pig Latin does not preclude optimization.</li>
+</ul>
+<h3 id="summary">Summary</h3>
+<blockquote>
+<p>Big demand for parallel data processing.</p>
+</blockquote>
+<ul>
+<li>Emerging tools that do not look like SQL DBMS.</li>
+<li>Programmers like <strong>dataflow pipes</strong> over static files.</li>
+</ul>
+<h3 id="building-a-high-level-dataflow-system-on-top-of-mapreduce">Building a High-Level Dataflow System on Top of MapReduce</h3>
+<h3 id="what-is-pig">What is Pig</h3>
+<ul>
+<li>Procedural dataflow language (Pig Latin) for Map-Reduce</li>
+<li>Provides standard relational transforms(group, join, filter, sort)</li>
+<li>Schemas are optional, if used, can be part of data or specified at run time.</li>
+<li>User defined functions are first class of citizens of the language.</li>
+</ul>
+<h3 id="join-implementations">Join implementations</h3>
+<ul>
+<li>Default is symmetric, hash join</li>
+<li>Fragment-replicate for joining large and small inputs.</li>
+<li>Merge join for joining inputs sorted on join key.</li>
+<li>Skew join for handling inputs with significant skew in the join key.</li>
+</ul>
+<h3 id="hbase">Hbase</h3>
+<ul>
+<li>Solves appending problem in HDFS
+<ul>
+<li>Low-latency query API</li>
+<li>rich, BigTable-style data model based on column families</li>
+</ul></li>
+</ul>
+<h3 id="advantages-of-pig">Advantages of Pig</h3>
+<ul>
+<li>High Level language</li>
+<li>Transformations on set of records</li>
+<li>Process data one step at a time</li>
+<li>UDF’s are first class citizens.</li>
+<li>Easier than SQL.</li>
+</ul>
+<h3 id="needs">Needs</h3>
+<ul>
+<li>Innovation at internet companies critically depends on being able to analyze terabytes of data collected every day.</li>
+<li>SQL could be unnatural, and hard to follow as it declarative.</li>
+<li>Map-Reduce paradigm is too low-level and rigid, and leads to a great deal of custom user code that is hard to maintain, and reuse.</li>
+<li>Engineers who develop search engine ranking algoriths spend much of their time analyzing search logs looking for exploitable trends.</li>
+<li>Map-Reduce: its one input and two-stage data flow is extremely rigid.</li>
+<li>Pig-Latin program is a sequence of steps, much of liek in a programming language, each of which carries out a single data transformation.</li>
+<li>The use of such high-level primitives renders low-level manipulations (as required in map-reduce) unnecessary.</li>
+</ul>
+<blockquote>
+<p>First, <strong>Pig Latin</strong> is the programming language and <strong>Pig</strong> is the data processing environment on top of Hadoop.</p>
+</blockquote>
+<h3 id="pig-latin-as-a-dataflow-language">Pig Latin as a DataFlow Language</h3>
+<ul>
+<li>User specifies a sequence of steps where each step specifies only a single, high-level data transformation.</li>
+</ul>
+<h3 id="nested-data-model">Nested Data Model</h3>
+<ul>
+<li>Programmers often think in terms of nested data structures.</li>
+<li>Databases on the other hand, allows only flat tables, i.e. only atomic fields as columns.</li>
+</ul>
+<h3 id="why-nested-model-is-better">Why nested model is better?</h3>
+<ul>
+<li>A nested data model is closer to how programmers think, and consequently much more natural to them than normalization.</li>
+<li>Data is often stored on disk in an inherently nested fashion.</li>
+<li>A nested data model also allows us to fulfill our goal of having an algebraic language where each step carries out only a single data transformation.</li>
+<li>A nested data model allows programmers to easily write a rich set of user-defined functions.</li>
+</ul>
+<h3 id="udfs">UDFs</h3>
+<p>All aspects of processing in Pig Latin can be customized through User Defined Functions.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

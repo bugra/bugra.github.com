@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Learning Lua as a Python Developer &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Learning Lua as a Python Developer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/5/9/learning-lua-as-a-Python-developer/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Learning Lua as a Python Developer" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/5/9/learning-lua-as-a-Python-developer/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Learning Lua as a Python Developer</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">May 09, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/5/9/learning-lua-as-a-Python-developer/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This tutorial is not the millionth tutorial that walks you through basic concepts of Lua language. First there are quite excellent <a href="http://tylerneylon.com/a/learn-lua/">tutorials</a> that actually aims to do exactly that. This post would be to tell a tutorial on Lua from a Pythonista, comparing Lua features with various Python features and try to create various associations. Make no mistake, I will actually go through basic concepts but somehow comparing the Lua with Python all the time. I think these two languages are very similar in various aspects and those associations may make the learning curve a little bit smoother.</p>
+<p>(If you ask me the steeper the learning curve is better, as the slope is how <em>fast</em> you could learn(x axis is time). The steeper curve has higher slope, therefore you could learn faster. Not sure why steeper learning curve has connotation of hard concepts or hard to understand material. Contrarily, we should say steeper learning curve for easy concepts. But, hey. Nobody claimed that the languages are and should be consistent.)</p>
+<p>Anyways, where was I? Yes, Lua it is. And of course Python. Making comparisons between languages not only makes you remember the syntax easily but also you could get a feeling of the language if the two languages are very similar in various aspects. If you learned Java as a your first language, then whenever you learn an OOP(Object Oriented Programming) focused programming language, you would get the same feeling. Classes and objects are kind of big deal. You’d better use it wherever you can.</p>
+<p>But let’s step back for a second. Why Lua? It is compact, fast and dynamic. It is somehow easy to learn. You could also list a bunch of advantages of Lua as well, but my reason was quite pragmatist if there is a spectrum of reasons why you learn a new programming language. My aim is to learn more about tools in Deep Learning and more specifically <a href="http://torch.ch/">Torch</a>.</p>
+<p>And Lua is all good, huh? Not really. It is not very popular so community support is not there and not good comparing to Python. The standard library is not very large. From Python’s batteries included approach, it gets hard to get used to DIY(Do It Yourself) from there should be a library for that if it does not exist in the standard library already.</p>
+<h2 id="similarities">Similarities</h2>
+<h3 id="strings">Strings</h3>
+<p>String definitions are same, <code>’</code> or <code>”</code> works and they do not have any difference. Python uses <code>”””</code> for multi-line strings and Lua uses <code>[[]]</code>. Strings are immutable and can be concatenated to each other. Lua uses <code>..</code> as concatenation operator where Python uses good old plus operator <code>+</code>. <code>len</code>, <code>split</code> and various functions in string module works as in the same way in Python.</p>
+<h3 id="logical-operators">Logical Operators</h3>
+<p><code>not</code>, <code>and</code>, <code>or</code> works in the same way as you expect. Only difference is <code>nil</code> and <code>false</code> are evaluated as <code>false</code> in Lua where in Python empty string, list, set and even 0 are evaluated as <code>False</code>.</p>
+<h3 id="table-usage">Table usage</h3>
+<p>Table syntax and usage of sets and lists are very similar to Python.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1"></a>table <span class="op">=</span> <span class="op">{</span>‘first_key’<span class="op">=</span> <span class="dv">10</span><span class="op">,</span> ‘second_key’<span class="op">=</span> <span class="dv">20</span><span class="op">}</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>list <span class="op">=</span> <span class="op">{</span>‘a’<span class="op">,</span> ‘b’<span class="op">,</span> ‘c’<span class="op">,</span> ‘d’<span class="op">,</span> ‘e’<span class="op">,</span> ‘f’<span class="op">}</span> <span class="co">-- They get automatically 1 upto 6 as keys</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">-- Under the hood it is still an associative array</span></span></code></pre></div>
+<h3 id="print-and-type-functions"><code>print</code> and <code>type</code> functions</h3>
+<p>They behave exactly the same way as in Python. You could get the type information via <code>type</code> function and print out the results with <code>print</code> function.</p>
+<h3 id="no-braces-and-semicolons">No braces and semicolons</h3>
+<p>There are no braces and semicolons. They made the compromise on the end keyword which is understandable. As long as developer adheres the indentation for his function definition and programming style, then it should be as readable as Python.</p>
+<h3 id="there-is-one-way-and-prefereably-only-one-way-to-do-things">There is one way and prefereably only one way to do things</h3>
+<p>Since the language is compact and somehow barebone, there is generally only one way of doing things. Actually, sometimes there is not.(e.g. getting keys from a table) This makes it easy to read the code that other people wrote if they have not exploited the metatables quite a lot.</p>
+<h3 id="explicit-selfs">Explicit <code>self</code>s</h3>
+<p>Both languages use explicit selfs in function definition. Lua even attempts to pass the object in a regular function call(so much object oriented after all). However, it provides a syntactic sugar which I will show in a bit.</p>
+<h3 id="multiple-return-values-and-multiple-assignment">Multiple Return values and multiple assignment</h3>
+<p>Both languages support returning multiple values in functions and you could assign multiple assignment as well. In Lua, it looks like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1"></a>first_table<span class="op">,</span> second_table <span class="op">=</span> <span class="op">{},</span> <span class="op">{}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>first_table<span class="op">.</span>x <span class="op">=</span> “first_value”</span>
+<span id="cb2-3"><a href="#cb2-3"></a>first_table<span class="op">,</span> second_table <span class="op">=</span> second_table<span class="op">,</span> first_table</span></code></pre></div>
+<p>If there are more variables in the right hand side than the left hand side in the assignment operation, then Lua errors where Python raises <code>ValueError</code> exception, though.</p>
+<h3 id="both-languages-support-unpacking-lists">Both Languages support <code>unpack</code>ing lists</h3>
+<p>If you have a function, you could put all of the parameters into a list and then <code>unpack</code> them in Lua where in Python you would use <code>*</code> prefix to the list to unpack.</p>
+<p>In Lua, the following</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1"></a>func<span class="op">(</span><span class="fu">unpack</span><span class="op">(</span>list<span class="op">))</span></span></code></pre></div>
+<p>is similar to</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>func(<span class="op">*</span>ls)</span></code></pre></div>
+<p>in Python.</p>
+<h3 id="enumeration-on-tables-or-dictionaries">Enumeration on <code>table</code>s or dictionaries</h3>
+<p>Both languages provide a way to traverse lists with enumerated version. This holds true for dictionary or table as well.</p>
+<p>In Lua, one could call <code>pairs</code> in the table to traverse both key-value in the table. If you call <code>ipairs</code> in the list, then you would get the enumerated indices along with the values that are in the list.</p>
+<h3 id="iterators-gonna-iterate">Iterators gonna iterate</h3>
+<p><code>for</code> can be used for iterators in both languages. One can also define custom iterators as well which could be used in the for construct as well, which is pretty nice.</p>
+<h2 id="differences">Differences</h2>
+<h3 id="whitespace-vs-end-keyword">Whitespace vs <code>end</code> keyword</h3>
+<p>Lua opts in using <code>end</code> keyword for ending function definition or for loop where Python uses whitespace for function definition, control flows and so on.</p>
+<h3 id="functions">Functions</h3>
+<p>Function definitions are somehow similar to Javascript dropping <code>{}</code> in favor of <code>end</code> keyword.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">function</span> factorial<span class="op">(</span>n<span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span> <span class="cf">then</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="cf">else</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="cf">return</span> n <span class="op">*</span> factorial<span class="op">(</span>n<span class="op">-</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="cf">end</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1"></a>factorial <span class="op">=</span> <span class="kw">function</span> <span class="op">(</span>n<span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span> <span class="cf">then</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="cf">else</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>        <span class="cf">return</span> n <span class="op">*</span> factorial<span class="op">(</span>n<span class="op">-</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">end</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="cf">end</span></span></code></pre></div>
+<p>could be also assigned to a variable similar to Javascript. You could define anoymous functions and assign them into a variable in Python to be fair. But more ofthen than not, people just pass the function itself rather than the variable that is assigned to.</p>
+<h3 id="variable-scope">Variable Scope</h3>
+<p>All of the variables are defaulted as global variables. Not sure why the language creators thought this is a good idea, but you could explicitly put <code>local</code> keyword in front of the variable declaration to make it “local”. Contrarily, you could explicitly make a global variable putting <code>global</code> in front of the variable declaration.</p>
+<h3 id="tables-vs-dictionaries-lists-and-sets">Tables vs Dictionaries, Lists and Sets</h3>
+<p>In Lua, we trust tables, Python needs to bring dictionaries, lists and sets. Tables are the only compound data structure(did anyone tell that Lua is a very compact language). Tables are associative arrays similar to dictionaries in Python, but they could be also used as lists(defaulting the keys as integers).</p>
+<h3 id="xy-range-syntax-includes-beginning-and-end-point"><code>x,y</code> “range” syntax includes beginning and end-point</h3>
+<p>The tables when they are used as lists, start indexing at 1. When you define a range of integers using <code>1,100</code>, which produces 100 integers from 1 upto 100 including 1 and 100. If you have the list, you could get the length of the list via <code>#list</code>.</p>
+<h3 id="objects">Objects</h3>
+<p>Lua does not support object oriented programming. They provide certain ways of doing OOP, similar to Javascript’s prototype based style, but even that requires somehow different syntax to call the object. Of course, there is no object by the way. It is a table which you could call functions from it. You could add almost any behavior on tables via “metatables” though.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">function</span> object<span class="op">:</span>func<span class="op">(</span>x<span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    self<span class="op">.</span>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="cf">end</span></span></code></pre></div>
+<p>is nothing but a syntactic sugar for the following for example:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lua"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1"></a>object<span class="op">.</span>func <span class="op">=</span> <span class="kw">function</span><span class="op">(</span>self<span class="op">,</span> x<span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>                self<span class="op">.</span>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>              <span class="cf">end</span></span></code></pre></div>
+<h3 id="lua-is-fast">Lua is fast</h3>
+<p>I meant LuaJIT is fast. Comparing to Python, it is quite faster, which is important if you are doing expensive numerical operations. Considering its dynamic nature, this is a little surprise to me,but it is a good surprise.</p>
+<h3 id="lua-assigns-nil-when-a-variable-is-not-defined">Lua assigns <code>nil</code> when a variable is not defined</h3>
+<p>If you are accessing a variable that you did not define in Lua, it does not error, it silently assigns a <code>nil</code> to the variable and does not complain where you would get a <code>NameError</code> in Python. In general, since most of the things are tables and if you access a non-existent key to the table, it simply returns <code>nil</code>, there would be less explicit error or exception but rather nil checking for those statements if the key actually exists in the first place in the table.</p>
+<h3 id="lua-does-proper-tail-recursion">Lua does proper tail recursion</h3>
+<p>Lua does proper tail recursion where Python does not.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

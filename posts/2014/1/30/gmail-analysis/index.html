@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Unreasonable Effectiveness of Metadata &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Unreasonable Effectiveness of Metadata" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/1/30/gmail-analysis/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unreasonable Effectiveness of Metadata" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/1/30/gmail-analysis/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Unreasonable Effectiveness of Metadata</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">January 30, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/1/30/gmail-analysis/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="metadata">Metadata</h3>
+<p>Metadata could be translated as data about data if we want to translate ‘mot à mot’. Generally, it defines what the data is about and gives some descriptive information around that. Still quite abstract huh? If the content of email is data, then sender, receiver, date and time could be considered as metadata. Metadata could be quite important when data is not available or unobservable due to various reasons.<br />
+One of the reasons why they could be collected quite freely and and abundant is because apparently it does not have to go through the same <a href="http://www.slate.com/articles/news_and_politics/war_stories/2014/01/obama_s_nsa_reforms_the_president_s_proposals_for_metadata_and_the_fisa.html">privacy concerns</a> unlike data goes. Moreover, it is likely that its digital footprint is much smaller than data and this leads to efficient storage, computation, analysis and inference. As its name suggests, it is an <strong>abstraction</strong> of the data it sits on top of the data; it does not necessarily tell the story, but that does not mean it does not reveal anything about data itself. Contrarily, it may expose a lot of interesting patterns and even not just about data.</p>
+<h3 id="gmail-outage">Gmail Outage</h3>
+<p>Last week Gmail had an <a href="http://googleblog.blogspot.in/2014/01/todays-outage-for-several-google.html">outage</a> and users could not use their Gmail accounts for almost one hour.<br />
+Consider this scenario, we cannot observe the outage of Gmail(after all it just prompts an error, temporary error 502), but we have all of the metadata of users who use Gmail. It would be quite easy to infer that there is something wrong with Gmail infrastructure and this could be done pretty quickly and efficiently assuming we have all of the statistics and email metada information of users. Looking at the data of the users has another important advantage; you actually do not care if the infrastructure works but if <strong>your users</strong> could actually use your service. But is there a pattern to begin with?</p>
+<h3 id="gmail-usage-analysis">Gmail Usage Analysis</h3>
+<p>So, I used my work gmail account that I used from beginning of June 2013 up to January 2014. I looked at received email and sent email times. The results was quite interesting. Although there are a lot of third party applications which shows some usage statistics, I found none of them secure and reliable. So, I pulled the data from Gmail using standard library <a href="https://nest.com/">imaplib</a>. Apart from easiness, you could have control of all of the folders in your email for arbitrary time intervals whereas third party applications generally either gives predefined(inbox, sent) or put restrictions in the time interval. Python has a batteries-included approach which works quite convenient at the times when you want to do implement something that is already implemented in the standard library.</p>
+<h3 id="received-emails">Received Emails</h3>
+<h4 id="emails-per-day">Emails Per Day</h4>
+<p>For daily counts of emails, Monday and Thursday has two days less than other days this is due to the federal holidays. But I must say most of the received emails are from project management web app that we were using. When I looked at my received emails, I see mostly notifications rather than “emails”.</p>
+<figure>
+<img src="/static/images/work/notes/2014/1/27/received_email_by_day_bar_plot.png" title="Received Email By Day" alt="" /><figcaption>Received Email By Day</figcaption>
+</figure>
+<p>What do we infer from the above graph? For some reason, we have less number of emails in Wednesday. Could it be we were working less in Wednesday? Actually, yes. We used to have company meetings in Wednesday. This may not change a lot for one person, but if you consider all of the people in the company spent their times on the meeting, then total time spent becomes ‘meeting-hour * number-of-people’ which apparently has an effect on the total number of emails.</p>
+<h3 id="what-you-were-receiving-emails-on-sunday">What!, you were receiving emails on Sunday?</h3>
+<p>So, we were a distributed team and Israeli team took vacations on Friday and worked on Sunday. Those emails are mostly due to the activities and emails from Israeli team. This would also lead to high number of sent emails on Monday as you will see later. What I found interesting is that, more or less most of the days have same number of emails. Even though it <strong>feels</strong> like beginning of the weeks are stressful and hectic, apparently if we sum the number of emails per day, we get similar number of emails for each day.</p>
+<h3 id="emails-per-hour">Emails Per Hour</h3>
+<p>The following graph actually explains what type of email activity shows a distributed and a team which has quite different timezones(USA, Europe, Israel).</p>
+<figure>
+<img src="/static/images/work/notes/2014/1/27/received_email_by_hour_histogram.png" title="Received Email By Hour" alt="" /><figcaption>Received Email By Hour</figcaption>
+</figure>
+<h3 id="emails-per-hour-over-time">Emails Per Hour Over Time</h3>
+<p>There is a “inactive” time zone which corresponds to between 3 am and 6 am EST. However, as different people have are in different time zones, generally the inbox email flow seems to be continuous except inactive time zone. <img src="/images/work/notes/2014/1/27/received_email_by_hour_month_scatter_plot.png%20%22Received%20Email%20By%20Hour%20Scatter%20Plot%22" alt="Received Email By Day" /></p>
+<p>As I have mentioned, the emails are mostly project updates, notifications and lastly and in a small percentage emails. What is more interesting is actually <strong>sent</strong> folder as it will reveal my email and for some extent working behaviour.</p>
+<h3 id="sent-emails">Sent Emails</h3>
+<h4 id="emails-per-day-1">Emails Per Day</h4>
+<p>Remember, when I said the beginnings of the week was stressful and hectic, it actually was. Generally, every week either task that I was assigned in the previous week was completed or it the method/algorithm/approach was not working, then we switch to other approaches. Therefore, first two days of the week are mostly spent of trying to understand the task and try to figure out what is actually needed. This process brings a lot of questions and leads to high number of emails and communication. And, yes I was answering emails on Sunday time to time.</p>
+<figure>
+<img src="/static/images/work/notes/2014/1/27/sent_email_by_day_bar_plot.png" title="Sent Email By Day" alt="" /><figcaption>Sent Email By Day</figcaption>
+</figure>
+<h3 id="emails-per-hour-1">Emails Per Hour</h3>
+<p>The following graph actually explains a lot of my daily activity. Can you see when I have lunch? Or when I commute to work or when I leave from the work? Such daily behavior probably also affects my reactions and responses to advertisements that I see on web. My probability of responding to a restaurant or a meal ad around noon peaks whereas after 1 hour, I would lose all of my interest to food. Similarly, Uber ads around 9 am and 6 pm would may mean a lot to me whereas I am quite unlikely to respond to the ads at other times.</p>
+<p>I also have two other accounts of in gmail which I use for my personal needs. With combination of those data, more or less my daily activity are actually could be inferred quite accurately from my gmail usage. And, do not forget we did not yet go through my emails but only metada, timestamps of emails. Yet, even this much of data reveals a lot of my daily activity.</p>
+<figure>
+<img src="/static/images/work/notes/2014/1/27/sent_email_by_hour_histogram.png" title="Sent Email By Hour" alt="" /><figcaption>Sent Email By Hour</figcaption>
+</figure>
+<h3 id="emails-per-hour-over-time-1">Emails Per Hour Over Time</h3>
+<p>From the following graph, could you see when I took vacation or switched to another job so that my daily activity becomes almost zero? Could you also see the activity in my transition and how it gets moved to non-working hours (mostly).</p>
+<figure>
+<img src="/static/images/work/notes/2014/1/27/sent_email_by_hour_month_scatter_plot.png" title="Sent Email By Hour Scatter Plot" alt="" /><figcaption>Sent Email By Hour Scatter Plot</figcaption>
+</figure>
+<p>What is more is of course whom I contacted, what tasks or projects that I worked, what type of emails I received and sent. However, even without context, even without using <em>actual</em> data, I could go this far. With recent acquisition of <a href="https://nest.com/">Nest</a>, Google not only has our online activity(search, email) but also physical activities which it is fundamental to complete <strong>the cycle</strong>.</p>
+<h3 id="what-is-next">What is next?</h3>
+<p>What is next is to infer the activities from data and predict what we will do next. In order to do that, Google needs abundant data which it already has and machine learning algorithms that are effective for unlabeled and large amounts of data, which it acqui-hires top-notch researchers <a href="http://www.cifar.ca/Google-DDNresearch-Geoffrey%20Hinton">Geoffrey Hinton</a>, <a href="http://www.technologyreview.com/news/524026/is-google-cornering-the-market-on-deep-learning/">DeepMind</a> in order to enable just that.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

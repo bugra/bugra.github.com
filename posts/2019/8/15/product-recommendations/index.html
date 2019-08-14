@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Product Recommendations &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Product Recommendations" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2019/8/15/product-recommendations/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Product Recommendations" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2019/8/15/product-recommendations/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Product Recommendations</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">August 15, 2019 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2019/8/15/product-recommendations/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>As Jet.com focuses more and more on the grocery category, we start facing certain challenges around inventory availability. To overcome this challenge, we came up with a new module which would provide substitutable products on the item page. This post explains the motivation (why), design, implementation (how), and the product (what).</p>
+<h3 id="why-is-this-important">Why is this important?</h3>
+<p>We want to provide customers with the most similar items so they can purchase a suitable substitute when the original product they’re looking for is unavailable. Previously, the OOS(out of stock) item page experience did not include any substitutable products on the item page in case the customer came to the item page through the reorder and/or search pages.</p>
+<hr />
+<h3 id="design-decisions">Design Decisions</h3>
+<p>We want to make a couple of assumptions and design decisions prior to this project with the goal of solving our substitute problem. This means that we want to recommend/suggest products that are substitutable to the anchor product. This also means that we should focus on our catalog and recommended products that are available from the catalog. We want to provide recommendations as long as they are somehow related. If we do not have any blackberries in the website, then the user can still see blueberries, raspberries or strawberries. This means that we are not going to restrict ourselves for a given product type but provide a wide selection of products even if all of the products are not directly substitutable for the anchor product. We want to generate recommendations for all of the products in our catalog regardless of their availability status. We are not going to constrain ourselves over inventory availability of the product. This only makes sense as we are trying to tackle and solve OOS item recommendations.  We want to provide product similarity based on product data rather than behavioral data. At least initially. This means that we depended on the product data and not use behavioral data. There are multiple reasons why we did this:</p>
+<ol type="1">
+<li>Behavioral data does not translate into substitutability of the product.</li>
+<li>Behavioral data does not necessarily tell anything about the products themselves, but rather the usage of the product.</li>
+<li>Behavioral data is impacted by seasonality, pricing, discounts, brands, zip codes, and intent of the users.</li>
+<li>Behavioral data is heavily biased towards products that have been on the site for awhile and have a high sales rank. </li>
+<li>Behavioral data may be biased toward certain brands.</li>
+</ol>
+<p>How do we use the product to be able to generate recommendations? Product Data We have the following data for a given product: </p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="st">&quot;id&quot;</span><span class="op">:</span> <span class="st">&quot;9fb0c9b4a7a84c0ca90d5e38a0b4352d&quot;</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="st">&quot;title&quot;</span><span class="op">:</span> <span class="st">&quot;Bananas, Minimum 5 Ct&quot;</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="st">&quot;description&quot;</span><span class="op">:</span> <span class="st">&quot;Your order will contain a minimum of 5 bananas. Sweet with a creamy texture, bananas are convenient for snacking, slicing into yogurt or ice cream, and using in many recipes. Bananas are an excellent source of vitamin B6, potassium and fiber.&quot;</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="st">&quot;bullets&quot;</span><span class="op">:</span> [</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="st">&quot;Storing: Refrigerating or freezing&quot;</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="st">&quot;Ripen: Placing near other ripe fruit in a bowl&quot;</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="st">&quot;Extend: Pulling the banana apart from the bunch&quot;</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="st">&quot;Enjoy: Bananas can be enjoyed as a great healthy on-the-go snack, as part of a meal or desert, in a milkshake, with cereal or in a banana split&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  ]<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="st">&quot;product&quot;</span><span class="op">:</span> [</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="st">&quot;banana&quot;</span><span class="op">,</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="st">&quot;fruit&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  ]<span class="op">,</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="st">&quot;brand&quot;</span><span class="op">:</span> <span class="st">&quot;Fresh Produce&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="op">}</span></span></code></pre></div>
+<p>The values of the fields may change, but the keys for most of the part exist in most of the products in catalog. However, we want to represent this textual information in such a way that we can compute similarity between different products. This brings us to our next topic - the representation of the products.</p>
+<h2 id="representation">Representation</h2>
+<p>In order to compute a similarity measure across all of the products, we need to come up with a representation model for the product data. In this section, we are going to give background on text representation and explain the chosen method to represent the product.</p>
+<h3 id="vector-space-model">Vector Space Model</h3>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/vector-space-model.png" title="Bag of Words Representation" alt="" /><figcaption>Vector Space Model</figcaption>
+</figure>
+<p>Vector Space Model is the main model of representation of documents in a vector space. This allows us to compute similarity measure between documents. Implementations such as Bag of Words(BoW) and TF-IDF builds on top of vector space model idea and try to come up with ways of representing the documents in a vector space. </p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/tf-idf.png" title="TFIDF Representation" alt="" /><figcaption>TFIDF Representation</figcaption>
+</figure>
+<p>Both of these methods try to solve sentence representation problem as the words are represented as either integer (term frequency in sentence, BoW) and floats (term frequency multiplies with inverse document frequency, TF-IDF) Advantages of these approaches are: They are not computationally expensive We do not need a large corpus to represent the vector models</p>
+<p>Disadvantages include: It produces sparse vectors over a large corpus It can only represent the words as counts or its existence vs non-existence It does not know the meaning of words. Negation is not represented very well. For example: “He does not have a good sense humor.” vs. “He has a good sense of humor.” These sentences will have a similar bag of word representation even if they are negating each other. They are not aware of word order within a sentence.</p>
+<h2 id="word2vec">Word2Vec</h2>
+<p>The motivation behind word representation is that this is a very fundamental task for a number of natural language processing tasks. An efficient/relevant word representation independent from the task and context of the problem will be useful to solve the original NLP problem in an easier fashion. Word2Vec is another method that tries to solve the word representation problem. It is similar to TF-IDF and BOW, but with a significant difference - it actually tries to learn embedding for each individual word rather than the sentence representation. This paper and its follow-up paper show how to train large word2vec model over a corpus to get a distributed representation over words in the corpus. The original paper was a breakthrough in terms of the novelty of the word representation as well as what the embeddings can capture in terms of semantically. For certain cities, it captured the relation of the city being capital. For certain attributes, it captured the gender of it.</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/keras-shallow-nn.png" title="Keras Based Shallow Neural Network Implementation" alt="" /><figcaption>Keras Based Word2Vec Implementation</figcaption>
+</figure>
+<p>It is very easy to implement a shallow neural network in Tensorflow using Keras interface for word2vec purposes. Here, we are creating a two-layer neural network with an embedding layer, which has the size of vocabulary and embedding_size. After the training, this layer is going to be a lookup table on top of the words to be able to get the embedding per word.</p>
+<h3 id="advantages-of-word2vec">Advantages of word2vec</h3>
+<ul>
+<li>The vector representation is limited to a certain embedding size. This allows us to represent the documents/products much more efficiently.</li>
+<li>The words themselves have “meaning” and a vector representation. They are not a single number based on occurrence and independently treated based on the context, but rather words themselves can carry some meaning and can be compared with other words.</li>
+</ul>
+<h3 id="disadvantages-of-word2vec">Disadvantages of word2vec</h3>
+<ul>
+<li>We still have problems with words that are out of the vocabulary. If the word is not in the training dataset, we would not be able to generate an embedding for the word. For this shortcoming, we used an unknown character to use an embedding that represents those words.</li>
+<li>Since it is not character level but word level, it cannot learn different forms of the words even if they appear in the training dataset.</li>
+<li>Misspelled words are treated as unique words in the corpora. </li>
+<li>Rare words’ embeddings are not generally very useful in order to represent the words themselves. </li>
+</ul>
+<h3 id="training">Training</h3>
+<p>We took a trained model on Wikipedia corpus and retrained it on our catalog where we used the titles, bullets and descriptions as inputs. This allowed us to use a baseline model to have coverage on the words that appear in a large corpus and retrain on our catalog so that we can tailor the embeddings for our catalog. We found out that in the evaluation of the model, the CBoW (Continuous Bag of Words) approach in the optimization produced slightly better results than the skip-gram in our evaluation set. </p>
+<h3 id="product2vec">Product2Vec</h3>
+<p>We ultimately want to represent the product into an embedding. For each word, we use tf-idf weighted embedding representation as in the following:</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/embedding-computation.png" title="Embedding Computation" alt="" /><figcaption>TFIDF Weighted Embedding Computation</figcaption>
+</figure>
+<p>This type of representation gives more weights on the words that may not appear in the corpus as much and gives boost for brand names for a given category as we are computing TFIDF per category.  We also tried averaging all of the word representation equally weighted as in the following:</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/mean-embedding-computation.png" title="Mean Weighted Embedding Computation" alt="" /><figcaption>Mean Weighted Embedding Computation</figcaption>
+</figure>
+<p>However, averaging without considering tf-idf resulted in lower classification accuracy. Therefore, we used tfidf weigted vector embedding for a given product per different fields of the product data.</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/product-data-embedding-generation.png" title="Product Data Embedding Generation" alt="" /><figcaption>Product Data Embedding Generation</figcaption>
+</figure>
+<p>Overall, the embedding generation is outlined above. We learn w1, w2, w3, w4 by a hyper-parameter optimization through cross-validation. One-hot encoding brand, product type and boosting can be considered as a rerank step where if both of the features are matching, they get prioritized both over and across brand and product type. Price-based boosting is only enabled if the anchor product and candidates for recommendations differ more than 20% and are in certain categories (like electronics, fashion).</p>
+<h3 id="indexing-architecture">Indexing Architecture </h3>
+<p>After explaining how we generate embeddings, indexing architecture becomes quite simplified. We use FAISS to store embeddings and compute similarity between different product embeddings. </p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/indexing-architecture.png" title="Indexing Architecture" alt="" /><figcaption>Indexing Architecture</figcaption>
+</figure>
+<p>Since our candidates for recommendations are limited to category, we shard FAISS by category to make the indexer as well as the computation of similarity across embeddings.  In the recommendation generation, since we know the category of the product, we are able to hit sharded FAISS with ease for a given product.  After we get all of the candidates for a given category, we search the product in the FAISS category and generate recommendations based on the closest distance. After that, we store these recommendations in DocDB keyed by the anchor product.  In the API side, we lookup based on the anchor product and provide the recommendations to front end.</p>
+<h3 id="what-does-it-look-like">What does it look like? </h3>
+<p>I would be remiss to not show what it looks like on the website. This module provides all of the recommendations under the title of Consider These Other Options.</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/blackberries.png" title="Blackberries" alt="" /><figcaption>Blackberries Recommendations</figcaption>
+</figure>
+<p>For products like Blackberries, we have a small number of products (2) that we sell in the website. However, this does not prevent us from providing the customer with organic blackberries, then raspberries and blueberries. Note that the brand boosting becomes really good when brand focuses on a certain category.</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/not-yet-ripe-avocados.png" title="Not Yet Ripe Avocados" alt="" /><figcaption>Not Yet Ripe Avocados</figcaption>
+</figure>
+<p>After we provide two avocados, then provide various other fruits.</p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/baby-bananas.png" title="Baby Bananas" alt="" /><figcaption>Baby Bananas</figcaption>
+</figure>
+<p>This example is great as we are sending the correct product types in the first two positions and because of word2vec, plantain and bananas are close to each other and we are able to provide plantain as the third recommendation in the list. There are other good examples in the following: </p>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/birds-eye-classic-mixed-vegetables.png" title="Birds Eye Classic Mixed Vegetables" alt="" /><figcaption>Birds Eye Classic Mixed Vegetables</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/hand-soap.png" title="Hands Soap" alt="" /><figcaption>Hands Soap</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/jumbo-yellow-onions.png" title="Jumbo Yellow Onions" alt="" /><figcaption>Jumbo Yellow Onions</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/organic-mushrooms.png" title="Organic Mushrooms" alt="" /><figcaption>Organic Maitake Mushrooms</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/organic-mushrooms.png" title="Organic Mushrooms" alt="" /><figcaption>Organic Maitake Mushrooms</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/chicken-breasts.png" title="Perdue Boneless Chicken Breasts" alt="" /><figcaption>Perdue Boneless Chicken Breasts</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2019/8/15/brussel-sprouts.png" title="Urban Roots Brussel Sprouts" alt="" /><figcaption>Urban Roots Brussel Sprouts</figcaption>
+</figure>
+<h3 id="moving-forward">Moving Forward</h3>
+<ul>
+<li>Elmo and BERT are two new vector models on top of the word which can incorporate contextual information around the words so the vectors of the words can be different based on the place that they appear.</li>
+<li>The Word2Vec model we used was a word-based model, and Elmo is based on character level. Because of this, it can handle out-of-vocabulary words very well.</li>
+<li>Poincare Embeddings can learn much lower dimensional embeddings by learning different types of relationships.</li>
+<li>We want to learn the weights on our catalog in a much faster fashion.</li>
+</ul>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>
