@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Workflow Engine Comparison(First Impressions) &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Workflow Engine Comparison(First Impressions)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/4/13/workflow-engine-comparison/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workflow Engine Comparison(First Impressions)" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/4/13/workflow-engine-comparison/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Workflow Engine Comparison(First Impressions)</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">April 13, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/4/13/workflow-engine-comparison/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>I was looking at different options for workflow engines. I have some experience in Oozie, little experience in Luigi and no experience in Azkaban. In this post, I will try to give an overview of these engines in terms of their advantages and disadvantages. Take my word with a grain of salt(based on the experience I have with these tools), though.</p>
+<h3 id="crons-do-not-scalesurprise">Crons do not scale(Surprise!)</h3>
+<p>If you have a lot of processes which manipulate, transform and write data to database, you will sooner or later will face the limitations of the cron jobs. You want to be able to handle failures, debug processes and rerun the failed jobs. You want to have multiple scripts to run based on data availability, data dependency and time-based scheduling. You may want to also share the data workflow with many people where you cannot do any of the items with cron jobs.</p>
+<h3 id="what-is-sufficient">What is sufficient?</h3>
+<ul>
+<li>Regular scheduling (depending on data availability and time-based)</li>
+<li>Workflow of multiple jobs</li>
+<li>You should be able to write workflows in the same way that you are writing programs</li>
+<li>You should handle the errors and failures gracefully</li>
+<li>Communication between cluster and client should be secure</li>
+<li>Community support should be very good</li>
+<li>Continuous integration(whenever you push to the master, it should adapt the changes(woohoo!))</li>
+<li>Testing should be supported out of the box</li>
+<li>Let’s cut to the chase; pretty much anything that you want to expect from a decent library or framework in terms of software quality and practices</li>
+</ul>
+<h3 id="lets-write-our-own-workflow-engine">Let’s write our own workflow engine</h3>
+<ul>
+<li>Resources are limited(time, effort, human resources)</li>
+<li>Is your usage is too specific or could you make it work in one of the available tools?</li>
+<li>No need to reinvent the wheel</li>
+</ul>
+<h3 id="what-do-we-want-from-the-workflow-engines">What do we want from the workflow engines?</h3>
+<ul>
+<li>First and foremost: resilient to failures</li>
+<li>Debugging is necessary and important advantage over cron jobs</li>
+<li>If we have similar workflows, we should not write too much boilerplate code to make it all work</li>
+<li>Support for databases, HDFS and common file formats</li>
+<li>You should be able to write workflows in the same way that you are writing programs</li>
+<li>You should handle the errors and failures gracefully</li>
+<li>Communication between cluster and client should be secure</li>
+<li>Community support should be very good</li>
+<li>Continuous integration(whenever you push to the master, it should adapt the changes(woohoo!))</li>
+<li>Testing should be supported out of the box</li>
+<li>Default logging would be icing on the cake</li>
+<li>Let’s cut to the chase; pretty much anything that you want to expect from a decent library or framework in terms of software quality and practices</li>
+</ul>
+<h3 id="oozie">Oozie</h3>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li>Mature</li>
+<li>Support from Hadoop community is strong</li>
+<li>Documentation</li>
+<li>Default support for Pig, ssh, java, filesystem</li>
+<li>Coordinators: when data is available, do the computation. For recurring jobs, you do not need to explicitly configure the job flow.</li>
+<li>Security</li>
+<li>Built in authentication</li>
+<li>It has own testing suite(Mini Oozie)</li>
+</ul>
+<h4 id="disadvantages">Disadvantages</h4>
+<ul>
+<li>XML(Verbose)</li>
+<li>Control flow is somehow restrictive</li>
+<li>Directed Acyclic Graph(Hard to rerun only a component after failure, perfectly goes along with Pig, though; Pig scripts also define DAG)</li>
+<li>User Interface</li>
+</ul>
+<h3 id="luigi">Luigi</h3>
+<h4 id="advantages-1">Advantages</h4>
+<ul>
+<li>Python!</li>
+<li>Control flow is advanced as tasks are code</li>
+<li>Dependencies between flows</li>
+<li>Customization and code reuse through object-oriented programming</li>
+</ul>
+<h4 id="disadvantages-1">Disadvantages</h4>
+<ul>
+<li>Visualizer is not as good as Azkaban</li>
+<li>No default support for Pig, Hive</li>
+<li>No storage of history and generally persistent storage is lacking</li>
+</ul>
+<h3 id="azkaban">Azkaban</h3>
+<h4 id="advantages-2">Advantages</h4>
+<ul>
+<li>If you are using Voldemort, it supports out of the box</li>
+<li>Visualizations for tasks (svg, interactive) is advanced</li>
+<li>Authentication and Authorization</li>
+<li>History of tasks(which are completed and which are not)</li>
+<li>Plugins for Pig, Hive and many more</li>
+<li>Web deployment</li>
+</ul>
+<h4 id="disadvantages-2">Disadvantages</h4>
+<ul>
+<li>Support is not as good as Oozie.</li>
+<li>Scheduling is only time based. AFAIK, no data availability scheduling</li>
+<li>Workflow is somehow limited and restrictive comparing to Luigi and even Oozie.</li>
+</ul>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

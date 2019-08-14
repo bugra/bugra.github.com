@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Similarity via Jaccard Index &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Similarity via Jaccard Index" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2017/2/7/similarity-via-jaccard-index/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Similarity via Jaccard Index" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2017/2/7/similarity-via-jaccard-index/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Similarity via Jaccard Index</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">February 07, 2017 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2017/2/7/similarity-via-jaccard-index/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<figure>
+<img src="/static/images/work/notes/2017/2/7/industry-similarity-for-jaccard-index.png" title="Jaccard Index" alt="" /><figcaption>Jaccard Index</figcaption>
+</figure>
+<p>At Axial, we had a taxonomy tree for industries and wanted to know if one particular industry is more similar to another industry. The similarity of some of the industries are straightforward if they share a parent, but this similarity is not quantitative and does not produce a metric on how similar the two industries are.</p>
+<p>In the search page and other parts of the website, it would be useful for us to be able to compare two different industries whether they belong to the same parent node or not. For example, if user chooses an industry in the on boarding process, we should be able to recommend another industry based on the selected industry. This not only makes sure that user would choose consistent industries taxonomies but also exposes the similar industries she may not know. This is something we planned to do, but let’s look at how this feature is put into the production right now.</p>
+<h3 id="industry-ordering-in-app-search">Industry Ordering In-App Search</h3>
+<p>In the app-in search page, when user selects a particular industry in the industry facet search, we want to order the industries of the documents(campaigns, projects and companies) based on the selected industry. Since we do not limit the number of industries for projects, the ordering of the industries for the project would become quite handy to compare against the industry facet.</p>
+<h3 id="similarity-in-general">Similarity in General</h3>
+<p>For other parts of the website, we could measure the similarity between industries when we want to compare how similar the two documents are in terms of industries they are assigned to or how good the match relationship between campaign and a project. Producing a similarity metric for industries gives a proxy on how similar two documents are.</p>
+<h3 id="industry-similarity-via-jaccard-index">Industry Similarity via Jaccard Index</h3>
+<p>In order to do so, we used Jaccard Index to measure similarities between industries based on campaign keywords that are associated to each industry. Let’s review what a Jaccard Index is and then I will explain how it is used to measure similarity between two industries.</p>
+<h3 id="jaccard-index">Jaccard Index</h3>
+<p>Jaccard Index is a statistic to compare and measure how similar two different sets to each other. It is a ratio of intersection of two sets over union of them.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mi>a</mi><mi>c</mi><mi>c</mi><mi>a</mi><mi>r</mi><mi>d</mi><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mi>A</mi><mo>∩</mo><mi>B</mi></mrow><mrow><mi>A</mi><mo>∪</mo><mi>B</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex"> jaccard(A, B) = \frac{A \cap B}{A \cup B} </annotation></semantics></math></p>
+<p>If you have representative finite number of elements for a particular observation and you want to compare this observation with another observation, you could count the number of items that are common to both of these two sets. It is a natural fit for comparing posts if you know the representative tags for the posts to measure how similar two articles are in terms of tags.</p>
+<p>Its Python implementation is pretty trivial.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> jaccard_index(first_set, second_set):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">&quot;&quot;&quot; Computes jaccard index of two sets</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">        Arguments:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">          first_set(set):</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">          second_set(set):</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">        Returns:</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">          index(float): Jaccard index between two sets; it is </span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">            between 0.0 and 1.0</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="co"># If both sets are empty, jaccard index is defined to be 1</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    index <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="cf">if</span> first_set <span class="kw">or</span> second_set:</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    index <span class="op">=</span> (<span class="bu">float</span>(<span class="bu">len</span>(first_set.intersection(second_set))) </span>
+<span id="cb1-14"><a href="#cb1-14"></a>             <span class="op">/</span> <span class="bu">len</span>(first_set.union(second_set)))</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">return</span> index</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a>first_set <span class="op">=</span> <span class="bu">set</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
+<span id="cb1-19"><a href="#cb1-19"></a>second_set <span class="op">=</span> <span class="bu">set</span>(<span class="bu">range</span>(<span class="dv">5</span>, <span class="dv">20</span>))</span>
+<span id="cb1-20"><a href="#cb1-20"></a>index <span class="op">=</span> jaccard_index(first_set, second_set)</span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="bu">print</span>(index) <span class="co"># 0.25 as 5/20</span></span></code></pre></div>
+<h3 id="industry-similarity">Industry Similarity</h3>
+<p>I talked about a little bit on our industry taxonomy earlier; not only we wanted to expose in different ways but also we want to measure how similar they are to each other. The problem is that we did not have a good way to compare two different industries. Since our taxonomy structure is a tree, we could group them by their parent nodes but not necessarily compare and measure how similar they are in a robust and reliable way.</p>
+<p>Instead of coming up a heuristic based approach to measure similarity, we decided to use the user data. We have keywords for campaigns that our members created. When members create a <code>Campaign</code>, they could enter a set of keywords along with industries that they chose. We decided to use this information to compare and measure a similarity between industries using campaign keywords.</p>
+<p>The idea is simple; if two industries have a lot of common keywords given a campaign a profile, then the chances are they are closely related. As our members choose similar keywords for those industries to represent their campaigns, the likelihood of similarity only increases. By using campaign keywords, we not only reduce the dimensionality of the text(generally the descriptions are much longer than campaign keywords) but also, we do already a feature selection as the campaign keywords should be much more descriptive, dense and rich in information than the descriptions.</p>
+<h3 id="industry-similarity-by-jaccard-index">Industry Similarity by Jaccard Index</h3>
+<p>In order to build an industry similarity measure, we first assigned the campaign keywords to each industries. Then, for a given industry, we could compute the jaccard index in a very straightforward manner. But what if we want to compare multiple industries against all of the industries that we have in the database? We could still could use the jaccard index for multiple industry comparison even if it is not formally defined for multiple sets.</p>
+<p>However, one can generalize Jaccard index which is very easy to do since what we do is only intersection and union operations across different sets, we could do this among multiple industries in our examples in the following:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mi>a</mi><mi>c</mi><mi>c</mi><mi>a</mi><mi>r</mi><mi>d</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>∩</mo><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>A</mi><msub><mi>n</mi><mn>1</mn></msub></msub><mo>∩</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>A</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>∪</mo><msub><mi>A</mi><mi>n</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">jaccard(A_1, \ldots, A_n) = \frac{A_1 \cap A_2, \ldots, A_{n_1} \cap A_n}{A_1 \cup A_2, \ldots, A_{n-1} \cup A_n} </annotation></semantics></math></p>
+<p>This is pretty neat. Note that set order does not matter(icing on the cake).</p>
+<h3 id="what-was-available">What was available?</h3>
+<p>When we already have the intent of the user(industry facet), it is relatively easy to put that industry in the first place and the remainder industries would follow the first industry.</p>
+<p>When user chooses Aerospace &amp; Defense before industry ordering, we were displaying the industries of the documents in no particular order:</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/7/aerospace-defense-industry-ordering.png" title="Before Industry Ordering" alt="" /><figcaption>Before Industry Ordering</figcaption>
+</figure>
+<p>With industry ordering, we now sort the industries by similarity:</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/7/aerospace-defense-after.png" title="With Industry Ordering" alt="" /><figcaption>With Industry Ordering</figcaption>
+</figure>
+<p>Before “wine” search in Distillers &amp; Vintners:</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/7/distillers-vintners-before-industry-ordering.png" title="Before Wine" alt="" /><figcaption>Before Wine</figcaption>
+</figure>
+<p>After industry ordering is in place:</p>
+<p>As mentioned before, this ordering is easy to extend to multiple industries as well:</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/7/two-industry-selection.png" title="Multiple Industries" alt="" /><figcaption>Multiple Industries</figcaption>
+</figure>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

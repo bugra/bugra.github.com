@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>K-Means, Sparse Coding, Dictionary Learning and All That &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="K-Means, Sparse Coding, Dictionary Learning and All That" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2015/2/10/k-means-sparse-coding-dictionary-learning-and-all-that/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="K-Means, Sparse Coding, Dictionary Learning and All That" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2015/2/10/k-means-sparse-coding-dictionary-learning-and-all-that/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>K-Means, Sparse Coding, Dictionary Learning and All That</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">February 10, 2015 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2015/2/10/k-means-sparse-coding-dictionary-learning-and-all-that/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="feature-learning">Feature Learning</h3>
+<p>Feature learning especially from images is a fundamental step in a classification pipeline as the raw pixels create both huge feature vectors per image and are not necessarily good to represent the image in an efficient way for image classification problems.</p>
+<h3 id="unsupervised-feature-learning">Unsupervised Feature Learning</h3>
+<p>Computer vision community came up with engineered feature detectors first (SIFT, HoG and so on), then try to use unsupervised learning algorithm to find useful visual “word”s in the image so that they could be used for the classification. Nowadays, deep learning is used for feature extraction and also classification at some extent. However, one thing did not change; to be able to learn important and relevant features from the images in an automated way.</p>
+<p><a href="http://www.cs.stanford.edu/~acoates/">Adam Coates</a> in <a href="http://cs.stanford.edu/people/ang/">Andrew Ng</a>’s group put a lot of work in this area. The premise is quite exciting, to be able to learn features similar to sparse coding or dictionary learning using one of the simplest and efficient algorithm(k-means, surprise!) which is easily scalable and parallelizable(a variant of k-means albeit).</p>
+<h3 id="experiments">Experiments</h3>
+<p>I used <a href="http://www.cs.toronto.edu/~kriz/cifar.html">CIFAR 100</a> datasets to learn and display the filters. Sadly, I could not get better than what papers reported so I’ll skip on reporting the classification accuracies. Every section will have the filters that are learned in the CIFAR dataset so that you could also have chance to observe similarities and differences.</p>
+<h3 id="k-means">K-Means</h3>
+<p>K-Means could be one of the most commonly used unsupervised learning algorithm both it is easy to implement, efficient and also it is easy to reason about. Basic premise of the K-Means boils down to represent the observations in a much efficient representation where some observations are mapped to a cluster points.</p>
+<h3 id="k-means-problem-formulation">K-Means Problem Formulation</h3>
+<p>There are <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> observations given a dataset <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> where we represent the samples as follows:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><msubsup><msup><mi>x</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow></msup><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo>⊆</mo><msup><mi>R</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex"> P = {x^{(i)}}_{i=1}^n \subseteq R^d   </annotation></semantics></math> where we want to represent the samples in a number of clusters <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>∈</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">k \in N</annotation></semantics></math>.(so the k-means name)</p>
+<h3 id="k-means-objective-function">K-Means Objective Function</h3>
+<p>We want to find <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> number of centroids $ {c^{1}, , c^{(k)}} R^d $, which are the local(global minimum is intractable) minimum of the following objective function: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>P</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><munder><mo>min</mo><mrow><mi>j</mi><mo>∈</mo><mi>k</mi></mrow></munder><mo stretchy="false" form="prefix">∥</mo><msup><mi>x</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow></msup><mo>−</mo><msup><mi>c</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></msup><msubsup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex"> B_P(c) = \frac{1}{n}\displaystyle\sum_{i=1}^n \min_{j \in k} \lVert x^{(i)} - c^{(j)} \rVert_2^2</annotation></semantics></math></p>
+<p>Most common algorithm is to use an EM(Expectation Maximization Algorithm); first change the centroids position(or randomly initialize) and then compute the distance of the observations to the centroids and then reassign the observations to the closest centroids. After a number of iterations, either centroids would not move at all, or their distance change would be minimal, so the convergence.</p>
+<h3 id="k-means-triangle">K-Means Triangle</h3>
+<p>There is a modified version of K-Means which is called K-Means Tri where every observation does not get the hard cluster assignments(1 or 0) but rather a score within each cluster. This creates a competition in the features inside of the cluster. This allows each feature to “compete” to get the highest score. This could be much more accurate for the clusters that are quite large where the all of the observations get same score. <a href="http://ai.stanford.edu/~ang/papers/nipsdlufl10-AnalysisSingleLayerUnsupervisedFeatureLearning.pdf">Empirically</a>, it also produces sparse outputs as well.</p>
+<h3 id="k-means-tri-objective-function">K-Means Tri Objective Function</h3>
+<p>Objective function does not change but the scores of each observation changes. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>k</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo>max</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>μ</mi><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><msub><mi>z</mi><mi>k</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex"> f_k(x) = \max(0, \mu(z) - z_k)  </annotation></semantics></math> where $z_k=x - c^{k} _2 $ and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\mu(z)</annotation></semantics></math> is the mean of observations in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>.</p>
+<h3 id="k-means-results">K-Means Results</h3>
+<p>I run the K-Means Tri with whitening and without whitening on the dataset. My observation, for the K-Means without whitening is the patches end up low-frequency and color dominant whereas the whitened patches are more like edge-like filters.</p>
+<h3 id="patch-length-8">Patch Length = 8</h3>
+<p>Whitened filters:</p>
+<figure>
+<img src="/static/images/work/notes/2015/2/10/kmeans_filters_stride_8_100.png" title="K-Means Filters - Unnormalized with Stride=8" alt="" /><figcaption>K-Means Filters - Unnormalized with Stride=8</figcaption>
+</figure>
+<p>Not-whitened filters:</p>
+<figure>
+<img src="/static/images/work/notes/2015/2/10/kmeans_filters_stride_8_unnormalized_100.png" title="K-Means Filters - Unnormalized with Stride=8" alt="" /><figcaption>K-Means Filters - Unnormalized with Stride=8</figcaption>
+</figure>
+<h3 id="patch-length-4">Patch Length = 4</h3>
+<p>Whitened filters:</p>
+<figure>
+<img src="/static/images/work/notes/2015/2/10/kmeans_filters_stride_4_100.png" title="K-Means Filters with Stride=4" alt="" /><figcaption>K-Means Filters with Stride=4</figcaption>
+</figure>
+<p>Not-whitened filters:</p>
+<figure>
+<img src="/static/images/work/notes/2015/2/10/kmeans_filters_stride_4_unnormalized_100.png" title="K-Means Filters with Stride=4" alt="" /><figcaption>K-Means Filters with Stride=4</figcaption>
+</figure>
+<blockquote>
+<p>Generally people use some whitening for various reasons; for K-Means, it makes easier to converge also filters-learned are more edge-like rather than pure colors or low-frequency parts in the image as you could see the result of the images given above.</p>
+</blockquote>
+<h3 id="sparse-coding">Sparse Coding</h3>
+<p>Sparse Coding like most of the decomposition/factorization methods try to represent a signal with different atoms, in the case of sparse coding, these atoms are sparse and the matrix that yields this atom is overcomplete. This sparsity and overcompleteness nature of the matrix enables a robust reconstruction of the signal from very few atoms as long as some conditions are met.</p>
+<p>Representation of image could be done by linear transform in the following way:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><msub><mi>ϕ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> x = \displaystyle\sum_{i=1}^m a_i \phi_i  </annotation></semantics></math> where $ m n$ so that we have an overcomplete representation of the original observation matrix.</p>
+<p>Sparse coding and most of the atom based methods try to get a variety of atoms either it is a precomputed matrix(FFT, PCA, etc) or a “dictionary” as in the dictionary learning which is trained from a train set. The premise remains same we want to get a superposition of atoms such that we would have the most exact and accurate information from the images and since we know which atoms we use, we have a good representation of image as well.</p>
+<p>Since it is an overcomplete basis and atoms are not linearly independent from each other, the input and output images relationship is not as linear as other transformations which have atoms that are linearly independent from each other.</p>
+<h3 id="biological-reasoning">Biological Reasoning</h3>
+<p>This may not work very well for other type of images or other types of signal, but empirically it gives good results and nice representation of natural images. There are also biological reasons why representing an image in a sparse way might be a good idea:</p>
+<ol type="1">
+<li>It increases capacity of memory(associative)</li>
+<li>It also makes it easy to form associations</li>
+<li>It minimizes the wiring length</li>
+<li>It increases the metabolic efficiency.</li>
+</ol>
+<p>However, this part is mostly concerned the early visual cortex and trying to mimic that part of the brain may not be very accurate for image representation.</p>
+<h3 id="mathematical-reasoning">Mathematical Reasoning</h3>
+<p>Natural images could be represented as a small number of primitives(mostly low-frequency) like edges, lines, etc. This is also the reasoning behind Gabor filters and early work in the signal processing community that built a lot of filtering work to represent images. <a href="http://www.naturalimagestatistics.net/nis_preprintFeb2009.pdf">Natural Image Statistics</a> examines more closely in this type of behavior and states similar conclusion and a method(ICA) which learns Gabor-like filters.</p>
+<h3 id="sparse-coding-objective-function">Sparse Coding Objective Function</h3>
+<p>We would like to minimize the following objective function and it has a sparsity regularizer since we want the basis atoms to be sparse:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mi>i</mi><mi>m</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mrow><msubsup><mi>a</mi><mi>i</mi><mi>j</mi></msubsup><mo>,</mo><msub><mi>ϕ</mi><mi>i</mi></msub></mrow></msub><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false" form="prefix">∥</mo><msup><mi>x</mi><mi>j</mi></msup><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msubsup><mi>a</mi><mi>i</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><msub><mi>ϕ</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup><mo>+</mo><mi>λ</mi><mo stretchy="false" form="prefix">∥</mo><mi>a</mi><mo stretchy="false" form="postfix">∥</mo></mrow><annotation encoding="application/x-tex"> minimize_{a_i^{j}, \phi_i} \displaystyle\sum_{j=1}^n \lVert x^{j} - \displaystyle\sum_{i=1}^m a_i^{(j)} \phi_i \rVert^2 + \lambda \lVert a \rVert </annotation></semantics></math> subject to:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">∥</mo><msubsup><mi>ϕ</mi><mi>i</mi><mn>2</mn></msubsup><msup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn></msup><mo>≤</mo><mi>C</mi><mo>,</mo><mo>∀</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex"> \lVert \phi_i^2 \rVert^2 \leq C, \forall i=1, \ldots, n </annotation></semantics></math></p>
+<p>Normally, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>0</mn></msub><annotation encoding="application/x-tex">l_0</annotation></semantics></math> measures the direct sparsity that is imposed on the coefficients but it is non-differentiable and difficult to minimize the objective function if it had been used. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>1</mn></msub><annotation encoding="application/x-tex">l_1</annotation></semantics></math> penalty provides a trade-off option where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>0</mn></msub><annotation encoding="application/x-tex">l_0</annotation></semantics></math> is not good for optimization and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>2</mn></msub><annotation encoding="application/x-tex">l_2</annotation></semantics></math> is not a term that would contribute the sparsity of the signal.</p>
+<h3 id="dictionary-learning">Dictionary Learning</h3>
+<p>In the Dictionary Learning problem, we are given a data and asked to represent a number of basises, very similar to Principal Component Analysis(PCA) or Fast Fourier Transform(FFT) in nature. However, with a big distinction, basises(atoms) do not have to be orthogonal and also the dictionary matrix is larger than the total number of vectors that we want to represent. With a sparse penalization regularization term, one can build very efficient representations of natural signals (natural images) from these sparse atoms. Moreover, after building these dictionaries one could only pass the dictionary along with the representation of the vector to enable robust recovery similar to FFT.</p>
+<p>Dictionary learning is very similar to sparse coding in terms of it tries to represent the data, it tries to find good atoms from a “dictionary” where the dictionary atoms are learned from the training set. Especially, for classification tasks, as long as the user has a good dictionary, one could build very efficient vectors using atoms from the dictionary for a variety of tasks including denoising and classification.</p>
+<h3 id="dictionary-objective-function">Dictionary Objective Function</h3>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>min</mo><mrow><mi>α</mi><mo>∈</mo><msup><mi>R</mi><mi>n</mi></msup></mrow></munder><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="false" form="prefix">∥</mo><mi>x</mi><mo>−</mo><mi>D</mi><mi>α</mi><msubsup><mo stretchy="false" form="postfix">∥</mo><mn>2</mn><mn>2</mn></msubsup><mo>+</mo><mi>λ</mi><mo stretchy="false" form="prefix">∥</mo><mi>α</mi><msub><mo stretchy="false" form="postfix">∥</mo><mn>1</mn></msub></mrow><annotation encoding="application/x-tex"> t(x, D) = \min_{\alpha \in R^n} \frac{1}{2} \lVert x - D\alpha \rVert_2^2 + \lambda \lVert \alpha \rVert_1 </annotation></semantics></math></p>
+<p>where as in the case of sparse coding, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math> is our sparse constraint. This objective function is called <em>basis pursuit</em> and also <em>Lasso</em> as well.</p>
+<h3 id="results">Results</h3>
+<p>I am providing 256 patches from the dictionary. Some of them are quite similar to what K-Means filters are like. However, some of them only capture the corners in the images and there are a couple of filters that they differ only by translation. Some of the filters learn only colors similar to some of the filters in K-Means that are somehow similar to each other after selecting 20 of them by hand. Some of even if after whitening, which was somehow disappointing.</p>
+<h3 id="whitened-filters">Whitened Filters</h3>
+<figure>
+<img src="/static/images/work/notes/2015/2/10/dictionary_learning_stride_8_256.png" title="Whitened Filters" alt="" /><figcaption>Whitened Filters</figcaption>
+</figure>
+<h3 id="unwhitened-filters">Unwhitened Filters</h3>
+<figure>
+<img src="/static/images/work/notes/2015/2/10/dictionary_learning_stride_8_256_unnormalized.png" title="Unwhitened Filters" alt="" /><figcaption>Unwhitened Filters</figcaption>
+</figure>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Data Products Made Easy &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Data Products Made Easy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/3/21/data-products-made-easy/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Products Made Easy" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/3/21/data-products-made-easy/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Data Products Made Easy</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">March 21, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/3/21/data-products-made-easy/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>I read <a href="http://www.oreilly.com/data/free/data-jujitsu.csp">Data Jujitsu</a> recently and enjoyed it a lot. DJ Patil presents a nice set of hard learned things that he experienced in (mainly) Linkedin. I like this type of <strong>real</strong> experiences rather than a set of rules that advocates a too ideal world and behave according to that world.</p>
+<p>A recurring theme of one the short book is that divide and attack the problems you have. The “Jujitsu” term comes from Japanese martial art and suggests doing small attacks and trying to use the opponent’s strength towards her because the opponent (problem) is much stronger than you. This naming actually reflects quite well what the short book is about. Developing solutions to hard problems with limited human power and time. What I found surprising a little bit is that, how consumer-oriented he is throughout the book. He looks at the problem solving approximately in the following: if problems are not what customers want(enhancement in the product) or what customers are unhappy about(bugs), then there must be some other incentive(increase in engagement, better sales and so on) must exist so that that problem would become <strong>worthy</strong> to solve. So, solving a problem for the sake of solving is not beneficial, neither for the customer nor for the business.</p>
+<h3 id="critical-question">Critical Question</h3>
+<ul>
+<li>Does anyone want or need your product?</li>
+</ul>
+<p>This question is so critical that I cannot stress how important it is. Generally, the startups or businesses in general do not fail because they could not solve a problem technically but either they cannot create enough incentive for people to buy the product or simply it is irrelevant to the market. If you cannot answer this question with confidence, however hard problem that you solved will not matter. Eventually, if the product will be used, then someone needs or wants your product.</p>
+<h3 id="minimum-viable-product">Minimum Viable Product</h3>
+<p>If you answered the question above, then you are eligible to build your minimum viable product. This does not have to be your fully functional product but it should be a simple product that needs to prove that there is a need and it should be <strong>good enough</strong> so that you could determine if you want to improve it or not. When you want to improve, ask these two questions:</p>
+<ol type="1">
+<li>“Does the customer care? Is there a market fit? If there isn’t, there is no sense in building an application.”</li>
+<li>“How long do we have to learn the answer to Question A?”</li>
+</ol>
+<p>When you prototype and measure the engagement of a user in the step 1, you have a better sense of what you should build. Further, this also ensures that you have a validity check that you are not building something nobody wants it.</p>
+<h3 id="definition">Definition</h3>
+<p>Go back for a second, what is a “data product” to begin with? He gives a concrete definitiion for this question:<br />
+“Data product is a product that facilitates an end goal through the use of data.”</p>
+<h3 id="design-of-product">Design of Product</h3>
+<p>Considering how much development, funding have been given towards big data technologies or data analysis tools in general, data products would have been easy, right? Not really.</p>
+<p>Data is messy especially if you are getting data from a variety of sources which do not have common interfaces. Data is messy if you are collecting from input text fields that customers fill in. How do you make sure that the data is in the right form? With product design. You would provide feedback as Google search does ahead of the user, you would prompt “did you mean …” to help the user, you will arrange your dropdown menu based on the input from the customer. This not only provides much better experience for the user but also you get a much better, structured data(think about dropdowns, support type-ahead for a second) in your back-end. Patil presents this fact as: “I’ve found that trying to solve a problem on the back-end is 100-1000 times more expensive than on the front end”.</p>
+<h3 id="use-humans-when-you-have-to-use-technical-solutions-when-you-could">Use humans when you have to, use technical solutions when you could</h3>
+<p>Generally, engineering seeks for technical solutions which are scalable. This ensures that the solution will be profitable for high number of users. However, when you try to be relevant in the market or try to see if there is a market, you need to use humans. There is a similar problem <a href="http://en.wikipedia.org/wiki/Cold_start">cold start</a> which corresponds a significant problem in the recommender system. Think about a user who just signed your ecommerce startup, you want to recommmend things to him but you do not have any history. Not only that, but you just launched your product so you do not have any prior knowledge what people (in general) like. If you had beta users or mechanical turks before you launched your product, you are in luck. If the product is consumer-facing, you should at least some data about your users from to have a head start. Technical solutions are and will be more efficient, cheaper and scale better in the long run, but if you cannot afford the time and effort to build a technical solution to the problem, then do not hesitate humans.</p>
+<h3 id="always-be-opportunistic">Always be opportunistic</h3>
+<ul>
+<li>If you are able to do data analysis to make the product better, increase the sales, just do it!</li>
+<li>If you cannot do some operation because you do not have resources or technical expertise, try do divide the operation and try to offer simple version of it instead of providing nothing!</li>
+</ul>
+<h3 id="give-the-data-back">Give the data back!</h3>
+<p>If your product is data-centric, you must be creating some value around it and you should already providing the data to the customer in some way. You should give it more! To both increase engagement and revenue, give the data in an undertandable, clean and maybe even interactive way. Let users play with the data. If your data is timely and actioanable(think twitter for a sec), then it becomes addictive. Instead of hoarding, share it. Only through sharing and giving back, you could create more value around it.</p>
+<h3 id="but-do-not-give-it-too-much">But do not give it too much!</h3>
+<p>What Patil calls “Data Vomit” is that if you give too much data without considering if it makes sense or valuable to the customer, there is a good chance to overwhelm the user. So, confusion and frustration replaces the engagement from the day one. There is a sweet spot where more data generates more engagement and after that sweet spot, more data will cause less interaction and engagement.</p>
+<h3 id="consider-non-ideal-cases">Consider non-ideal cases</h3>
+<p>If you are building a product, think about the extreme and edge cases as well. Showing spanish pages to a tourist visiting Mexica just because she is in Mexica may not make sense and especially if she repeatedly changes the browser language from spanish to english!</p>
+<h3 id="precision-and-recall">Precision and Recall</h3>
+<p>If you are building a retrieval system, first learn these concepts. Then, find out what you want to compromise as these two generally work against to each other. For a search engine, precision might be the single most important metric whereas if you claim to be one of the most comprehensive news source, you need to also increase your recall to be consistent with your claim. Rule of thumb is that if the data is exposed, first try to have a high precision because first page may be the only page that your customer sees. If the precision is not good, it may well be the last page.</p>
+<h3 id="social-system-for-the-win">Social system for the win</h3>
+<p>If your recommender system is terrible giving recommendations and customers are unhappy about it, use collaborative filtering first and blame the preferences of other users if customer is still not happy about the recommendation. It is something that customer blames the product for terrible recommendations, and it is completely different thing that people are buying two incoherent things, so I am recommended that product.</p>
+<h3 id="get-more-data">Get more data</h3>
+<p>Even if your domain is not advertising, knowing more about your users always pay off. As you know more about her, you could recommend better, you could personalize better, you could sell better, you could serve better. Asking data if it is done correctly, it could be another way to engage the customer as well. After you get the data, only goal would be better product. Do not abuse it!</p>
+<h3 id="user-is-the-most-important">User is the most important</h3>
+<p>Features fail, products fail, nearly everyting in the universe at some point fails. Get used to it, but try to preserve as much as user experience you can in the process. Data products generally empower the user in some way and there is a high chance that the experience will not be constant through her time. Try not to decrease it too much. If the ads that you show may be offensive, give an option to user so that when she visits the website, she could just remove those type of ads(similar to Facebook). If the people you recommend are not very relevant, provide a way to user so that he could give negative feedback to people whom she does not know so that she will not see them again(similar to Linkedin). This not only gives control and value to user, in the process you could learn user preferences and build a better product.</p>
+<h3 id="three-fundamental-questions-that-you-should-ask-to-yourself">Three Fundamental Questions that you should ask to yourself</h3>
+<ol type="1">
+<li>What do you want the user to take away from this product?</li>
+<li>What action do you want the user to take because of the product?</li>
+<li>How should the user feel during and after using your product?</li>
+</ol>
+<blockquote>
+<p>If the core of your product gets it right the core and fundamentals from the day one, you have a lot of time to improve it. Use Jujitsu!</p>
+</blockquote>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

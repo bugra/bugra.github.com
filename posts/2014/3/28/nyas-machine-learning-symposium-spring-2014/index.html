@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>8th NYAS Machine Learning Symposium 2014 &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="8th NYAS Machine Learning Symposium 2014" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/3/28/nyas-machine-learning-symposium-spring-2014/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8th NYAS Machine Learning Symposium 2014" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/3/28/nyas-machine-learning-symposium-spring-2014/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>8th NYAS Machine Learning Symposium 2014</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">March 28, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/3/28/nyas-machine-learning-symposium-spring-2014/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>I attended to <a href="http://www.nyas.org/Events/Detail.aspx?cid=2cc3521e-408a-460e-b159-e774734bcbea">NYAS 8th Machine Learning Symposium</a> and here are the notes that I took from the event. It may contain errors and mistakes. If you find any, please let me know.<br />
+On personal view, it was worse than the previous machine learning symposium(7th) in both posters and also talks. Last year, the posters and talks were much more interesting to me. That being said, I could not visit all of the posters so take my word with a grain of salt.<br />
+The <a href="http://www.nyas.org/asset.axd?id=defb6b86-f7ad-4a8d-af2a-3a5ef979c143&amp;t=635314462602300000">abstracts in pdf</a> in here.</p>
+<h3 id="machine-learning-for-powers-of-good">Machine Learning for Powers of Good</h3>
+<p>by <a href="http://www.rayidghani.com/">Rayid Ghani</a></p>
+<ul>
+<li>Probability of optimization of limited resources for a campaign.</li>
+<li>Another important thing: to influence the behavior of the voter and how to make them engage with the campaign.</li>
+<li>Because prediction itself is not good enough.</li>
+<li>Resource allocation based on who are likely to be influenced. Who are likely to change their mind? Definitely not Texas.</li>
+<li>Not voting to Romney and not going to vote, too much work. Do not try to event attempt to do anything.</li>
+<li>Focus on the ones either who are indecisive but likely to vote or indecisive about voting but weakly support Obama.</li>
+<li><a href="http://dssg.io/">Data Science for Social Good</a></li>
+</ul>
+<h3 id="following-spotlight-talks">Following Spotlight Talks</h3>
+<h3 id="graph-based-posterior-regularization-for-semi-supervised-structured-prediction">Graph-Based Posterior Regularization for Semi-Supervised Structured Prediction:</h3>
+<ul>
+<li>Posterior labels for part of speech tags. Graph-based approach, using Laplacian of Graph</li>
+<li>Structured Prediction =&gt; CRF =&gt; local scope, features</li>
+</ul>
+<p>Graph-propagation and CRF estimation =&gt; Joint objective, then to optimize and look at the KL divergence as well for both world parameters.</p>
+<p>Relevant work is <a href="http://jmlr.org/papers/volume11/ganchev10a/ganchev10a.pdf">Posterior Regularization(PR) Linear Ganchev</a></p>
+<ul>
+<li>EM like algorithm =&gt; to converge to the local optimum</li>
+</ul>
+<p>She showed that it performs better than both CRF and Graph based approaches in her poster, but she did not compare speed of this approach with CRF or Graph based approaches. It is likely the method is slower than CRF but, I am not very familiar Graph based approaches and joint objective could be quite hard to optimize. So, the speed is could be much worse more than 2 times than CRF.</p>
+<h3 id="learning-from-label-proportionsllp">Learning from Label Proportions(LLP):</h3>
+<p>It attacks Binary learning problem with an extension of bag approach where bags represent the ratio of the labels that are known but individual labels are unknown. They try to solve the problem in a large margin framework trying to model the instances belonging to a particular label and try to increase margin with the other label(smv-like). - Extension of supervised learning objective with Bag Proportion Loss with model parameters with a proportion loss.</p>
+<h3 id="generalization-error-of-llp">Generalization Error of LLP</h3>
+<ul>
+<li>Sample complexity of learning is proportional to bag proportion</li>
+<li>Instance label prediction error =&gt; again depends on the prediction error</li>
+<li>Not only the supervised learning objective but also the bag proportions for the labeling matters.</li>
+</ul>
+<h3 id="generative-image-models-for-visual-phenotype-modeling">Generative Image Models For Visual Phenotype Modeling</h3>
+<p>They have genome types of fish and they have features of the fish. In order to learn which genome type has effect on which fish trait, they propose an admixture model which tries to correlate the traits and genome.</p>
+<ul>
+<li>Admixture model to correlate the shape variance between geneology of the fishes.<br />
+</li>
+<li>Annotated genome from the shape variance of the fish.</li>
+<li>Genome annotates the features of the shape variance of the fish.</li>
+<li>Unsupervised learning of the features and joint generative model from fish variance and genome change. =&gt; Seems quite novel.</li>
+</ul>
+<h3 id="large-scale-learning---scaling-graph-based-semi-supervised-learning">Large Scale Learning - Scaling Graph-based semi supervised-learning</h3>
+<ul>
+<li>Replace label vectors =&gt; count-min-sketch? is a data structure(randomized) stores the counts of items.</li>
+<li>MAD exact vs Mad-Sketch =&gt; comparison</li>
+<li><a href="https://github.com/parthatalukdar/junto">Junto Toolkit @ Github</a></li>
+</ul>
+<h3 id="structured-classification-criteria-for-deep-learning-for-speech-recognition-second-keynote">Structured Classification Criteria for Deep Learning for Speech Recognition (Second Keynote)</h3>
+<p>Before this talk, I knew that IBM is strong in deep learning(if I recall correctly, they had a poster last year for speech recognition) but I did not know that they published also strong papers for speech recognition last year. Google and Facebook get a lot of coverage for deep learning and that maybe rightly so, but IBM is also a strong player in the area.</p>
+<h3 id="talk-structure">Talk Structure</h3>
+<ul>
+<li>Acoustic Modeling for speech recoognition:</li>
+<li>Structured loss function: we do not care about the loss function per se but how audible it is in the speech. Therefore, the loss function should be structured around audibility of the speech.</li>
+<li>Optimization</li>
+<li>Speeding for training</li>
+</ul>
+<h3 id="bayesian-modeling-for-speech-recognition">Bayesian Modeling for Speech Recognition</h3>
+<p>Sequence of phones are nice because if have a word to classify and you did not have that sample in the training set, you could “guess” the word from the sequence of phones.</p>
+<blockquote>
+<p>Context affects the acoustic realization of a phone in the speech.</p>
+</blockquote>
+<h3 id="context-dependent-modeling">Context-dependent modeling</h3>
+<ul>
+<li>Condition on adjacent phones, infer the xcontext.</li>
+<li>Parameter sharing needed to mitigate data sparsity sahring must generalize to unseen contexts.</li>
+<li>Decision tree to get the AA-b, nasal, retroflex, fricative?, too much hand-engineered features.</li>
+<li>Basic speech sounds =&gt; 1000 to 64K</li>
+</ul>
+<h3 id="structured-loss-functions">Structured Loss Functions</h3>
+<ul>
+<li>Cross-entropy, for training criterion.</li>
+<li>A neural network with training error with the cross-entropy.</li>
+<li>We do not care about individual phones error but word error.</li>
+<li><a href="http://en.wikipedia.org/wiki/Cross_entropy">Cross-Entropy</a></li>
+<li><a href="http://mi.eng.cam.ac.uk/~wjb31/ppubs/hlt04_mbr_smt.pdf">Bayes-Risk Losses</a></li>
+<li>Hamming distance is a <strong>forgiving</strong> distance measure for error between HMM sequences.</li>
+<li>To represent reference space, lattices generated via constrained recognition.</li>
+</ul>
+<h3 id="stochastic-gradient-optimization">Stochastic Gradient Optimization</h3>
+<ul>
+<li>Training GMM with is the fundamental idea.<a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&amp;arnumber=4960445&amp;url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D4960445">Stochastic Gradient Optimization</a></li>
+<li>Second Order optimization =&gt; well researched</li>
+<li>Linear conjugate gradient minimizes a quadratic, which can be described by only matrix-vector products. Only linear time and memory are necessary.</li>
+<li>CG is not necessary, truncated Newton is good enough.</li>
+<li><a href="http://www.researchgate.net/publication/228619939_The_IBM_Attila_speech_recognition_toolkit">Hessian Free Optimization</a></li>
+<li><a href="http://research.microsoft.com/pubs/209355/NOW-Book-Revised-Feb2014-online.pdf">It has reference in this book,too.</a> =&gt; most probably, this may explain better.</li>
+</ul>
+<h3 id="speeding-training">Speeding Training</h3>
+<ul>
+<li><a href="https://wiki.inf.ed.ac.uk/twiki/pub/CSTR/ListenSemester1201314/Sainath2013_lrdnn.pdf">Low-rank factorization of output weights</a></li>
+<li>Word error rate generally drops as we increase the number of output targets =&gt; factorization to reduce dimension?</li>
+<li>It gets faster.</li>
+</ul>
+<h3 id="preconditioning-in-sampling">Preconditioning in Sampling</h3>
+<ul>
+<li><a href="http://arxiv.org/pdf/1309.1508v3.pdf">Accelerating Hessian Free Optimization Implicit Preconditioning and Sampling</a></li>
+<li>Geometric optimization reference is also in the above link.</li>
+</ul>
+<h3 id="take-home-mesages">Take-Home Mesages</h3>
+<ul>
+<li>A Structured loss function instead of cross-entropy</li>
+<li>Stochastic gradient on a GPU is faster but distributed Hessian free optimization produces better models.</li>
+<li>Low rank factorization of the output weights</li>
+<li>Preconditioning and sampling</li>
+</ul>
+<p><a href="http://machinelearning.wustl.edu/mlpapers/paper_files/icml2010_Martens10.pdf">Hessian-Free Optimization</a></p>
+<h3 id="learning-guarantees-of-the-optimization">Learning Guarantees of the Optimization</h3>
+<ul>
+<li>Convex surrogate did not work</li>
+<li>You could learn an interesting loss function.</li>
+<li><a href="https://docs.google.com/presentation/d/1fZjE2aNMEoXprlvju_CrJETPylKrWZ5GzBYCj-GFSQc/edit#slide=id.g40599a40022e2fc114">Related Slides</a>, I could not catch the presenter in the poster.</li>
+</ul>
+<h3 id="large-scale-machine-learningaccelerated">Large Scale Machine Learning(Accelerated)</h3>
+<ul>
+<li>Machine learning as an optimization problem.</li>
+<li><a href="http://yaroslavvb.blogspot.com/2014/03/stochastic-gradient-methods-2014.html">Stochastic Gradient Methods</a></li>
+<li><a href="http://mrtz.org/blog/the-zen-of-gradient-descent/">Gradient Descent Method Blog Post</a></li>
+</ul>
+<h2 id="fast-scalable-comment-moderation-on-nyt">Fast Scalable Comment Moderation on NYT</h2>
+<h3 id="active-learning-at-the-new-york-times">Active Learning at the New York Times</h3>
+<ul>
+<li>Comment is split into two: metadata and n-grams.</li>
+<li>Hash the n-grams, score of the comment for human editor if it will be shown to her. Human moderators will work on whatever the algorithm scores on high.</li>
+<li>20% =&gt; workload reduction according to the plan</li>
+</ul>
+<h3 id="key-observations">Key Observations</h3>
+<ul>
+<li>Stochastic Gradient Descent in the origin</li>
+<li>Batch Gradient Descent in one direction (between semi-stochatic approaches)</li>
+<li>Stochastic Newton Method in the other direction (between second-order methods)</li>
+<li>Other fields in Newton method</li>
+<li>Coordinate descent is towards simpler methods</li>
+</ul>
+<blockquote>
+<p>Optimal rate is achieved also for testing cos as long as each data point is seen only once.</p>
+</blockquote>
+<h3 id="to-learn-more-about-stochastic-gradient-descent">To learn More about Stochastic Gradient Descent</h3>
+<ul>
+<li><p><a href="http://www.eecs.berkeley.edu/~brecht/cs294docs/week1/09.Nemirovski.pdf">Nice paper for stochastic gradient methods</a></p></li>
+<li><p>Stochastic Quasi-Newton Method performs quite well.</p></li>
+</ul>
+<p>Sorry about other spotlight talks, I am sure they were as interesting as the ones above but I was only able to take notes and follow this much.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

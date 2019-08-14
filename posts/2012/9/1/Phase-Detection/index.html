@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Phase Detection in Digital Signals &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Phase Detection in Digital Signals" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2012/9/1/Phase-Detection/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Phase Detection in Digital Signals" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2012/9/1/Phase-Detection/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Phase Detection in Digital Signals</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">September 01, 2012 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2012/9/1/Phase-Detection/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Phase Detection is an important concept in radar signals. It could be used to determine the time delay between radar signals and this time delay could be used to infer the distance of the object from the radar, which is the main aim of the radar. Even if it is assumed that transmitted signal and received signal should be same, there occurs to be noise. I was assigned to implement phase detection for FPGA’s for my internship in Summer 2010 as they are used for radar signal processing. They can do complex and real-time processing, are cheaper than computers, portable, low power consumers. However, I did not go into implementation directly. I need a simulation which would yield promising results. Then, I could implement in VHDL. I chose Matlab and implemented three different methods. (This would decrease to two in VHDL). I will compare these methods as well, but it cannot be deduced that some method <em>always</em> or even usually perform better than some other method based on the results provided. There are a numerous reasons, but I will just mention few of them. Firstly, this is just a <strong>simulation</strong> after all. Secondly, the simulation takes into consideration only one of the signal is noisy(received), which may not hold true in general. Moreover, there are constant parameters which may favor some method over other ones. Before giving details of the methods, I am urged to mention an important concept that two methods use, Schmitt Trigger.</p>
+<h3 id="schmitt-trigger">Schmitt Trigger</h3>
+<p>Schmitt Trigger is a comparator with two different threshold values. When the signal goes over <strong>High Threshold</strong>, it yields 1(HIGH). It remains 1 until signal goes below <strong>Low Threshold</strong>, it yields 0. It remains 0, until signal goes over … as it could be seen the figure below.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger2.png" title="Schmitt Trigger" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>In analog implementation of Schmitt Trigger, there is a feedback mechanism which uses hysteresis to adjust its threshold values. In this implementation, they are constant. Schmitt Trigger is used to prevent noise when analogous signal is transformed into a digital(binary) one. It prevents oscillation in the binary signal which is convenient and makes the binary signal robust to noise. Consider the figure below, A is a basic comparator. B is a Schmitt Trigger. Any fluctuation in the border of A resultss in oscillation in the digital signal. This is the general case for noisy signals. However, fluctuations in border B does not change digital signal since digital signal needs to wait for <em>high threshold</em> value or <em>low threshold</em> value to change.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/schmitt-trigger.png" title="A is comparator, B is Schmitt Trigger" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>It is important to note that if noise level is higher than the difference of two thresholds, schmitt trigger does not provide robustness to noise. It is still better than a basic comparator, though. Therefore, noise level should be taken into consideration when setting up the threshold values.</p>
+<h3 id="pulselag-method">PulseLag Method</h3>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method1.png" title="Original and Delayed Signals" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>In this method, we multiply both signals $ f_c $ with another sinusoid, but a lower frequency $ f_{down} $ Then, low-pass filter this signal in order to get low frequency part.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method2.png" title="Filtered Signals" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>After filtering the signal, we put it into Schmitt Trigger. Then, we get their difference which also gives time delay.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/pulselag_method3.png" title="Schmitt Triggered Signals" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>We need the ratio of the (number of times first signal is 1 and second signal is 0) over the total time. Then, we need to divide this ratio to $ f_c $ to find time delay. I apply 0.5 nanosecond delay in the signal and it will be constant for the other methods as well, for noiseless case method measures 4.5714e-10. For noise coefficient = 0.1, method measures 5.1429e-10. For noise coefficient = 0.2, method measures 8.0000e-10, which is not even close. Even if noiseless and when noise is small, this method performs well, for noisy cases, it is not robust to noise.</p>
+<h3 id="multiplication-method">Multiplication Method</h3>
+<p><img src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method1.png" title="Original Signals" alt="Alt text" /> If we multiply two signals with each other, we have a high pass term and a phase term if they have both the same frequency.(noiseless case)</p>
+<p><img src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method2.png" title="Filtered Multiplied Signal" alt="Alt text" /> If we get inverse sin or cosine of the multiplied signal</p>
+<p>[Alt text](https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method3.png " Inverse of Filtered Multiplied Signal") and take mean of the signal(after some heuristics), divide by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>*</mo><mi>π</mi><mo>*</mo><msub><mi>f</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">2 * \pi * f_c</annotation></semantics></math>, then we get a time delay.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/multiplication_method4.png" title="Filtered Multiplied Signal" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>For noiseless case method measures 4.9639e-10 which is quite close. For noise coefficient = 0.1, method measures 4.6909e-10. For noise coefficient = 0.2, method measures 5.8330e-10, which is quite close for such a high noise.</p>
+<h3 id="fft-based-method">FFT-Based Method</h3>
+<p>FFT can be written in a Discrete Fourier Transform: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false" form="prefix">[</mo><mi>k</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><mi>x</mi><mo stretchy="false" form="prefix">[</mo><mi>n</mi><mo stretchy="false" form="postfix">]</mo><msup><mi>e</mi><mfrac><mrow><mo>−</mo><mi>j</mi><mn>2</mn><mi>π</mi><mi>n</mi><mi>k</mi></mrow><mi>N</mi></mfrac></msup><mo>=</mo><msub><mi>A</mi><mi>k</mi></msub><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ϕ</mi><mi>k</mi></msub></mrow></msup></mrow><annotation encoding="application/x-tex"> X[k] = \sum_{n=0}^{N-1} x[n] e^{\frac{-j 2 \pi n k}{N}} = A_k e^{j \phi_k} </annotation></semantics></math> and <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo stretchy="false" form="prefix">[</mo><mi>n</mi><mo stretchy="false" form="postfix">]</mo><mo>↔</mo><mi>X</mi><mo stretchy="false" form="prefix">[</mo><mi>k</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex"> x[n] \leftrightarrow X[k]  </annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo stretchy="false" form="prefix">[</mo><mi>n</mi><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">]</mo><mo>↔</mo><msup><mi>e</mi><mfrac><mrow><mo>−</mo><mi>j</mi><mn>2</mn><mi>π</mi><mi>k</mi><mi>D</mi></mrow><mi>N</mi></mfrac></msup><mi>X</mi><mo stretchy="false" form="prefix">[</mo><mi>k</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex"> x[n-D] \leftrightarrow e^{\frac{-j2 \pi k D}{N}}X[k] </annotation></semantics></math> It is important to note, in the magnitude response, the phase <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>e</mi><mfrac><mrow><mo>−</mo><mi>j</mi><mn>2</mn><mi>π</mi><mi>k</mi><mi>D</mi></mrow><mi>N</mi></mfrac></msup><annotation encoding="application/x-tex">e^{\frac{-j2 \pi k D}{N}}</annotation></semantics></math> will be one. Therefore, it will not affect the magnitude response. Since we send periodic signals, the maximum of frequency response will occur at the dominant frequency which is the period of the signal. As the magnitude response will be same, we could just take the phase response of the same index in FFT to find the phase information between the signals. Original and delayed signal(0.5e-9) signals are given below.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig1.png" title="Original and Delayed Signal" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>Magnitude response of the signals are given below.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig2.png" title="Magnitude Response of FFT of the signals" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>Phase response of the signals:</p>
+<figure>
+<img src="https://raw.github.com/bugra/Phase-Detection/master/img/fft_method_fig3.png" title="Phase Response of FFT" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p>When we take the phases of the both signals and subtract, we get the phase difference. Time delay is only the ratio of phase difference over $ 2 * pi * fc $. For noiseless case method measures 4.9656e-10 which is quite close. For noise coefficient = 0.1, method measures 5.1161e-10. For noise coefficient = 0.2, method measures 3.9221e-10, which is not very close.</p>
+<h3 id="result">Result</h3>
+<p>For noiseless case, all of the methods perform quite well. For medium noise(n = 0.1), FFT-Based and PulseLag method; for high noise, Multiplication method performs better.</p>
+<h3 id="code">Code</h3>
+<p>All of the code and images used in this note is available in the <a href="https://github.com/bugra/Phase-Detection" title="Phase-Detection-Matlab">here</a>. Moreover, implementation of Multiplication and FFT-Based method in VHDL is also available in <a href="https://github.com/bugra/Phase-Detection-VHDL" title="Phase-Detection-VHDL">here</a>.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

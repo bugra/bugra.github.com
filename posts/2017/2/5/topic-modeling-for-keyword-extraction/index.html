@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Topic Modeling for Keyword Extraction &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Topic Modeling for Keyword Extraction" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2017/2/5/topic-modeling-for-keyword-extraction/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic Modeling for Keyword Extraction" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2017/2/5/topic-modeling-for-keyword-extraction/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Topic Modeling for Keyword Extraction</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">February 05, 2017 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2017/2/5/topic-modeling-for-keyword-extraction/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<figure>
+<img src="/static/images/work/notes/2017/2/5/blei_lda_illustration.png" title="LDA Illustration" alt="" /><figcaption>LDA Illustration</figcaption>
+</figure>
+<p>This post was originally published at Axial’s blog, but the blog’s domain has been expired so I wanted to revive it as I wrote it originally.</p>
+<p>I added couple of sections to the blog post since then.</p>
+<h3 id="taxonomy">Taxonomy</h3>
+<p>Who is not frustrated on taxonomy more? Is it the user what does not know anything about the taxonomy and classification schemas in the marketplace or the people who try to classify and organize the products into various categories based on some <em>rule</em>?</p>
+<p>Or is it the merchant who tries to sell the product does not know anything about the intermediary distribution’s classification rules?</p>
+<h3 id="why-do-we-need-the-classification-anyways">Why do we need the classification anyways?</h3>
+<p>The classification is needed because we want to group similar products to make the browsing easy, but what if the classification or the taxonomy does not make a lot of sense.</p>
+<h3 id="frustration">Frustration</h3>
+<p>We were frustrated about visibility of our taxonomy for industries to the user. If one of our member wanted to do a search in Axial for a particular field, they needed to know the exact taxonomy name that we use for that field. For example, if one wants to search wood and wood products, they need to know that those would fall in our “Forest Products” taxonomy, which is not an obvious thing when a user wants to do a search in our website.</p>
+<p>Not only this limits the query capabilities of the user but also it degrades our search results as we do not know which industry they are interested in from their search query.</p>
+<p>In order to tackle this problem and get the following benefits (listed below), we use topic modeling for a number of documents to extract topics and mine phrases to provide a better typeahead functionality to the user.</p>
+<ul>
+<li>How do you extract phrases and keywords from a large number of documents?</li>
+<li>How do you find recurring themes and topics from a corpus without using any metadata information(labels, annotation)?</li>
+<li>How do you cluster a number of documents efficiently and make sure that clusters would be coherent themes?</li>
+</ul>
+<p>Topic modeling is a method which is an unsupervised learning and clustering method which enables us to do things listed above.</p>
+<p>If you want to deconstruct a document based on various themes it has, as shown above in the image, it is a great tool to explore topics and themes. In the image, every color corresponds to a particular theme and all of the themes have various words. But what does a topic look like?</p>
+<h3 id="topics-as-word-distributions">Topics as Word Distributions</h3>
+<p>When you see the following words, what do you think:</p>
+<pre><code>wood pellet pellets energy biomass production tons renewable plant million 
+fuel forest management heating development carbon facilities</code></pre>
+<p>if you think forest, wood or paper, you would be right. These are the subset of words that are extracted from Forest Products industry in opportunities that our members created.</p>
+<h3 id="industry-aliasing">Industry Aliasing</h3>
+<p>Previously, if our members wanted to search a particular industry, they needed to know the exact name of the industry in order to see the typeahead match in the search bar. We do matching by Named Entity Recognition in Query (NERQ) but it is limited to the exact keyword match in industries.</p>
+<p>For example, if they want to do a search related to the “wine” industry, they need to know our taxonomy which corresponds to that industry which is “Distillers and Vintners”. Or, if they want to do a general search related to “shoes”, they need to know that we have a “Footwear” industry.</p>
+<p>In order to remedy this problem, we expanded our industry matching to a larger number of words so that we could match “related” and “relevant” keywords to our taxonomies. When a user types in “wine”, we are able to match that keyword to our related taxonomy of “Distillers and Vintners”.</p>
+<h3 id="topic-modeling-for-keyword-extraction">Topic Modeling for Keyword Extraction</h3>
+<p>We used topic modeling for keyword and phrase extraction using user generated documents that are classified by industry. This provides three main benefits. First, all of the keywords are data-driven and human generated. Second, since every document is associated with various industries, we do not need to associate the documents one by one to each topic, we could mine the keywords and phrases per industry. Last but not least, we could use the industry information as input to our topic sensitive ranking algorithm to improve on search precision.</p>
+<p>We created a set of keywords/phrases (around 4000) to expand the matching between what a user types and which industry it will match. Since most of the keywords and phrases are descriptive of the industry itself, they would be intuitive to a user.</p>
+<h3 id="topic-model">Topic Model</h3>
+<p>The grouping of relevant words is highly suggestive of an abstract theme which is called a topic. Based on the assumption that words that are in the same topic are more likely to occur together, it is possible to attribute phrases or keywords to a particular topic. This allows us to alias a particular topic with a number of phrases and words.</p>
+<h3 id="not-all-words-are-created-equal">Not all words are created equal</h3>
+<p>As we are more interested in the more thematic and somehow specific topics, we are not necessarily interested in words that do not contribute a lot to various topics. Usual suspects are the articles (a, an, the) pronouns (I, you, she, he, we, …), prepositions(in, under, of, ..) and also common adverbs and more often than not verbs.</p>
+<p>Oh, also the adjectives:</p>
+<blockquote>
+<p>When you catch an adjective, kill it. No, I don’t mean utterly, but kill most of them–then the rest will be valuable. They weaken when they are close together. They give strength when they are far apart. — Mark Twain</p>
+</blockquote>
+<p>Not only they do not contribute to the topics/themes at all, but also they disrupt the word distributions in each topic. Due to these reasons, common words should be removed prior to topic modeling. This is the first rule of thumb. We also removed rare word occurrences, smaller than 3 in the corpus, with the understanding that rare words do not materially contribute to topic distinction. This provides two additional benefits; first we do not have to deal with a large corpus as word distributions in corpora usually have long tails, second we do not unnecessarily do computations on the words classified as unimportant.</p>
+<h3 id="unsupervised-nature-of-topic-models">Unsupervised Nature of Topic Models</h3>
+<p>The topic models are unsupervised, i.e. they do not require any prior information on the documents of the corpus, e.g. descriptive labels or other classifications. It infers various topics and themes operating purely on the documents. It is a very powerful and useful tool for quickly exploring various themes in a large corpus. For example, if you are searching for a number of documents that are about one particular theme, e.g. “internet of things”, you want to get the documents that are about that theme (by increasing the recall) rather than documents including the exact phrase of “internet of things”.</p>
+<h3 id="industry-aliasing-1">Industry Aliasing</h3>
+<p>By doing so, we created a set of keywords/phrases(around 4000), compare with our industries(around ~200) to map and when you type “wine” in the search bar, you would get “Distillers and Vintners” industry.(yeah, it is hard to guess)</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/5/industry-aliasing.png" title="Industry Aliasing" alt="" /><figcaption>Industry Aliasing</figcaption>
+</figure>
+<p>Or, when you type “search engine” in search(so meta):</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/5/data-science.png" title="Search Engine" alt="" /><figcaption>Search Engine</figcaption>
+</figure>
+<figure>
+<img src="/static/images/work/notes/2017/2/5/data-science.png" title="Search Engine" alt="" /><figcaption>Search Engine</figcaption>
+</figure>
+<p>Some more:</p>
+<figure>
+<img src="/static/images/work/notes/2017/2/5/type-ahead-version-1.gif" title="Search Engine" alt="" /><figcaption>Search Engine</figcaption>
+</figure>
+<h3 id="adjectives-are-not-so-bad">Adjectives are not so bad</h3>
+<p>Remember the adjectives, how useless they are for topic modeling. They could come handy in the conversations:</p>
+<blockquote>
+<p>A man’s character may be learned from the adjectives which he habitually uses in conversation. — Mark Twain</p>
+</blockquote>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

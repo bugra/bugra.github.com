@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>PCA, EigenFace and All That &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="PCA, EigenFace and All That" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2013/7/27/PCA-EigenFace-And-All-That/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PCA, EigenFace and All That" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2013/7/27/PCA-EigenFace-And-All-That/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>PCA, EigenFace and All That</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">July 27, 2013 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2013/7/27/PCA-EigenFace-And-All-That/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>PCA(Principal Component Analysis) is one of the most commonly used unsupervised learning algorithm to compress, extract features for data and even for dimensionality reduction purposes. It has quite a lof of applications as follows:</p>
+<h3 id="applications">Applications</h3>
+<ul>
+<li>Useful for compression and classfication of data.</li>
+<li>Aim is to reduce the number of variables, but at the same time, preserve most of information (variation), which may not necessarily hold true in general.</li>
+<li>New variables called principal components(PC) are uncorrelated, are ordered by fraction of total information each retains.</li>
+<li>PC’s are a series of linear least squares fits to a sample, each orthogonal to all previous.</li>
+<li>Identify how different variables work together to create the dynamics of the system.</li>
+<li>Reduce the dimensionality of the data.</li>
+<li>Decrease the redundancy of the data.</li>
+<li>Filter some of the noise in the data.</li>
+<li>Compress the data.</li>
+<li>Prepare the data for further analysis using other techniques.</li>
+</ul>
+<p>What does it do in the first place?</p>
+<h3 id="functions-of-pca">Functions of PCA</h3>
+<ul>
+<li>Is to reduce dimensionality by extracting the smallest number components that account for most of the variation in the original data. By doing so, we’d get get rid of the redundancy and preserve the variance in a smaller number of coefficients.</li>
+<li>PCA finds lines(2-d), planes(3-d) in a higher dimensional spaces that approximate the data in least squares(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>2</mn></msub><annotation encoding="application/x-tex">l_2</annotation></semantics></math> norm).</li>
+</ul>
+<p><strong>Why do we choose PCA over other transformations which turn the original variables into a representation which depend on orthogonal bases, say Fourier Transform?</strong></p>
+<ul>
+<li>Using a set of fixed set of components will give a good reconstruction of the same data(at least in least square sense, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>2</mn></msub><annotation encoding="application/x-tex">l_2</annotation></semantics></math> norm). However, Fourier transform does not guarantee such a premise.</li>
+<li>If the data has a lot of correlation among its variables(redundancy), then PCA could exploit this redundancy by uncorrelating the variables whereas Fourier transform cannot exploit this redundancy(at least explicitly).</li>
+<li>When PCA is used for dimensionality reduction, it is quite good at preserving the distance between the observations in the projection space.</li>
+</ul>
+<p><strong>What about the disadvantages?</strong></p>
+<ul>
+<li>The components are not independent but uncorrelated. It would be even better if we have a representation which are independent to each other. It is called unsurprisingly <em>Independent Component Analysis</em>.</li>
+<li>PCA seeks for linear combinations of the original variables. The nonlinear combination may even yield better representation. PCA has an extension for doing this type of analysis, <em>Nonlinear PCA</em>.</li>
+<li>Instead of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>2</mn></msub><annotation encoding="application/x-tex">l_2</annotation></semantics></math> norm, it may be advantageous to use <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>l</mi><mn>1</mn></msub><annotation encoding="application/x-tex">l_1</annotation></semantics></math> norm. Especially, if the signal that we want to represent is sparse or has a sparse representation in some other space. PCA is extended for this specific problem as well, which is called <em>Sparse PCA</em>.</li>
+</ul>
+<h3 id="assumptions-that-pca-does">Assumptions that PCA does:</h3>
+<ul>
+<li>Assumption 1: In general, high correlation between variables could be a sign of high redundancy.</li>
+<li>Assumption 2: The most important dynamics are the ones with the largest variance.</li>
+</ul>
+<h3 id="eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</h3>
+<ul>
+<li>Eigenvalues measure the amount of variation(information) explaiend by each principal components and will be largest for the first PC and smaller for the subsequent PCs.</li>
+<li>An eigenvalue greater than 1 indicates that principal component accounts for more variance than accounted by one of the original variables in standardized data. This could be used to threshold to determine the number of eigenvectors.</li>
+<li>Eigenvectors provide the weights to compute the uncorrelated principal components, which are the linear combination of the original variables.</li>
+</ul>
+<h3 id="what-does-pca-do-in-a-nutshell">What does PCA do (in a nutshell)?</h3>
+<ul>
+<li>PCA transforms the observations into uncorrelated components, which are nothing but linear combination of observations.</li>
+</ul>
+<h3 id="caveats">Caveats</h3>
+<ul>
+<li>PCA is sensitive to scaling.</li>
+</ul>
+<blockquote>
+<p>By modifying the variance of the variables(scaling), it is possible to attribute different importance to them. By doing so, the prior information or the belief on the importance of the attributes can be preserved even in the PCA stage.</p>
+</blockquote>
+<h3 id="definition-of-principal-components">Definition of Principal Components</h3>
+<p>Given a sample <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> observations on a vector <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> variables:<br />
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mi>p</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x = (x_1, x_2, \ldots, x_p)</annotation></semantics></math> define the principal component of the sample by a linear transformation which is given as following:<br />
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><msup><mi>a</mi><mi>T</mi></msup><mi>x</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> z = a^T x = \displaystyle\sum_{i=1}^p a_i x_i </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><msub><mi>a</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>a</mi><mi>p</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex"> a = (a_1, a_2, \ldots, a_p) </annotation></semantics></math> which is chosen to maximize the variance of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math> and subject to <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>v</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>z</mi><mi>k</mi></msub><mo>,</mo><msub><mi>z</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mn>0</mn><mo>,</mo><mi>k</mi><mo>&gt;</mo><mi>l</mi><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex"> cov[z_k, z_l] = 0, k \gt l \geq 1 </annotation></semantics></math> and to <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mi>T</mi></msup><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex"> a^T a = 1 </annotation></semantics></math></p>
+<h3 id="how-to-derive-the-coefficients-a">How to derive the coefficients <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> ?</h3>
+<p>The variance is:<br />
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>a</mi><mi>r</mi><mo stretchy="false" form="prefix">[</mo><mi>z</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mo>&lt;</mo><msup><mi>z</mi><mn>2</mn></msup><mo>&gt;</mo><mo>−</mo><mo>&lt;</mo><mi>z</mi><mover><mo>&gt;</mo><mn>2</mn></mover></mrow><annotation encoding="application/x-tex"> var[z] = \lt z^2\gt - \lt z \gt^2</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><msub><mi>a</mi><mi>j</mi></msub><mo>&lt;</mo><msub><mi>x</mi><mi>i</mi></msub><msub><mi>x</mi><mi>j</mi></msub><mo>&gt;</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><msub><mi>a</mi><mi>j</mi></msub><mo>&lt;</mo><msub><mi>x</mi><mi>i</mi></msub><mo>&gt;</mo><mo>&lt;</mo><msub><mi>x</mi><mi>j</mi></msub><mo>&gt;</mo></mrow><annotation encoding="application/x-tex"> = \displaystyle \sum_{i,j = 1}^p a_i a_j \lt x_i x_j \gt - \displaystyle \sum_{i,j=1}^p a_i a_j \lt x_i \gt \lt x_j \gt </annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><msub><mi>a</mi><mi>j</mi></msub><msub><mi>S</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex"> = \displaystyle\sum_{i,j = 1}^p a_i a_j S_{ij}  </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mo>&lt;</mo><msub><mi>x</mi><mi>i</mi></msub><msub><mi>x</mi><mi>j</mi></msub><mo>&gt;</mo><mo>−</mo><mo>&lt;</mo><msub><mi>x</mi><mi>i</mi></msub><mo>&gt;</mo><mo>&lt;</mo><msub><mi>x</mi><mi>j</mi></msub><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">S_{ij} = \lt x_i x_j \gt - \lt x_i \gt \lt x_j \gt</annotation></semantics></math> is the covariance matrix for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>.<br />
+To find <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> which maximizes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>a</mi><mi>r</mi><mo stretchy="false" form="prefix">[</mo><mi>z</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">var[z]</annotation></semantics></math> subject to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mi>T</mi></msup><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a^T a = 1</annotation></semantics></math>, let us introduce a lagrange multiplier <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>. Then, the maximization equation becomes <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mi>T</mi></msup><mi>S</mi><mi>a</mi><mo>−</mo><mi>λ</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>a</mi><mi>T</mi></msup><mi>a</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex"> a^T S a - \lambda (a^T a - 1) </annotation></semantics></math> If we take the derivative with respect to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>, then the equation becomes <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>a</mi><mo>−</mo><mi>λ</mi><mi>a</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex"> S a - \lambda a = 0 </annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mo>−</mo><mi>λ</mi><mi>I</mi><mo stretchy="false" form="postfix">)</mo><mi>a</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex"> (S - \lambda I) a = 0 </annotation></semantics></math> Therefore, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> is an eigenvector of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math> which has the corresponding value of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>.</p>
+<blockquote>
+<p>In short, we are interested in representing the most of the variation in the data by transforming the original variables into principal components. These components are orthogonal and ordered by magnitude so that the first few of them could explain most of the variation in the original observation.</p>
+</blockquote>
+<h3 id="eigenface">EigenFace</h3>
+<p>PCA has a very good application which is in the computer vision domain, called <a href="http://www.cs.ucsb.edu/~mturk/Papers/jcn.pdf">EigenFace</a>, <a href="http://www.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">short version</a>. Eigenface is a name for eigenvectors which are the components of the face itself. It has been used for face recognition where the most variations considered as important. It was quite successful as well for some 20 years ago although it was replaced then by other methods. In this implementation, I used a particular subset of <a href="http://cvc.yale.edu/projects/yalefaces/yalefaces.html">Yale Face Database</a>.<br />
+The images that I used are given below: <img src="https://raw.github.com/bugra/EigenFace/master/img/images.png" title="Images" alt="Alt text" /></p>
+<p>If we average the face used for PCA, we get the following face: <img src="https://raw.github.com/bugra/EigenFace/master/img/average_face.png" title="Average Face" alt="Alt text" /></p>
+<p>The eigenfaces that we generated out of 11 faces are given below. <img src="https://raw.github.com/bugra/EigenFace/master/img/eigen_faces.png" title="EigenFaces" alt="Alt text" /></p>
+<p>The eigenface which has the most variation(almost half of it) is given below(note the illumination variation) <img src="https://raw.github.com/bugra/EigenFace/master/img/first_eigen_face.png" title="First EigenFace" alt="Alt text" /></p>
+<p>Cumulative sum of first 10 eigenvalues is given below. <img src="https://raw.github.com/bugra/EigenFace/master/img/eigen_values.png" title="Cumulative Sum of Eigenvalues" alt="Alt text" /></p>
+<p>As it could be seen from <a href="http://nbviewer.ipython.org/6099547">here</a>(the last line), the top 4 eigenfaces can explain 95% variance of the faces.</p>
+<p>The program that I used to generate the images in <a href="https://github.com/bugra/EigenFace">here</a> and see the <a href="http://nbviewer.ipython.org/6099547">Notebook</a> for the flow of overall program.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

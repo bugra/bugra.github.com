@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>On Machine Learning &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="On Machine Learning" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2014/8/23/on-machine-learning/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="On Machine Learning" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2014/8/23/on-machine-learning/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>On Machine Learning</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">August 23, 2014 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2014/8/23/on-machine-learning/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<figure>
+<img src="http://i.imgur.com/xmkGeNc.png" title="Colorful Sparse Filters" alt="" /><figcaption>Sparse Colorful Filters</figcaption>
+</figure>
+<p>Recently, I wrote <a href="https://www.cbinsights.com/blog/human-resources-news-classification-machine-learning">how we do classification at CB Insights</a>. The post outlines some of the things that I have been thinking about how to apply machine learning for a given problem along with the process that we adopted for the classification problem at CB Insights, but also gave me a good opportunity to reflect even further about the machine learning process; shortcomings of papers, books and even traditional education system when it comes to teach the machine learning.</p>
+<p>My aim is not to focus on the algorithms, methods or classifiers but rather to offer a broader picture on how to approach a machine learning problem, and in the meantime give couple of bad advices. I will offer my bad advice for a classification problem(algorithm=classifier) and be warned that they may generalize better than your favorite classifier.(I will try not to overfit, but let me know if I do so in the comments.)</p>
+<h3 id="machine-learning-algorithms">Machine Learning Algorithms</h3>
+<p>Most of the machine learning book chapters and articles focus on algorithms/classifiers and sometimes optimization methods.</p>
+<p>From a theoretical perspective, they analyze the algorithms’ theoretical bounds and sometimes the learning function itself along with different types of optimization. The representation of the algorithm/classifier and what it really learns in the observation space and how does the learning function behaves under different constraints and conditions. This is very useful as you could understand what it learns, advantages and disadvantages over other classifiers. You could also reason about the shortcomings, whether it has a tendency to overfit or not; to make a sound decision and selection from a number of classifiers; this is quite important.</p>
+<p>From a practical perspective(mostly research papers), they offer different benchmarks for different algorithms in same dataset. This is useful for at least two different reasons. First one is that you could see the algorithm’s advantage; it could be faster than other algorithms, it may generalize better or it could simply may perform better than other classifiers. Second, if you have a similar problem at your hand, these benchmarks could become a baseline that you could experiment. The datasets in papers sometimes happen to be trivial and not necessarily reflect the real-world or in the wild dataset characteristics, though.</p>
+<p>These two different approaches are not themselves very bad to explain separate sections but not necessarily tell the whole story of what goes into a machine learning problem at hand. There is a significant amount of knowledge and experience one has to gain (sometimes just by experimentation) to cover the gap these two separate(yet not independent) two sections to build a pipeline.</p>
+<h4 id="you-say-machine-learning-i-understand-data">You say Machine Learning, I understand Data</h4>
+<p>If you take a step back and think about what machine learning is, it is at its core is <strong>data</strong>. We want to leverage the data to do hard work for us; which is learning what data is (unsupervised learning) or why it is learning the things they learn(feature selection) or how it is learning the things they learn(optimization).</p>
+<blockquote>
+<p>In God we trust, all others must bring data.</p>
+</blockquote>
+<p>If I make an analogy with software programming, we put algorithms and data from input, output would become the program that we intended to write yet without explicitly writing it.</p>
+<blockquote>
+<p>Machine learning is to be able to write programs with data and algorithms without explicitly writing it.</p>
+</blockquote>
+<p>This is quite strong statement, let’s make it a little concrete.</p>
+<h5 id="machine-learning-vs-control-structures">Machine Learning vs Control Structures</h5>
+<p>If we have domain expertise about a classification problem, we could hard-code this knowledge in control structures to tackle the problem. Consider a classification problem in text domain where we want to do classify human resources news than other news. The words that are interest of us could be action verbs that are “hiring”, “laying off”, “resignation”, “joining” and so on.</p>
+<h6 id="control-structures">Control Structures</h6>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># we could get the lemmas in order to remove the variation of the words hire, hired, hiring, hires</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># A better approach to use regular expressions after deciding on the lemmas</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">if</span> <span class="st">&#39;hire&#39;</span> <span class="kw">in</span> text <span class="kw">or</span> <span class="st">&#39;hiring&#39;</span> <span class="kw">in</span> text <span class="kw">or</span> <span class="st">&#39;join&#39;</span> <span class="kw">or</span> <span class="st">&#39;joining&#39;</span> <span class="kw">in</span> text <span class="kw">or</span> <span class="st">&#39;laying off&#39;</span> <span class="kw">in</span> text <span class="kw">or</span> <span class="st">&#39;resign&#39;</span> <span class="kw">in</span> text:   </span>
+<span id="cb1-4"><a href="#cb1-4"></a>    confidence <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># Job titles are definitely good again, HR articles generally say the position of the new hire</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="cf">for</span> job_title <span class="kw">in</span> job_titles:</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="cf">if</span> job_title <span class="kw">in</span> text:</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    confidence <span class="op">+=</span> <span class="dv">10</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># If we have company name, that is a good sign as article could be in business domain</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="cf">for</span> company_name <span class="kw">in</span> company_names:</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="cf">if</span> company_name <span class="kw">in</span> text:</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        confidence <span class="op">+=</span> <span class="dv">10</span></span></code></pre></div>
+<h6 id="machine-learning-approach">Machine Learning Approach</h6>
+<p>If we have data and labels for that class, we could train a classifier based on that data along with features, feature selection, and then classify the sample based on that classifier.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Given trained classifier, vectorizer and feature selection method</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># This is how one may classify an article in Scikit-learn</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">## Convert into a vector</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>count <span class="op">=</span> vectorizer.transform(np.asarray(text).toarray())</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">## Do feature selection</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>selected_feats <span class="op">=</span> feat_selector.transform(count)</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">## Classify</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>pred_class <span class="op">=</span> clf.predict(selected_feats)</span></code></pre></div>
+<blockquote>
+<p>Machine learning actually refers to learning programs if you think about two pieces of code as a black box.</p>
+</blockquote>
+<p>The above examples are just to make some of the ideas a little bit concrete otherwise both codes are not the code that you really put into production.</p>
+<p>You may see the manual programming problems, rules are never enough. There would be always cases you miss couple of rules or some structures in text are hard to express in hard-coded rules (if one company joins another company, that article is most probably partnership rather than HR), and it requires quite amount of effort both in development and also requires large domain expertise.</p>
+<p>The machine learning based solution is simply better most of the time. It could incorporate more data and use that data without putting more effort where you want to introduce new rules, you basically grow and grow your code base. This not only makes the code hard to maintain but also makes it unreadable. Also, in machine learning we may need domain expertise in order to build a good feature set. However, in manual programming, we solely depend on developer expertise in the domain as she expresses that knowledge purely in code.</p>
+<blockquote>
+<p>Data does replace heuristics, hard-coded rules, assumptions and beliefs. Machine learning only enables data to do that.</p>
+</blockquote>
+<figure>
+<img src="http://i.imgur.com/7hoflR2.gif" title="Sparse Filters" alt="" /><figcaption>Sparse Grayscale Filters</figcaption>
+</figure>
+<h4 id="learning-is-not-only-learning">Learning is not <strong>only</strong> learning</h4>
+<p>Learning has three important components. First one is representation of input, second one is representation of the classifier and third one is evaluation. Although first one and second are closely related, I will separate them into different sections.</p>
+<p>Representation of input is to transform the input into a vector or some amenable form to be useful for learning. Bag of Words(BoW) or Term Frequency Inverse Document Frequency(TF-IDF) for text, pixel values or engineered features(SIFT, SURF) for images to give couple of examples. As most of the raw data found in the wild is not amenable learning, this step is crucial. In computer vision domain, even the pixel values are found to be not very good or discriminative, so computer vision researchers come up with higher level representations for the images.</p>
+<p>Representation of classifier is to choose the best learning function for the classifiers. There are hundreds of different classifiers available for different type of problems. The learning function space is also quite crowded. The classifiers could be classified into different categories based on their learning function. Neural networks, convolutional neural networks, Restricted Boltzmann Machines could be put into deep learning where the architecture of the net is quite important; decision trees, random forests could be put into an ensemble learning; probabilistic graphical models and conditional graphical models into graphical models; bayesian network, Monte Carlo Markov Chain based methods could be put into Bayesian methods and so on. Rather than knowing particular classifier strengths and weaknesses, even knowing categories of classifiers would be useful to make a good decision around which classifier to choose.</p>
+<p>Evaluation has two components; first one is to be able to choose a metric to optimize the classifications. This is highly related to the problem and product. For example, a search engine needs to take both precision and recall to evaluate the ranking where a classifier on medical domain may put more emphasis on Type-I error than Type-II error or vice versa. If you want to approximate a distribution, rather than single individual examples, you may want to look at K-L divergence of total distribution.</p>
+<p>Second, to choose a method to evaluate the classifier for that metric. This is generally done through cross-validation. You need to set some data aside for test set in order to evaluate the classifier that you trained on the data that classifier did not see. Looking at the score of this method for the metric that you choose earlier, you could determine the best classifier. (I will mention different cross-validation methods in the generalized section in a bit)</p>
+<h4 id="input-representation">Input Representation</h4>
+<p>When we have some input(text, image, video, discrete, continuous or categorical variables), which we want to learn some structure or train a classifier, the first thing that needs to be done is to represent the input in a way that the classifier or the algorithm could use. There are common methods to transform the input into vectors that could be used to applications. If there are several ways to represent an input, you may want to try different methods to see which would produce better and more efficient transformations for the problem at hand. Especially considering most of the raw inputs are not very suitable(e.g. individual pixel values for images, words in text), you may want to also build your <em>features</em> which could be more higher level or in the same level but useful for learning. Representation is itself is not a solved problem across many domains and there are researchers that focus on how to represent better the inputs that we have. Papers published in <a href="https://sites.google.com/site/representationlearning2014/">International Conference on Learning Representations</a> mainly tackle representation problems. Recently, most of the deep learning methods(Restricted Boltzmann Machines, Neural Networks) are found to be very good at learning representation both in computer vision as well as natural language processing.</p>
+<p>Representation is very important as how good your representation has a direct effect on how successful your classifier is. Not only that, but when you evaluate your classifiers, the ones that are generalizing well(performing good on the test dataset), turn out to be the ones that use better document representation rather than the differences of the methods.</p>
+<blockquote>
+<p>The things that you induce has more to do with the data then the classifier itself.</p>
+</blockquote>
+<p>If you have a better representation for your input, your induction would be better, so the generalization. This is also the reason why more data always triumphs complex and arguably better classifiers(high accuracy in unseen data).</p>
+<h5 id="engineering-the-feature">Engineering the Feature</h5>
+<p>You tried a bunch of great classifiers into your training dataset but the results are far from satisfying and in different measures for performance, they may be even dismal. Since we tried a lot of classifiers, most probably the reason should not lie in the classifier but rather in the input representation. This part is the most time consuming part and if you do not have the domain knowledge, only thing that you need to do trial and error. If you have domain knowledge, then you are in a better shape as you could reason about what type of features would be more important and what needs to be done in order to improve the classification accuracies. If you do not know much about the domain, then you should probably be spending some time on the misclassifications and try to figure out why do these classifiers perform very poorly and what needs to be corrected in the representation. Hopefully, there is some pattern at the misclassified ones and then you should be able to see it and correct the representation to reach a higher classification accuracy.</p>
+<p>Feature generation will be different for different problems and somehow dependent on the problem/misclassified observations whereas classifiers are more independent from your input representations. For the most part you will be spending more time in this step than any other step for a given problem. However, at the same time this step is not mentioned most of the books and papers. The insights one gains in this step is also quite valuable for similar problems in the future.</p>
+<p>If you do not have a lot of domain expertise and have a lot of computation power and time in your hand, you may want to generate a lot of features, and then do feature selection on top of those features. This prevents further assumptions and biases that you may have for your own dataset. Further, you could actually see what type of features that are more relevant/important for the problem that you are trying to tackle based on the feature selection method.</p>
+<p>This approach may not be always applicable, though. For an image recognition problem, if you generate all of the possible combinations of raw pixels, you may still not learn a lot of from your inputs. For some of the problems and domains, the expertise and knowledge in domain is crucial to be able to get a reasonable classification accuracy.</p>
+<h4 id="generalization">Generalization</h4>
+<p>If machine learning offers one thing very powerful that is to be able to use <strong>data</strong> to come up with a solution for a given problem rather than programming as mentioned earlier. But this is only possible if our machine learning algorithm could go beyond the dataset that we used. Ergo, the generalization becomes the ultimate goal of the machine learning; generalization beyond training data is what is important and what will determine the success of the algorithm.</p>
+<blockquote>
+<p>Generalization is the <strong>sole</strong> product of a machine learning system.</p>
+</blockquote>
+<p>User does not know what goes into the system, how you train the classifier, how you make the cross-validation but <em>only and only </em> the generalization. If generalization is good, then product is good, if not product is not either. Generalization cannot be overemphasized when you are building and machine learning system.</p>
+<blockquote>
+<p>You sell generalization at the end of the day.</p>
+</blockquote>
+<h5 id="how-do-i-generalize-then">How do I generalize then?</h5>
+<p>I will deal with generalization in the evaluation by using cross-validation and make sure that we have a separate test set rather than the dataset that we optimize the parameters for. If you have limited amount of data and setting aside some data may not me feasible, then you could do K-Fold cross validation. If your labels are not uniformly distributed among classes, you could do Stratified K-Fold cross validation. You could use <strong>bagging</strong> to generate more similar data that you have in the dataset as well.</p>
+<blockquote>
+<p>We need to learn small amount of data and induce from it; generalize over much larger datasets by using that knowledge.</p>
+</blockquote>
+<p>Like inductive reasoning, the evidence(training set) needs to be strong(noise free or should have very minimal noise ideally) and also needs to have good enough sample observations.</p>
+<p>The problem with machine learning problem is that the thing that we are optimizing(cross-validation score) is not the score that we necessarily want to optimize. We want to optimize the classifier for the dataset that classifier did not see. Since we cannot observe the data at the time we train the classifier, this problem is quite ill-defined. Cross-validation and other evaluation methods do not solve this problem for us but only provides a better estimates for the data that classifier did not see.</p>
+<blockquote>
+<p>I said noise-free training samples in the beginning of this section, but for some of algorithms(especially the ones that tend to overfit, some amount of noise may actually improve the classification accuracy due to the reasons that I explained above).</p>
+</blockquote>
+<h5 id="what-is-next">What is next?</h5>
+<p>Classifiers.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>

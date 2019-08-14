@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Spectral Leakage &mdash; Machine Learning and Management</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="Spectral Leakage" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2012/9/15/Spectral-Leakage/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Spectral Leakage" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2012/9/15/Spectral-Leakage/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>Spectral Leakage</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    other things ;) <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">September 15, 2012 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2012/9/15/Spectral-Leakage/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Untitled</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Have you ever analyzed(take FFT) a signal which has one or two main frequency components and found out that there are many more components than you expect even if there is no noise in the signal? One of the reasons why it has more frequency components is spectral leakage, which is mainly due to windowing.<br />
+Say, we have a discrete signal of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo stretchy="false" form="prefix">[</mo><mi>n</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">x[n]</annotation></semantics></math>,<br />
+FFT of a sequence <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo stretchy="false" form="prefix">[</mo><mi>n</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">x[n]</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false" form="prefix">[</mo><mi>k</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><mi>x</mi><mo stretchy="false" form="prefix">[</mo><mi>n</mi><mo stretchy="false" form="postfix">]</mo><msup><mi>e</mi><mfrac><mrow><mo>−</mo><mi>j</mi><mn>2</mn><mi>π</mi><mi>n</mi><mi>k</mi></mrow><mi>N</mi></mfrac></msup></mrow><annotation encoding="application/x-tex">X[k] = \sum_{n=0}^{N-1} x[n] e^{\frac{-j 2 \pi n k}{N}}</annotation></semantics></math><br />
+where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math> is sampled by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mrow><mn>2</mn><mi>π</mi><mi>k</mi></mrow><mi>N</mi></mfrac><annotation encoding="application/x-tex">\frac{2\pi k}{N}</annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k = 0,1, ..., N-1</annotation></semantics></math>.<br />
+FFT assumes the signal is periodic with period N and infinite duration. As the observation time of the signal is limited for a finite interval, infinite duration assumption cannot be satisfied. However, if the observation time is an integer multiple of the period of the signal, it would not cause a problem. This is because periodic signal and repeated signal results in the same signal.<br />
+On the other hand, if the observation time is not an integer multiple of the period, then frequency components of the signal change. There would be either discontinuties or overlaps in the signal when it is repeated over the observation time.</p>
+<p><img src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/snapshot_twosignals.png" title="Discontinuity Signal" alt="Alt text" /> The figure above shows the discontinuity in time domain and this results in spectral leakage in the frequency domain.<br />
+The problem is actually in this case and in general is “windowing”. FFT assumes the signal is periodic and infinite, but when we observe and actually get the signal, we get its some part in a window. This is called non-coherent sampling, and shown below also.</p>
+<p><img src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/spectral_leakage1.png" title="Non-coherent Sampling" alt="Alt text" /> That is the observed signal is actually convolution of “ideal”(infinite, periodic) signal with a windowing function. We also know that window results in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>i</mi><mi>n</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">sinc</annotation></semantics></math> function in the frequency domain and it has side lobes other than its main lobe. Those side lobes are not desired and they represent spectral leakage in frequency domain.<br />
+This results in unwanted frequency bins next to the main bin in the Fourier domain as shown below. It may be easy to remember this <em>phenomena</em> if you think a “leakage” from the main bin to the other bins.</p>
+<p><img src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/spectral_leakage2.png" title="Spectral Leakage in Frequency Bins" alt="Alt text" /> If the sampling rate is the multiple integer of the period of the input signal, this sampling is called <strong>coherent sampling</strong>. However, it is not very common to know the input signal’s frequency exactly. Therefore, we need windows in order to analyze signals. Coherent sampling is shown in successive frames.</p>
+<figure>
+<img src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/coherent_sampling1.png" title="Coherent Sampling in Time Domain" alt="" /><figcaption>Alt text</figcaption>
+</figure>
+<p><img src="https://raw.github.com/bugra/Notes/master/Spectral-Leakage/img/coherent_sampling2.png" title="Coherent Sampling in Frequency Domain" alt="Alt text" /> Instead of rectangular signals, we may want to choose non-rectangular windows in order to decrease the spectral leakage. I do not want to go into detail, but in terms of choosing non-rectangular windows, there is also a trade-off. It is between frequency resolution and spectral leakage. If you want more frequency resolution in the signal, you need to sacrifice in the spectral leakage or vice versa.</p>
+<h3 id="code">Code</h3>
+<p>All of the code and images used in this note is available in the <a href="https://github.com/bugra/Spectral-Leakage" title="Spectral Leakage">here</a>.</p>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved 
+    <br><br>Copyright, <i>2019</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>
