@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Data, ML &amp; Leadership</title>
   <id>https://bugra.github.io/</id>
-  <updated>2020-04-26T00:00:00Z</updated>
+  <updated>2020-05-25T00:00:00Z</updated>
   <link href="https://bugra.github.io/" />
   <link href="https://bugra.github.io/" rel="self" />
   <subtitle type="text">Data, ML &amp; Leadership Atom Feed</subtitle>
@@ -5664,6 +5664,198 @@ fuel forest management heating development carbon facilities&lt;/code&gt;&lt;/pr
 &lt;li&gt;&lt;strong&gt;Make sure your team have internet connection and the tools that they need to do their job effectively&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Be rigorous for changes in production and have virtual war-rooms&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+  </entry>
+  <entry xml:base="https://bugra.github.io/">
+    <title type="text">How to Serve Models</title>
+    <id>https://bugra.github.io/posts/2020/5/25/how-to-serve-model</id>
+    <updated>2020-05-25T00:00:00Z</updated>
+    <published>2020-05-25T00:00:00Z</published>
+    <link href="https://bugra.github.io/posts/2020/5/25/how-to-serve-model" />
+    <author>
+      <name>Bugra Akyildiz</name>
+    </author>
+    <content type="html">&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; lang=&quot;&quot; xml:lang=&quot;&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, user-scalable=yes&quot; /&gt;
+  &lt;title&gt;-&lt;/title&gt;
+  &lt;style&gt;
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  &lt;/style&gt;
+  &lt;!--[if lt IE 9]&gt;
+    &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js&quot;&gt;&lt;/script&gt;
+  &lt;![endif]--&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;There are many ways to serve ml(machine learning) models, but these are the most common 3 patterns I observed over the years:&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;/static/images/work/notes/2020/5/25/how-to-serve-models.png&quot; title=&quot;3 different ways of serving models&quot; alt=&quot;&quot; /&gt;&lt;figcaption&gt;3 most common ways of serving models&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;In this post, I want to go over these different architectures/patterns and then outline the advantages and disadvantages in a more objective manner. If you ask, where is the rant part, scroll down to the bottom of the post.&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;Materialize/Compute predictions offline and serve through a database&lt;/li&gt;
+&lt;li&gt;Use model within the main application, model serving/deployment can be done with main application deployment&lt;/li&gt;
+&lt;li&gt;Use model separately in a microservice architecture where you send input and get output&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In these 3 different approaches, while &lt;code&gt;3&lt;/code&gt; might be more architecturally flexible and more modern in terms of microservice architecture, it is not a silver bullet solution as it requires and assumes infrastructure to be ready and able to support the flexibility of the architecture. While I believe this is the best architecture to be able to deploy, I also need to acknowledge other methods has their own advantages in comparison to the the 3rd architecture.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;1&lt;/code&gt;, &lt;code&gt;2&lt;/code&gt; and &lt;code&gt;3&lt;/code&gt; can be considered as an evolution of the architectures as well. &lt;code&gt;1&lt;/code&gt; is the fastest way to get something out of the door if the input domain is bounded and you want to serve the first model right out of the bat to be able to prove customer impact and business value of the model before investing a lot of operations and “making it right”. This way you incrementally evolve your architecture by delivering incremental values. However, if the input domains are not bounded, &lt;code&gt;2&lt;/code&gt; approach might be a good compromise between different options. However, from maintainability and scalability perspective, 3rd provides the most benefits comparing to other two in terms of separation of concerns of training/model serving as well as easily be able to scaled up/down through traffic. Before further ado, let’s look at some of the advantages and disadvantages of each architecture.&lt;/p&gt;
+&lt;h3 id=&quot;materializecompute-predictions&quot;&gt;1. Materialize/Compute Predictions&lt;/h3&gt;
+&lt;p&gt;This is one of the earliest form of serving prediction architecture. A data scientist outputs SQL table and that table is ingested into production and served from a database from an application. Simple enough. Even though this architecture does not serve model directly, it has a number of advantages.&lt;/p&gt;
+&lt;h4 id=&quot;advantages&quot;&gt;Advantages:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;It does not require any special infrastructure. A database that is well suited for production use cases can be enough.&lt;/li&gt;
+&lt;li&gt;It does not require any infrastructure to deploy/serve model.
+&lt;ul&gt;
+&lt;li&gt;A cron-job like mechanism can populate/update the database and this database can automatically serve predictions.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It can serve predictions fast based on the database as the predictions are pre-computed.
+&lt;ul&gt;
+&lt;li&gt;For mission critical applications, this might be very important and in some cases, it might be preferred mechanism.&lt;/li&gt;
+&lt;li&gt;Even though the model that generates predictions might be slow or certain preprocessing steps might take longer time, this is hidden from the serving portion of the application.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Rolling out and rolling back models become straightforward
+&lt;ul&gt;
+&lt;li&gt;Whether engineer prefers to use separate tables or separate records based on some identifier, it is easy to rollback and rollout the new models through table name changes or record metadata changes.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It decouples the main application from the predictions serving logic.
+&lt;ul&gt;
+&lt;li&gt;Main application/API does not need to know about how the predictions are computed/materialized.&lt;/li&gt;
+&lt;li&gt;Generating predictions can be a completely independent process from reading/serving predictions online.
+&lt;ul&gt;
+&lt;li&gt;This can be an advantage if the technology stacks are different&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;disadvantages&quot;&gt;Disadvantages:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;It requires all of the inputs aheads of time.
+&lt;ul&gt;
+&lt;li&gt;For certain domains like search, this may not be feasible and realistic. As some of the queries that are being entered may not have been seen before.&lt;/li&gt;
+&lt;li&gt;For features/datasets that are highly dynamic and has a large number of combinations, it will require large amount of storage space.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Metadata, parameters need to be part of the table or records that have been inserted into database.
+&lt;ul&gt;
+&lt;li&gt;For any type of A/B testing or online comparison, table records or table itself needs to somehow communicate to the application on the model specifications as the database itself becomes abstraction layer for model.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It is hard to introduce new variables as it will exponentially increase storage and computation requirements.
+&lt;ul&gt;
+&lt;li&gt;For domains like personalized search, it will require number_of_queries * total_number_of_users will be multiplied by each additional feature variations(like brand affinity).
+&lt;ul&gt;
+&lt;li&gt;This is not easy to scale as each feature will require multiple same tables with the original one.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It cannot leverage online features and online context to influence predictions.
+&lt;ul&gt;
+&lt;li&gt;Since every prediction is precomputed, it cannot utilize online context and other features that might be useful at the time of prediction serving time.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It is hard to update and maintain predictions through different models.
+&lt;ul&gt;
+&lt;li&gt;A model update needs to either in-place update all of the records/tables or needs to create new records/tables.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;embedded-model&quot;&gt;2. Embedded Model&lt;/h3&gt;
+&lt;p&gt;In this architecture, model is embedded into the main application. This architecture is a compromise between &lt;code&gt;1&lt;/code&gt; and &lt;code&gt;3&lt;/code&gt; where it enables not storing the predictions and still enables applications to serve predictions realtime. However, it tightly couples the serving layer with the main application which increases overhead in maintaining and operating both model and application itself. Since in this architecture the model and application is coupled, it gives a benefit of not having the network call.&lt;/p&gt;
+&lt;h4 id=&quot;advantages-1&quot;&gt;Advantages:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;There is no network call on model predictions
+&lt;ul&gt;
+&lt;li&gt;The model is probably loaded into memory within the application and it will be a function call.&lt;/li&gt;
+&lt;li&gt;This improves serving latency.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Use the same technology stack with model
+&lt;ul&gt;
+&lt;li&gt;Same engineers that are working on the main application can easily make changes through the same stack.&lt;/li&gt;
+&lt;li&gt;If library and framework of the machine learning library is also the language of the application, the integration between model and application would be easy and out of the box.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;There is no separate infrastructure that is needed for model specifically
+&lt;ul&gt;
+&lt;li&gt;Model can use the same application infrastructure, release and deployment process&lt;/li&gt;
+&lt;li&gt;This reduces the operational overhead for model even though it adds incremental overhead to the application.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;disadvantages-1&quot;&gt;Disadvantages:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;It is not scalable
+&lt;ul&gt;
+&lt;li&gt;If your main application needs to use more than 1 model, all of these models need to be part of the main application and that creates a lot of maintenance overhead for software engineers that are maintaining and building this application.&lt;/li&gt;
+&lt;li&gt;Addition of more than X number of models may require a lot of memory and might put additional constraints on the hardware that the application can be deployed.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Has to use same technology stack with model
+&lt;ul&gt;
+&lt;li&gt;The model needs to be at least deserialized by the application to be loaded into memory. This might create additional overhead on the deserialization as well as the model representation in that particular language stack. An example would be of Tensorflow/PyTorch being used in JVM stack. Both of these libraries expose a JNI interface: TF JNI and PyTorch JNI but there is a certain additional overhead back and forth of the model output to the JVM layer.&lt;/li&gt;
+&lt;li&gt;Some of the language stacks that are very commonly used in the software development may not have any support from ml libraries and ml community in general such as GoLang and Rust. This may require in-house development for deserialization which might be error prone.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Couples model deployment and development of main application
+&lt;ul&gt;
+&lt;li&gt;This creates maintenance overhead and technical debt over time&lt;/li&gt;
+&lt;li&gt;If there is a problem in model deployment and serving, that might impact the overall main application’s SLA. This creates reliability issues overall in the main application&lt;/li&gt;
+&lt;li&gt;Model deployment and release need to depend on main application deployment. Main application deployment also depend on the model deployment&lt;/li&gt;
+&lt;li&gt;Making changes in model and application need to accommodate both changes. This prevents easy rollback of a new model as it requires rolling back of the overall application together.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;microservice-model-serving&quot;&gt;3. Microservice Model Serving&lt;/h3&gt;
+&lt;p&gt;In this architecture, model is being served as a separate microservice independent from the main application. This architecture being the most flexible in terms of model deployment has also advantages and disadvantages.&lt;/p&gt;
+&lt;h4 id=&quot;advantages-2&quot;&gt;Advantages:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Model deployment and release is very flexible
+&lt;ul&gt;
+&lt;li&gt;An ml engineer can deploy different strategies to be able to deploy these models.&lt;/li&gt;
+&lt;li&gt;Canary deployment as well as gradual multiple phases deployment is possible and easy.&lt;/li&gt;
+&lt;li&gt;Online monitoring and validation can happen per model in the rollout process.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Generates and serves prediction in real-time and online.
+&lt;ul&gt;
+&lt;li&gt;It can leverage online features and context to influence predictions.&lt;/li&gt;
+&lt;li&gt;It can easily incorporate new features on the serving time.&lt;/li&gt;
+&lt;li&gt;It can generate predictions on the data that has not been seen before. Based on the model specifications, it can also handle Out Of Vocabulary(OOV) situations where other rules in an offline computation cannot handle.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Since serving can be done outside of the main application, this gives a lot of flexibility on the serving layer.
+&lt;ul&gt;
+&lt;li&gt;Serving layer can be built and maintained completely separately from the main application.&lt;/li&gt;
+&lt;li&gt;Serving layer can be deployed independently from the main application.&lt;/li&gt;
+&lt;li&gt;Serving layer can change and be updated independently form the main application.&lt;/li&gt;
+&lt;li&gt;Serving layer can utilize a completely different technology stack from the main application. This is especially important if your main stack uses a language that is not commonly adopted in machine learning community like GoLang or Rust.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Decouples main application and model serving layer
+&lt;ul&gt;
+&lt;li&gt;It separates all of the application and model serving concerns separately and results in very low technical debt within the application&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Scalable
+&lt;ul&gt;
+&lt;li&gt;Model serving layer can be scaled out independently from the main application&lt;/li&gt;
+&lt;li&gt;Since models are being served in separate microservices, adding additional models is adding new containers/services that can be scaled up separately.&lt;/li&gt;
+&lt;li&gt;Based on the model prediction output usage, the serving layers can be parallelized at the time of prediction call.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;disadvantages-2&quot;&gt;Disadvantages:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;In order to fully utilize the flexibility of the approach, it requires separate infrastructure.
+&lt;ul&gt;
+&lt;li&gt;Monitoring as well online validation and evaluation metrics need to be part of the serving layer&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The model as well as the API needs to be high performant and low latency prediction system.
+&lt;ul&gt;
+&lt;li&gt;This requires engineers to optimize the prediction layer or use some off-the shelf solution like Tensorflow Serving&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;It requires separate service deployment and release
+&lt;ul&gt;
+&lt;li&gt;This will create additional overhead in terms of operations.&lt;/li&gt;
+&lt;li&gt;This needs monitoring, alerting and production readiness of the models and services separately.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Whenever I see the pre-computed, materialized model serve pattern, I cringe. Even in the best case scenario that you completely separate the tables between separate models, you still need to make sure that every single model iteration outputs a full fledged table for the inputs that you know. This is on top of the obvious limitation of, you cannot do anything in a very dynamic manner within the application. It also shows that the engineering organization is not mature enough that they cannot serve model in a production capacity for one way or another unless they opt-in this pattern for a very specific reason.&lt;/p&gt;
+&lt;p&gt;The microservice model is the one that everyone should aspire to even though you do not get it right in the first try, it will be worth it. This not only separates concerns of ml with the main application, but also empowers ml engineers to build the system end to end and make necessary adjustments in an isolated manner. If you want to use a different library or framework, go ahead; as long as you comply the SLA, you should be able to do anything you want. If you want to deploy a new model but do not have support versionining, use API versioning to distinguish between models. Do you want to do canary deployments as you do not know the performance of the model in an online setting, you can use the API canary deployment that you DevOps team built with no problem. If you cannot do microservice model, embedded model would be a good compromise.&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </content>
