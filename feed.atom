@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Data, ML &amp; Leadership</title>
   <id>https://bugra.github.io/</id>
-  <updated>2020-05-25T00:00:00Z</updated>
+  <updated>2020-11-24T00:00:00Z</updated>
   <link href="https://bugra.github.io/" />
   <link href="https://bugra.github.io/" rel="self" />
   <subtitle type="text">Data, ML &amp; Leadership Atom Feed</subtitle>
@@ -5574,6 +5574,173 @@ fuel forest management heating development carbon facilities&lt;/code&gt;&lt;/pr
 &lt;li&gt;The Word2Vec model we used was a word-based model, and Elmo is based on character level. Because of this, it can handle out-of-vocabulary words very well.&lt;/li&gt;
 &lt;li&gt;Poincare Embeddings can learn much lower dimensional embeddings by learning different types of relationships.&lt;/li&gt;
 &lt;li&gt;We want to learn the weights on our catalog in a much faster fashion.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+  </entry>
+  <entry xml:base="https://bugra.github.io/">
+    <title type="text">How to Monitor Models</title>
+    <id>https://bugra.github.io/posts/2020/11/24/how-to-monitor-models</id>
+    <updated>2020-11-24T00:00:00Z</updated>
+    <published>2020-11-24T00:00:00Z</published>
+    <link href="https://bugra.github.io/posts/2020/11/24/how-to-monitor-models" />
+    <author>
+      <name>Bugra Akyildiz</name>
+    </author>
+    <content type="html">&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; lang=&quot;&quot; xml:lang=&quot;&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, user-scalable=yes&quot; /&gt;
+  &lt;title&gt;-&lt;/title&gt;
+  &lt;style&gt;
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  &lt;/style&gt;
+  &lt;!--[if lt IE 9]&gt;
+    &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js&quot;&gt;&lt;/script&gt;
+  &lt;![endif]--&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;After we &lt;a href=&quot;http://bugra.github.io/posts/2020/5/25/how-to-serve-model/&quot;&gt;serve machine learning models&lt;/a&gt;, we will also need to monitor them. In this post, I will be going at details of monitoring machine learning models.&lt;/p&gt;
+&lt;p&gt;Needless to say, monitoring is very important part of the machine learning based applications and services. On top of the existing/usual concerns for any type of software based systems, there are also unique challenges that ml brings to the table in terms of monitoring, two of these unique issues are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is hard to find out if model deteriorates in production&lt;/li&gt;
+&lt;li&gt;It is hard to control and create a stable environment where you can make assumptions in the inputs to the system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you compare this with non-ml based applications, the difference and change are data, model characteristics and how model behaves. This is only being exacerbated by the time that model is being put and serving real customer traffic in production, it starts deteoriating gradually as the training/validation set being used to tune the parameters of the model differs over time with the production dataset.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Due to all of these needs, one needs to put a lot of more thought building ml based systems and that requires even more work on monitoring aspects of the applications/services.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The two questions that will outline the monitoring concerns are in the following:&lt;/p&gt;
+&lt;h3 id=&quot;how-do-i-know-my-models-perform-wellworse&quot;&gt;How do I know my models perform well/worse?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Is there any business metric that you can track for everyhing else being equal(ceteris paribus), it will signify that machine learning model is performing better?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If there is one, deterioriation of the model will be measured against a business/customer impacting metric. This is also good metric to measure across the site to understand downstream effects of the model.&lt;/p&gt;
+&lt;h2 id=&quot;how-do-i-know-if-my-model-is-down&quot;&gt;How do I know if my model is down?&lt;/h2&gt;
+&lt;p&gt;This is a better studied question and it is relatively easy to answer. We define SLA and certain operational metrics around the service/API that is serving the model/predictions and measure against the SLA.&lt;/p&gt;
+&lt;p&gt;I will answer both of these questions in a much more detailed manner in this post, but let’s first go with what we need to do accommodate change that is crucial part of the ml based systems.&lt;/p&gt;
+&lt;h3 id=&quot;change&quot;&gt;Change&lt;/h3&gt;
+&lt;p&gt;Unlike software systems, where the change is more often than not root cause of the disturbance in the system, ml systems behave quite differently. The inputs to the system which defines on how your machine learning based application works, changes over time. It is your best interest to adjust/change the model to the changing world all the time.&lt;/p&gt;
+&lt;p&gt;In software non-ml based systems, you can do property based testing and all of the other advanced testing methods to test your software against possible inputs. Because of that, change carries a risk and code freeze aims to reduce change in order to increase reliability. Especially, if you have intervals/windows that are mission critical like holiday season if you are in ecommerce space, this increases stability of the system and it is considered to be best practice for software systems.&lt;/p&gt;
+&lt;p&gt;In ML based systems, this is simply not possible and not best strategy to adopt ever changing data and consumer needs. As data input changes as well as the behavior that you are seeing that changes, you need to change the model, training data as well as other components that respond to those changes.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you were to capture all of the possible input and output relations in a deterministic manner in terms of testing, you do not need an ml model in the first place.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The reason why you are building machine learning based applications is to generalize all of the inputs that have not been seen before and this is why ml exists but also makes it hard to test.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;/static/images/work/notes/2020/11/24/monitoring-aspects.png&quot; title=&quot;Monitoring Aspects MLOps Components&quot; alt=&quot;&quot; /&gt;&lt;figcaption&gt;Monitoring of MLOPS components&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&quot;change-anything-changes-everything&quot;&gt;Change Anything Changes Everything&lt;/h3&gt;
+&lt;p&gt;In Google’s &lt;a href=&quot;https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf&quot;&gt;seminal paper&lt;/a&gt;, the concept of CACE(Changes Anything Changes Everything). If you are adding a new field in the form where you collect data, be mindful of this principle. If you are using failed requests to a system as negative samples, you may have a hard time when there are a lot of bad actors that want to log-in to the system. If you are removing one analytics beacon data from existing data pipeline,&lt;/p&gt;
+&lt;h3 id=&quot;data-pipelinepreparation&quot;&gt;Data Pipeline/Preparation&lt;/h3&gt;
+&lt;p&gt;Monitoring of the models should start on the data level as this part will have a significant impact on the model performance. Also, this might be a place where you can get best of return of investment as in this layer, ETL(extract-transform-load) can be monitored and alerted on basic checks. Since there is a large amount of dependency for features, model training on the basic data preparation, you need to make sure that all of the issues/errors can be monitored properly and alerted.&lt;/p&gt;
+&lt;p&gt;Some common things to monitor:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To monitor the data input distribution&lt;/li&gt;
+&lt;li&gt;To monitor basic data size per minute, hour and daily&lt;/li&gt;
+&lt;li&gt;To monitor data schema
+&lt;ul&gt;
+&lt;li&gt;Are there any new fields added?&lt;/li&gt;
+&lt;li&gt;Are there any fields that are being removed?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;To monitor anomalies on the field level or on the record level&lt;/li&gt;
+&lt;li&gt;To monitor novel fields&lt;/li&gt;
+&lt;li&gt;Is there anything that you observe where you did not observe before?&lt;/li&gt;
+&lt;li&gt;To monitor fluctuations on the data fields
+&lt;ul&gt;
+&lt;li&gt;Basic mean, median computation on numerical fields and monitoring this over time would be simple and ensures that you do not miss these changes&lt;/li&gt;
+&lt;li&gt;For categorical variables, histogram might be useful to understand if there is large change.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;To monitor lineage of the data
+&lt;ul&gt;
+&lt;li&gt;Where does data come from? When is it originated?&lt;/li&gt;
+&lt;li&gt;Which service and application produced this data?&lt;/li&gt;
+&lt;li&gt;Which services and applications processed this data?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you are using a streaming based solution to ingest data, you might have a better luck in terms of lineage of the data as long as you establish a mechanism to ensure that &lt;code&gt;metadata&lt;/code&gt; is preserved and communicated to the downstreams.&lt;/p&gt;
+&lt;h3 id=&quot;features&quot;&gt;Features&lt;/h3&gt;
+&lt;p&gt;If you explicitly use features in the data pipeline/offline model training as well as in the serving layer, this is another area one needs to put monitoring. If your serving layer and data processing/pipeline layer do not share the similar technology stack, that is another reason why this place needs to be monitored closely with possibly some alerts.&lt;/p&gt;
+&lt;p&gt;Some more areas that need to be alerted:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data pipeline features and serving features should match to each other for a given input data.
+&lt;ul&gt;
+&lt;li&gt;If serving layer and data pipeline/preparation is using different data sources to derive features, this is crucial. If they are using the same data sources, it would be good to have to ensure that libraries/frameworks that derive features match on serving and data pipeline layer.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Feature distributions need to be monitored and put alerts on it. Especially, if there are issues in the features on the model building and/or serving layer, one side may not be able to use the features and assuming that model is able to handle null or not available values gracefully, it will be a silent error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;training&quot;&gt;Training&lt;/h3&gt;
+&lt;p&gt;For model training, we not only need to make sure that upstream data and features are guarded but also the model training needs to be monitored. In here, the very basic things like the mean, standard deviation as well as other statistical properties of prediction in evaluation and test set would be useful.&lt;/p&gt;
+&lt;p&gt;Some common things to monitor in this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Confusion Matrix if model is a classification model&lt;/li&gt;
+&lt;li&gt;RMSE if model is a regression model&lt;/li&gt;
+&lt;li&gt;Loss change over epochs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;serving&quot;&gt;Serving&lt;/h3&gt;
+&lt;p&gt;Unlike software systems, machine learning systems need more monitoring. The reason for that is that software systems need to answer questions around SLA which can be measured on uptime as well as SLA violation. However, ML Systems need to answer more questions than software systems around model itself on the serving layer.&lt;/p&gt;
+&lt;h3 id=&quot;important-operational-metrics&quot;&gt;Important Operational Metrics&lt;/h3&gt;
+&lt;p&gt;On serving layer, one can look at the usual suspects of the systems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Resources Used(CPU, Memory, IOPS, GPU)&lt;/li&gt;
+&lt;li&gt;Latency&lt;/li&gt;
+&lt;li&gt;Errors and error rates&lt;/li&gt;
+&lt;li&gt;System Capacity&lt;/li&gt;
+&lt;li&gt;Authentication&lt;/li&gt;
+&lt;li&gt;API metrics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;model-quality-metrics&quot;&gt;Model Quality Metrics&lt;/h3&gt;
+&lt;p&gt;If we cannot measure the model quality through a well-defined business/customer metric, one might come up a metric that shows/signified how good the model is in the production differrently.&lt;/p&gt;
+&lt;p&gt;There are many ways to do look at the model quality metrics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Confusion_matrix&quot;&gt;Confusion Matrix&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Gini_coefficient&quot;&gt;Gini Coefficient&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test&quot;&gt;Kolmogorov–Smirnov test&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that, in these metrics, we are not trying to measure the accuracy of the mpdel, but also the distribution of the input data as well as distribution of output of the model. For example, input distribution change causes well-known issue of &lt;a href=&quot;https://en.wikipedia.org/wiki/Concept_drift&quot;&gt;concept drift&lt;/a&gt;. Ideally, we should build guards against these type of problems/issues beforehand. Every model since it has been put into production suffers from concept drift. This is because the training data used to train model differs from online data. This is bound to happen as the time of the model has been put into production, the model is expected to degrade.&lt;/p&gt;
+&lt;h4 id=&quot;data-growth-strategy&quot;&gt;Data Growth Strategy&lt;/h4&gt;
+&lt;p&gt;As you are building different features, your customer base will grow and data ingestion and processing will increase as well. Monitor this growth from infrastructure perspective. Ask the following questions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How many more nodes do you need with increasing traffic?&lt;/li&gt;
+&lt;li&gt;How much you can parallelize this workload?&lt;/li&gt;
+&lt;li&gt;With this growth, do you need many more machines or do you need to rethink the overall data infrastructure in 2-3 years?&lt;/li&gt;
+&lt;li&gt;Can you ingest the higher amount of data and train models without any issues?&lt;/li&gt;
+&lt;li&gt;In 6 months/1 year/3 years, is memory going to be an issue or are you able to meet the SLAs for training freshness with the data growth rate?&lt;/li&gt;
+&lt;li&gt;Do you have a plan to accommodate the data growth in the ml training pipeline?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;user-behavior-change-strategy&quot;&gt;User Behavior Change Strategy&lt;/h4&gt;
+&lt;p&gt;In case there is a drastic user behavior change due to exogenous factors, we should have a plan to monitor such events and react to that. Some useful questions are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What happens when a pandemic happens and suddenly all of the products that you sell become out of stock?&lt;/li&gt;
+&lt;li&gt;What happens when user starts buying certain categories more and more(like everyday living, produce and frozen foods) rather than fashion/home categories?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;best-practices&quot;&gt;Best Practices&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Monitor output prediction and output prediction distribution is generally a good practice and it can point out problems very early on.
+&lt;ul&gt;
+&lt;li&gt;Monitor lowest and highest probability of predictions&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Compare predictions with an older model and compare between current and older model.&lt;/li&gt;
+&lt;li&gt;Use A/B testing to compare between different models based on some customer/business metric.&lt;/li&gt;
+&lt;li&gt;Replay older production data to compare predictions.
+&lt;ul&gt;
+&lt;li&gt;Shows/displays some other exogeneous factors.
+&lt;ul&gt;
+&lt;li&gt;CoVID behavior changes can be observed through this mechanism.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Monitoring infrastructure should be flexible and engineers should be able to create any type of alerts on top of it.
+&lt;ul&gt;
+&lt;li&gt;Monitoring is there to be able to react to the monitoring and that is why alerts are for. There is nothing more sad than a monitoring infrastructure where engineers cannot create alerts on top of it.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/body&gt;
 &lt;/html&gt;

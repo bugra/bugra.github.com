@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>How to Monitor Models &mdash; Data, ML &amp; Leadership</title>
+
+  <link type="text/css" rel="stylesheet" href="/static/sdist/ff9ec00429d34a18995915040b9b5bf9.css">
+
+  <script type="text/javascript" src="/static/sdist/aa45836fe5eaf91e9c964fd639fa3c1f.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' href="/static/favicon.ico" type='image/x-icon'/>
+  <style type="text/css">
+   img { mix-blend-mode: multiply; }
+  </style>
+  <meta property="og:author" content="Bugra Akyildiz" />
+  <meta property="og:title" content="How to Monitor Models" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="https://bugra.github.io/posts/2020/11/24/how-to-monitor-models/" />
+  <meta property="og:image" content="/static/img/athena.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How to Monitor Models" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:url" content="https://bugra.github.io/posts/2020/11/24/how-to-monitor-models/" />
+  <meta name="twitter:image" content="/static/img/athena.png" />
+</head>
+<body>
+    <div class="marginnote">
+        <div id="logo"><a href="/" class="at"></a></div>
+    </div>
+  <div class="thearticle">
+  
+  <article>
+  
+    <h1>How to Monitor Models</h1>
+    <p id="blog-p"><span id="blogdesc" class="marginnote">
+    <br><br>
+    <a href="/">home</a> ·
+    
+      <a href="/about/">
+        about</a> ·
+    
+    <a href="/feed.atom">subscribe</a></span></p>
+
+    <subtitle class="sub-date">November 24, 2020 · <span
+    style="font-size: 1.6rem;"><a style="border-bottom-width: 0px !important;"
+    href="https://bugra.github.io/posts/2020/11/24/how-to-monitor-models/">&infin;</a></span></subtitle>
+
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>After we <a href="http://bugra.github.io/posts/2020/5/25/how-to-serve-model/">serve machine learning models</a>, we will also need to monitor them. In this post, I will be going at details of monitoring machine learning models.</p>
+<p>Needless to say, monitoring is very important part of the machine learning based applications and services. On top of the existing/usual concerns for any type of software based systems, there are also unique challenges that ml brings to the table in terms of monitoring, two of these unique issues are:</p>
+<ul>
+<li>It is hard to find out if model deteriorates in production</li>
+<li>It is hard to control and create a stable environment where you can make assumptions in the inputs to the system</li>
+</ul>
+<p>If you compare this with non-ml based applications, the difference and change are data, model characteristics and how model behaves. This is only being exacerbated by the time that model is being put and serving real customer traffic in production, it starts deteoriating gradually as the training/validation set being used to tune the parameters of the model differs over time with the production dataset.</p>
+<blockquote>
+<p>Due to all of these needs, one needs to put a lot of more thought building ml based systems and that requires even more work on monitoring aspects of the applications/services.</p>
+</blockquote>
+<p>The two questions that will outline the monitoring concerns are in the following:</p>
+<h3 id="how-do-i-know-my-models-perform-wellworse">How do I know my models perform well/worse?</h3>
+<ul>
+<li>Is there any business metric that you can track for everyhing else being equal(ceteris paribus), it will signify that machine learning model is performing better?</li>
+</ul>
+<p>If there is one, deterioriation of the model will be measured against a business/customer impacting metric. This is also good metric to measure across the site to understand downstream effects of the model.</p>
+<h2 id="how-do-i-know-if-my-model-is-down">How do I know if my model is down?</h2>
+<p>This is a better studied question and it is relatively easy to answer. We define SLA and certain operational metrics around the service/API that is serving the model/predictions and measure against the SLA.</p>
+<p>I will answer both of these questions in a much more detailed manner in this post, but let’s first go with what we need to do accommodate change that is crucial part of the ml based systems.</p>
+<h3 id="change">Change</h3>
+<p>Unlike software systems, where the change is more often than not root cause of the disturbance in the system, ml systems behave quite differently. The inputs to the system which defines on how your machine learning based application works, changes over time. It is your best interest to adjust/change the model to the changing world all the time.</p>
+<p>In software non-ml based systems, you can do property based testing and all of the other advanced testing methods to test your software against possible inputs. Because of that, change carries a risk and code freeze aims to reduce change in order to increase reliability. Especially, if you have intervals/windows that are mission critical like holiday season if you are in ecommerce space, this increases stability of the system and it is considered to be best practice for software systems.</p>
+<p>In ML based systems, this is simply not possible and not best strategy to adopt ever changing data and consumer needs. As data input changes as well as the behavior that you are seeing that changes, you need to change the model, training data as well as other components that respond to those changes.</p>
+<blockquote>
+<p>If you were to capture all of the possible input and output relations in a deterministic manner in terms of testing, you do not need an ml model in the first place.</p>
+</blockquote>
+<p>The reason why you are building machine learning based applications is to generalize all of the inputs that have not been seen before and this is why ml exists but also makes it hard to test.</p>
+<figure>
+<img src="/static/images/work/notes/2020/11/24/monitoring-aspects.png" title="Monitoring Aspects MLOps Components" alt="" /><figcaption>Monitoring of MLOPS components</figcaption>
+</figure>
+<h3 id="change-anything-changes-everything">Change Anything Changes Everything</h3>
+<p>In Google’s <a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">seminal paper</a>, the concept of CACE(Changes Anything Changes Everything). If you are adding a new field in the form where you collect data, be mindful of this principle. If you are using failed requests to a system as negative samples, you may have a hard time when there are a lot of bad actors that want to log-in to the system. If you are removing one analytics beacon data from existing data pipeline,</p>
+<h3 id="data-pipelinepreparation">Data Pipeline/Preparation</h3>
+<p>Monitoring of the models should start on the data level as this part will have a significant impact on the model performance. Also, this might be a place where you can get best of return of investment as in this layer, ETL(extract-transform-load) can be monitored and alerted on basic checks. Since there is a large amount of dependency for features, model training on the basic data preparation, you need to make sure that all of the issues/errors can be monitored properly and alerted.</p>
+<p>Some common things to monitor:</p>
+<ul>
+<li>To monitor the data input distribution</li>
+<li>To monitor basic data size per minute, hour and daily</li>
+<li>To monitor data schema
+<ul>
+<li>Are there any new fields added?</li>
+<li>Are there any fields that are being removed?</li>
+</ul></li>
+<li>To monitor anomalies on the field level or on the record level</li>
+<li>To monitor novel fields</li>
+<li>Is there anything that you observe where you did not observe before?</li>
+<li>To monitor fluctuations on the data fields
+<ul>
+<li>Basic mean, median computation on numerical fields and monitoring this over time would be simple and ensures that you do not miss these changes</li>
+<li>For categorical variables, histogram might be useful to understand if there is large change.</li>
+</ul></li>
+<li>To monitor lineage of the data
+<ul>
+<li>Where does data come from? When is it originated?</li>
+<li>Which service and application produced this data?</li>
+<li>Which services and applications processed this data?</li>
+</ul></li>
+</ul>
+<p>If you are using a streaming based solution to ingest data, you might have a better luck in terms of lineage of the data as long as you establish a mechanism to ensure that <code>metadata</code> is preserved and communicated to the downstreams.</p>
+<h3 id="features">Features</h3>
+<p>If you explicitly use features in the data pipeline/offline model training as well as in the serving layer, this is another area one needs to put monitoring. If your serving layer and data processing/pipeline layer do not share the similar technology stack, that is another reason why this place needs to be monitored closely with possibly some alerts.</p>
+<p>Some more areas that need to be alerted:</p>
+<ul>
+<li>Data pipeline features and serving features should match to each other for a given input data.
+<ul>
+<li>If serving layer and data pipeline/preparation is using different data sources to derive features, this is crucial. If they are using the same data sources, it would be good to have to ensure that libraries/frameworks that derive features match on serving and data pipeline layer.</li>
+</ul></li>
+<li>Feature distributions need to be monitored and put alerts on it. Especially, if there are issues in the features on the model building and/or serving layer, one side may not be able to use the features and assuming that model is able to handle null or not available values gracefully, it will be a silent error.</li>
+</ul>
+<h3 id="training">Training</h3>
+<p>For model training, we not only need to make sure that upstream data and features are guarded but also the model training needs to be monitored. In here, the very basic things like the mean, standard deviation as well as other statistical properties of prediction in evaluation and test set would be useful.</p>
+<p>Some common things to monitor in this:</p>
+<ul>
+<li>Confusion Matrix if model is a classification model</li>
+<li>RMSE if model is a regression model</li>
+<li>Loss change over epochs</li>
+</ul>
+<h3 id="serving">Serving</h3>
+<p>Unlike software systems, machine learning systems need more monitoring. The reason for that is that software systems need to answer questions around SLA which can be measured on uptime as well as SLA violation. However, ML Systems need to answer more questions than software systems around model itself on the serving layer.</p>
+<h3 id="important-operational-metrics">Important Operational Metrics</h3>
+<p>On serving layer, one can look at the usual suspects of the systems:</p>
+<ul>
+<li>Resources Used(CPU, Memory, IOPS, GPU)</li>
+<li>Latency</li>
+<li>Errors and error rates</li>
+<li>System Capacity</li>
+<li>Authentication</li>
+<li>API metrics</li>
+</ul>
+<h3 id="model-quality-metrics">Model Quality Metrics</h3>
+<p>If we cannot measure the model quality through a well-defined business/customer metric, one might come up a metric that shows/signified how good the model is in the production differrently.</p>
+<p>There are many ways to do look at the model quality metrics:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Confusion_matrix">Confusion Matrix</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Gini_coefficient">Gini Coefficient</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">Kolmogorov–Smirnov test</a></li>
+</ul>
+<p>Note that, in these metrics, we are not trying to measure the accuracy of the mpdel, but also the distribution of the input data as well as distribution of output of the model. For example, input distribution change causes well-known issue of <a href="https://en.wikipedia.org/wiki/Concept_drift">concept drift</a>. Ideally, we should build guards against these type of problems/issues beforehand. Every model since it has been put into production suffers from concept drift. This is because the training data used to train model differs from online data. This is bound to happen as the time of the model has been put into production, the model is expected to degrade.</p>
+<h4 id="data-growth-strategy">Data Growth Strategy</h4>
+<p>As you are building different features, your customer base will grow and data ingestion and processing will increase as well. Monitor this growth from infrastructure perspective. Ask the following questions:</p>
+<ul>
+<li>How many more nodes do you need with increasing traffic?</li>
+<li>How much you can parallelize this workload?</li>
+<li>With this growth, do you need many more machines or do you need to rethink the overall data infrastructure in 2-3 years?</li>
+<li>Can you ingest the higher amount of data and train models without any issues?</li>
+<li>In 6 months/1 year/3 years, is memory going to be an issue or are you able to meet the SLAs for training freshness with the data growth rate?</li>
+<li>Do you have a plan to accommodate the data growth in the ml training pipeline?</li>
+</ul>
+<h4 id="user-behavior-change-strategy">User Behavior Change Strategy</h4>
+<p>In case there is a drastic user behavior change due to exogenous factors, we should have a plan to monitor such events and react to that. Some useful questions are:</p>
+<ul>
+<li>What happens when a pandemic happens and suddenly all of the products that you sell become out of stock?</li>
+<li>What happens when user starts buying certain categories more and more(like everyday living, produce and frozen foods) rather than fashion/home categories?</li>
+</ul>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li>Monitor output prediction and output prediction distribution is generally a good practice and it can point out problems very early on.
+<ul>
+<li>Monitor lowest and highest probability of predictions</li>
+</ul></li>
+<li>Compare predictions with an older model and compare between current and older model.</li>
+<li>Use A/B testing to compare between different models based on some customer/business metric.</li>
+<li>Replay older production data to compare predictions.
+<ul>
+<li>Shows/displays some other exogeneous factors.
+<ul>
+<li>CoVID behavior changes can be observed through this mechanism.</li>
+</ul></li>
+</ul></li>
+<li>Monitoring infrastructure should be flexible and engineers should be able to create any type of alerts on top of it.
+<ul>
+<li>Monitoring is there to be able to react to the monitoring and that is why alerts are for. There is nothing more sad than a monitoring infrastructure where engineers cannot create alerts on top of it.</li>
+</ul></li>
+</ul>
+</body>
+</html>
+
+  
+  </article>
+  
+  </div>
+  <div class="thefooter">
+    <p>All Rights Reserved
+    <br><br>Copyright, <i>2020</i></p>
+  </div> <!-- footer end -->
+  <script src="/static/js/scramble.js"></script>
+  <script>
+    emailScramble = new scrambledString(document.getElementById('email'), 'emailScramble', 'dun@euuygbar.', [12, 9, 7, 6, 11, 13, 2, 8, 3, 1, 5, 4, 10]);
+  </script>
+    <script src="/static/js/logo.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">init();</script>
+</body>
+</html>
